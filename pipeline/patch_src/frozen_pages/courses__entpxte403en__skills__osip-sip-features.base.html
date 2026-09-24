@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>ALE SIP 业务特性配置</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · SIP</h2><p>Edition 12 · 465 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte403en/index.html">课程首页</a><a href="/courses/entpxte403en/digest.html">精华长文</a><a href="/courses/entpxte403en/overview.html">教书理解</a><a href="/courses/entpxte403en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte403en/skills/osip-protocol-foundation.html">SIP 协议机理与 OXE SIP 架构</a><a href="/courses/entpxte403en/skills/osip-user-forms.html">SIP 用户形态选型与容量核算</a><a href="/courses/entpxte403en/skills/osip-sip-device-provisioning.html">SIP Device 用户开通与维护</a><a href="/courses/entpxte403en/skills/osip-deskphone-provisioning.html">ALE 话机 SIP 开通与 NOE↔SIP 切换</a><a href="/courses/entpxte403en/skills/osip-ales-provisioning.html">ALES 软终端开通与认证</a><a href="/courses/entpxte403en/skills/osip-certificate-management.html">OXE DM 证书定制与安全级</a><a href="/courses/entpxte403en/skills/osip-otsbc-carrier-interconnect.html">经 SBC 的 SIP 运营商接入与 OTSBC 部署</a><a href="/courses/entpxte403en/skills/osip-remote-workers.html">远程办公方案与落地</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte403en/skills/osip-codec-negotiation.html">编解码协商与验证</a><a href="/courses/entpxte403en/skills/osip-sip-troubleshooting.html">SIP 跟踪采集与维护排障</a><a href="/courses/entpxte403en/skills/osip-dm-management.html">SIP 设备管理选型与 profile 体系</a><a href="/courses/entpxte403en/skills/osip-sip-features.html">ALE SIP 业务特性配置</a><a href="/courses/entpxte403en/skills/osip-lab-environment.html">POD 实验环境与运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte403en/index.html">oxe-sip（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte403en/index.html">ENTPXTE403EN</a><span>/</span><span aria-current="page">ALE SIP 业务特性配置</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>ALE SIP 业务特性配置</h1></div><dl><div><dt>Skill ID</dt><dd>osip-sip-features</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>ALE SIP 业务特性（监督、寻线组、多终端、可编程键、RCC、按名呼叫）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Limit is 30000 supervision keys on one OXE node. A supervisor can have up to 40 supervision keys. Supervision is not available on ALE SoftPhone on iPhone."（p130）
+"Mixed SIP/NOE configuration is NOT supported for parallel hunting group • Can contain only SIP devices or only NOE devices • Multi-devices CANNOT be part of such hunting group"（p141）
+"Only one ALE SoftPhone for Windows and one ALE SoftPhone for Mobile within the multi-devices"（p134）
+"Up to 48 entries are returned per search ... Maximum 16 simultaneous requests can be handled by the call-by-name service"（p125）</p>
+</blockquote>
+<p>出处：ENTPXTE403EN p118-143。</p>
+<h2>I — 自述</h2>
+<p>SIP 侧业务特性按域分六块，服务等级与机型强相关：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>域</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>监督与代接</td>
+<td>Set Supervision 键（DM 配置文件含被监督人）；SUBSCRIBE/NOTIFY 四态（available/ringing/busy/out of service）；容量 30000 键/节点、40 键/监督员；Keep Alive 超时事件码：入服 511（话机/第三方）/513（ALES），离服 510/512；toast+铃声仅 Windows 与 Android，多被监督人同振只弹最新；只有 SIP 设备能被 SIP 设备监督，iPhone 无监督</td>
+</tr>
+<tr>
+<td>多终端</td>
+<td>纯 SIP：1 主+最多 4 副（建议话机当主，ALES Windows/Mobile 各一台）；混合 NOE+DECT+ALES：最多 3 台，Virtual UA/REX/MIPT 不支持；来话并振，已接经 RFC3326 Reason 同步不计他机未接</td>
+</tr>
+<tr>
+<td>寻线组</td>
+<td>circular/cyclical/parallel 三型；组呼叫不可转移、呼转与 DND 不参与分配、离服成员不分配但保持登录；顺序/循环组可混装与多终端入组，并行组两者皆禁；进出组默认前缀 480/481（须 COS 授权），ALES/ALE-30/ALE-x00 有图形开关</td>
+</tr>
+<tr>
+<td>RCC</td>
+<td>legacy basic（不合头条件仍可用）/enhanced basic（Make call 免压缩资源，前提 COS 开 Optimize resource 3PCC call）/advanced（hold/retrieve/consultation/broker/conference/转移全集）</td>
+</tr>
+<tr>
+<td>可编程键</td>
+<td>最多 120 键（5 页×24），#1/#2 保留 multiline，OXE 集中管理 #3-#122；ALE-2 仅 8 键、ALE-3 仅 12 键；用户设备级 "SIP Key" 管理员只能删不能改；ALE-2/3 与酒店话机不支持集中存储</td>
+</tr>
+<tr>
+<td>按名呼叫</td>
+<td>仅 ALES；不可用于远程工作者（经 SBC/RP）；PCS 模式不可用；48 条结果/名姓分机号三属性/16 并发</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>界面语义：ALES 关窗/隐藏仍收来话，任务栏 Quit 才真退出；呼叫日志是终端本地行为，终端未开机错过来话无记录</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>寻线组/监督/视频实验</strong>（c07 步骤 10-12，p239-242）：</p>
+<ol>
+<li>WBM Groups/Hunt Group → Create：DN=31333、circular 或 sequential、成员 31030+31000；用 ALE-S GUI 与前缀 480/481 进出组并查组呼叫日志，测完删组。</li>
+<li>Users/Progr. Keys（选 31030）→ Key No.=3、Function=Set Supervision、DN=31031、Ringing Mode=No ring mandatory、Mnemo=Sup. 31031；他机呼 31031 时观察监督状态与按键直呼。</li>
+<li>视频：用户 SIP 页 Video Support Profile=On demand；DM profile 设编码 High 等，Save 后 Generate All Configuration Files，双方重开互打视频（Rlab 虚拟桌面不可测）。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：秘书要看老板组状态并代接；客服组建组（哪种搜索类型）；一人多终端同振；批量配按键；前缀激活业务（锁机/呼转/遇忙回拨）。</p>
+<p>语言信号：监督 / supervision / 代接 / pickup / 寻线组 / hunting group / parallel / circular / 480 / 481 / 多终端 / multi-devices / 可编程键 / SIP Key / RCC / 3PCC / 按名呼叫 / call by name / DTMF。</p>
+<p>与相邻能力区分：先选对终端（能力矩阵）找用户形态选型；终端还没开通找各开通卡；远程场景按名呼叫不可用找远程办公。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：业务需求（监督关系/组模型/按键表）、成员终端型号清单、编号计划（前缀可用性）。机型不满足等级要求 → 判停回选型。</p>
+<ol>
+<li>定监督方案：核容量（30000/40）、被监督人必须是 SIP 设备、toast 平台边界（Win/Android）。完成标准：监督关系表</li>
+<li>建寻线组：按需求选搜索类型；并行组先排除混装与多终端成员；基础话机授权前缀 480/481。完成标准：组建成交付</li>
+<li>配多终端：主备结构（话机当主）、ALES Windows/Mobile 各一；混合组网上限 3 台。完成标准：终端绑定</li>
+<li>配按键：DM 下发 #3-#122；ALE-2/3 按 8/12 键限额；用户 SIP Key 告知只能删。完成标准：按键台账</li>
+<li>业务前缀核对：按系统编号计划核 45/51/56/5 等默认值与 DTMF 三法选择。完成标准：拨测通过</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>要 NOE 话机进 SIP 监督体系 → 停，先 SIP 化被监督人（n21）</li>
+<li>并行组要混装或多终端 → 停，结构禁令不可绕（n22），改顺序/循环组</li>
+<li>用户以为设 DND 就不被组分配 → 纠偏：分配逻辑不理会呼转与 DND（n22）</li>
+<li>远程工作者要用按名呼叫 → 停，明确不支持，完整目录检索改配 LDAP（n27）</li>
+</ul>
+<p>输出契约：业务开通记录（监督/组/多终端/按键）+ 前缀与 COS 授权清单 + 行为测试结论。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>事件码 510-513、30000/40、48/16、120/8/12 等数值为 Ed12 口径，版本演进以 OXE Features List 为准</li>
+<li>功能矩阵"✓/空白"双列有文本层歧义（nr-02），ALE-2/3 寻线组为降级支持（nr-08 合读）</li>
+<li>呼叫日志为终端本地行为，非 OXE 服务器侧日志（n24）</li>
+<li>三方会议电路在 IMG；advanced RCC 各服务可用性还受终端 RFC 实现影响（p142）</li>
+<li>实验分机/前缀值（31030、31333、45/51/56/5）为实验口径</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte403en/skills/osip-ales-provisioning.html">ALES 软终端开通与认证</a></p><p class="source-page">能力 ID：cap.osip.sip-features · 来源：ENTPXTE403EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - SIP (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 465 页 -->

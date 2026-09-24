@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>实验环境与链路打通（POD/ITSP1/ABC-F）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Starter</h2><p>Edition  · 649 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte100en/index.html">课程首页</a><a href="/courses/otccxte100en/digest.html">精华长文</a><a href="/courses/otccxte100en/overview.html">教书理解</a><a href="/courses/otccxte100en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte100en/skills/otcc-ccd-matrix-foundation.html">CCD 基础矩阵创建与验证</a><a href="/courses/otccxte100en/skills/otcc-ccs-installation.html">CCS 班长台安装、OXE 声明与 ccs.ini</a><a href="/courses/otccxte100en/skills/otcc-routing-distribution-rules.html">路由规则与分配规则全生命周期</a><a href="/courses/otccxte100en/skills/otcc-agent-supervisor-onboarding.html">ACD 话机、座席与班长创建登录</a><a href="/courses/otccxte100en/skills/otcc-object-tuning.html">CCD 对象参数调优（pilot/PG/队列）</a><a href="/courses/otccxte100en/skills/otcc-voice-guides.html">语音指南三路径（话机录音/.wav 导入/欢迎指南）</a><a href="/courses/otccxte100en/skills/otcc-monitoring-statistics.html">实时监控告警与 Excel 统计</a><a href="/courses/otccxte100en/skills/otcc-multilanguage-calendar.html">多语言语音指南与双日历</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte100en/skills/otcc-supervisor-features.html">座席班长特性配置（监听强插/通用转发/多线/事务码）</a><a href="/courses/otccxte100en/skills/otcc-queue-experience.html">EWT 表与排队位置播报（518）</a><a href="/courses/otccxte100en/skills/otcc-direct-calls-emergency.html">CCD 直接呼叫与紧急关闭</a><a href="/courses/otccxte100en/skills/otcc-statistic-pilot.html">统计型 pilot 与 Call Tag</a><a href="/courses/otccxte100en/skills/otcc-lab-connectivity.html">实验环境与链路打通（POD/ITSP1/ABC-F）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte100en/index.html">otcc-standard-starter（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte100en/index.html">OTCCXTE100EN</a><span>/</span><span aria-current="page">实验环境与链路打通（POD/ITSP1/ABC-F）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>实验环境与链路打通（POD/ITSP1/ABC-F）</h1></div><dl><div><dt>Skill ID</dt><dd>otcc-lab-connectivity</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>实验环境与链路打通（POD 收尾/ITSP1/ABC-F 内呼）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Remote Lab allows accessing a pool of virtual machines and hardware (when required) hosted in a data center."（p5）
+"PBX installation nb 3321PN … DDI table - First external nb 41000 … Example: 31002's external nb 3321PN41002"（p16）
+"configure 2 parameters in your external SIP gateway: • Registration ID: pbxN (where N is your POD Number) … • Outgoing username= pbxN"（p153）
+"Warning … ABC-F LINK MUST BE DELARED ON THE SAME NODE, BUT IN A DIFFERENT NETWORK"（p162，DELARED 为原文拼写）
+"Type hybvisu -f all … The two accesses must be 'UP'. … In the event of congestion, use the rsthyb command"（p165）</p>
+</blockquote>
+<p>出处：OTCCXTE100EN p3-17, p150-165。</p>
+<h2>I — 自述</h2>
+<p>本书一切实验的地基是 RLAB 环境（f02/f03，纯实验口径，仅作 Boundary 背景）：</p>
+<ul>
+<li>POD 五实例：OXE（192.168.1.1/1.3，mtcl）、OMS（192.168.1.13）、FlexLM 许可服务器（192.168.1.80）、Client PC10（192.168.1.10，IPDSP 31000 + MicroSIP 31010/31011/Public）、Client PC11（192.168.1.11，IPDSP 31001）</li>
+<li>ITSP1 模拟器两腿：SIP 网关 gateway1.itsp1.com（注册 pbxP/alcatel）+ 公网网关 public.itsp1.com；号码规则：安装号 3321PN、DDI 首外线 41000/首内线 31000；打 pilot 拨 0210X41600（X=POD 号）</li>
+</ul>
+<p>POD 收尾四件事（c05）：</p>
+<ul>
+<li>公网软话机选对 POD profile 并 Online；SIP Ext. Gateway 填 Registration ID/Outgoing username=pbxN</li>
+<li>DID 翻译：首外线 33210N41000 映射首内线 31000、段长 1000</li>
+<li>RDP 音频串联：两级远程桌面把播放与录音都重定向到本地，单屏容纳全部软话机</li>
+</ul>
+<p>ABC-F 本地混合链路（c06）：内呼 pilot 的承载。硬约束：同 Node 不同 Network 声明；pilot 的 ABC Local Call Allowed 须启用（法国库默认开）；链路默认存在（版本基线两说，见 nr-04）但两条 access（B Channel）任何版本都要手工建；hybvisu -f all 验双 UP、rsthyb 重启。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>POD 收尾实验</strong>（p150-158）：</p>
+<ol>
+<li>RLAB 面板确认五台 VM 启动；OXE 侧核对机架（Software Rack 3U、Rack 4 Virtual GD4）</li>
+<li>MicroSIP-Public 选 Public POD X profile 确认 Online</li>
+<li>SIP&gt; SIP Ext. Gateway 填 Registration ID=pbxN、Outgoing username=pbxN</li>
+<li>Translator&gt; External Numbering Plan&gt; Default DID num. translator 建 33210N41000→31000（段长 1000）</li>
+<li>MicroSIP-Public 拨 0210X41600/0210X41601 打两个 pilot，Agent1 应答、挂机进 wrap-up</li>
+<li>配两级 RDP 并重定向音频，PC11 窗口最小化对齐 IPDSP</li>
+</ol>
+<p><strong>ABC-F 实验</strong>（p159-165）：</p>
+<ol>
+<li>先试内呼 31600，不通再建链路</li>
+<li>System 页核 Node 号与 Network 号（同 Node 不同 Network）</li>
+<li>核对 pilot 的 ABC Local Call Allowed 已启用</li>
+<li>Loop-Hybrid 核对 Multi access hybrid link=YES；建 access 1 与 access 2（B Channel）</li>
+<li>mtcl 会话 hybvisu -f all 确认两条 access 均 UP；拥塞时 rsthyb</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新学员开环境打不通外呼；公网软话机不在线；DID 翻译不对；内呼 pilot 不通；hybvisu 显示 DOWN；RDP 没声音；R100 前后版本链路要不要自建。</p>
+<p>语言信号：RLAB / POD / ITSP1 / pbxN / MicroSIP / IPDSP / DID 翻译 / 33210N41000 / 0210X41600 / ABC-F / Loop-Hybrid / access / hybvisu / rsthyb / 同节点不同网络 / RDP 音频。</p>
+<p>与相邻能力区分：矩阵对象创建 → CCD 基础矩阵能力；direct call 的链路限制 → 直接呼叫与紧急关闭卡（路由卡）；生产中继与编号计划在书外。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：RLAB 账号与 POD 号已分配、五实例已启动、教材预置库完好。</p>
+<ol>
+<li>核实例与机架：五台 VM 在线，OXE 机架与 GD4 板位在服。完成标准：config 4 正常</li>
+<li>参数化公网软话机：选对 POD profile 并确认 Online。完成标准：可注册到 ITSP1</li>
+<li>填 SIP 网关参数：Registration ID 与 Outgoing username=pbxN。完成标准：保存成功</li>
+<li>建 DID 翻译：首外线→首内线、段长 1000。完成标准：外呼公网号能翻译到内部分机</li>
+<li>打通外呼：拨 0210X41600/0210X41601 到两个 pilot。完成标准：Agent1 应答且挂机进 wrap-up</li>
+<li>通内呼链路：核 Node/Network 与 ABC Local Call Allowed → 建/核 access → hybvisu 验双 UP。完成标准：内部分机可拨通 pilot</li>
+<li>串联 RDP 音频：两级远程桌面重定向播放与录音。完成标准：单屏操作全部软话机且声音正常</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>外呼不通 → 按序查：软话机 profile、SIP 网关 pbxN、DID 翻译，三层各有一个错就全断</li>
+<li>内呼不通 → 先查同 Node 不同 Network 与 ABC Local Call Allowed，再查 access 是否建（n03/n09）</li>
+<li>链路拥塞 → rsthyb 重启 ABC-F（p165）</li>
+<li>生产项目套用本章参数 → 判停：pbxN/3321PN/0210X 全是实验口径，生产走真实 ITSP 与编号计划（n19）</li>
+<li>p153 口令登录失败 → 全书主体口径是 Superuser2580*（nr-01）</li>
+</ul>
+<p>输出契约：可外呼可内呼的实验站点（SIP/DID/链路参数记录）+ RDP 单屏操作环境。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>本章全部 IP/账号/号码/口令为 RLAB 教学专用（p9 实例表明文），生产必须整体替换（n19）</li>
+<li>真实 ITSP 申请、编号计划设计、COS 规划在书外——原书假设预置库现成（批判区）</li>
+<li>R100/N1 版本基线两说（nr-04）：行为口径按"链路默认存在、access 必建"执行，现场以 hybvisu 实测为准</li>
+<li>RDP 音频串联是 RLAB 教学手法，生产座席环境无关</li>
+<li>SSH 可用性在不同实验章节记载不一（p76 SSH 会话 vs 收尾章"SSH is disabled"），按 RLAB 实际为准（g39）</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.otcc.lab-connectivity · 来源：OTCCXTE100EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Starter (Participant's Guide, Edition 09) | edition: Edition  | pages: 649 页 -->

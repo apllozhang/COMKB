@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>ACR 授权与非授权名单规则</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced Call Routing</h2><p>Edition 01 · 470 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte150en/index.html">课程首页</a><a href="/courses/otccxte150en/digest.html">精华长文</a><a href="/courses/otccxte150en/overview.html">教书理解</a><a href="/courses/otccxte150en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte150en/skills/acr-script-editor-fundamentals.html">ACR 脚本编辑器与调试工具链</a><a href="/courses/otccxte150en/skills/acr-ccd-matrix-foundation.html">ACR 基础 CCD 矩阵地基</a><a href="/courses/otccxte150en/skills/acr-redirect-redistribution.html">ACR 重定向与再分发兜底</a><a href="/courses/otccxte150en/skills/acr-direct-call-dica.html">ACR 坐席直拨融合</a><a href="/courses/otccxte150en/skills/acr-internal-database-routing.html">ACR 内部数据库路由</a><a href="/courses/otccxte150en/skills/acr-rule-combination-advanced.html">ACR 综合规则组合与高级构件</a><a href="/courses/otccxte150en/skills/acr-asm-deployment.html">ACR 外部 ASM 部署与双机热备</a><a href="/courses/otccxte150en/skills/acr-database-query-routing.html">ACR 外部数据库查询路由</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte150en/skills/acr-list-rules.html">ACR 授权与非授权名单规则</a><a href="/courses/otccxte150en/skills/acr-call-tag-transfer.html">ACR Call Tag 生成与传递</a><a href="/courses/otccxte150en/skills/acr-multilanguage-voiceguide.html">ACR 多语言语音引导与语言偏好分发</a><a href="/courses/otccxte150en/skills/acr-filter-statistics.html">ACR 过滤器与统计报表</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte150en/index.html">otcc-advanced-call-routing（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte150en/index.html">OTCCXTE150EN</a><span>/</span><span aria-current="page">ACR 授权与非授权名单规则</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>ACR 授权与非授权名单规则</h1></div><dl><div><dt>Skill ID</dt><dd>acr-list-rules</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>ACR 授权与非授权名单规则（静态名单五式给值、动态 LIST 名单）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"AUTHORIZED_LIST: Brings up agents out of a static list. It can be indexed by: A call context index (CALLING, CALLTAG, AGENT_NUMBER) • An integer (its logical number in OmniTouch, %index to define) • Its name (its name in OmniTouch, "String to define") • Agents list: Brings up an explicit agents list … LIST variable: Bring ups agents found in the variable LIST"（p57）
+"100 lists (Authorized / Unauthorized) maximum • 30 Agent per list • No limit of Agents, when the content of the list is defined in the script • An Agent belonging to a list must have at least 1 active skill"（p61）
+"The String is case sensitive!"（p74）</p>
+</blockquote>
+<p>出处：OTCCXTE150EN p51-81。</p>
+<h2>I — 自述</h2>
+<p>名单规则圈定或排除坐席，属可组合规则，可与 ISM 等串接：</p>
+<ol>
+<li><strong>授权名单（Authorized List）</strong>：只让名单内坐席接；默认名 WList_x</li>
+<li><strong>非授权名单（Unauthorized List）</strong>：排除名单内坐席；默认名 BList_x</li>
+<li><strong>给值五式</strong>：呼叫上下文索引（CALLING/CALLTAG/AGENT_NUMBER，名单跟着主叫号、标签或被拨坐席号走）；整数索引 %index（名单 ID 0-99）；名字索引 "String"（大小写敏感）；脚本内显式坐席列表（无数量上限）；LIST 变量（动态拼装）</li>
+</ol>
+<p>硬规格：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>上限/约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>名单总数（授权+非授权合计）</td>
+<td>100 个（ID 0-99）</td>
+</tr>
+<tr>
+<td>每列表坐席数</td>
+<td>30</td>
+</tr>
+<tr>
+<td>脚本内显式列表</td>
+<td>无上限</td>
+</tr>
+<tr>
+<td>名单内坐席</td>
+<td>须有至少 1 个活动技能，否则被排除</td>
+</tr>
+</tbody>
+</table></div>
+<p>名单本体在 CCS 的 ACR Data 建；运维查看用 adm_acd 选项 24（节点号 加 名单号）。典型组合：授权名单加 ISM 单 APPLY 链式——名单先过滤、技能再精选（双 APPLY 会令名单失效，见综合规则组合能力）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>授权名单脚本（c03 前半）</strong>：</p>
+<ol>
+<li>ACR Data 建授权名单 List_1（ID 0），内容为坐席 3x502</li>
+<li>写脚本 Authoriz：Statement 定义条件（Home 技能级别大于 2），构件 RULE_AUTHORIZED_LIST</li>
+<li>名单参数用 %index=0，或改用脚本内显式列表加 3x501</li>
+<li>呼家险 Pilot：Home 级别 9 条件真，名单 0 生效，3x502 接</li>
+<li>呼车险 Pilot：档案无 Home 条件假，显式名单生效，3x501 振铃</li>
+</ol>
+<p><strong>非授权名单脚本（c03 后半）</strong>：</p>
+<ol>
+<li>建非授权名单 Beginner，内容为 3x501；场景：10 点前排除 Beginner、10 点后排除主管</li>
+<li>写脚本 Unauthor：时间条件 Statement 加 RULE_UNAUTHORIZED 构件</li>
+<li>String 索引注意大小写；也可用 UNAUTHORISED_LIST 加 %整数（名单 ID）</li>
+<li>Debugger 显示时间 12:45:12 条件为假，非授权名单生效</li>
+<li>实时改条件为大于 10 点再呼：31501 不可接，其余有活动技能坐席可接</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：只让资深坐席接某类呼叫；把新手在高峰时段排除；名单跟着主叫号走（大客户专属名单）；动态拼名单。</p>
+<p>语言信号：授权名单 / Authorized List / 非授权名单 / Unauthorized List / WList / BList / 名单索引 / CALLING 索引 / 大小写敏感 / 显式坐席列表 / LIST 变量名单。</p>
+<p>与相邻能力区分：名单与技能怎么组合才生效，见 综合规则组合能力（单 APPLY 语义）；脚本调试，见 脚本编辑器能力；名单数据来自查询，见 内部数据库或外部数据库能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：名单成员清单（坐席须已有活动技能）、业务条件（时间/技能级别）、脚本编辑权限。名单总量逼近 100 或单列表超 30 时先做规划。</p>
+<ol>
+<li>ACR Data 建名单（授权或非授权），录坐席。完成标准：名单保存且坐席有活动技能</li>
+<li>写脚本构件 RULE_AUTHORIZED_LIST 或 RULE_UNAUTHORIZED，五式给值选一。完成标准：保存传输激活</li>
+<li>显式列表与静态名单混用时核对成员并集。完成标准：成员口径与业务一致</li>
+<li>Debugger 验证正反用例：名单内、名单外、条件切换三种情形。完成标准：命中与排除行为正确</li>
+<li>动态名单用 LIST 变量拼装后传入规则。完成标准：Debugger 里 LIST 内容正确</li>
+<li>运维核查 adm_acd 选项 24。完成标准：名单内容与配置一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>名单内坐席不振铃 → 先核该坐席活动技能（无技能即被排除），再核名单 ID 与索引</li>
+<li>名单加 ISM 组合不生效 → 停，查 APPLY 数量，转综合规则组合能力</li>
+<li>照抄书面前先在编辑器核对关键字拼写（AUTHORIZED/AUTHORISED 混用，nr-04）</li>
+</ul>
+<p>输出契约：名单配置 + 名单规则脚本 + 正反用例验证轨迹。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>名单规则给值的 String 索引大小写敏感（教材以感叹号强调）</li>
+<li>关键字两种拼法混用为原文现象，以编辑器实际接受为准（n09/nr-04）</li>
+<li>名单规则不影响 ISM 成本计算口径；混跑优先级问题归综合规则组合能力</li>
+<li>adm_acd 选项号出自原书维护页；名单上限 100/30 为原书 Issue 01 口径，细则以 Feature List 为准</li>
+<li>名单跟随主叫号时号码格式须与 CALLING 一致（前缀口径见 RSI 参数）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte150en/skills/acr-rule-combination-advanced.html">ACR 综合规则组合与高级构件</a></p><p class="source-page">能力 ID：cap.acr.list-rules · 来源：OTCCXTE150EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Advanced Call Routing (Participant's Guide, Issue 01) | edition: Edition 01 | pages: 470 页 -->

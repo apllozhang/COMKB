@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>xBS 空中同步体系与组网域（含外部同步与多站点）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise ·​ DECT 解决方案</h2><p>Edition 12 · 298 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/dectxte200en/index.html">课程首页</a><a href="/courses/dectxte200en/digest.html">精华长文</a><a href="/courses/dectxte200en/overview.html">教书理解</a><a href="/courses/dectxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/dectxte200en/skills/dect-pari-identifier.html">DECT 标识号码体系与 multi-PARI 适配</a><a href="/courses/dectxte200en/skills/dect-product-selection.html">DECT 产品线选型与拓扑决策</a><a href="/courses/dectxte200en/skills/dect-ipxbs-deployment.html">8378 IP-xBS 部署与故障换站</a><a href="/courses/dectxte200en/skills/dect-xbs-sync-topology.html">xBS 空中同步体系与组网域（含外部同步与多站点）</a><a href="/courses/dectxte200en/skills/dect-handset-registration.html">DECT 用户创建与手机注册/注销</a><a href="/courses/dectxte200en/skills/dect-mixed-mode.html">混合 DECT 基础设施部署（TDM + xBS、PLI 统一）</a><a href="/courses/dectxte200en/skills/dect-auto-reregistration.html">DECT 手机自动重注册（PARI/PLI 变更零接触迁移）</a><a href="/courses/dectxte200en/skills/dect-firmware-management.html">DECT 固件双轨升级管理（基站 downstat x / 手机 OTA downstat m）</a><p class="course-nav-group">路由能力</p><a href="/courses/dectxte200en/skills/dect-maintenance-troubleshooting.html">DECT 日常维护与排障（命令族/syslog/WBM）</a><a href="/courses/dectxte200en/skills/dect-radio-survey.html">DECT 无线覆盖勘测（RSSI 门槛/SSK/survey mode）</a><a href="/courses/dectxte200en/skills/dect-ibs-deployment.html">8379 IBS 基础设施部署（UA 板卡/布线/建站）</a><a href="/courses/dectxte200en/skills/dect-sip-dect.html">8328 SIP-DECT 部署（四步注册/双小区）</a><p class="course-nav-group">已安装技能</p><a href="/courses/dectxte200en/index.html">dect-solutions（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/dectxte200en/index.html">DECTXTE200EN</a><span>/</span><span aria-current="page">xBS 空中同步体系与组网域（含外部同步与多站点）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>xBS 空中同步体系与组网域（含外部同步与多站点）</h1></div><dl><div><dt>Skill ID</dt><dd>dect-xbs-sync-topology</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>xBS 空中同步体系与组网域（Sync Master/Cluster/Highway/外部同步/Site）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The maximum of levels in the synchronisation tree is 24"（p75）
+"The selection of the base station used for external synchronization ('Master Sync' and 'External Synchronization RPN' is done manually ... The Sync master base station does not support any communications ... A backup Sync Master must also be setup and configured"（p106）
+"When more than 2 PARIs are synchronized together using external sync, additional configuration is needed: a synchronization highway"（p111）
+"A SITE is a group of 8378 DECT IP-xBS linked to a call server and located in the same geographical location where it is possible to do handover"（p86）</p>
+</blockquote>
+<p>出处：DECTXTE200EN p75, p86-92, p93-97, p98-116, p199-203, p263-270。</p>
+<h2>I — 自述</h2>
+<p>同步是 handover 的生命线（帧级精确同步是切换前提，p25），加上 Site 切换边界构成组网域：</p>
+<ol>
+<li><strong>Internal Sync</strong>：同 Site 同 PARI 内基站空中时间对齐；同步树按 RSSI+跳数自动构建（最深 24 级），随无线环境自动重构，默认零配置。</li>
+<li><strong>Sync Master</strong>：树根基站。内部同步时自动选举、可随环境漂移；外部同步时<strong>手工指定且禁止承载任何通信</strong>（纯同步站）。</li>
+<li><strong>Backup Sync Master</strong>：外部同步时强制配置；必须物理邻近主站、看得见同一个外部同步源基站；可补位承载主站不支持的话务，主备切换后该话务即失。</li>
+<li><strong>Sync Cluster</strong>：每 Site/PARI 最多 8 簇、默认全在 Cluster 0、单站可属最多 8 簇；仅用于站内同步不稳定的特殊场景（如电梯井），拆簇代价是簇间无同步。</li>
+<li><strong>External Sync / Sync Highway</strong>：两个同步树之间对齐（xBS 树↔xBS 树或 xBS 树↔TDM 基站树）；&gt;2 个 PARI 串联需附加 Sync Highway 配置。</li>
+<li><strong>Site（切换边界）</strong>：同地理位置可 handover 的基站组，默认全在 Site 0；同 Site 内有 handover、跨 Site 只有 roaming；一个 PARI 可拆多 Site（分支办公），一个 Site 可含多 PARI（需配 PARI 间同步链路）。</li>
+</ol>
+<p>切换可行域：Data Sync Primary 每 Site/PARI 自动选出一个（dectview xbs 的 P 标志），handover 只发生在同一 Data Sync Primary 之下；基站间同步门槛 RSSI -80dBm（p210）。</p>
+<p>主备皆失（p109）：其余基站全部停摆（无孤岛），恢复后同步树<strong>不会自动重建</strong>（原书自注 will be improved in a future release）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>外部同步链路与外部 handover 实验</strong>（p263-270）：</p>
+<ol>
+<li>前置：Mixed 模式、xBS PARI=100004101x4、IBS PARI=100004101x0、PLI=30、两站间距约 15 米（实验口径）</li>
+<li>PWT/DECT System → Flag External Handoff=yes</li>
+<li>xBS Site / External Synchronization：PARI Number=1、Sync Master RPN=0、Sync Master backup RPN=255（none）、External Sync PARI=100004101x0、External Sync RPN=0</li>
+<li>核验：dectview xbs 表尾出现 External sync source 行（S 0-IBS → *M 0-GF-01，Backup B 255）</li>
+<li>通话验证：<strong>呼叫必须先建在 IBS</strong>（Attention 原文）；dectview com 看 STABLE，移向 xBS 切换后 dectview com 显示 RELAY/RADIO 且通话不断</li>
+</ol>
+<p><strong>多站点实验</strong>（p199-203）：</p>
+<ol>
+<li>xBS Site → Create：Site Number=1、Site Name=BO；Site 0 改名 HQ</li>
+<li>xBS base station → id 1 → Site Number=1</li>
+<li>核验：dectview xbs 显示 "Region 0 (EUROPE) has 2 site(s) with 2 XBS in service"，两站各为本站 Master（P+ 判读，推断标注）</li>
+<li>WBM → Multi Cell → DECT chain information 看各站同步链</li>
+<li>漫游模拟：关手机、拔 HQ 站、再开机试呼成功（跨站 roaming）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：通话中切换失败排查；多 PARI 同步组网；Sync Master 坏了；电梯井场景基站分组；混合 IBS/xBS 要切换；分支办公组网；跨楼手机能不能用；&gt;254 台扩容。</p>
+<p>语言信号：同步 / synchronization / Sync Master / Backup / Sync Cluster / 簇 / Sync Highway / 外部同步 / External Synchronization / Data Sync Primary / handover / 外部切换 / Flag External Handoff。</p>
+<p>相关词：Site / 多站点 / branch office / 漫游 / roaming / -80dBm / 24 级。</p>
+<p>与相邻能力区分：混合模式的 PLI 适配见混合部署能力；Site 拆分的 PARI 前提见标识号码能力；dectview/xbssynchro 命令细节与基站 Site 归属判读见维护排障（路由）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：拓扑类型（单 PARI/多 PARI/混合/分支办公）、基站间距与无线环境。站间 RSSI 未知 → 先勘测（覆盖勘测能力，路由）。</p>
+<ol>
+<li>单 PARI 单 Site：默认零配置，内部同步树自动构建。完成标准：xbssynchro 显示一棵树、站间 RSSI 达 -80dBm</li>
+<li>分支办公：xBS Site 逐个建 Site、基站改 Site Number。完成标准：dectview xbs 归属正确、每 Site 一棵树</li>
+<li>特殊场景拆簇：仅当站内同步不稳定（电梯井等）按 Cluster 0-7 分组。完成标准：簇内同步稳定、簇数 ≤8</li>
+<li>多 PARI/混合：指定 Sync Master RPN（禁载通信）+ Backup（255=none）+ External Sync PARI/RPN。完成标准：dectview xbs 表尾见 External sync source</li>
+<li>开外部切换：Flag External Handoff=yes；&gt;2 个 PARI 追加 Sync Highway。完成标准：跨 PARI 切换可用</li>
+<li>验证：起呼于被同步侧（IBS），移动完成切换，dectview com 核 RELAY 且通话保持。完成标准：切换后通话不断；跨 Site 场景验证 roaming</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>Sync Master 坏了全站停摆 → 按 p109 口径如实告知：无孤岛、恢复后不自动重建，人工干预重建同步</li>
+<li>Backup 与 Master 相距远、看不见同一外部同步源 → 备份形同虚设，先改选址再谈冗余</li>
+<li>Backup 顶上后话务丢失不可接受 → 在主备旁再加一台专载话务的 xBS（p109 方案）</li>
+<li>同步树超 24 级 → 拓扑不支持，加同步源或拆 Site</li>
+<li>客户要求"跨 Site 通话中切换" → Site 语义不支持（p87-88）；跨 PARI 需求按外部同步路线评估</li>
+</ul>
+<p>输出契约：组网域说明（Site/树/簇/外部链路）+ dectview xbs 标志判读记录 + 切换与漫游验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>硬规格：同步树 24 级、每 Site/PARI 8 簇、单站 8 簇（p75/p102）；超界场景书内无方案</li>
+<li>"拆簇导致跨簇 handover 受限""各站应为本 Site 的 Master"为推断标注（needs-review nr-06）</li>
+<li>外部同步实验的正值 RSSI 表述（RSSI &gt; 70 dB）按 -70dBm 门槛口径理解（needs-review nr-07）</li>
+<li>多 Site 与多 PARI 组合时的 PARI 间同步链路只有概念描述（p91-92），配置细节书内未展开（待确认）</li>
+<li>生产无线设计（传播/天线/勘测方法）在 8AL90874USAA，本卡只管同步与组网配置验证</li>
+</ul><h2>相关能力</h2><p><a href="/courses/dectxte200en/skills/dect-mixed-mode.html">混合 DECT 基础设施部署（TDM + xBS、PLI 统一）</a></p><p class="source-page">能力 ID：cap.dect.xbs-sync-topology · 来源：DECTXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: DECT Solutions (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 298 页 -->

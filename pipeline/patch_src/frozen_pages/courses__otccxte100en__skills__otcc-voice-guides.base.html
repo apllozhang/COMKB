@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>语音指南三路径（话机录音/.wav 导入/欢迎指南）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Starter</h2><p>Edition  · 649 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte100en/index.html">课程首页</a><a href="/courses/otccxte100en/digest.html">精华长文</a><a href="/courses/otccxte100en/overview.html">教书理解</a><a href="/courses/otccxte100en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte100en/skills/otcc-ccd-matrix-foundation.html">CCD 基础矩阵创建与验证</a><a href="/courses/otccxte100en/skills/otcc-ccs-installation.html">CCS 班长台安装、OXE 声明与 ccs.ini</a><a href="/courses/otccxte100en/skills/otcc-routing-distribution-rules.html">路由规则与分配规则全生命周期</a><a href="/courses/otccxte100en/skills/otcc-agent-supervisor-onboarding.html">ACD 话机、座席与班长创建登录</a><a href="/courses/otccxte100en/skills/otcc-object-tuning.html">CCD 对象参数调优（pilot/PG/队列）</a><a href="/courses/otccxte100en/skills/otcc-voice-guides.html">语音指南三路径（话机录音/.wav 导入/欢迎指南）</a><a href="/courses/otccxte100en/skills/otcc-monitoring-statistics.html">实时监控告警与 Excel 统计</a><a href="/courses/otccxte100en/skills/otcc-multilanguage-calendar.html">多语言语音指南与双日历</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte100en/skills/otcc-supervisor-features.html">座席班长特性配置（监听强插/通用转发/多线/事务码）</a><a href="/courses/otccxte100en/skills/otcc-queue-experience.html">EWT 表与排队位置播报（518）</a><a href="/courses/otccxte100en/skills/otcc-direct-calls-emergency.html">CCD 直接呼叫与紧急关闭</a><a href="/courses/otccxte100en/skills/otcc-statistic-pilot.html">统计型 pilot 与 Call Tag</a><a href="/courses/otccxte100en/skills/otcc-lab-connectivity.html">实验环境与链路打通（POD/ITSP1/ABC-F）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte100en/index.html">otcc-standard-starter（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte100en/index.html">OTCCXTE100EN</a><span>/</span><span aria-current="page">语音指南三路径（话机录音/.wav 导入/欢迎指南）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>语音指南三路径（话机录音/.wav 导入/欢迎指南）</h1></div><dl><div><dt>Skill ID</dt><dd>otcc-voice-guides</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>语音指南三路径（话机录音/.wav 导入/座席欢迎指南）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The ideal way to manage the whole messages is to create a voice guide in 3 digits and their associated messages in 4 digits. The first digit is for the language index"（p214）
+"Dial the prefix 401 to start recording process … Enter the voice message (i.e. 1683, 1684 or 1685)"（p219）
+"The .wav files available on OTCC_NAS instance have got the following attributes: A-Law, 8000Hz, 64 Kbps, mono"（p241）
+"SFTP Enable the SFTP connection (mandatory from OXE N3)"（p245）
+"The voice guide #538 puts into service the agent welcome guide feature … Agent can record a maximum of 5 prompts."（p574-575）</p>
+</blockquote>
+<p>出处：OTCCXTE100EN p194-264, p566-582。</p>
+<h2>I — 自述</h2>
+<p>编号法是地基：指南号（3 位）放 CCD 矩阵，消息号（4 位=语言索引+指南号）供录制——指南 683 配消息 1683（语言 1）/2683（语言 2）；每指南消息数=语言数、最多 40 条，消息号全域 0-5999（p214/p586/p13）。</p>
+<p>静态指南打包后固化在 Flash、不可改；动态指南可录音、存 RAM，需 GD3/GA3 板卡或 OMS（免板卡）；格式 G711 64kbps（crystal）或 ADPCM32 32kbps（common）（p196-197）。</p>
+<p>录入三路径：</p>
+<ul>
+<li>话机录音：401 开始录、输消息号、录制、文件名+memo、选文件装板；580 试听；COS 须启用 Recordable Voice Guides（法语库默认关，n26）；无录音时播备份音 56（p218-220）</li>
+<li>.wav 导入：CCS Audio File Conversion 转码+定消息号 → Audio File Update 经 SFTP 传输（OXE N3 起强制）→ Dynamic Voice Messages Configuration 选中装板（p241-245）</li>
+<li>座席欢迎指南：机制指南 538 预置（法国库不建不改）；消息池 4500-5999（每座席最多 5 条文件）；三处激活（话机 Apply / CCS 勾 Presentation Message Activation / OXE 侧启用）；Silent Connection on Agent=0 时主叫、座席都听；=1 仅主叫（p574-576）</li>
+</ul>
+<p>板位与验证：实验 OMS 板位 4-0；mtcl 会话 vgstat 4 0 查装载（^ 标记已选中）（p215-220）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>话机录音排矩阵</strong>（p211-236）：</p>
+<ol>
+<li>OXE 建 683/684/685 三指南（Single-message、Start=YES、备份音 56、消息 1683/2683 等）</li>
+<li>Dynamic Voice Guides&gt; Assignment 把消息分配到板位 4-0</li>
+<li>COS 放行 Recordable Voice Guides；IPDSP 拨 401 逐条录制并选文件装板</li>
+<li>580 试听三条消息；vgstat 4 0 复核装载</li>
+<li>After-Sales pilot 排矩阵：Pres.Guide=683（1 次）、Level[1] 音乐 5 秒、Level[2]=684、Level[6] 循环</li>
+<li>阻塞态两种配法（按规则用 Voice_guide_PG 播 685；不按规则用 Blockage closure addresses 播 685 两次）</li>
+</ol>
+<p><strong>.wav 导入</strong>（p237-264）：拷 688/690 素材，Conversion 转码定消息号，SFTP Update 传输，Select 装板，Offer pilot 排矩阵。</p>
+<p><strong>欢迎指南</strong>（p572-582）：分配 4500，座席设 Pres. Message Number=4500 与文件数 2，CC 页签录晨/晚两版，Download 选版本，三处任一激活。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：外包录音上线；"401 录不了音"；换班次问候语；多语言消息该录哪个槽；.wav 传输失败；580 试听没声；来话还是备份音；欢迎指南要不要让座席听见。</p>
+<p>语言信号：voice guide / 语音指南 / 消息号 / 401 / 580 / vgstat / Audio File Conversion / Audio File Update / SFTP / A-Law / 8000Hz / ADPCM32 / G711 / 板位 / 4-0 / 538 / 4500 / welcome guide / 欢迎指南 / 备份音 56。</p>
+<p>与相邻能力区分：指南排进哪个 parking level → 路由与分配规则能力；EWT 表与 518 位次 → 排队体验卡（路由卡）；多语言 pilot 双语路由归多语言与日历能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：文案与语言清单已定、目标库语言编号表已核对（nr-07）、录音源（话机或 .wav）就绪。</p>
+<ol>
+<li>建指南并分配板卡：OXE 建 3 位指南号（Function 按单消息/多语言选）、消息号=语言索引+指南号，Assignment 分配到板位。完成标准：config 4 在服、分配条目存在</li>
+<li>路径一话机录音：COS 放行 Recordable Voice Guides，401 录制，填文件名+memo，选文件装板。完成标准：580 试听通过、vgstat 可见 ^ 选中</li>
+<li>路径二 .wav 导入：核对素材属性 A-Law/8000Hz/64kbps/mono，Conversion 转码，SFTP 传输（N3+强制），Select 装板。完成标准：三步均成功提示、vgstat 复核</li>
+<li>排入矩阵：pilot 规则 Pres.Guide 与 parking level 按听感脚本填（次数/时长）。完成标准：开态/阻塞态听感与设计一致</li>
+<li>欢迎指南（按需）：分配 4500 段消息，座席设消息号与文件数，录多版本后选中激活。完成标准：来话摘机先闻欢迎语</li>
+<li>验证与回退：无录音场景确认播备份音 56 而非静默。完成标准：全场景听感验收单通过</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>401 拨不出/录音流程走不通 → 查 COS 的 Recordable Voice Guides（法语库默认关，n26）</li>
+<li>传输失败 → OXE N3+ 必须勾 SFTP 且 OXE 侧已实现 SSH（n08）</li>
+<li>播错语言 → 语言槽与语种取决于库配置，先核语言编号表再录（nr-07）</li>
+<li>direct call 来话没有欢迎语 → 设计如此：欢迎指南不在 CCD direct calls 上播放（n31）</li>
+<li>想自建 518/538 同号指南 → 系统预置不可建改，只录消息（n27）</li>
+</ul>
+<p>输出契约：全链路上线的语音指南集（编号/录制/装板/矩阵落位）+ 听感验收记录 + vgstat 截图口径。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>每指南最多 40 条消息（=语言数上限 40）；消息号 0-5999；欢迎消息池 4500-5999 共 1500 条、每座席 5 条（p586/p568/n28）</li>
+<li>OXE 预置资源（518/538/3226-4217/备份音 56/演示指南 70/直连阻塞 75）不可自造同号（n27/g43）</li>
+<li>Audio Station/VGTransfer 工具链书中点名未展开，录音第四法在 OTCC901（n41）</li>
+<li>板卡/编码口径为实验 OMS 板位 4-0；crystal/common 硬件对应不同编码（p197）</li>
+<li>实验编号（683/684/685/688/690/701/640 等）为实验口径；多语言 pilot 部署归多语言与日历卡</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte100en/skills/otcc-queue-experience.html">EWT 表与排队位置播报（518）</a>、<a href="/courses/otccxte100en/skills/otcc-multilanguage-calendar.html">多语言语音指南与双日历</a></p><p class="source-page">能力 ID：cap.otcc.voice-guides · 来源：OTCCXTE100EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Starter (Participant's Guide, Edition 09) | edition: Edition  | pages: 649 页 -->

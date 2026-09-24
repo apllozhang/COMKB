@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>语音导航套件（AA/MLAA/SCR）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OXO Connect · Advanced</h2><p>Edition 18 · 601 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte301en/index.html">课程首页</a><a href="/courses/oxocxte301en/digest.html">精华长文</a><a href="/courses/oxocxte301en/overview.html">教书理解</a><a href="/courses/oxocxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte301en/skills/oxoa-sip-networking.html">SIP 组网：公网网关与私网互联</a><a href="/courses/oxocxte301en/skills/oxoa-numbering-ars-suite.html">ARS 路由套件：三表协作与 Internal ARS</a><a href="/courses/oxocxte301en/skills/oxoa-hotel-billing-vertical.html">酒店与计费垂直方案</a><a href="/courses/oxocxte301en/skills/oxoa-security-hardening.html">系统安全加固</a><a href="/courses/oxocxte301en/skills/oxoa-certificate-suite.html">证书与加密传输（证书/DTLS/TLS-SRTP）</a><a href="/courses/oxocxte301en/skills/oxoa-attendant-suite.html">语音导航套件（AA/MLAA/SCR）</a><a href="/courses/oxocxte301en/skills/oxoa-voicemail-mobility.html">语音邮箱与移动办公</a><a href="/courses/oxocxte301en/skills/oxoa-cloud-connect-fleet.html">Cloud Connect 舰队与远程维护</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte301en/skills/oxoa-foundation-ip.html">交付地基：OMC 首连与 IP 规划</a><a href="/courses/oxocxte301en/skills/oxoa-terminal-ecosystem.html">终端生态：PIMphony 与 SIP 话机接入</a><a href="/courses/oxocxte301en/skills/oxoa-shared-devices.html">共享终端：站群监督、Hot Desking 与 Multiset</a><a href="/courses/oxocxte301en/skills/oxoa-multi-entity.html">多实体与伪多公司</a><a href="/courses/oxocxte301en/skills/oxoa-dect-deployment.html">DECT 无线移动</a><a href="/courses/oxocxte301en/skills/oxoa-maintenance-toolkit.html">维护工具箱：Webdiag、Noteworthy 与 LoLa</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte301en/index.html">oxo-connect-advanced（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte301en/index.html">OXOCXTE301EN</a><span>/</span><span aria-current="page">语音导航套件（AA/MLAA/SCR）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>语音导航套件（AA/MLAA/SCR）</h1></div><dl><div><dt>Skill ID</dt><dd>oxoa-attendant-suite</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>语音导航套件：AA、MLAA 与 Smart Call Routing（树结构、语音指南、客户码路由）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Two different tree structure: day (Normal) /night (Restricted) • Two menu levels by tree (100 nodes in the tree) … 4 voice guides possible languages"（p407）
+"After a cold reset, 2 ports are systematically set into the default attendant group n°8"（p409）
+"A maximum of 5 tree structures are manageable … Tree structure up to 3 levels … Number of dedicated MLAA ports (0 to16)"（p428, p431）
+"The total maximum size of all voice prompts must not exceed 12000 seconds (200 minutes)"（p440）
+"Rules available: 10 000 … Up to 10 plans … 64 Exceptional days are in common with ACD … 8 voice prompt from 107.wav to 807.wav"（p454-457）
+"Message client code of group 1 = 'please enter your client code and validate by #'"（p462）</p>
+</blockquote>
+<p>出处：OXOCXTE301EN p405-462。</p>
+<h2>I — 自述</h2>
+<p>三层递进的来话处理：AA（一套树）→ MLAA（按 DID/CLI 多棵树）→ SCR（客户码+时间的规则引擎）。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>AA</th>
+<th>MLAA</th>
+<th>SCR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>树</td>
+<td>2 棵（白天 Normal/夜间 Restricted），每树 2 级 100 节点</td>
+<td>最多 5 棵（license 1/5），3 级每级 10 选</td>
+<td>无树，规则表</td>
+</tr>
+<tr>
+<td>路由依据</td>
+<td>按键 + 时段</td>
+<td>DID 和/或 CLI</td>
+<td>CLI/DDI/DTMF 客户码 + 开闭时间</td>
+</tr>
+<tr>
+<td>语言</td>
+<td>4 语言</td>
+<td>每树 4 语言（100 消息/语言）</td>
+<td>客户码提示 8 条（107-807.wav）</td>
+</tr>
+<tr>
+<td>端口</td>
+<td>语音端口 2-8（与 VM/Audiotext 共享）</td>
+<td>专用 0-16（与 ACD 共享）</td>
+<td>依托 ACD</td>
+</tr>
+<tr>
+<td>license</td>
+<td>树与语音指南定制需 license</td>
+<td>树数 license（1/5）</td>
+<td>SCR + 1 Supervisor Console</td>
+</tr>
+<tr>
+<td>硬限</td>
+<td>—</td>
+<td>消息总量 12000 秒；每条默认 15 分钟（MLAA_MSG）</td>
+<td>10000 规则；10 计划；64 特殊日（与 ACD 共用）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>AA 要点</strong>：转接模式 noteworthy AATypTrf（02 半监督默认/00 盲转）；免费拨号 AAGrDialng 默认禁、AAGrTransf（0/9 转话务员）默认启；Press '*' 与语言选择菜单期间免费拨号不可用。冷复位后默认 2 端口进话务员组 8 并接外呼——新机"外呼进来是语音菜单"不是故障（n59）。</p>
+<ul>
+<li><strong>MLAA 要点</strong>：配置全在 OMC 图形编辑器，先 Save as 再 Transfer to the server；line parameters 不随存档保存（n26）；端口与消息改动需 ACD 引擎复位或等 10 分钟（n27）。</li>
+<li><strong>SCR 要点</strong>：X 为通配符（CLI/DID 隔离号码段、客户码替换整码）；无码匹配走 Backup destination；日志从监督台出、WebDiag 导出。</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>AA 实验</strong>（p422-426，厂商实验）：</p>
+<ol>
+<li>树规划：press star 后一级菜单 6 键（会计/销售子菜单、General mailbox、转 104 邮箱、留言）。</li>
+<li>Greetings tab 勾 "press star question"；AA menu 的 Opening hours tab 编辑树。</li>
+<li>子菜单 1 转 101/102、子菜单 2 转 102/103。</li>
+<li>MMC 话机录问候与各级语音指南（或 OMC 导入）。</li>
+<li>遍历全树选项；General mailbox 留言转发到 101 邮箱核对（p426）。</li>
+</ol>
+<p><strong>MLAA 实验</strong>（p443-449，ISP 场景）：</p>
+<ol>
+<li>树规划：DID 41509，问候+语言选择（英/法）+四级菜单（订阅/改合同/套餐/解约）。</li>
+<li>MMC 录 MSG001-007（问候/语言选择/菜单 1-4/解约说明）。</li>
+<li>MLAA Setup：专用端口 8（与 ACD 共享上限 16）；DDI 41509 关联寻线组 509。</li>
+<li>MLAA Services 建菜单并接线（菜单 4 按 2 播 msg007）；Line parameters 填 DDI、Service opened: Tree 1。</li>
+<li>Tools 先保存再 Transfer to the server；拨 021PN41509 走完整树（p449）。</li>
+</ol>
+<p><strong>SCR 实验</strong>（p459-462，厂商实验）：</p>
+<ol>
+<li>目标：DDI 41510——8:00-14:00 客户码 001 转 101、002 转 102、其它码转 103；14:00 后转 100。</li>
+<li>ACD Setup 把 ACD 端口放入寻线组 510 并关联 41510。</li>
+<li>录客户码提示（107.wav）："please enter your client code and validate by #"。</li>
+<li>SCR tab 配开放时间 8am-2pm；建三条规则（001/002/通配 x）与闭时段目的地 100。</li>
+<li>打 41510 输不同客户码核对去向；14 点后核对全部到 100。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：公司总机要语音导航；白天夜间不同菜单；多业务线或多语言入口；按主叫号码分流；客服要客户报编号再分流；改了语音怎么没生效；新装机外呼进来是语音菜单。</p>
+<p>语言信号：AA / 自动话务员 / automated attendant / 语音导航 / 话务员树 / MLAA / 多树 / multi-language / 客户码 / client code / Smart Call Routing / SCR / DID 路由 / CLI 路由 / press star / 免费拨号 / voice guide / 语音指南 / 12000 秒。</p>
+<p>与相邻能力区分：ACD 呼叫中心排队与坐席管理在 ACD-SCR 域但书内仅以组为目的地，完整 ACD 运营在书外；语音留言与个人助理归语音邮箱与移动能力；时段表机制（Day Groups/Hours）归 ARS 套件能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：菜单树设计（层级/按键/目的地）、语音脚本与语言、DID/CLI 规划、license 状态（AA 定制/MLAA 树数/SCR+Supervisor Console）。树设计未定 → 判停先出菜单脚本给客户确认，再动手配。</p>
+<ol>
+<li>选型：单入口按时段切选 AA，多业务线按 DID/CLI 选 MLAA，要客户码互动选 SCR。完成标准：选型与 license 对齐</li>
+<li>录语音：MMC 话务员会话按 MSG 编号录（MLAA 001-100/语言）或 OMC 导入（AA 为 ADPCM G726 格式）。完成标准：消息入册</li>
+<li>建树/规则：OMC 编辑器建菜单与目的地（SCR 建规则行与开闭目的地）。完成标准：结构与规则落表</li>
+<li>接线：AA 挂 DID；MLAA Setup 定端口并 Line parameters 映射 DDI→树；SCR 关联 ACD 组与 DID。完成标准：来话进树</li>
+<li>传输/生效：MLAA 先 Save as 再 Transfer（line parameters 另存记录）；等引擎复位或 10 分钟。完成标准：配置激活</li>
+<li>调行为：AA 按需改 AATypTrf/AAGrDialng/AAGrTransf；确认 Press '*' 与语言菜单期免费拨号不可用。完成标准：行为符合预期</li>
+<li>验证：遍历全树按键；按实验口径核对各目的地；闭时段/备份目的地单独试。完成标准：全路径通</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>消息总量逼近 12000 秒 → 停，先删冗余语音（硬上限，无法超）</li>
+<li>改完配置"没反应" → 先查生效条件（引擎复位或 10 分钟，n27），再排查配置</li>
+<li>换机迁移后树在但来话进不来 → line parameters 不随存档（n26），手工重配</li>
+<li>客户要在菜单里做账号查询等动态互动 → 超出按键树能力，转外部 IVR 方案</li>
+</ul>
+<p>输出契约：树/规则设计文档 + 语音消息清单（编号/语言/时长）+ 全路径测试记录 + license 消耗清单。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>AA 树与语音指南定制、MLAA 树数、SCR 均需 license（冷复位默认树只能留言/转话务员）</li>
+<li>SCR 客户码是 DTMF 互动校验，不是账号系统；客户码库维护在规则表内（CSV 导入导出兼容）</li>
+<li>MLAA 端口与 ACD 共享 16 上限：扩 ACD 会挤占 MLAA 端口</li>
+<li>SCR 开闭计划 10 个、特殊日 64 个与 ACD 共用：排期冲突先对齐 ACD</li>
+<li>实验单语录音（RDP 音质）为教学口径；生产多语言需逐语言完整录制（每语言 100 消息）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte301en/skills/oxoa-voicemail-mobility.html">语音邮箱与移动办公</a>、<a href="/courses/oxocxte301en/skills/oxoa-numbering-ars-suite.html">ARS 路由套件：三表协作与 Internal ARS</a></p><p class="source-page">能力 ID：cap.oxoa.attendant-suite · 来源：OXOCXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OXO Connect - Advanced (Participant's Guide, Edition 18) | edition: Edition 18 | pages: 601 页 -->

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Starter</h2><p>Edition 12 · 821 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte400en/index.html">课程首页</a><a href="/courses/entpxte400en/digest.html">精华长文</a><a href="/courses/entpxte400en/overview.html">教书理解</a><a href="/courses/entpxte400en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte400en/skills/ents-first-login-hardening.html">OXE 首登加固（四账户与密码治理）</a><a href="/courses/entpxte400en/skills/ents-cs-network-firewall.html">Call Server IP 寻址与内部防火墙</a><a href="/courses/entpxte400en/skills/ents-db-license.html">空数据库创建与 OPS 许可管理</a><a href="/courses/entpxte400en/skills/ents-media-gateway-deployment.html">媒体网关上架（GD4/OMS/XL）</a><a href="/courses/entpxte400en/skills/ents-user-terminal-provisioning.html">用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）</a><a href="/courses/entpxte400en/skills/ents-numbering-cos.html">编号计划与 COS 管理</a><a href="/courses/entpxte400en/skills/ents-call-processing.html">呼叫处理业务域（语音指南/话务台/Entity/计时器）</a><a href="/courses/entpxte400en/skills/ents-sip-trunk.html">公共 SIP 中继开通与弹性</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte400en/skills/ents-system-start-stop.html">OXE 系统启停与 autostart 管理</a><a href="/courses/entpxte400en/skills/ents-time-sync.html">OXE 时间同步（NTP/chrony）</a><a href="/courses/entpxte400en/skills/ents-voicemail-4645.html">OmniMessage 4645 语音邮件与邮件通知</a><a href="/courses/entpxte400en/skills/ents-barring-emergency.html">外呼闭锁与紧急呼叫通知</a><a href="/courses/entpxte400en/skills/ents-backup-maintenance.html">数据库备份恢复与维护排障工具箱</a><a href="/courses/entpxte400en/skills/ents-legacy-trunks-umc.html">传统中继（T0/T2）与 UMC 云管理</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte400en/index.html">oxe-starter（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte400en/index.html">ENTPXTE400EN</a><span>/</span><span aria-current="page">用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）</h1></div><dl><div><dt>Skill ID</dt><dd>ents-user-terminal-provisioning</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>用户与终端开通（IP 话机/IPDSP/TDM/User Profile/内部 DHCP）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Each user has a directory number • This number is unique in the system and has a length of 8 digits maximum"（p291）
+"The association between the Directory number and the device is done via the MAC Address … Must be removed when device replacement"（p294）
+"The secret code by default for all the users is: '0000'"（p325）
+"Configuration: 'DHCP off' by default. … Alcatel terminals only: Yes"（p356）</p>
+</blockquote>
+<p>出处：ENTPXTE400EN p287-365。</p>
+<h2>I — 自述</h2>
+<p>用户=唯一分机号（≤8 位），开通三法按终端形态分绑定标识：</p>
+<ol>
+<li><strong>IP 话机绑 MAC</strong>：自动分配=话机插线后输分机+初始密码（统一 0000）由系统回收 MAC；手工=建户时填写，换机必须先清除旧 MAC</li>
+<li><strong>IPDSP 绑 Phone Identifier</strong>：PC 需有音频设备否则不入服；TFTP 拉 lanpbx.cfg 注册</li>
+<li><strong>TDM 绑物理地址</strong>：机架/板/端口三地址；自动分配时设备号位留空（255）</li>
+<li><strong>静态开通线</strong>：话机启动期进 MMI（#* 同按或触屏）配 IP 与 TFTP #1=CS Main 地址，注册后自动重启入服</li>
+<li><strong>动态开通线（CS 内部 DHCP）</strong>：默认关闭；可设 Alcatel terminals only；改配置必须 Apply 重启 dhcpd；/etc/dhcpd.conf 由 MAO 再生、禁止手改；DHCP 池自动入防火墙且 netadmin 不可改</li>
+<li><strong>User Profile 批量建户</strong>：建 Set Function=Profile 的模板用户（Profile 名必须大写、DN 用字母开头），再 Users by profile 按模板建户</li>
+<li><strong>维护抓手</strong>：termstat/eqstat（d/n/p 三语法）、换机改 MAC、tnet d 上话机、getlogs+ippstat 15 取日志、outserv/inserv 摘挂服</li>
+</ol>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>终端</th>
+<th>绑定标识</th>
+<th>网络</th>
+<th>开通方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IP 话机</td>
+<td>MAC 地址</td>
+<td>静态或 DHCP</td>
+<td>插线输分机+0000</td>
+</tr>
+<tr>
+<td>IPDSP</td>
+<td>Phone Identifier</td>
+<td>TFTP/HTTPS 拉配置</td>
+<td>装软件输分机+0000</td>
+</tr>
+<tr>
+<td>TDM 数字/模拟</td>
+<td>机架/板/端口</td>
+<td>无 IP</td>
+<td>插线注册或手工三地址</td>
+</tr>
+<tr>
+<td>Profile 模板</td>
+<td>同上（继承）</td>
+<td>同上</td>
+<td>Users by profile 派生</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>IP 话机静态开通实验</strong>（p320-329，How-To）：</p>
+<ol>
+<li>WBM 建户 31011，Set type=ALE-300</li>
+<li>重启话机，无屏按 #+* 或触屏进 Config. MMI</li>
+<li>IP Parameters 里 IPv4 改 Static，填 IP/掩码/路由（实验口径 192.168.1.141）</li>
+<li>System Settings 里 TFTP #1 填 CS Main 地址 192.168.1.3</li>
+<li>话机上拨自己分机 31011，输密码 0000 注册</li>
+<li>WBM 核对 TSC IP user 页 MAC 已自动回填</li>
+<li>换机演练：删旧 MAC 填新 MAC 后话机恢复在服</li>
+<li>日志演练：ippstat 开 SSH 后 getlogs，SFTP 取回日志包</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新员工开通话机；话机换新；软话机装不上/不入服；TDM 话机供电异常（事件 3757）；批量建户；客户没有 DHCP 时用 CS 内部 DHCP；话机日志收集。</p>
+<p>语言信号：建户 / 开通 / commissioning / MAC / Phone Identifier / ALE-300 / IPDSP / ALE-30h / ANALOG / User Profile / DHCP / dhcpd / 0000 / termstat / 换机 / getlogs。</p>
+<p>与相邻能力区分：板子不在服导致话机不起见网关上架能力；号码规则设计见编号计划与 COS 能力；CS 网络/防火墙不通见 CS 网络与防火墙能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：用户清单（姓名/分机号/终端类型/位置）、客户 DHCP 现状、话机密码规范。分机号规划冲突先回编号计划能力核对。</p>
+<ol>
+<li>建户：WBM Users 建 DN+姓名+Set type；IPDSP 场景再开 IP-Softphone emulation。完成标准：用户对象在库</li>
+<li>终端上线：IP 话机插线输分机+0000（首登后按客户规范改密）；TDM 按自动/手工分配。完成标准：termstat 显示 IN_SERV</li>
+<li>静态/动态选线：客户有 DHCP 走动态；无则 CS 内部 DHCP（默认关，开 Alcatel-only 评估）。完成标准：话机获址并注册</li>
+<li>CS DHCP 配置（如走此线）：WBM DHCP 配置池与全局参数，Apply 重启 dhcpd。完成标准：话机从池内获址，dhcplog 四步完整</li>
+<li>批量场景：建大写 Profile 模板，Users by profile 派生建户。完成标准：新户继承模板参数</li>
+<li>巡检与维护：termstat/eqstat 核状态；换机改 MAC；故障机 tnet+getlogs 取日志。完成标准：台账与在服清单一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>IPDSP 不入服 → 先查 PC 音频设备与 PC 防火墙端口（n19），再查 OXE 侧</li>
+<li>TDM 话机报事件 3757 → 供电不足禁入服（n17），按 110W/150W MR3 规则处理而不是反复重启</li>
+<li>话机改了 IP 参数不生效 → IP 参数仅启动期可改，重启话机再进 MMI</li>
+<li>dhcpd.conf 被手改后丢失 → 该文件按 MAO 再生（n20），改配置回 WBM 而不是改文件</li>
+</ul>
+<p>输出契约：在服用户与终端清单（绑定标识齐全）+ DHCP 配置记录（如启用）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>实验分机号 31000-31043、地址池 192.168.1.145-149、密码 0000/*tx8000# 均为实验口径；生产必须替换并收紧初始密码</li>
+<li>TDM 功耗规则仅约束 3U 机架（110W MR3 预留 4/3 槽+MG Reserved 虚板）；1U/Crystal/本地电源不受限（n17）</li>
+<li>ALE-3 不支持远程办公场景；4059EE 关联分机禁 multiline（n18，话务台场景在呼叫处理能力展开）</li>
+<li>话机硬件规格目录（屏幕/音频/接口参数）归产品目录不入册；IPDSP 端口基线（UDP 10000-10499/32512-33023/28000-39999、TCP 2535）见 p314 附录</li>
+<li>DECT/WLAN 终端开通不在本书实验链内</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte400en/skills/ents-numbering-cos.html">编号计划与 COS 管理</a></p><p class="source-page">能力 ID：cap.ents.user-terminal-provisioning · 来源：ENTPXTE400EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Starter (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 821 页 -->

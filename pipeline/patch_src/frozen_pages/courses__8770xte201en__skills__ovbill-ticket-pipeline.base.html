@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>计费票据管道（出票、回收、加载过滤）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 计费与性能管理</h2><p>Edition 45 · 650 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte201en/index.html">课程首页</a><a href="/courses/8770xte201en/digest.html">精华长文</a><a href="/courses/8770xte201en/overview.html">教书理解</a><a href="/courses/8770xte201en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte201en/skills/ovbill-node-onboarding.html">OXE 纳管与 SIP 中继对接</a><a href="/courses/8770xte201en/skills/ovbill-ticket-pipeline.html">计费票据管道（出票、回收、加载过滤）</a><a href="/courses/8770xte201en/skills/ovbill-tariff-costing.html">运营商资费建模与成本计算</a><a href="/courses/8770xte201en/skills/ovbill-org-costing.html">计费组织树与成本归属</a><a href="/courses/8770xte201en/skills/ovbill-confidentiality.html">计费机密控制三道闸（掩码、解密、可见域）</a><a href="/courses/8770xte201en/skills/ovbill-reporting.html">报表生成、导出与定时</a><a href="/courses/8770xte201en/skills/ovbill-report-design.html">报表定制（Querytool 与 Designer）</a><a href="/courses/8770xte201en/skills/ovbill-voip-monitoring.html">VoIP 性能监控（IP ticket 与 KPI）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte201en/skills/ovbill-codebook-migration.html">Code Book 导出与导入</a><a href="/courses/8770xte201en/skills/ovbill-cost-profile.html">成本档案（发票价与订阅费）</a><a href="/courses/8770xte201en/skills/ovbill-traffic-tracking.html">流量分析与 Tracking 告警</a><a href="/courses/8770xte201en/skills/ovbill-web-performance.html">Web Performance 实时仪表盘</a><a href="/courses/8770xte201en/skills/ovbill-archiving.html">计费归档与恢复</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte201en/index.html">omnivista-billing-performance（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte201en/index.html">8770XTE201EN</a><span>/</span><span aria-current="page">计费票据管道（出票、回收、加载过滤）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>计费票据管道（出票、回收、加载过滤）</h1></div><dl><div><dt>Skill ID</dt><dd>ovbill-ticket-pipeline</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>计费票据管道（OXE 出票、维护命令、回收五方法、加载过滤、入库验证）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Accounting records storage (max 500 records)"（p62）
+"This number defines the maximum of accounting files that can be saved on the PCX: default value 31 days i.e. 31 x 24 files = 744 compressed files."（p86）
+"Comparison of the ACCOUNT.LIS files ... Retrieval (via ftp) of the new files ... Records extraction and loading in the database ... Deletion of the retrieved files ... Update of the file"（p98）
+"Important: Modify the password to match the OmniPCX Enterprise password if it has been modified. Do not modify the FTP user to avoid a problem at verification of the license."（p109）</p>
+</blockquote>
+<p>出处：8770XTE201EN p59-114, p448。</p>
+<h2>I — 自述</h2>
+<p>票据数据链是单向管道，任何一环断开都会表现为"8770 里没票"，按段排查：</p>
+<ul>
+<li>OXE 出票：呼叫结束生成票据（ED5.2 版式最长 47 字段）先进内存缓冲（≤500 条）；落盘三时机——缓冲满、90 分钟无新票、account compress 强制（节点同步也触发）；文件落 /usr4/account（TAX<strong>*</strong>.DAT + ACCOUNT.LIS）</li>
+<li>出票边界两条：外线呼出/呼入未接通（时长=0）也出票，所以有 "Public Outgoing 0 Units calls" 类别；本机-本机只有已建立才出票</li>
+<li>OXE 侧开启：Files for External Accounting=Yes、存储上限默认 31 天（=744 个压缩文件）、过滤器选齐呼叫类型且必选 0 计费呼出；Financial Report 页签 PIN=Not masked、被叫遮蔽位数=0（遮蔽归 8770 管）</li>
+<li>回收四步：先对比两侧 ACCOUNT.LIS，再 FTP 取回新 DAT 到 C:\8770\data\loader\networknumber=N\subnetworknodenumber=NNN，随后提取记录过加载过滤入库（成本在此步计算），最后删远端文件并更新本地索引</li>
+<li>五种计费方法按 PCX 各选一：No accounting / Detailed（默认推荐：更新树+取票按分机归位）/ Organization update without records retrieval（建树期用）/ Global per node 两种（聚合实体键=网络号×1000000+节点号）</li>
+<li>FTP 铁律：用户名 adfexc 禁改（许可校验），密码必须与 OXE 一致并随 OXE 改密同步更新</li>
+<li>加载过滤五道闸：Duration 阈值、Cost 阈值、Communication Type、Call type（勾 Network 才存内线与 OXE 间呼叫）、Charged party node（取消 Undeclared 防未声明节点入库）</li>
+<li>排障入口：NMCLD_1.log 看 TicketsRead/BadLines/处理速度/被过滤数；PCS 场景票据带 PCS ID（IP 的十六进制）后缀</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>OXE 侧外部计费开启与维护核查</strong>（p85-95）：</p>
+<ol>
+<li>Applications &gt; 1 &gt; Accounting &gt; 1：All 页签 Internal/External Accounting 均 Yes，先 Apply 再进后续页签</li>
+<li>Max No. Days of Storage 保持 31（744 个压缩文件）；过滤器勾齐各呼叫类型并必选 Public Outgoing 0 Units calls</li>
+<li>右键过滤条目 Add After 加 PCX PCX Calls；Financial Report 页签 PIN=Not masked、被叫遮蔽位数=0</li>
+<li>成本中心命名 1=MKT、2=Training、3=TSS（槽位默认已建）；用户 Rights 页签分配 Cost Center ID</li>
+<li>SSH 登录 mtcl 执行 account compress 强制落盘；cd /usr4/account 后 more ACCOUNT.LIS、ll *.DAT</li>
+<li>accview -mtf &lt;文件&gt; 逐字段查票据（-b 10 / -e 10 看头尾 10 条）</li>
+</ol>
+<p><strong>8770 侧回收与验证</strong>（p108-114）：</p>
+<ol>
+<li>PCX 页签：FTP=adfexc + 与 OXE 一致的密码；Accounting Process=Detailed accounting</li>
+<li>Data Collection 页签：Record/ticket collection=Accounting（默认 None）；收集器目录 c:\8770\data\collector</li>
+<li>Loading &gt; Accounting 设五道过滤闸（Duration&gt;0、Cost、类型勾选、节点去 Undeclared）</li>
+<li>确认 loader 与 collector 目录为空后执行同步，复查两目录出现文件</li>
+<li>打开 loader\networknumber=1\subnetworknodenumber=101\ACCOUNT.LIS；看 NMCLD_1.log：TicketsRead=9、52 tic/sec（实验口径）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：8770 收不到话单；票据有没有入库；没打通为什么也有记录；漏选 0 计费呼出；OXE 改密后回收静默失败；建树期该选哪种计费方法；把票据转给第三方计费软件（收集器）；PCS 站点回收。</p>
+<p>语言信号：TAX / ACCOUNT.LIS / ticket / 话单 / 话务票据 / account compress / accview / adfexc / loader / collector。</p>
+<p>补充信号：Detailed accounting / 加载过滤 / loading filter / TicketsRead / NMCLD / PCS / Ticket collector / 0 Units。</p>
+<p>与相邻能力区分：节点接不上 → OXE 纳管能力；入库后算钱错 → 资费建模能力；只建树不取票的排期原则见本卡 A1 与 B。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OXE 已纳管（节点声明完成）、维护账号可用。节点不通 → 先回 OXE 纳管能力。</p>
+<ol>
+<li>OXE 开外部计费：All 页签双 Yes 并 Apply，过滤器选齐类型（含 0 计费呼出）。完成标准：配置保存且类型清单完整</li>
+<li>配成本中心并把用户 Rights 页签挂号。完成标准：每用户有成本中心</li>
+<li>打测试呼叫后 account compress，accview 验票。完成标准：/usr4/account 出现新 DAT 且字段可见</li>
+<li>8770 PCX 页签配 FTP（adfexc/与 OXE 一致）与 Detailed accounting。完成标准：参数落盘</li>
+<li>Data collection 选 Accounting；PCS 场景核对 NmcArchive &gt; Accounting &gt; Specific 开关。完成标准：回收通道打开</li>
+<li>设五道加载过滤闸。完成标准：阈值与勾选符合业务口径</li>
+<li>同步并验证：loader 目录、组织树 Records 页签、NMCLD_1.log 三点核对。完成标准：TicketsRead 大于 0 且树中可见</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>目录不动、日志无新文件 → 查 FTP 密码是否与 OXE 一致（用户名禁改），不重装服务</li>
+<li>票量比通话量多 → 先解释"未接通外线也出票"是设计行为，再用 Duration&gt;0 过滤</li>
+<li>8770 里被叫号是一串横杠 → 查 OXE 侧 Dialed number masked 与 Financial Report 遮蔽参数，8770 侧无法还原</li>
+<li>关了 PCS 随日同步 → 必须手工同步 PCS，否则无自动回收</li>
+</ul>
+<p>输出契约：管道各段状态清单（出票/落盘/取回/加载/入库）+ 日志关键行摘录 + 过滤参数表。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>"没打通也有话单"与"内线只有接通才有票"是并存的出票规则（p67/p68），完整话务画像要看流量分析</li>
+<li>FTP 用户名改动会触发许可校验故障（p109/p448 Important，两章重复）；示例密码与实验环境不一致（见 needs-review nr-06），以"与 OXE 一致"为准</li>
+<li>加载过滤发生在入库前，被过滤的票不入库也不可恢复（p110-111）</li>
+<li>建树期选 Organization update without records retrieval，树定型后再切 Detailed——库里有记录再搬条目极耗时（p101）</li>
+<li>组织树搭建与历史归属属组织成本归属能力；票据进库后的计价属资费建模能力</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte201en/skills/ovbill-node-onboarding.html">OXE 纳管与 SIP 中继对接</a>、<a href="/courses/8770xte201en/skills/ovbill-tariff-costing.html">运营商资费建模与成本计算</a></p><p class="source-page">能力 ID：cap.ovbill.ticket-pipeline · 来源：8770XTE201EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniVista 8770 R5.2 Accounting and Performance Administration (Participant Guide, Edition 45) | edition: Edition 45 | pages: 650 页 -->

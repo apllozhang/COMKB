@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>成本档案（发票价与订阅费）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 计费与性能管理</h2><p>Edition 45 · 650 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte201en/index.html">课程首页</a><a href="/courses/8770xte201en/digest.html">精华长文</a><a href="/courses/8770xte201en/overview.html">教书理解</a><a href="/courses/8770xte201en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte201en/skills/ovbill-node-onboarding.html">OXE 纳管与 SIP 中继对接</a><a href="/courses/8770xte201en/skills/ovbill-ticket-pipeline.html">计费票据管道（出票、回收、加载过滤）</a><a href="/courses/8770xte201en/skills/ovbill-tariff-costing.html">运营商资费建模与成本计算</a><a href="/courses/8770xte201en/skills/ovbill-org-costing.html">计费组织树与成本归属</a><a href="/courses/8770xte201en/skills/ovbill-confidentiality.html">计费机密控制三道闸（掩码、解密、可见域）</a><a href="/courses/8770xte201en/skills/ovbill-reporting.html">报表生成、导出与定时</a><a href="/courses/8770xte201en/skills/ovbill-report-design.html">报表定制（Querytool 与 Designer）</a><a href="/courses/8770xte201en/skills/ovbill-voip-monitoring.html">VoIP 性能监控（IP ticket 与 KPI）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte201en/skills/ovbill-codebook-migration.html">Code Book 导出与导入</a><a href="/courses/8770xte201en/skills/ovbill-cost-profile.html">成本档案（发票价与订阅费）</a><a href="/courses/8770xte201en/skills/ovbill-traffic-tracking.html">流量分析与 Tracking 告警</a><a href="/courses/8770xte201en/skills/ovbill-web-performance.html">Web Performance 实时仪表盘</a><a href="/courses/8770xte201en/skills/ovbill-archiving.html">计费归档与恢复</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte201en/index.html">omnivista-billing-performance（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte201en/index.html">8770XTE201EN</a><span>/</span><span aria-current="page">成本档案（发票价与订阅费）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>成本档案（发票价与订阅费）</h1></div><dl><div><dt>Skill ID</dt><dd>ovbill-cost-profile</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>成本档案（发票价调整与订阅费）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"• x is the total cost • Total cost = Direct carrier cost + ISDN cost+ Indirect carrier cost • A and B are constant"（p325）
+"Example 1: to add 10 % ­ If type = linear equation, A =1,1 and B = 0. ­ If type =Percentage, A = 10 and B is not used."（p333）
+"Subscription records are created at the start of the period: • Every day for daily records • Every Sunday for weekly records • On the first day of the month for monthly records"（p327）</p>
+</blockquote>
+<p>出处：8770XTE201EN p322-340。</p>
+<h2>I — 自述</h2>
+<p>成本档案（Cost profile）在运营商成本之上做第二层调价，分两块：</p>
+<ul>
+<li>发票价（Invoiced cost w/o tax 页签）：对总成本（直连运营商成本 + ISDN 成本 + 间接运营商成本）做线性或百分比调整，按呼叫类型定义、随组织树继承</li>
+<li>参数换算：+10% 写成线性 A=1.1 B=0，或百分比 A=10；+5% 且每通话加 0.1€ 写成线性 A=1.05、B=0.1 Euro（B 必须带币种）；A&lt;1 或负值为折扣</li>
+<li>订阅费（另两个页签）：Services subscriptions 按"拥有设备/语音信箱/DDI 号"、Station subscription 按"分机类型"计费，可按日/周/月、带币种与税</li>
+<li>订阅出票机制：8770 在每次同步后生成"纯订阅费"记录——日票每日、周票每周日、月票每月 1 日，时间戳全 00:00:00；月订阅当月加入者从次月 1 日起计；订阅计算永不处理当天</li>
+<li>存量更新：Compute cost 勾 Variable cost(s)（调整档案变更）或 Fixed Cost（订阅档案变更——机制是先删订阅记录再重建，量大时以天计）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>发票价档案配置</strong>（p331-340）：</p>
+<ol>
+<li>Organization 页签 Cost Profile 图标打开，认知 Invoiced cost w/o tax 页签字段（Call Type/Type/A/B/Currency）</li>
+<li>复制 Default 建档案 "Root cost"：呼出 +50%</li>
+<li>复制 Default 建档案 "TSS cost"：呼出 +20% 且加固定 0.5€/通话</li>
+<li>组织根 Properties 的 Costs 挂 Root cost（全树生效）</li>
+<li>TSS 成本中心 Inherited Costs=No，单独挂 TSS cost（仅该子树）</li>
+<li>Compute cost 勾 Variable cost(s)=Yes 更新存量（改订阅档案则勾 Fixed Cost）</li>
+<li>Records 页签核对 invoiced cost：TSS 子树按 +20%+0.5€、其余按 +50%</li>
+<li>讲义口径：订阅票在同步后生成，月订阅次月 1 日起计，订阅计算不处理当天</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：内部成本加价 20% 再收；每通话加固定手续费；按月收话机订阅费；月中入职的订阅费怎么算；改了订阅档案为什么重算跑很久；发票价和运营商成本对不上。</p>
+<p>语言信号：成本档案 / cost profile / 发票价 / invoiced cost / 加价 / 折扣 / 订阅费 / subscription / Fixed Cost / Variable cost / Root cost / 每月 1 日 / 次月起计。</p>
+<p>与相邻能力区分：运营商层算价与 Adjustment → 资费建模能力；本卡是入库后的第二层调价；档案挂载依赖组织树（组织成本归属能力）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：加价/折扣口径与订阅费表已获商务确认。口径未定 → 判停先确认，避免返工重算。</p>
+<ol>
+<li>Cost Profile 页签复制 Default 建档案，按呼叫类型配 A/B。完成标准：换算对照（百分比与线性二选一）成立</li>
+<li>挂组织根做全树默认，按条目取消继承做差异化。完成标准：继承关系明确</li>
+<li>需要订阅费时配 Services/Station subscription（周期+币种+税）。完成标准：订阅口径成文</li>
+<li>Compute cost 勾 Variable cost(s)（或 Fixed Cost）更新存量。完成标准：任务成功</li>
+<li>Records 页签抽验 invoiced cost。完成标准：抽样值=手工复算</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>月中加入的员工当月被收费/未收费争议 → 按机制答"月订阅次月 1 日起计"，售前提前讲清</li>
+<li>订阅重算超过一天 → 机制是删了重建，量大以天计；避开业务高峰并预告时长</li>
+<li>加价出现负值/异常 → 检查 A 的语义（百分比填 10 表示 +10%，负值为折扣）与 B 是否带币种</li>
+</ul>
+<p>输出契约：档案参数表（A/B/币种/呼叫类型）+ 挂载矩阵 + 抽样复算对照 + 订阅口径说明。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>发票价调整作用于"总成本"（三类成本之和，p325）；运营商层调价（Adjustment）在本卡上游，属资费建模能力</li>
+<li>订阅计算永不处理当天、可能持续数天（p327/p339）——当日出账需求不成立</li>
+<li>订阅票与普通票同样受组织树/掩码/可见域管控（p327 "processed in the same way"）</li>
+<li>教学百分比（+50%/+20%+0.5€）为实验口径，生产口径需商务确认</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.ovbill.cost-profile · 来源：8770XTE201EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniVista 8770 R5.2 Accounting and Performance Administration (Participant Guide, Edition 45) | edition: Edition 45 | pages: 650 页 -->

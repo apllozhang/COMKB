@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>维护命令与事件/许可速查</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Advanced</h2><p>— · 543 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte401en/index.html">课程首页</a><a href="/courses/entpxte401en/digest.html">精华长文</a><a href="/courses/entpxte401en/overview.html">教书理解</a><a href="/courses/entpxte401en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte401en/skills/entadv-ssh-trust-foundation.html">SSH 免密分发体系</a><a href="/courses/entpxte401en/skills/entadv-cs-redundancy.html">CS 冗余部署与切换维护</a><a href="/courses/entpxte401en/skills/entadv-ip-domain-pcs.html">IP 域与 PCS 域级生存性</a><a href="/courses/entpxte401en/skills/entadv-overflow-rerouting.html">公私网双向溢出与重路由</a><a href="/courses/entpxte401en/skills/entadv-direct-ip-link.html">Direct IP Link 全 IP 组网</a><a href="/courses/entpxte401en/skills/entadv-audit-broadcast.html">Audit 与 Broadcast 数据一致性</a><a href="/courses/entpxte401en/skills/entadv-multiline-supervision.html">多线监督与经理助理组</a><a href="/courses/entpxte401en/skills/entadv-hunting-pickup-speeddial.html">寻线代接组与速拨编号体系</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte401en/skills/entadv-desk-sharing.html">办公桌共享（DSS/DSU）</a><a href="/courses/entpxte401en/skills/entadv-multi-device.html">多设备用户与 Twinset</a><a href="/courses/entpxte401en/skills/entadv-lab-pod-baseline.html">实验/交付前置环境基线</a><a href="/courses/entpxte401en/skills/entadv-cli-toolbox.html">维护命令与事件/许可速查</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte401en/index.html">oxe-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte401en/index.html">ENTPXTE401EN</a><span>/</span><span aria-current="page">维护命令与事件/许可速查</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>维护命令与事件/许可速查</h1></div><dl><div><dt>Skill ID</dt><dd>entadv-cli-toolbox</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>维护命令与事件/许可速查（CLI toolbox、事件号、许可锁）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"(1)csa&gt; role -b → MAIN stand-by CPU state : ACTIVE … (1)csb&gt; role -b → STAND-BY"（p113）
+"Use the different commands of maintenance … 'compvisu sys' • 'hybvisu' • 'trkvisu' • 'compvisu eqt all' • 'rsthyb' • 'incvisu'"（p412）
+"incident « 440 » is triggered. A database cloning operation … is then necessary !"（p79）
+"332 M PCS max. number = 0/ 3 … 186 E-CS redundancy = 1"（p188, p94）</p>
+</blockquote>
+<p>出处：ENTPXTE401EN 各章 Maintenance 节（p94, p113, p160-163, p187-216, p412-417, p449-456, p476-498 等）。</p>
+<h2>I — 自述</h2>
+<p>跨能力排障的统一入口：按功能域归类的命令地图 + 事件号对照 + 许可锁锚点。命令均以 mtcl 登录（部分要求 root）；edabv/audit/prog_diff 支持 -l 语言选项（EN0/FR0/GEA）。</p>
+<ol>
+<li><strong>许可与系统</strong>：spadmin（许可文件/锁值/FlexLM 连接）、cfgUpdate（缩拨号上限）、incvisu/incinfo（事件查询）</li>
+<li><strong>IP 与冗余</strong>：netadmin（IP/防火墙/DNS/Copy to twin）、role -b（主备态）、twin（冗余各项 READY）、bascul（切换）、swinst（Easy/Expert：克隆/autostart/停起话音）、config（板卡）</li>
+<li><strong>PCS</strong>：pcsview（四状态/被救清单/域关联）、pcscopy（库刷新）</li>
+<li><strong>域与话务</strong>：domstat（域/条目/设备/DS 列）、cnx dom（CAC 与压缩机计数）、compvisu sys/eqt all（系统压缩参数与呼叫编解码）、represent（RTP 路径）</li>
+<li><strong>话机特性</strong>：multitool（多线/监督/经理助理）、edabv（缩位号）、pbxstat -f d（寻线组）、supgpbx -le（全网组）、zdpost d（话机底层数据：pickup_id/tandem 字段）、dsstat（DSS/DSU 13 项）、ippstat（MAC/话机/DSU）</li>
+<li><strong>组网</strong>：hybvisu（链路状态 IDLE/SYN_REQ/SYN_ACK/DATA_TRANSFER）、trkvisu（链与链上呼叫）、trkstat（中继通道 B/F 态）、rsthyb（链路复位）</li>
+<li><strong>一致性</strong>：audit（交互菜单）、cleanbroad、mao -a/-lupd/+br/-br、prog_diff、maohist</li>
+</ol>
+<p>事件号对照（R101.1 口径）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>事件</th>
+<th>含义</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>440</td>
+<td>主备失联超时（须 mastercopy）</td>
+<td>p79</td>
+</tr>
+<tr>
+<td>427 / 428</td>
+<td>PCS/CS 侧信令链路丢失</td>
+<td>p182</td>
+</tr>
+<tr>
+<td>431 / 432</td>
+<td>PCS 剩余激活时间 / 违约态</td>
+<td>p182</td>
+</tr>
+<tr>
+<td>6004</td>
+<td>忙时 DSU 被登出、通话释放</td>
+<td>p346</td>
+</tr>
+<tr>
+<td>6005</td>
+<td>节点级全局呼叫上限到达</td>
+<td>p395</td>
+</tr>
+<tr>
+<td>2879</td>
+<td>直链两端带宽/加密/接入数不一致拒建</td>
+<td>p405</td>
+</tr>
+<tr>
+<td>2880/2881/2882/2884</td>
+<td>ABCF_IP 链路建立中/已建立/释放/已禁用</td>
+<td>p417</td>
+</tr>
+<tr>
+<td>2832 / 2846</td>
+<td>节点不可达 / 可达</td>
+<td>p417</td>
+</tr>
+</tbody>
+</table></div>
+<p>许可锁锚点：186=E-CS redundancy（冗余前提 ≥1）；332=PCS max. number；185=SIP Gateway；184=Integrated Gatekeeper；187/188=H323/SIP network links；329/330=软终端锁。版本锚点：SSHv2 自 N3；直链要求全网 ≥R100.0（Purple）、迁移 ≥N1。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>排障三例（书中口径）</strong>：</p>
+<ol>
+<li>切换前检查：csa/csb 各跑 role -b 与 twin，全 READY 才允许 bascul（p113）</li>
+<li>CAC 验证：cnx dom 读 allowed/used/cac over 计数；compvisu eqt all 对照编解码（p162-163）</li>
+<li>直链排障：hybvisu -f 2 看状态与两端参数；2879 时先对带宽/加密/接入数（p412-417/p405）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境："这个状态用什么命令看"；incvisu 里冒出 440/2879/6004/6005 怎么解释；部署前查许可锁；忘记某前缀/某字段的查询命令。</p>
+<p>语言信号：命令名（role/twin/bascul、pcsview/pcscopy、domstat/cnx dom/compvisu、multitool/edabv/pbxstat/zdpost、
+  dsstat/ippstat、hybvisu/trkvisu/trkstat/rsthyb、audit/cleanbroad/prog_diff/maohist、incvisu/incinfo、spadmin/cfgUpdate）、
+  事件号、锁号。</p>
+<p>与相邻能力区分：本卡是索引——定位到命令后，具体语义与步骤转对应能力卡（冗余/PCS/域/溢出/组网/一致性/话机特性）。</p>
+<h2>S — 现场症状（工单语言）</h2>
+<p>下列说法命中本能力时优先打开本页；与「A2 未来触发」配套使用。</p>
+<ul><li>要查命令用法但不敢直接敲</li><li>事件/许可状态看不懂</li><li>现场需要速查而非长文</li></ul>
+
+<h2>E — 可执行步骤</h2>
+<p>输入契约：症状描述或事件号/命令输出。命令不存在或输出异常 → 先核版本（R101.1 口径）。</p>
+<ol>
+<li>按症状域定位命令组（冗余/PCS/域/话务/话机/组网/一致性）。完成标准：命令选定</li>
+<li>查事件号表解释 incvisu 记录，转入对应能力卡处置。完成标准：根因方向明确</li>
+<li>部署前用 spadmin 核许可锁（186/332/185 等）。完成标准：锁值满足前提</li>
+<li>输出证据留存（命令输出截图/文本）。完成标准：可复查</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>命令输出与教材截图结构不一致 → 先核版本漂移（nr-02 同类问题），以现场为准并标注</li>
+<li>事件含义超出本表 → 转 My Portal 的 TG0028 与技术文档，不猜</li>
+<li>需要生产安全基线/话务建模 → 书外域，明确指向外部权威来源</li>
+</ul>
+<p>输出契约：命令选择与解读 + 事件/许可对照结论 + 转入对应能力卡的建议路径。</p>
+<h2>V — 验收与回退</h2>
+<p><strong>验收（DoD，全部满足才收工）</strong></p>
+<ul><li>能定位到正确命令与只读核查项</li><li>事件号/许可锁含义可解释给客户</li></ul>
+<p><strong>回退 / 判停</strong></p>
+<ul><li>误执行写命令：立即停止扩散，按变更/备份流程回退；禁止在生产盲试</li></ul>
+
+<h2>B — 边界</h2>
+<ul>
+<li>事件号与命令输出以 R101.1（MD4）为口径，随版本可能漂移（n46 同类风险）</li>
+<li>教材截图来自不同批次环境，具体 build 号/计数不作标准值（nr-02）</li>
+<li>本卡不替代各能力卡的处置步骤；命令语义以对应能力卡 R/I 段原文为准</li>
+<li>实验口径账号密码仅限 RLAB；生产凭据管理属安全基线（书外）</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.entadv.cli-toolbox · 来源：ENTPXTE401EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Advanced (Participant's Guide, Edition 13) | edition: — | pages: 543 页 -->

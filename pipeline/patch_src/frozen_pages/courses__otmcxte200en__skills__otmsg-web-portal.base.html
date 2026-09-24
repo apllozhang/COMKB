@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>用户自助门户 My Profile 与 MyMessaging</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch Message Center · Starter</h2><p>Edition 08 · 259 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otmcxte200en/index.html">课程首页</a><a href="/courses/otmcxte200en/digest.html">精华长文</a><a href="/courses/otmcxte200en/overview.html">教书理解</a><a href="/courses/otmcxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otmcxte200en/skills/otmsg-install-site-setup.html">OTMC 服务器安装与站点配置</a><a href="/courses/otmcxte200en/skills/otmsg-license-management.html">FlexLM 许可证体系部署与更换</a><a href="/courses/otmcxte200en/skills/otmsg-declaration-sync.html">OXE/OTMC 双向声明进 8770 与同步</a><a href="/courses/otmcxte200en/skills/otmsg-sip-trunk-provisioning.html">OXE 侧 SIP 对接 OTMC</a><a href="/courses/otmcxte200en/skills/otmsg-user-mailbox-provisioning.html">Connection 用户与语音邮箱交付</a><a href="/courses/otmcxte200en/skills/otmsg-mailbox-profiles.html">语音邮箱 profile 定制与问候语管理</a><a href="/courses/otmcxte200en/skills/otmsg-notification-smtp-sms.html">SMTP/SMS 通知部署与排障</a><a href="/courses/otmcxte200en/skills/otmsg-backup-statistics.html">OpenTouch 备份恢复与语音信箱统计</a><p class="course-nav-group">路由能力</p><a href="/courses/otmcxte200en/skills/otmsg-product-positioning.html">OTMC 产品定位与部署形态</a><a href="/courses/otmcxte200en/skills/otmsg-web-portal.html">用户自助门户 My Profile 与 MyMessaging</a><a href="/courses/otmcxte200en/skills/otmsg-imap-access.html">IMAP 客户端访问语音邮箱</a><a href="/courses/otmcxte200en/skills/otmsg-general-announcement.html">企业广播 General Announcement</a><p class="course-nav-group">已安装技能</p><a href="/courses/otmcxte200en/index.html">ot-message-center（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otmcxte200en/index.html">OTMCXTE200EN</a><span>/</span><span aria-current="page">用户自助门户 My Profile 与 MyMessaging</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>用户自助门户 My Profile 与 MyMessaging</h1></div><dl><div><dt>Skill ID</dt><dd>otmsg-web-portal</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>用户自助门户 My Profile 与 MyMessaging（网页听留言/自助设置）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Application available via a web browser using the following URL • https://<OpenTouch Messaging Center FQDN>"（p156）
+"Application available via a web browser using the following URL • https://<OpenTouch Messaging Center FQDN/MyMessaging> • or through the application 'My Profile'"（p165）</p>
+</blockquote>
+<p>出处：OTMCXTE200EN p153-166（f19、g13、p12/p24 归并）。</p>
+<h2>I — 自述</h2>
+<p>OTMC 提供两个用户自助 Web 应用，登录均用用户 GUI 账号：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>应用</th>
+<th>入口</th>
+<th>功能区</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>My Profile</td>
+<td>OTMC FQDN 根路径</td>
+<td>按主题的用户设置与保存/取消；语言与时区（TUI/Web 语言、留言时区）；personal assistant 联系人与电话号码；语音邮件参数（激活问候语、信箱选项开关）；密码管理（TUI 密码与 My Profile 密码）；跳转 MyMessaging；SMTP/SMS 通知启用与定制</td>
+</tr>
+<tr>
+<td>MyMessaging</td>
+<td>OTMC FQDN/MyMessaging，或经 My Profile 进入</td>
+<td>新留言/已存留言列表（优先级、日期时间、主叫号码、时长、呼叫处理）；播放可在 PC 或话机上执行；挂断/删除/刷新动作</td>
+</tr>
+</tbody>
+</table></div>
+<p>可见性规则：门户里看得到哪些设置由管理员授权决定（p191 Note）；TUI 密码管理档位由 profile 控制（p149）。</p>
+<h2>A1 — 书中案例</h2>
+<p>web clients 章（p153-166）为界面导览，无独立 How-To 实验；用户自助动作散嵌于其它实验的用户侧步骤：信箱定制核验走 My Profile（c07 步骤 11）、通知自开关与改通知地址走 My Profile 的 Notification 区（c09 步骤 6）。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：交付后用户培训；"网页上怎么听留言"；"自己想改问候语/密码/通知地址"；用户报"我的设置里少了某项"。</p>
+<p>语言信号：My Profile / MyMessaging / 自助门户 / 网页听留言 / personal assistant / 改问候语 / 改密码 / 通知设置 / web 客户端。</p>
+<p>与相邻能力区分：管理员批控（profile/Greetings 页签/Greeting Managers）归 otmsg-mailbox-profiles；通知链路部署归 otmsg-notification-smtp-sms；IMAP 客户端见 otmsg-imap-access（路由卡）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：用户已知 GUI 凭证、OTMC FQDN 可达（网络侧放行属客户环境）。</p>
+<ol>
+<li>入口指引：My Profile 走根路径、MyMessaging 走子路径或门户跳转。完成标准：用户能登录</li>
+<li>高频自助演示：改语言/激活问候语/开关通知/改密码/网页听留言。完成标准：用户独立操作一遍</li>
+<li>可见性问题处理：缺失项按管理员授权口径解释并回管理员侧开权。完成标准：工单闭环</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>用户看不到某设置 → 先查管理员是否授权（p191），不是故障，不要重装/重配</li>
+<li>TUI 密码改不了或档位不对 → 档位由 profile 控制，转 otmsg-mailbox-profiles</li>
+<li>网页进不去 → 核对 FQDN 解析与网络可达，超出本书范围的防火墙/VPN 细节按客户环境处理</li>
+</ul>
+<p>输出契约：可自助操作的用户 + 门户功能演示记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>门户是"用"的界面，不承载管理员配置；管理员侧动作走 8770/WBM/Greeting Managers</li>
+<li>p153-166 为界面导览章，原书无门户专项实验——步骤粒度以界面导览口径为限</li>
+<li>实验门户地址（otmc.company.com 等 FQDN）与 GUI 口令见 book/overview</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otmcxte200en/skills/otmsg-user-mailbox-provisioning.html">Connection 用户与语音邮箱交付</a></p><p class="source-page">能力 ID：cap.otmsg.web-portal · 来源：OTMCXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch Message Center Starter (Participant's Guide, Issue 08) | edition: Edition 08 | pages: 259 页 -->

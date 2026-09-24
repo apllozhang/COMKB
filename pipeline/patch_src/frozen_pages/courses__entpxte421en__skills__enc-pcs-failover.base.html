@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>PCS 加密接管</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 加密解决方案</h2><p>Edition 05 · 410 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte421en/index.html">课程首页</a><a href="/courses/entpxte421en/digest.html">精华长文</a><a href="/courses/entpxte421en/overview.html">教书理解</a><a href="/courses/entpxte421en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte421en/skills/enc-certificate-trust-chain.html">证书与信任链全生命周期</a><a href="/courses/entpxte421en/skills/enc-native-encryption-bringup.html">加密解决方案开通与 lanpbx.cfg</a><a href="/courses/entpxte421en/skills/enc-dtls-verification-maintenance.html">DTLS 验证、排障与维护闭环</a><a href="/courses/entpxte421en/skills/enc-sip-tls-endpoints.html">SIP TLS 扩展加密</a><a href="/courses/entpxte421en/skills/enc-sip-trunk-tls.html">SIP trunk 的 TLS 与 SRTP</a><a href="/courses/entpxte421en/skills/enc-eegw-deployment.html">EEGW/NSP 大容量部署</a><a href="/courses/entpxte421en/skills/enc-abcf-network-encryption.html">ABC-F 网络加密</a><a href="/courses/entpxte421en/skills/enc-mtls-endpoint-authentication.html">mTLS 双向认证与版本限制</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte421en/skills/enc-pcs-failover.html">PCS 加密接管</a><a href="/courses/entpxte421en/skills/enc-pki-workshop-xca.html">XCA 外部 CA 工坊</a><a href="/courses/entpxte421en/skills/enc-application-encryption.html">应用生态加密与安全下载</a><a href="/courses/entpxte421en/skills/enc-lab-environment.html">实验环境底座（RLAB）</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte421en/index.html">oxe-native-encryption（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte421en/index.html">ENTPXTE421EN</a><span>/</span><span aria-current="page">PCS 加密接管</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>PCS 加密接管</h1></div><dl><div><dt>Skill ID</dt><dd>enc-pcs-failover</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>PCS 加密接管（分支救援、断网演练）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Endpoints must have been connected at least once to CS in order to be rescued by PCS"（p92）
+"SAME 'LANPBX.CFG' FILE OF MAIN CS IS USED FOR PCS NODES. END POINTS WILL NOT REQUEST 'LANPBX' FILE FROM PCS. … NOTHING TO DO."（p152）
+"PCS state:ACTIVE … 2 IP users are rescued (IP DSP 31002 &amp; 31003)"（p155）</p>
+</blockquote>
+<p>出处：ENTPXTE421EN p91-92, p146-156, p212-215。</p>
+<h2>I — 自述</h2>
+<p>CS 失联后分支端点以加密模式切到 PCS 的救援机制，规则三条、流程五步：</p>
+<ol>
+<li><strong>前置规则</strong>（p92/p148/p152）：</li>
+<li>端点必须至少连过一次 CS（拿到初始信令里的 PCS 地址）才能被救援；新装直奔分支的端点不在范围</li>
+<li>NE 相关配置只在主节点做，不在 PCS 上做</li>
+<li>PCS 与主 CS 共用同一 lanpbx.cfg（端点不会向 PCS 请求），为 PCS 单独生成 lanpbx 是无用功</li>
+<li>PCS 证书与 CS 同 CA 但必须是不同证书（CN=pcs.company.com 类 FQDN），导入前必须先打 tar 包</li>
+<li><strong>PCS 的 EGW 形态</strong>（p213）：PCS EGW IP=PCS IP → 内嵌 EGW（&lt;1500）；不同地址 → 外接 EEGW（&gt;1500）</li>
+<li><strong>部署五步</strong>（p212-215）：OXE 库配 PCS 地址与域名；CS 上生成/导入 PCS 证书（11.9.2.2/3）；pcscopy 拷证书与数据到 PCS；装 EGW VM；从 PCS 下载证书</li>
+<li><strong>演练行为</strong>（p154-156）：断网后 pcsview 显示 PCS state:ACTIVE、域 secured、用户 rescued；恢复重连后 PCS 回 INACTIVE、无救援用户</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>PCS 接管实验</strong>（p146-156，c05 步骤 1-9）：</p>
+<ol>
+<li>omsconfig 配 Passive CS address=192.168.2.5、domain=pcs.company.com（实验口径）</li>
+<li>WBM 核对 PCS FQDN 已配置（PCS 证书用 FQDN 入 SAN）</li>
+<li>netadmin 11.9.2.2 生成 PCS CSR，交 CA 签发取回 pcs.p7b</li>
+<li>tar cf pcs.tar 打包后 11.9.2.3 导入，copy to twin</li>
+<li>pcscopy → 1 PCS update 拷贝到 PCS（PCS 随之重启）</li>
+<li>11.9.2.4 导出 PCS 证书备份（csa_pcs_pfx.tar）</li>
+<li>Rlab 门户断开 192.168.1.254（VLAN1 下线）</li>
+<li>pcsview 核对 ACTIVE、2 IP users rescued，31002/31003 加密互打正常</li>
+<li>重连 VLAN1 后重启 PCS，核对其回 INACTIVE</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：分支没 CS 怎么保证加密通话；PCS 救援要什么前提；PCS 证书怎么做；断网演练怎么做不被"断"在自己手里；PCS 要不要单独配 lanpbx。</p>
+<p>语言信号：PCS / Passive Communication Server / 救援 / rescue / pcscopy / pcsview / pcs.company.com / 断网演练 / failover / 192.168.2。</p>
+<p>与相邻能力区分：PCS 外接 EEGW 的容量判断 → EEGW 部署能力；lanpbx 生成规则本体 → 开通能力；主备 CS（duplication）切换是另一机制，别与 PCS 救援混淆。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：PCS VM/服务器就位、端点曾连过主 CS、PCS FQDN 已规划。端点是全新直奔分支的 → 判停（不在救援范围，先回主站注册一次）。</p>
+<ol>
+<li>配 PCS 身份：OXE 库填 PCS 地址与 FQDN 域；按 EGW 形态规则填 PCS EGW IP。完成标准：声明保存</li>
+<li>证书链：11.9.2.2 生成 CSR，CA 签发后打 tar，经 11.9.2.3 导入并 copy to twin。完成标准：导入成功提示</li>
+<li>下发：pcscopy 拷证书与数据库到 PCS；11.9.2.4 导出备份。完成标准：PCS 上 View 可见证书</li>
+<li>断网演练：断主站链路（预备带外/远端操作路径）→ pcsview 核对 ACTIVE 与 rescued 用户 → 加密互打。完成标准：救援行为确认</li>
+<li>恢复：重连链路 → 重启 PCS → 核对回 INACTIVE。完成标准：恢复闭环</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>演练断网后自己也失联 → 预先准备带外管理或远端侧（VLAN2 类）操作路径（p154 警告）</li>
+<li>想给 PCS 单独生成 lanpbx → 无用功，PCS 共用主 CS 文件（p152 NOTHING TO DO）</li>
+<li>PCS 证书没打 tar 直接导入 → 导入会失败，先打包（p150）</li>
+</ul>
+<p>输出契约：PCS 救援就绪 + 断网演练记录 + PCS 证书备份。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>端点"至少连过一次 CS"是硬前提——救援范围不含从未注册的新端点（p92）</li>
+<li>断网演练即主站失联：生产演练要按变更管理审批并预备操作路径（n09）</li>
+<li>RLAB 断链手段（Rlab 门户断路由器）为实验口径，生产用客户侧手段等效执行</li>
+<li>PCS 的 EEGW 扩容（&gt;1500）按 EEGW 部署能力执行，本卡不展开</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.enc.pcs-failover · 来源：ENTPXTE421EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — Native Encryption (Participant's Guide, Edition 05) | edition: Edition 05 | pages: 410 页 -->

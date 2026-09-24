@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Excel 报表模板定制</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced</h2><p>Edition  · 597 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte101en/index.html">课程首页</a><a href="/courses/otccxte101en/digest.html">精华长文</a><a href="/courses/otccxte101en/overview.html">教书理解</a><a href="/courses/otccxte101en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte101en/skills/otcad-ism-skill-matching.html">ISM 技能匹配与排序口径</a><a href="/courses/otccxte101en/skills/otcad-remote-pg-mutual-aid.html">Remote PG 分布式互助与 ABC-F 链路</a><a href="/courses/otccxte101en/skills/otcad-spm-deployment.html">Soft Panel Manager 部署与基础设置</a><a href="/courses/otccxte101en/skills/otcad-soft-panel-manager.html">Soft Panel 可视化配置（视图/挂件/消息/告警）</a><a href="/courses/otccxte101en/skills/otcad-ccta-ticket-analysis.html">CCTA 话务票据分析</a><a href="/courses/otccxte101en/skills/otcad-special-features.html">特殊功能开关（优先转接/忙音/代接/监听/永恒整理/中继预留）</a><a href="/courses/otccxte101en/skills/otcad-excel-report-customization.html">Excel 报表模板定制</a><a href="/courses/otccxte101en/skills/otcad-ccs-server.html">CCS Server 集中接入</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte101en/skills/otcad-acr-objects.html">ACR 对象与技能体系</a><a href="/courses/otccxte101en/skills/otcad-asm-script-advanced.html">ASM 脚本与 LCA 主干</a><a href="/courses/otccxte101en/skills/otcad-ccs-onboarding.html">CCS 安装与实验环境定稿</a><a href="/courses/otccxte101en/skills/otcad-acd-maintenance.html">ACD 维护命令箱</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte101en/index.html">otcc-standard-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte101en/index.html">OTCCXTE101EN</a><span>/</span><span aria-current="page">Excel 报表模板定制</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Excel 报表模板定制</h1></div><dl><div><dt>Skill ID</dt><dd>otcad-excel-report-customization</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>Excel 报表模板定制（FormPil 模板、Custom 工作表、粒度陷阱）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Open the file corresponding to the Ccdistribution object under: \Program Data\Alcatel\CCSupervisor\Excel\Formats • FormPil.xls pilot • FormAgt.xls agent … FormPS.xls statistic pilot"（p534）
+"Copy from General tab a structure spreadsheet from B7 to D43 and paste it in the Custom worksheet … Paste to Custom tab, the links from B8 to D39"（p537-538）
+"NO!, because only 1 table form has been created, so with the granularity of ½ an hour, you will retrieve only the transition from 0:00 to 16:00."（p542）</p>
+</blockquote>
+<p>出处：OTCCXTE101EN p531-554。</p>
+<h2>I — 自述</h2>
+<p>CCS 出报表的机制：取数写入临时 .XLS，结构来自 Formats 目录的模板。模板按对象分 11 种：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>模板</th>
+<th>对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FormPil</td>
+<td>Pilot</td>
+</tr>
+<tr>
+<td>FormAgt</td>
+<td>坐席</td>
+</tr>
+<tr>
+<td>FormTeam</td>
+<td>处理组</td>
+</tr>
+<tr>
+<td>FormpAg / FormpGT</td>
+<td>每坐席/Pilot 组</td>
+</tr>
+<tr>
+<td>Formpgo</td>
+<td>Other 类型组</td>
+</tr>
+<tr>
+<td>FormSyst</td>
+<td>中继</td>
+</tr>
+<tr>
+<td>FormCod / FormCods</td>
+<td>事务码（3 位）/明细事务码</td>
+</tr>
+<tr>
+<td>FormPS / FormPePS / FormPpPS</td>
+<td>统计 Pilot 及变体</td>
+</tr>
+</tbody>
+</table></div>
+<p>定制原理三句话：在模板里加一张 Custom 工作表；从 General 复制结构区（B7:D43，3 列=时段时间/已接/放弃）粘贴；再对值区"选择性粘贴链接（Paste Link）"引用 General 的值——数据仍由 General 承载，Custom 上随便加图表改样式。</p>
+<p>粒度陷阱（n30）：General 表结构约 24 行（按小时覆盖全天）；½ 小时粒度一天要 48 行——单张 Custom 表只能链到第一张表单，只覆盖 0:00-16:00，全天细粒度必须在 Custom 再建第二张表链到 General 的第二表单。</p>
+<p>生效与回滚：模板在 CCS 启动时加载，改完必须关闭并重开 CCSupervision（n32）；官方流程要求先把原件改名 FormPil_old.xlsm 留底再另存出同名新件（n31）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>FormPil 定制与出表</strong>（p544-554）：</p>
+<ol>
+<li>Formats 目录把 FormPil.xlsm 改名 FormPil_old.xlsm 留底，打开后另存回 FormPil.xlsm</li>
+<li>打开 FormPil.xlsm 启用宏内容（Enable Content）</li>
+<li>右键 General 页签 &gt; Insert &gt; Worksheet，把新表改名 Custom</li>
+<li>拷结构：General 选 B7:D48 复制，到 Custom 的 B7 粘贴</li>
+<li>拷链接：General 选 B7:B39 复制，Custom 的 B7 用 Paste Link；再 General C7:D43 同法粘贴链接</li>
+<li>Custom 选 C7:D43 插二维柱形图，改标题"Total received calls"，图例移右，系列改名"Calls received in open state"/"Calls received in blocked state"</li>
+<li>关闭模板，关闭并重开 CCSupervision 使新模板生效</li>
+<li>Statistics &gt; Excel &gt; Pilot：选 Pilot 31600、模板全选（含 Custom）、Daily、粒度 1/2 小时、激活方式选 Excel Display + Keep Excel links，出报表核对 Custom 页呈现</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户日报要自定义图表/公司 VI 配色；要把某几个计数器单独成图；½ 小时粒度报表下午数据缺失；模板改坏了要回滚。</p>
+<p>语言信号：Excel 报表 / 模板 / template / FormPil / Formats / General / Custom / Paste Link / 粘贴链接 / 粒度 / granularity / ½ 小时 / Daily / Keep Excel links / 图表 / 系列。</p>
+<p>与相邻能力区分：离线话务票据明细转 CCTA 卡；日统计的产生与口径转 SPM 部署卡；报表 KPI 定义在书外。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：CCS 已装（Excel 组件选 Yes）、Formats 目录可写、客户要的图表/列清单与粒度。</p>
+<ol>
+<li>备份：目标模板改名 *_old 留底，再另存回原名。完成标准：回滚件存在</li>
+<li>加 Custom 工作表并启用宏。完成标准：Custom 页签出现</li>
+<li>拷结构区（B7:D48）到 Custom。完成标准：表头与时段骨架齐</li>
+<li>对值区 Paste Link 引用 General。完成标准：改 General 数据 Custom 跟随变化</li>
+<li>加图表并按客户 VI 改样式与系列名。完成标准：图表呈现预期</li>
+<li>关模板并重开 CCS。完成标准：出报表对话框能看到新模板</li>
+<li>按目标粒度出表；½ 小时粒度核对是否覆盖全天。完成标准：日报完整或已补第二张链表</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户要"实时刷新"的 Excel → 停，Excel 报表是统计报表（日/粒度），实时需求走 Soft Panel/CCS Real time</li>
+<li>½ 小时粒度只有 0:00-16:00 → 停，粒度陷阱（n30），补第二张链表而不是改取数</li>
+<li>模板改坏且无 *_old 留底 → 停，恢复只能重装 CCS 或找同版本拷贝，先向客户说明代价</li>
+<li>客户要定义新 KPI → 停，模板只能重组现有计数器，KPI 定义在书外</li>
+</ul>
+<p>输出契约：定制后的模板（含 *_old 备份）+ 出报表参数记录 + 样张报表。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>Formats 目录同时存在 .xls（讲义）与 .xlsm（实验宏版）两种扩展名口径；以现场 CCS 版本实际文件为准</li>
+<li>改模板必须重开 CCS 生效（n32），与 ccs.ini 修改同属"改配置必须重启"家族</li>
+<li>模板结构（B7:D48 等坐标）为 R10.15/Ed07 口径，CCS 升级后坐标可能漂移，定制前先核对</li>
+<li>报表中的话务数据属客户敏感数据，分发与留存按客户数据保护要求管理</li>
+<li>Excel 组件（安装时选 Yes）与本机 Excel 版本兼容性书内未展开，宏告警按现场策略处理</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte101en/skills/otcad-ccta-ticket-analysis.html">CCTA 话务票据分析</a></p><p class="source-page">能力 ID：cap.otcad.excel-report-customization · 来源：OTCCXTE101EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition - Advanced (Participant's Guide, Edition 07) | edition: Edition  | pages: 597 页 -->

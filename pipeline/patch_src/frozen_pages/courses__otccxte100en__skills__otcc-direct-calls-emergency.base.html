@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>CCD 直接呼叫与紧急关闭</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Starter</h2><p>Edition  · 649 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte100en/index.html">课程首页</a><a href="/courses/otccxte100en/digest.html">精华长文</a><a href="/courses/otccxte100en/overview.html">教书理解</a><a href="/courses/otccxte100en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte100en/skills/otcc-ccd-matrix-foundation.html">CCD 基础矩阵创建与验证</a><a href="/courses/otccxte100en/skills/otcc-ccs-installation.html">CCS 班长台安装、OXE 声明与 ccs.ini</a><a href="/courses/otccxte100en/skills/otcc-routing-distribution-rules.html">路由规则与分配规则全生命周期</a><a href="/courses/otccxte100en/skills/otcc-agent-supervisor-onboarding.html">ACD 话机、座席与班长创建登录</a><a href="/courses/otccxte100en/skills/otcc-object-tuning.html">CCD 对象参数调优（pilot/PG/队列）</a><a href="/courses/otccxte100en/skills/otcc-voice-guides.html">语音指南三路径（话机录音/.wav 导入/欢迎指南）</a><a href="/courses/otccxte100en/skills/otcc-monitoring-statistics.html">实时监控告警与 Excel 统计</a><a href="/courses/otccxte100en/skills/otcc-multilanguage-calendar.html">多语言语音指南与双日历</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte100en/skills/otcc-supervisor-features.html">座席班长特性配置（监听强插/通用转发/多线/事务码）</a><a href="/courses/otccxte100en/skills/otcc-queue-experience.html">EWT 表与排队位置播报（518）</a><a href="/courses/otccxte100en/skills/otcc-direct-calls-emergency.html">CCD 直接呼叫与紧急关闭</a><a href="/courses/otccxte100en/skills/otcc-statistic-pilot.html">统计型 pilot 与 Call Tag</a><a href="/courses/otccxte100en/skills/otcc-lab-connectivity.html">实验环境与链路打通（POD/ITSP1/ABC-F）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte100en/index.html">otcc-standard-starter（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte100en/index.html">OTCCXTE100EN</a><span>/</span><span aria-current="page">CCD 直接呼叫与紧急关闭</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>CCD 直接呼叫与紧急关闭</h1></div><dl><div><dt>Skill ID</dt><dd>otcc-direct-calls-emergency</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>CCD 直接呼叫与紧急关闭（direct call pilot/私人号/一键关闭）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Select Applications&gt; CCD&gt; Processing Group&gt; 31800&gt; … Pilot Direct Call Enter the processing number for pilot direct call (i.e. 31603)."（p467）
+"Warning … THE LOCAL HYBRID LINK CANNOT BE USED FOR THE DIRECT CALL FACILITY."（p469）
+"the pilot is blocked and the incoming call follows the direct call pilot configuration which is, by default, the voice guide #75."（p473）
+"Up to 50 pilot lists can be created … 600 pilots maximum in each list"（p528）
+"Transfer to a pilot in emergency closure is only authorized if an emergency closure address has been configured and is reachable."（p528）
+"You MUST be a CCS ADMINISTRATOR to be able to select the pilot in the emergency closure pilot list."（p542）</p>
+</blockquote>
+<p>出处：OTCCXTE100EN p449-476, p527-542。</p>
+<h2>I — 自述</h2>
+<p>CCD 直接呼叫把"座席直通号"纳入呼叫中心待遇，三要素（f20/p20）：</p>
+<ul>
+<li>pilot direct call（实验 31603）：承接座席忙/不可用时的溢出，提供 wrap-up/pause 计时；PG 参数 Pilot Direct Call 指向它</li>
+<li>Outgoing ACD Call（PG 参数）：座席外呼也计入 CCD 统计、吃 wrap-up/pause</li>
+<li>私人号码（private agent number）：登录时自动前转到座席号、登出自动取消（p454）</li>
+</ul>
+<p>呼叫性质按座席状态逐格判定（p455-456）：空闲/部分退出打座席号=ACD 呼叫；忙（事务码/wrap-up/通话/pause）=溢出 pilot direct call；不可用/pause=带介绍指南的 direct call；登出=听"分机停用"；打私人号一律私人呼叫；去话在不可用态为私人呼叫，其余为 CCD 呼叫。</p>
+<p>紧急关闭（g13/p21）：</p>
+<ul>
+<li>一键手动关闭一列 pilot：≤50 个列表、每列表 ≤600 pilot、列表名 ≤16 字符</li>
+<li>激活后来话优先转关闭地址（配置且可达）否则播关闭指南；向关闭中 pilot 转移仅在地址已配置且可达时放行</li>
+<li>联动：pilot direct call 被关闭时，无论座席状态，打座席的直达来话同样优先转关闭地址/指南</li>
+<li>统计归属：关闭期间来话计入"通用转发态来话"计数器（p529）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>直接呼叫五场景</strong>（p460-476）：</p>
+<ol>
+<li>OXE 建 pilot 31603/Direct call；CCS 建规则加 Normal_WQ 方向并激活</li>
+<li>pilot 计时 pause=5、wrap-up=10；PG 31800 设 Pilot Direct Call=31603 并启用 Outgoing ACD Call</li>
+<li>CCD Users 给 Agent1 配 Private agent No.=31000</li>
+<li>打私人号 0210X41000 → 私人呼叫无计时；打座席号 0210X41500 → CCD 呼叫、话机显示 31603、挂机走 31603 计时</li>
+<li>登入态去话=CCD 计时；退出去话=私人无计时；不可用态来话听 31603 阻塞指南（默认 #75，改配 685）</li>
+<li>部分退出态来话去话均按 CCD 处理；全程走公网入口（本地 ABC-F 链路禁用于 direct call）</li>
+</ol>
+<p><strong>紧急关闭演练</strong>（p531-542）：</p>
+<ol>
+<li>Emergency closure 建 Emergency0 列表，选入 31600/31601/31603</li>
+<li>OXE 建 640 指南、录 2640 关闭提示、装板；pilot Closure addresses 挂 Emergency closure=640</li>
+<li>Activate 后两 pilot 来话均播关闭消息；History 查操作记录</li>
+<li>测完 Deactivate 复位（书中明令勿忘，n05）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：给座席配对外直通号并要进统计；"直通号打不通/没计时"；私人号怎么配；突发情况一键关停业务号；应急演练方案；关闭后座席转接被拒。</p>
+<p>语言信号：direct call / 直接呼叫 / 31603 / private number / 私人号 / Pilot Direct Call / Outgoing ACD Call / #75 / emergency closure / 紧急关闭 / Emergency0 / 关闭地址 / 关闭指南 / History / Deactivate。</p>
+<p>与相邻能力区分：座席登录登出与私人号联动前提 → 座席班长体系能力；统计型 pilot（对外业务号）→ 统计 pilot 卡（路由卡）；通用转发（班长逐 pilot 关闭）归座席班长特性能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：座席体系已运行、直通号/关闭策略与去向已定、演练须有复位计划。</p>
+<ol>
+<li>建 direct call pilot 并配规则方向。完成标准：pilot 可路由</li>
+<li>PG 侧挂接：Pilot Direct Call=该 pilot，按需启用 Outgoing ACD Call。完成标准：座席忙时来话溢出可见</li>
+<li>配私人号：CCD Users 填 Private agent No.（编号计划内）。完成标准：登录时前转生效、登出自动取消</li>
+<li>五场景验证：私人号/座席号/登入去话/退出去话/不可用来话逐个测性质与计时。完成标准：判定表逐格吻合且全程走公网入口</li>
+<li>紧急关闭演练：建列表选 pilot，挂关闭指南/地址后 Activate，拨测并留 History 痕迹。完成标准：来话播关闭消息且转移行为符合地址配置</li>
+<li>复位：Deactivate 关闭列表并复核 Navigator 状态。完成标准：无遗留关闭态</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>本地内呼链路上测 direct call 不通 → 硬约束：ABC-F 链路不能承载 direct call，必须走公网入口（n04）</li>
+<li>不可用来话一声就断 → 默认阻塞指南 #75，上线前显式配阻塞指南或关闭地址（n24）</li>
+<li>紧急关闭界面选不了 pilot → 权限设计：需 CCS ADMINISTRATOR（n05）</li>
+<li>演练完忘了复位 → 高危遗留操作，Deactivate 必须进演练清单（n05）</li>
+<li>只配关闭指南没配地址时转接被拒 → 预期行为，演练前向座席交底（n34）</li>
+</ul>
+<p>输出契约：纳入统计的直通号体系（pilot/私人号/判定表验证记录）+ 紧急关闭预案（列表/指南/地址/演练与复位记录）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>direct call 机制依赖公网中继，本地 ABC-F 链路不可用（n04）；私人号须在编号计划内（p454）</li>
+<li>欢迎指南不在 direct call 来话上播放——个性化问候方案要重新设计（n31）</li>
+<li>紧急关闭容量 50 列×600 pilot、转移限制、统计归属为 R10.16 口径（p528-529）</li>
+<li>直连阻塞默认指南 75 与备份音 56 为预置资源（g43）</li>
+<li>实验 DN（31603/31000/41000/41500）与口令为实验口径</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.otcc.direct-calls-emergency · 来源：OTCCXTE100EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Starter (Participant's Guide, Edition 09) | edition: Edition  | pages: 649 页 -->

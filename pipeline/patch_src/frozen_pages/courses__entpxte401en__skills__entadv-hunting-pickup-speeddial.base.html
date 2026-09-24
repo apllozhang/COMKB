@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>寻线代接组与速拨编号体系</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Advanced</h2><p>— · 543 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte401en/index.html">课程首页</a><a href="/courses/entpxte401en/digest.html">精华长文</a><a href="/courses/entpxte401en/overview.html">教书理解</a><a href="/courses/entpxte401en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte401en/skills/entadv-ssh-trust-foundation.html">SSH 免密分发体系</a><a href="/courses/entpxte401en/skills/entadv-cs-redundancy.html">CS 冗余部署与切换维护</a><a href="/courses/entpxte401en/skills/entadv-ip-domain-pcs.html">IP 域与 PCS 域级生存性</a><a href="/courses/entpxte401en/skills/entadv-overflow-rerouting.html">公私网双向溢出与重路由</a><a href="/courses/entpxte401en/skills/entadv-direct-ip-link.html">Direct IP Link 全 IP 组网</a><a href="/courses/entpxte401en/skills/entadv-audit-broadcast.html">Audit 与 Broadcast 数据一致性</a><a href="/courses/entpxte401en/skills/entadv-multiline-supervision.html">多线监督与经理助理组</a><a href="/courses/entpxte401en/skills/entadv-hunting-pickup-speeddial.html">寻线代接组与速拨编号体系</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte401en/skills/entadv-desk-sharing.html">办公桌共享（DSS/DSU）</a><a href="/courses/entpxte401en/skills/entadv-multi-device.html">多设备用户与 Twinset</a><a href="/courses/entpxte401en/skills/entadv-lab-pod-baseline.html">实验/交付前置环境基线</a><a href="/courses/entpxte401en/skills/entadv-cli-toolbox.html">维护命令与事件/许可速查</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte401en/index.html">oxe-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte401en/index.html">ENTPXTE401EN</a><span>/</span><span aria-current="page">寻线代接组与速拨编号体系</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>寻线代接组与速拨编号体系</h1></div><dl><div><dt>Skill ID</dt><dd>entadv-hunting-pickup-speeddial</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>寻线组、代接组与速拨编号体系（Hunting、Pick-up、Speed Dialing）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Search types • Sequential • Cyclical • Parallel"（p299）
+"% authorized camp on calls = Max. Number of camp on calls authorized / number of active stations in the hunt group x 100"（p305）
+"A SET CAN BELONG TO ONLY ONE HUNTING GROUP"（p318）
+"This table can contain up to 32500 numbers, indexed from 0 to 32499 … by default, only the first 4000 indexes are configurable."（p238, p247）
+"A speed dial number is subject to barring tables for access to the public network only when declared as barred"（p236）</p>
+</blockquote>
+<p>出处：ENTPXTE401EN p234-254, p296-326。</p>
+<h2>I — 自述</h2>
+<p>团队话务三件套：寻线组管"谁来接"，代接管"别人帮着接"，速拨管"拨得快"。</p>
+<ol>
+<li><strong>寻线组三搜索</strong>：Sequential（固定队头顺序）、Cyclical（队头轮转均摊）、Parallel（并发同响先接）；溢出号在组空或 camp-on 百分比到限时启用（公式=最大允许 camp-on 数/组内活动站数×100），目标可为话机/另一寻线组/话务台</li>
+<li><strong>COS 随进出组</strong>：入组即用组的 Connection COS/公网 COS/实体（公网 COS 留 255 保留成员自己的）；进出组前缀默认 480 入/481 出（p304/p320 口径，见 B 段勘误）；默认禁末位成员退组（退光转溢出号或忙音）</li>
+<li><strong>multiline 三分支</strong>：仅 Cyclical/Sequential 组可含 multiline；系统参数 No Multi-line call in PCX（0/1/2，默认 1）决定忙机是否落空闲键</li>
+<li><strong>代接两式</strong>：组代接（拨前缀接同组振铃话机）与直接代接（前缀+号码）；需 COS 授权且被叫未受代接保护；Pickup 组无独立建组菜单——用户属性填 PickupGroup Name 即自动成组；zdpost 查 pickup_id（组索引/-1 不在组）</li>
+<li><strong>速拨体系</strong>：统一索引表 0-32499（默认仅前 4000 可配，cfgUpdate 扩容需重启）；直接式全网统一段（不可与范围段重叠）+范围式（至多 400 范围可互叠、每实体至多 32 区）；每号可带目录名（入局按 Calling ID 显示、支持 call by name）</li>
+<li><strong>速拨行为</strong>：默认绕过闭锁，逐号勾 Call Restriction-Barring 才受控；溢出缩位号（原中继不可用自动改发）；开放缩位号（不完整号补拨）+定时转发（超时自动补全）</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>寻线组与代接</strong>（p316-326）：</p>
+<ol>
+<li>建组：Groups 里建 31300（Cyclical）并加成员；310x0 呼 31300 验证轮转，改 Sequential 复测</li>
+<li>进出组前缀核验：Prefix Plan 过滤 Set Features 的 Sta. Group entry/exit（默认 480/481，如缺则建）</li>
+<li>COS 放行：Phone Features COS 的 Sta. group entry/exit=1，实测进出组</li>
+<li>维护：pbxstat -f d 31300（头成员/modcycle/组态/成员态）、supgpbx -le 全网组态</li>
+<li>代接：用户填 PickupGroup Name=Pickup Gr1 成组；COS 放行后同组拨组代接前缀、跨组拨直接代接前缀+号码</li>
+<li>核验：zdpost d 31001 显示 pickup_id=0（在组）、zdpost d 31000 显示 -1（不在组）</li>
+</ol>
+<p><strong>速拨管理</strong>（p246-254）：</p>
+<ol>
+<li>扩容：/usr3/mao 下运行 cfgUpdate，选 Abbreviated Numbers 输新上限，重启 OXE</li>
+<li>直接式：建紧急号 112（Call Number=0 112、Name=Emergency）与普通号 60（外呼屏显目录名）</li>
+<li>闭锁受控：系统闭锁禁外呼后，编辑 60 勾 Call Restrictions-Barring，用允许/禁止外呼用户对比测</li>
+<li>开放缩位号+定时溢出：前缀 2 不完整号补拨；640 完整号等计时器自动补发</li>
+<li>范围式：Range 0（Index=1000/Length=100/2 位）+ 实体映射（Area 0）+ 范围前缀 61，拨 61 00 测试</li>
+<li>查询：edabv -l GEA 按前缀/序号/号码检索（显示 60|1|00210141000 类记录）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客服/销售团队轮接；"电话在别桌响没人接"；挂短号拨常用客户；外呼管控（缩位号绕闭锁的合规风险）；组溢出到话务台的设计；忙机掉键行为调参。</p>
+<p>语言信号：hunting group / 寻线组 / sequential / cyclical / parallel / 轮转 / camp-on / 溢出号 / 进组 / 出组 / pickup / 代接 / 组代接 / 直接代接 / speed dial / 缩位拨号 / 32500 / 4000 / edabv / cfgUpdate。</p>
+<p>与相邻能力区分：multiline 键配置转多线监督能力；话务台排队属 Rainbow/其他域（本书仅寻线组溢出可指话务台）；组员监督键组合转多线监督能力。</p>
+<h2>S — 现场症状（工单语言）</h2>
+<p>下列说法命中本能力时优先打开本页；与「A2 未来触发」配套使用。</p>
+<ul><li>寻线组不轮振或漏振</li><li>代接失败 / 代接错分机</li><li>速拨与编号体系冲突</li></ul>
+
+<h2>E — 可执行步骤</h2>
+<p>输入契约：组员名单与 COS、溢出策略（目标号/百分比）、速拨号段规划与闭锁策略。一台话机已在别的寻线组 → 判停（先出组或换号）。</p>
+<ol>
+<li>建寻线组：DN/名称/Search type/成员；multiline 成员确认组型支持。完成标准：pbxstat 组态与成员态正常</li>
+<li>配权利与溢出：COS 进出组放行、溢出号与 camp-on 百分比按公式核算。完成标准：组空/到限实测溢出</li>
+<li>建代接组：用户填 PickupGroup Name 成组 + COS 放行两式代接。完成标准：组代接与直接代接实测通过、zdpost pickup_id 正确</li>
+<li>速拨扩容：cfgUpdate 设新上限并重启（如需超 4000）。完成标准：可配置索引数达标</li>
+<li>建速拨号：直接式（紧急号+常用号）/范围式（区+前缀+实体映射）/开放与定时号。完成标准：拨测屏显与闭锁行为符合勾选</li>
+<li>巡检：edabv 查号、pbxstat/supgpbx 查组。完成标准：查询输出与配置一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>用户要求"同时属于两个寻线组" → 硬限制不允许，用溢出号或并行组拼方案</li>
+<li>闭锁合规审查发现缩位号绕行 → 逐号勾 Call Restriction-Barring 或收回号段</li>
+<li>前缀拨了没反应 → 先到 Prefix Plan 实查实际值（55/56、480/481 存在教材勘误，nr-01），不背书</li>
+<li>parallel 组要放 multiline 话机 → 不支持，改 Cyclical/Sequential 或换非 multiline 机</li>
+</ul>
+<p>输出契约：可用的组业务与代接（pbxstat/zdpost 证据）+ 速拨编号表（直接/范围/实体映射）+ 闭锁受控说明。</p>
+<h2>V — 验收与回退</h2>
+<p><strong>验收（DoD，全部满足才收工）</strong></p>
+<ul><li>三种寻线搜索行为符合组类型</li><li>代接组与权限正确</li><li>速拨编号不与用户号段冲突</li></ul>
+<p><strong>回退 / 判停</strong></p>
+<ul><li>寻线组配错：暂停组振铃，回退组成员后重测</li><li>速拨冲突：删除冲突项，按编号计划重建</li></ul>
+
+<h2>B — 边界</h2>
+<ul>
+<li>一台话机只能属一个寻线组（p318 大写）；默认末位成员不可退组是服务保护开关（p304）</li>
+<li>速拨总表 32500、默认 4000 可配、400 范围、每实体 32 区——扩容须重启（p236-p247）</li>
+<li>代接与进出组默认前缀在教材 Note 与截图间存在互换（nr-01）——一律以现场 Prefix Plan 实查为准</li>
+<li>问候导引（greeting guide）可向内部主叫替代回铃，留空则回铃（p305）</li>
+<li>ACD/CCD 分配坐席是另一体系，本书仅列为多设备禁用对象，不在本卡范围</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte401en/skills/entadv-multiline-supervision.html">多线监督与经理助理组</a></p><p class="source-page">能力 ID：cap.entadv.hunting-pickup-speeddial · 来源：ENTPXTE401EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Advanced (Participant's Guide, Edition 13) | edition: — | pages: 543 页 -->

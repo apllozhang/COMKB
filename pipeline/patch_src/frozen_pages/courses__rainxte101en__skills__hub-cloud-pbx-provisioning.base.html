@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Cloud PBX 声明与话务配置</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>Rainbow Hub</h2><p>Edition 16 · 351 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte101en/index.html">课程首页</a><a href="/courses/rainxte101en/digest.html">精华长文</a><a href="/courses/rainxte101en/overview.html">教书理解</a><a href="/courses/rainxte101en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte101en/skills/hub-company-voice-subscription.html">Rainbow 公司体系与 Voice 订阅开通</a><a href="/courses/rainxte101en/skills/hub-cloud-pbx-provisioning.html">Cloud PBX 声明与话务配置</a><a href="/courses/rainxte101en/skills/hub-member-telephony.html">成员管理与话务配置</a><a href="/courses/rainxte101en/skills/hub-zero-touch-provisioning.html">ALE 设备 zero-touch 部署与 DECT 移动</a><a href="/courses/rainxte101en/skills/hub-device-maintenance.html">设备维护日志与 Generic SIP 接入</a><a href="/courses/rainxte101en/skills/hub-hunt-groups.html">呼叫组与话务分配</a><a href="/courses/rainxte101en/skills/hub-attendant-supervision.html">话务台与监督组</a><a href="/courses/rainxte101en/skills/hub-welcome-service-ivr.html">欢迎服务与 IVR</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte101en/skills/hub-network-readiness.html">Rainbow Hub 网络就绪核查</a><a href="/courses/rainxte101en/skills/hub-multisite.html">多站点配置</a><a href="/courses/rainxte101en/skills/hub-analytics.html">分析体系</a><a href="/courses/rainxte101en/skills/hub-maintenance-support.html">Hub 维护与支持体系</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte101en/index.html">rainbow-hub（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte101en/index.html">RAINXTE101EN</a><span>/</span><span aria-current="page">Cloud PBX 声明与话务配置</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Cloud PBX 声明与话务配置</h1></div><dl><div><dt>Skill ID</dt><dd>hub-cloud-pbx-provisioning</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>Cloud PBX 声明与话务配置（编号计划、公网号码、闭锁、trunk）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"One Rainbow company = one and only one CloudPBX. One CloudPBX = one and only one external SIP trunk (SIP provider)."（p78）
+"you need at least a 'Voice' license. Without this, you'll only see traditional PBXs: OXO Connect, OmniPCX Enterprise, Third party PBX"（p80）
+"The 1st number you inject is, by default, the main number of the installation."（p83）
+"Create the prefixes in international format, without '+' or '00' in front."（p86）</p>
+</blockquote>
+<p>出处：RAINXTE101EN p76-104。</p>
+<h2>I — 自述</h2>
+<p>Cloud PBX 是 Hub 的话务核心（软 SIP PBX），拓扑三规则先行：</p>
+<ol>
+<li><strong>一二一约束</strong>：一公司有且只有一个 Cloud PBX；一个 Cloud PBX 只能关联一条外部 SIP trunk（一个运营商）；呼叫通道数与电话线数无上限</li>
+<li><strong>声明顺序</strong>：公司、分配 Voice 许可（没有 Voice 订阅时建通信服务器界面只见传统 PBX 类型）、声明 Cloud PBX、电话线经运营商订购门户开通（携转或新订 DID，BP/运营商侧）</li>
+<li><strong>编号计划</strong>：内部号 2-9 位可多长度混存（1xx/3xx/4xxxx…）；出局前缀 0 或 9（国家相关）；号长默认 3；"优化话机拨叫"可让话机免拨出局前缀——国家相关，需与 ALE 确认</li>
+</ol>
+<p>公司级 Call settings 默认值（p82, p102-103）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>设置项</th>
+<th>默认口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>忙/无应答溢出</td>
+<td>溢出到留言信箱（可关）</td>
+</tr>
+<tr>
+<td>留言邮件通知</td>
+<td>无邮件通知（可选仅通知/带附件）</td>
+</tr>
+<tr>
+<td>闭锁允许档</td>
+<td>仅内线 / 国内+内线 / 国际+国内+内线</td>
+</tr>
+<tr>
+<td>闭锁屏蔽档</td>
+<td>无 / 收费号 / 自定义清单</td>
+</tr>
+<tr>
+<td>主叫 ID 策略</td>
+<td>用户公网号或公司号，可允许成员自选</td>
+</tr>
+<tr>
+<td>软话机紧急呼叫</td>
+<td>勾选（默认允许）</td>
+</tr>
+<tr>
+<td>呼转外部目的地</td>
+<td>停用</td>
+</tr>
+<tr>
+<td>内部呼叫经外部 trunk</td>
+<td>停用</td>
+</tr>
+<tr>
+<td>成员单/复线</td>
+<td>多线（multiline）</td>
+</tr>
+<tr>
+<td>录音提示音</td>
+<td>None</td>
+</tr>
+<tr>
+<td>转移类型</td>
+<td>协商转 / 盲转</td>
+</tr>
+</tbody>
+</table></div>
+<p>公网号码与流量控制要点：</p>
+<ol>
+<li>DDI 号/号段分配给成员、hunt group 与话务台组、欢迎服务（预通告）、IVR；其中一个必须定为公司号码；首个注入号码（或首段首个）默认成为公司主号，可改</li>
+<li>白名单=仅这些前缀可外呼、黑名单=这些前缀一律禁呼；作用于全公司或指定用户；前缀按国际格式、前头不带 + 或 00（法国 0825 收费号不要录成 33825）</li>
+<li>trunk 商务两型：bundled（Hub+话务一单一发票）或 separated（两单两票）；PSTN 服务不由 ALE Rainbow 团队订购管理</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>声明并配置 Cloud PBX</strong>（p99-104，How-To）：</p>
+<ol>
+<li>前提：公司已有 Voice Enterprise 订阅（BP 权限操作）。</li>
+<li>Communication 区 / Comm. Servers 页签 / Create → Server type 选 Cloud PBX。</li>
+<li>填语音引导语言、External trunk（实验口径 ALE Training Carrier）、出局前缀 0、号长 3。</li>
+<li>编号计划建两段：100-199 与 200-299（实验口径）；Barring 选 No restriction。</li>
+<li>Call settings 区逐项核对上表默认规则（溢出/闭锁/主叫 ID/紧急/单复线）。</li>
+<li>Public numbers 页签 / Create → 段首 02982967X0 → 勾 Set as company phone number。</li>
+<li>勾 Create a range of public numbers → Range size 10 → 创建（得 02982967X0-X9）。</li>
+</ol>
+<p>验收口径：Comm. Servers 出现所声明 Cloud PBX；Public numbers 显示号段且主号已设。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：给客户声明 Cloud PBX；设计/修改编号计划；分配 DDI 号段与公司主号；外呼主叫显示策略；禁国际长途/收费号；trunk 商务模式与带宽估算。</p>
+<p>语言信号：Cloud PBX / 编号计划 / numbering plan / 出局前缀 / DDI / 公网号码 / 主号 / 闭锁 / barring / 白名单 / blacklist / trunk / bundled / separated / 带宽 / Opus / G711。</p>
+<p>与相邻能力区分：网络端口与 Pilot 评估归网络就绪能力（路由卡）；成员电话页签的号码分配归成员管理能力；多站点参数归多站点能力（路由卡）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：BP 权限、公司已有 Voice Business/Enterprise 订阅、客户编号习惯（分机位数/号段）、号码资源（新订或携转，运营商侧）、闭锁合规要求。</p>
+<ol>
+<li>核前提：订阅池有 Voice Business/Enterprise、trunk 组已由伙伴备好。完成标准：声明界面能选到 Cloud PBX 类型</li>
+<li>声明 Cloud PBX：Comm. Servers → Create → 填名称/语言/trunk/编号计划（出局前缀/号长/号段）。完成标准：PBX 出现在 Comm. Servers 列表</li>
+<li>核对 Call settings 默认值：按上表逐项过，闭锁档与主叫 ID 策略按客户合规要求调整。完成标准：设置清单成文</li>
+<li>注入公网号码：Public numbers / Create → 定主号 → 按需建号段。完成标准：号段在列且公司主号正确</li>
+<li>流量控制（可选）：白/黑名单按国际格式录前缀，定生效范围（全公司/指定用户）。完成标准：闭锁策略拨测通过</li>
+<li>带宽核算：按 Opus 80 kbps/VP8 1.5 Mbps/G711 64 kbps 口径估 premises 到 SIP trunk 段。完成标准：带宽结论写入交付基线</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>建通信服务器时选不到 Cloud PBX（只见 OXO Connect/OXE/第三方）→ 停，查订阅池，先开 Voice 订阅（p75/p80）</li>
+<li>客户要求"每站点一台 PBX/每地一条中继" → 停，纠正预期：一公司一 PBX 一 trunk，多站点用逻辑分区（转多站点能力）</li>
+<li>要承诺"话机免拨 0" → 停，Optimized phone dialing 国家相关，先与 ALE 确认（n12）</li>
+<li>编号计划怎么"设计"（方法论）→ 书外，按客户拨号习惯与运营商资源协商，本卡只管参数含义</li>
+</ul>
+<p>输出契约：可用的 Cloud PBX（编号计划/Call settings/主号已定）+ 号码分配清单 + 闭锁策略与带宽结论。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>编号计划的"设计方法论"原书不讲，只讲参数含义（BOOK_OVERVIEW 批判节）；一公司一 PBX 一 trunk 是硬约束（n11）</li>
+<li>trunk 合同、资费、号码携转、DID 地址登记（紧急定位）在 BP/运营商侧书外（p88/p229，n14/n41）；ALE 不计费不开票（p318）</li>
+<li>带宽四行表（Opus 80 kbps、VP8 1.5 Mbps、G711 64 kbps、信令可忽略）为书内指示性口径，完整带宽要求以 Network Requirements 文档为准（p90 指针）</li>
+<li>实验号段 02982967X0-X9 与 trunk 名 ALE Training Carrier 均为实验口径（needs-review nr-06）</li>
+<li>主号错认直接影响外呼主叫 ID：先注入的号默认当主号，注错要手工改或用"自动改主号"选项（p104，n13）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte101en/skills/hub-company-voice-subscription.html">Rainbow 公司体系与 Voice 订阅开通</a></p><p class="source-page">能力 ID：cap.hub.cloud-pbx-provisioning · 来源：RAINXTE101EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: Rainbow Hub (Participant's Guide, Edition 16) | edition: Edition 16 | pages: 351 页 -->

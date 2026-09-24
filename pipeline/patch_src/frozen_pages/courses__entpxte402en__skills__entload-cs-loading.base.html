@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OXE 呼叫服务器单版本全加载与加载后初始化</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 系统装载</h2><p>Edition 12 · 415 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte402en/index.html">课程首页</a><a href="/courses/entpxte402en/digest.html">精华长文</a><a href="/courses/entpxte402en/overview.html">教书理解</a><a href="/courses/entpxte402en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte402en/skills/entload-sot-installation.html">S.O.T. 部署工具的安装、初始化、更新与 Template Factory</a><a href="/courses/entpxte402en/skills/entload-cs-loading.html">OXE 呼叫服务器单版本全加载与加载后初始化</a><a href="/courses/entpxte402en/skills/entload-patch-management.html">OXE 多版本加载、分区切换与静态/动态补丁管理</a><a href="/courses/entpxte402en/skills/entload-oxe-v-deployment.html">OXE-V 虚拟化：平台选型、许可路径与 OXE/OMS 虚机交付</a><a href="/courses/entpxte402en/skills/entload-gas-delivery.html">GAS 通用设备服务器：硬件前置、软件加载与后安装向导</a><a href="/courses/entpxte402en/skills/entload-cloud-connect.html">Cloud Connect 云连接：网络前提、FTR 首次注册与 PIN 恢复</a><a href="/courses/entpxte402en/skills/entload-rtr-licensing.html">RTR 许可开关：资格期状态机、事件监控与 FlexLM 互斥</a><a href="/courses/entpxte402en/skills/entload-pod-licensing.html">OPEX / Purple on Demand：订阅许可、LMS 同步、panic 时间线与 C2P 转换</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte402en/skills/entload-distributor-loading.html">Easy Installation 分发器模式：无 SOT 环境的本地加载</a><a href="/courses/entpxte402en/skills/entload-sot-media.html">SOT 媒体传输与加载项目配置（公共动作）</a><a href="/courses/entpxte402en/skills/entload-gas-ops.html">GAS 日常运维：版本、备份、host 升级与 UPS</a><a href="/courses/entpxte402en/skills/entload-fleet-dashboard.html">Fleet Dashboard 云端机队服务：Inventory、Offer、远程控制台与软件更新</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte402en/index.html">oxe-loading（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte402en/index.html">ENTPXTE402EN</a><span>/</span><span aria-current="page">OXE 呼叫服务器单版本全加载与加载后初始化</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OXE 呼叫服务器单版本全加载与加载后初始化</h1></div><dl><div><dt>Skill ID</dt><dd>entload-cs-loading</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OXE 呼叫服务器单版本全加载与加载后初始化</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Depending on the call server type, the initial request can be: • BOOTP (CS and CPU Crystal) • DHCP (Appliance Server)"（p60）
+"Command grubboot ETHER System will ask your confirmation. Disk have to be reinstalled after reboot."（p89）
+"WARNING: Configure the role addressing if needed! License are automatically deployed if declared in the S.O.T project If not, restore the license files manually"（p63）
+"password string must have a minimum of 14 characters ... password must be different from the last twenty-four used passwords"（p91）</p>
+</blockquote>
+<p>出处：ENTPXTE402EN p49-92、p204-211（ESXi 虚机线同理）。</p>
+<h2>I — 自述</h2>
+<p>单版本全加载是核心交付动作，其余加载场景由此派生。SOT 核心就是一台含 DHCP+FTP 服务的虚机，加载时序固定：</p>
+<ol>
+<li><strong>网络引导</strong>：CS 网络引导后发 BOOTP（CS/CPU Crystal）或 DHCP（Appliance Server）请求，SOT 交付 IP 配置与引导文件（CS=startup.txt、AS=pxeloader、Crystal 无）</li>
+<li><strong>TFTP 下载</strong>：CS 用 TFTP 取文件清单与 Linux RAM，入内存自动启动</li>
+<li><strong>FTP 安装</strong>：经 FTP 自动安装 Linux、传工具与 swinst、下载版本与补丁，结束后 CS 重启</li>
+</ol>
+<p>启动相位链（加载失败定位底图）依次经过六相位：BIOS、系统自检、Bootloader、GRUB、Linux（从 active 分区启动）、电话应用。可干预点：BIOS 相位选引导设备；GRUB 相位 grubboot ETHER 改走网络引导；电话应用由 swinst 的 autostart 决定自动起或 mtcl 手动 RUNTEL。</p>
+<p>硬盘双分区结构（多版本/切换的结构依据）：活动分区（/、/usr2 版本、/usr3 数据库、/var 日志）；公共区（/usr4 动态计费与补丁中转、/usr7 系统语音）；非活动分区（/root2_d、/usr5、/usr6、/var2）。</p>
+<p>加载后初始化两件硬规则：</p>
+<ul>
+<li><strong>密码规则九条</strong>（root/mtcl/adfexc/swinst 四账户逐个设）：≥14 字符；≥2 字母（1 大写强制）；≥2 数字；≥1 特殊字符；不含账户名；不含 4 连同字符；不含 4 连顺序字符；不含字典词；不得与前 24 个已用密码重复</li>
+<li><strong>密码 aging</strong>：取值 &lt;10&lt;X&lt;366、0=不限期（答 0 触发 CIS_Benchmark_Req.No_5.6.1.1 警告，生产对 root 保留 aging）</li>
+<li><strong>角色寻址与许可</strong>：SOT 项目不管角色寻址（csm 地址按需在 netadmin 配）；许可未随项目声明时须手工恢复到 /usr4/BACKUP/OPS 再 swinst 恢复</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>CS3 单版本全加载</strong>（p83-92，How-To）：</p>
+<ol>
+<li>OXE 版本 iso 传到 SOT 本地存储并 Declare media</li>
+<li>Easy 模式新建 Greenfield 项目，产品类型选 OXE</li>
+<li>项目设置国家/时区；目标设置机型 CS-3、主机名、CPU IP、MAC</li>
+<li>Verify 后 Deploy，SOT 进入等待目标机状态</li>
+<li>目标机 root 执行 grubboot ETHER 确认 y（或 BIOS 菜单选 Ethernet）</li>
+<li>SOT Web 进度条观察至项目状态 completed</li>
+<li>加载后选键盘，为四账户设密码与 aging，出现 CSa login: 即完成</li>
+</ol>
+<p><strong>空盘与已装盘的分界</strong>（p57）：空盘自动进 Standard Installation；盘已有内容必须 grubboot 或 BIOS 强制网络引导。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：全新 OXE 装系统；加载完 "completed" 了系统还差什么；密码设不上；SOT 一直等目标机；加载卡在某个阶段。</p>
+<p>语言信号：单版本 / mono version / full release / grubboot ETHER / BOOTP / startup.txt / Standard Installation / 加载后 / RUNTEL / autostart / siteid / 角色寻址 / role addressing。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>装第二版本与补丁 → 补丁与多版本卡</li>
+<li>客户现场不让架 SOT → 分发器模式卡（路由）</li>
+<li>加载的是虚机 → 虚拟化交付卡</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：目标机机型与 MAC、SOT 就绪（同网段）、OXE 版本 iso、许可文件（可随项目）、客户国家码/时区/地址规划。目标机已装系统且无法进系统 → 走 BIOS 强制引导。</p>
+<ol>
+<li>传媒体并声明：iso 上传 SOT 本地存储，Refresh 后 Declare。完成标准：媒体出现在版本列表</li>
+<li>建项目：Easy 模式 Greenfield 选 OXE，填国家/时区。完成标准：项目字段完整</li>
+<li>目标设置：机型/主机名/CPU IP/MAC（物理机必填，NAS Excel 或 ifconfig 取）。完成标准：Verify 通过</li>
+<li>Deploy 后引导目标机：grubboot ETHER 确认 y，或 BIOS 选 Ethernet。完成标准：SOT 捕获目标机开始加载</li>
+<li>等待 completed：SOT Web 进度条走完。完成标准：项目状态 completed</li>
+<li>加载后清单：键盘、四账户密码与 aging、角色寻址（按需）、许可恢复（未随项目时）、swinst 输国家码、日期时间、板卡上线、建用户或恢复备份。完成标准：siteid 显示目标版本且出现登录提示</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>SOT 长时间等待目标机 → 停，先查是否已装盘没走网络引导（最高频原因）</li>
+<li>密码总被拒 → 停，对照九条规则逐条核（实验值 Superuser2580* 满足全部约束）</li>
+<li>completed 后直接交机 → 停，角色寻址与许可两件事 SOT 不代做，逐项过后置清单</li>
+</ul>
+<p>输出契约：加载完成且初始化到位的 OXE（siteid 版本正确、四账户密码受控、许可与信任主机就绪）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>本卡只管"装上去"：数据库与业务配置（用户/路由/编号计划）指向 Starter 课程或"restore a backup"（p92）</li>
+<li>aging=0 仅培训口径；生产按 CIS 基线对 root 保留 aging，并替换全部实验口令（p91/p175/p273）</li>
+<li>V24 链路用于启动与检查安装（p52）；加载观察可经终端模拟器</li>
+<li>加载后密码 aging 提问的合法区间是 &lt;10&lt;X&lt;366；0 表示不限期</li>
+<li>实验口径：CSa=192.168.1.101、csm=192.168.1.103——生产按客户规划替换</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte402en/skills/entload-sot-media.html">SOT 媒体传输与加载项目配置（公共动作）</a></p><p class="source-page">能力 ID：cap.entload.cs-loading · 来源：ENTPXTE402EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — 系统装载 (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 415 页 -->

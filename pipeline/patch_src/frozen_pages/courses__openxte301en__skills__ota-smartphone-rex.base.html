@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OTC 智能手机交付全流程（REX/DISA/APNS）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch · Advanced</h2><p>Edition 08 · 468 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte301en/index.html">课程首页</a><a href="/courses/openxte301en/digest.html">精华长文</a><a href="/courses/openxte301en/overview.html">教书理解</a><a href="/courses/openxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte301en/skills/ota-remote-access.html">OpenTouch 远程接入通道与证书</a><a href="/courses/openxte301en/skills/ota-nomadic-ghost-z.html">Nomadic 移动模式与 Ghost Z 资源池</a><a href="/courses/openxte301en/skills/ota-smartphone-rex.html">OTC 智能手机交付全流程（REX/DISA/APNS）</a><a href="/courses/openxte301en/skills/ota-um-exchange-integration.html">统一消息 UM（Exchange/O365/Gmail/IMAP）</a><a href="/courses/openxte301en/skills/ota-conference-collaboration.html">协作会议（ACS 配置、角色权限、数据会议）</a><a href="/courses/openxte301en/skills/ota-calendar-sync.html">日历在场与日历同步（Calendar presence/synchro）</a><a href="/courses/openxte301en/skills/ota-directory-udas.html">目录搜索与 Single Business Card（UDAS）</a><a href="/courses/openxte301en/skills/ota-enterprise-authentication.html">企业认证集成（LDAP/RADIUS/Kerberos SSO）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte301en/skills/ota-desksharing.html">Desksharing 共享工位（DSU/DSS）</a><a href="/courses/openxte301en/skills/ota-extended-mobility.html">Extended Mobility（QR/NFC 切换与路由修改）</a><a href="/courses/openxte301en/skills/ota-dcs-documents.html">DCS 文档转换服务器（Office 会议演示）</a><a href="/courses/openxte301en/skills/ota-otc-web-guest.html">OTC Web 与访客入会</a><a href="/courses/openxte301en/skills/ota-lab-pod.html">RLAB 实验 POD 与 SIP 运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte301en/index.html">opentouch-advanced（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte301en/index.html">OPENXTE301EN</a><span>/</span><span aria-current="page">OTC 智能手机交付全流程（REX/DISA/APNS）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OTC 智能手机交付全流程（REX/DISA/APNS）</h1></div><dl><div><dt>Skill ID</dt><dd>ota-smartphone-rex</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OTC 智能手机交付全流程（REX/DISA/ARS 自动创建、iPhone APNS 特例）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Automatic configuration of these objects when a Smartphone is associated to a Connection user ...: Remote extension / SIP device / Remote extension Number / Direct Speed Dialing Number / Discriminator Rule / ARS Route list / ARS Route SIP / ARS Route GSM / Tandem"（p94）
+"Do NOT use a number beginning with letter (A,B,C,D) in the directory number of the Remote Extension!"（p132）
+"From release 2.6 of OpenTouch, the main device can be directly the remote extension"（p134）</p>
+</blockquote>
+<p>出处：OPENXTE301EN p76-147。</p>
+<h2>I — 自述</h2>
+<p>智能手机的复杂度被"自动创建"消化，管理员的核心动作是配基座、做关联、做核验：</p>
+<ol>
+<li><strong>基座（OXE 侧一次配置）</strong>：专用 ARS 前缀（例 #0/#0306）、RE DISA 前缀 31280（必须能被 DDI 翻译表翻译）、DISA 免码替换两级授权、激活/停用前缀 61/62、专用 Ghost Z 池（可用 B&lt;号&gt; 占假号）、直达速拨范围（长度不能为 0 也不能满）</li>
+<li><strong>Wi-Fi 到 GSM 溢出三参数</strong>：Decline 映射 CH Cause=Temporary failure、INVITE 重传 2 或 3、Trunk COS 定时器 T310=60</li>
+<li><strong>关联即自动建</strong>：把手机关联到 Connection 用户时，系统自动建 RE、SIP 设备、RE 号码、速拨号、识别码规则、ARS 路由表（Route 1=SIP 设备、Route 2=公网拨手机）、Tandem（主话机与 RE 双多线绑定）</li>
+<li><strong>手工两项</strong>：Entity 识别码选择器（逻辑识别码映射物理识别码）与公网 COS 区域号 barring 放行</li>
+<li><strong>iPhone 特例</strong>：APNS 推送走苹果云（TCP 5223/2195/2196/443），证书一年有效、每年装专用 hotfix；后台唤醒多次 INVITE 本地 UDP 强制、经 SBC 出网 TCP 强制；VoIP everywhere 需 kamailio-wasp+wspcfg 组件与 5265 端口专用 SBC 声明</li>
+<li><strong>R2.6 分水岭</strong>：RE 可直接作主设备（单设备），此前需永不入服的 SIP 扩展做主机加溢出</li>
+</ol>
+<p>授权关键：用户 Licenses 页签 Off site mobility 必须手动勾选，漏勾手机侧不可用。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>从通用设置到 App 安装的交付实验</strong>（p120-147）：</p>
+<ol>
+<li>OXE 建专用 ARS 前缀与逻辑识别码（例 #0306、识别码 3，实验口径）</li>
+<li>建 RE DISA 前缀 31280 并核对 DDI 翻译表可翻译</li>
+<li>配 DISA 免码替换（系统级 Without code+中继组级 Yes）与激活/停用前缀 61/62</li>
+<li>建专用 Ghost Z 池（B&lt;号&gt; 形式）与直达速拨范围（起始 0、长度例 1000）</li>
+<li>配溢出三参数（Decline 映射、INVITE 重传、T310=60）</li>
+<li>OT 侧声明 iPhone+ SBC（同 FQDN、端口 5265）并执行前缀同步、手填 DISA 公网号与 ARS 信息</li>
+<li>建设备档案（OTC Smartphone：Android/iPhone、GSM/Wifi/双模、SBC WAN、协议 UDP）</li>
+<li>用户关联：Associate SIP device→New→OTC Smartphone（RE 号纯数字、设备号 D2131001、速拨 A2131001）</li>
+<li>核验六类自动对象，手工补 Entity 识别码选择器与公网 COS 放行</li>
+<li>手机装 App（Android 装 OpenTouch Conversation、iPhone 装 Conversation Plus）填公共/私有 URL 登录</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：给移动员工配公司号手机；手机收不到来电/呼不出去；DISA 呼入不通；iPhone 收不到推送；GSM 倒换太慢；只有手机没有话机的用户怎么配。</p>
+<p>语言信号：OTC Smartphone / 远程扩展 / RE / REX / DISA / 31280 / 速拨 / speed dial / ARS / 识别码 / discriminator / Tandem / APNS / kamailio-wasp / 5265 / Off site mobility / 双模。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>手机注册的通道与证书 → 远程接入能力</li>
+<li>Ghost Z 池规划 → Nomadic 能力</li>
+<li>扫码切换呼叫 → Extended Mobility 能力（路由卡）</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：用户类型（Connection）、手机平台（Android/iPhone）、连接模式（GSM/Wifi/双模）、号码计划余量（RE 号/速拨段/手机 E.164 号）。</p>
+<ol>
+<li>基座核查：ARS 前缀、DISA 前缀与 DDI 翻译、Ghost Z 池、速拨范围、溢出三参数。完成标准：OXE 侧清单全绿</li>
+<li>OT 侧基座：iPhone+ SBC 声明、前缀同步、DISA 公网号与 ARS 手填项。完成标准：同步后前缀自动出现</li>
+<li>建设备档案并关联用户。完成标准：Device 页签同时列出 RE 与 OTC Smartphone</li>
+<li>授权 Off site mobility。完成标准：Licenses 页签已勾</li>
+<li>核验自动对象（RE/速拨/识别码/ARS/Tandem/SIP 设备）。完成标准：c11 六项逐一对上</li>
+<li>手工补 Entity 识别码映射与公网 COS 放行。完成标准：GSM 回退路由可拨通</li>
+<li>App 安装登录与端到端测试（呼入落地、DISA 替换、GSM 倒换）。完成标准：行为测试通过</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>公网呼入手机不通：按链路查 DDI 翻译（最常漏）、DISA 两级授权、速拨号触发替换</li>
+<li>RE 目录用了字母开头 → 停，A-D 开头保留给设备/速拨命名空间，改纯数字</li>
+<li>iPhone 推送全停 → 查防火墙四端口与 APNS 证书年度 hotfix（过期次年全停）</li>
+<li>文档卡 queued 类问题不属本卡（DCS）；部署细节生产化以 TC2341 为准</li>
+</ul>
+<p>输出契约：OXE/OT 两侧基座核查单 + 用户关联与自动对象核验记录 + 端到端测试结论（含 DISA 与 GSM 倒换）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>R2.6 前后"手机当主设备"语义不同：旧结构（SEPLOS 类主机+溢出）升级时要改造（n43）</li>
+<li>自动创建不包办 Entity 识别码与 COS barring 两件事，漏掉即"配了但不通"（n15）</li>
+<li>APNS 依赖苹果云：防火墙四端口加每年证书 hotfix 是长期运维项，写进维保合同（n50）</li>
+<li>实验值（31280/61/62/#0/#0306/D2131001 等）为示例口径，生产按客户号码计划替换</li>
+<li>手机部署的生产化细节（Wi-Fi/VPN 话音、SIP over VPN 等）原书外置到 TC2341</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte301en/skills/ota-remote-access.html">OpenTouch 远程接入通道与证书</a>、<a href="/courses/openxte301en/skills/ota-extended-mobility.html">Extended Mobility（QR/NFC 切换与路由修改）</a></p><p class="source-page">能力 ID：cap.ota.smartphone-rex · 来源：OPENXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch - Advanced (Participant's Guide, Edition 08) | edition: Edition 08 | pages: 468 页 -->

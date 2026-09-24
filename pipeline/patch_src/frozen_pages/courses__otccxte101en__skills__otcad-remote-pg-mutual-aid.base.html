@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Remote PG 分布式互助与 ABC-F 链路</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced</h2><p>Edition  · 597 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte101en/index.html">课程首页</a><a href="/courses/otccxte101en/digest.html">精华长文</a><a href="/courses/otccxte101en/overview.html">教书理解</a><a href="/courses/otccxte101en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte101en/skills/otcad-ism-skill-matching.html">ISM 技能匹配与排序口径</a><a href="/courses/otccxte101en/skills/otcad-remote-pg-mutual-aid.html">Remote PG 分布式互助与 ABC-F 链路</a><a href="/courses/otccxte101en/skills/otcad-spm-deployment.html">Soft Panel Manager 部署与基础设置</a><a href="/courses/otccxte101en/skills/otcad-soft-panel-manager.html">Soft Panel 可视化配置（视图/挂件/消息/告警）</a><a href="/courses/otccxte101en/skills/otcad-ccta-ticket-analysis.html">CCTA 话务票据分析</a><a href="/courses/otccxte101en/skills/otcad-special-features.html">特殊功能开关（优先转接/忙音/代接/监听/永恒整理/中继预留）</a><a href="/courses/otccxte101en/skills/otcad-excel-report-customization.html">Excel 报表模板定制</a><a href="/courses/otccxte101en/skills/otcad-ccs-server.html">CCS Server 集中接入</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte101en/skills/otcad-acr-objects.html">ACR 对象与技能体系</a><a href="/courses/otccxte101en/skills/otcad-asm-script-advanced.html">ASM 脚本与 LCA 主干</a><a href="/courses/otccxte101en/skills/otcad-ccs-onboarding.html">CCS 安装与实验环境定稿</a><a href="/courses/otccxte101en/skills/otcad-acd-maintenance.html">ACD 维护命令箱</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte101en/index.html">otcc-standard-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte101en/index.html">OTCCXTE101EN</a><span>/</span><span aria-current="page">Remote PG 分布式互助与 ABC-F 链路</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Remote PG 分布式互助与 ABC-F 链路</h1></div><dl><div><dt>Skill ID</dt><dd>otcad-remote-pg-mutual-aid</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>Remote PG 分布式互助与 ABC-F 链路（虚拟队列、专用 Pilot、故障注入）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Remote PG • Processing Group of the local node • Has a minimum waiting time threshold (distribution threshold) and a resource selection priority but no call selection priority. • Virtual Queue • … the image of the head of the normal queue • Dedicated Pilot • Remote Pilot is dedicated to one Virtual Queue."（p319）
+"Information transferred: • Information on the originating pilot (number, name) • Status of the remote pilot • Voice Guides heard on the local node • Real Waiting Time"（p325）
+"Direct link 2002 to node 2:UP(Enabled/DATA_TRANS) High Bandwidth"（p341）</p>
+</blockquote>
+<p>出处：OTCCXTE101EN p293-370。</p>
+<h2>I — 自述</h2>
+<p>跨站点互助分两种：盲互助（无 ABC-F，远端当新呼叫处理）与智能互助（经 ABC-F 按远端状态路由）。Remote PG 是智能互助的分布式形态，三对象分工：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>对象</th>
+<th>所在节点</th>
+<th>关键属性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Remote PG</td>
+<td>本地</td>
+<td>Type=Remote，指向远端专用 Pilot；有分布门限+资源选择优先级，无呼叫选择优先级</td>
+</tr>
+<tr>
+<td>虚拟队列</td>
+<td>远端</td>
+<td>Type=Virtual，只映射本地队列队头呼叫的特征</td>
+</tr>
+<tr>
+<td>专用 Pilot</td>
+<td>远端</td>
+<td>一个虚拟队列专属，可被多个 Remote PG 调用</td>
+</tr>
+</tbody>
+</table></div>
+<p>经 ABC-F 传输：源 Pilot 号/名、远端 Pilot 状态、本地已听语音引导、真实等待时间。远端拒收时按远端 Pilot 地址类型五类回退本地（重路由组/全局转发/闭锁/排队溢出/振铃溢出，p312）。</p>
+<p>三级水位控制（排障与规划的主轴）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>取值</th>
+<th>语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>资源选择优先级</td>
+<td>0-9</td>
+<td>0 最高 9 最低；同优先级处理组之间按 LIT</td>
+</tr>
+<tr>
+<td>分布门限 thresho.</td>
+<td>秒（实验 15）</td>
+<td>呼叫在本地队列等满 N 秒才允许流向远端</td>
+</tr>
+<tr>
+<td>Maximum waiting time</td>
+<td>0-3276 秒</td>
+<td>计算等待达阈值即把队列降为最低优先级；0=零等待队列（无资源立即改道）</td>
+</tr>
+<tr>
+<td>Traffic Sampling Period</td>
+<td>2-15 分钟</td>
+<td>平均等待时间滚动窗口；等待室不可用</td>
+</tr>
+</tbody>
+</table></div>
+<p>链路体检两命令：compvisu sys（Direct Link 管理状态/H323/RTP Direct）；hybvisu -f all（四态 IDLE/SYN_REQ/SYN_ACK/DATA_TRANS，健康=DATA_TRANS；带宽 High=全编解码/Low=G729；接入数 1-24）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>Remote PG 部署与四类测试</strong>（p338-370，编号为实验口径）：</p>
+<ol>
+<li>链路体检：compvisu sys 与 hybvisu -f all，确认链路 2002 UP/DATA_TRANS</li>
+<li>本地 WBM 建网络前缀：Translator &gt; Prefix plan，Number=32602、Prefix Meaning=Network No.、Type=Pilot</li>
+<li>本地建 Remote_PG：Applications &gt; CCD &gt; Processing Group，DN=31851、Type=Remote、语音/数据 DN=32602</li>
+<li>本地 CCS：Normal_WQ 加 Remote_PG 并在 Resource selection 勾通方向</li>
+<li>远端 WBM：建 ACD 前缀、专用 Pilot 32602、虚拟队列 32703（Type=Virtual）、坐席 PG 32800、分配规则</li>
+<li>远端坐席 32500 登录后，测试一（优先级）：Agent_PG=0、Remote_PG=1，本地坐席优先</li>
+<li>测试二（门限）：thresho.=15 秒，本地忙时第二通等 15 秒转远端</li>
+<li>测试三（远端闭锁+本地饱和）：MWT=10 秒，溢出呼叫落 Voice_guide_PG 播 685 两遍后释放</li>
+<li>测试四（断链注入）：mgr 菜单临时 Disable 链路，Remote_PG blocked 而专用 Pilot 仍 open</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：多站点客户要互备坐席；远端坐席纳不进本地队列；溢出呼叫总被远端拒收；断链时话务流失评估；链路状态判读。</p>
+<p>语言信号：Remote PG / 虚拟队列 / Virtual Queue / 专用 Pilot / Dedicated Pilot / 互助 / mutual aid / ABC-F / Direct IP Link / hybvisu / compvisu / 分布门限 / thresho / 资源选择优先级 / 拒收 / reject / 溢出。</p>
+<p>与相邻能力区分：队列参数语义的告警与忙音行为转特殊功能卡；维护命令全表转 ACD 维护命令箱卡（路由卡）；链路的新建与组网规划在书外（OXE 组网文档）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：本地/远端两节点管理权、ABC-F 直连链路已建立、远端坐席与 PG 已规划。链路未建 → 停，先走 OXE 组网流程（书外）。</p>
+<ol>
+<li>体检链路：mtcl 下 compvisu sys + hybvisu -f all。完成标准：目标链路 UP(Enabled/DATA_TRANS)</li>
+<li>远端：建 ACD 前缀（必须先建，n20）&gt; 虚拟队列（Type=Virtual）&gt; 专用 Pilot &gt; 坐席 PG 与分配规则。完成标准：远端矩阵就绪</li>
+<li>本地：建网络前缀（Network No.+节点号+Type=Pilot）&gt; Remote PG（Type=Remote，指向专用 Pilot）。完成标准：pildstctx/pgctx 可查到对象</li>
+<li>双侧 CCS：接路由方向、勾通资源选择方向、设优先级与门限。完成标准：Navigator 两端状态正常</li>
+<li>行为验证三连：优先级（本地优先）、门限（等满 N 秒才溢出）、故障注入（断链/置忙后回退本地）。完成标准：三级水位行为与设计一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>Remote_PG 常驻 blocked → 停，按"远端 Pilot GFWD/闭锁、下游全闭锁、链路无时隙"三条件排查，不盲目重建对象</li>
+<li>断链期间溢出话务直接播引导释放（n35） → 停，这是兜底设计；生产要另配告警与回拨策略，不是故障修复</li>
+<li>客户要溢出话务建模/坐席数估算 → 停，书外能力，指向 Feature List 与话务数据</li>
+</ul>
+<p>输出契约：可用的跨站点互助链路 + 三级水位参数记录 + 故障注入验证报告（含拒收回退路径）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>全部实验编号（32602/31851/32703/32800）为实验口径；p364 "Agent2 (32500)" 称号系原文笔误，实为 Agent3（nr-04）</li>
+<li>盲互助/智能互助的组网话务建模在书外（n39）；hybvisu 的 High/Low 带宽结论是实验口径，生产链路按带宽规划</li>
+<li>Maximum waiting time=0 是"零等待队列"语义，会立即改道，别当"不设限"配（n36）</li>
+<li>两套"优先级"语义勿混：处理组之间 0-9 数字比大小（0 高），ACR Pilot 方向之间同优先级比 EWT（n34）</li>
+<li>资源选择优先级同分时按 LIT——该 LIT 同样受坐席统计 5 分钟刷新约束（p04）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte101en/skills/otcad-acd-maintenance.html">ACD 维护命令箱</a>、<a href="/courses/otccxte101en/skills/otcad-special-features.html">特殊功能开关（优先转接/忙音/代接/监听/永恒整理/中继预留）</a></p><p class="source-page">能力 ID：cap.otcad.remote-pg-mutual-aid · 来源：OTCCXTE101EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition - Advanced (Participant's Guide, Edition 07) | edition: Edition  | pages: 597 页 -->

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OmniMessage 4645 语音邮件与邮件通知</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Starter</h2><p>Edition 12 · 821 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte400en/index.html">课程首页</a><a href="/courses/entpxte400en/digest.html">精华长文</a><a href="/courses/entpxte400en/overview.html">教书理解</a><a href="/courses/entpxte400en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte400en/skills/ents-first-login-hardening.html">OXE 首登加固（四账户与密码治理）</a><a href="/courses/entpxte400en/skills/ents-cs-network-firewall.html">Call Server IP 寻址与内部防火墙</a><a href="/courses/entpxte400en/skills/ents-db-license.html">空数据库创建与 OPS 许可管理</a><a href="/courses/entpxte400en/skills/ents-media-gateway-deployment.html">媒体网关上架（GD4/OMS/XL）</a><a href="/courses/entpxte400en/skills/ents-user-terminal-provisioning.html">用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）</a><a href="/courses/entpxte400en/skills/ents-numbering-cos.html">编号计划与 COS 管理</a><a href="/courses/entpxte400en/skills/ents-call-processing.html">呼叫处理业务域（语音指南/话务台/Entity/计时器）</a><a href="/courses/entpxte400en/skills/ents-sip-trunk.html">公共 SIP 中继开通与弹性</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte400en/skills/ents-system-start-stop.html">OXE 系统启停与 autostart 管理</a><a href="/courses/entpxte400en/skills/ents-time-sync.html">OXE 时间同步（NTP/chrony）</a><a href="/courses/entpxte400en/skills/ents-voicemail-4645.html">OmniMessage 4645 语音邮件与邮件通知</a><a href="/courses/entpxte400en/skills/ents-barring-emergency.html">外呼闭锁与紧急呼叫通知</a><a href="/courses/entpxte400en/skills/ents-backup-maintenance.html">数据库备份恢复与维护排障工具箱</a><a href="/courses/entpxte400en/skills/ents-legacy-trunks-umc.html">传统中继（T0/T2）与 UMC 云管理</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte400en/index.html">oxe-starter（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte400en/index.html">ENTPXTE400EN</a><span>/</span><span aria-current="page">OmniMessage 4645 语音邮件与邮件通知</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OmniMessage 4645 语音邮件与邮件通知</h1></div><dl><div><dt>Skill ID</dt><dd>ents-voicemail-4645</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>OmniMessage 4645 语音邮件与邮件通知</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Only one voice mail system (4645 or other) per OXE node"（p527）
+"Up to 7000 controlled by software license … Up to 30 accesses … 500 hours or 600 hours (if HDD&gt;80 GB)"（p541-542）
+"E-mail notification None: no notification (default value) … Advanced: email notification with audio file attachment"（p564）</p>
+</blockquote>
+<p>出处：ENTPXTE400EN p526-571。</p>
+<h2>I — 自述</h2>
+<p>4645 是纯软件语音邮件，部署拓扑与通知链路两件事：</p>
+<ol>
+<li><strong>四拓扑</strong>：嵌 CS/GAS/OXE-V 同主机（30 端口）；独立专用服务器（CPU8 强制此形态）；独立 4645 服务主备双 CS；嵌主备之一（VM 不冗余——承载 CS 垮则 VM 垮）；一节点仅一套留言系统</li>
+<li><strong>容量口径</strong>：≤7000 信箱（许可）、≤30 接入端口、单留言 1 分钟-5 小时、每箱 5-100 条、总录音 500 小时（HDD&gt;80GB 为 600）、8 语言、编号 3-8 位、分发列表 ≤50 成员</li>
+<li><strong>编码</strong>：仅 G711；非 G711 终端经本地板转码（每路耗 2 压缩器）；组网=ABC 集中留言+VPIM 互联；接入=TUI/可视留言/IMAP4</li>
+<li><strong>库内声明</strong>：WBM Applications/Voice Mail 建实例——留言箱 DN、类型 4645、接入数、CPU Name 用物理地址（勿用 Role 地址）</li>
+<li><strong>邮箱分配</strong>：用户 Voice mail 页签挂留言箱 DN 与 4645 CoS；首访=拨留言箱 DN，初始码 0000</li>
+<li><strong>邮件通知三档</strong>：None（默认）/Basic（通知）/Advanced（附 .wav 附件）；SMTP 经 netadmin 声明（Plain 25/StartTLS 587/TLS 465），防火墙加白，重启生效</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>4645 部署实验</strong>（p547-556，How-To）：</p>
+<ol>
+<li>spadmin 核对 4645 族许可锁（178/179/182/183/194）</li>
+<li>WBM Applications/Voice Mail 建实例：DN=31499、类型 4645、接入 4</li>
+<li>CPU Name 填物理地址 192.168.1.1（实验口径，勿用 Role 地址）</li>
+<li>用户 31000 挂 4645 CoS 与留言箱 DN</li>
+<li>31000 拨 31499 首访：初始码 0000 改新码、录姓名</li>
+<li>31001 呼入留言，31000 收通知进信箱收听</li>
+<li>config 18 巡检：GD+4645 耦合器 IN SERVICE</li>
+</ol>
+<p><strong>邮件通知实验</strong>（p556-571，How-To）：</p>
+<ol>
+<li>netadmin 主机表加邮件服务器，SMTP 声明 URL 与端口 25</li>
+<li>防火墙加邮件服务器为可信主机，应用后重启生效</li>
+<li>Eva_tool 设 VM DDI 公开号码</li>
+<li>4645 CoS 通知档位从 None 切 Basic</li>
+<li>用户填 Mail 地址后留言，Thunderbird 收到通知邮件</li>
+<li>CoS 切 Advanced 复测，邮件带 .wav 附件</li>
+<li>Eva_tool 巡检信箱详情与通知档位</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：部署语音邮件；留了言没邮件通知；邮件附件疑问；换 SMTP 服务器；语音信箱容量规划；外线留言收不到；4645 迁移/独立部署。</p>
+<p>语言信号：4645 / OmniMessage / 语音邮件 / voicemail / 留言箱 / 信箱 / VPIM / IMAP / 邮件通知 / email notification / SMTP / Advanced 附件 / Audio-Station / Eva_tool。</p>
+<p>与相邻能力区分：等待音/保持音乐见呼叫处理能力；系统级语音指南见呼叫处理能力；许可锁核对见空库与许可能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：部署形态（嵌 CS/独立/虚拟）、SMTP 服务器信息（客户提供）、留言箱编号规划、许可锁范围。SMTP 参数拿不到时通知功能只能停在 None 档。</p>
+<ol>
+<li>核许可：spadmin 看 178/179/182/183/194 锁值。完成标准：许可支撑目标信箱数</li>
+<li>建实例：WBM 声明留言箱 DN/类型/接入数，CPU Name 用物理地址。完成标准：config 显示 4645 耦合器 IN SERVICE</li>
+<li>分配邮箱：用户挂 4645 CoS 与留言箱 DN。完成标准：首访改密成功</li>
+<li>声明 SMTP：netadmin 主机表+SMTP 配置（协议/端口/from 地址），防火墙加白并重启。完成标准：ping FQDN 通、配置应用</li>
+<li>开通知：4645 CoS 按 None/Basic/Advanced 分档，用户填 Mail 地址。完成标准：留言后邮件到达（Advanced 含附件）</li>
+<li>巡检移交：Eva_tool 信箱清单、/var/log/maillog、配额告警参数。完成标准：通知链路台账完整</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>留言正常但没邮件 → 按顺序查：用户 CoS 是否还是默认 None、SMTP 声明、防火墙白名单、from 域名被判垃圾（n34/n35）</li>
+<li>邮件带不了附件 → Advanced 档才带 .wav；附件超大小上限时只发提示（p27 口径）</li>
+<li>邮件服务器要求 STARTTLS/TLS → 端口与协议三态对应（25/587/465），选错连不上</li>
+<li>客户要一节点两套留言系统 → 停，架构仅允许一套（n33）；评估换 4645 以外的方案走商务</li>
+</ul>
+<p>输出契约：可留言可通知的 4645 实例 + SMTP/防火墙配置记录 + 信箱分配清单。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>实验值（留言箱 DN 31499、邮件服务器 10.20.30.200、Thunderbird 密码 alcatel）为实验口径</li>
+<li>4645 安全加固（防盗打）按 SA0046 与 TC1774 执行（n41）；盗打风险提示见 p544-545</li>
+<li>嵌主备拓扑中 VM 不冗余（承载 CS 垮则留言垮）；高可用诉求需评估独立双 CS 拓扑</li>
+<li>基础语音指南只能用 Alcatel Audio-Station 录制，不能从话机录（n34）；A4645-V 免狗版为虚拟化形态</li>
+<li>VPIM 网络信箱 0/48000 与节点互联细节书内仅给口径，跨节点留言组网在组网课程展开</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.ents.voicemail-4645 · 来源：ENTPXTE400EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Starter (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 821 页 -->

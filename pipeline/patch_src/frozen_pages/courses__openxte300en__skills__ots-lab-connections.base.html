@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>实验 POD 与系统连接通道</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch · Starter</h2><p>Edition 10 · 603 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte300en/index.html">课程首页</a><a href="/courses/openxte300en/digest.html">精华长文</a><a href="/courses/openxte300en/overview.html">教书理解</a><a href="/courses/openxte300en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte300en/skills/ots-post-installation-wizard.html">OTMS 初始化向导（两模式十节）</a><a href="/courses/openxte300en/skills/ots-license-flexlm.html">许可体系与 FlexLM（安装、核查、外部切换）</a><a href="/courses/openxte300en/skills/ots-node-declaration-sip.html">双向节点声明与 SIP 打通（含告警对接）</a><a href="/courses/openxte300en/skills/ots-prior-management.html">Prior management（号码段、前缀、拨号规则、UDAS、会议桥）</a><a href="/courses/openxte300en/skills/ots-users-profiles.html">档案与用户供给（三类用户、WPC 批量）</a><a href="/courses/openxte300en/skills/ots-voice-mail.html">语音邮箱、IMAP 收取与通知公告（Local Storage）</a><a href="/courses/openxte300en/skills/ots-clients-multi-devices.html">OTC PC 客户端交付与多终端</a><a href="/courses/openxte300en/skills/ots-maintenance-rehosting.html">维护、备份恢复与 rehosting（TC2149 矩阵）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte300en/skills/ots-sot-installation.html">SOT 自动化装机与虚机手动导入</a><a href="/courses/openxte300en/skills/ots-certificates.html">证书部署三路线</a><a href="/courses/openxte300en/skills/ots-supervision-groups.html">监督组（话务监督、进出组与代接）</a><a href="/courses/openxte300en/skills/ots-lab-connections.html">实验 POD 与系统连接通道</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte300en/index.html">opentouch-starter（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte300en/index.html">OPENXTE300EN</a><span>/</span><span aria-current="page">实验 POD 与系统连接通道</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>实验 POD 与系统连接通道</h1></div><dl><div><dt>Skill ID</dt><dd>ots-lab-connections</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>实验 POD 与系统连接通道（RLAB、三通道、SUSE 界面）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Telnet is not authorized on the OpenTouch server. You have to establish a SSH V2 connection using Putty"（p113）
+"Telnet is authorized on the OXE server. ... We are using here Telnet connection because security is not activated on the OXE in our topology."（p117）
+"Remote Lab allows accessing a pool of virtual machines and hardware (when required) hosted in a data center."（p12）
+"Product : OpenTouch™ Multimedia Services 2.6.1 Version : 18.0.100.003"（p115）</p>
+</blockquote>
+<p>出处：OPENXTE300EN p10-37, p109-127。</p>
+<h2>I — 自述</h2>
+<p>实验环境两形态：Fully Virtualized（RLAB 专用，无教室设备）与 Hybrid mode（RLAB 加教室话机与 POE 交换机）。POD 之间相互独立、配置相同，共享公共资源区（NAS 软件/许可、SIP 运营商模拟器、外部 DNS/NTP）。</p>
+<p>四台系统的连接通道与账号（实验口径，完整表见 book/overview）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>系统</th>
+<th>通道</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OT</td>
+<td>SSH v2（Putty，22 端口，UTF-8）</td>
+<td>维护账号登录；横幅显示 OTMS 2.6.1 / 18.0.100.003；Telnet 不授权</td>
+</tr>
+<tr>
+<td>OXE</td>
+<td>Telnet（23 端口；启用安全后必须换 SSH）</td>
+<td>mtcl 维护账号；IP 核验用 ifconfig 与 netadmin</td>
+</tr>
+<tr>
+<td>8770</td>
+<td>远程桌面（mstsc）</td>
+<td>先在系统属性开允许远程；可映射本地盘</td>
+</tr>
+<tr>
+<td>ESXi/虚机控制台</td>
+<td>vSphere 或浏览器 web 控制台</td>
+<td>vm tools 未装时按 Ctrl+Alt 退控制台</td>
+</tr>
+</tbody>
+</table></div>
+<p>SUSE 图形界面（仅本地控制台，非 SSH）：root 敲 startx 起图形；桌面右键 Open in Terminal；最多 4 个 workspace（教材建议三个：终端、/opt/Alcatel-Lucent、/var/data/licenses）；YaST 管时区键盘日期；Log Off 退出。</p>
+<p>ITSP1 模拟器外呼验证：OXE 侧按 POD 号配外部 SIP 网关注册名与 DID 翻译（首外线 33210N41000、首内线 31000、跨度 500），拨模拟运营商公共号码确认出局通路。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>POD 初始化实验</strong>（p31-37）：</p>
+<ol>
+<li>Rlab 门户用 Start 按钮启动 POD 内各虚机。</li>
+<li>核 Rack 与 Virtual GD4 参数（地址与 MAC 按实验表）。</li>
+<li>PC Client 安装 IPDSP，TFTP 服务器填 OXE 主地址。</li>
+<li>按 POD 号改外部 SIP 网关注册名与外呼用户名。</li>
+<li>建 DID 翻译：首外线号、首内线 31000、跨度 500。</li>
+<li>拨模拟运营商公共号码验证外呼通路。</li>
+</ol>
+<p><strong>系统连接实验</strong>（p109-127）：</p>
+<ol>
+<li>Putty 建 SSH 会话连 OT：22 端口、SSH2、UTF-8。</li>
+<li>用维护账号登录，横幅核对产品与版本号。</li>
+<li>OXE 控制台核地址后用 Telnet 连接（实验拓扑未启安全）。</li>
+<li>8770 开允许远程后用 mstsc 连接并映射本地盘。</li>
+<li>SUSE 控制台 root 敲 startx，布三个工作区。</li>
+<li>YaST 核对时区与键盘设置后注销。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：实验环境起不来；连不上某台服务器；模拟外呼不通；想知道教材里某台机器的地址或账号。</p>
+<p>语言信号：RLAB / POD / ITSP1 / 模拟外呼 / SSH / Telnet / Putty / 远程桌面 / mstsc / 控制台 / SUSE / startx / YaST / workspace / 版本横幅。</p>
+<p>与相邻能力区分：生产部署装机 → SOT 装机路由卡；生产远程接入安全 → 证书路由卡与 TC 文档；实验值一律不当生产配置，生产参数另出设计。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：RLAB 门户账号与 POD 号；教材实验参数表（book/overview 实验环境区）；Putty/mstsc 等客户端工具。</p>
+<ol>
+<li>起 POD 并核对虚机清单。完成标准：各虚机在线</li>
+<li>配 IPDSP 与 DID 翻译。完成标准：模拟外呼打通</li>
+<li>三通道连接验证（SSH/Telnet/RDP）。完成标准：四台系统可达可管</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>OT 想走 Telnet → 不授权，必须 SSH v2（p113）</li>
+<li>OXE 已启用安全还用 Telnet → 必须换 SSH，Telnet 是实验未启安全的产物（n08）</li>
+<li>实验值报障 → 全部账号口令是公开教学值，先核对是否抄错行</li>
+<li>示例输出对不上 → 工具输出里的 151.1.1.x/172.25.x 是历史演示值，非本 POD（n42）</li>
+</ul>
+<p>输出契约：可用的实验 POD（外呼通、四系统可达）+ 连接参数核对记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>全部实验 IP/口令/号码为 RLAB 教学公开值（letacla 系、superuser、Superuser01*、mtcl、adfexc、adminsnmp 等），严禁用于生产（n09）；生产交付必须全部替换并纳入口令管理。</li>
+<li>POD 网段、实例参数与号码口径的完整表集中在 book/overview.md 实验环境区，能力卡正文不携带。</li>
+<li>ITSP1 为教学专用基础设施；ITSP2 仅在拓扑图出现无细节（f05）。</li>
+<li>版本横幅口径：OTMS 2.6.1 / Version 18.0.100.003（p115），跨版本环境以现场横幅为准。</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.ots.lab-connections · 来源：OPENXTE300EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch — OpenTouch Suite for MLE — Solution Overview / Starter (Participant's Guide) | edition: Edition 10 | pages: 603 页 -->

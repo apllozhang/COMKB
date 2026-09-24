@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>特殊功能开关（优先转接/忙音/代接/监听/永恒整理/中继预留）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced</h2><p>Edition  · 597 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte101en/index.html">课程首页</a><a href="/courses/otccxte101en/digest.html">精华长文</a><a href="/courses/otccxte101en/overview.html">教书理解</a><a href="/courses/otccxte101en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte101en/skills/otcad-ism-skill-matching.html">ISM 技能匹配与排序口径</a><a href="/courses/otccxte101en/skills/otcad-remote-pg-mutual-aid.html">Remote PG 分布式互助与 ABC-F 链路</a><a href="/courses/otccxte101en/skills/otcad-spm-deployment.html">Soft Panel Manager 部署与基础设置</a><a href="/courses/otccxte101en/skills/otcad-soft-panel-manager.html">Soft Panel 可视化配置（视图/挂件/消息/告警）</a><a href="/courses/otccxte101en/skills/otcad-ccta-ticket-analysis.html">CCTA 话务票据分析</a><a href="/courses/otccxte101en/skills/otcad-special-features.html">特殊功能开关（优先转接/忙音/代接/监听/永恒整理/中继预留）</a><a href="/courses/otccxte101en/skills/otcad-excel-report-customization.html">Excel 报表模板定制</a><a href="/courses/otccxte101en/skills/otcad-ccs-server.html">CCS Server 集中接入</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte101en/skills/otcad-acr-objects.html">ACR 对象与技能体系</a><a href="/courses/otccxte101en/skills/otcad-asm-script-advanced.html">ASM 脚本与 LCA 主干</a><a href="/courses/otccxte101en/skills/otcad-ccs-onboarding.html">CCS 安装与实验环境定稿</a><a href="/courses/otccxte101en/skills/otcad-acd-maintenance.html">ACD 维护命令箱</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte101en/index.html">otcc-standard-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte101en/index.html">OTCCXTE101EN</a><span>/</span><span aria-current="page">特殊功能开关（优先转接/忙音/代接/监听/永恒整理/中继预留）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>特殊功能开关（优先转接/忙音/代接/监听/永恒整理/中继预留）</h1></div><dl><div><dt>Skill ID</dt><dd>otcad-special-features</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>特殊功能开关（优先转接、忙音、代接、监督监听、永恒整理、中继预留）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Management • Applications/ CCd/ Pilot • Transfer with priority: True … Inter-guide tone Number: 2 • Redirection busy tone on DID: False"（p499-501）
+"Trunk Groups&gt; trunk group … Max. % of trunks out CCD : 20 … Applications/ CCd/ Pilot/ Trunk limitation • Pilot Directory Number: 31600 • Max. % of trunk: 30"（p513-514）
+"Applications/ CCd/ Processing Group • Auto return to wrap up: True … Show Supervisor Listening: False/True"（p510-511）</p>
+</blockquote>
+<p>出处：OTCCXTE101EN p498-530。</p>
+<h2>I — 自述</h2>
+<p>特殊功能全部是"对象上的参数开关 + 行为验证"，按菜单归属分四类：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>层级</th>
+<th>菜单归属</th>
+<th>开关</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pilot 级</td>
+<td>Applications/CCD/Pilot/&lt;号&gt;</td>
+<td>Transfer with priority（优先转接，双队列）、Transfer to pilot in redirection（劝恼转接）、Redirection busy tone on DID（饱和播忙音）、Inter-guide tone Number（默认 2 号音）、Pilot Supervised Transfer、Trunk limitation（Pilot 中继限额）</td>
+</tr>
+<tr>
+<td>PG 级</td>
+<td>Applications/CCD/Processing Group</td>
+<td>Auto return to wrap up（永恒整理）、Show Supervisor Listening（秘密监听）、Help On External Call（私话后可插入）</td>
+</tr>
+<tr>
+<td>坐席数据级</td>
+<td>Applications/CCD/CCD Users/CCD operations data management</td>
+<td>Forwarding activ. On Logon/Logoff（登出即取消私号转发到信箱）</td>
+</tr>
+<tr>
+<td>系统级</td>
+<td>Translator/Prefix Plan + Trunk Groups + Categories &gt; Phone Features COS</td>
+<td>功能前缀（#013 组内代接、#014 直接代接、Conversation Recording）、Max. % of trunks out CCD（业务中继预留）、COS 放行</td>
+</tr>
+</tbody>
+</table></div>
+<p>中继预留两级数学（p513-514）：第一级按中继组——62 条 SIP 接入 × 预留 20% 约 12 条保底给非 CC 呼叫，剩 80% 约 50 条给 CCd，占比打满后新 CC 呼叫听忙音；第二级按 Pilot——限额以"CCd 可用池"为基数：15 ÷ 50 = 30%，即单 Pilot 最多同时占 15 条。</p>
+<p>代接两前缀：#013 = 同处理组内代接（Agent processing group call pickup）；#014 = 直接代接指定分机（Direct call pickup）。均需 Prefix Plan 建前缀 + COS 类别 0 放行对应 Phone Features。</p>
+<p>行为语义要点：转接饱和 Pilot 时参数两态提示语相反（false=转接方收"不允许转接"；true=被转方听劝恼引导、转接方听"可以挂机"）；队列饱和默认播 2 号间隔引导音，不是忙音。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>八连配与逐项验证</strong>（p516-530）：</p>
+<ol>
+<li>优先转接：Pilot 31601 开 Transfer with priority；转接呼叫在队列中优先于普通呼叫被接续</li>
+<li>劝恼转接：开 Transfer to pilot in redirection，true/false 两态各打一通对比提示语</li>
+<li>DID 忙音：开 Redirection busy tone on DID，禁用劝恼队列后验证饱和从 2 号音变忙音</li>
+<li>组内代接：建 #013 前缀 + COS 放行，31501 拨 #013 截走同组 31500 正在振铃的呼叫</li>
+<li>直接代接：建 #014 前缀，两坐席不同组时拨 #014+分机号截 call</li>
+<li>监督转接：开 Pilot Supervised Transfer，Yes 时呼叫在询问期即分配到空闲坐席</li>
+<li>永恒整理：PG 勾 Eternal Wrap up（Pilot Wrap Up duration=200 秒，实验口径），整理期拨外线通话后回到剩余整理时间</li>
+<li>监督监听：PG 开 Show Supervisor Listening，班长按 listen ACD+坐席号，坐机屏显 "supervisor listening"</li>
+<li>中继预留：中继组 Max. % of trunks out CCD=20，Pilot 31601 Trunk limitation=30%，核对 62&gt;50&gt;15 链条</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：VIP 转接要插队；客户抱怨排队音"怪"；坐席要互相代接；班长要监听质检；坐席整理期要处理私事不打断计时；业务话务要给非 CC 呼叫保底中继。</p>
+<p>语言信号：优先转接 / Transfer with priority / 忙音 / busy tone / 代接 / pickup / #013 / #014 / 监听 / Supervisor Listening / 永恒整理 / Eternal Wrap up / wrap up / 中继预留 / Trunk limitation / 劝恼 / dissuasion / 间隔引导音。</p>
+<p>与相邻能力区分：队列水位参数（MWT/TSP/优先级）与互助溢出转 Remote PG 卡；坐席技能与档案配置转 ACR 对象卡（路由卡）；监听的法律合规在书外。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：CCD 矩阵与坐席已在运行、要开的功能清单、WBM（mtcl）与 CCS 管理权。前置约束：ACD 前缀必须已建（n20）。</p>
+<ol>
+<li>逐项开参数：按上表菜单归属定位开关并保存。完成标准：界面回显 feature is enabled</li>
+<li>代接类先删同号冲突前缀再建 #013/#014，并在 COS 类别 0 放行。完成标准：话机上拨前缀有效</li>
+<li>每开一项立即做行为验证（按 A1 对应步骤设计主叫/坐席/班长角色）。完成标准：观察到的行为与参数语义一致</li>
+<li>中继预留先算后配：中继总数 × 预留百分比、CCd 池 × Pilot 百分比两级核算。完成标准：保底条数与限额符合设计</li>
+<li>转接类功能在 true/false 两态各测一遍再下结论。完成标准：两种提示语都能解释</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户要求秘密监听 → 停，技术可配，但法律告知与合规边界书外零覆盖（n40），先过合规评审</li>
+<li>队列满时的听感与预期不符 → 停，先核对"默认 2 号间隔引导音 vs 开忙音参数"这条行为链（n29），不当作故障</li>
+<li>中继百分比要超出两级数学 → 停，先重算基数（预留以总数为基、Pilot 限额以 CCd 池为基），口径错配是常见错</li>
+</ul>
+<p>输出契约：逐项功能开关记录 + 行为验证记录（含两态对比）+ 中继预留计算书。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>监听/录音功能只有操作没有合规（n40）：法律告知、隐私评估、录音留存策略必须在生产部署前补齐</li>
+<li>Wrap Up duration 与前缀编号为实验口径（200 秒/#013/#014）；生产按客户流程定义</li>
+<li>Inter-guide tone 的触发条件=拥塞+无劝恼选项（p500），与 DID 忙音参数的叠加行为要逐态验证</li>
+<li>原书基于 R10.15 界面，菜单名与参数名随版本可能漂移；关键开关以现场界面为准</li>
+<li>COS 类别 0 默认含全员，放行前缀功能影响面是全系统，收口要另规划类别</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte101en/skills/otcad-remote-pg-mutual-aid.html">Remote PG 分布式互助与 ABC-F 链路</a></p><p class="source-page">能力 ID：cap.otcad.special-features · 来源：OTCCXTE101EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition - Advanced (Participant's Guide, Edition 07) | edition: Edition  | pages: 597 页 -->

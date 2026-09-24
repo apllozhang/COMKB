@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OXO 接入 Rainbow 与接入排障</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>Rainbow OXO Connect 集成</h2><p>Edition 13 · 251 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte001en/index.html">课程首页</a><a href="/courses/rainxte001en/digest.html">精华长文</a><a href="/courses/rainxte001en/overview.html">教书理解</a><a href="/courses/rainxte001en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte001en/skills/rbx-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte001en/skills/rbx-omc-onboarding.html">OMC 安装首次连接与 IP 规划修改</a><a href="/courses/rainxte001en/skills/rbx-pbx-onboarding.html">OXO 接入 Rainbow 与接入排障</a><a href="/courses/rainxte001en/skills/rbx-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte001en/skills/rbx-gateway-planning.html">WebRTC 网关拓扑决策与容量规划</a><a href="/courses/rainxte001en/skills/rbx-gateway-deployment.html">WebRTC 网关部署与虚拟终端配置</a><a href="/courses/rainxte001en/skills/rbx-attendant-supervision.html">Rainbow 话务台与监督组</a><a href="/courses/rainxte001en/skills/rbx-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte001en/skills/rbx-admin-tools.html">Rainbow 管理员工具（权责/企业目录/信息频道）</a><a href="/courses/rainxte001en/skills/rbx-rcc-association.html">OXO 分机关联与 RCC 模式</a><a href="/courses/rainxte001en/skills/rbx-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte001en/skills/rbx-network-readiness.html">Rainbow 网络就绪核查</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte001en/index.html">rainbow-oxo-connect（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte001en/index.html">RAINXTE001EN</a><span>/</span><span aria-current="page">OXO 接入 Rainbow 与接入排障</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OXO 接入 Rainbow 与接入排障</h1></div><dl><div><dt>Skill ID</dt><dd>rbx-pbx-onboarding</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OXO 接入 Rainbow（PBXID+激活码）与接入排障</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"You will find here: • PBXID • Activation code"（p85）
+"Domain name Leave the default value: openrainbow.com"（p86）
+"OMC /Tools /Webdiag /Services /Rainbow Status — Control the connection status: « connected with final password »"（p88）
+"The rainbow agent log file name is: ccrbagent.log"（p88）</p>
+</blockquote>
+<p>出处：RAINXTE001EN p83-89。</p>
+<h2>I — 自述</h2>
+<p>PBX-Rainbow 连接是混合闭环的第一关口，三段：</p>
+<ol>
+<li><strong>取凭证</strong>（两条路）：</li>
+<li>向经销商索取（PBX 由其创建）</li>
+<li>自取：客户管理员登录 web.openrainbow.com → 公司管理图标 → My company → Communication → 点该 OXO → 复制 PBXID 与 Activation code</li>
+<li><strong>接入</strong>（OMC/Cloud/Rainbow）：</li>
+<li>填 Rainbow PBX-ID → 填 Activation code → 勾 Rainbow enabled → Apply</li>
+<li>Domain name 保持默认 <code>openrainbow.com</code> 不改</li>
+<li><strong>验证与排障</strong>（三个抓手）：</li>
+<li>状态：OMC/Tools/Webdiag（installer 登录）→ Services → Rainbow Status 应显示 <code>connected with final password</code></li>
+<li>系统日志：Webdiag → System 页签 → System Files → Log files → 取 <code>ccrbagent.log</code></li>
+<li>用户侧日志：Rainbow 界面 → User Settings → About Rainbow → Open logs</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>接入实验</strong>（p83-89，厂商实验）：</p>
+<ol>
+<li>公司/PBX 已由讲师（BP）在云侧建好</li>
+<li>客户管理员账号取凭证（实验口径 cCpP.admin@ale-training.com）</li>
+<li>OMC/Cloud/Rainbow 填入启用，域名保持默认</li>
+<li>Webdiag 核验状态为 connected with final password</li>
+<li>演练取 ccrbagent.log 与用户侧 Open logs 两个排障入口</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：PBX 连 Rainbow；连接状态异常；PBXID 在哪找；PBXID 是不是序列号；域名要不要改；接入后怎么查日志。</p>
+<p>语言信号：接入 Rainbow / PBXID / PABX-ID / activation code / 激活码 / openrainbow.com / Webdiag / Rainbow Status / connected with final password / ccrbagent.log / rainbow agent。</p>
+<p>与相邻能力区分：接入之后的分机关联 → RCC 关联（路由卡）；网关部署前提检查用本卡的状态判据；凭证与 FTR 占位符（FleetRef-Installref）相关场景见网关部署能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户管理员或经销商提供的凭证来源、可用的 OMC。两者都缺 → 判停找 BP/经销商。</p>
+<ol>
+<li>取凭证：经销商索取，或 web.openrainbow.com → My company → Communication → 点 OXO → 复制 PBXID + Activation code。完成标准：两串凭证在手</li>
+<li>填入启用：OMC/Cloud/Rainbow → 填双凭证 → 勾 Rainbow enabled → Apply；域名字段不动。完成标准：页面显示连接信息</li>
+<li>状态核验：Webdiag（installer 登录）→ Services → Rainbow Status。完成标准：<code>connected with final password</code></li>
+<li>异常排查：在 Webdiag 的 System 页签下取 System Files / Log files 里的 ccrbagent.log 分析；若仍显示默认密码态，回查账户密码是否已改（首连改密是前置）</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>PBXID/激活码不明 → 找经销商或 BP，<strong>PBXID 不是设备序列号</strong>，铭牌上找不到，不要猜（n34）</li>
+<li>FTR 场景看到 <code>FleetRef-Installref</code> → 那是出厂占位凭证（设备连的是占位租户），正式接入必须替换为平台生成的真实凭证</li>
+<li>状态长时间不达 <code>connected with final password</code> 且日志无明确报错 → 核对网络出口（443/HTTPS 到 openrainbow.com），网络前提属网络就绪能力（路由卡），不要盲改 PBX 配置</li>
+</ul>
+<p>输出契约：Webdiag 状态达标的 PBX-Rainbow 连接 + 排障日志路径记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>域名固定 openrainbow.com：原书明示不改；私有化/区域域名部署不在原书范围</li>
+<li>"connected with final password" 判据的含义：仍停在临时/默认口令态说明改密流程未完成——改密是首连能力的责任段</li>
+<li>防火墙/端口/代理等网络前提原书外置到《Rainbow Network Requirements》PDF（p36-40 指针），本卡不覆盖具体端口清单</li>
+<li>OCE-FE 拓扑的双机 PBXID 一致性问题属网关部署能力（p134），本卡只管单机接入</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte001en/skills/rbx-rcc-association.html">OXO 分机关联与 RCC 模式</a></p><p class="source-page">能力 ID：cap.rbx.pbx-onboarding · 来源：RAINXTE001EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: Rainbow OXO Connect (Participant's Guide, Edition 13) | edition: Edition 13 | pages: 251 页 -->

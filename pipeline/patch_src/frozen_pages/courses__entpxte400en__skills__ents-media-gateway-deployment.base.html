@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>媒体网关上架（GD4/OMS/XL）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Starter</h2><p>Edition 12 · 821 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte400en/index.html">课程首页</a><a href="/courses/entpxte400en/digest.html">精华长文</a><a href="/courses/entpxte400en/overview.html">教书理解</a><a href="/courses/entpxte400en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte400en/skills/ents-first-login-hardening.html">OXE 首登加固（四账户与密码治理）</a><a href="/courses/entpxte400en/skills/ents-cs-network-firewall.html">Call Server IP 寻址与内部防火墙</a><a href="/courses/entpxte400en/skills/ents-db-license.html">空数据库创建与 OPS 许可管理</a><a href="/courses/entpxte400en/skills/ents-media-gateway-deployment.html">媒体网关上架（GD4/OMS/XL）</a><a href="/courses/entpxte400en/skills/ents-user-terminal-provisioning.html">用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）</a><a href="/courses/entpxte400en/skills/ents-numbering-cos.html">编号计划与 COS 管理</a><a href="/courses/entpxte400en/skills/ents-call-processing.html">呼叫处理业务域（语音指南/话务台/Entity/计时器）</a><a href="/courses/entpxte400en/skills/ents-sip-trunk.html">公共 SIP 中继开通与弹性</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte400en/skills/ents-system-start-stop.html">OXE 系统启停与 autostart 管理</a><a href="/courses/entpxte400en/skills/ents-time-sync.html">OXE 时间同步（NTP/chrony）</a><a href="/courses/entpxte400en/skills/ents-voicemail-4645.html">OmniMessage 4645 语音邮件与邮件通知</a><a href="/courses/entpxte400en/skills/ents-barring-emergency.html">外呼闭锁与紧急呼叫通知</a><a href="/courses/entpxte400en/skills/ents-backup-maintenance.html">数据库备份恢复与维护排障工具箱</a><a href="/courses/entpxte400en/skills/ents-legacy-trunks-umc.html">传统中继（T0/T2）与 UMC 云管理</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte400en/index.html">oxe-starter（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte400en/index.html">ENTPXTE400EN</a><span>/</span><span aria-current="page">媒体网关上架（GD4/OMS/XL）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>媒体网关上架（GD4/OMS/XL）</h1></div><dl><div><dt>Skill ID</dt><dd>ents-media-gateway-deployment</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>媒体网关上架（GD4 机架、OMS 虚拟网关、XL 高密度模拟）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"ALL SHELVES AND BOARDS ARE AUTOMATICALLY CREATED ACCORDING TO THE OPS CONTENTS (HARDWARE.MAO)"（p246）
+"Shelf Type 'Media Gateway Large'; this type is MANDATORY for OMS declaration … OXE Media Server YES; MANDATORY … DO NOT DECLARE NEITHER SECONDARY RACKS NOR BOARDS IN THIS SHELF!"（p260-261）
+"Shelf address: must be a free odd position followed be another free one … XL-Media gateway chassis provides up to 384 * FXS ports"（p758, p75）
+"Enter new crystal number [1..255] (values 18 and 19 are not allowed)"（p250）</p>
+</blockquote>
+<p>出处：ENTPXTE400EN p245-268, p73-78, p757-772。</p>
+<h2>I — 自述</h2>
+<p>硬件上架三条线一个套路：CS 库侧声明（WBM）+ 板侧配置（mgconfig/omsconfig）+ 联动规则（crystal/MAC）：</p>
+<ol>
+<li><strong>自动建架</strong>：OPS 恢复后机架与板卡按 hardware.mao 自动创建；槽位坏可换位移动板卡；板卡改型在 WBM Board 页签</li>
+<li><strong>GD4 机架</strong>：1U Small（3 槽）/3U Large（9 槽）；主架 0 槽自动生成 GD4；扩展架 Role=Expansion 且填主架地址</li>
+<li><strong>OMS 虚拟网关</strong>：四个强制字段——类型 Media Gateway Large、Role Main(Master)、OXE Media Server=YES、地址=VM 侧 crystal number；禁止加扩展架与板卡（虚 GD4 自动落 0 槽）</li>
+<li><strong>XL 机架</strong>：奇数地址+连续偶位自动生成；两个半架各由 GD-XL 驱动 6 块 FXS32-XL，整架 ≤384 FXS；GA-XL 只能占 1/2 槽（规划口诀：前 4 块 FXS32 放 3-6 槽）</li>
+<li><strong>crystal number 规则</strong>：取值 1-255 且 18/19 保留（虚架 0=CS、19=INTIP 信令）；必须与 CS 库 Shelf address 一致</li>
+<li><strong>MAC 登记两情形</strong>：crystal 自动分配或 DHCP 寻址时必须勾 "Ethernet Address checked by TFTP" 并登记板 MAC；换板必须更新，否则 CS 不下发 binom</li>
+<li><strong>压缩器声明</strong>：GD4/GDXL 板载 30（+ARMADA=60，许可 #135）；OMS 上限 120（许可 #384 台数/#385 通道），改后须 rstcpl 重启板</li>
+</ol>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>网关</th>
+<th>板侧配置入口</th>
+<th>默认口令（首连强改）</th>
+<th>crystal 示例</th>
+<th>压缩器上限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GD4</td>
+<td>mgconfig</td>
+<td>admin=letacla1，root=mg4.ale</td>
+<td>实验取 2</td>
+<td>30+30</td>
+</tr>
+<tr>
+<td>OMS</td>
+<td>omsconfig（root 免 sudo）</td>
+<td>admin 与 root 均 letacla1</td>
+<td>实验取 4</td>
+<td>120</td>
+</tr>
+<tr>
+<td>GDXL</td>
+<td>mgconfig</td>
+<td>admin=letacla1，root=mgxl.ale</td>
+<td>实验取 9</td>
+<td>30+30</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>GD4 上架实验</strong>（p245-258，How-To）：</p>
+<ol>
+<li>WBM Shelf 页签核对 OPS 自动建的机架，地址改为与 crystal 一致</li>
+<li>板卡页签按硬件实际改型（MG-MIX/BRA/UAI/SLI）</li>
+<li>V24 或 SSH 进 GD4 板，root 登录跑 mgconfig</li>
+<li>配 IP 四件套：本板 IP、掩码、网关、CS Role 地址（实验口径 192.168.1.12/.3）</li>
+<li>crystal number 切手动设 2，保存并重启板</li>
+<li>CS 库侧核对 IP Parameters 的 TFTP 勾选与 MAC 登记情形</li>
+<li>rstcpl 重启板，INIT1/INIT2 后回 IN SERVICE</li>
+<li>config/cplstat 巡检：GD4 与 MIX484 均 IN SERVICE</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新机架/新板卡上电入网；虚拟化交付配 OMS；高密度模拟口选 XL；板子起不来查 MAC；加 ARMADA 扩压缩器；换板后配置迁移。</p>
+<p>语言信号：GD4 / OMS / OXE Media Service / XL / GDXL / FXS32 / 机架 / shelf / 板卡 / board / mgconfig / omsconfig / crystal number / MAC / TFTP / 压缩器 / ARMADA / rstcpl。</p>
+<p>与相邻能力区分：上架前的许可恢复见空库与许可能力；模拟/数字用户声明见用户终端开通能力；TDM 功耗约束见用户终端开通能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OPS 许可（含硬件描述）、IP 规划（板侧 IP 与 CS Role 地址）、机位与电源条件（XL 需 -48Vdc 整流器）。crystal 编号先规划后配置，避免与保留值冲突。</p>
+<ol>
+<li>核自动建架：WBM Shelf 对照 hardware.mao 核对机架/板卡清单。完成标准：账实一致</li>
+<li>建架/改型：按网关类型填 Shelf address（=板侧 crystal）、类型与 Role；XL 用奇数位。完成标准：机架对象就位</li>
+<li>板侧配置：mgconfig/omsconfig 配 IP 四件套与 crystal number，保存重启。完成标准：板侧配置落盘（oms.cfg/ipmg.cfg）</li>
+<li>MAC 联动：自动 crystal 或 DHCP 时勾 TFTP 校验并在库登记 MAC，换板必更新。完成标准：CS 能下发 binom</li>
+<li>资源声明：压缩器数（GD4/GDXL 30+30、OMS ≤120）与许可 #135/#384/#385 对齐，OMS 另声明指南并发与会议数。完成标准：资源值在许可范围内</li>
+<li>重启生效：rstcpl 重启目标板（GD/GDXL 上执行=整架重启，避开话务高峰）。完成标准：INIT1/INIT2 后 IN SERVICE</li>
+<li>巡检：config 全景、cplstat 看板参数、listout 看离服原因码。完成标准：板卡全部 IN SERVICE</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>板始终起不来且走 DHCP/自动 crystal → 停，查 MAC 登记与 TFTP 勾选（n13），这是最高频根因</li>
+<li>话务高峰需要 rstcpl GD 板 → 停，GD4/GDXL 上执行会重启整架所有板（n14），改约维护窗口</li>
+<li>往 OMS 机架加板卡 → 停，OMS 禁止扩展架与板卡（n16），回退操作</li>
+<li>XL 参数与现场不符 → 书中 GDXL 固件等多处为占位（n38），按最新技术文档核对后再实施</li>
+</ul>
+<p>输出契约：IN SERVICE 的机架板卡（GD4/OMS/XL 至少一类）+ crystal/MAC 台账 + 资源声明记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>全部实验地址/编号（GD4=192.168.1.12、OMS=.13、crystal 2/4/9）为实验口径；生产按现场规划</li>
+<li>-48Vdc 供电与整流器安装工艺、机架硬件安装规范在书外（p77 仅给拓扑）</li>
+<li>Crystal 硬件细节书中自注不再深入（n38）；混装上限每节点 240 racks（含 Common/Crystal/OMS）</li>
+<li>OMS 的 OPUS/G722 为软件独有（硬件 IPMG 不支持）；编解码系统级放行联动在 SIP 中继能力卡展开</li>
+<li>hypervisor 侧（vSphere/KVM 资源、VM 模板）为交付前提，不在本书范围</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte400en/skills/ents-user-terminal-provisioning.html">用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）</a></p><p class="source-page">能力 ID：cap.ents.media-gateway-deployment · 来源：ENTPXTE400EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Starter (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 821 页 -->

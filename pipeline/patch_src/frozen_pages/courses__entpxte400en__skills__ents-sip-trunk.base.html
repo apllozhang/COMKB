@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>公共 SIP 中继开通与弹性</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Starter</h2><p>Edition 12 · 821 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte400en/index.html">课程首页</a><a href="/courses/entpxte400en/digest.html">精华长文</a><a href="/courses/entpxte400en/overview.html">教书理解</a><a href="/courses/entpxte400en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte400en/skills/ents-first-login-hardening.html">OXE 首登加固（四账户与密码治理）</a><a href="/courses/entpxte400en/skills/ents-cs-network-firewall.html">Call Server IP 寻址与内部防火墙</a><a href="/courses/entpxte400en/skills/ents-db-license.html">空数据库创建与 OPS 许可管理</a><a href="/courses/entpxte400en/skills/ents-media-gateway-deployment.html">媒体网关上架（GD4/OMS/XL）</a><a href="/courses/entpxte400en/skills/ents-user-terminal-provisioning.html">用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）</a><a href="/courses/entpxte400en/skills/ents-numbering-cos.html">编号计划与 COS 管理</a><a href="/courses/entpxte400en/skills/ents-call-processing.html">呼叫处理业务域（语音指南/话务台/Entity/计时器）</a><a href="/courses/entpxte400en/skills/ents-sip-trunk.html">公共 SIP 中继开通与弹性</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte400en/skills/ents-system-start-stop.html">OXE 系统启停与 autostart 管理</a><a href="/courses/entpxte400en/skills/ents-time-sync.html">OXE 时间同步（NTP/chrony）</a><a href="/courses/entpxte400en/skills/ents-voicemail-4645.html">OmniMessage 4645 语音邮件与邮件通知</a><a href="/courses/entpxte400en/skills/ents-barring-emergency.html">外呼闭锁与紧急呼叫通知</a><a href="/courses/entpxte400en/skills/ents-backup-maintenance.html">数据库备份恢复与维护排障工具箱</a><a href="/courses/entpxte400en/skills/ents-legacy-trunks-umc.html">传统中继（T0/T2）与 UMC 云管理</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte400en/index.html">oxe-starter（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte400en/index.html">ENTPXTE400EN</a><span>/</span><span aria-current="page">公共 SIP 中继开通与弹性</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>公共 SIP 中继开通与弹性</h1></div><dl><div><dt>Skill ID</dt><dd>ents-sip-trunk</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>公共 SIP 中继开通与弹性（TG、外部网关、ARS、NPD/DID、双机备份）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"ARS IS REQUIRED TO USE SIP TRUNK GROUP WITH AN EXTERNAL SIP GATEWAY"（p616）
+"Maximum number of accesses per SIP Trunk Group: 32 (always by pair) … Standard: • Each couple of accesses provides 62 (2x31) channels • 992 simultaneous communications maximum"（p576）
+"The trunk group will inform about the NPD to use for DID transcoding and number's format • The numbering command table will provide the external SIP gateway to use"（p582）</p>
+</blockquote>
+<p>出处：ENTPXTE400EN p572-656。</p>
+<h2>I — 自述</h2>
+<p>去话是固定流水线，来话是翻译回程，弹性靠第二网关：</p>
+<ol>
+<li><strong>去话九步链</strong>：拨 ARS 前缀（携带逻辑鉴别符 0-7）；取用户 Entity；Entity 鉴别符选择器映射真实鉴别符（0-255）；真实鉴别符规则按被叫号码匹配 Area+ARS 表+位数；ARS 路由表（≤10 路由，去位/加位+命令表）；中继组；NPD（号码格式）；DID 翻译器（CLI 组装）；外部 SIP 网关（运营商地址/凭证）</li>
+<li><strong>来话三步</strong>：SIP INVITE（To=外线号）→ 网关所属中继组的 NPD → 被叫 DID 翻译器映射为内线振铃；回叫翻译器从 INVITE 取 Caller Id 加/删位修饰显示（A=国际/DEF=缺省，全系统 ≤255 个、每个 ≤20 条）</li>
+<li><strong>规格</strong>：每 TG 最多 32 接入成对配置；标准型每对 62 通道（满配 992 并发）；Mini SIP 每对 4 通道（64 并发）；UMC 不支持建 Mini SIP</li>
+<li><strong>配置顺序红线</strong>：真实鉴别符必须已存在才能在实体选择器关联（三处 Warning）；ARS 是 SIP 中继使用的强制前提（不支持 # 直抓）</li>
+<li><strong>编解码两级与逻辑</strong>：系统级 Support perimeter ∩ 网关级开关；系统级不放行则协商静默回落 G711；G722/OPUS 仅 OMS 支持（硬件 IPMG 无）</li>
+<li><strong>弹性两案可并存</strong>：ARS 第二路由（命令表 2 指向网关 2，三张 ARS 表各加 Route 2 排第二顺位）；SIP Pool（两网关同 Pool Number 分流量+互备，切换速度由 Supervision timer 决定，例 5 秒）</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>SIP 中继全链路实验</strong>（p609-640，How-To）：</p>
+<ol>
+<li>系统参数：Law=A 律，G722/OPUS 支持范围设 Network and local</li>
+<li>建 SIP 中继组：类型 T2、变体 ISDN all countries、T2 Specification=SIP</li>
+<li>建外部网关：远端域/端口 5060/UDP、注册账号（实验口径 pbxP/alcatel）、Outbound Proxy 指向模拟器</li>
+<li>基础 ARS：前缀 0、命令表、路由（去 1 位加 33）、真实鉴别符与实体选择器</li>
+<li>首测：外呼可通但外显不友好；来话回 484 Address Incomplete（未配 DID）</li>
+<li>配默认 DID 翻译器与 NPD 后，出入话显示与落地恢复正常</li>
+<li>配回叫规则（A33 等）后未接显示可回拨，国际/紧急表各配专用 ARS</li>
+<li>巡检：sipextgw -l 显示 IN SERVICE，trkstat 显示 62 通道</li>
+</ol>
+<p><strong>备份与负载均衡实验</strong>（p641-656，How-To）：</p>
+<ol>
+<li>建网关 2（同域同账号，Outbound Proxy 指第二腿）</li>
+<li>案 1：命令表 2+三张 ARS 表各加 Route 2 为第二顺位</li>
+<li>故障注入：把网关 1 的 proxy 改成 .bad 假域名</li>
+<li>sipextgw -l 显示 1 OOS、2 IN SERVICE，traced 验证来话走网关 2</li>
+<li>测完立即改回正确 FQDN（Warning）</li>
+<li>案 2：两网关 Pool Number 同值+Supervision timer 5 秒，sippool 观察 L/OOS 切换</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：接运营商 SIP 外线；外显号码不对；来话落地 484；未接来电回拨不通；G722 音质没生效；主用网关宕机切换慢；开通国际/紧急呼叫。</p>
+<p>语言信号：SIP 中继 / trunk group / 外部网关 / SIP Ext Gateway / ARS / 鉴别符 / discriminator / NPD / DID / 翻译器 / 回叫 / callback / Pool Number / Supervision timer / 484 / G722 / OPUS。</p>
+<p>与相邻能力区分：外呼权限控制（谁能打哪类号）见闭锁与紧急能力（路由卡）；T0/T2 传统 ISDN 见传统中继与 UMC 能力（路由卡）；编解码与 OMS 载体见网关上架能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：运营商参数包（信令/号段/注册凭证/编解码/紧急要求，按 TC2005 与运营商文档）、号码计划（外线段与内线段映射）。运营商参数不全是判停条件，不全不开通。</p>
+<ol>
+<li>系统参数：Law 按地区（欧洲 A 律/美国 μ 律），系统级放行 G722/OPUS。完成标准：系统编解码范围确定</li>
+<li>建中继组与网关：TG 类型 T2+SIP 规格；外部网关按运营商参数填域/端口/凭证/代理。完成标准：sipextgw -l 显示 IN SERVICE</li>
+<li>建鉴别符与 ARS：真实鉴别符规则（Area+ARS 表+位数）先行，实体选择器再做映射。完成标准：外呼走通</li>
+<li>配 NPD/DID：号码格式、默认号源、DID 翻译器（首外号+首内号+范围）双向。完成标准：来话落地、外显正确</li>
+<li>配回叫与专项表：回叫翻译器修饰显示；国际/紧急专用 ARS 表与规则。完成标准：国际可打、紧急可拨且显示合规</li>
+<li>弹性（如需）：第二网关走 ARS 第二路由或 Pool 互备，Supervision timer 设短。完成标准：故障注入切换成功且配置复原</li>
+<li>回归巡检：sipextgw/trkstat/traced 全链路拨测并留档。完成标准：验收单齐</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>SIP 中继想配 #010 直抓 → 停，SIP 不支持直抓（n27），必须走 ARS 前缀方案</li>
+<li>实体选择器保存不了 → 真实鉴别符未建（n26），先建规则再做映射，顺序不可倒</li>
+<li>开了 G722 还是 G711 → 查系统级 Support perimeter（n28），两级开关要同时放行</li>
+<li>运营商参数与实验值冲突 → 一律按运营商文档与 TC2005（n29），不照抄 ITSP1 口径</li>
+<li>Pool 切换太慢 → Supervision timer 没设短（n30），按业务容忍度调整并复测</li>
+</ul>
+<p>输出契约：可打外线的 SIP 中继（来去话+国际+紧急）+ 弹性方案与故障演练记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>ITSP1 模拟器参数（sip.itsp1.fr、pbxP/alcatel、3321PN 号段、紧急回叫规则）全部为实验口径（n29），生产必须按 TC2005 与运营商文档重做</li>
+<li>SBC/安全接入/中继深调与 QoS 不在本书范围（Starter 口径）</li>
+<li>P-Asserted/隐号语义、SDP in 18x、Session Timer 方法等网关参数语义见 p615；与运营商逐项确认</li>
+<li>Mini SIP 规格（每对 4 通道/64 并发）书内为规格口径，UMC 不支持建 Mini SIP（p807）</li>
+<li>Fax over SIP（T.38 等）书中未展开</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte400en/skills/ents-numbering-cos.html">编号计划与 COS 管理</a>、<a href="/courses/entpxte400en/skills/ents-barring-emergency.html">外呼闭锁与紧急呼叫通知</a></p><p class="source-page">能力 ID：cap.ents.sip-trunk · 来源：ENTPXTE400EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Starter (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 821 页 -->

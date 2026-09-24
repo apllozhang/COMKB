@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>报表生成、导出与定时</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 计费与性能管理</h2><p>Edition 45 · 650 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte201en/index.html">课程首页</a><a href="/courses/8770xte201en/digest.html">精华长文</a><a href="/courses/8770xte201en/overview.html">教书理解</a><a href="/courses/8770xte201en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte201en/skills/ovbill-node-onboarding.html">OXE 纳管与 SIP 中继对接</a><a href="/courses/8770xte201en/skills/ovbill-ticket-pipeline.html">计费票据管道（出票、回收、加载过滤）</a><a href="/courses/8770xte201en/skills/ovbill-tariff-costing.html">运营商资费建模与成本计算</a><a href="/courses/8770xte201en/skills/ovbill-org-costing.html">计费组织树与成本归属</a><a href="/courses/8770xte201en/skills/ovbill-confidentiality.html">计费机密控制三道闸（掩码、解密、可见域）</a><a href="/courses/8770xte201en/skills/ovbill-reporting.html">报表生成、导出与定时</a><a href="/courses/8770xte201en/skills/ovbill-report-design.html">报表定制（Querytool 与 Designer）</a><a href="/courses/8770xte201en/skills/ovbill-voip-monitoring.html">VoIP 性能监控（IP ticket 与 KPI）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte201en/skills/ovbill-codebook-migration.html">Code Book 导出与导入</a><a href="/courses/8770xte201en/skills/ovbill-cost-profile.html">成本档案（发票价与订阅费）</a><a href="/courses/8770xte201en/skills/ovbill-traffic-tracking.html">流量分析与 Tracking 告警</a><a href="/courses/8770xte201en/skills/ovbill-web-performance.html">Web Performance 实时仪表盘</a><a href="/courses/8770xte201en/skills/ovbill-archiving.html">计费归档与恢复</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte201en/index.html">omnivista-billing-performance（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte201en/index.html">8770XTE201EN</a><span>/</span><span aria-current="page">报表生成、导出与定时</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>报表生成、导出与定时</h1></div><dl><div><dt>Skill ID</dt><dd>ovbill-reporting</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>报表生成、导出与定时（预定义报表、尺寸上限、邮件分发、累计报表、任务调度）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Maximum number of lines in TXT format — 400 ... Maximum number of pages in PDF format — 50 ... Maximum number of lines in database — 100000"（p367）
+"The number of the SMTP port is optional if the default SMTP port number is used (default SMTP port = 25). Careful: no space between ':' and the TCP port number."（p374）
+"If the report instance is empty, it means that the cumulative counters have not yet been calculated."（p380）</p>
+</blockquote>
+<p>出处：8770XTE201EN p358-383。</p>
+<h2>I — 自述</h2>
+<p>报表应用按"定义 → 实例"工作，预定义报表必须 Copy/Paste 到个人目录才能生成；树上有三类节点：definition（定义）、generated（实例）、unmasked（解密版实例）。</p>
+<ul>
+<li>尺寸上限六项（Preferences &gt; Reports &gt; Reports Preference）：TXT 400 行；HTML/PDF/EXCEL 各 50 页；X 轴 100 元素；数据库扫描 100000 行；超限在报表末尾显示截断提示</li>
+<li>生成三入口：Generate Report（正常）、Generate report w/o mask（解密，需口令）、Schedule（定时，可同时打印/导出）</li>
+<li>导出双通道：文件（TXT/HTML/PDF/EXCEL，默认文件名=定义名+生成日期）与邮件（多目的地逗号分隔）</li>
+<li>邮件服务器参数：Mail server 填 FQDN 或 IP，可加 :端口（默认 25 可省，冒号与端口间不能有空格）；发件人默认 OmniVista，须填邮件服务器认识的地址；报表与 Tracking 告警邮件共用这套参数</li>
+<li>累计报表依赖夜间算好的累计计数器：Daily Station Traffic 这类报表实例为空，先手工 Total calculation 补算再重新生成</li>
+<li>定时任务：右键定义 &gt; Schedule，可设 As Scheduled 时间、按日重复、Exclude Days 排除周六周日，任务落 Scheduler</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>报表全流程实验</strong>（p366-383）：</p>
+<ol>
+<li>查六项尺寸上限并确认截断提示行为</li>
+<li>Accounting 目录建个人文件夹 My Reports</li>
+<li>复制预定义 Duration by station 到 My Reports</li>
+<li>生成两个实例：过滤器 Date/Hour 与 Name/Call Type，一份全量、一份 This week</li>
+<li>右键实例 &gt; Open to View 查看与翻页</li>
+<li>Export 到文件：选 TXT/HTML/PDF/EXCEL，默认名=定义名+生成日期</li>
+<li>配邮件服务器（可带 :端口）与发件人后，Export 选 Email 通道发到实验邮箱并收信确认</li>
+<li>复制预定义 Daily Station Traffic 生成——实例为空，到 Accounting/traffic &gt; Total calculation 手工补算后重新生成</li>
+<li>右键 Duration by station &gt; Schedule：5:00AM、Daily、排除周六周日，任务落 Scheduler</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：给管理层出月度话费报表；报表发邮箱；报表太大被截断；定时自动出报表；累计报表是空表；预定义报表没法直接生成。</p>
+<p>语言信号：报表 / report / 生成 / Generate Report / 导出 / export / TXT / PDF / EXCEL / 邮件 / mail server / SMTP。</p>
+<p>补充信号：定时 / Schedule / Duration by station / Daily Station Traffic / 累计计数器 / Total calculation / 截断 / 400 行 / 50 页。</p>
+<p>与相邻能力区分：从零造定义（字段/公式/图表）→ 报表定制能力；报表里号码被遮与解密 → 机密控制能力；本卡管"把现成定义跑起来、送出去"。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：库内有票、个人目录可建、（邮件场景）邮件服务器可用。数据未入库 → 先回票据管道能力。</p>
+<ol>
+<li>建个人目录并从预定义报表 Copy/Paste 定义。完成标准：定义出现在个人目录</li>
+<li>Generate Report 配过滤器生成实例。完成标准：实例可 Open to View</li>
+<li>大报表先核六项上限，必要时收窄过滤区间。完成标准：无截断提示或已确认可接受</li>
+<li>导出：文件通道选格式，或邮件通道配服务器/发件人后发送。完成标准：文件落地或收件确认</li>
+<li>累计报表为空时先 Total calculation 补算再生成。完成标准：实例有数据</li>
+<li>定时：Schedule 设时间/重复/排除日并 Apply。完成标准：任务出现在 Scheduler</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>首日出报表为空 → 夜间计数器未算，手工补算或把验收排到次日，不当故障修</li>
+<li>报表末尾出现截断提示 → 收窄区间或改用 Total counters 数据源，不静默交付半份报表</li>
+<li>邮件发不出 → 三查：server:port 写法（冒号后无空格）、发件人是否被服务器认识、DNS 是否可用（不在则用 IP）</li>
+</ul>
+<p>输出契约：报表实例清单（定义/过滤器/生成时间）+ 导出与分发记录 + 定时任务定义。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>六项上限为 Ed45 默认值可调（p367），但调大前先评估数据库扫描成本</li>
+<li>邮件服务器为教学设施（Thunderbird/实验邮箱），生产用客户 SMTP（实验口径）</li>
+<li>报表树的解密入口（w/o mask）依赖机密控制能力的账号与组配置</li>
+<li>界面与预定义报表清单随版本漂移（Ed45 口径），升级后路径需复核</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte201en/skills/ovbill-report-design.html">报表定制（Querytool 与 Designer）</a></p><p class="source-page">能力 ID：cap.ovbill.reporting · 来源：8770XTE201EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniVista 8770 R5.2 Accounting and Performance Administration (Participant Guide, Edition 45) | edition: Edition 45 | pages: 650 页 -->

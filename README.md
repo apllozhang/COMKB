@@ -15,6 +15,8 @@ COMKB/
 │   ├── index.html       首页：搜索、知识版图、板块入口
 │   ├── cloud/           云通信板块（Rainbow，3 门）
 │   ├── communications/  通信产品线板块（22 门）
+│   ├── field/           现场支持板块（症状索引 / Runbook / 版本速查）
+│   ├── troubleshoot.html 排障路由器
 │   ├── paths.html       学习路径（6 条路径 × 分段推进图）
 │   ├── about.html       关于门户
 │   ├── courses/<code>/  每门课的子站（首页/概览/术语/摘要/能力卡）
@@ -31,13 +33,15 @@ COMKB/
 │       └── .cangjie/
 │           ├── capabilities/    能力卡事实源（verified.yaml + cards/*.md）
 │           └── dist/            编译产物（SKILL.md 入口 + references/）
-└── pipeline/            构建-发布-校验-部署脚本
-    ├── build_comm_portal.py    门户构建（rmtree 重建）
-    ├── publish_all.py          25 本书子站发布
-    ├── verify_comm_portal.py   发布校验（断链/索引/一致性）
-    ├── deploy_comm_portal.py   部署（凭据走环境变量）
-    ├── install_all_skills.py   能力库批量安装
-    └── scan_dense.py / scan_blank.py / audit_scan_all.py   排版扫描
+├── pipeline/            构建-发布-校验-部署脚本
+│   ├── build_comm_portal.py    门户构建（rmtree 重建）
+│   ├── publish_all.py          25 本书子站发布
+│   ├── post_patch.py           成品增强补丁（现场支持/侧栏交互/工具区/V 段）
+│   ├── patch_src/              补丁片段源（field 页/CSS/片段/内容替换对/冻结页）
+│   ├── verify_comm_portal.py   发布校验（断链/索引/一致性）
+│   ├── deploy_comm_portal.py   部署（凭据走环境变量）
+│   ├── install_all_skills.py   能力库批量安装
+│   └── scan_dense.py / scan_blank.py / audit_scan_all.py   排版扫描
 ```
 
 ## 课程清单（10 组 · 25 门）
@@ -75,17 +79,22 @@ python pipeline/build_comm_portal.py
 # 2) 发布 25 个课程子站
 python pipeline/publish_all.py
 
-# 3) 校验（断链 / 索引 / 发布一致性）
+# 3) 回灌成品增强（现场支持板块 / 侧栏拖拽收起 / 工具区 / V 段内容 / CSS）
+python pipeline/post_patch.py
+
+# 4) 校验（断链 / 索引 / 发布一致性）
 python pipeline/verify_comm_portal.py
 
-# 4) 部署到目标机（nginx:alpine, 端口 8900）
+# 5) 部署到目标机（nginx:alpine, 端口 8900）
 set COMKB_DEPLOY_HOST=10.20.30.103
 set COMKB_DEPLOY_USER=<ssh 用户>
 set COMKB_DEPLOY_PWD=<ssh 密码>
 python pipeline/deploy_comm_portal.py
 ```
 
-> 注：脚本中的 `BOOKS`、`SITE` 等路径常量按本仓库工作区写死，换环境时需对应调整。
+> 注 1：脚本中的 `BOOKS`、`SITE` 等路径常量按本仓库工作区写死，换环境时需对应调整；`post_patch.py` 片段源默认取 `pipeline/patch_src/`（`--src` 可改）。
+>
+> 注 2：`patch_src/frozen_pages/` 内含 310 个课程页的「基线/成品」双存快照——补丁只在该页生成结果与基线一致时才应用；若某本书更新了内容，对应冻结页会自动跳过并告警，此时应重新生成该书的冻结快照以保留 V 段等增强。
 
 ## 版权说明
 

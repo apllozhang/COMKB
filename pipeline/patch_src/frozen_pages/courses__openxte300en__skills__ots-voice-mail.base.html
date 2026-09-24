@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>语音邮箱、IMAP 收取与通知公告（Local Storage）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch · Starter</h2><p>Edition 10 · 603 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte300en/index.html">课程首页</a><a href="/courses/openxte300en/digest.html">精华长文</a><a href="/courses/openxte300en/overview.html">教书理解</a><a href="/courses/openxte300en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte300en/skills/ots-post-installation-wizard.html">OTMS 初始化向导（两模式十节）</a><a href="/courses/openxte300en/skills/ots-license-flexlm.html">许可体系与 FlexLM（安装、核查、外部切换）</a><a href="/courses/openxte300en/skills/ots-node-declaration-sip.html">双向节点声明与 SIP 打通（含告警对接）</a><a href="/courses/openxte300en/skills/ots-prior-management.html">Prior management（号码段、前缀、拨号规则、UDAS、会议桥）</a><a href="/courses/openxte300en/skills/ots-users-profiles.html">档案与用户供给（三类用户、WPC 批量）</a><a href="/courses/openxte300en/skills/ots-voice-mail.html">语音邮箱、IMAP 收取与通知公告（Local Storage）</a><a href="/courses/openxte300en/skills/ots-clients-multi-devices.html">OTC PC 客户端交付与多终端</a><a href="/courses/openxte300en/skills/ots-maintenance-rehosting.html">维护、备份恢复与 rehosting（TC2149 矩阵）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte300en/skills/ots-sot-installation.html">SOT 自动化装机与虚机手动导入</a><a href="/courses/openxte300en/skills/ots-certificates.html">证书部署三路线</a><a href="/courses/openxte300en/skills/ots-supervision-groups.html">监督组（话务监督、进出组与代接）</a><a href="/courses/openxte300en/skills/ots-lab-connections.html">实验 POD 与系统连接通道</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte300en/index.html">opentouch-starter（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte300en/index.html">OPENXTE300EN</a><span>/</span><span aria-current="page">语音邮箱、IMAP 收取与通知公告（Local Storage）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>语音邮箱、IMAP 收取与通知公告（Local Storage）</h1></div><dl><div><dt>Skill ID</dt><dd>ots-voice-mail</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>语音邮箱、IMAP 收取与通知公告（Local Storage 全链）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Voice messages are stored in a directory structure, in wav format, on OpenTouch server Messages are stored in an uncompressed format Readable from any IMAP client"（p304）
+"Before validating the mailbox creation, it's mandatory to assign a profile to the voice mailbox, in the « configuration » tab."（p330）
+"Up to 1 000 simultaneous sessions (with embedded IMAP server) For 1 001 up to 20 000 simultaneous sessions, a dedicated server is required"（p313）
+"Notifications are sent through an external SMTP server. There is no SMTP server in the OpenTouch solution. This server must be used without authentication and without TLS."（p360）
+"Only one general announcement can be recorded at a time. Any new recording will overwrite the previous one. Max duration: 5 minutes"（p392）</p>
+</blockquote>
+<p>出处：OPENXTE300EN p302-396。</p>
+<h2>I — 自述</h2>
+<p>Local Storage 语音邮件是 OT 内置软件语音邮件（默认实例 defaultVmsLS，出厂即建）：留言以未压缩 wav 存 OT 服务器目录，任意 IMAP 客户端可直读；UM 统一消息是另一套体系（另一培训），两者可共存。</p>
+<p>邮箱档案默认面：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>档案</th>
+<th>类型</th>
+<th>定位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Advanced / Classic / Simplified</td>
+<td>Local Storage</td>
+<td>默认三档，行为模板</td>
+</tr>
+<tr>
+<td>Standard</td>
+<td>Unified Messaging</td>
+<td>UM 专用（书外）</td>
+</tr>
+</tbody>
+</table></div>
+<p>档案四页签控制：Answer only（三态，默认 Manageable by users）、配额（需启用 Check quota 才生效）、新/已听留言保留天数、TUI 口令管理三档、零出（Attendant call enabled）、IMAP 访问开关等。邮箱上的字段随档案取值锁定：档案设 Yes/No 时用户改不了，设 Manageable by users 才开放。</p>
+<p>IMAP 链：默认 IMAPS+TLS；改 SSL 或明文必须两端同步改端口并 service imap4fed restart；内嵌 IMAP 前端最多 1000 并发会话，1001-20000 需专用服务器；Outlook 账号测试里"发送测试邮件"失败属预期（OT 不做 SMTP）。</p>
+<p>通知两链与配置分层：</p>
+<ul>
+<li>SMTP 链走外部服务器（必须无认证无 TLS；发件账号须真实存在；投递失败 NDN 只落发件账号邮箱，OT 仅在邮件未达 SMTP 时告警）</li>
+<li>SMS 链发邮件到唯一一个 SMTP-SMS 网关（地址格式 SMS$手机号$@域名）</li>
+<li>配置三层：全局参数、VPIM 路由（域/FQDN/端口 25）、用户 Notification 页签</li>
+<li>通知模板在 /var/data/panda/notification4，升级不覆盖旧模板</li>
+</ul>
+<p>通用公告：一次仅一条、新录/新传即覆盖、最长 5 分钟、wav 格式固定 CCITT A-law 8bits 8kHz mono、文件名必须 general_announcement.wav；播放时机三选可多选；授权用户经 TUI 增强菜单 6 录/听/停用。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>邮箱与档案实验</strong>（p326-344）：</p>
+<ol>
+<li>核默认系统：Topology/VMS 的 defaultVmsLS 类型为 Local Storage。</li>
+<li>Voicemail box 右键 Create，General 页命名并选系统。</li>
+<li>Configuration 页必须先选语音邮箱档案才能保存。</li>
+<li>到 User 的 Mailboxes 页签搜索并关联邮箱后 Apply。</li>
+<li>Licenses 页勾 Voice mail 启用许可。</li>
+<li>新建档案自定配额、时长与保留天数并分配实测。</li>
+<li>管理员侧配 Greetings 页签（问候类型与备选问候授权）。</li>
+<li>用户侧 My Profile 改问候、按名寻址与自动阅读。</li>
+</ol>
+<p><strong>IMAP 与通知实验</strong>（p345-378）：</p>
+<ol>
+<li>Outlook 手动建 IMAP 账号：收件服务器填 OT FQDN。</li>
+<li>发件服务器填真实邮件系统（OT 不做 SMTP）。</li>
+<li>账号测试：IMAP 登录应 Completed，测试邮件失败属预期。</li>
+<li>改 IMAP 安全档位时两端同步改端口并重启 imap4fed。</li>
+<li>全局通知参数配发件人、SMS 网关、附件上限与阈值。</li>
+<li>VPIM 加路由指向客户邮件中继（域、FQDN、端口 25）。</li>
+<li>用户 Notification 页签逐项配邮件与 SMS 通知。</li>
+<li>留言触发端到端验证：邮件按配置到达（含附件开关）。</li>
+</ol>
+<p><strong>通用公告实验</strong>（p393-396）：</p>
+<ol>
+<li>TUI global configuration 勾播放时机（外部/内部/查询）。</li>
+<li>给授权用户勾"可管理通用公告"权。</li>
+<li>该用户话机登录邮箱，增强菜单 6 录制并自动激活。</li>
+<li>或上传固定名 wav 到公告目录即启用；停用删文件或菜单 3。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：用户收不到留言邮件；Outlook 收不到语音留言；邮箱建不了或字段改不动；要不要短信通知；录一段全公司公告。</p>
+<p>语言信号：语音邮箱 / voice mail / mailbox / defaultVmsLS / Local Storage / IMAP / Outlook / imap4fed / SMTP / SMS / 通知 / notification / Scorpio / chameleon / 公告 / announcement / 问候 / greeting / 配额 / quota。</p>
+<p>与相邻能力区分：业务号 31200 与会议桥路由 → prior management 能力；UM 统一消息 → 书外专项培训；My Profile 自助入口在本卡范围内。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户 SMTP/SMS 条件（无认证无 TLS 中继是否具备）；邮箱档案设计（配额/保留/口令管理）；IMAP 客户端清单；公告内容与授权人。</p>
+<ol>
+<li>核 defaultVmsLS 与用户许可；按设计建箱挂人。完成标准：留言进箱</li>
+<li>档案参数按需新建并分配测试邮箱实测。完成标准：截断、保留与配额生效</li>
+<li>IMAP：客户端与服务端安全档位对齐。完成标准：IMAP 登录测试 Completed</li>
+<li>通知三层配齐：全局参数、VPIM 路由、用户页签。完成标准：留言触发邮件或短信</li>
+<li>公告：选播放时机、授权、录制或传 wav。完成标准：留言场景可听到公告</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>建箱保存不了 → Configuration 页没选档案（强制项）</li>
+<li>用户改不了留言设置 → 档案把字段锁成 Yes/No 了，改档案或改档位</li>
+<li>通知"时有时无" → 先翻发件账号邮箱的 NDN，再查中继与阈值</li>
+<li>客户 SMTP 强制认证或 TLS → 本版本通知要求无认证无 TLS，需单开中继并做安全评估</li>
+<li>想预存多条公告 → 设计只有一条且覆盖式，5 分钟封顶</li>
+<li>IMAP 改安全后连不上 → 端口没同步改或 imap4fed 没重启</li>
+</ul>
+<p>输出契约：留言-收信-通知-公告闭环测试记录 + 档案/通知参数清单。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>实验口径（生产按客户提供）：邮件中继 eco.company.com、发件地址 administrator@company.com、通知阈值 80%、附件上限 2MB、NFS 备份地 10.20.30.40。</li>
+<li>wav 附件/箱满通知/My Messaging 链接/回呼仅 Local Storage 可用；UM 行为不同（p366 表）。</li>
+<li>公告 wav 存放路径书内两处表述不一（p392 与 p396，见 needs-review nr-01），生产以实测系统目录为准。</li>
+<li>"arrive on AA" 选项已废弃无效果（p394）；公告功能仅对使用 wav 文件的语言可用。</li>
+<li>升级不覆盖通知模板；要新模板须删旧文件并重启 chameleon（n26）。</li>
+<li>OT 内嵌 IMAP 1000 并发封顶；1001-20000 会话需专用服务器（p313）。</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte300en/skills/ots-users-profiles.html">档案与用户供给（三类用户、WPC 批量）</a></p><p class="source-page">能力 ID：cap.ots.voice-mail · 来源：OPENXTE300EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch — OpenTouch Suite for MLE — Solution Overview / Starter (Participant's Guide) | edition: Edition 10 | pages: 603 页 -->

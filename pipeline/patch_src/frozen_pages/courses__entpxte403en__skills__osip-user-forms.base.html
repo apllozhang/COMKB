@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>SIP 用户形态选型与容量核算</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · SIP</h2><p>Edition 12 · 465 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte403en/index.html">课程首页</a><a href="/courses/entpxte403en/digest.html">精华长文</a><a href="/courses/entpxte403en/overview.html">教书理解</a><a href="/courses/entpxte403en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte403en/skills/osip-protocol-foundation.html">SIP 协议机理与 OXE SIP 架构</a><a href="/courses/entpxte403en/skills/osip-user-forms.html">SIP 用户形态选型与容量核算</a><a href="/courses/entpxte403en/skills/osip-sip-device-provisioning.html">SIP Device 用户开通与维护</a><a href="/courses/entpxte403en/skills/osip-deskphone-provisioning.html">ALE 话机 SIP 开通与 NOE↔SIP 切换</a><a href="/courses/entpxte403en/skills/osip-ales-provisioning.html">ALES 软终端开通与认证</a><a href="/courses/entpxte403en/skills/osip-certificate-management.html">OXE DM 证书定制与安全级</a><a href="/courses/entpxte403en/skills/osip-otsbc-carrier-interconnect.html">经 SBC 的 SIP 运营商接入与 OTSBC 部署</a><a href="/courses/entpxte403en/skills/osip-remote-workers.html">远程办公方案与落地</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte403en/skills/osip-codec-negotiation.html">编解码协商与验证</a><a href="/courses/entpxte403en/skills/osip-sip-troubleshooting.html">SIP 跟踪采集与维护排障</a><a href="/courses/entpxte403en/skills/osip-dm-management.html">SIP 设备管理选型与 profile 体系</a><a href="/courses/entpxte403en/skills/osip-sip-features.html">ALE SIP 业务特性配置</a><a href="/courses/entpxte403en/skills/osip-lab-environment.html">POD 实验环境与运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte403en/index.html">oxe-sip（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte403en/index.html">ENTPXTE403EN</a><span>/</span><span aria-current="page">SIP 用户形态选型与容量核算</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>SIP 用户形态选型与容量核算</h1></div><dl><div><dt>Skill ID</dt><dd>osip-user-forms</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>SIP 用户形态选型与容量核算（SEPLOS vs SIP Device、软件锁、终端家族）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"SEPLOS mode (SIP End Point Level of Services) • The SIP sets operating in SEPLOS mode are considered by the phone application as internal sets ... Can use prefixes/suffixes to activate PCX phone services"（p66-67）
+"SIP device • SIP sets are considered by the phone application as part of a remote subnetwork ... Cannot use prefixes/suffixes ... Cannot be supervised by CSTA ... Cannot be a call center agent"（p66-67, p78）
+"3 software locks for the SIP users • 177: defines the number of SIP users (device and extension) • 345: defines only the number of SIP extensions • 430: defines the number of SIP softphones (ALE-S)"（p67）
+"IP Max = 15000 ... SIP Max = 15000 ... Maximum 15000 Users (Single device, or Main of multi devices) Maximum 20000 devices"（p68）</p>
+</blockquote>
+<p>出处：ENTPXTE403EN p64-106。</p>
+<h2>I — 自述</h2>
+<p>形态选错 = 服务等级全错。两形态结构化对比：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>SEPLOS（SIP Extension）</th>
+<th>SIP Device</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>电话应用视角</td>
+<td>内部话机</td>
+<td>远端子网的一部分</td>
+</tr>
+<tr>
+<td>前缀/后缀激活业务</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>多线/寻线组/代接组/酒店</td>
+<td>支持（按机型有降级）</td>
+<td>全不支持</td>
+</tr>
+<tr>
+<td>CSTA 监督与 CTI</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>呼叫中心坐席</td>
+<td>可以（依终端）</td>
+<td>不能</td>
+</tr>
+<tr>
+<td>典型对象</td>
+<td>ALE 话机、ALES 软终端</td>
+<td>会议话机、门禁、视频设备</td>
+</tr>
+<tr>
+<td>开通前提</td>
+<td>子型 + DM profile</td>
+<td>私网 + 私有 SIP 中继组 + 本地网关</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>软件锁三把：177 计 SIP 用户总数（Device+Extension 合计）、345 只计 SEPLOS、430 只计 ALE-S 软终端；具体可配数取决于站点许可</li>
+<li>容量六维（p68）：IP 用户 15000（含 IPDSP 与虚拟用户）、TDM 5000、模拟 5000、S0 1000、远程分机 9000、SIP 15000；总量最多 15000 用户（单设备或多终端主设备）、20000 设备</li>
+<li>终端家族谱系（p70/p97-106）：Enterprise（ALE-300/400/500，双栈）、Essential（ALE-30、8008/8008G 酒店特例）、Basic（ALE-2/ALE-3）、8088（Huddle Room）、ALES 软终端（Windows/Android/iOS）</li>
+<li>SEPLOS 附加行为：SIP MESSAGE 推送 CS 信息（终端不支持回 405）、原生加密（SIP TLS/SRTP）、18x 无 SDP 省压缩资源</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>SIP Device 建户</strong>（p89，c03 一环）：</p>
+<ol>
+<li>Users → Create：DN=31060、名 Conference Room、Shelf/Board/Equipment=255。</li>
+<li>Set Type 选 +SIP device，SIP Passwd 设 12345（实验口径）。</li>
+<li>Warning：SIP device 须在 CS 内部防火墙登记为信任主机（netadmin -m/Security）。</li>
+<li>验证：sipregister 应见 31060 注册；sipdict -l 中 31060 显示 type=2（Device）。</li>
+</ol>
+<p><strong>终端选型对照</strong>（p97-106）：</p>
+<ol>
+<li>酒店客房 → 8008/8008G（Business+酒店模式，无话务员/坐席）。</li>
+<li>标准工位 → ALE-300/400/500（双栈、120 可编程键、全量监督/寻线组）。</li>
+<li>低成本 → ALE-2/ALE-3（8/12 键、监督仅监督员角色、寻线组降级）。</li>
+<li>移动办公 → ALES（OXE DM 独占管理，一号多机互斥）。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户拿会议话机/门禁问能不能进代接组；报价前核软件锁够不够；选话机档位；SIP 用户数快到许可上限。</p>
+<p>语言信号：SEPLOS / SIP Extension / SIP device / 软件锁 / 177 / 345 / 430 / 容量 / 15000 / 20000 / 会议话机 / 门禁 / doorcam / ALE-2 / ALE-3 / ALE-30 / ALE-300 / 8008 / ALES / 选型。</p>
+<p>与相邻能力区分：定了形态去施工找 SIP Device 开通、话机开通、ALES 开通；按机型查按键/监督等业务细节找 SIP 业务特性；DM/许可是另一头找 SIP 设备管理选型。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：终端清单（型号/数量/位置）、业务需求清单（要不要 CTI/坐席/寻线组/酒店）、站点许可文件。需求与形态冲突 → 判停先对齐。</p>
+<ol>
+<li>列业务需求：逐项标注前缀/后缀业务、CTI 监督、坐席、寻线组、酒店。完成标准：需求表成文</li>
+<li>定形态：要 PCX 话务级业务 → SEPLOS；独立设备（会议/门禁/视频）→ SIP Device。完成标准：每台终端有形态</li>
+<li>核容量：按 177/345/430 三把锁与 p68 六维上限核算余量。完成标准：容量表过账</li>
+<li>选型号：对照家族谱系与功能矩阵（p99/p104 双列以原文为准，售前以 Features List 终审）。完成标准：选型清单签字</li>
+<li>交代前提：SIP Device 提前规划私网号与中继组；SEPLOS 规划子型与 DM profile。完成标准：下游开工条件齐</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户坚持 SIP Device 要 CTI/坐席/入组 → 停，形态上限不可绕，改 SEPLOS 或换终端（n02）</li>
+<li>SIP 用户数将超许可 → 停，走扩许可流程，不硬开通</li>
+<li>客户要 SIP 侧话务员/话务员助理/MLA → 停，SIP 模式全系列缺席（8008 仅酒店例外），回 NOE 或改方案（n26）</li>
+</ul>
+<p>输出契约：终端形态与型号清单 + 软件锁/容量核算表 + 各终端的开通前提条件。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>p68 图中一处 "Maximum 5000" 归属在文本层不可辨（nr-01），容量口径以六维上限与 15000/20000 为准，精确归属查 Features List</li>
+<li>p99/p104 功能矩阵双列有文本层歧义（nr-02），引用格子以原文双列为准；ALE-2 无视频</li>
+<li>SIP Device 五不带是设计而非缺陷（n02）；开通结构性前提三件套缺一不可（n03）</li>
+<li>p72"依赖终端"清单与矩阵需合读：ALE-2/3 寻线组是降级支持而非不支持（nr-08）</li>
+<li>家族矩阵为 Ed12 时点口径，版本演进以 OXE Features List 为准</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte403en/skills/osip-sip-device-provisioning.html">SIP Device 用户开通与维护</a>、<a href="/courses/entpxte403en/skills/osip-deskphone-provisioning.html">ALE 话机 SIP 开通与 NOE↔SIP 切换</a></p><p class="source-page">能力 ID：cap.osip.user-forms · 来源：ENTPXTE403EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - SIP (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 465 页 -->

@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>ACR 内部数据库路由</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced Call Routing</h2><p>Edition 01 · 470 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte150en/index.html">课程首页</a><a href="/courses/otccxte150en/digest.html">精华长文</a><a href="/courses/otccxte150en/overview.html">教书理解</a><a href="/courses/otccxte150en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte150en/skills/acr-script-editor-fundamentals.html">ACR 脚本编辑器与调试工具链</a><a href="/courses/otccxte150en/skills/acr-ccd-matrix-foundation.html">ACR 基础 CCD 矩阵地基</a><a href="/courses/otccxte150en/skills/acr-redirect-redistribution.html">ACR 重定向与再分发兜底</a><a href="/courses/otccxte150en/skills/acr-direct-call-dica.html">ACR 坐席直拨融合</a><a href="/courses/otccxte150en/skills/acr-internal-database-routing.html">ACR 内部数据库路由</a><a href="/courses/otccxte150en/skills/acr-rule-combination-advanced.html">ACR 综合规则组合与高级构件</a><a href="/courses/otccxte150en/skills/acr-asm-deployment.html">ACR 外部 ASM 部署与双机热备</a><a href="/courses/otccxte150en/skills/acr-database-query-routing.html">ACR 外部数据库查询路由</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte150en/skills/acr-list-rules.html">ACR 授权与非授权名单规则</a><a href="/courses/otccxte150en/skills/acr-call-tag-transfer.html">ACR Call Tag 生成与传递</a><a href="/courses/otccxte150en/skills/acr-multilanguage-voiceguide.html">ACR 多语言语音引导与语言偏好分发</a><a href="/courses/otccxte150en/skills/acr-filter-statistics.html">ACR 过滤器与统计报表</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte150en/index.html">otcc-advanced-call-routing（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte150en/index.html">OTCCXTE150EN</a><span>/</span><span aria-current="page">ACR 内部数据库路由</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>ACR 内部数据库路由</h1></div><dl><div><dt>Skill ID</dt><dd>acr-internal-database-routing</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>ACR 内部数据库路由（三键五属性、4000 条、脚本取用语法）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Caller Identification: Calling Number • Call Tag • Agent Number (in case of Direct Call) … Associated Information: Name • Call Profile • Authorized List • Unauthorized List • Call Priority"（p131）
+"Note: 4000 entries (single value or range) can be created in the Internal Database"（p131）
+"Complete Number or open Number • Unique number or Range"（p132）
+"RULE_ISM CALL_PROFILE [CALLING] … SET PRIORITY = CALL_PRIORITY [CALLING]"（p147）</p>
+</blockquote>
+<p>出处：OTCCXTE150EN p128-164。</p>
+<h2>I — 自述</h2>
+<p>内部数据库（ACR Data）是个性化路由的本地索引，三键查五属性：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>取值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>键 1：主叫号</td>
+<td>完整号或开放号（通配）、单值或区段</td>
+</tr>
+<tr>
+<td>键 2：Call Tag</td>
+<td>单值或区段（如 1000-1999 整段命中）</td>
+</tr>
+<tr>
+<td>键 3：坐席号</td>
+<td>仅直拨场景（前提：直拨特性已配）</td>
+</tr>
+<tr>
+<td>值 1：Name</td>
+<td>客户名（可屏显）</td>
+</tr>
+<tr>
+<td>值 2：Call Profile</td>
+<td>呼叫档案 ID，喂给 ISM</td>
+</tr>
+<tr>
+<td>值 3：授权/非授权名单</td>
+<td>名单 ID，喂给名单规则</td>
+</tr>
+<tr>
+<td>值 4：Call Priority</td>
+<td>呼叫选择优先级</td>
+</tr>
+</tbody>
+</table></div>
+<p>脚本取用语法（方括号里是键）：</p>
+<ul>
+<li>CALL_PROFILE[CALLING] / CALL_PROFILE[CALLTAG] / CALL_PROFILE[AGENT_NUMBER] 取档案</li>
+<li>CALL_PRIORITY[键] 取优先级；AUTHORIZED_LIST[键] 取名单</li>
+<li>配置入口在 CCS 的 ACR Data 页；运维查看用 adm_acd 选项 25</li>
+</ul>
+<p>容量与前提：最多 4000 条（单值或区段都按条计）；用坐席号键的前提是该坐席已配 Pilot Direct Call 与私有号；数据在 CCS/CCSupervisor 侧维护。屏显 Call Tag 还要处理组的 display 参数配合（与脚本 DISPLAY_AGENT 是两套机制）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>主叫号键（c06 前段）</strong>：</p>
+<ol>
+<li>ACR Data 建条目：主叫号 02312122003（实验口径），档案 0、授权名单 0、优先级 0</li>
+<li>写脚本：RULE_ISM CALL_PROFILE[CALLING]、SET PRIORITY=CALL_PRIORITY[CALLING]、空列表时接授权名单</li>
+<li>从分机呼入，Debugger 核对档案与优先级取自库；再以库外号码验证落空路径</li>
+<li>翻译前缀对照：RSI 参数 Callback Prefix 置 TRUE 后主叫号带前缀，须与库内容一致</li>
+</ol>
+<p><strong>Call Tag 键（c06 中段）</strong>：</p>
+<ol>
+<li>建条目：Call Tag 区段 1000-1999，授权名单 0</li>
+<li>统计 Pilot 配 Call Tag 1500（0-32 字符）</li>
+<li>脚本：有标签走 CALL_PRIORITY 与 AUTHORIZED_LIST[CALLTAG]，无标签走重定向</li>
+<li>呼带标签 Pilot 命中名单；呼无标签 Pilot 走重定向（未知标签时脚本执行 21 次的口径见 nr-01）</li>
+</ol>
+<p><strong>坐席号键（c06 后段）</strong>：</p>
+<ol>
+<li>前提：坐席 31501 已配直拨特性</li>
+<li>建条目：坐席号 31501，档案 1、优先级 0</li>
+<li>脚本：直拨时 RULE_ISM CALL_PROFILE=[AGENT_NUMBER]，30 秒重选后授权名单兜底</li>
+<li>直拨忙坐席：Debugger 显示 ISM 取库中档案、超时后名单路径生效</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：VIP 来电走专属档案或优先级；回头客按主叫号定制路由；按客户号区段批量配路由；直拨忙时按坐席查档案。</p>
+<p>语言信号：内部数据库 / Internal Database / ACR Data / CALL_PROFILE / CALL_PRIORITY / 主叫号 / Calling Number / Call Tag 键 / 坐席号键 / 4000 条 / VIP 路由。</p>
+<p>与相邻能力区分：数据在外部数据库，见 外部数据库查询路由能力；Call Tag 怎么生成，见 Call Tag 卡（路由）；直拨特性本身，见 坐席直拨融合能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户数据（主叫号/客户号段/坐席号与对应档案名单）、矩阵与统计 Pilot 就绪。数据量大或需外部维护时改走外部库方案。</p>
+<ol>
+<li>CCS 的 ACR Data 建条目：选键类型，录键值与四个属性。完成标准：条目保存且 ID 唯一</li>
+<li>写脚本：按键取用 CALL_PROFILE / CALL_PRIORITY / AUTHORIZED_LIST。完成标准：语法保存无误</li>
+<li>脚本挂 ACR Pilot 激活。完成标准：Debugger 可见连接</li>
+<li>正反用例测试：库内键命中路径 + 库外键落空路径各走一遍。完成标准：两路径轨迹符合设计</li>
+<li>屏显需求时配处理组 display 参数（Call tag 或 caller and pilot char.）。完成标准：坐席屏可见</li>
+<li>运维核查用 adm_acd 选项 25（节点号 加 对象 ID）。完成标准：库内容与配置一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>条目数逼近 4000 → 停，内部库容量上限，转外部数据库方案（需外部 ASM）</li>
+<li>主叫号带前缀对不上库 → 停，查 RSI 的 Callback Prefix 参数口径，统一号码格式</li>
+<li>坐席号键查不到 → 停，核对直拨特性是否已配（键 3 的前提）</li>
+</ul>
+<p>输出契约：三键数据条目 + 取用脚本 + 正反用例验证轨迹。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>4000 条为硬上限（n16）；超出须外部化，本卡不覆盖外部库语法</li>
+<li>主叫号键支持通配/区段是便利也是坑：区段覆盖过宽会误命中，规划先于录入</li>
+<li>坐席号键仅在直拨场景有意义（p137）</li>
+<li>实验条目号码（02312122003、区段 1000-1999）为实验口径</li>
+<li>数据维护入口在 CCS/CCSupervisor；批量维护工具与同步机制原书未涉及</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte150en/skills/acr-call-tag-transfer.html">ACR Call Tag 生成与传递</a>、<a href="/courses/otccxte150en/skills/acr-direct-call-dica.html">ACR 坐席直拨融合</a></p><p class="source-page">能力 ID：cap.acr.internal-database-routing · 来源：OTCCXTE150EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Advanced Call Routing (Participant's Guide, Issue 01) | edition: Edition 01 | pages: 470 页 -->

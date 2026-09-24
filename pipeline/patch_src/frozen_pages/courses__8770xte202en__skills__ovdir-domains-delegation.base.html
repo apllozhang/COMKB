@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>管理域与委派</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 目录管理</h2><p>Edition 40 · 565 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte202en/index.html">课程首页</a><a href="/courses/8770xte202en/digest.html">精华长文</a><a href="/courses/8770xte202en/overview.html">教书理解</a><a href="/courses/8770xte202en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte202en/skills/ovdir-oxe-sync-ldap.html">OXE 节点注册与同步</a><a href="/courses/8770xte202en/skills/ovdir-auto-creation.html">目录树搭建与 PCX 自动创建</a><a href="/courses/8770xte202en/skills/ovdir-links-rename.html">六类链接与改名语义</a><a href="/courses/8770xte202en/skills/ovdir-msad-azure-pipelines.html">MSAD 与 Azure AD 同步管道</a><a href="/courses/8770xte202en/skills/ovdir-click-to-call.html">Click to Call 交付</a><a href="/courses/8770xte202en/skills/ovdir-confidentiality.html">目录保密级别与访问级别</a><a href="/courses/8770xte202en/skills/ovdir-replication.html">目录复制主从部署</a><a href="/courses/8770xte202en/skills/ovdir-domains-delegation.html">管理域与委派</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte202en/skills/ovdir-msad-plugin.html">MSAD 插件开户（AD 右键一键开通）</a><a href="/courses/8770xte202en/skills/ovdir-ldif-tools.html">LDIF 导入导出与管理工具管道</a><a href="/courses/8770xte202en/skills/ovdir-client-dictionary.html">目录词典与 Web 客户端定制</a><a href="/courses/8770xte202en/skills/ovdir-platform-basics.html">8770 平台基础（套件/拓扑/兼容/虚拟化）</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte202en/index.html">omnivista-directory（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte202en/index.html">8770XTE202EN</a><span>/</span><span aria-current="page">管理域与委派</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>管理域与委派</h1></div><dl><div><dt>Skill ID</dt><dd>ovdir-domains-delegation</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>管理域与委派（分域可见性、三预定义组、定制视图）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Possibility to split organization in several parts and manage them independently ... Each local administrator sees/manages his own domain for Directory and Users applications"（p429）
+"Required licenses • Domain Management • Directory / Management Domain to be enabled • Feature disabled by default after fresh installation"（p435）
+"Delegation: right for local administrators to create and manage other local administrators within their domain"（p450）
+"Strict view parameter disabled (by default) • Person search can retrieve persons from domain D but also from parent domain(s) • Strict view parameter enabled • ... strictly from domain D"（p454）</p>
+</blockquote>
+<p>出处：8770XTE202EN p429-454, p456-500。</p>
+<h2>I — 自述</h2>
+<p>域是"可见性+管理权"的切割单位：域=名字+一组公司目录 DN 级别+本地管理员名单；可嵌套、可多父。支撑多站点/OXE 多租户/云端多公司三类用例。</p>
+<ul>
+<li><strong>许可与激活</strong>：Domain Management+Directory 双许可缺一不可（MCS 版自带 Directory 但 Domain Management 仍要买）；功能默认关闭，Security 应用 8770DomainManagement 手工 Enable</li>
+<li><strong>三预定义组权限档</strong>：</li>
+</ul>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>组</th>
+<th>管理面</th>
+<th>不含</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Users Configuration</td>
+<td>只管用户（Directory 仅 Partial modification）</td>
+<td>域内目录结构、定制视图</td>
+</tr>
+<tr>
+<td>Users &amp; Directory Configuration</td>
+<td>用户+域内目录结构全管</td>
+<td>定制视图</td>
+</tr>
+<tr>
+<td>Users &amp; Customization Configuration</td>
+<td>再加定制视图与 Web Admin 的域/账户管理</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>本地管理员</strong>：Security 应用建的账户默认是全局管理员（蓝色显示）；归入预定义组并关联域后降为 local，只能查看和管理本域；Domain configuration 菜单对其显示但 inactive</li>
+<li><strong>Delegation 委派</strong>：Application rights 页签单开——本地管理员可在自己域内再建本地管理员与目录级别（经 WBM）</li>
+<li><strong>strict view 参数</strong>：域内人员经 Web 目录检索，关（默认）可查本域+父域，开则严格本域；域场景下 Web 目录认证强制、匿名不可用</li>
+<li><strong>定制视图</strong>：预设开户界面字段（预定义+自定义），按管理员账户绑定；目的是简化本地管理员开户——视图越精简开户越快（书中对比结论）</li>
+<li><strong>配套</strong>：批量建管理员时实验把"首登强制改密"设 False 以免打断验证（生产保留强制更安全）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>管理域搭建与委派实验</strong>（p456-500）：</p>
+<ol>
+<li>Directory 应用扩树：Portugal/Lisbon/Porto 及三个 Department</li>
+<li>Help &gt; About 核对 Directory 与 Domain Management 许可均已启用</li>
+<li>Security 应用 8770DomainManagement 勾 Enable 并 Apply</li>
+<li>建六个管理员账户（AdminFrance/Brest/Colombes/Portugal/Lisbon/Porto，实验口径密码）</li>
+<li>归组：三人入 Users Configuration、一人入 Users &amp; Directory、两人入 Users &amp; Customization</li>
+<li>8770 Domain Management 下建六域，各选目录级别并加成员管理员</li>
+<li>Password Policy 把首登强制改密设 False（实验口径）</li>
+<li>AdminBrest 登录厚客户端与 WBM：只见 Brest、仅能管用户、域菜单不可用</li>
+<li>AdminPorto 同法验证：可管域内目录结构</li>
+<li>AdminFrance 开 Delegation，经 WBM 建 Nantes/Rennes 级别与两域</li>
+<li>建 RennesView 定制视图并绑 AdminRennes（Default view 绑 AdminNantes）</li>
+<li>两本地管理员各开户一人，对比开户步数并核验相互不可见</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：多站点/多分公司要分权管理；本地管理员该给哪组权限；让分公司自己开户且界面简化；域内的人查不到父域同事；本地管理员要能自己再建管理员；批量建完管理员首登全卡改密。</p>
+<p>语言信号：管理域 / domain / Domain Management / 本地管理员 / local administrator / Delegation / 委派 / strict view / 定制视图 / customized view / 可见性 / 多租户。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>条目对普通员工隐藏 → 保密能力</li>
+<li>账户的应用级权限档 → 保密能力的 Security 部分</li>
+<li>WBM 客户端本身的定制 → 客户端与词典定制能力</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：组织分域设计（DN 级别边界）、管理员名单与组别、双许可已购。许可缺失 → 判停先补许可。</p>
+<ol>
+<li>核许可：Help &gt; About 查 Domain Management+Directory。完成标准：双许可在列</li>
+<li>激活：Security 应用 8770DomainManagement 勾 Enable。完成标准：域节点可用</li>
+<li>建管理员：按名单建账户（默认全局），归入三预定义组。完成标准：组员对照表落地</li>
+<li>建域：选目录级别（o/c/l/ou 任意层）加成员管理员，需要时嵌套。完成标准：域边界成图</li>
+<li>委派（按需）：给有下放需求的组开 Delegation。完成标准：本地管理员可自建管理员</li>
+<li>定制视图：基于预定义视图关字段另存，按账户绑定。完成标准：开户流程精简可对比</li>
+<li>验证：逐管理员登录核可见范围与可管内容。完成标准：与组档一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>本地管理员要建域/改域 → 不可能（菜单 inactive，n31）；给 Delegation 让其建"自己域内"的级别与账户</li>
+<li>域内人员查不到人 → 先查 strict view（开=严格本域），再查其所在域与嵌套关系（n33）</li>
+<li>批量建管理员被首登改密打断 → 实验 False 口径仅为验证顺畅；生产保留强制改密（n32），别搬实验值</li>
+<li>客户只有 Directory 许可 → 域功能不可用，Security 里开了也建不出域（n30）</li>
+<li>组权限与讲义表对不上 → p441 与 p463 表述有出入（nr-05），以现场实测为准并记录</li>
+</ul>
+<p>输出契约：分域管理体系（域+组+账户）+ 委派与视图配置记录 + 各管理员可见性验证矩阵。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>域切割的是 Directory/Users 应用的可见性与管理权：Web 目录匿名在域场景被禁用（p453）</li>
+<li>定制视图只简化"开户界面字段"，不改权限档；权限仍由组+应用级别决定</li>
+<li>WBM 侧三入口（Domain configuration/Customized views/Administrator configuration）中前者对本地管理员永远 inactive</li>
+<li>密码策略是全局 Security 配置，不按域分设</li>
+<li>实验六域与 Portugal 树为教学约定（实验口径），生产按客户组织设计</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte202en/skills/ovdir-confidentiality.html">目录保密级别与访问级别</a></p><p class="source-page">能力 ID：cap.ovdir.domains-delegation · 来源：8770XTE202EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniVista 8770 — Directory Administration (Participant's Guide, Edition 40) | edition: Edition 40 | pages: 565 页 -->

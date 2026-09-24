@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>DECT 无线覆盖勘测（RSSI 门槛/SSK/survey mode）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise ·​ DECT 解决方案</h2><p>Edition 12 · 298 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/dectxte200en/index.html">课程首页</a><a href="/courses/dectxte200en/digest.html">精华长文</a><a href="/courses/dectxte200en/overview.html">教书理解</a><a href="/courses/dectxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/dectxte200en/skills/dect-pari-identifier.html">DECT 标识号码体系与 multi-PARI 适配</a><a href="/courses/dectxte200en/skills/dect-product-selection.html">DECT 产品线选型与拓扑决策</a><a href="/courses/dectxte200en/skills/dect-ipxbs-deployment.html">8378 IP-xBS 部署与故障换站</a><a href="/courses/dectxte200en/skills/dect-xbs-sync-topology.html">xBS 空中同步体系与组网域（含外部同步与多站点）</a><a href="/courses/dectxte200en/skills/dect-handset-registration.html">DECT 用户创建与手机注册/注销</a><a href="/courses/dectxte200en/skills/dect-mixed-mode.html">混合 DECT 基础设施部署（TDM + xBS、PLI 统一）</a><a href="/courses/dectxte200en/skills/dect-auto-reregistration.html">DECT 手机自动重注册（PARI/PLI 变更零接触迁移）</a><a href="/courses/dectxte200en/skills/dect-firmware-management.html">DECT 固件双轨升级管理（基站 downstat x / 手机 OTA downstat m）</a><p class="course-nav-group">路由能力</p><a href="/courses/dectxte200en/skills/dect-maintenance-troubleshooting.html">DECT 日常维护与排障（命令族/syslog/WBM）</a><a href="/courses/dectxte200en/skills/dect-radio-survey.html">DECT 无线覆盖勘测（RSSI 门槛/SSK/survey mode）</a><a href="/courses/dectxte200en/skills/dect-ibs-deployment.html">8379 IBS 基础设施部署（UA 板卡/布线/建站）</a><a href="/courses/dectxte200en/skills/dect-sip-dect.html">8328 SIP-DECT 部署（四步注册/双小区）</a><p class="course-nav-group">已安装技能</p><a href="/courses/dectxte200en/index.html">dect-solutions（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/dectxte200en/index.html">DECTXTE200EN</a><span>/</span><span aria-current="page">DECT 无线覆盖勘测（RSSI 门槛/SSK/survey mode）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>DECT 无线覆盖勘测（RSSI 门槛/SSK/survey mode）</h1></div><dl><div><dt>Skill ID</dt><dd>dect-radio-survey</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>DECT 无线覆盖勘测（RSSI 门槛 / SSK / survey mode）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Rs is a distance corresponding to a RSSI level for satisfactory voice quality: -70 dBm (for easy coverage) - 60dBm (for tricky coverage)"（p207）
+"-70 dB Minimum RSSI level between and ALE DECT handset and a base station ... Site with no coverage problem(s) = Easy"（p208）
+"-80 dB Zone of quality for DAP synchronization ... Minimum RSSI level between the base stations"（p210）
+"This mode is intended for debugging purpose and shall not be used for normal end user operation (while active, this mode can interfere with other features of the phone). In this mode, battery autonomy is reduced."（p216）</p>
+</blockquote>
+<p>出处：DECTXTE200EN p204-217。</p>
+<h2>I — 自述</h2>
+<p>覆盖勘测的三个门槛数字与一个调试工具：</p>
+<ol>
+<li><strong>RSSI 门槛</strong>：手机-基站话音质量门槛 -70dBm（容易场景：写字楼/仓库）、-60dBm（金属困难场景：厂房/洁净室）；基站-基站空中同步门槛 -80dBm。勘测时以对应门槛画覆盖边界。</li>
+<li><strong>SSK（Site Survey Kit）</strong>：官方勘测套件（TDM DECT/IP-xBS/IP DECT 通用）：专用 8378 xBS 两台、8dBi 天线、充电宝供电、2×8242 勘测手机、拉杆三脚架（3BN67191AA）等。</li>
+<li><strong>survey mode</strong>：手机菜单密钥 <em>7378423</em>（助记 <em>service</em>）激活，屏幕顶部 1/3 常驻显示 RSSI/基站列表/RFPI（Vol- 键）。按键语义：长按 *=慢/快测量、长按 #=No Lock/Lock to base、侧键=冻结/隐藏/恢复。</li>
+</ol>
+<p>三个运营提醒（p216）：开启后常驻（重启前不消失）、激活期间干扰手机其他功能、续航明显下降——勘测机与交付机分开管理，勘测完显式 Off。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>勘测模式开关实验</strong>（p213-217）：</p>
+<ol>
+<li>手机空闲主页按 Menu 键（或两次 OK）进菜单</li>
+<li>输入 <em>7378423</em>（助记 <em>service</em>）</li>
+<li>选 Site Survey mode → 按 On 激活（勘测层常驻任何模式）</li>
+<li>长按 * 切换慢/快测量；Vol- 调出 RFPI 附加屏</li>
+<li>绕场测量，按 -70dBm 等值线找覆盖边界（实验任务口径）</li>
+<li>关闭：菜单 Off → On hook → 回空闲主页</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：覆盖范围验收；用户报楼梯间/车间断话；布点前勘测；同步可行性预估（站间 -80dBm）；借勘测工具。</p>
+<p>语言信号：勘测 / survey / site survey / RSSI / -70dBm / -60dBm / -80dBm / SSK / Site Survey Kit / 8242 / 覆盖边界 / 信号强度 / RFPI / <em>7378423</em>。</p>
+<p>与相邻能力区分：基站间同步门槛的配置应用见同步拓扑能力；覆盖不足的选型结论见产品选型能力；RSSI 之外的状态排障见维护排障（路由）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：场景类型（容易/金属困难）、覆盖目标（话音区/同步区）、勘测手机（SSK 含 8242，或交付机型临时充当）。</p>
+<ol>
+<li>定门槛：容易场景按 -70dBm、金属环境按 -60dBm 画话音边界；站间同步按 -80dBm。完成标准：验收门槛双方确认</li>
+<li>开勘测模式：<em>7378423</em> → Site Survey mode → On。完成标准：勘测层显示</li>
+<li>绕场采样：记录 RSSI 与基站列表，标出等值线与盲区。完成标准：覆盖图成型</li>
+<li>判定：达标区/弱区/盲区三色标注，给出加站/移站建议。完成标准：布点结论可评审</li>
+<li>关闭并回收：Off 退出、勘测机与交付机分离管理。完成标准：无调试模式残留</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>勘测方法论问题（天线选型/传播模型/采样规范）→ 书外，指向 8AL90874USAA（工程规则+SSK 手册）</li>
+<li>手机被侧键"失灵"投诉 → survey mode 接管了音量键与侧键，先查是否忘关</li>
+<li>同步区达标但切换仍失败 → 转同步拓扑能力查配置，不要反复勘测</li>
+</ul>
+<p>输出契约：覆盖勘测记录（等值线/盲区）+ 布点建议 + 门槛口径备注。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>勘测方法论（传播模型、天线增益选择、采样流程）全部在 8AL90874USAA，书内只有门槛数字与工具开关</li>
+<li>SSK 配 8242 勘测机与主流交付机型 82x4 不一致——勘测结论外推时留意机型差异（BOOK_OVERVIEW 批判项）</li>
+<li>RSSI 距离还取决于手机 RF 灵敏度与环境（p207）；书内未给勘测点密度规范</li>
+<li>-80dBm 门槛原文语境为 "DAP synchronization"（基站间同步），不作为话音验收门槛</li>
+</ul><h2>相关能力</h2><p><a href="/courses/dectxte200en/skills/dect-product-selection.html">DECT 产品线选型与拓扑决策</a></p><p class="source-page">能力 ID：cap.dect.radio-survey · 来源：DECTXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: DECT Solutions (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 298 页 -->

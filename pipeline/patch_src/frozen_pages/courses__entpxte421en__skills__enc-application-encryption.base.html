@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>应用生态加密与安全下载</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 加密解决方案</h2><p>Edition 05 · 410 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte421en/index.html">课程首页</a><a href="/courses/entpxte421en/digest.html">精华长文</a><a href="/courses/entpxte421en/overview.html">教书理解</a><a href="/courses/entpxte421en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte421en/skills/enc-certificate-trust-chain.html">证书与信任链全生命周期</a><a href="/courses/entpxte421en/skills/enc-native-encryption-bringup.html">加密解决方案开通与 lanpbx.cfg</a><a href="/courses/entpxte421en/skills/enc-dtls-verification-maintenance.html">DTLS 验证、排障与维护闭环</a><a href="/courses/entpxte421en/skills/enc-sip-tls-endpoints.html">SIP TLS 扩展加密</a><a href="/courses/entpxte421en/skills/enc-sip-trunk-tls.html">SIP trunk 的 TLS 与 SRTP</a><a href="/courses/entpxte421en/skills/enc-eegw-deployment.html">EEGW/NSP 大容量部署</a><a href="/courses/entpxte421en/skills/enc-abcf-network-encryption.html">ABC-F 网络加密</a><a href="/courses/entpxte421en/skills/enc-mtls-endpoint-authentication.html">mTLS 双向认证与版本限制</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte421en/skills/enc-pcs-failover.html">PCS 加密接管</a><a href="/courses/entpxte421en/skills/enc-pki-workshop-xca.html">XCA 外部 CA 工坊</a><a href="/courses/entpxte421en/skills/enc-application-encryption.html">应用生态加密与安全下载</a><a href="/courses/entpxte421en/skills/enc-lab-environment.html">实验环境底座（RLAB）</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte421en/index.html">oxe-native-encryption（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte421en/index.html">ENTPXTE421EN</a><span>/</span><span aria-current="page">应用生态加密与安全下载</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>应用生态加密与安全下载</h1></div><dl><div><dt>Skill ID</dt><dd>enc-application-encryption</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>应用生态加密与安全下载（Rainbow WG/4645/录音/VAA/DC、HTTPS 替代 TFTP）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"4645 Voice Mail is automatically secured when it is hosted in an OXE where native encryption is activated • Only one system parameter to activate"（p95）
+"The maximum number of VAA ports is decreased from 120 to 60 in case of encryption"（p98）
+"Use of HTTPS protocol, instead of TFTP • Prerequisite: Native Encryption activated on the OXE, whether the encryption flag is activated or not at user level"（p73）</p>
+</blockquote>
+<p>出处：ENTPXTE421EN p63-64, p73-74, p94-99。</p>
+<h2>I — 自述</h2>
+<p>五个应用出口的加密路径与一层下载安全，讲义查表型知识：</p>
+<ol>
+<li><strong>Rainbow WebRTC Gateway</strong>（p94）：SIP 信令恒加密、音频仅在 OXE 端点受保护时加密；仅网关侧认证（Rainbow 网关为 TLS 服务器）；trunk 组用 "SIP-ISDN mode"+Rainbow 变体外部网关；加密非强制可明文跑</li>
+<li><strong>4645 Voice Mail</strong>（p95）：宿主于开了 NE 的 OXE 内自动受保护，仅一个系统参数（Voice Mail Parameters 的 Enable Voicemail Encryption）；独立服务器部署才需改 eva.cfg 加 DTLS 参数+4645 证书（IP 入 SAN）；明文话机打加密 VM 时话音 RTP 不加密</li>
+<li><strong>IP DR-Link 与 OmniPCX Record</strong>（p96-97）：CS-OPR 间 CSTA 链路 TLS 1.2 强制、仅认证 CS；SRTP 密钥经 CSTA 安全下发；录音能力（明文/AES-128/AES-256）由 Recording SRTP Cipher Suite 决定；每次保持/会议/转接换新钥、OPR 收到即解密复制流</li>
+<li><strong>VAA</strong>（p98）：与 CS 间 SIP 链路走 Native SIP TLS（internal ABC-F 型）+SRTP（128/256 均可）；OXE CTL 手工导入 VAA、可选 mTLS；<strong>加密后端口上限 120→60</strong></li>
+<li><strong>Dispatch Console</strong>（p99）：同 VAA 路径（internal ABC-F 型+可选 mTLS）；端口数不受影响（保持 120）；话务员设备可按普通设备加密</li>
+<li><strong>安全下载（HTTPS 替代 TFTP）</strong>（p73-74）两层规则：</li>
+<li>CS↔设备（固件/定制文件/lanpbx.cfg）：前提 OXE 已激活 NE（与用户级开关无关）；IPv6 不支持；动态模式要求 DHCP offer 带 option 66（否则按 TFTP）</li>
+<li>CS↔IPMG 初始化下载：前提 NE+mTLS（网关内须有证书），经 mgconfig/omsconfig 手工选 HTTPS；TOFU 开着时 CTL 经 lanpbx.cfg 自动获取；GD4/GA4/GD-XL/GA-XL/OXE-MS 支持，GD3/INTIP3 等老板卡仍 TFTP</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>容量与路径决策素材</strong>（p94-99，讲义，无实验——选型即查表）：</p>
+<ul>
+<li>客户要 100 个 VAA 加密端口 → 加密上限 60，方案要按两套 VAA 或接受 60 口径重谈</li>
+<li>客户问留言是否自动加密 → NE 开启+宿主内置即自动受保护，仅开一个参数</li>
+<li>客户问录音合规 → Recording SRTP Cipher Suite 定 128/256，且每次保持/转接换新钥</li>
+<li>客户站点的 Rainbow WG → 信令恒加密，音频跟随端点保护状态</li>
+</ul>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：留言信箱加密；录音加密与密钥轮换；VAA/调度台加密后端口数；Rainbow 网关过 OXE 加不加密；话机固件下载走 HTTPS 的条件。</p>
+<p>语言信号：4645 / voice mail / 留言加密 / OmniPCX Record / OPR / DR-Link / 录音 / SRTP Cipher Suite / VAA / Dispatch Console / 调度台 / Rainbow WebRTC Gateway / HTTPS / TFTP / DHCP option 66。</p>
+<p>与相邻能力区分：端点与中继加密本体 → 开通/SIP trunk 等能力；ABC-F 网络型 SIP trunk 的链路加密 → ABC-F 网络能力；本卡只管应用出口与下载通道这两层外围。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户在用的应用清单（VM/OPR/VAA/DC/Rainbow WG）与版本、下载通道形态（动态/静态）。应用版本不支持 → 判停按兼容矩阵排除。</p>
+<ol>
+<li>按应用对号：对照 I 段六条路径，逐应用列加密前提与代价。完成标准：应用加密矩阵成文</li>
+<li>容量复核：VAA 加密按 60 端口重算；DC 保持 120；录音按 cipher suite 定 128/256。完成标准：容量口径写入方案</li>
+<li>参数落地：VM 勾 Enable Voicemail Encryption 等各自参数；OPR/VAA/DC 按路径配证书与 CTL。完成标准：各应用加密生效</li>
+<li>下载通道：NE 开启后核对 DHCP option 66 与 DNS 前提；IPMG 侧按 mTLS/TOFU 状态选 HTTPS。完成标准：HTTPS 生效、老设备仍 TFTP 可用</li>
+<li>验收：逐应用打通并确认媒体/信令加密状态与方案一致。完成标准：验收单闭环</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户 VAA 端口需求超 60 → 加密与容量冲突，让客户在"加密+扩容"与"端口优先"间做决策，不要默认替客户关加密</li>
+<li>明文话机要打加密 VM → 明确告知话音 RTP 不加密（p95），不属配置故障</li>
+<li>GD3/INTIP3 站点想要 HTTPS 下载 → 老板卡不支持（仍 TFTP），先换板卡或接受 TFTP</li>
+</ul>
+<p>输出契约：应用加密矩阵 + 容量口径 + 各应用验收记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>本卡为讲义查表型知识：五应用均无独立实验章，行为细节以各应用自身文档为准</li>
+<li>VAA 120→60 是加密的硬代价（p98）；引用端口数必须带"是否加密"前提</li>
+<li>Rainbow WG 只保证信令恒加密；端到端音频取决于 OXE 端点侧保护状态（p94）</li>
+<li>安全下载不支持 IPv6；无加密方案或 IP Premium Security 的 OXE 不支持 HTTPS（p73）</li>
+<li>eva.cfg 独立部署 4645 的完整流程原书只给要点，细节在 4645 文档</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.enc.application-encryption · 来源：ENTPXTE421EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — Native Encryption (Participant's Guide, Edition 05) | edition: Edition 05 | pages: 410 页 -->

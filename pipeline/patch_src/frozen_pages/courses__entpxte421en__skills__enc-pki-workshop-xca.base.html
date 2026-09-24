@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>XCA 外部 CA 工坊</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 加密解决方案</h2><p>Edition 05 · 410 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte421en/index.html">课程首页</a><a href="/courses/entpxte421en/digest.html">精华长文</a><a href="/courses/entpxte421en/overview.html">教书理解</a><a href="/courses/entpxte421en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte421en/skills/enc-certificate-trust-chain.html">证书与信任链全生命周期</a><a href="/courses/entpxte421en/skills/enc-native-encryption-bringup.html">加密解决方案开通与 lanpbx.cfg</a><a href="/courses/entpxte421en/skills/enc-dtls-verification-maintenance.html">DTLS 验证、排障与维护闭环</a><a href="/courses/entpxte421en/skills/enc-sip-tls-endpoints.html">SIP TLS 扩展加密</a><a href="/courses/entpxte421en/skills/enc-sip-trunk-tls.html">SIP trunk 的 TLS 与 SRTP</a><a href="/courses/entpxte421en/skills/enc-eegw-deployment.html">EEGW/NSP 大容量部署</a><a href="/courses/entpxte421en/skills/enc-abcf-network-encryption.html">ABC-F 网络加密</a><a href="/courses/entpxte421en/skills/enc-mtls-endpoint-authentication.html">mTLS 双向认证与版本限制</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte421en/skills/enc-pcs-failover.html">PCS 加密接管</a><a href="/courses/entpxte421en/skills/enc-pki-workshop-xca.html">XCA 外部 CA 工坊</a><a href="/courses/entpxte421en/skills/enc-application-encryption.html">应用生态加密与安全下载</a><a href="/courses/entpxte421en/skills/enc-lab-environment.html">实验环境底座（RLAB）</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte421en/index.html">oxe-native-encryption（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte421en/index.html">ENTPXTE421EN</a><span>/</span><span aria-current="page">XCA 外部 CA 工坊</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>XCA 外部 CA 工坊</h1></div><dl><div><dt>Skill ID</dt><dd>enc-pki-workshop-xca</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>XCA 外部 CA 工坊（根 CA、实体证书、CSR 签发、格式转换）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"'XCA' is a tool for certificate and key management."（p335）
+"Take Care, 'Common Name' for 'OMS' end entity must match it's MAC address"（p344）
+"openssl crl2pkcs7 -nocrl -certfile RootCA.crt -out ca.p7"（p390）
+"Warning PKCS 12 IS NOT THE EASIEST WAY … PRIVATE KEY IS GENERATED ON THE CA AND MUST BE TRANSFERRED … CSR IS DONE MANUALLY ON THE CA"（p397）</p>
+</blockquote>
+<p>出处：ENTPXTE421EN p333-353, p380-403。</p>
+<h2>I — 自述</h2>
+<p>教学替身 CA 的操作工坊：客户没有现成 CA 时用它走通签发侧全流程（生产优先用客户自己的 CA）：</p>
+<ol>
+<li><strong>准备工作</strong>（p335-337/p381-385）：hohnstaedt.de/xca 下载 setup.exe 安装 → File/New DataBase 建口令保护库（实验口径 Alcatel）；客户已有 CA 就用客户的（p381 Warning）</li>
+<li><strong>根 CA 制作</strong>（p338-341/p386）：New key（4096）→ New certificate（自签、SHA 256、Type=Certification Authority、有效期）→ 导出 PEM（.crt）或 .p7b</li>
+<li><strong>两条签发路线</strong>（p391/p397）：</li>
+<li>PKCS#7（推荐）：OXE 上 netadmin 11.9.1.2 生成 CSR（私钥不出机、SAN 自动），XCA 导入 CSR 后 Sign（选根 CA、End Entity），核验 subject/SAN 与 CSR 一致，导出 .p7b</li>
+<li>PKCS#12（端点场景）：CA 侧 New key、New certificate（CN 按规则：CS/PCS=OXE FQDN，板卡/话机/IPDSP=MAC）、手工编辑 SAN，导出 PKCS12 设口令</li>
+<li><strong>命名约定</strong>（p344/p346/p351-352）：OMS/板卡实体 GW.pfx（CN=MAC）；IPDSP 两个文件 softphone_cert.pem + softphone_pkey.pem（加密导出）——部署端按文件名读取，严格匹配</li>
+<li><strong>格式转换</strong>（p389-390）：.p7b 用 conv-proper-p7-format.pl 转 ca.p7；.crt 用 openssl crl2pkcs7 转——OXE 导入菜单按格式要求收文件</li>
+<li><strong>内嵌 CA 对照</strong>（p310-312）：无外部 CA 时 netadmin 11.9.1.1 输 CC-suite-ID 一键自签（7300 天），XCA 仅在"外部 CA"路线上需要</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>端点实体制作</strong>（p342-352，c17 步骤 3-4）：</p>
+<ol>
+<li>New key 4096 位；New certificate 的签名证书选根 CA</li>
+<li>OMS 实体：CN 填 OMS 的 MAC（005056010113，实验口径），Type=End Entity</li>
+<li>导出 PKCS12 且必须命名 GW.pfx，设导出口令</li>
+<li>IPDSP 实体：CN 填其 MAC（设置 Network 页 phone identifier 查看）</li>
+<li>导出证书为 .pem 并命名 softphone_cert.pem</li>
+<li>Private Keys 页导出私钥为 .pem encrypted 并命名 softphone_pkey.pem</li>
+</ol>
+<p><strong>CS/PCS 签发</strong>（p391-402，c19 步骤 2-4）：</p>
+<ol>
+<li>根 CA 导出 .p7b 传 OXE /tmpd，转格式为 ca.p7</li>
+<li>PKCS#7 线：导入 OXE 的 CSR，Sign 后核验 SAN/CN，导出 .p7b</li>
+<li>PKCS#12 线：CA 侧造钥造证，SAN 手工填（内嵌 EGW 填角色/物理 IP；外部 EGW+NSP 再加 EEGW 与 NSP FQDN）</li>
+<li>导出 PKCS12 设口令，交部署端</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：没有企业 CA 时怎么给 OXE 签证书；XCA 怎么建根 CA；端点证书的 CN 和文件名；CSR 拿来怎么签；.p7b 转格式；PKCS#12 什么时候才用。</p>
+<p>语言信号：XCA / 根 CA / root CA / 自签 / End Entity / CSR 签发 / Sign / GW.pfx / softphone_cert / PKCS#12 / PKCS#7 / conv-proper-p7-format / crl2pkcs7 / 证书库。</p>
+<p>与相邻能力区分：OXE 侧的 CSR 生成与导入 → 证书与信任链能力；证书部署到端点与 mTLS 启用 → mTLS 能力；本卡只是签发侧工坊（CA 角色视角）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户 CA 归属（无 CA 或教学场景用 XCA）、实体清单（CN=MAC 或 FQDN 的对照表）。客户有自己的 CA → 判停优先用客户的（p381）。</p>
+<ol>
+<li>建库与根 CA：XCA 建库 → 造 4096 位根密钥 → 自签 CA 证书（SHA 256、CA 型）。完成标准：根 CA 导出成功</li>
+<li>CSR 线签发：收 OXE 的 CSR，Import、Sign、核验 subject/SAN 与请求一致后导出 .p7b。完成标准：证书可回交 OXE 导入</li>
+<li>端点实体：按台账逐台造钥造证（CN=MAC/FQDN、手工 SAN）→ 按命名约定导出。完成标准：GW.pfx/softphone 两个 pem 齐备</li>
+<li>格式转换：按 OXE 导入要求把根证书转 ca.p7（两种转换路径二选一）。完成标准：格式可被 11.9.1.4 接受</li>
+<li>交付：证书文件+口令走安全通道交部署端；台账记录序列号与有效期。完成标准：交付单闭环</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>端点证书的 SAN/CN 手工填错 → PKCS#12 线的风险本体（p397 Warning）：交付前用 XCA 核验面板逐字段对照台账</li>
+<li>客户 CA 有审批流程 → 签发排队在书外，按客户 CA 规程排期，不要按实验"秒签"节奏承诺</li>
+<li>XCA 软件安装本身的问题 → 通用 PC 操作，查其 Help（F1）与官网，不属于本卡</li>
+</ul>
+<p>输出契约：根 CA 与实体证书文件（按命名约定）+ 台账（CN/SAN/有效期/序列号）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>XCA 是教学替身：客户生产 CA 的结构（层级、策略、CRL/OCSP）与 XCA 不同构，输出物以客户 CA 规程为准</li>
+<li>PKCS#12 线私钥在 CA 生成后搬运——仅用于端点证书等 CSR 不可行场景，能走 PKCS#7 就不走 P12（n30）</li>
+<li>XCA 软件安装与数据库创建属通用 PC 操作（p335-337/p381-385），本卡不展开</li>
+<li>实验库口令与 MAC 值为实验口径，生产全部替换并纳入客户密钥管理</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.enc.pki-workshop-xca · 来源：ENTPXTE421EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — Native Encryption (Participant's Guide, Edition 05) | edition: Edition 05 | pages: 410 页 -->

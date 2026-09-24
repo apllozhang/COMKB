@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>CCS 安装与实验环境定稿</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced</h2><p>Edition  · 597 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte101en/index.html">课程首页</a><a href="/courses/otccxte101en/digest.html">精华长文</a><a href="/courses/otccxte101en/overview.html">教书理解</a><a href="/courses/otccxte101en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte101en/skills/otcad-ism-skill-matching.html">ISM 技能匹配与排序口径</a><a href="/courses/otccxte101en/skills/otcad-remote-pg-mutual-aid.html">Remote PG 分布式互助与 ABC-F 链路</a><a href="/courses/otccxte101en/skills/otcad-spm-deployment.html">Soft Panel Manager 部署与基础设置</a><a href="/courses/otccxte101en/skills/otcad-soft-panel-manager.html">Soft Panel 可视化配置（视图/挂件/消息/告警）</a><a href="/courses/otccxte101en/skills/otcad-ccta-ticket-analysis.html">CCTA 话务票据分析</a><a href="/courses/otccxte101en/skills/otcad-special-features.html">特殊功能开关（优先转接/忙音/代接/监听/永恒整理/中继预留）</a><a href="/courses/otccxte101en/skills/otcad-excel-report-customization.html">Excel 报表模板定制</a><a href="/courses/otccxte101en/skills/otcad-ccs-server.html">CCS Server 集中接入</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte101en/skills/otcad-acr-objects.html">ACR 对象与技能体系</a><a href="/courses/otccxte101en/skills/otcad-asm-script-advanced.html">ASM 脚本与 LCA 主干</a><a href="/courses/otccxte101en/skills/otcad-ccs-onboarding.html">CCS 安装与实验环境定稿</a><a href="/courses/otccxte101en/skills/otcad-acd-maintenance.html">ACD 维护命令箱</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte101en/index.html">otcc-standard-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte101en/index.html">OTCCXTE101EN</a><span>/</span><span aria-current="page">CCS 安装与实验环境定稿</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>CCS 安装与实验环境定稿</h1></div><dl><div><dt>Skill ID</dt><dd>otcad-ccs-onboarding</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>CCS 安装与实验环境定稿（CCsupervision 安装、OXE 声明、POD 定稿）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"On Feature level window, select Full for a full CCS version installation. … On Feature level license window, select Monosite. … On Setup type window, select Windows standalone"（p42-43）
+"The CCS application needs to write the updated values in the file ccs.ini file (call server IP address). So you must restart the CCS"（p45）
+"Registration ID pbxN (where N is your POD number) … First external number 33210N41000 … First internal number 31000 … Range Size 1000"（p56-57）</p>
+</blockquote>
+<p>出处：OTCCXTE101EN p3-62。</p>
+<h2>I — 自述</h2>
+<p>CCS 落地与环境定稿的主干三段：</p>
+<p><strong>CCS 安装八步</strong>：NAS 拷软件 &gt; 解压（More info，Run anyway）&gt; CCS.msi 向导（License 接受、目录默认、Feature level=Full、许可=Monosite、Excel=Yes、
+界面语言、Windows standalone、登出实时信息=Yes、ASM Script Editor=No、ccs.ini 合并 OK、Finish）。
+首次登录 administrator/alcatel 强制改密（大写+数字+特殊字符，实验口径 Superuser01*）。</p>
+<p><strong>声明 OXE</strong>：Window &gt; Customise… &gt; Network &gt; node1 &gt; Modify &gt; Direct access：勾 Connected at start up 与 Direct connection，
+Master PABX name 填 Call Server IP &gt; OK &gt; Yes &gt; 提示重启 &gt; 关闭 CCS 再启动。
+ccs.ini 是配置落盘文件，改完不重启不生效。验证：Real time &gt; Navigator 打开 CCD 矩阵全景。</p>
+<p><strong>POD 定稿四件套</strong>（实验口径）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>路径</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>软话机上线</td>
+<td>Client10 启动 MicroSIP-31010/31011/Public</td>
+<td>SIP 密码 123456；Public 选 Public POD X profile</td>
+</tr>
+<tr>
+<td>坐席登录</td>
+<td>IPDSP 注册 31000+个人码 0000 后 LogOn</td>
+<td>31500 自助型点 List 选组；31501 非自助型直输坐席号</td>
+</tr>
+<tr>
+<td>外部 SIP 网关</td>
+<td>WBM SIP &gt; SIP Ext. Gateway</td>
+<td>Registration ID=pbxN、Outgoing username=pbxN</td>
+</tr>
+<tr>
+<td>DID 翻译</td>
+<td>Translator &gt; External Numbering Plan &gt; Default DID num. translator</td>
+<td>首外号 33210N41000、首内号 31000、范围 1000</td>
+</tr>
+</tbody>
+</table></div>
+<p>验证：Public 软话机拨 0210X41600/0210X41601（X=POD 号），坐席接听挂机后自动 wrap-up 即通过；嵌套 RDP（PC10 会话内再连 PC11）远程音频须设"在本机播放/录音"（n42）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>从空 PC 到呼入全通</strong>（p39-62）：</p>
+<ol>
+<li>Client10（192.168.1.10）从 NAS 拷 CCS 软件并按八步装完</li>
+<li>首登 administrator/alcatel，按安全规则强制改密后用新密码重登</li>
+<li>声明 OXE：Customise &gt; Network 填 Master PABX=192.168.1.3，重启 CCS</li>
+<li>Navigator 打开确认看到 CCD 矩阵全景（p47 验收句）</li>
+<li>核对用户与机架：31010/31011 在册、主/远端 OMS 在役</li>
+<li>MicroSIP 三实例与 IPDSP 上线，两坐席分别登录 Agent_PG</li>
+<li>配外部 SIP 网关（pbxN）与 DID 翻译（33210N41000/31000/1000）</li>
+<li>外呼入测试 0210X41600/0210X41601、内呼 31600/31601，挂机后自动 wrap-up 通过</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新客户端装 CCS；CCS 连不上 OXE；坐席软话机登录；外部 SIP 网关注册与 DID 翻译；实验/演示环境从零定稿。</p>
+<p>语言信号：CCS 安装 / CCsupervision / Monosite / ccs.ini / 声明 OXE / Navigator / Master PABX / POD / MicroSIP / IPDSP / LogOn / SIP Ext. Gateway / pbxN / DID 翻译 / 33210N41000 / wrap-up。</p>
+<p>与相邻能力区分：多客户端集中接入与 CCS Server 转 CCS Server 卡；ACR/技能对象配置转 ACR 对象卡（路由卡）；RLAB 虚机与拓扑背景转 book/overview 环境区。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：Windows 客户端与 OXE 网络可达、安装介质（NAS/软件包）、Call Server IP、坐席与分机规划。</p>
+<ol>
+<li>装 CCS（八步向导，ASM Script Editor 组件按需）。完成标准：桌面入口可用</li>
+<li>首登改密并重新登录。完成标准：新密码可用</li>
+<li>声明 OXE 并重启 CCS。完成标准：Navigator 显示矩阵全景</li>
+<li>软话机上线与坐席登录。完成标准：坐席状态在 CCS 可见</li>
+<li>配外部 SIP 网关与 DID 翻译。完成标准：外呼环回与呼入测试全通</li>
+<li>嵌套 RDP 时设置远程音频指向本机。完成标准：坐席软话机有音频（n42）</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>改了 Call Server IP 连不上 → 停，先查是否重启了 CCS（ccs.ini 不重启不生效，n02）</li>
+<li>首连后每次弹证书/密码告警类问题 → 停，按安装章安全规则处理；实验口令绝不带进生产（n01）</li>
+<li>呼入不通 → 停，按"网关注册 pbxN &gt; DID 翻译三参数 &gt; 呼叫测试号码"顺序逐段核对</li>
+<li>需要多客户端集中接入 → 停，转 CCS Server 卡（容量与强制条件在那里）</li>
+</ul>
+<p>输出契约：可用的 CCS（已声明 OXE）+ 环境定稿核对单（用户/话机/坐席/网关/DID）+ 呼入测试记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>全部地址、账号、口令、号码为实验口径（RLAB POD 专属），生产必须整体替换并做安全加固（n01）</li>
+<li>教材默认学员已完成 Standard 基础课程：CCD 矩阵基础概念本书不作入门讲解（BOOK_OVERVIEW 批判）</li>
+<li>SIP 模拟器号码规则（3321PN 系列）为教学约定，生产按运营商中继号规划（p19）</li>
+<li>CCS 版本基线与浏览器支持随版本演进（Ed07 口径 V10.2.92.0+）；安装选项以当期安装介质为准</li>
+<li>Console mode 无音频（Guacamole 管理通道），软话机音频必须走 RDP（p13）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte101en/skills/otcad-acr-objects.html">ACR 对象与技能体系</a></p><p class="source-page">能力 ID：cap.otcad.ccs-onboarding · 来源：OTCCXTE101EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition - Advanced (Participant's Guide, Edition 07) | edition: Edition  | pages: 597 页 -->

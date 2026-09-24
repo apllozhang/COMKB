@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>硬件平台与容量</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OXO Connect · Starter</h2><p>Edition 16 · 472 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte300en/index.html">课程首页</a><a href="/courses/oxocxte300en/digest.html">精华长文</a><a href="/courses/oxocxte300en/overview.html">教书理解</a><a href="/courses/oxocxte300en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte300en/skills/oxos-data-collection.html">交付前数据采集</a><a href="/courses/oxocxte300en/skills/oxos-commissioning.html">系统开通双路线与首次连接</a><a href="/courses/oxocxte300en/skills/oxos-terminals.html">终端开通（IP 话机与 DECT）</a><a href="/courses/oxocxte300en/skills/oxos-numbering-groups.html">编号计划与四种组</a><a href="/courses/oxocxte300en/skills/oxos-user-features.html">用户功能与语音信箱</a><a href="/courses/oxocxte300en/skills/oxos-sip-trunk.html">公共 SIP 中继</a><a href="/courses/oxocxte300en/skills/oxos-incoming-barring.html">呼入分发与呼出闭锁</a><a href="/courses/oxocxte300en/skills/oxos-maintenance.html">备份恢复、软件升级与复位</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte300en/skills/oxos-hardware-platform.html">硬件平台与容量</a><a href="/courses/oxocxte300en/skills/oxos-audio-messages.html">消息与彩铃</a><a href="/courses/oxocxte300en/skills/oxos-security.html">安全基线与防盗打</a><a href="/courses/oxocxte300en/skills/oxos-rainbow-integration.html">Rainbow 混合云接入速览</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte300en/index.html">oxo-connect-starter（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte300en/index.html">OXOCXTE300EN</a><span>/</span><span aria-current="page">硬件平台与容量</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>硬件平台与容量</h1></div><dl><div><dt>Skill ID</dt><dd>oxos-hardware-platform</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>硬件平台与容量（产品家族 / IPBox / PowerCPU EE / 扩容边界）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"OXO Connect is a phone system for Enterprises and Hotels with up to 300 users"（p24）
+"2 Ethernet ports ETH0: LAN &amp; POE ETH1: For Instant Management access on site (DHCP , DNS)"（p31）
+"The maximum number of DSP channels is extended from 60 to 76 when using the Armada 64"（p37）
+"Up to 3 racks can be interconnected using HSL links • The maximum length between the master rack and the extension rack is 5 meters"（p42）</p>
+</blockquote>
+<p>出处：OXOCXTE300EN p23-42（产品与硬件讲义），p431-438（板卡附注与启动停机）。</p>
+<h2>I — 自述</h2>
+<p>硬件认知四件事：</p>
+<ul>
+<li>产品家族：OCE（IPBox，纯 IP）与 Compact/Small/Large（PowerCPU EE 机箱，混合 TDM/IP），定位 ≤300 用户企业与酒店；证书认证 RSA 2048/4096 位</li>
+<li>IPBox 接口：ETH0=LAN+PoE 供电、ETH1=现场即时管理口（固定 192.168.94.246、自带 DHCP/DNS）；桌面/壁挂/机架（半宽 19 英寸 1U）；背面 SD 卡槽作备份选件；零接触部署前提 OmniSwitch 侧开 PoE</li>
+<li>PowerCPU EE：MPC8377 @800MHz、DDR2 512MB、16 VoIP 资源起步；子板 AFU-1/HSL1/HSL2/Mini-Mix/Armada 32/64；DSP 通道四档——无子板 16、+Armada32=48、+Armada64=60 多编解码或 30 G711/G729+46 G711 共 76；MSDB 子板默认 8GB eMMC 承载数据</li>
+<li>扩容与启停：最多 3 机柜经 HSL 互连（主柜到扩展柜最大 5 米，非以太网）；启动八步监控（顺序 HSL2、HSL1、主柜、VMU），停机 LED 红闪/红常亮</li>
+</ul>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>形态</th>
+<th>承载</th>
+<th>话音扩容</th>
+<th>机柜扩展</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OCE（IPBox）</td>
+<td>纯 IP，PoE</td>
+<td>SD 卡备份选件；SIP 并发 120</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>Compact/Small/Large</td>
+<td>PowerCPU EE 混合</td>
+<td>子板扩 DSP 至 76</td>
+<td>最多 3 机柜 HSL</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>选型与容量素材</strong>（p24-42 讲义，无实验——认知章）：</p>
+<ol>
+<li>客户 ≤300 用户、要混合 TDM/IP → PowerCPU EE 三档按机箱形态选</li>
+<li>纯 IP、小容量、要 FTR 上云 → OCE（IPBox）</li>
+<li>SIP 并发不够 → 装/换 Armada 64（76 通道口径，前身 R2.0 为 60、OXO R10.3 为 48）</li>
+<li>板卡槽位：SLI16/DDI2/DDI4 无限制，APA8/MIX/AMIX/UAI-16 有限制（p431-435 附注）</li>
+<li>启动观测：面板步骤号对应检测/初始化阶段，卡步定位机柜（p437）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：售前沟通硬件形态；估算 SIP/话音并发；扩展机柜布线；ETH1 用途疑问；开机卡住看面板；换 CPU 板评估。</p>
+<p>语言信号：IPBox / OCE / PowerCPU EE / Compact / Armada / DSP 通道 / HSL / PowerMEX / ETH0 / ETH1 / 机柜 / eMMC / MSDB / 启动 / 300 用户。</p>
+<p>与相邻能力区分：硬件到位后的开通 → 开通能力；WebRTC 网关拓扑与硬件适配 → Rainbow 集成卡。本能力为认知与选型参考，无独立施工。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：用户数、话音形态（纯 IP/混合）、并发估算、机房条件。需求超出 300 用户 → 判停转更大产品线（书外）。</p>
+<ol>
+<li>定形态：纯 IP 小容量选 OCE；混合或要机柜扩展选 PowerCPU EE。完成标准：形态与依据成文</li>
+<li>核并发：按编解码配比查 DSP 通道档，SIP 并发对照 IPBox 120/PowerCPU+Armada 76（默认 16）。完成标准：并发余量确认</li>
+<li>核机房：PoE 交换机（零接触/IPBox 供电）、HSL 走线 ≤5 米。完成标准：布线条件满足</li>
+<li>交付观测口径：启动八步与 LED 语义交运维保。完成标准：验收单含观测点</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户要求 OCE 上扩机柜 → 不支持，改 PowerCPU EE 平台</li>
+<li>主柜到扩展柜超 5 米 → 改机房布局，HSL 不是以太网不能加长</li>
+<li>并发需求超 76/120 → 超出本书平台范围，转产品线方案</li>
+</ul>
+<p>输出契约：硬件形态与容量备忘（平台/子板/通道/机柜数）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>报价与商用许可以 ALE 渠道为准，书内只给结构不给价目（BOOK_OVERVIEW 决议）</li>
+<li>RLAB/ITSP1 实验环境细节为教学基础设施，不随本卡交付（verified f02/f04 为 reference）</li>
+<li>换 CPU 的 eMMC 移植与许可重生成口径见维护卡 Boundary</li>
+<li>板卡缩写书内未逐词展开，完整规格以最新硬件文档为准</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.oxos.hardware-platform · 来源：OXOCXTE300EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OXO Connect Starter (Participant's Guide, Edition 16) | edition: Edition 16 | pages: 472 页 -->

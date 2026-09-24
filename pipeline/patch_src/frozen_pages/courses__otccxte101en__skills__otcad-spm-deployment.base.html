@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Soft Panel Manager 部署与基础设置</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced</h2><p>Edition  · 597 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte101en/index.html">课程首页</a><a href="/courses/otccxte101en/digest.html">精华长文</a><a href="/courses/otccxte101en/overview.html">教书理解</a><a href="/courses/otccxte101en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte101en/skills/otcad-ism-skill-matching.html">ISM 技能匹配与排序口径</a><a href="/courses/otccxte101en/skills/otcad-remote-pg-mutual-aid.html">Remote PG 分布式互助与 ABC-F 链路</a><a href="/courses/otccxte101en/skills/otcad-spm-deployment.html">Soft Panel Manager 部署与基础设置</a><a href="/courses/otccxte101en/skills/otcad-soft-panel-manager.html">Soft Panel 可视化配置（视图/挂件/消息/告警）</a><a href="/courses/otccxte101en/skills/otcad-ccta-ticket-analysis.html">CCTA 话务票据分析</a><a href="/courses/otccxte101en/skills/otcad-special-features.html">特殊功能开关（优先转接/忙音/代接/监听/永恒整理/中继预留）</a><a href="/courses/otccxte101en/skills/otcad-excel-report-customization.html">Excel 报表模板定制</a><a href="/courses/otccxte101en/skills/otcad-ccs-server.html">CCS Server 集中接入</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte101en/skills/otcad-acr-objects.html">ACR 对象与技能体系</a><a href="/courses/otccxte101en/skills/otcad-asm-script-advanced.html">ASM 脚本与 LCA 主干</a><a href="/courses/otccxte101en/skills/otcad-ccs-onboarding.html">CCS 安装与实验环境定稿</a><a href="/courses/otccxte101en/skills/otcad-acd-maintenance.html">ACD 维护命令箱</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte101en/index.html">otcc-standard-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte101en/index.html">OTCCXTE101EN</a><span>/</span><span aria-current="page">Soft Panel Manager 部署与基础设置</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Soft Panel Manager 部署与基础设置</h1></div><dl><div><dt>Skill ID</dt><dd>otcad-spm-deployment</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>Soft Panel Manager 部署（SPM 服务器、RTI Connector、FlexLM、基础设置与日统计）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Install the Soft Panel Manager server • Launch ccdSoftpanel_setupx.x.x.x.exe … Install the RTI Connector application … Install the FlexLM server • Launch the installation file: ALE-FLEXlmServer-11.15.exe"（p389-390）
+"WHEN CCS AND RTI CONNECTOR ARE INSTALLED ON THE SAME PHYSICAL SERVER, THE CCS MUST BE DEDICATED TO THE RTI CONNECTOR. YOU MUST NOT START THE CCS MANUALLY IF THE RTI CONNECTOR IS RUNNING."（p405）
+"afe.sites OXE main CPU address … These statistics are retrieved every 15 minutes and reset to 0 at 00h00. This time can't be reduced"（p416-417）</p>
+</blockquote>
+<p>出处：OTCCXTE101EN p371-417。</p>
+<h2>I — 自述</h2>
+<p>SPM 是独立于 CCS 的实时统计上墙方案，数据链为：OXE CCD &gt; CCS &gt; RTI Connector（Windows 服务）&gt; SPM 服务器（Tomcat，wbm 应用，默认端口 9060）&gt; 墙板/液晶/Panel PC 显示 + 邮件告警。部署三件套缺一不可：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>形态</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPM 服务器</td>
+<td>ccdSoftpanel_setup，Tomcat 9060</td>
+<td>装后核 SoftPanelServer 服务自启；wbm 登录 admin/admin（实验口径）</td>
+</tr>
+<tr>
+<td>RTI Connector</td>
+<td>RTIConnector 安装器，装为服务</td>
+<td>前提：同机 CCS 已装且配好 OXE 连接；断连每 5 秒重试；启动即全量拉取 CCD 对象</td>
+</tr>
+<tr>
+<td>FlexLM 服务器</td>
+<td>ALE-FLEXlmServer + softpanel.lic</td>
+<td>LMTOOLS 验证 Start Server 与 Status Enquiry；许可全程在线校验</td>
+</tr>
+</tbody>
+</table></div>
+<p>独享服务器门槛（任一命中建议独享，p386）：统计+计算数据 &gt;500、同时管理用户 &gt;5、面板（硬+软）&gt;10。最低配置 2.4 GHz 双核/4 GB 内存/50 GB 磁盘。</p>
+<p>Settings 四区与日统计：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>配置区</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>General</td>
+<td>服务器 IP；Tomcat 端口装后不可改</td>
+</tr>
+<tr>
+<td>License Server</td>
+<td>FlexLM 主机默认 localhost、端口默认 27000</td>
+</tr>
+<tr>
+<td>Mail Configuration</td>
+<td>SMTP+发件凭据，可发测试邮件（告警邮件的前提）</td>
+</tr>
+<tr>
+<td>CCD Filters</td>
+<td>统计可用性总开关，勾选后必须 Save；AgentWidget 依赖 ServiceState/PhoneStat/StateDuration 三统计</td>
+</tr>
+</tbody>
+</table></div>
+<p>日统计：编辑 afe.properties（afe.sites=OXE 主 CPU 地址、afe.pilots 留空=全部），每 15 分钟取一次（不可更快），取数在每刻后 2 分钟，0 点清零，结果在 Real Time Data &gt; Statistics &gt; Ccd Consolidated。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>三件套安装</strong>（p396-417，装在实验 Client11，192.168.1.11）：</p>
+<ol>
+<li>前置：Client11 的 CCS 改指本地节点 Master PABX=192.168.1.3 并重登，核对后关闭 CCS</li>
+<li>装 SPM 服务器：运行 ccdSoftpanel_setup，端口 9060，装后核服务自启，Chrome 开 http://localhost:9060/wbm 登录</li>
+<li>核 OXE 侧 RTI 许可：mtcl 下 adm_acd option 15 或 spadmin，确认 103 号包（WBI Licence）</li>
+<li>装 RTI Connector：运行安装器，填 SPM 服务器 IP 192.168.1.11，核服务自动启动</li>
+<li>装 FlexLM：softpanel.lic 放 C:\FLEXlmServer\License，LMTOOLS 点 Start Server 后 Perform Status Enquiry</li>
+<li>基础设置：Settings 四区逐项配，CCD Filters 两页全勾后 Save</li>
+<li>日统计：afe.properties 填 afe.sites=192.168.1.3，核对 Ccd Consolidated 出现 S(站点)<em>(Pilot)_daily</em>* 统计</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户要上实时看板；SPM 装完统计不动；墙板数值冻结；要出日统计报表；评估要不要独享服务器。</p>
+<p>语言信号：Soft Panel Manager / SPM / RTI Connector / FlexLM / LMTOOLS / 9060 / 61618 / wbm / CCD Filters / afe.properties / 日统计 / daily / 订阅 / 独享服务器 / 103 号包 / WBI。</p>
+<p>与相邻能力区分：装好之后的视图/挂件/告警配置转 Soft Panel 可视化配置卡；CCS 本体安装转 CCS 安装与实验环境卡（路由卡）；许可采购属书外商务流程。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：一台 Windows（10 64 位或 Server 2016/2019/2022）、CCS 已装且能连 OXE、softpanel.lic 许可文件在手。许可缺位 → 停，先走授权渠道，不虚构。</p>
+<ol>
+<li>核 OXE 侧 RTI 许可（103 号包）：spadmin 或 adm_acd option 15。完成标准：包存在且有效</li>
+<li>装 SPM 服务器并核服务自启，wbm 登录成功。完成标准：浏览器可开 http://&lt;服务器&gt;:9060/wbm</li>
+<li>装 RTI Connector 并核服务自启；同机时确认 CCS 专用于 RTI。完成标准：SPM 能看到全量 CCD 对象</li>
+<li>装 FlexLM 并导入许可，LMTOOLS 状态查询正常。完成标准：Status Enquiry 返回许可信息</li>
+<li>Settings 四区配置（邮件 + CCD Filters 勾选后 Save）。完成标准：目标统计在挂件/告警中可选</li>
+<li>需要日统计时改 afe.properties 并核对 Ccd Consolidated。完成标准：S(站点)<em>(Pilot)_daily</em>* 出现</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>墙板数值全部冻结且界面有告警横幅 → 停，先查许可（LMTOOLS/Check license），不要重启 RTI Connector（n23）</li>
+<li>新配挂件第一分钟数值不动 → 停，统计按需订阅最多 1 分钟生效，先制造话务再等满 1 分钟（n22）</li>
+<li>客户统计+面板规模超门槛 → 停，按 500/5/10 三条件评估独享服务器，别挤在 CCS 机上</li>
+</ul>
+<p>输出契约：三服务运行记录 + 许可校验记录 + Settings/过滤器配置清单 +（可选）日统计对账口径。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>全部实验地址（192.168.1.11/192.168.1.3）与口令（admin/admin）为实验口径；生产必须替换并按安全基线加固（n01）</li>
+<li>SPM 服务器不支持装防火墙、管理浏览器不支持代理；端口放行 9060 与 61618（p387）；61618 与配置示例 61668 是两个角色，见 nr-06</li>
+<li>订阅统计 ≤500、并发连接 ≤150、面板+墙板 ≤200（p394）；AFE 统计不支持空间冗余</li>
+<li>RTIConnector.ini 的 WBMHost/WBMPortNum 示例值为文档示例环境，非实验 POD 值（p391）</li>
+<li>CCS 版本基线 V10.2.92.0+、浏览器基线 120（p387）随 Edition 迭代，实施前复核发布说明</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte101en/skills/otcad-soft-panel-manager.html">Soft Panel 可视化配置（视图/挂件/消息/告警）</a></p><p class="source-page">能力 ID：cap.otcad.spm-deployment · 来源：OTCCXTE101EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition - Advanced (Participant's Guide, Edition 07) | edition: Edition  | pages: 597 页 -->

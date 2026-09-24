@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OXE 多版本加载、分区切换与静态/动态补丁管理</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 系统装载</h2><p>Edition 12 · 415 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte402en/index.html">课程首页</a><a href="/courses/entpxte402en/digest.html">精华长文</a><a href="/courses/entpxte402en/overview.html">教书理解</a><a href="/courses/entpxte402en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte402en/skills/entload-sot-installation.html">S.O.T. 部署工具的安装、初始化、更新与 Template Factory</a><a href="/courses/entpxte402en/skills/entload-cs-loading.html">OXE 呼叫服务器单版本全加载与加载后初始化</a><a href="/courses/entpxte402en/skills/entload-patch-management.html">OXE 多版本加载、分区切换与静态/动态补丁管理</a><a href="/courses/entpxte402en/skills/entload-oxe-v-deployment.html">OXE-V 虚拟化：平台选型、许可路径与 OXE/OMS 虚机交付</a><a href="/courses/entpxte402en/skills/entload-gas-delivery.html">GAS 通用设备服务器：硬件前置、软件加载与后安装向导</a><a href="/courses/entpxte402en/skills/entload-cloud-connect.html">Cloud Connect 云连接：网络前提、FTR 首次注册与 PIN 恢复</a><a href="/courses/entpxte402en/skills/entload-rtr-licensing.html">RTR 许可开关：资格期状态机、事件监控与 FlexLM 互斥</a><a href="/courses/entpxte402en/skills/entload-pod-licensing.html">OPEX / Purple on Demand：订阅许可、LMS 同步、panic 时间线与 C2P 转换</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte402en/skills/entload-distributor-loading.html">Easy Installation 分发器模式：无 SOT 环境的本地加载</a><a href="/courses/entpxte402en/skills/entload-sot-media.html">SOT 媒体传输与加载项目配置（公共动作）</a><a href="/courses/entpxte402en/skills/entload-gas-ops.html">GAS 日常运维：版本、备份、host 升级与 UPS</a><a href="/courses/entpxte402en/skills/entload-fleet-dashboard.html">Fleet Dashboard 云端机队服务：Inventory、Offer、远程控制台与软件更新</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte402en/index.html">oxe-loading（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte402en/index.html">ENTPXTE402EN</a><span>/</span><span aria-current="page">OXE 多版本加载、分区切换与静态/动态补丁管理</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OXE 多版本加载、分区切换与静态/动态补丁管理</h1></div><dl><div><dt>Skill ID</dt><dd>entload-patch-management</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OXE 多版本加载、分区切换与静态/动态补丁管理</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Static patch: • They can only be installed with the phone shut down or when installation is on the inactive partition ... Dynamic patch: • They can be installed on the active or inactive partition with the phone running"（p65）
+"A patch (static or dynamic) includes all of the previous patch corrections • The patch N420536 includes the patches 1 to 36 corrections"（p66）
+"STATIC PATCH INSTALLATION ON ACTIVE PARTITION REQUIRES TO STOP THE TELEPHONE APPLICATION. SO, SYSTEM IS REBOOTED AUTOMATICALLY"（p104）
+"N: Product line ... 205: Software version 36: Static patch # a: Dynamic patch identification N420536a"（p53）</p>
+</blockquote>
+<p>出处：ENTPXTE402EN p50-110、p93-99（多版本 How-To）。</p>
+<h2>I — 自述</h2>
+<p>双分区是 OXE 升级的安全模型：同一块盘同时驻留两个版本（active/inactive），装第二条版本不打断话音，"切换"才重启，出问题可回退。多版本两分支：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>分支</th>
+<th>适用</th>
+<th>步骤</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>复制+补丁</td>
+<td>基础版本相同</td>
+<td>active 整体复制到 inactive → 在 inactive 装补丁 → 切换</td>
+<td>N4.205.19 改 N4.205.36a</td>
+</tr>
+<tr>
+<td>完整加载+数据复制</td>
+<td>跨 Linux 版本</td>
+<td>inactive 装完整新版本，复制 OXE/Linux 数据，自动重启切换，按需装新 OPS</td>
+<td>N3.521.12 改 N4.205.36a</td>
+</tr>
+</tbody>
+</table></div>
+<p>版本命名三套互相咬合：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>命名对象</th>
+<th>格式</th>
+<th>读法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>软件发布名</td>
+<td>N420536a</td>
+<td>N=产品线（R100 系）、4=线内选项（R101.1）、205=软件版本、36=静态补丁号、a=动态补丁标识</td>
+</tr>
+<tr>
+<td>SOT 媒体名</td>
+<td>ISO=A.B.XXX.000 / zip=A.B.XXX.YYY</td>
+<td>XXX 为所基于 ISO 序号，YYY 为 zip 序号</td>
+</tr>
+<tr>
+<td>siteid 全串</td>
+<td>R101.1-n4.205-36-a-fr-c83</td>
+<td>业务标识-交付-静态补丁-动态补丁-国家-CPU 类型</td>
+</tr>
+</tbody>
+</table></div>
+<p>补丁顺序律四条：</p>
+<ol>
+<li>静态补丁只能停话音装（active 分区，装完自动重启）或装在 inactive 分区，且必须在对应完整版本之后</li>
+<li>动态补丁可热装（active/inactive 皆可、不打扰运行），但必须排在同版本静态补丁之后</li>
+<li>补丁累积包含此前全部修正——装最新即得全部</li>
+<li>文件形态：zip 通常一包一补丁（静/动分两次装）；iso 可静+动同装一次完成</li>
+</ol>
+<p>SOT 多版本项目关键字段：</p>
+<ul>
+<li>Update on inactive partition（勾）；Duplicate OXE Data / Duplicate Linux data（自动复制）</li>
+<li>Switch partition after update installation；Switch time（定时切换）；Switch back（按天回切）；Use a clean inactive partition</li>
+</ul>
+<p>手工等价路径在 swinst：2-3-2 分区复制（5 Duplicate all 最常用）、2-3-3 切换；swinst 8-2 查两分区版本（0=active、1=inactive）。切换后首次进 swinst 必须输国家码。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>补丁双场景实验</strong>（p100-110，How-To）：</p>
+<ol>
+<li>声明补丁媒体（zip 或 iso）到 SOT 本地存储</li>
+<li>siteid 查当前版本（实验起点：patch 0、Linux 601.007）</li>
+<li>场景 A 装 active：项目 update 不勾 inactive 分区，静态补丁触发自动重启</li>
+<li>completed 后 siteid 复核（实验：静态补丁 19 后 Linux 601.012）</li>
+<li>场景 B 装 inactive：先 swinst 2-3-2-5 Duplicate all，ver2cho visible 与 df -v 核对两分区一致</li>
+<li>SOT update 勾 Update on inactive partition，按需设 Switch time 与 Switch back</li>
+<li>切换后 siteid 复核（实验：Linux 601.017、Patch version 36）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：升级不停机怎么做；打补丁要不要停机窗口；回退老版本；多版本怎么装；补丁顺序报错；动态补丁装完话机行为没变。</p>
+<p>语言信号：多版本 / multi version / inactive partition / active partition / Duplicate all / Switch partition / Switch time / Switch back / 静态补丁 / dynamic patch / N420536 / siteid / downstat / 回退 / rollback。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>首次装系统 → CS 加载卡</li>
+<li>无 SOT 环境的替代路径 → 分发器模式卡（路由）</li>
+<li>版本迁移低于 N3 → 本卡 Boundary</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：当前版本（siteid）、目标版本/补丁号、维护窗口（静态补丁必给）、SOT 与媒体就绪。跨 Linux 大版本 → 走分支二并预留数据复制时间。</p>
+<ol>
+<li>查版本：siteid 或 mtcl 登录横幅确认当前补丁号。完成标准：起点版本明确</li>
+<li>选分支：同基础版本选复制+补丁；跨 Linux 选完整加载+数据复制。完成标准：分支判据成文</li>
+<li>场景 A（active）：项目 update 不勾 inactive，静态补丁排停机窗口。完成标准：completed 且 siteid 推进</li>
+<li>场景 B（inactive）：先 Duplicate all 复制，ver2cho/df -v 核对一致。完成标准：两分区一致</li>
+<li>装 inactive 补丁/版本：勾 Update on inactive partition，按需设 Switch time/Switch back。完成标准：completed、未影响话音</li>
+<li>切换与复核：按计划切换重启，swinst 首进输国家码，siteid 核对。完成标准：目标版本生效</li>
+<li>动态补丁收尾：downstat d（板卡）/ i（IP 话机）/ t（40x9 话机）跟完下载。完成标准：无待下载对象</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>动态补丁报"版本不存在或静态缺失" → 停，先装同版本静态补丁再装动态（顺序律）</li>
+<li>Duplicate all 失败 → 停，退回"对 inactive 做完整版本加载"的备用路径（p106 Warning）</li>
+<li>客户要求回退 → 提示板卡可能已拿新二进制，回退要再下载一轮，排窗口</li>
+<li>来源版本低于 N3 → 停，多版本机制不可用，按 TC3104en-Ed08 重格式化迁移</li>
+</ul>
+<p>输出契约：双版本在盘、补丁链正确、siteid 可验的升级记录（含切换时间与回退预案）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>N3 以下迁移硬规则：必须重格式化、盘 ≥80GB、RAM ≥1GB、/root 与 /root2_d ≥3.5GB、多版本与切换整体不可用（p78）</li>
+<li>切换期间板卡可能接收新版本二进制——回退不是零成本瞬时操作（p72）</li>
+<li>补丁加载最多两步：step 1 全系统公共文件、step 2 国家相关文件（p66）</li>
+<li>实验口径：补丁链 0→19→36（Linux 601.007/601.012/601.017）为演示值，现场以实际补丁包为准</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte402en/skills/entload-cs-loading.html">OXE 呼叫服务器单版本全加载与加载后初始化</a></p><p class="source-page">能力 ID：cap.entload.patch-management · 来源：ENTPXTE402EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — 系统装载 (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 415 页 -->

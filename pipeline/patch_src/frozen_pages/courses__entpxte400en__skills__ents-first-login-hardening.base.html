@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OXE 首登加固（四账户与密码治理）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Starter</h2><p>Edition 12 · 821 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte400en/index.html">课程首页</a><a href="/courses/entpxte400en/digest.html">精华长文</a><a href="/courses/entpxte400en/overview.html">教书理解</a><a href="/courses/entpxte400en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte400en/skills/ents-first-login-hardening.html">OXE 首登加固（四账户与密码治理）</a><a href="/courses/entpxte400en/skills/ents-cs-network-firewall.html">Call Server IP 寻址与内部防火墙</a><a href="/courses/entpxte400en/skills/ents-db-license.html">空数据库创建与 OPS 许可管理</a><a href="/courses/entpxte400en/skills/ents-media-gateway-deployment.html">媒体网关上架（GD4/OMS/XL）</a><a href="/courses/entpxte400en/skills/ents-user-terminal-provisioning.html">用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）</a><a href="/courses/entpxte400en/skills/ents-numbering-cos.html">编号计划与 COS 管理</a><a href="/courses/entpxte400en/skills/ents-call-processing.html">呼叫处理业务域（语音指南/话务台/Entity/计时器）</a><a href="/courses/entpxte400en/skills/ents-sip-trunk.html">公共 SIP 中继开通与弹性</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte400en/skills/ents-system-start-stop.html">OXE 系统启停与 autostart 管理</a><a href="/courses/entpxte400en/skills/ents-time-sync.html">OXE 时间同步（NTP/chrony）</a><a href="/courses/entpxte400en/skills/ents-voicemail-4645.html">OmniMessage 4645 语音邮件与邮件通知</a><a href="/courses/entpxte400en/skills/ents-barring-emergency.html">外呼闭锁与紧急呼叫通知</a><a href="/courses/entpxte400en/skills/ents-backup-maintenance.html">数据库备份恢复与维护排障工具箱</a><a href="/courses/entpxte400en/skills/ents-legacy-trunks-umc.html">传统中继（T0/T2）与 UMC 云管理</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte400en/index.html">oxe-starter（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte400en/index.html">ENTPXTE400EN</a><span>/</span><span aria-current="page">OXE 首登加固（四账户与密码治理）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OXE 首登加固（四账户与密码治理）</h1></div><dl><div><dt>Skill ID</dt><dd>ents-first-login-hardening</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OXE 首登加固（四账户、密码策略、失败锁定与老化）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"4 accounts can be used on the OXE: • mtcl: maintenance account … • swinst: 'Facilities' account … • root: Administrator account, expert maintenance … • client: Account with basic access • Disabled by default"（p88）
+"Direct access (by login request) to the root account can only be performed on the console port."（p90）
+"Password string must have a minimum of 14 characters … Possible values of unsuccessful attempt before locking an account • 3 &lt;= Number of unsuccessful attempts &lt;= 5 • Default value is '3'"（p89, p92）</p>
+</blockquote>
+<p>出处：ENTPXTE400EN p82-107。</p>
+<h2>I — 自述</h2>
+<p>登录准入是"碰机器"的第一道门，三条通道、四个账户、一套密码治理：</p>
+<ol>
+<li><strong>通道</strong>：物理 CS 走 V24 串口或 SSHv2（Putty/Teraterm）；虚拟 CS 走各 hypervisor 控制台或 SSHv2；GAS 走 VGA+键鼠或 SSHv2。V24 下可用 ifconfig -a 或 netadmin 找回 IP</li>
+<li><strong>四账户</strong>：mtcl=日常维护与 su 跳板；swinst=设施菜单（启停/备份恢复/日期/账户）；root=专家维护（安全管理），仅本地控制台直登；client=基础访问，默认禁用、经 swinst 启用且需话务运行</li>
+<li><strong>密码九规则</strong>：≥14 字符；≥2 字母（必含 1 大写）；≥2 数字；≥1 特殊字符；不含账户名；无 4 连同字符；无 4 连顺序字符；无字典词；与最近 24 个历史密码不同</li>
+<li><strong>失败锁定</strong>：连续失败 3-5 次（默认 3）锁 15 分钟，swinst 可调</li>
+<li><strong>密码老化</strong>：有效期在 10-366 天范围内取值（原文为开区间，见 needs-review nr-01；0=不老化），到期强制改密；RADIUS 场景必须关闭老化</li>
+</ol>
+<p>会话与横幅：root/mtcl 固定 900 秒无操作登出且不可配置；登录横幅含版本、Role、SSH/iptables 状态、PANIC 旗标。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>账户与密码实验</strong>（p95-107，How-To）：</p>
+<ol>
+<li>物理机接串口，虚拟机经 vSphere 控制台进入 OXE</li>
+<li>mtcl 登录（实验口令 Administrator5689!），横幅显示版本与安全状态</li>
+<li>root 登录验证"仅本地"限制；或从 mtcl 执行 su -（需 root 密码）</li>
+<li>swinst 建 client 账户并登录，验证仅基础四项菜单</li>
+<li>同菜单改 mtcl 密码，按九规则设新密码</li>
+<li>失败锁定实验：次数设 4，连错验证锁定 15 分钟，再恢复默认 3</li>
+<li>老化实验：mtcl 设 21 天，把系统月份 +1 后重登录验证强制改密</li>
+<li>验证：四账户均可登录，锁定与强制改密行为符合配置</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新 OXE 开局首次登录；SSH 连不上 root；要改密码/设锁定/设老化；启用 client 账户；900 秒掉线疑问；RADIUS 用户登录被拒。</p>
+<p>语言信号：登录 / login / mtcl / swinst / root / client / V24 / SSHv2 / 密码策略 / 14 位 / 锁定 / 老化 / aging / RADIUS / 900 秒。</p>
+<p>与相邻能力区分：IP 地址与防火墙配置 → CS 网络与防火墙能力；登录后的启停操作 → 系统启停能力（路由卡）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：物理访问方式（串口/KVM/虚拟机控制台）或网络可达性、客户密码规范。没有本地访问且网络又不通时，先解决带外通道再继续。</p>
+<ol>
+<li>选通道登录：本地串口 115200 或 SSHv2 到可达地址，用 mtcl 登录。完成标准：横幅显示版本与 Role</li>
+<li>核对账户基线：确认 client 状态与各账户密码是否符合客户规范。完成标准：账户清单与责任人对齐</li>
+<li>收紧密码策略：swinst 系统管理菜单设失败锁定次数（3-5）与老化期（10-366 天范围内）。完成标准：策略值与客户安全基线一致</li>
+<li>逐账户改密：按九规则（≥14 字符+大小写/数字/特殊字符组合）改掉全部默认密码。完成标准：无默认密码残留（可用 securitystatustool 复核）</li>
+<li>client 按需启用：确认话务运行中再经 swinst 启用并设强密码。完成标准：如启用则登录可用，如不用则保持禁用</li>
+<li>记录并移交：账户责任人、策略值、变更时间写入交付记录。完成标准：交接单齐全</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户用 RADIUS 认证却要求开密码老化 → 停，两机制互斥（n11），必须关老化并说明原因</li>
+<li>远程现场要求"开放 root SSH 直登" → 停，架构仅允许本地直登；给 mtcl+su 流程替代方案</li>
+<li>密码不满足九规则被拒 → 停，不要降级存储弱密码；按规则重设</li>
+<li>900 秒超时影响长脚本 → 停，说明不可配置（p90），改用脚本内保活或分段执行</li>
+</ul>
+<p>输出契约：可登录且策略收紧的系统访问基线 + 账户/策略台账。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>教材全部口令（Administrator5689! / Superuser2580* / letacla1 等）为实验口径（n01），照抄进生产等于零防线；首连即改密是强制动作</li>
+<li>root 直登仅限本地（串口/KVM）；SSH 侧必须 mtcl 登录后 su -（p90/p99 双 Warning）</li>
+<li>900 秒无操作超时不可配置；client 账户菜单仅基础项且需话务运行（p88/p102）</li>
+<li>老化期 10-366 天为开区间口径（nr-01）；"0=不老化"与 RADIUS 互斥规则并存（n11）</li>
+<li>主动防御类扩展（旁路认证/双因子）不在本书范围，生产加固按客户安全规范与 ALE 安全公告执行</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte400en/skills/ents-cs-network-firewall.html">Call Server IP 寻址与内部防火墙</a>、<a href="/courses/entpxte400en/skills/ents-system-start-stop.html">OXE 系统启停与 autostart 管理</a></p><p class="source-page">能力 ID：cap.ents.first-login-hardening · 来源：ENTPXTE400EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Starter (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 821 页 -->

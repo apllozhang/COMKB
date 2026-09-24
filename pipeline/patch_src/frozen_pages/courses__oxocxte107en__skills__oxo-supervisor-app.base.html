@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Supervisor 班长台部署与实时监控</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OXO Connect · 呼叫中心</h2><p>Edition 07 · 218 页 · 文档整理入库（15 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte107en/index.html">课程首页</a><a href="/courses/oxocxte107en/digest.html">精华长文</a><a href="/courses/oxocxte107en/overview.html">教书理解</a><a href="/courses/oxocxte107en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte107en/skills/oxo-acd-basic-setup.html">OXO Connect 基础 ACD 全流程搭建</a><a href="/courses/oxocxte107en/skills/oxo-acd-call-scenarios.html">ACD 呼入六场景排障</a><a href="/courses/oxocxte107en/skills/oxo-acd-routing.html">呼叫特征化与 Smart Call Routing 路由表设计</a><a href="/courses/oxocxte107en/skills/oxo-acd-queue.html">ACD 等待队列管理（容量公式与出口配置）</a><a href="/courses/oxocxte107en/skills/oxo-acd-search-noanswer.html">坐席搜索模式选型与无应答处理</a><a href="/courses/oxocxte107en/skills/oxo-acd-login-status.html">坐席签入签出（free seating）与状态排障</a><a href="/courses/oxocxte107en/skills/oxo-multi-secretary.html">Multi-Secretary 多秘书方案配置</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte107en/skills/oxo-omc-first-connect.html">OMC 安装与首次连接</a><a href="/courses/oxocxte107en/skills/oxo-ip-replan.html">OXO 与客户端 IP 规划修改</a><a href="/courses/oxocxte107en/skills/oxo-acd-schedule-calendar.html">ACD 营业时段与例外日配置</a><a href="/courses/oxocxte107en/skills/oxo-supervisor-app.html">Supervisor 班长台部署与实时监控</a><a href="/courses/oxocxte107en/skills/oxo-agent-app.html">Agent 坐席席面部署（弹屏/打标/客户库）</a><a href="/courses/oxocxte107en/skills/oxo-statistics-app.html">Statistics 统计应用与报表导出</a><a href="/courses/oxocxte107en/skills/oxo-dtmf-client-popup.html">DTMF 客户码识别弹屏</a><a href="/courses/oxocxte107en/skills/oxo-acd-voice-prompts.html">ACD 语音提示定制</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte107en/index.html">oxo-connect-call-center（15 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte107en/index.html">OXOCXTE107EN</a><span>/</span><span aria-current="page">Supervisor 班长台部署与实时监控</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Supervisor 班长台部署与实时监控</h1></div><dl><div><dt>Skill ID</dt><dd>oxo-supervisor-app</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>Supervisor 班长台部署与实时监控（OXO Connect）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"ACD statistic and Supervisor applications use a dedicated ACD admin password instead of installer password • In order to not communicate to the end customer the installer password"（p150）
+"On Duty - Awaiting call: ... - Not answering: ... - Being routed: ... - Ringing: ... - ACD busy: ... - On hold: ... - Busy, outgoing call: ... - Not available: ..."（p164）
+"The Supervisor application can change the group(s) the agent belongs, the agent rank and the agent status."（p165）</p>
+</blockquote>
+<p>出处：OXOCXTE107EN p147-165。</p>
+<h2>I — 自述</h2>
+<p>班长台（Supervisor application）实时呈现呼叫中心活动并直接干预。三个要点：</p>
+<ol>
+<li><strong>专用密码</strong>：Supervisor 与 Statistics 用独立的 <strong>ACD Admin 密码</strong>（OMC/System Miscellaneous/Passwords），不用 installer 密码——避免把安装密码泄露给最终客户</li>
+<li><strong>两个监控参数</strong>：活动率计算周期（过去 1 小时或 1/2 小时）、过载告警闪烁时延</li>
+<li><strong>实时视图</strong>：</li>
+<li>坐席维：分机/姓名/组/活动率/状态，可改坐席的组、rank、状态</li>
+<li>组维：组状态与活动率，可改组 open/closed/按时段</li>
+<li><strong>On Duty 八子态判读</strong>（"显示忙却不接"的定位表）：</li>
+<li>Awaiting call 待接 / Not answering 已响未接 / Being routed 转接预留中 / Ringing 振铃 / ACD busy 通话中 / On hold 刚挂休整 / Busy outgoing 外呼中 / Not available 处理非 ACD 来话</li>
+<li>另有三主态：Temporary Absence / Clerical work（通话后文书暂离）/ Off Duty</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>部署与验证实验</strong>（p160-165，厂商实验）</p>
+<ul>
+<li><strong>步骤</strong>：</li>
+<li>OMC 设活动率周期 "1/2 hour"</li>
+<li>MyPortal 下载（ACD_X.X\Alcatel\Call Center\Supervisor）→ setup.exe</li>
+<li>首连：192.168.1.246 + English + Acdc1064（实验值）</li>
+<li>Parameters 按组选受监控坐席</li>
+<li><strong>验证</strong>：切坐席状态看实时刷新；打入约 5 分钟 ACD 通话看 activity rate 递增；Group 菜单测试改组状态</li>
+</ul>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：班长要实时盯队列与坐席；"这个坐席显示忙怎么不接电话"；调整坐席组/rank；临时开关组。</p>
+<p>语言信号：班长台 / 监控 / supervisor / 实时状态 / activity rate / 活动率 / 坐席状态不对 / 组开关。</p>
+<p>与相邻能力区分：坐席自己签入签出 → 签入签出能力；本能力是班长视角的监控与干预。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：ACD Admin 密码（OMC 侧先建）、受监控坐席与组清单。缺密码先创建。</p>
+<ol>
+<li>设密码：OMC → System Miscellaneous → Passwords → Management password。完成标准：与 installer 不同</li>
+<li>设参数：General tab → 活动率周期 + 过载告警时延。完成标准：保存</li>
+<li>安装：下载解压 → setup.exe。完成标准：图标出现</li>
+<li>首连：服务器 IP + 语言 + ACD Admin 密码。完成标准：看板加载</li>
+<li>选监控对象：Parameters → 按组勾坐席。完成标准：坐席入列</li>
+<li>验证：切状态看刷新；5 分钟来话看活动率上升；改组状态测试。完成标准：三项生效</li>
+<li>判读：坐席"忙而不接"对照八子态（On hold / Busy outgoing / Not available 属正常态）。完成标准：给出判读</li>
+</ol>
+<p>输出契约：可用班长台 + 受监控对象清单 + 状态判读结论。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>ACD Admin 密码红线：绝不使用 installer 密码</li>
+<li>工具栏/监控图标两页（p158-159）为纯图，本卡未覆盖全部图标含义</li>
+<li>Supervisor 不能代行坐席登录（free seating 是坐席侧操作）</li>
+<li>八子态是 OXO 口径，与其他平台状态名不通用</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte107en/skills/oxo-acd-login-status.html">坐席签入签出（free seating）与状态排障</a>、<a href="/courses/oxocxte107en/skills/oxo-statistics-app.html">Statistics 统计应用与报表导出</a>、<a href="/courses/oxocxte107en/skills/oxo-agent-app.html">Agent 坐席席面部署（弹屏/打标/客户库）</a></p><p class="source-page">能力 ID：cap.oxo-cc.supervisor-app · 来源：OXOCXTE107EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OXO Connect 呼叫中心 (Participant's Guide, Edition 07) | edition: Edition 07 | pages: 218 页 -->

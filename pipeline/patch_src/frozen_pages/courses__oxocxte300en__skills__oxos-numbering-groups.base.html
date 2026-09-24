@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>编号计划与四种组</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OXO Connect · Starter</h2><p>Edition 16 · 472 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte300en/index.html">课程首页</a><a href="/courses/oxocxte300en/digest.html">精华长文</a><a href="/courses/oxocxte300en/overview.html">教书理解</a><a href="/courses/oxocxte300en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte300en/skills/oxos-data-collection.html">交付前数据采集</a><a href="/courses/oxocxte300en/skills/oxos-commissioning.html">系统开通双路线与首次连接</a><a href="/courses/oxocxte300en/skills/oxos-terminals.html">终端开通（IP 话机与 DECT）</a><a href="/courses/oxocxte300en/skills/oxos-numbering-groups.html">编号计划与四种组</a><a href="/courses/oxocxte300en/skills/oxos-user-features.html">用户功能与语音信箱</a><a href="/courses/oxocxte300en/skills/oxos-sip-trunk.html">公共 SIP 中继</a><a href="/courses/oxocxte300en/skills/oxos-incoming-barring.html">呼入分发与呼出闭锁</a><a href="/courses/oxocxte300en/skills/oxos-maintenance.html">备份恢复、软件升级与复位</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte300en/skills/oxos-hardware-platform.html">硬件平台与容量</a><a href="/courses/oxocxte300en/skills/oxos-audio-messages.html">消息与彩铃</a><a href="/courses/oxocxte300en/skills/oxos-security.html">安全基线与防盗打</a><a href="/courses/oxocxte300en/skills/oxos-rainbow-integration.html">Rainbow 混合云接入速览</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte300en/index.html">oxo-connect-starter（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte300en/index.html">OXOCXTE300EN</a><span>/</span><span aria-current="page">编号计划与四种组</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>编号计划与四种组</h1></div><dl><div><dt>Skill ID</dt><dd>oxos-numbering-groups</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>编号计划与四种组（拨号地基 / hunt・代接・广播・经理秘书）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"PUBLIC DIALING PLAN … PRIVATE DIALING PLAN … INTERNAL DIALING PLAN … FEATURES IN CONVERSATION"（p124）
+"DDI number 41100 – Base 100 … Directory number 100 – Base 100"（p128）
+"Base Always a number from 0 to 2199"（p135）
+"Warning: the group 500 is used by the voice mail server!"（p143）
+"Create a manager/secretary group, the two sets must be multiline sets."（p155）</p>
+</blockquote>
+<p>出处：OXOCXTE300EN p123-156（编号计划讲义与实验、组管理讲义与实验）。</p>
+<h2>I — 自述</h2>
+<p><strong>编号计划</strong>是全部呼叫功能的寻址地基：</p>
+<ul>
+<li>四层：公共（DDI）、专用（私网）、内部（分机）、会话中功能（后缀）；默认三位计划（分机 100 起、9 话务台、0 主中继组）</li>
+<li>Base=内外映射基数：DDI 41100 base 100 ↔ 分机 100；取值域 0-2199；安装号=主系统 DDI 号去第 1 位录入</li>
+<li>Pick-up 族与 Forwarding 族前缀的 Base 语义固定不可改（组代接=1、立即前转=1 等，f17）</li>
+<li>建新段范式：先查冲突旧段（编程模式 200-299、副中继组 400-434、6 开头前缀等）→ 删 → 再建（f18）</li>
+<li>规划技巧：分机段收缩为 100-149，把 150-199 留作其它功能（p134）</li>
+</ul>
+<p><strong>四种组</strong>各管一件事：</p>
+<ul>
+<li><strong>Hunt group</strong>：多话机共用一号，Sequential 逐个 / Circular 轮转 / Parallel 齐振；组 500 固定被语音信箱服务器占用，从 501 起用（n07）</li>
+<li><strong>Pick-up group</strong>：组内代接，靠代接前缀或功能键（作用域选 Group）</li>
+<li><strong>Broadcast group</strong>：成员分 send/receive/send+rec 权限，接收话机必须有扬声器；PairedGrb 可配对 2 组合计 64 人</li>
+<li><strong>Manager/Secretary</strong>：双方必须 multiline 话机，互持 RSL/Screening/监督三键</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>编号计划实验</strong>（p131-135）：</p>
+<ol>
+<li>编程模式前缀 20：删既有段 200-299，功能选 Programming Mode，填 20/20、Base 空 → Add</li>
+<li>话机代接前缀 21：功能选 Pick Up → 21/21、Base=0（话机代接）→ Add</li>
+<li>分机段收缩：Subscriber 行 100-199 改 end=149、Base 留 100 → Modify</li>
+<li>缩位 400-499：删副中继组 400-434 与 Appointment 60 → Collective Speed Dial、Base=0 → Add</li>
+<li>缩位 600-699：删全部 6 开头前缀 → 600-699、Base=100 → Add</li>
+<li>验收：无冲突段、Base 合法、旧业务无依赖</li>
+</ol>
+<p><strong>Hunt group 实验</strong>（p142-145）：</p>
+<ol>
+<li>OMC/Hunting groups → 选组 501 → Details（500 被 VM 占用，勿用）</li>
+<li>加成员 101、102，组名 Welcome，类型 Sequential → OK</li>
+<li>拨 501 验证按类型分发；再改 Cyclic 与 Parallel 复测</li>
+<li>（注）讲义用 Circular、实验用 Cyclic，同指轮转（needs-review nr-03）</li>
+</ol>
+<p><strong>Pick-up 组实验</strong>（p146-150）：组 1 加 101-103；每组员建 Function key → Pickup 键、作用域 Group；呼 102 振铃时 101 按键代接。</p>
+<p><strong>Broadcast 组实验</strong>（p151-153）：组 1（号 <em>2）加 101=Send、102/103=Reception → 101 拨 </em>2，接收方扬声器出声；无扬声器话机用 IPDSP 接收替代。</p>
+<p><strong>经理-秘书实验</strong>（p154-156）：Manager-Secretary Relations → Add，选经理 101/秘书 102（均 multiline），配 RSL/Screening/监督三键；虚课只配不测。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：设计客户拨号方案；建新前缀段报冲突；hunt 组电话轮不过来想改分发方式；要一个喊话/通知组；老板要秘书过滤电话。</p>
+<p>语言信号：编号计划 / numbering / 前缀 / 后缀 / Base / 安装号 / 缩位拨号 / hunt group / Sequential / Circular / Parallel / 代接 / pickup / 广播 / broadcast / 经理秘书 / manager secretary / multiline。</p>
+<p>与相邻能力区分：组里成员的功能（前转/插入）→ 用户功能能力；呼入按时段进不同组 → 呼入分发与闭锁能力。本能力到"寻址与组业务可用"为止。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：数据采集表的编号与组块、既有系统导出库（扩容时）。改前缀前未确认旧段业务依赖 → 判停先核对。</p>
+<ol>
+<li>定编号框架：三位计划、分机段、话务台、主中继组、hunt 段、DDI 与 Base。完成标准：与采集表一致且无冲突</li>
+<li>清冲突：查并删除冲突旧段。完成标准：目标段可用</li>
+<li>建段：下拉选功能 → 填起止与 Base → Add。完成标准：计划表无重叠</li>
+<li>建 hunt 组：从 501 起选组、加成员、选分发类型。完成标准：拨组号按预期分发</li>
+<li>建 pick-up 组与代接键（作用域 Group）。完成标准：振铃中可代接</li>
+<li>建广播组：设 send/receive 权限，核接收方扬声器。完成标准：拨组号扬声器出声</li>
+<li>建经理-秘书组：双方 multiline，配 RSL/Screening/监督键。完成标准：滤键与监督键生效（物理机环境）</li>
+<li>拨测矩阵：组号/代接/广播/经理秘书逐项打通。完成标准：验收清单闭环</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>Base 超出 0-2199 或与固定语义冲突 → 改方案，不硬配</li>
+<li>客户要"语音信箱组"占用 500 → 拒绝并解释保留原因（n07）</li>
+<li>经理或秘书不是 multiline 话机 → 先换终端再建组（n09）</li>
+<li>接收方话机无扬声器 → 广播只配 send 或换终端，如实告知验收限制（n08）</li>
+</ul>
+<p>输出契约：编号计划表（段+Base+后缀）+ 四类组清单与拨测记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>计划默认值随安装国家变化；书内无真实客户编号方案案例，"怎么规划"需按项目经验补</li>
+<li>安装号/话务员 DDI 实验值两口径见 needs-review nr-02</li>
+<li>组号范围 500-525 为默认计划口径，改计划后随之变化</li>
+<li>后缀（会话中功能）族仅给入口（OMC/Numbering/Feature in Conversation），完整功能码表在 Expert 文档</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte300en/skills/oxos-user-features.html">用户功能与语音信箱</a></p><p class="source-page">能力 ID：cap.oxos.numbering-groups · 来源：OXOCXTE300EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OXO Connect Starter (Participant's Guide, Edition 16) | edition: Edition 16 | pages: 472 页 -->

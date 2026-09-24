@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>DECT 无线移动</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OXO Connect · Advanced</h2><p>Edition 18 · 601 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte301en/index.html">课程首页</a><a href="/courses/oxocxte301en/digest.html">精华长文</a><a href="/courses/oxocxte301en/overview.html">教书理解</a><a href="/courses/oxocxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte301en/skills/oxoa-sip-networking.html">SIP 组网：公网网关与私网互联</a><a href="/courses/oxocxte301en/skills/oxoa-numbering-ars-suite.html">ARS 路由套件：三表协作与 Internal ARS</a><a href="/courses/oxocxte301en/skills/oxoa-hotel-billing-vertical.html">酒店与计费垂直方案</a><a href="/courses/oxocxte301en/skills/oxoa-security-hardening.html">系统安全加固</a><a href="/courses/oxocxte301en/skills/oxoa-certificate-suite.html">证书与加密传输（证书/DTLS/TLS-SRTP）</a><a href="/courses/oxocxte301en/skills/oxoa-attendant-suite.html">语音导航套件（AA/MLAA/SCR）</a><a href="/courses/oxocxte301en/skills/oxoa-voicemail-mobility.html">语音邮箱与移动办公</a><a href="/courses/oxocxte301en/skills/oxoa-cloud-connect-fleet.html">Cloud Connect 舰队与远程维护</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte301en/skills/oxoa-foundation-ip.html">交付地基：OMC 首连与 IP 规划</a><a href="/courses/oxocxte301en/skills/oxoa-terminal-ecosystem.html">终端生态：PIMphony 与 SIP 话机接入</a><a href="/courses/oxocxte301en/skills/oxoa-shared-devices.html">共享终端：站群监督、Hot Desking 与 Multiset</a><a href="/courses/oxocxte301en/skills/oxoa-multi-entity.html">多实体与伪多公司</a><a href="/courses/oxocxte301en/skills/oxoa-dect-deployment.html">DECT 无线移动</a><a href="/courses/oxocxte301en/skills/oxoa-maintenance-toolkit.html">维护工具箱：Webdiag、Noteworthy 与 LoLa</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte301en/index.html">oxo-connect-advanced（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte301en/index.html">OXOCXTE301EN</a><span>/</span><span aria-current="page">DECT 无线移动</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>DECT 无线移动</h1></div><dl><div><dt>Skill ID</dt><dd>oxoa-dect-deployment</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>DECT 无线移动（标准与标识、集群同步、注册部署、勘测与 SUOTA）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"DECT is based on a multi carrier FDMA and TDMA with TDD … 24 Timeslots … 10 Carriers (Frequencies)"（p500）
+"Up to 80 DECT IP-xBS … 1 PARI for the system (common with IBS) • 11 simultaneous calls per xBS • 200 DECT handsets"（p495）
+"Cluster = DECT area where all base stations are synchronized together … The cluster membership is imposed by the OXO Connect"（p506）
+"measurement of the -72 dBm attenuation at the limit of the area … Zone of voice quality"（p533）
+"A site survey is mandatory before of a product offer or before installation in order to determine the number and position of Dect base stations"（p530）</p>
+</blockquote>
+<p>出处：OXOCXTE301EN p481-552。</p>
+<h2>I — 自述</h2>
+<p>DECT 是完整无线子系统，四块：</p>
+<p><strong>标准与标识</strong>（p498-503）：</p>
+<ul>
+<li>DECT（ETSI EN 300 175 系列）+ GAP（ETSI EN 300 444）；10 载波×24 时隙（TDD），语音 ADPCM G726 32kbit/s；每 xBS 12 时隙 11 并发</li>
+<li>标识五件套：PARI（系统安装 ID，全系统一个、xBS 与 IBS 共用）、RFPI（xBS 标识）、PARK（话机侧系统标识）、PLI（=31）、IPUI（话机身份，14 位八进制）</li>
+</ul>
+<p><strong>容量双轨</strong>（p494-495）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>轨道</th>
+<th>基站</th>
+<th>并发</th>
+<th>上限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IP 轨</td>
+<td>8378 IP-xBS（三型，PoE class2）</td>
+<td>每 xBS 11</td>
+<td>80 xBS / 200 手柄（需 IP-DECT 用户 license）</td>
+</tr>
+<tr>
+<td>TDM 轨</td>
+<td>8379/4070 IBS（接 UA 板）</td>
+<td>每 IBS 6（1 UA=3 并发）</td>
+<td>60 IBS / 200 手柄</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>集群与切换</strong>（p504-517）：站点（≤20，站间不切换）→集群（空口同步组，每站 ≤8，成员由 OXO 强加）→xBS 同步树（Automatic 模式推荐，Manual 仅专家）；切换（handover）仅同集群内，媒体由 IP-xBS 子系统自管（Relay xBS）；话机可能锁定在同步但信号较差的基站（xBS 与 TDM IBS 间必然如此，n29）；复杂拓扑找 TSS（n30）。</p>
+<p><strong>部署与勘测</strong>（p515-534）：单站四步（PoE 与 Auto Provision、DHCP、PARI、话机注册）；LED 红/橙/绿时序判读；SUOTA 空中升级（并发 50、下载 4-8 小时且话务优先、swap 须充电座）；勘测以 -72 dBm 划语音质量区（-80 下限）、通话中测音质（最少两台话机）。8158s/8168s VoWLAN 仅 NOE 模式（p550）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>DECT 注册实验（IBS 向导法）</strong>（p535-540；虚拟课堂不可实操）：</p>
+<ol>
+<li>IBS 接机架 UAI 板空闲口（红 LED 慢闪正常）。</li>
+<li>话机复位：<em>7378423</em> 选 Master reset 进 Auto install。</li>
+<li>OMC 双击 Wizard for DECT/PWT On-Air Registration（不见则 Comm/Read all from PCX）。</li>
+<li>建订阅户（名+DDI）后话机侧 Auto install/PIN 0000/选 PARK。</li>
+<li>IPUI 出现在 Unassigned IPUIs 后 Assign；呼有线分机验证显示目录号（p540）。</li>
+</ol>
+<p><strong>IP-DECT xBS 部署实验</strong>（p541-548；虚拟课堂不可实操）：</p>
+<ol>
+<li>LAN/IP 核对（warm reset）；DHCP 启用（范围实验口径）。</li>
+<li>PARI：OMC/Dect/DECT-PWT ARI-GAP/ARI 填 11 位八进制（每客户唯一，eBuy 获取；实验 110004360P0）。</li>
+<li>接 PoE 核对 LED：红（初始化/取 IP/配置文件）→橙（下载/链路/配置）→绿 1s 亮灭=就绪。</li>
+<li>订阅户列表应自动出现 xBS（别忘了启用 Auto Provision）。</li>
+<li>话机经 GAP registration 注册（GAP Reg 读 IPUI 后 Assign）。</li>
+</ol>
+<p><strong>站点勘测（SSK）</strong>（p529-534，讲义）：</p>
+<ol>
+<li>SSK 行李箱：2 台勘测专用 xBS（固件与生产不同，n32）+8dBi 天线+充电宝+2 话机。</li>
+<li>装固件与国家频率（室内/室外 PARK 实验口径），电池供电摆位。</li>
+<li>话机 site survey 模式测衰减：-72 dBm 划语音质量区、-80 以下放弃。</li>
+<li>通话中测音质（最少两台话机注册，或拨 0+拨号键听连续拨号音）。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：厂区/仓库/酒店要无线移动；DECT 基站怎么布点；话机注册不上；漫游掉话；信号满格通话差；批量升级话机固件；勘测报告怎么验收。</p>
+<p>语言信号：DECT / IP-DECT / xBS / IBS / 8378 / 8379 / 8328 / PARI / ARI / IPUI / PARK / 集群 / cluster / 同步 / 切换 / handover / 漫游 / 勘测 / site survey / SSK / -72 dBm / SUOTA / 8214 / 8158s。</p>
+<p>与相邻能力区分：xBS 日志与状态经 Webdiag 的 DECT 块查（维护工具能力）；8328 SIP-DECT 单基站小分支的选型规格见本卡 I 段；VoWLAN 话机部署工具（WinPDM/TC2349）在书外。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：覆盖区域平面图与话务分布、话机型号与数量、站点网络（PoE/DHCP）、ARI（eBuy）。无勘测报告 → 判停：报价与安装前勘测强制（p530），不要凭经验布点。</p>
+<ol>
+<li>选型：IP 轨（xBS，80/200）或 TDM 轨（IBS，60/200）或 8328 小分支；8214 需 R6.0 MD1（n28）。完成标准：BOM 成文</li>
+<li>部署：PoE 接入+Auto Provision+DHCP；PARI 填唯一 ARI（xBS 与 IBS 共用）。完成标准：基站绿 LED 入列</li>
+<li>注册：向导法（3 步）或订阅户列表法（GAP Reg+Assign）。完成标准：话机注册并显示目录号</li>
+<li>同步规划：Automatic 模式管集群选主；站点间不切换、切换仅集群内——按此划集群。完成标准：拓扑与覆盖匹配</li>
+<li>勘测验收：-72 dBm 边界 + 通话测音质；混合组网提示"同步优先于信号"现象（n29）。完成标准：报告签认</li>
+<li>SUOTA：WebDIAG 配自动/手动/关；并发 50、话务优先、swap 须充电座。完成标准：升级计划可执行</li>
+<li>（加密需求）DECT 空口加密默认关：开启后不兼容加密的第三方话机无法运行（n61），先清点终端。完成标准：安全口径确认</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>虚拟课堂/无硬件环境 → 两处 DECT 实验不可做（n34）：首次现场部署预留加练时间</li>
+<li>多楼/分支办公等复杂拓扑 → 找 TSS（n30），不要自配同步树</li>
+<li>ARI 来源不明 → 停：每客户唯一、eBuy 获取，抄邻站会跨站归属混乱（n35）</li>
+<li>勘测专用 xBS → 不运行标准固件，勿与生产混用（n32）</li>
+</ul>
+<p>输出契约：BOM 与容量核算 + 基站布点图与集群划分 + 注册台账 + 勘测报告（-72 dBm 覆盖区）+ SUOTA 计划。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>站点勘测方法与工程规则在书外（SSK 手册 8AL90874USAA）：本卡只给验收口径（-72 dBm/通话测音质）</li>
+<li>DECT 频段与功率按地区不同（欧洲 1880-1900 MHz 等，p501；该页为 OXE 素材残留，nr-04，生产前复核）</li>
+<li>全局限制以 MyPortal《OXO Connect Global Limits》为准（p497）；8214 兼容性与预定义消息图标为 2023 底计划口径（n28），以最新 TC 为准</li>
+<li>xBS↔呼叫服务器 IP 段无认证无加密：空口加密只保护无线段（n61）</li>
+<li>实验值（PARI 110004360P0、PARK、DHCP 范围）全部为实验口径；生产按 eBuy 与客户规划</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.oxoa.dect-deployment · 来源：OXOCXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OXO Connect - Advanced (Participant's Guide, Edition 18) | edition: Edition 18 | pages: 601 页 -->

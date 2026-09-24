@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>消息与彩铃</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OXO Connect · Starter</h2><p>Edition 16 · 472 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte300en/index.html">课程首页</a><a href="/courses/oxocxte300en/digest.html">精华长文</a><a href="/courses/oxocxte300en/overview.html">教书理解</a><a href="/courses/oxocxte300en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte300en/skills/oxos-data-collection.html">交付前数据采集</a><a href="/courses/oxocxte300en/skills/oxos-commissioning.html">系统开通双路线与首次连接</a><a href="/courses/oxocxte300en/skills/oxos-terminals.html">终端开通（IP 话机与 DECT）</a><a href="/courses/oxocxte300en/skills/oxos-numbering-groups.html">编号计划与四种组</a><a href="/courses/oxocxte300en/skills/oxos-user-features.html">用户功能与语音信箱</a><a href="/courses/oxocxte300en/skills/oxos-sip-trunk.html">公共 SIP 中继</a><a href="/courses/oxocxte300en/skills/oxos-incoming-barring.html">呼入分发与呼出闭锁</a><a href="/courses/oxocxte300en/skills/oxos-maintenance.html">备份恢复、软件升级与复位</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte300en/skills/oxos-hardware-platform.html">硬件平台与容量</a><a href="/courses/oxocxte300en/skills/oxos-audio-messages.html">消息与彩铃</a><a href="/courses/oxocxte300en/skills/oxos-security.html">安全基线与防盗打</a><a href="/courses/oxocxte300en/skills/oxos-rainbow-integration.html">Rainbow 混合云接入速览</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte300en/index.html">oxo-connect-starter（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte300en/index.html">OXOCXTE300EN</a><span>/</span><span aria-current="page">消息与彩铃</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>消息与彩铃</h1></div><dl><div><dt>Skill ID</dt><dd>oxos-audio-messages</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>消息与彩铃（MSG1-20 / Music on Hold / .wav 格式）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"According to the Software keys, the system can have 4 to 20 audio messages … The total length of the messages is 320 seconds"（p244）
+"Files .wav must be in 16-bit PCM 8 Khz Mono or CCITT A-law or μ-law 8-bit 8Khz Mono format"（p247）
+"Default value: Entity1 (possible values entity 1 to entity 4 used in case of multi company)"（p248）</p>
+</blockquote>
+<p>出处：OXOCXTE300EN p243-251（消息用途讲义、MoH 讲义与下载实验）。</p>
+<h2>I — 自述</h2>
+<p>站点级音频资源两池：</p>
+<ul>
+<li><strong>MSG1-20 消息池</strong>：默认 4 条、许可至 20 条，总长 320 秒动态分配；五种用途——Welcome（属话务员组）、Pre-announcement（振铃前/中）、Remote substitution、External forwarding、DISA；录制走 MMC 话务员会话或 OMC 下载</li>
+<li><strong>Music on Hold</strong>：仅外线保持时播放（内线保持是哔哔音，产品行为 n41）；三种源——默认乐/Tape 音频输入/录制 .wav；按 Entity 1-4 分别配置（多公司场景）</li>
+<li><strong>格式硬约束</strong>：.wav 必须是 16-bit PCM 8kHz Mono 或 CCITT A-law/μ-law 8-bit 8kHz Mono；无文件时用话务员会话现场录（Menu Operator/Expert/Voice/Hold music 或 Message xx）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>下载实验</strong>（p246-251）：</p>
+<ol>
+<li>备好 .wav（格式不合规先转码，或改用 MMC 会话录制）</li>
+<li>MoH：OMC/System Miscellaneous/Music on Hold → 选 Entity1（默认）；Music source 选 Recorded Music，点 Load from and transfer 传文件</li>
+<li>反向取回用 Transfer and save as</li>
+<li>预公告：OMC/Subscribers Misc/Preannouncement Messages → 选 MSG1-20 → Load from and transfer</li>
+<li>验收：外线保持播定制音乐、内线保持仍为哔哔音</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户要自定义等待音乐；多公司各配各的彩铃；"内线保持怎么没音乐"质疑；消息下了不生效排查。</p>
+<p>语言信号：欢迎消息 / MSG / 彩铃 / 保持音乐 / Music on hold / MoH / .wav / 8kHz / Entity / 预公告消息。</p>
+<p>与相邻能力区分：消息在呼入流程中的挂接（哪个时段播哪条）→ 呼入分发与闭锁卡。本能力到"音频资源上传可用"为止。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户提供的音频文件与用途分配、（多公司）Entity 归属。文件格式不合规 → 判停先转码，不要直接上传试错。</p>
+<ol>
+<li>核许可：确认消息条数配额（默认 4、许可 20）。完成标准：设计条数在配额内</li>
+<li>备料：.wav 转为两种合规格式之一。完成标准：格式核验通过</li>
+<li>上传 MoH：选 Entity → Recorded Music → Load from and transfer。完成标准：外线保持可闻</li>
+<li>上传 MSG：选消息号 → Load from and transfer。完成标准：消息列表更新</li>
+<li>（备选）MMC 会话录制：Menu Operator/Expert/Voice 下录 Music xx/Message xx。完成标准：同上</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户要超过 20 条或超 320 秒 → 超出系统口径，如实告知并给替代方案</li>
+<li>"内线保持没音乐" → 产品行为（哔哔音），不是配置故障（n41）</li>
+<li>消息号被其它用途占用 → 先梳理 MSG1-20 分配表再改</li>
+</ul>
+<p>输出契约：MSG/MoH 分配表（消息号-用途-文件-Entity）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>消息数与软件钥匙挂钩，报价前先核许可（n16）</li>
+<li>音频版权与录音合规在书外</li>
+<li>Entity 2-4 为多公司场景预留，单公司固定 Entity1</li>
+<li>DISA/Remote substitution 等用途的完整行为口径在 Expert 文档</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.oxos.audio-messages · 来源：OXOCXTE300EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OXO Connect Starter (Participant's Guide, Edition 16) | edition: Edition 16 | pages: 472 页 -->

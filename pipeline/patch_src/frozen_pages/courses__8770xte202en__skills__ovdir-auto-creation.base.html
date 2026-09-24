@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>目录树搭建与 PCX 自动创建</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 目录管理</h2><p>Edition 40 · 565 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte202en/index.html">课程首页</a><a href="/courses/8770xte202en/digest.html">精华长文</a><a href="/courses/8770xte202en/overview.html">教书理解</a><a href="/courses/8770xte202en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte202en/skills/ovdir-oxe-sync-ldap.html">OXE 节点注册与同步</a><a href="/courses/8770xte202en/skills/ovdir-auto-creation.html">目录树搭建与 PCX 自动创建</a><a href="/courses/8770xte202en/skills/ovdir-links-rename.html">六类链接与改名语义</a><a href="/courses/8770xte202en/skills/ovdir-msad-azure-pipelines.html">MSAD 与 Azure AD 同步管道</a><a href="/courses/8770xte202en/skills/ovdir-click-to-call.html">Click to Call 交付</a><a href="/courses/8770xte202en/skills/ovdir-confidentiality.html">目录保密级别与访问级别</a><a href="/courses/8770xte202en/skills/ovdir-replication.html">目录复制主从部署</a><a href="/courses/8770xte202en/skills/ovdir-domains-delegation.html">管理域与委派</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte202en/skills/ovdir-msad-plugin.html">MSAD 插件开户（AD 右键一键开通）</a><a href="/courses/8770xte202en/skills/ovdir-ldif-tools.html">LDIF 导入导出与管理工具管道</a><a href="/courses/8770xte202en/skills/ovdir-client-dictionary.html">目录词典与 Web 客户端定制</a><a href="/courses/8770xte202en/skills/ovdir-platform-basics.html">8770 平台基础（套件/拓扑/兼容/虚拟化）</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte202en/index.html">omnivista-directory（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte202en/index.html">8770XTE202EN</a><span>/</span><span aria-current="page">目录树搭建与 PCX 自动创建</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>目录树搭建与 PCX 自动创建</h1></div><dl><div><dt>Skill ID</dt><dd>ovdir-auto-creation</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>目录树搭建与 PCX 自动创建（三开关、UID 构造、自动继承）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Tree structure made of Organization and Termination entries • Country • City • Company • Department —— Organization entries • Person • Group • Room —— Termination entries"（p63）
+"Create for users (OXE) To be enabled • Limit to real users (OXE) To be enabled • Create for user alias (OXE) To be enabled"（p105）
+"Alarm reception mode Select the mode Permanent IP connectivity. / Process directory To be enabled."（p107）
+"The entry Anderson Thomas already exists. No automatic creation for link 31023, oxe, abc1, ale."（p118）
+"After the cut and paste of the person Michel Vincent, its directory parameters have been automatically updated."（p122）</p>
+</blockquote>
+<p>出处：8770XTE202EN p62-63, p74-76, p99-122。</p>
+<h2>I — 自述</h2>
+<p>目录供给的主通道：PCX 侧建用户，事件到达 8770 后在指定位置自动建人员并建主链接。</p>
+<ul>
+<li><strong>目录树</strong>：组织类条目（Country/City/Company/Department）作枝干，终止类（Person/Group/Room）作叶子；建树入口在 Directory 应用 Company 页签右键 Create</li>
+<li><strong>三层开关联合生效</strong>（任一缺失即静默不工作）：</li>
+</ul>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>层</th>
+<th>入口</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全局参数</td>
+<td>Administration &gt; Application Configuration &gt; Application Settings &gt; Directory Admin &gt; AutomaticCreation</td>
+<td>Create for users / Limit to real users / Create for user alias 三项启用</td>
+</tr>
+<tr>
+<td>节点级</td>
+<td>Configuration 应用 OXE 节点 &gt; Data Collection</td>
+<td>Automatic creation 启用 + Location for automatic creation 选默认路径</td>
+</tr>
+<tr>
+<td>事件前提</td>
+<td>OXE 节点 &gt; PCX 页签</td>
+<td>Process directory 启用 + Alarm reception mode=Permanent IP connectivity</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>UID 唯一性</strong>：默认构造"名+姓"，目录内唯一；撞名即拒建并告警（Alarms 应用 NMC &gt; nms &gt; LDAP server 可查）。解法：该 PCX 的 Data Collection 页签把 UID construction 改为 Extension（名+姓+分机号）</li>
+<li><strong>UID 构造三约束</strong>：按 PCX 分别设置；只对自动创建生效（手工建人员不走该构造）；改回 None 后，新建的同名人员会再次冲突</li>
+<li><strong>自动继承</strong>：Cut/Paste 人员到新部门后，组织属性（城市/部门）自动更新</li>
+<li><strong>类型转换代价</strong>：Person 转 Room 等会删除密码、照片、手机等专属属性与经理/助理链接（p78）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>自动创建与 UID 防同名实验</strong>（p99-122）：</p>
+<ol>
+<li>Directory 应用建树：France 下建 Brest/Colombes，各建 Department（实验口径）</li>
+<li>Administration 应用开 AutomaticCreation 全局三开关</li>
+<li>OXE 节点 Data Collection：勾 Automatic creation，默认路径选 Department 1</li>
+<li>PCX 页签确认 Process directory 启用、告警接收为 Permanent IP connectivity</li>
+<li>Configuration 界面建 Visio Room 用户（31022），Event 页签见事件、目录见人员</li>
+<li>Specific Telephone Services 建 CC：MKT/Training/TSS（实验口径）</li>
+<li>建五个用户（31000/31001/31003/31004/31005），Rights 页签绑 CC</li>
+<li>Directory 应用 Department 1 下核验五人自动落地</li>
+<li>建同名用户 31023 Anderson Thomas，Alarms 页查 "already exists" 拒建告警</li>
+<li>按书提示删 31023，Data Collection 把 UID construction 改 Extension</li>
+<li>重建 31023/31024：目录出现 UID 带分机号后缀的两个 Thomas Anderson</li>
+<li>实验收尾把 UID construction 改回 None；Cut/Paste 人员核验组织属性自动更新</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：规划公司目录树；PCX 建了用户目录没出人；同名员工拒建；Visio Room/别名用户要不要建；人员挪部门属性要不要手动改；误建的人员怎么变 Room。</p>
+<p>语言信号：自动创建 / automatic creation / 目录树 / directory tree / Location / UID construction / 同名 / homonym / 撞名告警 / Extension 构造 / Department / Country / City / Cut Paste 继承 / Visio Room / user alias。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>OXE 节点本身没同步 → OXE 注册能力</li>
+<li>链接类型与 CC 继承语义 → 链接与改名能力</li>
+<li>批量外部数据导入 → LDIF 工具能力</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OXE 已注册同步（OXE 注册能力前置）、目标组织树结构、UID 同名评估。OXE 未同步 → 判停先回注册能力。</p>
+<ol>
+<li>建树：Directory 应用按 Country/City/Department 层级右键创建。完成标准：目标树成形</li>
+<li>开全局三开关：Administration 应用 AutomaticCreation 下三项启用。完成标准：三项为启用态</li>
+<li>配节点：Data Collection 勾 Automatic creation 并选 Location 默认路径。完成标准：路径指向目标部门</li>
+<li>开事件前提：PCX 页签 Process directory 启用 + Permanent IP connectivity。完成标准：两项就位</li>
+<li>PCX 建用户带 CC，等事件后在 Directory 核验人员与主链接。完成标准：人员出现且链接建立</li>
+<li>同名处理：出现 already exists 告警时，该 PCX 改 UID construction=Extension 后重建。完成标准：同名共存且 UID 带分机号</li>
+<li>收尾：实验/试点结束把 UID construction 改回 None 并记录。完成标准：参数回归基线</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>五处检查（两前提+三开关+UID）任一没配 → 自动创建静默失败，先补配置再谈故障（n46 排障序）</li>
+<li>客户有大量同名员工 → 直接按 Extension 构造交付，不要逐个告警救火；同时告知手工建人不走此构造</li>
+<li>需要保留 Visio Room 的密码/照片再转 Room → 转换会删数据（p78），先手工记录再操作</li>
+<li>告警面板有拒建记录但用户已重建 → 先删告警对应旧条目评估，避免新旧人员并存的歧义</li>
+</ul>
+<p>输出契约：可自动供给人员的目录树 + 开关配置清单 + 同名处理记录（构造方法与回退状态）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>UID construction 只对自动创建生效且按 PCX 独立设置（n03）：多 OXE 环境要逐个配置</li>
+<li>p120 原书 UID 描述排版勘误（nr-02）：第二用户 UID 应为 31023 口径，引用时注明</li>
+<li>类型转换删除人员专属属性与关系链接（n01）：转换前先导出或记录</li>
+<li>Location 只决定自动建人的默认挂载点；组织调整后的属性继承靠 Cut/Paste（p122），无批量移动向导</li>
+<li>实验树结构（France/Brest/Department）为教学约定（实验口径），生产按客户组织设计</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte202en/skills/ovdir-oxe-sync-ldap.html">OXE 节点注册与同步</a>、<a href="/courses/8770xte202en/skills/ovdir-links-rename.html">六类链接与改名语义</a></p><p class="source-page">能力 ID：cap.ovdir.auto-creation · 来源：8770XTE202EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniVista 8770 — Directory Administration (Participant's Guide, Edition 40) | edition: Edition 40 | pages: 565 页 -->

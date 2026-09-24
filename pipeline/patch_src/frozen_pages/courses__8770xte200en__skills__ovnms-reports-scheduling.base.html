@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OmniVista 8770 报表与任务编排（Reports / Scheduler / 自动维护）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 安装与网络管理</h2><p>Edition 47 · 705 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte200en/index.html">课程首页</a><a href="/courses/8770xte200en/digest.html">精华长文</a><a href="/courses/8770xte200en/overview.html">教书理解</a><a href="/courses/8770xte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte200en/skills/ovnms-platform-installation.html">OmniVista 8770 平台安装（服务器 + 客户端 + 补丁 + 首连）</a><a href="/courses/8770xte200en/skills/ovnms-node-onboarding.html">OmniVista 8770 节点接入（OXE 注册同步 + SSH 安全 + OXO Connect 纳管）</a><a href="/courses/8770xte200en/skills/ovnms-user-provisioning.html">OmniVista 8770 用户开通（Profile / Meta profile / 批量 / WBM）</a><a href="/courses/8770xte200en/skills/ovnms-alarm-management.html">OmniVista 8770 告警管理（接入 + 定制出口 + SNMP Proxy）</a><a href="/courses/8770xte200en/skills/ovnms-security-administration.html">OmniVista 8770 安全管理（密码策略 / 管理员与组 / 访问控制 / TLS）</a><a href="/courses/8770xte200en/skills/ovnms-audit-compliance.html">OmniVista 8770 审计合规（Audit 启用 / mao 日志 / 检索导出）</a><a href="/courses/8770xte200en/skills/ovnms-backup-restore.html">OmniVista 8770 备份恢复（8770 数据库 rehosting + OXE swinst 全链）</a><a href="/courses/8770xte200en/skills/ovnms-license-management.html">OmniVista 8770 许可管理（锁结构 / 查询 / 更新 / 受限模式）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte200en/skills/ovnms-reports-scheduling.html">OmniVista 8770 报表与任务编排（Reports / Scheduler / 自动维护）</a><a href="/courses/8770xte200en/skills/ovnms-maintenance-operations.html">OmniVista 8770 维护运营（诊断工具 / NMC 服务与日志）</a><a href="/courses/8770xte200en/skills/ovnms-topology-views.html">OmniVista 8770 Topology 视图（标准视图 / 自定义视图 / 告警重定向）</a><a href="/courses/8770xte200en/skills/ovnms-oxe-ui-efficiency.html">OmniVista 8770 OXE 配置界面高效操作（搜索/冻结/网格/导入导出）</a><a href="/courses/8770xte200en/skills/ovnms-network-drive.html">OmniVista 8770 网络驱动器映射（报表与备份落网络存储）</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte200en/index.html">omnivista-8770-nms（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte200en/index.html">8770XTE200EN</a><span>/</span><span aria-current="page">OmniVista 8770 报表与任务编排（Reports / Scheduler / 自动维护）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OmniVista 8770 报表与任务编排（Reports / Scheduler / 自动维护）</h1></div><dl><div><dt>Skill ID</dt><dd>ovnms-reports-scheduling</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>OmniVista 8770 报表与任务编排（Reports / Scheduler / 自动维护）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Maximum number of lines in TXT format 4000 ... Maximum number of lines in database 100000"（p444）
+"The number of the SMTP port is optional if the default SMTP port number is used ... Careful: no space between ':' and the TCP port number."（p452）
+"When you add another Job, this one is called jobset. ... if you refresh this one, you will see that jobset becomes Job."（p487）
+"In case of deletion or modification of the predefined maintenance jobs, it is possible to restore the default configuration by a LDIF import."（p502）</p>
+</blockquote>
+<p>出处：8770XTE200EN p443-502（Reports、Scheduler、Automatic maintenance）。</p>
+<h2>I — 自述</h2>
+<p>三件事：把报表生成分发出去、把任务编排成链、让数据库自己瘦身后备恢复兜底。</p>
+<p><strong>Reports 报表</strong></p>
+<ul>
+<li>大小限制默认值（Preferences &gt; Reports &gt; Reports Preference）：TXT 4000 行、HTML/PDF/EXCEL 各 50 页、图表 X 轴 100 元素、数据库取数 100000 行——超限报告尾部提示截断</li>
+<li>流程：预定义报告复制到个人文件夹 &gt; Generate Report（Immediate，附加过滤常用 Notification time=This year）&gt; Open to View</li>
+<li>导出：File（TXT/HTML/PDF/EXCEL，默认名=定义名+生成日期）或 E-MAIL（多地址逗号分隔；依赖 Administration &gt; Export parameters 配 Mail server，SMTP 非默认端口必须显式写且冒号后无空格）</li>
+<li>计划：右键报告定义 &gt; Schedule &gt; 过滤向导 &gt; Task Type=Simple job &gt; Scheduling 页定 Start Date=As Scheduled、Repeat、Exclude Days</li>
+</ul>
+<p><strong>Scheduler 任务编排</strong></p>
+<ul>
+<li>模型：Task=可执行操作（内部操作或外部应用）；Job=同时执行的任务集合（Idle/Waiting/Running）；Simple job=单任务；Synchronized task=挂入已有 job 形成序列；新建子 job 临时叫 jobset，刷新后变 Job</li>
+<li>预定义 job：Daily Job / Weekly Job / 8770 Data Backup / RTU Scheduled Reports 承担日常维护</li>
+<li>组装两法：从报告应用 Schedule 时选 Simple job 或 Synchronized task；或在 Scheduler 建新 job 后从其他 job 复制/剪切任务粘贴（Cut+Paste 改变归属实现先后顺序）</li>
+<li>参数语义：Maximum start delay=错过后允许的最大补跑延迟（超时放弃，如周六任务延迟 1 天、周五关机周一开机则不跑）；Stop on error 默认启用；Retry（次数/间隔/最大时长）；Exclude Days 排除日期</li>
+<li>执行核验：Execute now 后 Reports 图标查各任务成功态</li>
+</ul>
+<p><strong>自动维护（五类清除 + Purge job + 恢复）</strong></p>
+<ul>
+<li>五类清除入口：计费/话务（Accounting preferences，如小时级话务保留 4 天、计费记录 15 天）、报告（Clean taxa Reports=2 天）、告警（Purge configuration，按天数+条数双闸，实验保留 100 告警/100 事件）、审计（Audit purge，日志天数+导出寿命）、文件夹（NmcArchive，磁盘/目录双阈值告警+清理延迟+Keep one backup）</li>
+<li>Purge job 组装：Scheduler 建 job "Purge"，从 Weekly Job 依次复制 Purge Alarms &gt; 新子 job 粘 Clean PTP/Traff Hist &gt; 再嵌 Clean accounting，Enable 后形成告警清除 &gt; 话务清除 &gt; 计费清除的串行链</li>
+<li>误删/改坏预定义 job 的恢复：Administration 应用 Import LDIF（\8770\data\scheduler 下 DailyJob.ldif 或 WeeklyJob.ldif）&gt; 重启 NMC Scheduler 服务</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>报表实验</strong>（p443-459）：</p>
+<ol>
+<li>核对偏好默认上限（TXT 4000 行/50 页/100000 行）</li>
+<li>建个人文件夹 My Alarms reports，复制 OmniVista 8770 alarm detailed report</li>
+<li>生成两实例（全部记录 vs This Week+Severity 过滤）并 Open to View</li>
+<li>文件导出 PDF 与邮件导出 HTML，Thunderbird 收件核对</li>
+<li>计划生成：每日 5:00、Exclude Days 勾周六周日，Execute Now 核验</li>
+</ol>
+<p><strong>任务编排实验</strong>（p469-487）：</p>
+<ol>
+<li>审计报告挂 Simple job（每日 5:00 排除周日）</li>
+<li>建同步 job "My audit synchronization"（4:00），复制 Load/Fetch audit records 粘入</li>
+<li>报告任务以 Synchronized task 挂入该 job</li>
+<li>复制 Partial synchronization LDAP 任务并用 jobset 剪切重排，形成审计同步 &gt; 审计报告 &gt; LDAP 部分同步顺序链</li>
+</ol>
+<p><strong>自动维护实验</strong>（p488-502）：五类参数逐一配置后组装 Purge job 三级链并 Enable；LDIF 导入恢复预定义 job 成功。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：运营报表定期分发给管理层；把审计同步和报告串成自动链；数据库膨胀治理；误删预定义任务抢救。</p>
+<p>语言信号：Reports / 报告上限 / 截断 / Export E-MAIL / SMTP 端口 / Schedule / Simple job / Synchronized task / jobset / Maximum start delay / Exclude Days / Purge / Clean PTP / LDIF / WeeklyJob.ldif。</p>
+<p>与相邻能力区分：审计报告的数据来源（审计合规卡）；8770 Data Backup 预定义 job 的恢复语义（备份恢复卡）；本能力管报表生成、任务编排与数据清理。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：报表需求清单（内容/频率/收件人）、保留期合规要求、维护窗口口径。</p>
+<ol>
+<li>报表定义：复制预定义到个人文件夹并试生成一次。完成标准：实例生成且无截断提示（有则调上限或分批）</li>
+<li>分发：配 Mail server 后挂文件/邮件导出。完成标准：PDF 落盘、邮件到达</li>
+<li>计划：Simple job + As Scheduled + Exclude Days。完成标准：Execute Now 成功、Scheduler 绿态</li>
+<li>编排链：同步任务与报告任务按依赖排序（必要时 jobset 剪切重排）。完成标准：刷新后顺序链按序执行</li>
+<li>清理参数：五类入口按合规保留期配置。完成标准：各保留值有据可查</li>
+<li>Purge job：三级链组装并 Enable，Execute Now 验证。完成标准：数据按条件被清</li>
+<li>兜底：演练一次 LDIF 导入恢复预定义 job。完成标准：Daily/Weekly Job 恢复可见</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>报告被截断 → 先查数据量与上限差值，调参或分批，不要默认"报告全量"</li>
+<li>错过补跑争议 → 按 Maximum start delay 语义解释并给足延迟或改人工巡检</li>
+<li>预定义 job 缺失且无 LDIF → 判停升级，不要手工重建冒充预定义</li>
+</ul>
+<p>输出契约：报表分发清单 + 任务链拓扑与参数表 + 保留期配置表 + LDIF 恢复演练记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>话务分析（Traffic Analysis）仅支持 OXE，OXO 站点不可用（应用 Limits 原文）</li>
+<li>计费/话务域深度应用（Account./Traf./VoIP 的 20 余项清理参数）本书只给默认值表，未逐项教学</li>
+<li>RTU Scheduled Reports 属运营商计费场景，本书仅列名</li>
+<li>清理执行由 Daily/Weekly Job 按"删除条件在应用中配置"承担（p468）；保留期务必按客户合规确定</li>
+<li>实验收件人/邮件服务器为实验口径，见 book/overview</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.ovnms.reports-scheduling · 来源：8770XTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniVista 8770 — Setup & Network Management (Participant's Guide, Edition 47) | edition: Edition 47 | pages: 705 页 -->

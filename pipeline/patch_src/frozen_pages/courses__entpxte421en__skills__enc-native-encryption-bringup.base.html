@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>加密解决方案开通与 lanpbx.cfg</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 加密解决方案</h2><p>Edition 05 · 410 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte421en/index.html">课程首页</a><a href="/courses/entpxte421en/digest.html">精华长文</a><a href="/courses/entpxte421en/overview.html">教书理解</a><a href="/courses/entpxte421en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte421en/skills/enc-certificate-trust-chain.html">证书与信任链全生命周期</a><a href="/courses/entpxte421en/skills/enc-native-encryption-bringup.html">加密解决方案开通与 lanpbx.cfg</a><a href="/courses/entpxte421en/skills/enc-dtls-verification-maintenance.html">DTLS 验证、排障与维护闭环</a><a href="/courses/entpxte421en/skills/enc-sip-tls-endpoints.html">SIP TLS 扩展加密</a><a href="/courses/entpxte421en/skills/enc-sip-trunk-tls.html">SIP trunk 的 TLS 与 SRTP</a><a href="/courses/entpxte421en/skills/enc-eegw-deployment.html">EEGW/NSP 大容量部署</a><a href="/courses/entpxte421en/skills/enc-abcf-network-encryption.html">ABC-F 网络加密</a><a href="/courses/entpxte421en/skills/enc-mtls-endpoint-authentication.html">mTLS 双向认证与版本限制</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte421en/skills/enc-pcs-failover.html">PCS 加密接管</a><a href="/courses/entpxte421en/skills/enc-pki-workshop-xca.html">XCA 外部 CA 工坊</a><a href="/courses/entpxte421en/skills/enc-application-encryption.html">应用生态加密与安全下载</a><a href="/courses/entpxte421en/skills/enc-lab-environment.html">实验环境底座（RLAB）</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte421en/index.html">oxe-native-encryption（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte421en/index.html">ENTPXTE421EN</a><span>/</span><span aria-current="page">加密解决方案开通与 lanpbx.cfg</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>加密解决方案开通与 lanpbx.cfg</h1></div><dl><div><dt>Skill ID</dt><dd>enc-native-encryption-bringup</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>原生加密开通与 lanpbx.cfg（系统参数、用户级加密、DTLS 载体）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Enable Native encryption … True: Native Encryption is enabled … False (default)"（p119）
+"DTLS_SRV Main DTLS server IP address (physical IP address of the main OXE, when the internal EGW module is used, or IP address of the associated EGW virtual machine…)"（p124）
+"IN CASE OF A COMMUNICATION SERVER DUPLICATION, THE LANPBXBUILD TOOL MUST BE LAUNCHED ON THE MAIN COMMUNICATION SERVER."（p121）
+"At least one of TLS cipher suite must remain selected among both, otherwise the encryption devices won't be able to connect."（p68）</p>
+</blockquote>
+<p>出处：ENTPXTE421EN p63-74, p119-125, p228-233。</p>
+<h2>I — 自述</h2>
+<p>证书就位后开通功能：系统参数 → 用户级加密 → lanpbx.cfg 三层推进：</p>
+<ol>
+<li><strong>Native Encryption 参数块</strong>（System/Other System Param.，p119）：</li>
+<li>Enable Native encryption（默认 False）：总开关，开后 IPMG 与 PCS 一律加密不可明文</li>
+<li>Enable automatic CTL Acquisition（True=CTL 经 lanpbx.cfg 自动下发）</li>
+<li>Authentication for SRTP：Unauthenticated（默认）/Authenticated/Authenticated tag emis. w/o ctrl；IPDSP 只工作在认证模式，部署 IPDSP 即锁定 Authenticated</li>
+<li>TLS cipher suite 两条（AES_128_GCM_SHA256 与 AES_256_GCM_SHA384）：至少保一条，否则加密设备连不上；信令位数与话音位数相互独立</li>
+<li><strong>SRTP Cipher Suite</strong>（p70-72 二选一不混用）：</li>
+<li>AES-128：默认，无硬件代价</li>
+<li>AES-256：GD4/GD-XL 压缩器 60→45、INTIP3 60→30、GD3 禁用必须换 GD4；只支持 AES-128 的设备通话回落明文；改后必须重启 OXE</li>
+<li><strong>用户级部分加密</strong>（p66）：</li>
+<li>每个用户选项 Native encryption 逐台开关；过渡期新旧话机混存</li>
+<li>DSS/DSU（桌面共享）与 ProACD/agent（呼叫中心）上下文必须同质配置</li>
+<li><strong>lanpbx.cfg 的 DTLS 字段</strong>（p124 十字段）：</li>
+<li>DTLS（配置 DTLS_SRV 即自动 ENABLED）、DTLS_SRV/DTLS_SRV_RD、DTLS_PORT（默认 32643）</li>
+<li>OXE_FQDN、DTLS_CERT_TRUST（PEM 格式 CTL 自动注入）、DTLS_SIGN_CERT/FILE（签名对）与 _ALT 旧证书旧签名</li>
+<li><strong>lanpbxbuild 规则</strong>（p121-122）：</li>
+<li>duplication 只能在 main CS 执行；自动产出 lanpbx.cfg + lanpbxtwin.cfg 并同步 standby</li>
+<li>-auto 会重置 IP_CPU/IP_DOWNLOAD 外的全部既有配置</li>
+<li>先激活 NE，j/k（DTLS1/2 地址）选项才可用；每次 Apply changes（6）重签 CTL 与文件，改动后重启 CS 生效</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>DTLS 开通实验</strong>（p119-126，c02 步骤 6-9）：</p>
+<ol>
+<li>System/Other System Param./Native Encryption parameters 打开参数块</li>
+<li>Enable Native encryption=True、Enable automatic CTL Acquisition=True</li>
+<li>Authentication for SRTP=Authenticated（IPDSP 场景必选）</li>
+<li>Users 选 31000/31002/31003 → 8&amp;9 Series Parameters → Native encryption=Enable</li>
+<li>Phone COS/0 页 Display Encrypted Communication=YES（话机显示加密图标）</li>
+<li>mtcl 执行 lanpbxbuild -auto 建文件（新装口径）</li>
+<li>lanpbxbuild → 4 Modify → j 填 DTLS1=192.168.1.1、k 填 DTLS2=192.168.1.2（实验口径）</li>
+<li>6 Apply changes：输出 CTL 生成与 Native Encryption signing 两段</li>
+<li>重启 OXE CS；WBM 的 IP/Encryption GW 显示 EGW IP=CS IP（内部 EGW）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：打开原生加密总开关；给部分用户开加密；SRTP 用 128 还是 256；lanpbx.cfg 怎么生成；DTLS 端口改多少；duplication 环境 lanpbx 在哪台做。</p>
+<p>语言信号：Enable Native encryption / Native Encryption parameters / Authentication for SRTP / SRTP Cypher Suite / AES-256 / lanpbx.cfg / lanpbxbuild / DTLS_SRV / 32643 / partial encryption / copy to twin。</p>
+<p>与相邻能力区分：证书还没就位找证书与信任链能力；开完要验证找验证与维护能力；DTLS 服务器指向外部网关归 EEGW 部署能力；安全关掉看 SIP trunk 能力内的停用段（c08 同路径）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：证书已就位（CA/CS 证书 + twin 同步完成）、端点台账（哪些用户先加密）、板卡清单（有无 GD3/INTIP3）。证书未就位 → 判停回证书能力。</p>
+<ol>
+<li>核硬件前提：有 GD3 只能 AES-128；打算 AES-256 按 GD4/GD-XL 60 换 45、INTIP3 60 换 30 重算压缩器容量。完成标准：cipher suite 决策成文</li>
+<li>配系统参数：Native Encryption 参数块按 I 段口径逐项配置（IPDSP 站点锁 Authenticated）。完成标准：参数保存</li>
+<li>开用户级加密：按台账逐用户 Enable，共享上下文（DSS/DSU、ProACD）整组同质。完成标准：加密/明文用户清单确认</li>
+<li>生成 lanpbx.cfg：duplication 在 main 跑 lanpbxbuild；j/k 填 DTLS 服务器（内嵌 EGW=CS 物理 IP）；6 Apply changes 重签。完成标准：CTL_sign OK 与签名输出出现</li>
+<li>重启生效：重启 OXE CS（duplication 双 bascul）；改 cipher suite 场景必须重启系统。完成标准：EGW 菜单可读</li>
+<li>核对落盘：more /usr3/mao/lanpbx.cfg 检查 DTLS/DTLS_SRV/DTLS_PORT/签名字段。完成标准：字段与方案一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>端点含只支持 AES-128 的设备（IP-xBS、Android IPDSP、hybrid link ABC 网络）而客户要 AES-256 → 明确告知这些设备通话会回落明文 RTP，先盘点再切换（n01）</li>
+<li>想用 lanpbxbuild 的 j/k 但 NE 没激活 → 先开系统参数再回来（p122）</li>
+<li>改了参数"没生效" → 对号生效动作：TLS 信令重启 CS、SRTP 认证重启 SIPMOTOR、mTLS 重签 lanpbx + 重启（n17）</li>
+</ul>
+<p>输出契约：加密参数+用户清单+签名后的 lanpbx.cfg + 重启记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>全部实验参数值（IP/口令/分机号）为 RLAB 实验口径，生产按客户环境整体替换</li>
+<li>IPMG 与 PCS 恒加密：部分加密只对 DTLS/TLS 能力端点用户生效，不能给 IPMG 开明文（p65）</li>
+<li>切换加密模式需要话机重启；CS 每次设备连接后按型号+版本核对加密能力（p66）</li>
+<li>EEGW 场景 DTLS_SRV 填 EEGW IP 而非 CS IP——那是 EEGW 部署能力的迁移段（p216）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte421en/skills/enc-certificate-trust-chain.html">证书与信任链全生命周期</a>、<a href="/courses/entpxte421en/skills/enc-dtls-verification-maintenance.html">DTLS 验证、排障与维护闭环</a></p><p class="source-page">能力 ID：cap.enc.native-encryption-bringup · 来源：ENTPXTE421EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — Native Encryption (Participant's Guide, Edition 05) | edition: Edition 05 | pages: 410 页 -->

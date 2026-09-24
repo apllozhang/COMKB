@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>语音邮箱与移动办公</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OXO Connect · Advanced</h2><p>Edition 18 · 601 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte301en/index.html">课程首页</a><a href="/courses/oxocxte301en/digest.html">精华长文</a><a href="/courses/oxocxte301en/overview.html">教书理解</a><a href="/courses/oxocxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte301en/skills/oxoa-sip-networking.html">SIP 组网：公网网关与私网互联</a><a href="/courses/oxocxte301en/skills/oxoa-numbering-ars-suite.html">ARS 路由套件：三表协作与 Internal ARS</a><a href="/courses/oxocxte301en/skills/oxoa-hotel-billing-vertical.html">酒店与计费垂直方案</a><a href="/courses/oxocxte301en/skills/oxoa-security-hardening.html">系统安全加固</a><a href="/courses/oxocxte301en/skills/oxoa-certificate-suite.html">证书与加密传输（证书/DTLS/TLS-SRTP）</a><a href="/courses/oxocxte301en/skills/oxoa-attendant-suite.html">语音导航套件（AA/MLAA/SCR）</a><a href="/courses/oxocxte301en/skills/oxoa-voicemail-mobility.html">语音邮箱与移动办公</a><a href="/courses/oxocxte301en/skills/oxoa-cloud-connect-fleet.html">Cloud Connect 舰队与远程维护</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte301en/skills/oxoa-foundation-ip.html">交付地基：OMC 首连与 IP 规划</a><a href="/courses/oxocxte301en/skills/oxoa-terminal-ecosystem.html">终端生态：PIMphony 与 SIP 话机接入</a><a href="/courses/oxocxte301en/skills/oxoa-shared-devices.html">共享终端：站群监督、Hot Desking 与 Multiset</a><a href="/courses/oxocxte301en/skills/oxoa-multi-entity.html">多实体与伪多公司</a><a href="/courses/oxocxte301en/skills/oxoa-dect-deployment.html">DECT 无线移动</a><a href="/courses/oxocxte301en/skills/oxoa-maintenance-toolkit.html">维护工具箱：Webdiag、Noteworthy 与 LoLa</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte301en/index.html">oxo-connect-advanced（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte301en/index.html">OXOCXTE301EN</a><span>/</span><span aria-current="page">语音邮箱与移动办公</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>语音邮箱与移动办公</h1></div><dl><div><dt>Skill ID</dt><dd>oxoa-voicemail-mobility</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>语音邮箱与移动办公（VM 高级、ACC 两级控制、游牧模式、远程替代）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Access control code will get by default a system generated random 6 digits value … ACC is kept after warm reset and newly generated after cold reset"（p383）
+"The lockout time is doubled for each denial (24 hours max value, 1440 minutes)"（p384）
+"In case of migration, this field is disabled • After cold reset or in case of new installation, by default • 'Mailbox consultation from any phone' is enabled • 'Mailbox remote consultation' is disabled"（p382）
+"if the caller is external, his CLI is sent to the nomadic terminal … If the caller is internal and has a DDI, this DDI is sent … Else the OXO Connect installation number is sent"（p466）
+"Secondary Trunk Group #100 #199 ARS Keep Yes … #100 to #199 in order to avoid conflict with line 100 to 199"（p471, p479）</p>
+</blockquote>
+<p>出处：OXOCXTE301EN p379-404, p463-480。</p>
+<h2>I — 自述</h2>
+<p>语音邮箱高级与移动性共用一套远程接入体系（VMU 远程定制 + Remote Access Code/ACC），合为一个闭环：</p>
+<p><strong>语音邮箱高级</strong>（p379-404）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>机制</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>端口</td>
+<td>语音服务器 2-8 端口，默认动态分配、可固定</td>
+</tr>
+<tr>
+<td>本地开关</td>
+<td>"Mailbox consultation from any phone"：冷复位/新装默认启用，禁用后仅本机可查</td>
+</tr>
+<tr>
+<td>远程权</td>
+<td>"Mailbox remote consultation"（Features/Part 3）：默认禁用；迁移场景该字段被置禁用（n60）</td>
+</tr>
+<tr>
+<td>ACC 两级控制</td>
+<td>空=标准认证（话机号+密码）；设值=ACC+话机号+密码。默认随机 6 位、最长 16 位、warm 保留/cold 重生成</td>
+</tr>
+<tr>
+<td>锁定</td>
+<td>连续失败翻倍（10 分钟起步、封顶 1440 分钟，VMUMaxTry）；本地远程共享计数；解锁五途（OMC/Webdiag/话机/话务员/PIMphony）</td>
+</tr>
+<tr>
+<td>个人助理</td>
+<td>迷你 AA：三目的地（内部/外部/移动）+转话务员；noteworthy PerAssAlwd 默认禁用；远程转移选项受 DivRemCust 默认禁用</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>游牧模式</strong>（p465-468）：游牧话机（多为手机）替代本地话机（本地可物理可虚拟）；启用链=订阅户勾 Nomadic right（自动建 Virtual Nomadic 虚拟终端）→VMU 远程定制选项 6 激活并设目的地。CLI 三选一：外部主叫发原 CLI；内部主叫有 DDI 发 DDI；否则发安装号；计费小票含游牧信息。SIP 话机不支持（p147）。</p>
+<p><strong>远程替代</strong>（p469-480）：拨远程替代 DDI、远程接入码、分机号、密码，以该分机身份外呼；拨内部号加 # 前缀（#100-#199，#9 话务员）经内部 ARS 回环——避免与本地直拨 100-199 冲突。ACC 与远程 VM 接入共用同一密码菜单。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>语音邮箱高级实验</strong>（p394-404，厂商实验）：</p>
+<ol>
+<li>给 103 配个人助理三目的地：同事 101、外部 0210P41102、移动 0610P41101（实验口径）。</li>
+<li>noteworthy PerAssAlwd 置 01 激活系统开关。</li>
+<li>话机侧经邮箱菜单 9→2 配助理（也可 Settings/Assistant）。</li>
+<li>给语音邮箱寻线组分 DDI 41500；关 "Mailbox consultation from any phone"、勾 101 远程查。</li>
+<li>Remote Access Code 设码 780911（实验口径）。</li>
+<li>锁定测试：远程接入连错 3 次密码，邮箱锁 10 分钟并见于 History Table（p402）。</li>
+<li>远程定制：勾 103 Remote customization，经远程菜单把助理配移动号+转话务员。</li>
+<li>寻线组邮箱：509 组关联虚拟分机 112 的邮箱（VM 键 LED 通知）。</li>
+</ol>
+<p><strong>游牧与远程替代实验</strong>（p472-480，厂商实验）：</p>
+<ol>
+<li>话机 104 定制邮箱：录名+改密码（实验口径 142536）。</li>
+<li>勾 Nomadic right，核对自动创建 Virtual Nomadic 虚拟终端。</li>
+<li>VM 组 DDI 配 021PN41500；Features Part 2 勾 Remote customization、Part 3 勾远程查。</li>
+<li>激活游牧：拨 VM DDI、接入码、邮箱 104、密码，菜单 9 再 6，输目的地 0021PN41102 按 # 确认。</li>
+<li>验证：104 显示 Nomadic mode，来话转到目的地；随后停用。</li>
+<li>远程替代：替代 DDI 41200、接入码 615243（实验口径）、Part 2 勾 Remote Substitution。</li>
+<li>内部 ARS：#100-#199 base ARS、NMT Keep、Private=Yes；ARS 表 Priv #1 00-99；列表 Index=Local。</li>
+<li>测试：打 021PN41200，接听音后拨接入码、104、密码，拿到拨号音以 "#" 开头拨内部分机（p480）。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：手机在外接分机电话；出差用任何话机查留言；远程改呼叫转移；邮箱被锁了；怕被人盗打远程邮箱；以自己分机身份在公司外呼出；升级后远程查不了邮箱。</p>
+<p>语言信号：语音邮箱 / voice mail / 远程接入 / ACC / 锁定 / VMUMaxTry / 个人助理 / personal assistant / 游牧 / nomadic / Virtual Nomadic / 远程替代 / remote substitution / 远程接入码 / VMU / 远程定制 / "# 前缀"。</p>
+<p>与相邻能力区分：远程接入码/ACC 的密码策略与锁定公式归安全加固能力；# 前缀内部 ARS 的三表机制归 ARS 套件能力；VMU 菜单里的转移选项 7 依赖 noteworthy DivRemCust（维护工具域的 noteworthy 修改流程）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：用户清单与移动需求、VM 端口与 DDI 规划、接入码与 ACC 策略、授权范围（哪些用户开远程权）。授权范围未定 → 判停按默认全关交付，逐用户开通。</p>
+<ol>
+<li>VM 基线：确认端口分配与本地开关；新装默认"任意话机可查开+远程查关"（迁移则远程字段禁用，n60）。完成标准：VM 可用</li>
+<li>远程接入：给 VM 寻线组分 DDI；按需勾 Mailbox remote consultation。完成标准：外部可入</li>
+<li>ACC 两级：Remote Access Code 设值即升级为三级认证（默认随机 6 位，可改至 16 位）。完成标准：防盗打口径成文</li>
+<li>个人助理：PerAssAlwd 置 01，配三目的地；远程转移需求另开 DivRemCust。完成标准：未接来话按助理分发</li>
+<li>游牧：勾 Nomadic right → VMU 选项 6 激活并设目的地 → 话机显示 Nomadic mode。完成标准：来话跟随</li>
+<li>远程替代：替代 DDI + 接入码 + Part 2 勾权；内部 ARS 配 #100-#199 段。完成标准：回环拨内部通</li>
+<li>验证：远程接入听留言、试错密码验锁定翻倍、外呼核对 CLI 与计费小票。完成标准：三场景闭环</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>用户报"远程查不了邮箱"且为迁移系统 → 先核 n60 默认值矩阵再查权限</li>
+<li>SIP 话机用户要游牧 → 不支持（p147，推断：另走 Rainbow/软话机路线）</li>
+<li>锁定中用户急用 → 走五途解锁（OMC 重置/Webdiag/话机改密/话务员/PIMphony），不要等锁时</li>
+<li>远程接入码与分机密码混为一谈 → 停，两者是两层认证；ACC 改动影响远程替代与远程 VM 两个入口</li>
+</ul>
+<p>输出契约：VM/移动授权清单（按用户）+ ACC 与接入码策略记录 + 游牧/替代场景测试结论 + 锁定事件验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>实验接入码（780911/615243）与密码（142536）为实验口径；生产按客户密码策略生成</li>
+<li>防盗打三提醒（p382）：勤改邮箱密码、不用简单数字序列、遵 TC1143；ACC 是第一防线不是唯一防线</li>
+<li>游牧 CLI 规则与计费小票内容随游牧变化：对账时注意小票新增游牧信息</li>
+<li>远程定制默认三级全关（游牧按用户/远程定制按用户/DivRemCust 系统级，n54）：用户报"激活不了"先查授权链</li>
+<li>VMU 菜单语音为系统内置；自定义欢迎消息（MSG1-20）挂寻线组，与实体 MoH 录制入口共用但语义不同（n24）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte301en/skills/oxoa-attendant-suite.html">语音导航套件（AA/MLAA/SCR）</a>、<a href="/courses/oxocxte301en/skills/oxoa-numbering-ars-suite.html">ARS 路由套件：三表协作与 Internal ARS</a></p><p class="source-page">能力 ID：cap.oxoa.voicemail-mobility · 来源：OXOCXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OXO Connect - Advanced (Participant's Guide, Edition 18) | edition: Edition 18 | pages: 601 页 -->

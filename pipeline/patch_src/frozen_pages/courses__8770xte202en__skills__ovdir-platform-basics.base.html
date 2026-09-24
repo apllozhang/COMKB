@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>8770 平台基础（套件/拓扑/兼容/虚拟化）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 目录管理</h2><p>Edition 40 · 565 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte202en/index.html">课程首页</a><a href="/courses/8770xte202en/digest.html">精华长文</a><a href="/courses/8770xte202en/overview.html">教书理解</a><a href="/courses/8770xte202en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte202en/skills/ovdir-oxe-sync-ldap.html">OXE 节点注册与同步</a><a href="/courses/8770xte202en/skills/ovdir-auto-creation.html">目录树搭建与 PCX 自动创建</a><a href="/courses/8770xte202en/skills/ovdir-links-rename.html">六类链接与改名语义</a><a href="/courses/8770xte202en/skills/ovdir-msad-azure-pipelines.html">MSAD 与 Azure AD 同步管道</a><a href="/courses/8770xte202en/skills/ovdir-click-to-call.html">Click to Call 交付</a><a href="/courses/8770xte202en/skills/ovdir-confidentiality.html">目录保密级别与访问级别</a><a href="/courses/8770xte202en/skills/ovdir-replication.html">目录复制主从部署</a><a href="/courses/8770xte202en/skills/ovdir-domains-delegation.html">管理域与委派</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte202en/skills/ovdir-msad-plugin.html">MSAD 插件开户（AD 右键一键开通）</a><a href="/courses/8770xte202en/skills/ovdir-ldif-tools.html">LDIF 导入导出与管理工具管道</a><a href="/courses/8770xte202en/skills/ovdir-client-dictionary.html">目录词典与 Web 客户端定制</a><a href="/courses/8770xte202en/skills/ovdir-platform-basics.html">8770 平台基础（套件/拓扑/兼容/虚拟化）</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte202en/index.html">omnivista-directory（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte202en/index.html">8770XTE202EN</a><span>/</span><span aria-current="page">8770 平台基础（套件/拓扑/兼容/虚拟化）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>8770 平台基础（套件/拓扑/兼容/虚拟化）</h1></div><dl><div><dt>Skill ID</dt><dd>ovdir-platform-basics</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>8770 平台基础（套件全景、拓扑架构、版本兼容、虚拟化）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Setup suite / Network suite / Reports suite / Directory suite"（p4）
+"Graphical User Interface (GUI) to manage 8770 applications • Simultaneous access to OmniVista 8770 Server"（p6）
+"HTML application to access the directory information • Anonymous access allowed"（p6）
+"Server / Config. / binaries / OXE ... MariaDB (SQL) / LDAP / OV8770 Services"（p7）
+"OXE Purple R101.0 (N3), R101.1 (N4) &amp; R101.2 (N5) X"（p9，仅 R5.2 列有 X）</p>
+</blockquote>
+<p>出处：8770XTE202EN p4-40。</p>
+<h2>I — 自述</h2>
+<p>平台背景层，回答"8770 是什么、谁连谁、版本怎么配"。</p>
+<ul>
+<li><strong>四套件 15 应用</strong>（厚客户端）：Setup/Server Administration（Administration/Security/Maintenance/Scheduler）；Network/PCX 管（Configuration/OXO Connect Supervision/Users/Devices/Alarms/Topology/Audit/Maintenance）；Reporting（Accounting/Traffic Analysis/Reports）；Directory（Directory + Web Directory）。本书只精讲 Directory 套件及交错的 Security/Alarms/Configuration/Administration/Scheduler</li>
+<li><strong>WBM 四应用</strong>：Users（需 Unified Management 许可，支持管理域）、Configuration（一次只连一个 OXE，无 SSH/Telnet 直连）、Performance（仪表盘）、Manage My Phone（终端用户自管话机）</li>
+<li><strong>架构</strong>：MariaDB+LDAP 双存储；OV8770 Services 承载 Web Directory/邮件/批量开通等；北向对接 OXE（HTTPS+LDAP(S)+CMISE+(S)FTP+Telnet/SSH）、OXO Connect（经 OMC）、SNMP Hypervisor、WBM（HTTPS）</li>
+<li><strong>版本兼容</strong>（p9 矩阵，四列为 8770 R4.2/R5.0/R5.1/R5.2）：</li>
+</ul>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>PCX 版本</th>
+<th>兼容的 8770</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OT R2.4-2.6.1 / OXE R12.2-12.4</td>
+<td>四版全兼容</td>
+</tr>
+<tr>
+<td>OXE Purple R100 (N1)</td>
+<td>R5.0/R5.1/R5.2</td>
+</tr>
+<tr>
+<td>OXE Purple R100.1 (N2)</td>
+<td>R5.1/R5.2</td>
+</tr>
+<tr>
+<td>OXE Purple R101.0-101.2 (N3-N5)</td>
+<td>仅 R5.2</td>
+</tr>
+<tr>
+<td>OXO Connect/OCE R4.0</td>
+<td>四版全兼容</td>
+</tr>
+<tr>
+<td>OXO Connect/OCE R5.0-5.1</td>
+<td>R5.0/R5.1/R5.2</td>
+</tr>
+<tr>
+<td>OXO Connect/OCE R5.2-6.2</td>
+<td>R5.1/R5.2</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>虚拟化</strong>：ESXi 6.x/7.0/8.0、Hyper-V 2016/2019/2022、Nutanix AHV、AWS；虚拟化本身不收许可，sizing 用 Capacity Planning tool V3.0</li>
+<li><strong>RLAB 实验平台</strong>（Boundary 背景）：POD 池独立同构（OXE/OMS/FlexLM/Client PC/Ecosystem/OV8770），公共区 NAS/邮件/SIP 模拟器；Console 与 RDP 两种访问模式</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>交付前平台核对场景</strong>（依据 p4-38 讲义，无实验章）：</p>
+<ol>
+<li>定版本：对照 p9 矩阵核对 PCX 与 8770 版本配对</li>
+<li>定形态：物理 appliance 或虚拟机，按 Hypervisor 清单核对</li>
+<li>定入口：厚客户端管全套件；WBM 管 Users/Configuration/Performance</li>
+<li>定许可：Unified Management（WBM Users）、Directory、Domain Management 等逐项核</li>
+<li>匿名入口确认：Web Directory 默认允许匿名，引出保密设计需求</li>
+<li>实验环境问题一律回落本卡 Boundary 声明，不进生产配置</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：8770 有哪些应用/套件；WBM 和厚客户端分工；8770 与 OXE/OXO 什么版本能配；虚拟化支持哪些平台收不收费；8770 架构里 LDAP 和 MariaDB 各干嘛；实验环境是什么。</p>
+<p>语言信号：8770 / OmniVista / 套件 / suite / WBM / 厚客户端 / Web Directory / 兼容性 / compatibility / R5.2 / Purple / ESXi / Hyper-V / Capacity Planning / RLAB。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>目录功能交付 → 其余 11 张能力卡</li>
+<li>OXE 侧命令细节 → OXE 注册能力（仅注册子集）</li>
+<li>计费/话务/报表 → 其它 8770 教材（书外）</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户站点信息（PCX 类型与版本、部署形态、许可清单）。</p>
+<ol>
+<li>版本核查：PCX 与 8770 版本对照 p9 矩阵逐行确认。完成标准：配对合法</li>
+<li>形态核查：物理/虚拟化平台对照支持清单。完成标准：形态可行</li>
+<li>许可核查：按能力需求列许可清单（Unified Management/Directory/Domain Management/AD integration）。完成标准：清单齐</li>
+<li>入口规划：厚客户端与 WBM 分工告知客户。完成标准：管理入口成文</li>
+<li>边界声明：跨套件需求指向对应教材，实验值声明实验口径。完成标准：范围共识</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户 PCX 是矩阵外的更新版本 → 矩阵止于 Ed40 印刷口径：以官方最新兼容文档为准（n43），不口头承诺</li>
+<li>计费/话务/报表/设备管理等需求 → 不在本书范围（n50），引用对应教材（8770XTE200/201 等）</li>
+<li>客户问实验 IP/密码能不能用 → 一律不可：教学约定值（n42/n47），仅 Boundary 背景</li>
+<li>虚拟化 sizing 细节 → 本书不展开：指向 Capacity Planning tool 与官方 sizing 文档</li>
+</ul>
+<p>输出契约：平台就绪核对表（版本/形态/许可/入口）+ 范围边界声明。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>本书只精讲 Directory suite：性能/计费/报表等只有一页级介绍（n50），不拿本书当 8770 全功能手册</li>
+<li>RLAB 平台与 SIP 模拟器是教学专用基础设施（n47）：POD/IP/密码/号码全部实验口径，不可迁移生产</li>
+<li>兼容矩阵为 Ed40 印刷口径：新版本 PCX 需查最新官方矩阵，"先升 PCX 再留旧 8770"会失去兼容（n43）</li>
+<li>Azure AD 一章已注明 Entra ID 更名；MSAD 支持的 Windows Server 止于 2022，时效性以官方为准</li>
+<li>环境值（IP/密码/账号）只出现在本卡 Boundary 与 book/overview（nr-08）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte202en/skills/ovdir-oxe-sync-ldap.html">OXE 节点注册与同步</a></p><p class="source-page">能力 ID：cap.ovdir.platform-basics · 来源：8770XTE202EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniVista 8770 — Directory Administration (Participant's Guide, Edition 40) | edition: Edition 40 | pages: 565 页 -->

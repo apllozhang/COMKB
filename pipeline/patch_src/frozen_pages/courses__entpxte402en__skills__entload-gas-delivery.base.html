@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>GAS 通用设备服务器：硬件前置、软件加载与后安装向导</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 系统装载</h2><p>Edition 12 · 415 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte402en/index.html">课程首页</a><a href="/courses/entpxte402en/digest.html">精华长文</a><a href="/courses/entpxte402en/overview.html">教书理解</a><a href="/courses/entpxte402en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte402en/skills/entload-sot-installation.html">S.O.T. 部署工具的安装、初始化、更新与 Template Factory</a><a href="/courses/entpxte402en/skills/entload-cs-loading.html">OXE 呼叫服务器单版本全加载与加载后初始化</a><a href="/courses/entpxte402en/skills/entload-patch-management.html">OXE 多版本加载、分区切换与静态/动态补丁管理</a><a href="/courses/entpxte402en/skills/entload-oxe-v-deployment.html">OXE-V 虚拟化：平台选型、许可路径与 OXE/OMS 虚机交付</a><a href="/courses/entpxte402en/skills/entload-gas-delivery.html">GAS 通用设备服务器：硬件前置、软件加载与后安装向导</a><a href="/courses/entpxte402en/skills/entload-cloud-connect.html">Cloud Connect 云连接：网络前提、FTR 首次注册与 PIN 恢复</a><a href="/courses/entpxte402en/skills/entload-rtr-licensing.html">RTR 许可开关：资格期状态机、事件监控与 FlexLM 互斥</a><a href="/courses/entpxte402en/skills/entload-pod-licensing.html">OPEX / Purple on Demand：订阅许可、LMS 同步、panic 时间线与 C2P 转换</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte402en/skills/entload-distributor-loading.html">Easy Installation 分发器模式：无 SOT 环境的本地加载</a><a href="/courses/entpxte402en/skills/entload-sot-media.html">SOT 媒体传输与加载项目配置（公共动作）</a><a href="/courses/entpxte402en/skills/entload-gas-ops.html">GAS 日常运维：版本、备份、host 升级与 UPS</a><a href="/courses/entpxte402en/skills/entload-fleet-dashboard.html">Fleet Dashboard 云端机队服务：Inventory、Offer、远程控制台与软件更新</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte402en/index.html">oxe-loading（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte402en/index.html">ENTPXTE402EN</a><span>/</span><span aria-current="page">GAS 通用设备服务器：硬件前置、软件加载与后安装向导</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>GAS 通用设备服务器：硬件前置、软件加载与后安装向导</h1></div><dl><div><dt>Skill ID</dt><dd>entload-gas-delivery</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>GAS 通用设备服务器：硬件前置、软件加载与后安装向导</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Generic Appliance Server (GAS) packaging provided by ALE • Operating system: Rocky Linux • Virtualized OXE on top of Rocky linux's KVM layer ... FlexLM license server directly installed on Rocky linux"（p221）
+"OXE+OMS+WebRTC: 4 cores / 2.8 GHz / 8 GB / 360 GB ... Above 7,000 users, an external WebRTC gateway is required"（p226）
+"The IP address of the default gateway (this IP MUST be accessible during installation)"（p235）
+"Execute "./oxeswspostinst.bin""（p263）</p>
+</blockquote>
+<p>出处：ENTPXTE402EN p219-242、p244-282。</p>
+<h2>I — 自述</h2>
+<p>GAS 用"打包"消灭硬件不确定性：BP 按前置表自备服务器，ALE 软件包（Rocky Linux+KVM 底座）承载 1 台 OXE VM（Rocky）、1 台 OMS VM（Rocky，可选）、1 台 Rainbow WebRTC VM（Debian，可选）；FlexLM 直接装在宿主 OS；dongle-less，许可基于服务器 ALU-ID 或 Cloud Connect ID。</p>
+<p>硬件前置表（OXE 为必装底座；用户数 &gt;12000 时内存再加 2GB）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>组件组合</th>
+<th>核数</th>
+<th>主频</th>
+<th>内存</th>
+<th>硬盘</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>仅 OXE</td>
+<td>2</td>
+<td>任意</td>
+<td>4GB</td>
+<td>360GB</td>
+</tr>
+<tr>
+<td>OXE+OMS</td>
+<td>2</td>
+<td>2.8GHz</td>
+<td>6GB</td>
+<td>360GB</td>
+</tr>
+<tr>
+<td>OXE+WebRTC</td>
+<td>3</td>
+<td>2GHz</td>
+<td>6GB</td>
+<td>360GB</td>
+</tr>
+<tr>
+<td>OXE+OMS+WebRTC</td>
+<td>4</td>
+<td>2.8GHz</td>
+<td>8GB</td>
+<td>360GB</td>
+</tr>
+</tbody>
+</table></div>
+<p>平台与组件红线：CPU 最低 Haswell 代（Intel 64+VT）；1GB 网卡；能 DVD 引导；只认硬件 RAID（软件 RAID 不支持）；OMS 每 GAS 限 1 台且禁装第二台；内嵌 WebRTC 网关 50 并发封顶，&gt;7000 用户必须外部网关；HP DL20 G11 只能用 GAS 软件包；冗余双机硬件须相似且禁 Appliance Server 与 GAS 混搭。</p>
+<p>IP 连通性清单：宿主 IP（FlexLM 与宿主共用同一 IP）、默认网关 IP（安装期间必须可达）、DNS IP（客户不配 DNS 时可用 GAS 自身 IP 顶替）、OXE CS IP；OMS/WebRTC IP 可选。IP 计数：宿主 1+OXE 1+OMS 1+WebRTC 1。</p>
+<p>后安装向导（oxeswspostinst.bin，需 Xming+Putty X11；root 直登 SSH 已禁用）六段依次填写：</p>
+<ol>
+<li>国家码（用于 OXE 建库与时区）</li>
+<li>OXE 参数：主机名/IP/网关/节点名；信任主机 CSV 落 /opt/config/trust/import_th.csv，iptables 建好后移到 /tmpd/import_th_bkp.csv</li>
+<li>冗余形态：Local 同子网一个 Main IP；Spatial 两子网两个 Main IP，另需 DNS 委托解析节点名</li>
+<li>可选组件：OMS、WebRTC</li>
+<li>WebRTC GW 参数：IP/网关/DNS/NTP、TURN=GEOIP、RAINBOW_PBXID、PBX_DOMAIN、Rainbow 域名</li>
+<li>许可三选一：Browse 选文件 / Skip 事后补 / Mount USB（挂 /media/usb-drive 后选 5 个许可文件）</li>
+</ol>
+<p>FlexLM 侧：.ice 入 /opt/Alcatel-Lucent/data/licenses 后 systemctl restart flexlmd；OXE 侧对接端口 27000，改完必须重启 CS。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>GAS 加载与后安装</strong>（p244-282，How-To）：</p>
+<ol>
+<li>备 bootdvd 与 GAS 两个 iso，SOT 建 Greenfield 项目（产品 GAS）</li>
+<li>经 ILO 进 System Utilities 的 Summary，记 Port 1 网卡 MAC</li>
+<li>项目填 MAC、hostname、IP，Declare 媒体后 Deploy</li>
+<li>重启按 F11 选 PXE（Embedded LOM 1 Port 1）开始加载</li>
+<li>培训环境约 60 分钟装完，改各账户默认密码</li>
+<li>Xming+Putty（X11 forwarding）以 admin 登录跑 oxeswspostinst.bin</li>
+<li>向导依次过：国家码、OXE 参数、可选组件、WebRTC GW 参数、许可</li>
+<li>Install 完成后 virt-manager 进各 VM 收尾键盘与密码</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户买了服务器要装 GAS；后安装向导字段怎么填；WebRTC 网关参数；FlexLM 许可怎么装；冗余两台怎么规划；root 登不上去。</p>
+<p>语言信号：GAS / Generic Appliance Server / Rocky / BootDVD / oxeswspostinst.bin / 后安装 / post-installation / PBXID / TURN / GEOIP / FlexLM / ALU-ID / .ice / 27000 / 信任主机 / import_th / DL20 / PXE。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>GAS 日常运维（备份/升级/UPS） → GAS 运维卡（路由）</li>
+<li>OXE/OMS 虚机在通用虚拟化上的交付 → 虚拟化交付卡</li>
+<li>许可模式与 RTR 互斥判定 → RTR 卡</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：满足前置表的服务器（硬件 RAID）、BootDVD+GAS 两个 iso、客户 IP 规划、许可文件（.swk 与 .ice）、冗余形态决策。网关 IP 安装期不可达 → 判停先跟客户网络组落实。</p>
+<ol>
+<li>前置核对：硬件前置表逐项过（核数/主频/内存/360GB/硬件 RAID）。完成标准：服务器在表内</li>
+<li>SOT 加载：建 GAS 项目、取 MAC、Deploy、PXE 引导装完。完成标准：登录提示出现</li>
+<li>改默认密码：先 admin 登录（root 直登已禁用），passwd root 与 admin。完成标准：默认口令全部替换</li>
+<li>后安装向导：Xming+Putty X11 跑 oxeswspostinst.bin，六段依次填。完成标准：POST INSTALLATION SUCCESSFULLY INSTALLED</li>
+<li>FlexLM 安装：.ice 入 /opt/Alcatel-Lucent/data/licenses，restart flexlmd，lmutil lmstat -a 核对。完成标准：active (running)</li>
+<li>OXE 对接：System/Licenses 填 Flex Server IP 与端口 27000、发现开 Yes，重启 CS。完成标准：spadmin 可查许可</li>
+<li>WebRTC GW：换真实 RAINBOW_PBXID（来自 Rainbow 云平台），按冗余形态定 PBX_DOMAIN。完成标准：网关注册 Rainbow</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>服务器是软件 RAID → 停，GAS 不支持，先改硬件 RAID</li>
+<li>向导里 PBXID 只有示例值 → 停，正式值必须向 Rainbow 云平台索取，照抄会连错租户</li>
+<li>冗余要 Appliance Server 混搭 GAS → 停，禁止混搭，双机硬件须相似</li>
+<li>改完 FlexLM"许可还是不认" → 停，先确认 OXE 重启过没有（硬前提）</li>
+</ul>
+<p>输出契约：三 VM 就位、许可链打通（FlexLM/OXE 两侧核对记录）、WebRTC 网关参数表存档的 GAS 系统。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>经典 OXE 软件包在所有物理服务器上不再支持，legacy 须迁 GAS 或虚拟化（TBE063）；GAS 安装细节对照 TC3138；WebRTC 网关对照 TBE067</li>
+<li>GAS 上标准 FTP 禁用：传文件走 SFTP/SCP（admin 传 /tmp 后 root mv）；FlexLM 凭证 root/letacla1 为默认口径须改（p269/p280）</li>
+<li>存量满配拓扑装不下旧 Appliance Server——HP DL20 G10+/G11 才接得住 &lt;7000 用户的满配（p226-227）</li>
+<li>实验口径：GAS 192.168.1.45（OXE .1/.3、OMS .13、WebRTC .15）；加载约 60 分钟、后安装约 15-20 分钟</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte402en/skills/entload-gas-ops.html">GAS 日常运维：版本、备份、host 升级与 UPS</a>、<a href="/courses/entpxte402en/skills/entload-sot-media.html">SOT 媒体传输与加载项目配置（公共动作）</a></p><p class="source-page">能力 ID：cap.entload.gas-delivery · 来源：ENTPXTE402EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — 系统装载 (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 415 页 -->

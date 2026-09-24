@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OXE 纳管与 SIP 中继对接</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 计费与性能管理</h2><p>Edition 45 · 650 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte201en/index.html">课程首页</a><a href="/courses/8770xte201en/digest.html">精华长文</a><a href="/courses/8770xte201en/overview.html">教书理解</a><a href="/courses/8770xte201en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte201en/skills/ovbill-node-onboarding.html">OXE 纳管与 SIP 中继对接</a><a href="/courses/8770xte201en/skills/ovbill-ticket-pipeline.html">计费票据管道（出票、回收、加载过滤）</a><a href="/courses/8770xte201en/skills/ovbill-tariff-costing.html">运营商资费建模与成本计算</a><a href="/courses/8770xte201en/skills/ovbill-org-costing.html">计费组织树与成本归属</a><a href="/courses/8770xte201en/skills/ovbill-confidentiality.html">计费机密控制三道闸（掩码、解密、可见域）</a><a href="/courses/8770xte201en/skills/ovbill-reporting.html">报表生成、导出与定时</a><a href="/courses/8770xte201en/skills/ovbill-report-design.html">报表定制（Querytool 与 Designer）</a><a href="/courses/8770xte201en/skills/ovbill-voip-monitoring.html">VoIP 性能监控（IP ticket 与 KPI）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte201en/skills/ovbill-codebook-migration.html">Code Book 导出与导入</a><a href="/courses/8770xte201en/skills/ovbill-cost-profile.html">成本档案（发票价与订阅费）</a><a href="/courses/8770xte201en/skills/ovbill-traffic-tracking.html">流量分析与 Tracking 告警</a><a href="/courses/8770xte201en/skills/ovbill-web-performance.html">Web Performance 实时仪表盘</a><a href="/courses/8770xte201en/skills/ovbill-archiving.html">计费归档与恢复</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte201en/index.html">omnivista-billing-performance（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte201en/index.html">8770XTE201EN</a><span>/</span><span aria-current="page">OXE 纳管与 SIP 中继对接</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OXE 纳管与 SIP 中继对接</h1></div><dl><div><dt>Skill ID</dt><dd>ovbill-node-onboarding</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OXE 纳管与 SIP 中继对接（信息核查、节点声明、同步验证、模拟器对接）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Subnetwork – Node number: Enter a numeric value equal to the OmniPCX Enterprise network*100 + OmniPCX Enterprise node number. Example: With a network number = 1 and node number = 2, you must enter 101"（p77）
+"All hosts machines involved with OXE Call Server must be declared."（p74）
+"Alarm reception mode Select Permanent IP connectivity. The OmniVista 8770 server establishes a permanent IP connection to receive alarms and events."（p77）</p>
+</blockquote>
+<p>出处：8770XTE201EN p70-84。</p>
+<h2>I — 自述</h2>
+<p>纳管一台 OXE 分三段：先在 OXE 侧核查，再在 8770 侧声明，最后同步验证。</p>
+<ul>
+<li>OXE 侧核查：siteid 看节点号/网络号；netadmin -m 选项 5 查主地址（空间冗余记两个）；选项 2 确认 SSH=yes，配 netstat -an | grep :22 应 LISTEN；选项 11 核对信任主机表含 8770/OMS/PC 等全部相关主机</li>
+<li>8770 侧声明三级对象：Network（名称/号码自由）&gt; Subnetwork（号必须=OXE 网络号）&gt; OmniPCX Enterprise 节点（Subnetwork-Node number=网络号×100+节点号；IP 填 csm 主地址）</li>
+<li>节点关键字段：FTP 用户 adfexc + 密码（数据取回凭证）；勾 Process configuration 与 Directory Process；告警模式=Permanent IP connectivity；Software download 页签填 mtcl 维护账号；Connectivity 页签勾 SSH 并填唯一 Host name（MindTerm 据此生成公钥）</li>
+<li>同步二维选择：Complete（全部条目）/Partial（仅用户/目录/数据终端/缩位拨号/远端用户按上次日期增量）；Separate（仅本机）/Global（级联关联 OpenTouch）</li>
+<li>验证：成功提示 + Configuration 树生成 OXE 分支 + Data Collection 页签显示最近修改时间；日志 NMCSyncLdapPbx_1.log</li>
+</ul>
+<p>SIP 运营商模拟器对接（实验环境）只需两处：</p>
+<ul>
+<li>SIP &gt; SIP Ext Gateway 选 ITSP1_GW1：Registration ID 与 Outgoing username 填 pbxN</li>
+<li>Translator &gt; 1 &gt; External Numbering Plan &gt; 1 &gt; Default DID num. translator 建 DID 翻译：First external=33210N41000、First internal=31000、Range size=500（N=POD 号）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>OXE 节点注册实验</strong>（p70-80）：</p>
+<ol>
+<li>PuTTY SSH 连 csm 主 IP（实验口径 192.168.1.3），执行 siteid 确认节点号/网络号均为 1</li>
+<li>su - 切 root 后 netadmin -m：选项 5 确认主地址 csm=192.168.1.3</li>
+<li>选项 2 确认 "Security with SSH: yes"；netstat -an | grep :22 应 LISTEN</li>
+<li>选项 11 Security &gt; Firewall &gt; Restricted Access &gt; View trusted hosts：核对 omnivista/OMS/PC/网关都在表</li>
+<li>8770 Configuration 树：nmc 下建 Network=ale（号码 1）、子网 abc1（号=1）、节点 oxe（Subnetwork-Node number=101）</li>
+<li>节点 IP=192.168.1.3；FTP=adfexc；勾 Process configuration 与 Directory Process；告警=Permanent IP connectivity</li>
+<li>Software download 页签填 mtcl 维护账号；Connectivity 页签勾 SSH 并填唯一 Host name</li>
+<li>右键 OXE &gt; Synchronization &gt; Complete &gt; Separate：向导选 "of the task" &gt; Status 页签 &gt; Apply 启动 &gt; Refresh 看日志</li>
+<li>验证：OXE 分支生成；Data Collection 页签显示最近同步时间</li>
+</ol>
+<p><strong>SIP 模拟器对接</strong>（p81-84，实验口径）：</p>
+<ol>
+<li>SIP &gt; SIP Ext Gateway 选 ITSP1_GW1：Registration ID=pbxN、Outgoing username=pbxN</li>
+<li>Translator &gt; 1 &gt; External Numbering Plan &gt; 1 &gt; Default DID num. translator 右键 Create</li>
+<li>First external number=33210N41000、First internal=31000、Range Size=500</li>
+<li>打出局呼叫确认公网 SIP 通路可用</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：把一台新 OXE 接进 8770；同步失败或数据取不回；空间冗余 OXE 怎么填 IP；信任主机报错；SIP 中继打不出外线；培训/POC 环境搭 ITSP1。</p>
+<p>语言信号：OXE 纳管 / node registration / siteid / netadmin / 信任主机 / trusted hosts / Subnetwork-Node number / csa / csm / adfexc / mtcl。</p>
+<p>补充信号：Complete Synchronization / NMCSyncLdapPbx / SIP Ext Gateway / DID translator / pbxN / ITSP1。</p>
+<p>与相邻能力区分：节点接通后的计费出票与回收 → 票据管道能力；本卡只管"接得上、同步得了"。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OXE 侧维护账号、网络号/节点号、主 IP；8770 管理员账号。IP 不通或 SSH 未开 → 判停先修底层连通。</p>
+<ol>
+<li>OXE 侧核查：siteid、netadmin -m（主地址/SSH/信任主机三项）。完成标准：三项均有记录且信任主机含 8770</li>
+<li>8770 建 Network 与 Subnetwork：子网号=OXE 网络号。完成标准：两级对象生成</li>
+<li>声明 OXE 节点：节点号=网络号×100+节点号、IP=csm 主址（冗余加第二条）、FTP 凭证、告警模式、维护账号、SSH Host name。完成标准：必填项全部落盘</li>
+<li>执行 Complete &gt; Separate 同步并等成功提示。完成标准：OXE 分支出现且 Data Collection 显示时间</li>
+<li>（实验环境）按 POD 配 SIP 网关与 DID 翻译并外呼验证。完成标准：出局呼叫接通</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>同步成功但取不到票据 → 转票据管道能力（FTP 凭证与计费配置问题）</li>
+<li>信任主机缺主机或 SSH 关闭 → 本卡范围，先按核查清单补齐再继续</li>
+<li>实验密码/账号仅限 RLAB，生产环境一律用客户侧凭证，不引用书中明文口令</li>
+</ul>
+<p>输出契约：节点声明参数清单（含节点号公式代入值）+ 同步验证记录 + （可选）SIP 中继验证结论。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>空间冗余 OXE 有两个主地址，声明时必须 Add a Value 全部填入，只填一个会在切换后断连（p72/p77）</li>
+<li>"所有与 Call Server 相关的主机都必须在信任主机表"（p74）——缺一台取不到数据</li>
+<li>同步的 Partial 增量只覆盖五类条目，其余类型始终全量（p79）；组织更新任务也会触发缓冲落盘（p93）</li>
+<li>ITSP1 模拟器与全部明文密码为实验口径（RLAB 教学设施），生产对接真实运营商与客户凭证在书外</li>
+<li>端口矩阵、安装细节在 8770 安装文档（书外）；本卡不覆盖</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte201en/skills/ovbill-ticket-pipeline.html">计费票据管道（出票、回收、加载过滤）</a></p><p class="source-page">能力 ID：cap.ovbill.node-onboarding · 来源：8770XTE201EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniVista 8770 R5.2 Accounting and Performance Administration (Participant Guide, Edition 45) | edition: Edition 45 | pages: 650 页 -->

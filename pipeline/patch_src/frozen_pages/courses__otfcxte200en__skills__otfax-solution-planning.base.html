@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OTFC 方案评估与部署规划（容量协议合规、架构拓扑、支持矩阵）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch Fax Center · Starter</h2><p>Edition 04 · 233 页 · 文档整理入库（11 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otfcxte200en/index.html">课程首页</a><a href="/courses/otfcxte200en/digest.html">精华长文</a><a href="/courses/otfcxte200en/overview.html">教书理解</a><a href="/courses/otfcxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otfcxte200en/skills/otfax-installation-ftw.html">OTFC 首次交付（宿主准备、安装、FTW、许可）</a><a href="/courses/otfcxte200en/skills/otfax-sip-channel-integration.html">OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）</a><a href="/courses/otfcxte200en/skills/otfax-mail-exchange-integration.html">OTFC 邮件与 Exchange 集成（SMTP 网关、FAX 连接器、通知排障）</a><a href="/courses/otfcxte200en/skills/otfax-user-administration.html">OTFC 用户与管理员管理（双用户源、CSV、两级管理员）</a><a href="/courses/otfcxte200en/skills/otfax-profile-policy.html">OTFC Profile 策略与电话簿（限制组、呼号限制、通知 Profile、LDAP 电话簿）</a><a href="/courses/otfcxte200en/skills/otfax-directory-routing.html">OTFC 高级目录集成与来传真路由（LDAP、Lookup、NT 免密、路由表、DTMF、Modification）</a><a href="/courses/otfcxte200en/skills/otfax-services-operations.html">OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）</a><a href="/courses/otfcxte200en/skills/otfax-backup-upgrade.html">OTFC 备份、恢复、升级与删除策略（三数据域、五步升级法、零保留）</a><p class="course-nav-group">路由能力</p><a href="/courses/otfcxte200en/skills/otfax-client-coversheet.html">OTFC 客户端部署与封页定制（四件套、Web Client、GPO、封页五步）</a><a href="/courses/otfcxte200en/skills/otfax-solution-planning.html">OTFC 方案评估与部署规划（容量协议合规、架构拓扑、支持矩阵）</a><a href="/courses/otfcxte200en/skills/otfax-reports-monitoring.html">OTFC 报表与监控（31 报表、BIRT、SNMP V2 陷阱）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otfcxte200en/index.html">ot-fax-center（11 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otfcxte200en/index.html">OTFCXTE200EN</a><span>/</span><span aria-current="page">OTFC 方案评估与部署规划（容量协议合规、架构拓扑、支持矩阵）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OTFC 方案评估与部署规划（容量协议合规、架构拓扑、支持矩阵）</h1></div><dl><div><dt>Skill ID</dt><dd>otfax-solution-planning</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>OTFC 方案评估与部署规划（容量协议合规、架构拓扑、支持矩阵、入口设计）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Dedicated server • Up to 15000 users • 30 ports ; Fully software-based • Fax over IP • SIP/TCP and SIP/TLS • T38 / SIP connection to OmniPCX Enterprise ; Fax transmission protocol: • T.38 … speed of up to 14.4kbps • G.711 • Speed of up to 33.8kbps"（p7）
+"Inbound routing methods •DNIS, CSID, ANI, DTMF"（p9）
+"Fax deletion options allow the system to be configured for zero retention if desired"（p6）
+"2 SIP gateways are configured on Fax Center • Sip private Trunks on OXE are necessary to support fax connection"（p36）</p>
+</blockquote>
+<p>出处：OTFCXTE200EN p3-42。</p>
+<h2>I — 自述</h2>
+<p>售前/规划阶段的三张底牌：</p>
+<ol>
+<li><strong>容量与传输</strong>：单专用服务器（物理或虚机）上限 15000 用户、30 端口；全软件实现（Fax over IP），SIP/TCP 与 SIP/TLS，经 T.38/SIP 连 OXE；T.38（含 Group 3）最高 14.4kbps，G.711 透传最高 33.8kbps</li>
+<li><strong>收发接口与合规</strong>：发送入口（邮件/Web/虚拟打印机打印/SendFAX 及 T.37 MFP）+ 全入口定时发送 + 按 Profile 闭锁；接收去向（邮箱 HTML/文本 + PDF/TIFF 附件、Web 界面、打印机、本地/共享文件夹）；入局路由四法（DNIS/CSID/ANI/DTMF）；合规卖点 GDPR/HIPAA/FERPA/SOX 语境、零保留、事件日志审计</li>
+<li><strong>部署形态</strong>：OTFC 可物理可虚拟（OTFC-V：虚拟化 + Windows Server）；与 OXE 共存但独立部署，传真流量与邮件流量分两路；多台 OXE 经 WAN 互联时 Fax Center 配多 SIP 网关按号码段分流，OXE 侧必须建 SIP private trunk</li>
+<li>
+<p><strong>支持矩阵</strong>：Windows 64 位 Server 2022/2019/2016（含 IIS 10.0）；Hyper-V 三版 / VMware ESXi 6.5-8.0（vSphere、v-Motion、HA）；Exchange 2019/2016/2013、O365、SMTP 兼容</p>
+</li>
+<li>
+<p><strong>客户端与光栅化</strong>：Rasterizer 需本机 Office 2021/2019/2016（64/32 位）；工作站 Windows 11/10、终端服务器 2022/2019；Outlook "2022" 为原文笔误（以 Features List 为准）</p>
+</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>双 SIP 网关号段分段</strong>（p36，示例口径）：</p>
+<ol>
+<li>Fax Center 配置 2 个 SIP 网关（Sip GW 1 / Sip GW 2）</li>
+<li>GW1 对 OXE 1 的 IP 地址 1，承载传真号 1200-1500</li>
+<li>GW2 对 OXE 1 的 IP 地址 2，承载传真号 3300-3800</li>
+<li>OXE 侧为此建 SIP private trunk 支撑传真连接</li>
+</ol>
+<p><strong>出呼路由两场景</strong>（p37）：所有出呼走同一网关（如 GW1），或按收件人号码分流到对应网关；入呼按被叫号码分给对应用户。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户问传真服务器能撑多少人；传真走什么协议速率多少；怎么和现有 OXE 对接；多分支多 PBX 怎么规划；合规投标要写零保留；现有邮件环境兼容吗。</p>
+<p>语言信号：选型 / 容量 / 多少用户 / 多少端口 / T.38 / G.711 / 14.4k / 33.8k / FoIP / 合规 / GDPR / HIPAA / 零保留 / 拓扑 / 多网关 / 多站点 / SIP trunk / 虚拟化 / ESXi / Hyper-V / 支持矩阵 / Exchange 2016 / 入口 / DNIS。</p>
+<p>与相邻能力区分：落地施工 → 首次交付与 SIP 通道集成能力；防火墙端口数值 → Features List（本卡只给已知三处：SIP UDP 5360、SMTP 25、LDAP 389）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：用户数与话务画像、现有 PBX（OXE 版本/冗余形态）、邮件环境（Exchange 版本或 SMTP）、虚拟化平台、合规要求清单。</p>
+<ol>
+<li>容量对答：单服务器上限 15000 用户/30 端口口径，结合话务画像评估端口余量。完成标准：容量结论含前提</li>
+<li>协议路径：默认 T.38/SIP；网络质量差场景对照 G.711 透传速率。完成标准：传输路径选型说明</li>
+<li>入口矩阵：按用户群体配四类发送入口与四类接收去向，确认定时发送与闭锁诉求。完成标准：入口清单获客户确认</li>
+<li>拓扑设计：单/多网关、多站点切分（Site 按公司/分支/部门）、号码段分流方案。完成标准：拓扑图与号段表</li>
+<li>支持矩阵核对：OS/虚拟化/邮件/客户端逐项对客户环境。完成标准：兼容性核对表</li>
+<li>合规条款映射：零保留、敏感文档路由、审计日志逐条对应客户要求。完成标准：合规应答表</li>
+<li>外置项清单：端口全表、45 格式明细、浏览器支持、服务器资源——全部标注"查 Features List"。完成标准：边界清单交付</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户要逐项端口白名单 → 停，书内 p42 无数值，按 Features List 出数，只确认已知三处</li>
+<li>客户环境不在支持矩阵内（如 Server 2012） → 停，查最新 Features List 与产品线现状，不按书内矩阵下硬结论</li>
+<li>客户要求传真加密信令落地 → 停，SIP/TLS 仅为概览能力项，启用路径在书外，转产品安全文档</li>
+<li>话务模型复杂（广播高频/大附件） → 停，书内无话务建模方法，sizing 转 ALE 售前工具与 Features List</li>
+</ul>
+<p>输出契约：选型结论（容量/协议/入口/合规四段）+ 拓扑与号段规划表 + 兼容性核对表 + 外置文档清单（Features List/TC3048）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>15000 用户/30 端口是单服务器上限口径；话务建模与性能调优书内缺席，引用数字必须带前提</li>
+<li>服务器资源推荐表与端口使用表书内无数值（p38/p42 指针页），生产数值一律查 Features List</li>
+<li>"Outlook 2022" 为原文笔误（nr-02）；45 种文件格式与浏览器清单外置</li>
+<li>CSGD 缩写（生态图）书内未定义；DNIS/CSID/ANI 全称括注为推断</li>
+<li>合规法规为原文列举语境，具体条款解读与认证口径在书外</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.otfax.solution-planning · 来源：OTFCXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch Fax Center - R9.2 Starter (Participant's Guide, Edition 04) | edition: Edition 04 | pages: 233 页 -->

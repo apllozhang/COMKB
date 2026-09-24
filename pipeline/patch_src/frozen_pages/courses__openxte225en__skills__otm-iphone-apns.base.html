@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>iPhone+ APNS 推送专项</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch · 移动与远程办公</h2><p>Edition 10 · 287 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte225en/index.html">课程首页</a><a href="/courses/openxte225en/digest.html">精华长文</a><a href="/courses/openxte225en/overview.html">教书理解</a><a href="/courses/openxte225en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte225en/skills/otm-dmz-security-channels.html">远程接入架构与 DMZ 双边缘</a><a href="/courses/openxte225en/skills/otm-certificate-pki.html">证书策略与签发（CA、封装、SAN、自建 CA）</a><a href="/courses/openxte225en/skills/otm-ot-server-settings.html">OpenTouch 服务器侧远程访问设置</a><a href="/courses/openxte225en/skills/otm-otsbc-deployment.html">OTSBC 部署与向导配置</a><a href="/courses/openxte225en/skills/otm-reverse-proxy.html">反向代理两路线部署与选型（内嵌 RP、Nginx）</a><a href="/courses/openxte225en/skills/otm-otc-pc-modes.html">OTC PC 远程办公两模式（multi-devices、Nomadic SIP）</a><a href="/courses/openxte225en/skills/otm-smartphone-provisioning.html">OTC 智能手机开通（Connection 用户、自动对象、R2.6 单设备）</a><a href="/courses/openxte225en/skills/otm-iphone-apns.html">iPhone+ APNS 推送专项</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte225en/skills/otm-client-access-profiles.html">客户端远程接入两步法（接入配置与路由档案）</a><a href="/courses/openxte225en/skills/otm-smartphone-modes.html">智能手机连接模式与回落（WiFi/3G4G/DTMF、无 SIM）</a><a href="/courses/openxte225en/skills/otm-vmware-ovf.html">VMware 虚机 OVF/OVA 部署</a><a href="/courses/openxte225en/skills/otm-lab-dialtest.html">实验环境与拨测验证（RLAB、编号计划、模拟器预期表）</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte225en/index.html">ot-mobility-remote-worker（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte225en/index.html">OPENXTE225EN</a><span>/</span><span aria-current="page">iPhone+ APNS 推送专项</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>iPhone+ APNS 推送专项</h1></div><dl><div><dt>Skill ID</dt><dd>otm-iphone-apns</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>iPhone+ APNS 推送专项（来话机制、防火墙端口、5265 声明、kamailio-wasp 维护）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"All notifications from OpenTouch server to OTC iPhone are sent through Apple Push Notification Server (APNS); APNS is an Apple Cloud service: firewall configuration is impacted"（p183）
+"Several SIP invites may be required … UDP is mandatory to allow the several SIP Invites during incoming calls … Behind the SBC, over Internet, TCP is mandatory: OpenTouch server will act as a SIP proxy 'buffering' the SIP invite message over TCP"（p186）
+"kamailio-wasp: SIP proxy between SBC and OXE; wspcfg: service to provide configuration for kamailio"（p187）
+"APNS's certificate is shipped with OpenTouch server: Valid one year; A dedicated hotfix will be delivered every year to keep the certificate up to date"（p184）</p>
+</blockquote>
+<p>出处：OPENXTE225EN p183-188, p197, p217。</p>
+<h2>I — 自述</h2>
+<p>R2.3.1 起 iPhone 的 OpenTouch 通知全走 APNS（Apple 云推送服务），它是 VoIP 来话的"第二振铃路径"：应用在后台时首个 SIP invite 被忽略，要先推送唤醒、再收一次 invite——所以"多次 SIP invite"是设计行为，不是故障。</p>
+<p>承载约束与组件：</p>
+<ul>
+<li>场内（仅 UDP 拓扑）：UDP 承载多次 invite，无额外动作</li>
+<li>场外经 SBC 走互联网强制 TCP：由 OpenTouch 侧 kamailio-wasp（SBC 与 OXE 之间的 SIP 代理）+ wspcfg（给 kamailio 提供配置的服务）做 invite 缓冲</li>
+<li>iPhone+ 专用 SBC 声明：FQDN 与通用 SBC 相同、端口 5265；OT SBC 增配 5265 的 SIP 接口</li>
+</ul>
+<p>防火墙四端口（p184）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>端口</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TCP/5223</td>
+<td>与 APNs 通信</td>
+</tr>
+<tr>
+<td>TCP/2195</td>
+<td>向 APNs 发通知</td>
+</tr>
+<tr>
+<td>TCP/2196</td>
+<td>APNs 反馈服务</td>
+</tr>
+<tr>
+<td>TCP/443</td>
+<td>设备激活；WiFi 上 5223 不可达时的回落</td>
+</tr>
+</tbody>
+</table></div>
+<p>证书机制：APNS 证书随 OT 出厂、有效期一年、每年由专门 hotfix 更新；Geotrust 根证书出厂自带、有效期至 2022 年；连接 APNS 时两证同时校验。运维含义：每年跟 OpenTouch 的 APNS hotfix，跨 2022 的续期机制在书外。</p>
+<p>书内边界：OTSBC 向导不覆盖 iPhone 所需对象，完整手工配置书内两处 Warning 明示"not part of this lab, consult TC2639"——本卡只覆盖书内可做的三件事（5265 声明、5265 SIP 接口、组件维护）。</p>
+<h2>A1 — 书中案例</h2>
+<p>iPhone+ 配置与维护动作（p188/p197/p217，实验口径值见 book/overview）：</p>
+<ol>
+<li>Eco system/IT Server 右键 Create，建 iPhone 用 SBC 声明：FQDN 同通用 SBC、Network type=WAN、Port 5265</li>
+<li>OT SBC 侧增配端口 5265 的 SIP 接口</li>
+<li>防火墙放行 TCP 5223/2195/2196/443 四端口</li>
+<li>查 kamailio-wasp 状态：service kamailio-wasp status（start/stop/restart 同式）</li>
+<li>查 kamailio 日志：/var/log/localmessages</li>
+<li>调日志级别：/usr/kamailio-wasp/loglevel.sh（3=DBG、2=INFO、1=NOTICE、0=WARN、-1=ERR）</li>
+<li>查 wspcfg 服务：service wspcfgd status，日志 /logs/wspcfg/wspcfg.log</li>
+<li>调 wspcfg 级别：loglevel.sh component=wspcfg logger=* level=debug</li>
+<li>取全量日志用 Logzipper 打包（含 kamailio 与 wspcfg 日志）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：iPhone 后台收不到来话或来话慢；iPhone+ 上线评估；防火墙评审要报端口；跨年维护证书；场外 iPhone 通话承载排障。</p>
+<p>语言信号：iPhone / iPhone+ / APNS / 推送 / push / 5265 / 5223 / 2195 / 2196 / kamailio-wasp / wspcfg / invite / TCP / UDP / hotfix / Geotrust / VoIP everywhere。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>手机的开通与自动对象 → 智能手机配置能力</li>
+<li>手机在无数据时的行为 → 智能手机模式能力</li>
+<li>SBC 本体部署 → OTSBC 部署能力</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OpenTouch 版本（R2.3.1+）、iPhone+ 应用清单、防火墙策略变更通道、SBC 管理权限。</p>
+<ol>
+<li>确认版本与组件：R2.3.1 起推送全走 APNS；盘点 kamailio-wasp/wspcfg 所在服务器。完成标准：组件清单与版本记录</li>
+<li>建 iPhone+ 专用 SBC 声明（同 FQDN、端口 5265）。完成标准：IT Server 列表出现该声明</li>
+<li>OT SBC 增配 5265 SIP 接口。完成标准：SIP Interfaces 出现 5265 条目</li>
+<li>防火墙放行四端口：TCP 5223/2195/2196/443。完成标准：策略变更单与端口表一致</li>
+<li>记录证书台账：APNS 证书一年一换（跟年度 hotfix）；核对当前 hotfix 状态。完成标准：维护日历含年度动作</li>
+<li>排障抓手就位：会查两个服务的状态/日志/级别与 Logzipper 打包。完成标准：A1 步骤 4-9 命令可执行</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户要求书内给出 iPhone 完整手工配置 → 停，书内明示查 TC2639（n06），如实外置</li>
+<li>现在已过 2022 年 → 停，Geotrust 根证书续期机制在书外（n17），查当期 ALE 维护公告</li>
+<li>"iPhone 突然收不到来话" → 按链路查：两张证书与 hotfix 状态、四端口、kamailio-wasp 状态（n17/n18）</li>
+</ul>
+<p>输出契约：iPhone+ 推送链路就绪记录（5265 声明与接口、四端口放行、证书台账）+ 组件维护命令清单。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>iPhone 部署的完整手工配置强制但书外（TC2639）；按"跑完向导就完事"交付必翻车（n06）</li>
+<li>APNS 证书一年一换靠专门 hotfix；Geotrust 根证书 2022 年到期后的机制超出本书（n17）</li>
+<li>多次 SIP invite/UDP 强制/场外 TCP 代理缓冲为机制约束（n18）；"漏接先查链路"含工程引申（needs-review nr-06）</li>
+<li>具体环境值（服务器地址等）见 book/overview 环境区；端口为协议规划口径可复用</li>
+<li>本卡以 R2.6/Issue 10 时代坐标为限；后续 iOS/APNS 演进不在书内</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte225en/skills/otm-smartphone-provisioning.html">OTC 智能手机开通（Connection 用户、自动对象、R2.6 单设备）</a></p><p class="source-page">能力 ID：cap.otm.iphone-apns · 来源：OPENXTE225EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch — 移动与远程办公 (Participant's Guide) | edition: Edition 10 | pages: 287 页 -->

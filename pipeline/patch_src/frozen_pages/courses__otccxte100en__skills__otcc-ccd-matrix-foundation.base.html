@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>CCD 基础矩阵创建与验证</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Starter</h2><p>Edition  · 649 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte100en/index.html">课程首页</a><a href="/courses/otccxte100en/digest.html">精华长文</a><a href="/courses/otccxte100en/overview.html">教书理解</a><a href="/courses/otccxte100en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte100en/skills/otcc-ccd-matrix-foundation.html">CCD 基础矩阵创建与验证</a><a href="/courses/otccxte100en/skills/otcc-ccs-installation.html">CCS 班长台安装、OXE 声明与 ccs.ini</a><a href="/courses/otccxte100en/skills/otcc-routing-distribution-rules.html">路由规则与分配规则全生命周期</a><a href="/courses/otccxte100en/skills/otcc-agent-supervisor-onboarding.html">ACD 话机、座席与班长创建登录</a><a href="/courses/otccxte100en/skills/otcc-object-tuning.html">CCD 对象参数调优（pilot/PG/队列）</a><a href="/courses/otccxte100en/skills/otcc-voice-guides.html">语音指南三路径（话机录音/.wav 导入/欢迎指南）</a><a href="/courses/otccxte100en/skills/otcc-monitoring-statistics.html">实时监控告警与 Excel 统计</a><a href="/courses/otccxte100en/skills/otcc-multilanguage-calendar.html">多语言语音指南与双日历</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte100en/skills/otcc-supervisor-features.html">座席班长特性配置（监听强插/通用转发/多线/事务码）</a><a href="/courses/otccxte100en/skills/otcc-queue-experience.html">EWT 表与排队位置播报（518）</a><a href="/courses/otccxte100en/skills/otcc-direct-calls-emergency.html">CCD 直接呼叫与紧急关闭</a><a href="/courses/otccxte100en/skills/otcc-statistic-pilot.html">统计型 pilot 与 Call Tag</a><a href="/courses/otccxte100en/skills/otcc-lab-connectivity.html">实验环境与链路打通（POD/ITSP1/ABC-F）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte100en/index.html">otcc-standard-starter（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte100en/index.html">OTCCXTE100EN</a><span>/</span><span aria-current="page">CCD 基础矩阵创建与验证</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>CCD 基础矩阵创建与验证</h1></div><dl><div><dt>Skill ID</dt><dd>otcc-ccd-matrix-foundation</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>CCD 基础矩阵创建与验证（pilot/队列/处理组/ACD 前缀）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Select Translator&gt; Prefix Plan&gt; … Number Enter the ACD prefix number (i.e. 12). … The ACD prefix is mandatory prior to create the CCD matrix objects."（p66）
+"The Call Distribution is based on a matrix: Pilots … Call routing … Queue normal … Int. Overflow … Redirection … Processing groups (Resources)"（p23-24）
+"be shared among several Pilots (30 max) • serve several Processing Groups (50 max) • Queued calls are served FIFO"（p27）
+"Agent processing group • Made up of agent or supervisor sets … Voice guide processing group … Rerouting processing group … I.V.R processing group"（p29）
+"5 Control with command acdsup … A=agent group F=Forward group V=Voice guide processing group CLO= pilot closed"（p76-77）</p>
+</blockquote>
+<p>出处：OTCCXTE100EN p22-29, p40, p63-77。</p>
+<h2>I — 自述</h2>
+<p>五级矩阵是一切的地基：pilot（被叫部门）经路由进队列，队列经分配进处理组，PG 内选座席（f04）。</p>
+<p>建矩阵前必须先建 ACD 前缀（实验 12），否则 CCD 对象建不了（p66）。</p>
+<ul>
+<li>三类 PG：Agent（唯一承接 ACD 分发）、Forward（前转本机号码）、Voice Guide（播指南）；另有 Rerouting/IVR（p29）</li>
+<li>三类队列：Normal（停车常）、Intelligent Overflow（智能溢出）、Redirection（兜底重定向）；每队列最多被 30 个 pilot 共享、服务 50 个 PG，FIFO（p27）</li>
+<li>兼容硬约束：Voice Guide PG 只能接 Redirection 队列（p40）</li>
+<li>实验基准矩阵：Agent_PG(31800)、Forwarding_PG(31801，前转 31010)、Voice_guide_PG(31802)；Normal_WQ(31700)、Overflow_WQ(31701)、Redirection_WQ(31702)；Pilot1(31600)、Pilot2(31601)（p64，实验口径）</li>
+<li>验证抓手：mtcl 会话 acdsup 看矩阵——A=座席组、F=前转组、V=语音指南组、CLO=pilot 关闭、OPN=正常态（p76-77/p120）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>基础矩阵创建实验</strong>（p63-77）：</p>
+<ol>
+<li>OXE Web Admin（https://192.168.1.3，mtcl 登录，实验口径）进 Translator 建前缀 12</li>
+<li>建 Agent_PG：Applications&gt; CCD&gt; Processing Group&gt; Create，DN 31800、Type Agent</li>
+<li>建 Forwarding_PG：DN 31801、Type Forwarding、前转地址 31010</li>
+<li>建 Voice_guide_PG：DN 31802、Type Voice guide</li>
+<li>建三队列：Normal_WQ 31700、Overflow_WQ 31701、Redirection_WQ 31702（p71-73 字段表笔误见 nr-02，按 p64 目标矩阵录）</li>
+<li>建 Pilot1(31600)、Pilot2(31601)：Applications&gt; CCD&gt; Pilot&gt; Create</li>
+<li>PuTTY 开 mtcl SSH 会话执行 acdsup 复核矩阵对象与状态</li>
+</ol>
+<p><strong>验收判读</strong>：无座席登录、规则未建时 pilot 显示 CLO（关闭态）属预期；A/F/V 三类组出现即矩阵对象齐（p76-77）。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新装 OTCC Standard 从零建矩阵；矩阵对象增补（加队列/PG/pilot）；acdsup 输出判读；"pilot 是 CLO 正常吗"；队列/PG 类型选型。</p>
+<p>语言信号：CCD 矩阵 / pilot / waiting queue / processing group / ACD prefix / Normal_WQ / Overflow_WQ / Redirection_WQ / acdsup / CLO / OPN / FIFO / 31800。</p>
+<p>与相邻能力区分：建规则让矩阵活起来 → 路由与分配规则能力；建座席班长 → 座席班长体系能力；实验站点外呼打通归实验环境与链路能力（路由卡）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OXE Web Admin 可登录、mtcl SSH 可达、目标编号段已定（生产按客户编号计划，实验为 31600/31700/31800 段）。</p>
+<ol>
+<li>建 ACD 前缀：Translator&gt; Prefix Plan&gt; Create，Number=前缀号（实验 12）、Local Features=ACD Prefixes。完成标准：保存成功且 COS 放行（Phone Features COS 启用 ACD Prefixes）</li>
+<li>建 PG 三件：Applications&gt; CCD&gt; Processing Group&gt; Create 依次建 Agent/Forwarding/Voice guide 三组。完成标准：Forwarding 组前转地址已填、Voice guide 组留待挂指南</li>
+<li>建队列三件：Applications&gt; CCD&gt; Queue&gt; Create 建 Normal/Intelligent Overflow/Redirection 三队列。完成标准：三个 DN 唯一且类型与名称对应（勿照抄 p71-73 字段表，见 nr-02）</li>
+<li>建 pilot：Applications&gt; CCD&gt; Pilot&gt; Create 建业务 pilot。完成标准：pilot DN 在编号计划内、命名可辨识</li>
+<li>mtcl 会话执行 acdsup 核对。完成标准：A/F/V 组与 pilot 状态行出现，判读字母与矩阵意图一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>acdsup 命令不存在或报错 → 按现场命令名为准（书中 acdsup/acdsetup 混用，见 nr-03），不要硬猜</li>
+<li>Processing Group 建不出来 → 先查 ACD 前缀是否已建、COS 是否放行（p66 前置）</li>
+<li>队列类型选错（如 Voice Guide PG 想挂 Normal 队列）→ 兼容表不允许，改用 Redirection 队列或换 PG 类型</li>
+<li>生产环境照抄实验 DN/前缀 → 判停，编号计划须按客户规范重排（实验口径红线）</li>
+</ul>
+<p>输出契约：可路由的最小矩阵（3 PG + 3 队列 + pilot + ACD 前缀）+ acdsup 判读记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>全部 DN/前缀/口令为 RLAB 实验口径；生产按客户编号计划与安全基线替换（n19）</li>
+<li>IVR PG 依赖外部 CCivr 服务器，Rerouting PG 指向 ABC-F/公网——两者本书只点名不展开（n41）</li>
+<li>队列 30 pilot/50 PG、pilot 三态等容量与状态语义是 R10.16 教材口径，扩容前对照当版 Feature list（p03）</li>
+<li>本卡只建对象不建规则——矩阵建完 pilot 仍是 CLO，属正常（p76-77）</li>
+<li>acdsup 命令名书中两写（nr-03）；建队列表格笔误（nr-02）引用时按本卡口径</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte100en/skills/otcc-routing-distribution-rules.html">路由规则与分配规则全生命周期</a>、<a href="/courses/otccxte100en/skills/otcc-agent-supervisor-onboarding.html">ACD 话机、座席与班长创建登录</a></p><p class="source-page">能力 ID：cap.otcc.ccd-matrix-foundation · 来源：OTCCXTE100EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Starter (Participant's Guide, Edition 09) | edition: Edition  | pages: 649 页 -->

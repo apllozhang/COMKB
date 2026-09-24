@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OXE 侧 SIP 对接 OTMC</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch Message Center · Starter</h2><p>Edition 08 · 259 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otmcxte200en/index.html">课程首页</a><a href="/courses/otmcxte200en/digest.html">精华长文</a><a href="/courses/otmcxte200en/overview.html">教书理解</a><a href="/courses/otmcxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otmcxte200en/skills/otmsg-install-site-setup.html">OTMC 服务器安装与站点配置</a><a href="/courses/otmcxte200en/skills/otmsg-license-management.html">FlexLM 许可证体系部署与更换</a><a href="/courses/otmcxte200en/skills/otmsg-declaration-sync.html">OXE/OTMC 双向声明进 8770 与同步</a><a href="/courses/otmcxte200en/skills/otmsg-sip-trunk-provisioning.html">OXE 侧 SIP 对接 OTMC</a><a href="/courses/otmcxte200en/skills/otmsg-user-mailbox-provisioning.html">Connection 用户与语音邮箱交付</a><a href="/courses/otmcxte200en/skills/otmsg-mailbox-profiles.html">语音邮箱 profile 定制与问候语管理</a><a href="/courses/otmcxte200en/skills/otmsg-notification-smtp-sms.html">SMTP/SMS 通知部署与排障</a><a href="/courses/otmcxte200en/skills/otmsg-backup-statistics.html">OpenTouch 备份恢复与语音信箱统计</a><p class="course-nav-group">路由能力</p><a href="/courses/otmcxte200en/skills/otmsg-product-positioning.html">OTMC 产品定位与部署形态</a><a href="/courses/otmcxte200en/skills/otmsg-web-portal.html">用户自助门户 My Profile 与 MyMessaging</a><a href="/courses/otmcxte200en/skills/otmsg-imap-access.html">IMAP 客户端访问语音邮箱</a><a href="/courses/otmcxte200en/skills/otmsg-general-announcement.html">企业广播 General Announcement</a><p class="course-nav-group">已安装技能</p><a href="/courses/otmcxte200en/index.html">ot-message-center（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otmcxte200en/index.html">OTMCXTE200EN</a><span>/</span><span aria-current="page">OXE 侧 SIP 对接 OTMC</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OXE 侧 SIP 对接 OTMC</h1></div><dl><div><dt>Skill ID</dt><dd>otmsg-sip-trunk-provisioning</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OXE 侧 SIP 对接 OTMC（trunk group/external gateway/trusted/编解码）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Trunk Group Type: Select 'T2' type … Q931 Signal variant: Select ABC-F … T2 Specification: Select SIP"（p103）
+"Port number: 5040 • Transport type: TCP … Gateway type: ICE type"（p105）
+"The OTMC server IP address must be declared as trusted IP address."（p107）
+"Compression type: G 729 … Routing Optimisation: Yes"（p108）</p>
+</blockquote>
+<p>出处：OTMCXTE200EN p102-108（c05、f14、p09/p10、n29 归并）。</p>
+<h2>I — 自述</h2>
+<p>OXE 与 OTMC 的话路对接是四段参数结构（8770 或 OXE mgr 均可配）：</p>
+<ol>
+<li><strong>SIP trunk group</strong>：ID 全网唯一、类型 T2、T2 Specification=SIP、Q931 变体 ABC-F、远端网络号空闲且异于 OXE 网络号、节点号取 post-install 定义的值；本地参数 Dialing end to end=No、DTMF end to end=No（默认即对）；SIP 虚拟接入数默认 2（可改）</li>
+<li>
+<p><strong>SIP external gateway</strong>：OTMC 必须声明为外部 SIP 网关（Connection 用户由此访问 OTMC 的 SIP 服务）。参数清单：</p>
+</li>
+<li>
+<p>Remote domain=OTMC FQDN、端口 5040、传输 TCP、Gateway type=ICE type</p>
+</li>
+<li>勾 Ignore inactive/black hole 与 Contact with IP address</li>
+<li>100 REL：出向 Supported、入向 Not requested</li>
+<li><strong>Proxy/Gateway/Registrar/Trusted</strong>：Proxy 认证 None；SIP Gateway 的 Subscribe Min Duration=600、本地 DNS 域；Registrar 最小/最大有效期按需；Trusted IP Addresses 必须含 OTMC 服务器 IP</li>
+<li><strong>全局</strong>：编解码 G.729、多算法 False；DPNSS 前缀（Translator/Prefix plan 建条目）用于优化经中继组的转接，必须把 Routing Optimisation 设为 Yes 才生效</li>
+</ol>
+<p>端口对照表：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>端口</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5040/TCP</td>
+<td>OTMC 声明为 SIP external gateway 的 SIP 端口</td>
+</tr>
+<tr>
+<td>5060</td>
+<td>OXE 侧 SIP 端口（OTMC 拓扑声明 OXE 时填）</td>
+</tr>
+<tr>
+<td>2570</td>
+<td>OXE PRS 端口（话机 GUI 显示链路）</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>SIP 对接实验</strong>（c05，OTMC FQDN/IP 等环境值见 book/overview）：</p>
+<ol>
+<li>建 SIP trunk group：Trunk Groups 右键 Create，录 ID、类型 T2、名称 SIP、Q931 ABC-F、T2 Specification=SIP</li>
+<li>核对 trunk 本地参数：Dialing end to end=No、DTMF end to end signal=No</li>
+<li>核对 SIP 虚拟接入数（默认 2，按 OXE 与 OTMC 互联需要调整）</li>
+<li>声明 OTMC 为 SIP external gateway：Remote domain 填 OTMC FQDN、Port 5040、TCP、Gateway type=ICE type，勾 Ignore inactive/black hole、Contact with IP address，100 REL 按口径</li>
+<li>核对 SIP Proxy：Minimal authentication method=None</li>
+<li>核对 SIP Gateway：远端网络号与 trunk 组号带出、SIP Subscribe Min Duration=600、本地 DNS 域</li>
+<li>核对 SIP Registrar 最小/最大有效期；Trusted IP Addresses 建条目填 OTMC 服务器 IP</li>
+<li>全局编解码：Compression type=G 729、Multi. Algorithms=False</li>
+<li>建 DPNSS 前缀条目（实验示例 D1234，实验口径）并把 Routing Optimisation 设为 Yes</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：信箱呼叫不通的通道侧排查；新 OXE 接既有 OTMC；空间冗余站点对接；运营商 trunk 与 OTMC trunk 混淆；DPNSS 前缀要不要配。</p>
+<p>语言信号：SIP trunk / trunk group / T2 / ABC-F / external gateway / 5040 / trusted IP / G.729 / DPNSS 前缀 / Routing Optimisation / ICE type / 话路对接。</p>
+<p>与相邻能力区分：声明与拓扑（端口 2570/5060 在哪填）→ otmsg-declaration-sync；对接完成后建用户验证业务 → otmsg-user-mailbox-provisioning。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：声明同步完成（otmsg-declaration-sync）、OTMC FQDN 可解析、8770 或 OXE mgr 配置入口可用。</p>
+<ol>
+<li>建 trunk group：按四段清单第一段录全参数。完成标准：trunk 创建、远端网络号合法</li>
+<li>声明 external gateway：OTMC FQDN + 5040/TCP + ICE type。完成标准：网关在册</li>
+<li>配 trusted 地址：加入 OTMC 服务器 IP。完成标准：OTMC IP 受信任</li>
+<li>核对 Proxy/Gateway/Registrar：认证 None、Subscribe 600、DNS 域就位。完成标准：三处一致</li>
+<li>全局优化：G.729 单算法、DPNSS 前缀、Routing Optimisation=Yes。完成标准：转接优化生效</li>
+<li>联动验证：建用户后走信箱业务端到端测试（转 otmsg-user-mailbox-provisioning）。完成标准：呼叫通道打通</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>信箱呼叫不通 → 按四段顺序排查：trunk 类型/变体、gateway 5040/TCP/ICE type、trusted 缺 OTMC IP、编解码两侧一致</li>
+<li>OXE 是空间冗余（spatial redundancy）站点 → 停，须按 TC1652 另行声明外置信箱 SIP 网关，书内零步骤（n29）</li>
+<li>与出局运营商 SIP trunk 混淆 → 停，这是 PBX 与信箱服务器的内部对接中继，仅一条、指向 front node</li>
+</ul>
+<p>输出契约：OXE 侧 SIP 对接参数就位（trunk/gateway/trusted/全局四段）+ 呼叫通道验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>SIP Registrar 有效期书中为"按需记录"口径，未给具体数值——不编造</li>
+<li>DPNSS 前缀实验示例 D1234（实验口径），生产按客户编号计划；DPNSS 缩写书中未展开全称</li>
+<li>空间冗余场景唯一出处是 TC1652（p105 Warning），本书不含操作步骤</li>
+<li>8770 与 OXE mgr 两侧界面均可配，书中以 8770 界面为主</li>
+<li>实验 FQDN/网段等环境值见 book/overview</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otmcxte200en/skills/otmsg-declaration-sync.html">OXE/OTMC 双向声明进 8770 与同步</a></p><p class="source-page">能力 ID：cap.otmsg.sip-trunk-provisioning · 来源：OTMCXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch Message Center Starter (Participant's Guide, Issue 08) | edition: Edition 08 | pages: 259 页 -->

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>ACD 等待队列管理（容量公式与出口配置）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OXO Connect · 呼叫中心</h2><p>Edition 07 · 218 页 · 文档整理入库（15 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte107en/index.html">课程首页</a><a href="/courses/oxocxte107en/digest.html">精华长文</a><a href="/courses/oxocxte107en/overview.html">教书理解</a><a href="/courses/oxocxte107en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte107en/skills/oxo-acd-basic-setup.html">OXO Connect 基础 ACD 全流程搭建</a><a href="/courses/oxocxte107en/skills/oxo-acd-call-scenarios.html">ACD 呼入六场景排障</a><a href="/courses/oxocxte107en/skills/oxo-acd-routing.html">呼叫特征化与 Smart Call Routing 路由表设计</a><a href="/courses/oxocxte107en/skills/oxo-acd-queue.html">ACD 等待队列管理（容量公式与出口配置）</a><a href="/courses/oxocxte107en/skills/oxo-acd-search-noanswer.html">坐席搜索模式选型与无应答处理</a><a href="/courses/oxocxte107en/skills/oxo-acd-login-status.html">坐席签入签出（free seating）与状态排障</a><a href="/courses/oxocxte107en/skills/oxo-multi-secretary.html">Multi-Secretary 多秘书方案配置</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte107en/skills/oxo-omc-first-connect.html">OMC 安装与首次连接</a><a href="/courses/oxocxte107en/skills/oxo-ip-replan.html">OXO 与客户端 IP 规划修改</a><a href="/courses/oxocxte107en/skills/oxo-acd-schedule-calendar.html">ACD 营业时段与例外日配置</a><a href="/courses/oxocxte107en/skills/oxo-supervisor-app.html">Supervisor 班长台部署与实时监控</a><a href="/courses/oxocxte107en/skills/oxo-agent-app.html">Agent 坐席席面部署（弹屏/打标/客户库）</a><a href="/courses/oxocxte107en/skills/oxo-statistics-app.html">Statistics 统计应用与报表导出</a><a href="/courses/oxocxte107en/skills/oxo-dtmf-client-popup.html">DTMF 客户码识别弹屏</a><a href="/courses/oxocxte107en/skills/oxo-acd-voice-prompts.html">ACD 语音提示定制</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte107en/index.html">oxo-connect-call-center（15 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte107en/index.html">OXOCXTE107EN</a><span>/</span><span aria-current="page">ACD 等待队列管理（容量公式与出口配置）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>ACD 等待队列管理（容量公式与出口配置）</h1></div><dl><div><dt>Skill ID</dt><dd>oxo-acd-queue</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>ACD 等待队列管理（OXO Connect）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Let N be the number of agent in service and K the load factor • If N * K is not an integer, the value of the queue is the next higher integer • The maximum size of the queue is 16"（p93）
+"Estimated waiting time = [(Number of call in the queue / number of agents on duty) + 1] X Average duration of ACD conversations"（p94）
+"Queue exit by ''*'' key ... Activate the ''Place in group voice mailbox'' option ... Then activate the ''Transfer to a number'' option"（p38, p112）</p>
+</blockquote>
+<p>出处：OXOCXTE107EN p93-94（公式）、p38（队列流程）、p112-113（出口实验）、p184（容量实测）。</p>
+<h2>I — 自述</h2>
+<p>队列管两件事：<strong>容量</strong>和<strong>体验</strong>。</p>
+<ol>
+<li><strong>容量公式</strong>：</li>
+<li>队列长度 = ceil(在值坐席数 N × 话务因子 K)</li>
+<li>K ∈ 0.1-9.9；上限 16（与标准 ACD 端口上限同源）</li>
+<li><strong>N 只数 On duty 坐席</strong>——坐席签出，队列实时缩容</li>
+<li><strong>体验（消息与出口）</strong>：</li>
+<li>阈值消息二选一：Queue rank（播排名）/ Queue time（播预计等待时间）</li>
+<li>预计等待 = (队列呼叫数 / 在值坐席 + 1) × 平均通话时长（线性估算，高峰低估）</li>
+<li>来电者可随时按 <code>*</code> 退出：转组邮箱或预定义号码</li>
+<li>队满出口三选：转号码 / 组邮箱 / 劝漏语音后释放</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>容量实测</strong>（p93 讲义 + p184 实验）</p>
+<ul>
+<li>讲义示例：4 名 on duty 坐席 × K=0.5 → 队列 2 通</li>
+<li>实验交叉验证：组1（坐席 101/102 两人在值，N=2）把 K 从 0.1 改 2.0 → Agent 应用观察到队列容量 1 → 4；核算 2×2.0=4 吻合</li>
+<li>出口实验（p112-113）：坐席全忙呼入 → 欢迎语 1 + 循环消息 2；坐席释放即转出；<code>*</code> 退出逐项验证；组2 K=0.1 连打两通 → 第二通直接劝漏</li>
+</ul>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：</p>
+<ol>
+<li>"队列设多大合适？"——N×K 公式与 K 取值</li>
+<li>"客户反映排一下就被挂断"——K 过小或出口问题</li>
+<li>"想让客人听到预计等待时间"——Queue time 选项与 Average duration 参数</li>
+<li>"坐席下班后队列是不是变小了"——N 的实时口径</li>
+<li>"排队的人能不能自己留言走人"——<code>*</code> 退出与出口配置</li>
+</ol>
+<p>语言信号：队列 / 排队长度 / queue length / waiting queue / 等待时间播报 / traffic factor / 话务因子 / 星号退出 / 队满 / 劝漏出口。</p>
+<p>与相邻能力区分：端口全忙劝漏与场景判定 → 六场景能力；坐席搜索顺序 → 搜索模式能力；本能力聚焦"容量数值 + 消息阈值 + 出口配置"。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：在值坐席数 N（实时口径）、期望容客量或话务判断（定 K）、平均通话时长、播报偏好（时间/排名/不播）。缺平均通话时长先询问或从统计应用取。</p>
+<ol>
+<li><strong>计算</strong>：queue = ceil(N × K)，核算 ≤16。完成标准：得到整数值</li>
+<li><strong>配置容量</strong>：General parameters / "Group 1-4" tab → 选中组 → Queue management → 填 K。完成标准：保存生效</li>
+<li><strong>验证容量</strong>：坐席全忙后连续呼入，实测入队通数 = 计算值（可借 Agent 应用观察）。完成标准：实测吻合</li>
+<li><strong>配置播报</strong>：选 Queue rank 或 Queue time → 设触发阈值；Queue time 需填 Average duration（秒）。完成标准：实呼在阈值后听到播报</li>
+<li><strong>配置出口</strong>：Call management 中按需启用 "Place in group voice mailbox" 与 "Transfer to a number"；都不启用 = 队满播语音后释放。完成标准：三种出口实测一致</li>
+<li>回归：K 值变更与客户确认观察期</li>
+</ol>
+<p>判停点：客户要"永不劝漏"→ 说明上限 16 的硬约束，超出即扩坐席或分流，不得承诺。</p>
+<p>输出契约：K 取值与队列长度计算书（含 N 口径）+ 消息/出口配置清单 + 实测记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>线性等待公式高峰<strong>低估</strong>（阶段 0 批判），对外播报留余量</li>
+<li>N 随坐席状态实时变化——与签入签出能力联动排障</li>
+<li>上限 16 不可突破；更大需求属方案级问题</li>
+<li>组间溢出（10 秒溢到别组坐席）机制存在但<strong>配置入口原书未写明</strong>（nr-01），不凭本能力承诺</li>
+<li>消息音频本体（102.wav 等）制作上传见语音定制能力</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte107en/skills/oxo-acd-login-status.html">坐席签入签出（free seating）与状态排障</a>、<a href="/courses/oxocxte107en/skills/oxo-acd-search-noanswer.html">坐席搜索模式选型与无应答处理</a>、<a href="/courses/oxocxte107en/skills/oxo-acd-call-scenarios.html">ACD 呼入六场景排障</a></p><p class="source-page">能力 ID：cap.oxo-cc.queue · 来源：OXOCXTE107EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OXO Connect 呼叫中心 (Participant's Guide, Edition 07) | edition: Edition 07 | pages: 218 页 -->

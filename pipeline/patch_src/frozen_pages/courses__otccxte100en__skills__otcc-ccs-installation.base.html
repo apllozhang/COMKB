@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>CCS 班长台安装、OXE 声明与 ccs.ini</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Starter</h2><p>Edition  · 649 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte100en/index.html">课程首页</a><a href="/courses/otccxte100en/digest.html">精华长文</a><a href="/courses/otccxte100en/overview.html">教书理解</a><a href="/courses/otccxte100en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte100en/skills/otcc-ccd-matrix-foundation.html">CCD 基础矩阵创建与验证</a><a href="/courses/otccxte100en/skills/otcc-ccs-installation.html">CCS 班长台安装、OXE 声明与 ccs.ini</a><a href="/courses/otccxte100en/skills/otcc-routing-distribution-rules.html">路由规则与分配规则全生命周期</a><a href="/courses/otccxte100en/skills/otcc-agent-supervisor-onboarding.html">ACD 话机、座席与班长创建登录</a><a href="/courses/otccxte100en/skills/otcc-object-tuning.html">CCD 对象参数调优（pilot/PG/队列）</a><a href="/courses/otccxte100en/skills/otcc-voice-guides.html">语音指南三路径（话机录音/.wav 导入/欢迎指南）</a><a href="/courses/otccxte100en/skills/otcc-monitoring-statistics.html">实时监控告警与 Excel 统计</a><a href="/courses/otccxte100en/skills/otcc-multilanguage-calendar.html">多语言语音指南与双日历</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte100en/skills/otcc-supervisor-features.html">座席班长特性配置（监听强插/通用转发/多线/事务码）</a><a href="/courses/otccxte100en/skills/otcc-queue-experience.html">EWT 表与排队位置播报（518）</a><a href="/courses/otccxte100en/skills/otcc-direct-calls-emergency.html">CCD 直接呼叫与紧急关闭</a><a href="/courses/otccxte100en/skills/otcc-statistic-pilot.html">统计型 pilot 与 Call Tag</a><a href="/courses/otccxte100en/skills/otcc-lab-connectivity.html">实验环境与链路打通（POD/ITSP1/ABC-F）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte100en/index.html">otcc-standard-starter（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte100en/index.html">OTCCXTE100EN</a><span>/</span><span aria-current="page">CCS 班长台安装、OXE 声明与 ccs.ini</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>CCS 班长台安装、OXE 声明与 ccs.ini</h1></div><dl><div><dt>Skill ID</dt><dd>otcc-ccs-installation</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>CCS 班长台安装、OXE 声明与 ccs.ini</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"On Feature level window, select Full for a full CCS version installation. … On Feature level license window, select Monosite. … On Excel window, click on Yes"（p92）
+"On Setup type window, select Windows standalone … On Real Time Information when logged-off? Window, click on Yes … On ASM Script Editor window, click on No"（p93）
+"From Network menu, select node1 and click on Modify … Master PABX name Enter the IP address of the Call Server (i.e. 192.168.1.3)"（p94-95）
+"A CCS station cannot create any object relative to call distribution …, but can create CCS supervisors and distribution rules."（p79）
+"CCS.ini file is read every time the CCs is started • This file is located in programData / Alcatel / CCsupervisor by default"（p85）</p>
+</blockquote>
+<p>出处：OTCCXTE100EN p78-97, p511-512。</p>
+<h2>I — 自述</h2>
+<p>CCS（Alcatel-Lucent CCsupervision）是 Windows 桌面班长台：管规则开闭、座席属性、实时监督（Navigator）、Excel 统计与紧急关闭；但无权创建 CCD 底层对象（p79 权责硬边界）。</p>
+<p>安装决策链（p91-93）：</p>
+<ul>
+<li>安装链：CCS.msi → EULA → 默认路径（自动装 VC++ 2017 x86）</li>
+<li>决策屏：Feature level=Full → 许可类型=Monosite（实验口径，生产按现场选 Multisite）→ Excel 集成=Yes</li>
+<li>后续屏：语言（实验保留英文界面）→ Setup type=Windows standalone → 核对 Station ID</li>
+<li>收尾：无班长登录也要实时信息=Yes；ASM Script Editor=No</li>
+</ul>
+<p>OXE 声明与首登（p94-96）：</p>
+<ul>
+<li>Window&gt; Customise&gt; Network 选 node1 Modify：Direct connection + Master PABX name=OXE 地址 → 必须重启 CCS（ccs.ini 要写入呼叫服务器 IP，p95）</li>
+<li>默认账号 administrator/alcatel（实验口径），首次登录强制改密（实验改 Superuser01*）</li>
+</ul>
+<p>ccs.ini 要点（p85-87）：每次启动读取；id_terminal（0..127）全网唯一、冲突即异常；MultiSite/CcsLight 决定 token 类型；多数显示设置走 CUSTOMIZE 窗口，ShowStatisticWithData（CCS 10.5+）必须手改进 [default_configuration] 节（n10）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>安装与声明实验</strong>（p89-97）：</p>
+<ol>
+<li>Client PC 10 从 OTCC_NAS 拷 CCS 软件到 Documents 并解压（More info → Run anyway）</li>
+<li>运行 CCS.msi：EULA、默认路径，Feature level=Full、许可=Monosite、Excel=Yes</li>
+<li>语言保留 English+French、界面 English；Setup type=Windows standalone；实时信息=Yes；ASM=No</li>
+<li>Install → ccs.ini 合并提示 OK → Finish</li>
+<li>Window&gt; Customise&gt; Network&gt; node1 Modify：Direct connection、Master PABX name=192.168.1.3（实验口径）→ 确认并按提示重启 CCS</li>
+<li>administrator/alcatel 登录 → 强制改密 → 用新密码重登</li>
+<li>Real time&gt; Navigator 查看 CCD 阵列——此时无连线属正常（规则未建，下一实验补）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：装 CCS 装到一半报错；换呼叫服务器 IP 后连不上；id_terminal 冲突；CCSLight 还是 Monosite token；座席会话报表想只看有数据的座席；改了配置"没反应"。</p>
+<p>语言信号：CCS / CCsupervision / CCS.msi / Monosite / Multisite / CCSLight / node1 / ccs.ini / id_terminal / Station ID / administrator / ShowStatisticWithData / 重启。</p>
+<p>与相邻能力区分：建 CCD 对象本身 → CCD 基础矩阵能力（CCS 建不了）；装好后建规则 → 路由与分配规则能力；Excel 统计参数归监控与统计能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：CCS 安装包与许可 token 类型已定（Monosite/Multisite/CCSLight）、OXE 管理地址可达、安装 PC 满足 Windows 桌面要求。</p>
+<ol>
+<li>安装 CCS.msi：按决策链逐屏选择（Feature level=Full、许可类型按现场、Excel=Yes）。完成标准：Finish 无报错、桌面出现 CCsupervision</li>
+<li>声明 OXE：Window&gt; Customise&gt; Network 选节点 Modify，填呼叫服务器地址与直连方式。完成标准：确认后按提示重启 CCS</li>
+<li>重启 CCS 并首登：默认账号登录 → 按安全规则改密 → 新密码重登。完成标准：进入主界面无连接报错</li>
+<li>核对 ccs.ini：my_name 与 id_terminal（0..127）全网唯一、token 类型与许可一致。完成标准：无冲突告警</li>
+<li>Real time&gt; Navigator 打开看矩阵。完成标准：能显示 OXE CCD 对象（无连线属正常）</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>声明后连不上 → 先确认重启过 CCS（IP 写入 ccs.ini 的必要动作，p95/n21）</li>
+<li>多台 CCS 站冲突 → 查 id_terminal 是否重复（0..127 唯一）</li>
+<li>想在 CCS 里建 pilot/队列/PG → 权责边界，转 OXE 侧（矩阵能力卡）</li>
+<li>需要 ShowStatisticWithData → 无 GUI 入口，手改 ccs.ini [default_configuration] 节后重启（n10）</li>
+<li>许可类型拿不准（Monosite vs Multisite）→ 判停确认现场拓扑，多站点在本书边界外（n41）</li>
+</ul>
+<p>输出契约：可登录的 CCS 班长台 + 与 OXE 连接正常（Navigator 可见矩阵）+ ccs.ini 核对记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>Multisite 多站点 CCS 只出现在 ccs.ini 注释与安装选项里，本书不教多站点部署（n41）</li>
+<li>实验账号口令（administrator/alcatel、Superuser01*）为实验口径，生产必须按安全基线替换（n19）</li>
+<li>CCS 界面为 R10.16/CCS 10.5 时代 Windows 桌面应用，云化/网页化不在本书视野（批判区）</li>
+<li>ShowStatisticWithData 是"必须手改文件"的例外，其余显示设置优先走 CUSTOMIZE 窗口（p85-87）</li>
+<li>改 Excel 参数、统计对象数、呼叫服务器 IP 三类改动都要求重启 CCS（p95/p505/p518）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte100en/skills/otcc-ccd-matrix-foundation.html">CCD 基础矩阵创建与验证</a></p><p class="source-page">能力 ID：cap.otcc.ccs-installation · 来源：OTCCXTE100EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Starter (Participant's Guide, Edition 09) | edition: Edition  | pages: 649 页 -->

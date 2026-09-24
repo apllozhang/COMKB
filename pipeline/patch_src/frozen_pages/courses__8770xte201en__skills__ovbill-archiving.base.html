@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>计费归档与恢复</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 计费与性能管理</h2><p>Edition 45 · 650 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte201en/index.html">课程首页</a><a href="/courses/8770xte201en/digest.html">精华长文</a><a href="/courses/8770xte201en/overview.html">教书理解</a><a href="/courses/8770xte201en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte201en/skills/ovbill-node-onboarding.html">OXE 纳管与 SIP 中继对接</a><a href="/courses/8770xte201en/skills/ovbill-ticket-pipeline.html">计费票据管道（出票、回收、加载过滤）</a><a href="/courses/8770xte201en/skills/ovbill-tariff-costing.html">运营商资费建模与成本计算</a><a href="/courses/8770xte201en/skills/ovbill-org-costing.html">计费组织树与成本归属</a><a href="/courses/8770xte201en/skills/ovbill-confidentiality.html">计费机密控制三道闸（掩码、解密、可见域）</a><a href="/courses/8770xte201en/skills/ovbill-reporting.html">报表生成、导出与定时</a><a href="/courses/8770xte201en/skills/ovbill-report-design.html">报表定制（Querytool 与 Designer）</a><a href="/courses/8770xte201en/skills/ovbill-voip-monitoring.html">VoIP 性能监控（IP ticket 与 KPI）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte201en/skills/ovbill-codebook-migration.html">Code Book 导出与导入</a><a href="/courses/8770xte201en/skills/ovbill-cost-profile.html">成本档案（发票价与订阅费）</a><a href="/courses/8770xte201en/skills/ovbill-traffic-tracking.html">流量分析与 Tracking 告警</a><a href="/courses/8770xte201en/skills/ovbill-web-performance.html">Web Performance 实时仪表盘</a><a href="/courses/8770xte201en/skills/ovbill-archiving.html">计费归档与恢复</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte201en/index.html">omnivista-billing-performance（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte201en/index.html">8770XTE201EN</a><span>/</span><span aria-current="page">计费归档与恢复</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>计费归档与恢复</h1></div><dl><div><dt>Skill ID</dt><dd>ovbill-archiving</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>计费归档与恢复（archZ 生命周期、参数书写规则、恢复标签、定向清除）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"File extension = archZ (Zipped archive format) • One file per day and per node (if at least 1 record to archive)"（p521）
+"Archive Delay — Defined in days (default value: 31) – Don't add the symbol D after the value. ... Clean-up delay — Defined in days (default value: 94D) – The symbol D must be added after the value."（p529）
+"Loaded records: Without label (visible in the organization). Archived records: with label (the restored records are not visible in the organization)."（p537）
+"Only restored records ... This option only deletes records restored with the label Archived records."（p548）</p>
+</blockquote>
+<p>出处：8770XTE201EN p518-548。</p>
+<h2>I — 自述</h2>
+<p>归档是计费数据生命周期的延长线，四个目标：缩库提速、投诉期追溯旧票、旧票重算成本、长期备份。</p>
+<ul>
+<li>机制：归档任务（手动或自动）把"上次归档日"到"当前日期−31 天"的票据拷入 archZ（zip，每天每节点一档，默认路径 C:\8770_ARC\Accounting\tickets）；档案再保留 94 天后删除——31+94=最长 125 天</li>
+<li>清理时机按记录的业务日期而非归档文件创建日期：补归档的旧票也按原日期到期</li>
+<li>参数书写规则相反（同一页签）：Archive Delay=31 天数、禁止带 D 后缀；Clean-up delay=94D、必须带 D 后缀——照抄格式会配错</li>
+<li>恢复按单日（选 archZ 文件）或按周期（日期区间+勾节点）两种入口；恢复标签二选一：</li>
+</ul>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>行为</th>
+<th>适用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Loaded records</td>
+<td>无标签、进组织树、与原始票完全不可区分</td>
+<td>纯业务补查</td>
+</tr>
+<tr>
+<td>Archived records</td>
+<td>带标签、组织树 Records 页签不显示、报告可见（Record origin 列可过滤）、可被 "Only restored records" 单独清除</td>
+<td>审计/对账场景</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>恢复成本二选一：Without recalculation（沿用归档时的运营商成本）或 With recalculation（恢复时重算，运营商有效期必须覆盖被恢复记录的日期）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>归档、恢复与清除闭环</strong>（p528-548）：</p>
+<ol>
+<li>Administration &gt; nmc &gt; OmniVista 8770 &gt; nms &gt; NmcArchive &gt; Accounting 的 Accounting archive 页签配参数（归档路径、Archive Delay、Clean-up delay、勾 Archive activation；实验演示把 Archive delay 设 1 天、Clean-up delay 3 年）</li>
+<li>执行归档任务：范围=1 月 1 日到 2 月 1 日的票据入 archZ</li>
+<li>对同周期执行 Purging 清掉库内票据</li>
+<li>恢复单日（1 月 28 日）选标签 Loaded records——记录回组织树且与原始票无法区分</li>
+<li>恢复周期（1 月 29 日到 2 月 1 日）选标签 Archived records——组织树 Records 页签不显示，报告可见</li>
+<li>用表头 Record origin 过滤验证两种来源（Loaded record / Restored record）</li>
+<li>只清恢复票：Accounting/traffic &gt; Purging 勾 Only restored records——仅删除 Archived 标签的恢复票</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：库太大报表变慢想缩库；客户投诉半年前的话费要查旧票；归档文件什么时候删；恢复的票和原始票分不清；恢复的票怎么单独清掉；留存期限合规。</p>
+<p>语言信号：归档 / archive / archZ / Archive Delay / Clean-up delay / 125 天 / 31 天 / 94 天 / 恢复 / restore / Loaded records / Archived records / Record origin / Only restored records / purge / 清除 / 留存。</p>
+<p>与相邻能力区分：恢复后重算成本依赖运营商有效期（资费建模能力）；组织树更新与灰条目清理属组织成本归属能力；库容量与备份策略在书外。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：归档路径磁盘充足；留存期限有合规或业务口径。口径未定 → 判停先确认期限（125 天是机制上限不是合规结论）。</p>
+<ol>
+<li>配归档参数：路径、Archive Delay（纯数字）、Clean-up delay（数字+D）、勾 Archive activation。完成标准：两组参数格式各自正确</li>
+<li>执行或排程归档任务。完成标准：C:\8770_ARC\Accounting\tickets 出现 archZ</li>
+<li>需缩库时对同周期 Purging。完成标准：库内记录数下降</li>
+<li>按场景恢复：业务补查用 Loaded records，审计对账用 Archived records。完成标准：标签选择有依据</li>
+<li>With recalculation 恢复前核对运营商有效期覆盖被恢复日期。完成标准：恢复票成本非空</li>
+<li>用 Record origin 列过滤核验恢复票，必要时 Only restored records 定向清除。完成标准：清除只影响恢复票</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>两个天数参数书写格式 → Archive Delay 禁带 D、Clean-up delay 必带 D，写反会配错</li>
+<li>审计要求"能区分原始与恢复票" → 一律用 Archived 标签；Loaded 标签恢复后无法区分</li>
+<li>恢复选了 With recalculation 但成本算不出 → 运营商有效期未覆盖记录日期，先补周期再恢复</li>
+<li>客户要求留存超 125 天 → 机制上限之外属外部备份方案（书外），本卡不承诺</li>
+</ul>
+<p>输出契约：归档参数表 + 归档/恢复/清除操作记录 + Record origin 核验结论 + 留存期限口径说明。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>31+94=125 天是 Ed45 机制口径；法定留存期限（GDPR 类）需按当地法规另定，书内不论（n45）</li>
+<li>清理按记录日期计算——补归档不改变到期时点（p529/p530）</li>
+<li>恢复的 Archived 标签票在组织树不可见但可出报告；组织树可见性规则与机密控制能力独立</li>
+<li>归档参数双入口（NmcArchive 与计费应用 Preferences）指向同一套配置，改一处即可</li>
+<li>MariaDB 容量规划与备份恢复演练在书外（n45）；本卡只覆盖计费票据的数据生命周期</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte201en/skills/ovbill-org-costing.html">计费组织树与成本归属</a></p><p class="source-page">能力 ID：cap.ovbill.archiving · 来源：8770XTE201EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniVista 8770 R5.2 Accounting and Performance Administration (Participant Guide, Edition 45) | edition: Edition 45 | pages: 650 页 -->

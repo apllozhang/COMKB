@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>空数据库创建与 OPS 许可管理</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Starter</h2><p>Edition 12 · 821 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte400en/index.html">课程首页</a><a href="/courses/entpxte400en/digest.html">精华长文</a><a href="/courses/entpxte400en/overview.html">教书理解</a><a href="/courses/entpxte400en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte400en/skills/ents-first-login-hardening.html">OXE 首登加固（四账户与密码治理）</a><a href="/courses/entpxte400en/skills/ents-cs-network-firewall.html">Call Server IP 寻址与内部防火墙</a><a href="/courses/entpxte400en/skills/ents-db-license.html">空数据库创建与 OPS 许可管理</a><a href="/courses/entpxte400en/skills/ents-media-gateway-deployment.html">媒体网关上架（GD4/OMS/XL）</a><a href="/courses/entpxte400en/skills/ents-user-terminal-provisioning.html">用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）</a><a href="/courses/entpxte400en/skills/ents-numbering-cos.html">编号计划与 COS 管理</a><a href="/courses/entpxte400en/skills/ents-call-processing.html">呼叫处理业务域（语音指南/话务台/Entity/计时器）</a><a href="/courses/entpxte400en/skills/ents-sip-trunk.html">公共 SIP 中继开通与弹性</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte400en/skills/ents-system-start-stop.html">OXE 系统启停与 autostart 管理</a><a href="/courses/entpxte400en/skills/ents-time-sync.html">OXE 时间同步（NTP/chrony）</a><a href="/courses/entpxte400en/skills/ents-voicemail-4645.html">OmniMessage 4645 语音邮件与邮件通知</a><a href="/courses/entpxte400en/skills/ents-barring-emergency.html">外呼闭锁与紧急呼叫通知</a><a href="/courses/entpxte400en/skills/ents-backup-maintenance.html">数据库备份恢复与维护排障工具箱</a><a href="/courses/entpxte400en/skills/ents-legacy-trunks-umc.html">传统中继（T0/T2）与 UMC 云管理</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte400en/index.html">oxe-starter（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte400en/index.html">ENTPXTE400EN</a><span>/</span><span aria-current="page">空数据库创建与 OPS 许可管理</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>空数据库创建与 OPS 许可管理</h1></div><dl><div><dt>Skill ID</dt><dd>ents-db-license</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>空数据库与 OPS 许可（建库顺序、许可恢复、FlexLM、降级模式）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The OXE database is called MAO (Maintenance Administration Operation)"（p186）
+"THIS OPERATION OVERWRITES THE EXISTING DATABASE AND THE SOFTWARE LICENSE FILES. IT CAN ONLY BE PERFORMED IF THE TELEPHONE APPLICATION IS STOPPED."（p190）
+"The OPS files are the following: • hardware.mao • xx.swk • Contains the listing of customer licenses and software locks • xx.hw • xx.zip"（p196）
+"the Call Server checks its OPS files every five days … postpones the degraded mode procedure for 30 days"（p205）</p>
+</blockquote>
+<p>出处：ENTPXTE400EN p184-223。</p>
+<h2>I — 自述</h2>
+<p>库与许可是一对：MAO 存配置，OPS 存许可；两者通过固定顺序绑定：</p>
+<ol>
+<li><strong>空库三连约束</strong>：只能在话务应用停止时执行；必然连现有库与许可文件一起覆盖；完成后必须先恢复 OPS 再重启、再起话务</li>
+<li><strong>空库流程</strong>：Easy 7 停话务；Expert 菜单 7（Database tools）选 2 建空库；输国家码（培训约定 FR 为实验口径，现场必须真实国家码）；Direct Link Network 选 Y 自动建 99 条 ABC-F 直连；记录空库上限后重启 CPU</li>
+<li><strong>OPS 四文件</strong>（xx=客户 ID）：xx.swk（许可+锁清单）、xx.hw（硬件描述）、hardware.mao（兼容副本）、xx.zip（Actis 归档）；恢复路径=传 /usr4/BACKUP/OPS 后 swinst 恢复，.swk 运行态改名 software.mao</li>
+<li><strong>许可 ID 四态</strong>：CPU-ID（物理 CS，PROM 内）/ Product ID（虚拟 CS，FlexLM .ice 绑加密狗）/ ALU-ID（GAS 免狗）/ CC-SUITE-ID（Cloud Connect，终身不变，全载体通用）</li>
+<li><strong>锁值语义</strong>：0/1=服务授权；0-99999=数量；99999=无限。spadmin 十项菜单管查看/校验/安装/CPUID/PANIC</li>
+<li><strong>保护节奏</strong>：正常每 5 天自查 OPS；不一致即降级——CPU-ID 类视为维护操作给 30 天宽限；降级三阶段=即时话务台告警+命令报 "Software protection error"，4 小时后全屏提示并禁内呼，8 小时循环</li>
+<li><strong>FlexLM 对接</strong>：WBM System/Licenses 配 Enabled/服务器 IP/端口 27000/Product ID discovery，改后必须重启 CS</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>空库创建实验</strong>（p189-193，How-To）：</p>
+<ol>
+<li>swinst Easy 7 停话务，系统重启且 autostart 取消</li>
+<li>Expert 菜单 7 Database tools 选 2 建空库，确认抹库警告</li>
+<li>输国家码 FR（实验口径），Direct Link Network 选 y 自动建 99 条直连</li>
+<li>记录空库上限（Users 10014/1/2 com 3859，实验库实例值）</li>
+<li>shutdown -r now 重启 CPU</li>
+<li>恢复许可（见下一段实验）后 Easy 8 起话务</li>
+<li>验证：ednump 可见 FR 库默认编号计划（51/41/42/43 等）</li>
+</ol>
+<p><strong>OPS 恢复与巡检实验</strong>（p210-223，How-To）：</p>
+<ol>
+<li>FileZilla 设 Binary 传输，SFTP 把 xx.hw/.swk/.zip/hardware.mao 传到 /usr4/BACKUP/OPS</li>
+<li>swinst Expert 菜单 5（OPS configuration）执行恢复，同意新软件密钥</li>
+<li>观察输出："30 remaining day(s)" 为 CPU-ID 宽限提示，"operation successful" 为成功</li>
+<li>同菜单备份 OPS 到 /usr4/BACKUP/OPS 并传回 PC 存档</li>
+<li>虚拟环境在 WBM System/Licenses 配 FlexLM（IP/端口 27000），重启 CS</li>
+<li>spadmin 巡检：选 3 显示 File OK，选 10 显示 FlexLM check OK</li>
+<li>核对锁计数与许可文件一致（SIP users、OMS 通道等）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：系统重置/交付前初始化；许可丢失或换机后恢复；"Please call your administrator" 全屏提示；软件保护告警；虚拟机/GAS 对接 FlexLM；spadmin 校验。</p>
+<p>语言信号：空库 / empty database / MAO / OPS / swk / 许可 / license / 软件锁 / spadmin / PANIC / 降级 / degraded / FlexLM / CPU-ID / CC-SUITE-ID / 宽限。</p>
+<p>与相邻能力区分：只备份不重置见备份恢复能力（路由卡）；建库后配网络见 CS 网络与防火墙能力；许可计数影响媒体资源见网关上架能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：目标国家码（现场真实值）、OPS 许可文件（交付渠道获取）、载体类型（物理/虚拟/GAS）与 FlexLM 信息（如适用）。OPS 文件缺失时停，先走商务渠道，不要用别站点的文件顶替。</p>
+<ol>
+<li>备份现状：停话务前先做库与 OPS 备份并传离设备。完成标准：回退点在 PC 上</li>
+<li>停话务：swinst Easy 7（autostart 连带取消，知晓即可）。完成标准：role 显示停止</li>
+<li>建空库：Expert 菜单 7 → 2，输入真实国家码，按需选 Direct Link。完成标准：空库上限显示且记录</li>
+<li>重启后恢复 OPS：Binary 传四文件到 /usr4/BACKUP/OPS，swinst 恢复并同意密钥。完成标准：输出 operation successful</li>
+<li>起话务并验证：Easy 8，等 "No problem with compatibilities"；spadmin 选 1 看 PANIC 归零、选 3 校验 File OK。完成标准：许可计数非 0 且校验通过</li>
+<li>虚拟/GAS 场景配 FlexLM：WBM System/Licenses 四参数，重启 CS，spadmin 选 10 判读 OK/NOK。完成标准：FlexLM check OK</li>
+<li>巡检移交：spadmin 锁清单与商务订购单对照。完成标准：许可台账闭环</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>恢复 OPS 后仍提示 "Illegal hardware key" → 停，文件与本机 ID 不匹配，回交付渠道核对订购的 CPU/Product/ALU-ID</li>
+<li>出现 "30 remaining day(s)" → 宽限期内必须换上匹配许可（n10），到期进入降级，明确告知客户时限</li>
+<li>话务台已报 "Software protection error" 且 4 小时已过 → 已禁内呼，按降级流程优先恢复 OPS 而非排障话务</li>
+<li>客户要求"只重置配置不丢许可" → 停，空库必然连 OPS 一起抹（n09）；改为备份 OPS 后再建库的顺序方案</li>
+</ul>
+<p>输出契约：按目标国家码初始化且许可生效的系统 + spadmin 校验记录 + 许可台账。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>培训统一 FR 国家码、空库上限数值均为实验口径（nr-04）；现场必须真实国家码</li>
+<li>Actis 订购流程、FlexLM 服务器搭建（CPU Loading 课程）、Cloud Connect/RTR 深度（ENTPXTE402）在书外</li>
+<li>非法解锁软件保护属违法且有法律风险（p204 原文警示），本卡只做合法恢复路径</li>
+<li>spadmin 的 OPEX Flag/Panic RTR Check 等旗标判读以 spadmin 输出为准；OPEX（Purple on Demand）商务前提在书外</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte400en/skills/ents-media-gateway-deployment.html">媒体网关上架（GD4/OMS/XL）</a>、<a href="/courses/entpxte400en/skills/ents-backup-maintenance.html">数据库备份恢复与维护排障工具箱</a></p><p class="source-page">能力 ID：cap.ents.db-license · 来源：ENTPXTE400EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Starter (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 821 页 -->

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OXE 接入 Rainbow 与接入排障</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>Rainbow for OmniPCX Enterprise</h2><p>Edition 12 · 314 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte003en/index.html">课程首页</a><a href="/courses/rainxte003en/digest.html">精华长文</a><a href="/courses/rainxte003en/overview.html">教书理解</a><a href="/courses/rainxte003en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte003en/skills/rxe-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte003en/skills/rxe-agent-onboarding.html">OXE 接入 Rainbow 与接入排障</a><a href="/courses/rainxte003en/skills/rxe-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte003en/skills/rxe-routing-rex.html">OXE 用户形态决策与远程延伸路由</a><a href="/courses/rainxte003en/skills/rxe-webrtc-gateway-deployment.html">WebRTC 网关部署与升级</a><a href="/courses/rainxte003en/skills/rxe-oxe-gateway-config.html">OXE 侧 WebRTC 网关配置九件套</a><a href="/courses/rainxte003en/skills/rxe-gateway-pool-sizing.html">共享 WebRTC 网关池与容量规划</a><a href="/courses/rainxte003en/skills/rxe-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte003en/skills/rxe-rcc-association.html">OXE 分机关联与 RCC 模式</a><a href="/courses/rainxte003en/skills/rxe-attendant-consoles.html">两套话务台（4059EE 与 Rainbow Attendant Console）</a><a href="/courses/rainxte003en/skills/rxe-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte003en/skills/rxe-network-readiness.html">Rainbow 网络就绪核查</a><a href="/courses/rainxte003en/skills/rxe-lab-pod-setup.html">RLAB 实验环境与 Pod 配置</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte003en/index.html">rainbow-oxe-integration（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte003en/index.html">RAINXTE003EN</a><span>/</span><span aria-current="page">OXE 接入 Rainbow 与接入排障</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OXE 接入 Rainbow 与接入排障</h1></div><dl><div><dt>Skill ID</dt><dd>rxe-agent-onboarding</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OXE 接入 Rainbow 与接入排障（DNS/代理、PBXID/激活码、维护四抓手）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The DNS and HTTP proxy configuration will only be used by Rainbow and Cloud Connect agents"（p78）
+"Warning URL PING DOESN'T VALID THE DNS RESOLUTION. Dig and nslookup commands allow to verify correctly the DNS resolution."（p82）
+"Warning NETWORK PREREQUISITES MUST BE COMPLETED BEFORE!"（p84）
+"4503=rainbowagent: WebSocket (rainbowagent&lt;-&gt;Rainbow) in service … 4509=CSTA link (CSTA server&lt;-&gt;Rainbow) in service"（p87）</p>
+</blockquote>
+<p>出处：RAINXTE003EN p77-88。</p>
+<h2>I — 自述</h2>
+<p>接入分三段，顺序不能倒：</p>
+<ol>
+<li><strong>网络前提</strong>：netadmin 配 DNS（菜单 14）与 HTTP 代理（菜单 15）——这两项只服务 Rainbow 与 Cloud Connect agent，配完没全局生效属预期</li>
+<li><strong>验证手段</strong>：DNS 解析必须用 nslookup/dig（URL ping 不算数）；HTTPS 测试只能用 IP 地址，curl 报证书错误属预期（ALE 专有证书，只有 OXE/OXO 认）</li>
+<li><strong>接入启用</strong>：Rainbow 端取 PBXID 与激活码，在 OXE webadmin（或 mgr）的 Rainbow 菜单 Enable Rainbow Agent 选 YES，填凭证后 Save</li>
+</ol>
+<p>incvisu 五条链路健康口径（p87）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>事件码</th>
+<th>链路</th>
+<th>健康状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4503</td>
+<td>WebSocket（rainbowagent 与 Rainbow 间）</td>
+<td>in service</td>
+</tr>
+<tr>
+<td>4505</td>
+<td>XMPP link</td>
+<td>in service</td>
+</tr>
+<tr>
+<td>4509</td>
+<td>CSTA link（CSTA server 与 Rainbow 间）</td>
+<td>in service</td>
+</tr>
+<tr>
+<td>4507</td>
+<td>Config link（PBX config 与 Rainbow 间）</td>
+<td>in service</td>
+</tr>
+<tr>
+<td>4511</td>
+<td>API_MGT link</td>
+<td>in service</td>
+</tr>
+</tbody>
+</table></div>
+<p>维护四抓手：incvisu 看启动事件与五链路；dhs3_init -R RAINBOWAGENT 重启 agent；checkCloudConfig.sh -rainbow 核查云连接；more /var/log/rainbowagent.log 看日志。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>DNS/代理与接入实验</strong>（p77-88）：</p>
+<ol>
+<li>netadmin -m 进菜单，选 14 DNS configuration、2 Create/Update，填主备 DNS 后保存</li>
+<li>选 1 View DNS configuration 复核地址生效</li>
+<li>代理走菜单 15（实验环境不需要代理，仅了解路径）</li>
+<li>控制台执行 nslookup 查 agent.openrainbow.com 解析，返回多个 IP 为通过</li>
+<li>curl 用 IP 地址做 HTTPS 测试，返回证书校验错误但请求 OK（ALE 专有证书属预期）</li>
+<li>Rainbow 管理端 My company、Communication、Comm. Servers 页签取 PBXID 与激活码（用复制功能防输错）</li>
+<li>OXE webadmin Rainbow 菜单启用 agent，填凭证保存</li>
+<li>Rainbow 端确认该 OXE 状态 running；OXE 侧 incvisu 五链路全 in service</li>
+<li>checkCloudConfig.sh -rainbow 输出 DNS 解析、证书链与 Success 判定</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：把 OXE 接上 Rainbow；接入后状态不对；不知道 PBXID 从哪来；配 DNS/代理；curl 证书报错要不要紧。</p>
+<p>语言信号：netadmin / DNS / 代理 / proxy / PBXID / 激活码 / activation code / Rainbow Agent / incvisu / 4503 / CSTA link / checkCloudConfig / rainbowagent.log / 连不上。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>网关侧部署与升级 → 网关部署能力</li>
+<li>云侧日志、状态页与 SR → 维护支持能力（路由卡）</li>
+<li>接入成功后的分机绑定 → 分机关联能力（路由卡）</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OXE 呼叫服务器维护账号、Rainbow 公司管理员账号、网络出口信息（DNS/代理/防火墙管控方）。防火墙不在自己手里 → 判停先找客户网络组。</p>
+<ol>
+<li>配 DNS：netadmin 菜单 14 填主备地址并保存。完成标准：View 配置显示新地址</li>
+<li>验解析：nslookup/dig 查 agent.openrainbow.com。完成标准：返回解析结果（不认 URL ping）</li>
+<li>验连通：curl 用 IP 做 HTTPS 测试。完成标准：证书报错但请求 OK 属预期，连通成立</li>
+<li>取凭证：Rainbow 端 Comm. Servers 页签复制 PBXID 与激活码。完成标准：凭证在手且未经手抄</li>
+<li>启用 agent：webadmin Rainbow 菜单 Enable YES、填凭证、Save。完成标准：Rainbow 端该 OXE 显示 running</li>
+<li>验链路：incvisu 查五链路。完成标准：4503/4505/4509/4507/4511 全部 in service</li>
+<li>归档：checkCloudConfig.sh -rainbow 输出与日志位置写入交付记录。完成标准：排障抓手已知</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>网络前提没做完就想填凭证 → 停，先做步骤 1-3（顺序硬约束，p84 Warning）</li>
+<li>incvisu 五链路有缺 → 查 DNS/代理/防火墙后再重启 agent，不盲目重装</li>
+<li>现场防火墙强制按域名放行 → OXE 的 HTTPS 测试只能用 IP，换防火墙侧手段验证，不虚构结果</li>
+</ul>
+<p>输出契约：PBX-Rainbow 连接 established 的双侧证据 + 五链路状态记录 + 排障抓手清单。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>DNS/代理配置只服务 Rainbow 与 Cloud Connect agent，不影响 OXE 其他功能（p78）——排障时先分清解析问题与连通问题</li>
+<li>curl 证书错误是预期行为（ALE 专有 CA，p82），不是"连不上"的证据</li>
+<li>实验环境不需要代理；实验网段、维护账号与日志样例版本（rainbowagent 6.0.1）见 book/overview 环境区，均为实验口径</li>
+<li>生产防火墙/代理细节、端口与域名清单在书外：以 Rainbow Network Requirements PDF 为准（n02）</li>
+<li>PBX 必须先由经销商在 Rainbow 侧创建——EC 管理员无此入口属权限设计（p39/p161）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte003en/skills/rxe-rcc-association.html">OXE 分机关联与 RCC 模式</a></p><p class="source-page">能力 ID：cap.rxe.agent-onboarding · 来源：RAINXTE003EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: Rainbow / OmniPCX Enterprise (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 314 页 -->

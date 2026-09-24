@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>设备维护日志与 Generic SIP 接入</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>Rainbow Hub</h2><p>Edition 16 · 351 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte101en/index.html">课程首页</a><a href="/courses/rainxte101en/digest.html">精华长文</a><a href="/courses/rainxte101en/overview.html">教书理解</a><a href="/courses/rainxte101en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte101en/skills/hub-company-voice-subscription.html">Rainbow 公司体系与 Voice 订阅开通</a><a href="/courses/rainxte101en/skills/hub-cloud-pbx-provisioning.html">Cloud PBX 声明与话务配置</a><a href="/courses/rainxte101en/skills/hub-member-telephony.html">成员管理与话务配置</a><a href="/courses/rainxte101en/skills/hub-zero-touch-provisioning.html">ALE 设备 zero-touch 部署与 DECT 移动</a><a href="/courses/rainxte101en/skills/hub-device-maintenance.html">设备维护日志与 Generic SIP 接入</a><a href="/courses/rainxte101en/skills/hub-hunt-groups.html">呼叫组与话务分配</a><a href="/courses/rainxte101en/skills/hub-attendant-supervision.html">话务台与监督组</a><a href="/courses/rainxte101en/skills/hub-welcome-service-ivr.html">欢迎服务与 IVR</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte101en/skills/hub-network-readiness.html">Rainbow Hub 网络就绪核查</a><a href="/courses/rainxte101en/skills/hub-multisite.html">多站点配置</a><a href="/courses/rainxte101en/skills/hub-analytics.html">分析体系</a><a href="/courses/rainxte101en/skills/hub-maintenance-support.html">Hub 维护与支持体系</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte101en/index.html">rainbow-hub（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte101en/index.html">RAINXTE101EN</a><span>/</span><span aria-current="page">设备维护日志与 Generic SIP 接入</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>设备维护日志与 Generic SIP 接入</h1></div><dl><div><dt>Skill ID</dt><dd>hub-device-maintenance</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>设备维护日志与 Generic SIP 接入（debug 会话、第三方终端评估）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Once a Myriad device is registered and active in the Rainbow Hub environment, it is impossible to connect to it, even if you know its IP address"（p142）
+"require at least the the following firmware on the device: 2.14.22"（p144，原文重复照录）
+"Generic SIP devices: • No centralized configuration • No automatic firmware updates • No remote call control (RCC)"（p117）
+"ALE cannot provide support for such configurations"（p120）</p>
+</blockquote>
+<p>出处：RAINXTE101EN p114-132, p141-145, p334-336。</p>
+<h2>I — 自述</h2>
+<p>两条线：已注册 ALE 话机的维护取证，与第三方 Generic SIP 设备的接入评估。</p>
+<p><strong>ALE 话机维护四口径</strong>（p142-145）：</p>
+<ol>
+<li><strong>禁直连</strong>：注册激活后即使知道 IP 也连不上（安全模型）；管理员可开 debug 会话，最长 15 分钟，登录名固定 admin、密码为一次性 TOTP 口令</li>
+<li><strong>话机本地取日志</strong>：Log Level 调 Debug / 起 pcap 抓包 / 复现 / Local Log Download 出 .tgz / 停 pcap 下载 / <strong>必须把日志级别恢复 Error 并 Save</strong>（留在 debug 模式话机会行为异常且有延迟）</li>
+<li><strong>管理端 webadmin 取日志</strong>：编辑设备 / Enable device logs（24 小时自动失效）/ Get the device report / 报告进 BP report admin 区；前提设备固件至少 2.14.22</li>
+<li><strong>远端维护三动作</strong>：Debug / Restart / Reset to factory；debug 开不了且不知管理密码时只能开 SR 走官方支持</li>
+</ol>
+<p><strong>Generic SIP 接入六条限制</strong>（p117/p120）：</p>
+<ol>
+<li>无集中配置、必须手工配置</li>
+<li>无固件自动更新</li>
+<li>无 RCC（不能从 Rainbow 应用控话机）</li>
+<li>话机话务状态不回传 Rainbow（无统一在场）</li>
+<li>DND/呼转/BLF 键状态冲突（本地与集中服务不一致）</li>
+<li>仅基础 SIP 话务；协议生态互操作风险</li>
+</ol>
+<p>安全基线与配套（p118, p122, p125-131）：</p>
+<ol>
+<li>信令 TLS 1.2 起步、媒体 SRTP（设备不支持时可关加密）、推荐 G711；防火墙放行 SIP 信令 + RTP/SRTP + 出网到 Rainbow</li>
+<li>手工配置四要素：SIP 域、SIP 用户名、SIP 密码、Rainbow 服务器证书链（编辑设备页下载）</li>
+<li>批量导入模板字段：action（create/update/delete）、MAC、设备类型、SIP 密码（仅 Generic SIP 需要）；导入后必须再回连 Rainbow 账号</li>
+<li>定位：存量设备补充（门铃/传真/会议话机/ATA/DECT base）；8 款参考设备指南（Yealink/Snom/Poly/Grandstream）；部署前测互操作/编解码/证书，部署后盯注册/音质/收日志</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>Generic SIP 设备配置操作序列</strong>（p124-131，讲义级操作序列）：</p>
+<ol>
+<li>Communication/Devices → Create → Device type 选 Generic SIP。</li>
+<li>录入 MAC、SIP domain、SIP username、SIP password。</li>
+<li>编辑该设备 → 下载 CA 证书链（Rainbow 服务器证书）。</li>
+<li>终端侧按支持文章配置网络与 SIP（TLS 1.2+/SRTP，推荐 G711）。</li>
+<li>批量线：Import → 填模板四字段 → 上传导出报告。</li>
+<li>导入生成的设备再手工（或批量）回连 Rainbow 账号。</li>
+</ol>
+<p>书中本章无独立 How-To 实验，验收按部署后清单执行（SIP 注册正常、音质合格）。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：话机要取日志给原厂；话机排障改了日志级别忘恢复；管理端远程取报告失败；客户旧话机/门铃/传真想接 Hub；评估第三方话机当主力终端；Generic SIP 批量开户。</p>
+<p>语言信号：设备日志 / device logs / debug / pcap / tcpdump / webadmin / 2.14.22 / TOTP / 恢复出厂 / Generic SIP / 第三方 / SIP domain / 证书链 / TLS / SRTP / G711 / 互操作 / Yealink / Snom / Poly / Grandstream。</p>
+<p>与相邻能力区分：ALE 话机的声明与 zero-touch 上线归设备部署能力；开了 SR 之后的支持流程归维护支持能力（路由卡）；"注册不上"先查网络协议支持（HTTP 代理不支持）归网络就绪口径。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：设备型号与固件版本、故障现象与复现步骤、（Generic SIP 线）设备清单与 SIP 四要素、客户对支持责任的理解。</p>
+<ol>
+<li>判线：ALE 原生话机走维护四口径；第三方设备先过六条限制评估。完成标准：路径选定且预期对齐</li>
+<li>取话机日志（本地线）：Debug 级 / pcap / 复现 / 下载 .tgz / 恢复 Error 并 Save。完成标准：日志在手且级别已复原</li>
+<li>取设备报告（webadmin 线）：核固件 ≥2.14.22 → Enable device logs → Get the device report。完成标准：报告出现在 BP report admin 区</li>
+<li>Generic SIP 接入：建设备（选 Generic SIP）/ 取四要素与证书链 / 终端侧配置 TLS/SRTP/G711 → 回连账号。完成标准：SIP 注册成功、音质抽测合格</li>
+<li>批量线（第三方）：模板填 action/MAC/类型/SIP 密码 → 上传 / 回连账号 / 抽检。完成标准：导入报告无红行且注册正常</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>debug 会话开不了且管理密码未知 → 停，开 SR 走官方支持（p336），不要反复试锁</li>
+<li>客户要把第三方话机当主力终端大规模上 → 停，ALE 官方立场不支持且不兜底（p120-121，n19）；支持责任与 SLA 先谈进合同</li>
+<li>清单外型号 → 停，无官方互操作认证计划（n20），先小规模自行试点</li>
+<li>客户网络全代理出网 → 停，ALE SIP 终端不支持经 HTTP 代理穿越（p334，n52），先改网络再谈终端</li>
+</ul>
+<p>输出契约：日志/pcap 证据链（级别已复原确认）+ Generic SIP 接入评估结论与注册验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>已注册话机禁直连是安全设计：排障时间窗按 15 分钟 debug 会话规划（p142，n24）</li>
+<li>互操作测试与参考设备指南均书外（p117/p122 指针）；本卡不承诺清单外型号可用</li>
+<li>证书链下载入口在编辑设备页（p127）；SIP 四要素泄露即账号暴露面，按敏感信息管理</li>
+<li>webadmin 设备日志 24 小时自动失效——长周期问题要在失效前重新开启（p144，n26）</li>
+<li>设备 debug 的 TOTP 口令与认证 TOTP 同词两义（g06），文档表述时按上下文区分</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte101en/skills/hub-maintenance-support.html">Hub 维护与支持体系</a></p><p class="source-page">能力 ID：cap.hub.device-maintenance · 来源：RAINXTE101EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: Rainbow Hub (Participant's Guide, Edition 16) | edition: Edition 16 | pages: 351 页 -->

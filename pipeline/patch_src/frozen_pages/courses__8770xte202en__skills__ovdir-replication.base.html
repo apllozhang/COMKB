@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>目录复制主从部署</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 目录管理</h2><p>Edition 40 · 565 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte202en/index.html">课程首页</a><a href="/courses/8770xte202en/digest.html">精华长文</a><a href="/courses/8770xte202en/overview.html">教书理解</a><a href="/courses/8770xte202en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte202en/skills/ovdir-oxe-sync-ldap.html">OXE 节点注册与同步</a><a href="/courses/8770xte202en/skills/ovdir-auto-creation.html">目录树搭建与 PCX 自动创建</a><a href="/courses/8770xte202en/skills/ovdir-links-rename.html">六类链接与改名语义</a><a href="/courses/8770xte202en/skills/ovdir-msad-azure-pipelines.html">MSAD 与 Azure AD 同步管道</a><a href="/courses/8770xte202en/skills/ovdir-click-to-call.html">Click to Call 交付</a><a href="/courses/8770xte202en/skills/ovdir-confidentiality.html">目录保密级别与访问级别</a><a href="/courses/8770xte202en/skills/ovdir-replication.html">目录复制主从部署</a><a href="/courses/8770xte202en/skills/ovdir-domains-delegation.html">管理域与委派</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte202en/skills/ovdir-msad-plugin.html">MSAD 插件开户（AD 右键一键开通）</a><a href="/courses/8770xte202en/skills/ovdir-ldif-tools.html">LDIF 导入导出与管理工具管道</a><a href="/courses/8770xte202en/skills/ovdir-client-dictionary.html">目录词典与 Web 客户端定制</a><a href="/courses/8770xte202en/skills/ovdir-platform-basics.html">8770 平台基础（套件/拓扑/兼容/虚拟化）</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte202en/index.html">omnivista-directory（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte202en/index.html">8770XTE202EN</a><span>/</span><span aria-current="page">目录复制主从部署</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>目录复制主从部署</h1></div><dl><div><dt>Skill ID</dt><dd>ovdir-replication</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>目录复制主从部署（副本、协议、初始化、调度、恢复）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Redundancy only available for the company directory, not for the OmniVista 8770 server"（p503）
+"Master Replica • It is a read-write database ... Consumer Replica • It is a read-only database ... refers write requests to the master replica via a referral"（p505）
+"FROM A MANAGEMENT POINT OF VIEW, IT'S STRONGLY RECOMMENDED TO MANAGE UPDATES ONLY FROM THE MASTER REPLICA"（p507）
+"One master server can have up to 4 slave servers • Only 5 replica (master or consumer) can be created in each OmniVista 8770 server"（p514）
+"Unavailability period &gt; 7 days • All Data created in the master during the unavailability period are lost"（p515）</p>
+</blockquote>
+<p>出处：8770XTE202EN p501-515, p517-535。</p>
+<h2>I — 自述</h2>
+<p>目录复制提供公司目录数据冗余：主服务器建 Master replica（读写供体）+ Replication agreement（协议）+ Attribute set（属性集）；从服务器建 Consumer replica（只读，ID 固定 65535）。</p>
+<ul>
+<li><strong>数字口径表</strong>（全部与原文逐格核对）：</li>
+</ul>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Consumer 副本 ID</td>
+<td>固定 65535（自动）</td>
+</tr>
+<tr>
+<td>Master 副本 ID</td>
+<td>手工 1-65534 且不重复</td>
+</tr>
+<tr>
+<td>主从比例</td>
+<td>1 主最多 4 从</td>
+</tr>
+<tr>
+<td>每台副本总数</td>
+<td>最多 5 个（master 或 consumer）</td>
+</tr>
+<tr>
+<td>断联容忍</td>
+<td>不超过 7 天自动补齐；超过 7 天断联期主侧新增数据丢失</td>
+</tr>
+<tr>
+<td>实验调度</td>
+<td>每日 5:00AM（Simple job，实验口径）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>机制</strong>：Master 改动即时生效，Consumer 经调度复制后更新（不能实时）；Consumer 写请求经 referral 转发给 Master，但管理上强烈建议只在 Master 改——Consumer 本地改动复制后消失</li>
+<li><strong>前提 checklist</strong>：双机同版本/同 OS 语言/同安装语言/双 Directory 许可/同公司名；网络号一致；UID 构造与 cost center 管理参数双机一致；Slave 关自动创建；主从 DNS/hosts 互解析</li>
+<li><strong>顺序硬约束</strong>：建副本要求分支为空——先导 LDIF 再删分支；属性集建协议后不可改（要改只能删协议重建或改后 Initialize）；Initialize 先清空 Consumer 再全量拷贝；移除顺序 Consumer 先于 Master，且删副本会连带删目录分支</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>主从复制部署实验</strong>（p517-535）：</p>
+<ol>
+<li>前置核查：双机版本/语言/许可/公司名一致，互 ping 计算机名与 FQDN 通</li>
+<li>Slave 端 Replication configuration 建 Consumer：Country/France/数据库 FR，ID 自动 65535</li>
+<li>Slave 运行 toolsOmniVista.exe 核对复制管理器密码（实验默认不动）</li>
+<li>Slave 配 OXE：Automatic creation 禁用，UID 构造与主机一致</li>
+<li>Master 导出 France 分支 LDIF 后删除该分支（副本要求分支为空）</li>
+<li>Master 建 Master replica：副本 ID 填 1（1-65534 未占用）</li>
+<li>Master 配协议：从机 Host:Port+复制管理器密码，属性集 Replicate all，启用协议</li>
+<li>Master 导回第 5 步 LDIF 恢复分支数据</li>
+<li>选协议行 Initialize：Slave 端 Consumer 数据出现</li>
+<li>Schedule 排每日 5:00AM（避开两机已有日/周任务），Scheduler 可查</li>
+<li>过程验证：Master 加 P1 从机未排程前没有；Scheduler 右键 Execute now 后更新</li>
+<li>移除演练：先删 Consumer 再删 Master；&gt;7 天不一致按六步人工恢复流程走读</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：目录数据要做冗余；从机改了人第二天没了；从机断了一周多数据怎么补；属性集要加字段；主从复制能不能加密；这套是不是整机高可用；副本怎么安全拆除。</p>
+<p>语言信号：replication / 复制 / Master replica / Consumer / slave / 从机 / referral / Replication agreement / Attribute set / Initialize / 65535 / 7 天 / Schedule / 5 点 / 断联 / 数据不一致 / LDIF 恢复 / toolsOmniVista。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>单机数据备份恢复 → LDIF 工具能力</li>
+<li>OXE 数据同步 → OXE 注册能力</li>
+<li>8770 服务器本身高可用 → 书外（见 Boundary）</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：主从两台 8770（同版本/同语言）、双 Directory 许可、DNS 或 hosts 互解析、维护窗口。前提 checklist 不过 → 判停先补齐。</p>
+<ol>
+<li>核前提：版本/语言/许可/公司名/网络号/UID 构造/cost center 参数逐项核对。完成标准：checklist 全绿</li>
+<li>Slave 建 Consumer 副本（分支同名须先处理：导 LDIF 再删）。完成标准：副本 ID 65535 生成</li>
+<li>Slave 核复制管理器密码（toolsOmniVista.exe 可单独设置，勿沿用弱口令）。完成标准：密码策略落实</li>
+<li>Master 建 Master replica（ID 1-65534）。完成标准：副本建立</li>
+<li>Master 配协议：从机地址端口、管理器密码、属性集、启用。完成标准：协议生效</li>
+<li>分支数据处理：非空分支先导 LDIF 删除，协议配好导回。完成标准：数据无损</li>
+<li>Initialize 全量 + Schedule 排程（错峰两机维护窗口）。完成标准：从机数据完整且调度生效</li>
+<li>验证：Execute now 手动触发，核对 Master 新增出现在 Slave。完成标准：复制闭环</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>属性集要改 → 删协议重建，或改后 Initialize 强制全量；不要试图直接改属性集（p529）</li>
+<li>从机断联超 7 天 → 断联期主侧新增数据已丢，走六步人工恢复（导 LDIF、禁协议、删重建 Consumer、导 LDIF、启协议）</li>
+<li>客户把这当整机高可用 → 纠偏：只冗余目录数据，8770 服务器本身无冗余（n34）</li>
+<li>从机侧收到改数据请求 → 拒绝并引导到 Master：Consumer 改动复制后消失（n36）</li>
+<li>拆除复制 → 先导 LDIF，再按 Consumer 到 Master 顺序删；删副本连带删分支（n39）</li>
+</ul>
+<p>输出契约：主从复制体系（副本/协议/调度）+ 初始化与复制验证记录 + 运维纪律说明（Master-only 写入、7 天阈值）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>LDAPS 不被复制支持（nr-07）：复制流量明文，加密合规场景需网络层方案（书外）</li>
+<li>Address Book 不可复制（p514）：个人地址簿不在冗余面内</li>
+<li>复制必须调度、不能实时（p505）：RPO=调度间隔，排程密度与窗口需与客户对齐</li>
+<li>初始化与移除都伴随数据删除动作：操作前一律先导 LDIF 备份</li>
+<li>数字口径（4 从/5 副本/7 天/65535）为 Ed40 印刷口径，升级后以官方文档复核</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte202en/skills/ovdir-ldif-tools.html">LDIF 导入导出与管理工具管道</a>、<a href="/courses/8770xte202en/skills/ovdir-oxe-sync-ldap.html">OXE 节点注册与同步</a></p><p class="source-page">能力 ID：cap.ovdir.replication · 来源：8770XTE202EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniVista 8770 — Directory Administration (Participant's Guide, Edition 40) | edition: Edition 40 | pages: 565 页 -->

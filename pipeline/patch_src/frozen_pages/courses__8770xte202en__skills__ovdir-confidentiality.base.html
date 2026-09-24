@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>目录保密级别与访问级别</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 目录管理</h2><p>Edition 40 · 565 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte202en/index.html">课程首页</a><a href="/courses/8770xte202en/digest.html">精华长文</a><a href="/courses/8770xte202en/overview.html">教书理解</a><a href="/courses/8770xte202en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte202en/skills/ovdir-oxe-sync-ldap.html">OXE 节点注册与同步</a><a href="/courses/8770xte202en/skills/ovdir-auto-creation.html">目录树搭建与 PCX 自动创建</a><a href="/courses/8770xte202en/skills/ovdir-links-rename.html">六类链接与改名语义</a><a href="/courses/8770xte202en/skills/ovdir-msad-azure-pipelines.html">MSAD 与 Azure AD 同步管道</a><a href="/courses/8770xte202en/skills/ovdir-click-to-call.html">Click to Call 交付</a><a href="/courses/8770xte202en/skills/ovdir-confidentiality.html">目录保密级别与访问级别</a><a href="/courses/8770xte202en/skills/ovdir-replication.html">目录复制主从部署</a><a href="/courses/8770xte202en/skills/ovdir-domains-delegation.html">管理域与委派</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte202en/skills/ovdir-msad-plugin.html">MSAD 插件开户（AD 右键一键开通）</a><a href="/courses/8770xte202en/skills/ovdir-ldif-tools.html">LDIF 导入导出与管理工具管道</a><a href="/courses/8770xte202en/skills/ovdir-client-dictionary.html">目录词典与 Web 客户端定制</a><a href="/courses/8770xte202en/skills/ovdir-platform-basics.html">8770 平台基础（套件/拓扑/兼容/虚拟化）</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte202en/index.html">omnivista-directory（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte202en/index.html">8770XTE202EN</a><span>/</span><span aria-current="page">目录保密级别与访问级别</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>目录保密级别与访问级别</h1></div><dl><div><dt>Skill ID</dt><dd>ovdir-confidentiality</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>目录保密级别与访问级别（四级保密、两应用十档、Web 目录两级访问）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"4 levels of confidentiality available • Entries with the confidentiality level 'Green' (default value) • ... 'Orange' • ... 'Red' • Administration 8770 is the most confidential level"（p209）
+"Personal data • Home Telephone • Home Address • Car License • Employee Number • Password"（p210）
+"Anonymous access • Only green records displayed • With only non-personal data"（p211）
+"Authenticated access with a company directory person • Only green records displayed • With personal data included for the authenticated person"（p212）
+"When you consult the web directory with a person account, only the persons with confidentiality level green are displayed and the authenticated person."（p243）</p>
+</blockquote>
+<p>出处：8770XTE202EN p209-215, p217-251。</p>
+<h2>I — 自述</h2>
+<p>保密是"条目级"，管理端权限是"账户级"，两套机制正交——出问题时先分清是哪套挡住了。</p>
+<ul>
+<li><strong>条目保密四级</strong>：Green（默认）/ Orange / Red / Administration 8770（最高）；挂在人员条目上</li>
+<li><strong>属性两类</strong>：个人数据五种（家庭电话/家庭住址/驾照/工号/密码），其余为非个人数据；Password 指人员 UID 密码</li>
+<li><strong>Web 目录两级访问</strong>：匿名=只读且只见 Green 条目的非个人数据；UID+密码认证=可改本人记录、管个人地址簿，本人 personal data 可见。注意：本人级别是 Orange/Red 并不扩大对他人条目的可见性</li>
+<li><strong>管理端访问级别</strong>（Security 应用按应用分别授予）：</li>
+</ul>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>应用</th>
+<th>五档（低到高）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Company Directory</td>
+<td>No Access / Partial Read / Total Read / Partial Modification / All</td>
+</tr>
+<tr>
+<td>Web Directory</td>
+<td>Partial View Orange List / Partial View Red List / Total View Red List / Partial Modification / All</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>授予入口</strong>：Security 应用 nmc &gt; 8770Applications &gt; Company Directory 或 WebDirectory，加账户选级别；AdminNmc 默认 All</li>
+<li><strong>行为矩阵速记</strong>（实测口径，c06 七类会话验证）：匿名 2 绿非个人；Green 人员 2 绿+本人；Orange/Red/Admin8770 人员同前；web 管理员按档扩面；AdminNmc 八人全见全改</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>保密级别矩阵验证实验</strong>（p217-251）：</p>
+<ol>
+<li>Directory 应用 Ale 根下建 RH 部门</li>
+<li>RH 下建八人：green/green2/orange/orange2/red/red2/admin8770/admin8770_2</li>
+<li>每人设 Password、Confidentiality 级别与家庭电话/住址（实验口径）</li>
+<li>Security 应用建五个管理员账户（partial_read/total_read/partial_orange_web/partial_red_web/total_red_web）</li>
+<li>Company Directory 应用下授 partial_read 与 total_read 两档</li>
+<li>WebDirectory 应用下授三档查看级别</li>
+<li>匿名会话搜 RH：仅 green/green2，且只有非个人数据</li>
+<li>Green 人员登录：green/green2+本人，本人 personal data 可见</li>
+<li>Orange/Red/Admin8770 人员分别登录：结果与 Green 相同（只多看本人）</li>
+<li>partial_orange_web 登录：四条目非个人属性</li>
+<li>partial_red_web/total_red_web 登录：六条目，后者含个人属性</li>
+<li>AdminNmc 登录：八人全见全属性，可建删改</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：HR/领导层号码要对普通员工隐藏；员工能不能看到同事家庭电话；匿名访问能看到什么；给前台开目录账号该给哪档；Orange 的人为什么查不到别人；员工想自己改手机号。</p>
+<p>语言信号：保密 / confidentiality / Green / Orange / Red / Administration 8770 / personal data / 个人数据 / 匿名 / anonymous / 访问级别 / access level / Security / 地址簿。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>按部门切割管理员可见范围 → 管理域与委派能力</li>
+<li>Web 客户端界面/字段定制 → 客户端与词典定制能力</li>
+<li>人员属性批量维护 → LDIF 工具能力</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：保密对象名单与级别映射、需要的管理员账户清单、Web 目录匿名是否开放的业务决定。</p>
+<ol>
+<li>定级：按名单给人员条目设 Confidentiality（默认 Green 不动）。完成标准：级别台账成文</li>
+<li>建账户：Security 应用建管理员并按应用授 Company Directory/Web Directory 级别。完成标准：账户-级别对照表就绪</li>
+<li>员工侧：给需自助维护的人员设 UID 密码并告知认证入口。完成标准：认证可用</li>
+<li>匿名验证：无会话搜保密部门，应只见 Green 非个人数据。完成标准：泄漏面为零</li>
+<li>人员验证：抽 Orange 人员登录核对"2 绿+本人"边界。完成标准：本人可见性正确</li>
+<li>管理员验证：逐档登录核对可见条目数与属性范围。完成标准：与矩阵一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户以为"给 Orange 的人授了权就能看 Orange 同事" → 正交机制讲清：条目保密与账户权限是两套，本人级别不放大他人可见性</li>
+<li>需要按部门切管理员可见范围 → 那是管理域能力（Domain Management），不是保密级别能做的</li>
+<li>匿名入口被要求彻底关闭 → 检查 GlobalParameters 认证图标与入口策略（客户端定制能力域）</li>
+<li>误把 UID 密码当登录账号密码 → Password 属性只用于 Web 目录认证（g13），与 8770 管理员账户无关</li>
+</ul>
+<p>输出契约：保密级别台账 + 管理员账户授权表 + 七类会话抽验记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>admin8770 级别条目只有持相应权限的管理员账户经 Web Directory 才可见（p211/p243 口径）</li>
+<li>保密级别不加密数据：LDAP 层与 LDIF 导出仍可触达，安全方案要另算</li>
+<li>Password 属性（人员 UID 密码）属于个人数据、认证本人可见（p212/p243），保密设计时不得遗漏</li>
+<li>个人地址簿（500 条上限，默认值）属用户私有数据，与保密级别无关（p328）</li>
+<li>c06 实验口令与人数为实验口径，生产按客户名单执行</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte202en/skills/ovdir-domains-delegation.html">管理域与委派</a></p><p class="source-page">能力 ID：cap.ovdir.confidentiality · 来源：8770XTE202EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniVista 8770 — Directory Administration (Participant's Guide, Edition 40) | edition: Edition 40 | pages: 565 页 -->

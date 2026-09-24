@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Rainbow 混合云接入速览</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OXO Connect · Starter</h2><p>Edition 16 · 472 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte300en/index.html">课程首页</a><a href="/courses/oxocxte300en/digest.html">精华长文</a><a href="/courses/oxocxte300en/overview.html">教书理解</a><a href="/courses/oxocxte300en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte300en/skills/oxos-data-collection.html">交付前数据采集</a><a href="/courses/oxocxte300en/skills/oxos-commissioning.html">系统开通双路线与首次连接</a><a href="/courses/oxocxte300en/skills/oxos-terminals.html">终端开通（IP 话机与 DECT）</a><a href="/courses/oxocxte300en/skills/oxos-numbering-groups.html">编号计划与四种组</a><a href="/courses/oxocxte300en/skills/oxos-user-features.html">用户功能与语音信箱</a><a href="/courses/oxocxte300en/skills/oxos-sip-trunk.html">公共 SIP 中继</a><a href="/courses/oxocxte300en/skills/oxos-incoming-barring.html">呼入分发与呼出闭锁</a><a href="/courses/oxocxte300en/skills/oxos-maintenance.html">备份恢复、软件升级与复位</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte300en/skills/oxos-hardware-platform.html">硬件平台与容量</a><a href="/courses/oxocxte300en/skills/oxos-audio-messages.html">消息与彩铃</a><a href="/courses/oxocxte300en/skills/oxos-security.html">安全基线与防盗打</a><a href="/courses/oxocxte300en/skills/oxos-rainbow-integration.html">Rainbow 混合云接入速览</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte300en/index.html">oxo-connect-starter（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte300en/index.html">OXOCXTE300EN</a><span>/</span><span aria-current="page">Rainbow 混合云接入速览</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Rainbow 混合云接入速览</h1></div><dl><div><dt>Skill ID</dt><dd>oxos-rainbow-integration</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>Rainbow 混合云接入速览（OXO 侧视角，从简）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"OMC/Cloud/Rainbow In Cloud menu, select Rainbow … Click on Rainbow enabled … Apply"（p347）
+"Control the connection status: « connected with final password » … The rainbow agent log file name is: ccrbagent.log"（p349）
+"The WebRTC Gateway brings voice interoperability between Rainbow Clients and PBX ecosystem."（p363）
+"Type of Rainbow GW … Internal GW Not supported 20 calls max. External GW (NUC) 50 calls max. 50 calls max. OCE-FE GW 20 calls max. Not supported"（p374）</p>
+</blockquote>
+<p>出处：OXOCXTE300EN p330-426（Rainbow 集成整章）。</p>
+<h2>I — 自述</h2>
+<p>本卡是 OXO 交付工程师的混合云速查，深度内容指向姊妹技能：</p>
+<ul>
+<li><strong>接入</strong>：PBXID+激活码（Rainbow 平台生成，向 BP 索取或客户管理员在 My company/Communication 自取）填入 OMC/Cloud/Rainbow，勾 Rainbow enabled，域名保持 openrainbow.com 不改（n26）</li>
+<li><strong>验收与排障</strong>：Webdiag/Services/Rainbow Status 显示 "connected with final password" 即接通；系统日志 ccrbagent.log；用户侧日志在 Rainbow 界面 About Rainbow/Open logs</li>
+<li><strong>RCC 中间态</strong>：分机关联（Telephony 页签）后仅监督话机（接/挂/保持/转），音频全在话机——无网关时的正常形态，不是故障</li>
+<li><strong>WebRTC 网关四拓扑</strong>：OCE 集成（R3.2+，免 SIP trunk 许可，20 通话）/OCE Front End（双端 ≥R4.0 MD，20）/外部 NUC（50）/外部 ESXi（50）；自动配置 ≥R4.0.020.002（两处口径见 needs-review nr-01）且仅 Reseller 管理员可激活</li>
+<li><strong>终端形态</strong>：有物理话机=Multiset（物理主站+Free Rainbow in Twinset 副站，R6.0 起 UTL Bypass）；纯软话机=Anydevice（1 UTL）；R5.2 及以前副站用 Anydevice（n27）</li>
+<li><strong>话务台</strong>：Attendant 订阅解锁，仅 PC（Web/厚客户端）；OXO 侧队列上限 8 通；监督组 5 组/30 人、互助组动态进出、代接仅限同 PBX 电话呼叫</li>
+</ul>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>议题</th>
+<th>本卡给到</th>
+<th>深入去向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>云侧公司/订阅/成员</td>
+<td>前提核查</td>
+<td>bundle.rainbow-oxo-connect</td>
+</tr>
+<tr>
+<td>PBX 接入与排障</td>
+<td>三抓手</td>
+<td>bundle.rainbow-oxo-connect</td>
+</tr>
+<tr>
+<td>网关选型/部署/容量</td>
+<td>对照表</td>
+<td>bundle.rainbow-oxo-connect</td>
+</tr>
+<tr>
+<td>OXO ACD 呼叫中心</td>
+<td>不覆盖</td>
+<td>bundle.oxo-connect-call-center</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>接入实验</strong>（p344-350）：</p>
+<ol>
+<li>前提：Rainbow 侧公司与 PBX 已由 BP 建（实验中讲师演示）</li>
+<li>取凭证：web.openrainbow.com 管理员登录，进 My company → Communication，点该 OXO 复制 PBXID 与激活码</li>
+<li>OMC/Cloud/Rainbow：填两凭证 → 勾 Rainbow enabled → Apply，域名保持默认</li>
+<li>验收：Webdiag Rainbow Status 显示 "connected with final password"</li>
+<li>排障：系统日志 ccrbagent.log；用户侧 Open logs</li>
+</ol>
+<p><strong>RCC 验证实验</strong>（p357-361）：分机关联后，Rainbow 客户端选 Office phone 拨测呼出、从话机呼入测接/挂/保持——音频始终在话机。</p>
+<p><strong>内部网关自动配置实验</strong>（p394-399）：Reseller 管理员勾 Activate WebRTC Gateway、选 Internal+通道数 → OMC/Cloud/Rainbow 显示 Connected and Enabled。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：交付计划里出现"接 Rainbow"；用户问"耳机里怎么没声音"（RCC 分流）；售前问网关能不能扛；PBX 侧排障碰到 Rainbow agent。</p>
+<p>语言信号：Rainbow / PBXID / 激活码 / activation code / RCC / WebRTC 网关 / Twinset / Anydevice / 话务台 / 互助组 / connected with final password / ccrbagent。</p>
+<p>与相邻能力区分：PBX 本体交付（硬件/编号/SIP/备份）在本 bundle 其余卡；云侧运营与 Teams、互助话务台深入在姊妹技能 bundle.rainbow-oxo-connect；ACD 呼叫中心在 bundle.oxo-connect-call-center。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：Rainbow 公司已由 BP 建、用户订阅（Business/Enterprise）、OMC 可连 OXO。公司未建 → 判停走 BP 流程（n33）。</p>
+<ol>
+<li>核前提：公司与 PBX 已建、订阅到位、安装员凭证在手。完成标准：三前提齐</li>
+<li>接入：OMC/Cloud/Rainbow 填 PBXID+激活码、勾启用、域名不动。完成标准：Apply 成功</li>
+<li>验收：Webdiag Rainbow Status 判据字符串。完成标准：connected with final password</li>
+<li>分机关联：Telephony 页签绑定分机，测 RCC 三项。完成标准：监督动作可用且明示音频在话机</li>
+<li>（需要音频）网关：按拓扑与容量对照表提方案，转姊妹技能施工。完成标准：方案与容量依据成文</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>"接听没声音"且未部署网关 → RCC 正常形态，先讲清形态再谈网关，不当故障修</li>
+<li>客户管理员找不到激活按钮 → 权限设计而非故障，走 Reseller/BP（n33）</li>
+<li>自动配置版本恰为 R4.0.020.002 → 按 nr-01 双口径如实说明，建议更高版本执行</li>
+<li>OXO ACD/排队机需求 → 超出本卡，转 bundle.oxo-connect-call-center</li>
+</ul>
+<p>输出契约：PBX-Rainbow 连接 established 确认 + RCC 验证记录 +（可选）网关方案建议书。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>本卡从简：云侧订阅运营、OCE-FE 多场景开局、Teams 集成、SR 支持体系在 bundle.rainbow-oxo-connect</li>
+<li>TURN 服务器位置、防火墙白名单在书外（cookbook/安装指南，n43）</li>
+<li>容量表 70/100/150 行为方向性参考（needs-review nr-06），引用必须带话务前提</li>
+<li>FTR 默认占位凭证 FleetRef-Installref 正式接入前必须替换（n30）</li>
+<li>全部实验账号（cCpP/Superuser-P*）为教学口径，见 references.md 实验口径备查</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte300en/skills/oxos-commissioning.html">系统开通双路线与首次连接</a></p><p class="source-page">能力 ID：cap.oxos.rainbow-integration · 来源：OXOCXTE300EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OXO Connect Starter (Participant's Guide, Edition 16) | edition: Edition 16 | pages: 472 页 -->

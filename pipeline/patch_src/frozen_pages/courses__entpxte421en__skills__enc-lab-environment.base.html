@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>实验环境底座（RLAB）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 加密解决方案</h2><p>Edition 05 · 410 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte421en/index.html">课程首页</a><a href="/courses/entpxte421en/digest.html">精华长文</a><a href="/courses/entpxte421en/overview.html">教书理解</a><a href="/courses/entpxte421en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte421en/skills/enc-certificate-trust-chain.html">证书与信任链全生命周期</a><a href="/courses/entpxte421en/skills/enc-native-encryption-bringup.html">加密解决方案开通与 lanpbx.cfg</a><a href="/courses/entpxte421en/skills/enc-dtls-verification-maintenance.html">DTLS 验证、排障与维护闭环</a><a href="/courses/entpxte421en/skills/enc-sip-tls-endpoints.html">SIP TLS 扩展加密</a><a href="/courses/entpxte421en/skills/enc-sip-trunk-tls.html">SIP trunk 的 TLS 与 SRTP</a><a href="/courses/entpxte421en/skills/enc-eegw-deployment.html">EEGW/NSP 大容量部署</a><a href="/courses/entpxte421en/skills/enc-abcf-network-encryption.html">ABC-F 网络加密</a><a href="/courses/entpxte421en/skills/enc-mtls-endpoint-authentication.html">mTLS 双向认证与版本限制</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte421en/skills/enc-pcs-failover.html">PCS 加密接管</a><a href="/courses/entpxte421en/skills/enc-pki-workshop-xca.html">XCA 外部 CA 工坊</a><a href="/courses/entpxte421en/skills/enc-application-encryption.html">应用生态加密与安全下载</a><a href="/courses/entpxte421en/skills/enc-lab-environment.html">实验环境底座（RLAB）</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte421en/index.html">oxe-native-encryption（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte421en/index.html">ENTPXTE421EN</a><span>/</span><span aria-current="page">实验环境底座（RLAB）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>实验环境底座（RLAB）</h1></div><dl><div><dt>Skill ID</dt><dd>enc-lab-environment</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>实验环境底座（RLAB 拓扑、Pod 初始配置、时间同步）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Remote Lab allows accessing a pool of virtual machines hosted in a data center. … Pods are independent of each other"（p29）
+"Manage the following NTP server for all the PC clients (used in this training): 192.168.1.252"（p50）
+"Due to RLAB infrastructure and technology, 2 VMs (even if not started) can't have the same IP address."（p285）</p>
+</blockquote>
+<p>出处：ENTPXTE421EN p27-57, p283-290。</p>
+<h2>I — 自述</h2>
+<p>全书实验的底座：两套拓扑 + 一个初始配置流程，全部为培训专用环境：</p>
+<ol>
+<li><strong>两套拓扑</strong>（p32-40）：</li>
+<li>stand-alone：双 CS（CSA/CSB）+ OMS + EEGW×2 + SBC + 远端 PCS（Subnet1 192.168.1.x / Subnet2 192.168.2.x / 公共区 10.20.30.x）</li>
+<li>ABC-F 网络：NODE1/NODE2 双节点 + OMS×2 + 直连链路（用户 31000/31500）</li>
+<li><strong>Pod 初始配置五步</strong>（p48-57）：</li>
+<li>NTP：所有客户端指向 192.168.1.252 并立即更新——证书日期校验的前提</li>
+<li>根 CA 证书：从 NAS 取 ca-certgen 装入 PC 的"受信任的根证书颁发机构"</li>
+<li>板卡核对：主站点 OMS Rack 4（虚拟 GD4 192.168.1.13/24）、远端 Rack 6（192.168.2.13）</li>
+<li>用户：装 IPDSP（TFTP=主 CS IP）与 ALES（local access=主 CS IP）</li>
+<li>公网接入：OXE 侧 DID 翻译与 NPD 33 默认号；SBC 侧 NAT 规则与账号改 podN</li>
+<li><strong>平台约束</strong>（p285/p49/p34）：</li>
+<li>两台 VM 即使关机也不能同 IP；切拓扑先删旧接口再建新接口并硬重启</li>
+<li>VM 分批启动：PCS/EEGW 实验前不起对应 VM</li>
+<li>ITSP2 模拟器两腿：SIP 网关 gateway.itsp2.com + 公网网关 public.itsp1.com（章内 ITSP1/2 标签混用，见 nr-04）</li>
+<li><strong>换节点信任库规则</strong>（p108/p288）：设备在 FSNE 节点间搬移前要 factory reset 或先取新 CTL；OMS VM 曾服务过 CSA/CSB 时必须 Erase saved certificates</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>Pod 初始配置</strong>（p48-57，c01 步骤 1-11）：</p>
+<ol>
+<li>按需启动 VM：PCS 与两台 EEGW 先不起（后续实验再启）</li>
+<li>客户端 NTP 指 192.168.1.252，立即更新</li>
+<li>NAS 取 ca-certgen，装入本地计算机受信任的根证书颁发机构</li>
+<li>核对 OMS 机架板卡与 MAC（实验口径 00:50:56:01:01:13）</li>
+<li>装 IPDSP 与 ALES 并按用户表指定服务器地址</li>
+<li>DID 翻译：首外线 33920N31000、首内线 31000、范围 500（N=POD 号）</li>
+<li>NPD 33 默认号设为 33920N31000</li>
+<li>SBC NAT 两条规则改为 12.班级.POD.105 形态地址</li>
+<li>SBC 账号 Contact/User Name 改 podN 并立即注册</li>
+<li>外呼/入局测试确认公网 SIP carrier 打通</li>
+</ol>
+<p><strong>网络实验室改造</strong>（p283-290，c13）：Rlab 门户把 192.168.1.1 接口从 CSA 摘除、挂到 NODE1、硬重启；OMS 清信任库；hybvisu 确认直连链路 UP（Encryption 初始 NO）。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：搭 OXE 加密实验环境；实验 Pod 的 IP/账号是什么；证书报日期错误；换拓扑要动什么；SIP 模拟器怎么打公网电话。</p>
+<p>语言信号：RLAB / POD / Pod configuration / NTP / ca-certgen / DID / NPD / SBC NAT / podN / ITSP2 / MicroSIP / hybvisu / Rlab 门户。</p>
+<p>与相邻能力区分：本卡是环境底座，一切加密配置动作都在其余能力卡；生产环境搭建不适用本卡（拓扑与数值全为实验口径）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：RLAB 门户账号与 POD 号。生产项目 → 判停，本卡仅作教学参考。</p>
+<ol>
+<li>起 VM：按实验需要分批启动（PCS/EEGW 延后）。完成标准：基础 VM 可达</li>
+<li>时间同步：全部设备指向统一 NTP 并校准。完成标准：日期时间一致</li>
+<li>信任根：根 CA 证书装入客户端受信任根。完成标准：证书提示消失</li>
+<li>核板卡与用户：按设置表核对 OMS/板卡/IP，装 IPDSP 与 ALES。完成标准：话机注册</li>
+<li>公网接入：DID/NPD/SBC NAT/账号四件配好后互打。完成标准：公网呼叫打通</li>
+<li>（网络线）切拓扑：删旧接口、建新接口、硬重启，清 OMS 旧证书后 hybvisu 验链路。完成标准：直连链路 UP</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>证书报 notBefore/notAfter 错误 → 先查时间同步（n34），别急着动证书</li>
+<li>两台 VM 抢同一 IP → RLAB 硬约束：先删旧接口再建新接口并硬重启（p285）</li>
+<li>OMS 换角色后在服务异常 → 清信任库旧证书（omsconfig 的 Erase saved certificates）再重启（p288）</li>
+</ul>
+<p>输出契约：可打电话、可达公网、时间同步的实验 POD（或就绪的网络实验室拓扑）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>全部 IP/口令/号码为 RLAB 实验口径，生产禁用且需整体替换（详见 references.md 备查节）</li>
+<li>ITSP2 模拟器行为不等于生产运营商：SIP 对接差异要在真实中继项目里另行验证</li>
+<li>照抄原书会困惑的三处：ITSP1/2 标签混用（nr-04）、GD4 串口速率 11520 疑脱漏 0（nr-02）、VM 分批启动（p49）——引用时按 needs-review 标注</li>
+<li>课程评估与证书下载（p404-410）属课程运营，非技术知识，本卡不覆盖</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.enc.lab-environment · 来源：ENTPXTE421EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — Native Encryption (Participant's Guide, Edition 05) | edition: Edition 05 | pages: 410 页 -->

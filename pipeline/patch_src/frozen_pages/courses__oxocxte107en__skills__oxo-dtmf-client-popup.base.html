@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>DTMF 客户码识别弹屏</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OXO Connect · 呼叫中心</h2><p>Edition 07 · 218 页 · 文档整理入库（15 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte107en/index.html">课程首页</a><a href="/courses/oxocxte107en/digest.html">精华长文</a><a href="/courses/oxocxte107en/overview.html">教书理解</a><a href="/courses/oxocxte107en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte107en/skills/oxo-acd-basic-setup.html">OXO Connect 基础 ACD 全流程搭建</a><a href="/courses/oxocxte107en/skills/oxo-acd-call-scenarios.html">ACD 呼入六场景排障</a><a href="/courses/oxocxte107en/skills/oxo-acd-routing.html">呼叫特征化与 Smart Call Routing 路由表设计</a><a href="/courses/oxocxte107en/skills/oxo-acd-queue.html">ACD 等待队列管理（容量公式与出口配置）</a><a href="/courses/oxocxte107en/skills/oxo-acd-search-noanswer.html">坐席搜索模式选型与无应答处理</a><a href="/courses/oxocxte107en/skills/oxo-acd-login-status.html">坐席签入签出（free seating）与状态排障</a><a href="/courses/oxocxte107en/skills/oxo-multi-secretary.html">Multi-Secretary 多秘书方案配置</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte107en/skills/oxo-omc-first-connect.html">OMC 安装与首次连接</a><a href="/courses/oxocxte107en/skills/oxo-ip-replan.html">OXO 与客户端 IP 规划修改</a><a href="/courses/oxocxte107en/skills/oxo-acd-schedule-calendar.html">ACD 营业时段与例外日配置</a><a href="/courses/oxocxte107en/skills/oxo-supervisor-app.html">Supervisor 班长台部署与实时监控</a><a href="/courses/oxocxte107en/skills/oxo-agent-app.html">Agent 坐席席面部署（弹屏/打标/客户库）</a><a href="/courses/oxocxte107en/skills/oxo-statistics-app.html">Statistics 统计应用与报表导出</a><a href="/courses/oxocxte107en/skills/oxo-dtmf-client-popup.html">DTMF 客户码识别弹屏</a><a href="/courses/oxocxte107en/skills/oxo-acd-voice-prompts.html">ACD 语音提示定制</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte107en/index.html">oxo-connect-call-center（15 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte107en/index.html">OXOCXTE107EN</a><span>/</span><span aria-current="page">DTMF 客户码识别弹屏</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>DTMF 客户码识别弹屏</h1></div><dl><div><dt>Skill ID</dt><dd>oxo-dtmf-client-popup</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>DTMF 客户码识别弹屏（OXO Connect）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"he is able to type a customer DTMF code (ex 035) allowing to generate a specific client information pop-up (Customer code=035) on the agent application"（p101）
+"ACD groups with code must be selected in the line parameters ... give the ''automatic screen pop up'' rights in the agent parameters"（p102）</p>
+</blockquote>
+<p>出处：OXOCXTE107EN p101-102。</p>
+<h2>I — 自述</h2>
+<p>让来电者"报暗号"换个性化服务。机制一句话：来电者在语音提示下输客户码（如 035#），码随呼叫到坐席席面，自动弹出客户资料。<strong>三处前置缺一不可</strong>：</p>
+<ol>
+<li>Line parameters：给目标 ACD 组勾选客户码功能（不勾则引擎根本不收码）</li>
+<li>定制客户码提示音（默认标签 107.wav 系，告诉来电者"请输码"）</li>
+<li>坐席参数授予 "automatic screen pop up" 权限（有码无权照样不弹）</li>
+</ol>
+<p>码与客户的对应关系维护在坐席席面的客户数据库里（与 Agent 应用能力互链）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>机制示例</strong>（p101-102，厂商讲义）：来电者听提示输 035# → 坐席席面弹出 "Customer code=035" 的客户信息。原书只给机制与三处前置，未含端到端实验步骤（已标注）。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：VIP 客户来电自动带出资料；客户输会员号/工单号直接定位；"弹屏不出来"排查。</p>
+<p>语言信号：输码 / 客户码 / customer code / DTMF / 弹屏 / pop up / 识别客户。</p>
+<p>与相邻能力区分：按主叫号码自动匹配的弹屏（无输码）→ Agent 应用能力；本能力专管"输码触发"链路。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户码表（码 ↔ 客户/业务）、提示音话术。缺码表先与业务方确认。</p>
+<ol>
+<li>勾组：OMC Line parameters → 选中启用客户码的 ACD 组。完成标准：组已启用收码</li>
+<li>提示音：定制 customer code announce（107.wav 系）。完成标准：实呼可听提示</li>
+<li>授权：Agent 参数 → 授 "automatic screen pop up" 权限。完成标准：权限已勾</li>
+<li>端到端验证：呼入 → 输 035# → 席面弹出 Customer code=035。完成标准：弹屏出现且资料正确</li>
+</ol>
+<p>判停点：三处配齐仍不弹 → 查码表维护（坐席客户库内有无该码条目）与提示音是否真在播（端到端实测原书未给，逐段定位）。</p>
+<p>输出契约：三处配置核对清单 + 端到端验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>原书无端到端实验——首例交付留足验证时间</li>
+<li>码位数/格式与超时重输行为原书未说明，方案设计时与客户自定并写入交付文档</li>
+<li>弹屏来源二分：客户库按 CLI 匹配（Agent 应用）vs DTMF 码触发（本能力）——排查先分清是哪一路</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte107en/skills/oxo-agent-app.html">Agent 坐席席面部署（弹屏/打标/客户库）</a>、<a href="/courses/oxocxte107en/skills/oxo-acd-voice-prompts.html">ACD 语音提示定制</a></p><p class="source-page">能力 ID：cap.oxo-cc.dtmf-popup · 来源：OXOCXTE107EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OXO Connect 呼叫中心 (Participant's Guide, Edition 07) | edition: Edition 07 | pages: 218 页 -->

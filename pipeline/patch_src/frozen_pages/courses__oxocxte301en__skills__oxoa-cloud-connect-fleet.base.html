@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Cloud Connect 舰队与远程维护</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OXO Connect · Advanced</h2><p>Edition 18 · 601 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte301en/index.html">课程首页</a><a href="/courses/oxocxte301en/digest.html">精华长文</a><a href="/courses/oxocxte301en/overview.html">教书理解</a><a href="/courses/oxocxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte301en/skills/oxoa-sip-networking.html">SIP 组网：公网网关与私网互联</a><a href="/courses/oxocxte301en/skills/oxoa-numbering-ars-suite.html">ARS 路由套件：三表协作与 Internal ARS</a><a href="/courses/oxocxte301en/skills/oxoa-hotel-billing-vertical.html">酒店与计费垂直方案</a><a href="/courses/oxocxte301en/skills/oxoa-security-hardening.html">系统安全加固</a><a href="/courses/oxocxte301en/skills/oxoa-certificate-suite.html">证书与加密传输（证书/DTLS/TLS-SRTP）</a><a href="/courses/oxocxte301en/skills/oxoa-attendant-suite.html">语音导航套件（AA/MLAA/SCR）</a><a href="/courses/oxocxte301en/skills/oxoa-voicemail-mobility.html">语音邮箱与移动办公</a><a href="/courses/oxocxte301en/skills/oxoa-cloud-connect-fleet.html">Cloud Connect 舰队与远程维护</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte301en/skills/oxoa-foundation-ip.html">交付地基：OMC 首连与 IP 规划</a><a href="/courses/oxocxte301en/skills/oxoa-terminal-ecosystem.html">终端生态：PIMphony 与 SIP 话机接入</a><a href="/courses/oxocxte301en/skills/oxoa-shared-devices.html">共享终端：站群监督、Hot Desking 与 Multiset</a><a href="/courses/oxocxte301en/skills/oxoa-multi-entity.html">多实体与伪多公司</a><a href="/courses/oxocxte301en/skills/oxoa-dect-deployment.html">DECT 无线移动</a><a href="/courses/oxocxte301en/skills/oxoa-maintenance-toolkit.html">维护工具箱：Webdiag、Noteworthy 与 LoLa</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte301en/index.html">oxo-connect-advanced（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte301en/index.html">OXOCXTE301EN</a><span>/</span><span aria-current="page">Cloud Connect 舰队与远程维护</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Cloud Connect 舰队与远程维护</h1></div><dl><div><dt>Skill ID</dt><dd>oxoa-cloud-connect-fleet</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>Cloud Connect 舰队与远程维护（注册、Fleet Dashboard、软件更新、50443 远程接入）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Both connections are initiated by the OXO Connect … No need to change the firewall rules … A VPN connection can be requested by a technician"（p264）
+"Registration of OXO Connect will take place automatically. By default, the Cloud Connect right is enabled. The service does not require licenses."（p287）
+"A delay of 24h is required to see the systems"（p289）
+"[D..] if Download indicator is RED: the Current SW version running in the call server is Older that the 'Recommended Version'. → Update is recommended"（p271）
+"User Privilege 'advanced' is needed for SW update action"（p272）
+"For remote access from Internet forwarded to the OXO Connect, the destination port on the OXO Connect must always be port 50443"（p303）</p>
+</blockquote>
+<p>出处：OXOCXTE301EN p262-310。</p>
+<h2>I — 自述</h2>
+<p>Cloud Connect（CCI）把舰队管理搬上云：OXO 主动发起永久 HTTPS（心跳/上报）+ 按需 VPN（技师请求后到远程服务中心），全程免改防火墙规则。注册自动、免 license、默认启用；Fleet 数据库一天刷新一次——注册后 24 小时才可见（n52）。</p>
+<p><strong>门户三件套</strong>（同一 Business Store 账号；域名书内两种写法见 nr-05，以登录页为准）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>门户</th>
+<th>定位</th>
+<th>核心功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fleet Dashboard</td>
+<td>舰队级（OXE 与 OXO 通用）</td>
+<td>安装基础/SA 合同/Inventory（每日刷新，GDPR 匿名）/批量 SW 更新</td>
+</tr>
+<tr>
+<td>OXO Connectivity</td>
+<td>单系统（可 standalone）</td>
+<td>VPN 配置、Watchdog/OMC 复位、硬件许可清单、DSP 统计、默认密码检出、会话日志、单台更新</td>
+</tr>
+<tr>
+<td>Business Store</td>
+<td>商务入口</td>
+<td>合同与账号</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>软件更新三步</strong>：Connect（多台 Fleet/单台 Connectivity）→ Check（指示灯 [D..] 下载建议/[.S.] 切换建议/[..P] 进行中；D 或 S 红=建议动作）→ Update（下载后按 swap 时间自动切换）。单台与批量均需用户权限 "advanced"（n53）；服务免 license。</p>
+<p><strong>远程维护四路径</strong>（与云管理互补）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>路径</th>
+<th>通道</th>
+<th>关键口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>电话网 DDI</td>
+<td>保留公网 DDI 走 modem PPP</td>
+<td>SIP-only 站点不可用（n51）</td>
+</tr>
+<tr>
+<td>本地 V24</td>
+<td>TC002_US 口径</td>
+<td>现场串行</td>
+</tr>
+<tr>
+<td>互联网 HTTPS</td>
+<td>IAD 端口转发"公网任意端口→50443"</td>
+<td>目标端口永远 50443（专用访问控制）；公网 443 被占可换端口</td>
+</tr>
+<tr>
+<td>管理 VPN</td>
+<td>专用管理 IP，仅 OMC 可配</td>
+<td>激活/停用须 warm reset；每站点可用同一 IP</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Rainbow 业务目录自助同步</strong>（p307-310）：EC 管理员在 Rainbow 点 sync，公司下全部已连 OXO 集体目录先擦空再写入；姓名截断 16 字符、非 Unicode 忽略、短号首次随机分配后维持；Dial by Name 与主叫识别立即可用。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>Cloud Connect 注册实验</strong>（p286-289，厂商实验）：</p>
+<ol>
+<li>前提：系统接入客户网络并获得互联网访问（基线 IP 实验口径）。</li>
+<li>核对 OMC/Hardware and limits/LAN/IP Configuration。</li>
+<li>核验 OMC/Cloud/Cloud Connect 状态串为 "Connected with final credentials"。</li>
+<li>Fleet 演示由讲师次日展示（数据库一天一刷新，需等 24 小时）。</li>
+</ol>
+<p><strong>软件更新</strong>（p269-273，讲义+演示）：</p>
+<ol>
+<li>多台走 Fleet Dashboard：筛选产品→Software→SW Minor Update（太旧版本标红）。</li>
+<li>单台走 OXO Connectivity：Switch/Download 状态（Recommended/OK/Has been requested）+动作按钮。</li>
+<li>指示灯 [D..]/[.S.]/[..P] 判读；advanced 权限执行。</li>
+</ol>
+<p><strong>远程维护互联网接入</strong>（p300-305，讲义）：</p>
+<ol>
+<li>固定公网 IP：IAD 转发公网 443 到 OXO 50443。</li>
+<li>公网 443 被占：转发公网任意端口到 50443。</li>
+<li>OMC 直连填公网名/IP；经代理时 Options 配 proxy（默认密码 OMCAdmin，实验口径）。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：系统上云注册与验收；舰队版本治理与批量升级；远程 VPN 调试；客户防火墙要不要开洞；远程维护走什么通道；Fleet 里看不到新注册系统；给客户推 Dial by Name 名录。</p>
+<p>语言信号：Cloud Connect / Fleet Dashboard / OXO Connectivity / Inventory / 软件更新 / advanced 权限 / 远程维护 / 50443 / 端口转发 / 管理 VPN / Rainbow 目录。</p>
+<p>与相邻能力区分：远程接入的访问控制开关与加固归安全加固能力；管理 VPN 的 warm reset 操作归维护工具能力；Rainbow 侧公司/成员管理属 starter bundle（Rainbow OXO Connect 入门）范畴，本卡只管目录同步到 OXO 这一段。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：Business Store 账号与 SA 合同、门户账号权限（advanced）、站点互联网可达性、远程维护需求（通道/端口规划）。账号或权限缺失 → 判停先理顺商务与权限，不要现场绕过。</p>
+<ol>
+<li>注册核验：确认默认启用与互联网可达；OMC/Cloud 状态串 "Connected with final credentials"。完成标准：注册闭环</li>
+<li>舰队验收：等 24 小时数据库刷新后在 Fleet Dashboard 找到系统（当场看不到不算失败，n52）。完成标准：舰队可见</li>
+<li>版本治理：按指示灯判读（D/S 红即建议动作）；批量走 Fleet、单台走 Connectivity，advanced 权限执行。完成标准：更新策略成文</li>
+<li>远程通道选型：有 DDI 可走电话网；SIP-only 只能 IP；互联网路径端口转发一律指向 50443。完成标准：通道可用且安全口径留档</li>
+<li>（更安全）管理 VPN：OMC 配专用管理 IP，warm reset 生效；配套收敛 Network IP Services。完成标准：管理面隔离</li>
+<li>（Rainbow 目录）EC 管理员建共享联系人后点 sync；先导出备份 OXO 集体目录。完成标准：Dial by Name 可用</li>
+<li>验证：远程会话建立、更新后版本核对、同步后短号与识别抽查。完成标准：三场景闭环</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>Fleet 当天看不到系统 → 等 24 小时再判，不要重复注册</li>
+<li>公网侧直接转发到 443 或其它内部端口 → 禁止：绕过 50443 专用访问控制（n50）</li>
+<li>SIP-only 站点承诺 modem 远程 → 停：物理上不可行（n51），投标前改口径</li>
+<li>集体目录有手工维护数据 → 同步前必须导出备份（先擦空再写入，n49）；Max entries 原书留白（nr-08）</li>
+</ul>
+<p>输出契约：注册与验收记录 + 舰队更新台账（版本/时间/执行人）+ 远程维护通道配置表 + 目录同步备份与结果。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>门户域名书内两种写法（nr-05）：文档不固化域名，以登录页实际跳转为准</li>
+<li>Inventory 数据每日刷新且 GDPR 匿名：实时性有限，不能当监控系统用</li>
+<li>软件更新的版本兼容与应用/板卡矩阵查 OXO Connect Cross compatibility（MyPortal），书内不展开</li>
+<li>OMC 代理默认密码 OMCAdmin 为出厂值（实验口径）：生产必须改并纳入密码树管理</li>
+<li>Rainbow 目录同步要求 OXO 编号计划保留集体快速拨号段；未连 Rainbow 的 OXO 不同步，多站点短号可能不一致（n49）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte301en/skills/oxoa-security-hardening.html">系统安全加固</a></p><p class="source-page">能力 ID：cap.oxoa.cloud-connect-fleet · 来源：OXOCXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OXO Connect - Advanced (Participant's Guide, Edition 18) | edition: Edition 18 | pages: 601 页 -->

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OTSBC 部署与向导配置</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch · 移动与远程办公</h2><p>Edition 10 · 287 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte225en/index.html">课程首页</a><a href="/courses/openxte225en/digest.html">精华长文</a><a href="/courses/openxte225en/overview.html">教书理解</a><a href="/courses/openxte225en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte225en/skills/otm-dmz-security-channels.html">远程接入架构与 DMZ 双边缘</a><a href="/courses/openxte225en/skills/otm-certificate-pki.html">证书策略与签发（CA、封装、SAN、自建 CA）</a><a href="/courses/openxte225en/skills/otm-ot-server-settings.html">OpenTouch 服务器侧远程访问设置</a><a href="/courses/openxte225en/skills/otm-otsbc-deployment.html">OTSBC 部署与向导配置</a><a href="/courses/openxte225en/skills/otm-reverse-proxy.html">反向代理两路线部署与选型（内嵌 RP、Nginx）</a><a href="/courses/openxte225en/skills/otm-otc-pc-modes.html">OTC PC 远程办公两模式（multi-devices、Nomadic SIP）</a><a href="/courses/openxte225en/skills/otm-smartphone-provisioning.html">OTC 智能手机开通（Connection 用户、自动对象、R2.6 单设备）</a><a href="/courses/openxte225en/skills/otm-iphone-apns.html">iPhone+ APNS 推送专项</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte225en/skills/otm-client-access-profiles.html">客户端远程接入两步法（接入配置与路由档案）</a><a href="/courses/openxte225en/skills/otm-smartphone-modes.html">智能手机连接模式与回落（WiFi/3G4G/DTMF、无 SIM）</a><a href="/courses/openxte225en/skills/otm-vmware-ovf.html">VMware 虚机 OVF/OVA 部署</a><a href="/courses/openxte225en/skills/otm-lab-dialtest.html">实验环境与拨测验证（RLAB、编号计划、模拟器预期表）</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte225en/index.html">ot-mobility-remote-worker（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte225en/index.html">OPENXTE225EN</a><span>/</span><span aria-current="page">OTSBC 部署与向导配置</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OTSBC 部署与向导配置</h1></div><dl><div><dt>Skill ID</dt><dd>otm-otsbc-deployment</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OTSBC 部署与向导配置（OVF 上电、CLI 初始化、许可、证书、Remote Users 模板、手工补配）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Start the OTSBC virtual machine and logon. … Login and password are 'Admin'."（p91）
+"Application: Remote Users (IP-PBX with remote Users); Template: Alcatel-Lucent Remote Users"（p102）
+"Warning: FOR IPHONE DEPLOYMENT, ADDITIONNAL MANUAL CONFIGURATION OF SEVERAL OBJECTS IS MANDATORY. IT IS NOT PART OF THIS LAB. CONSULT THE TC2639 FOR CONFIGURATION INFORMATION."（p105）
+"OXE can use UDP as well TCP for SIP. But wizard configures only UDP. It is why it is better to configure also TCP port in OTSBC. … TCP port 5060"（p117）</p>
+</blockquote>
+<p>出处：OPENXTE225EN p78-88, p89-117。</p>
+<h2>I — 自述</h2>
+<p>OTSBC 是 ALE OEM 的 AudioCodes Mediant 平台，部署高度向导化，主步骤四件：OVF 上传、IP 设置、Web 界面向导、附加配置。</p>
+<p>部署链按序：</p>
+<ol>
+<li><strong>OVF 部署</strong>：Business Portal 下载 OVF（向导软件同站），ESXi 导入并开机</li>
+<li><strong>CLI 初始化</strong>：初始账号 Admin/Admin（出厂默认，生产首登即改）；配管理网口 IP 后 write + reload now 生效</li>
+<li><strong>许可</strong>：webadmin 的 Setup/Administration/Maintenance 更新 License key，改完用 Maintenance Actions 的 RESET（Save to FLASH=Yes）保存重启</li>
+<li><strong>证书</strong>：TLS Contexts 导入 CA 根证书，新建上下文，Generate Private key 后走 CSR 签发并加载（联动证书能力）</li>
+<li><strong>向导</strong>：Configuration Wizard 选 Application=Remote Users (IP-PBX with remote Users)、Template=Alcatel-Lucent Remote Users，按参数分组走完</li>
+<li><strong>收尾手工</strong>：给每个 SIP 接口把 TLS Context Name 换成自签发的证书上下文；补两项手工（见下）</li>
+</ol>
+<p>向导参数分组（p101-105/p110-115）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>分组</th>
+<th>关键项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>General</td>
+<td>End Customer/Country/Integrator/Installer</td>
+</tr>
+<tr>
+<td>Topology</td>
+<td>Application=Remote Users、Template=Alcatel-Lucent Remote Users、Network Setup 按端口拓扑</td>
+</tr>
+<tr>
+<td>System</td>
+<td>Web 界面 HTTP/HTTPS、CLI Telnet/SSH、时区、NTP</td>
+</tr>
+<tr>
+<td>IP</td>
+<td>物理口 Group 1、IP/掩码/网关、NAT Public IP、内部 DNS、OAM 接口=WAN</td>
+</tr>
+<tr>
+<td>OpenTouch SIP</td>
+<td>内部 IP/FQDN/传输（web 向导 UDP，thick 向导 TCP）</td>
+</tr>
+<tr>
+<td>OXE SIP</td>
+<td>主 IP/FQDN</td>
+</tr>
+<tr>
+<td>SBC SIP</td>
+<td>OTCV、OTCT、OTCV Web 三组开关与域</td>
+</tr>
+</tbody>
+</table></div>
+<p>配置结构总览（p86，实验口径端口）：6 个 IP Profile/IP Group（OT、OXE、OTCv、OTC WebRTC、OTCt、SIP carrier）+ 4 个 Media Realm（RTP/SRTP 端口段，WAN 侧 RTP 7000-7499 等）；OTSBC 申报分"IT 服务器级"与"设备级"两层（p88）。</p>
+<p>两项必做手工（书内明示）：给 OXE 的 SIP 接口补 TCP 5060——向导只配 UDP，而 iPhone 场外场景强制 TCP；iPhone 部署的其余手工对象不在向导与本书实验范围，查 TC2639。</p>
+<h2>A1 — 书中案例</h2>
+<p>OTSBC 部署实验主线（p89-117，实验口径 IP/口令见 book/overview）：</p>
+<ol>
+<li>核对 NAT 规划：公私 IP 对、5261/8061 端口、RTP/SRTP 7000-7499 段</li>
+<li>ESXi 部署 OTSBC OVF 并开机（OVF 通用步骤见虚机部署卡）</li>
+<li>CLI 用 Admin/Admin 登录，enable 后 configure voip，interface network-if 0 配 IP/掩码/网关</li>
+<li>两级 exit 后 write，reload now 重启生效</li>
+<li>webadmin 更新 License key，RESET（Save to FLASH=Yes）保存重启</li>
+<li>TLS Contexts 先 Import CA 根证书，再新建上下文并走 CSR 签发加载证书链</li>
+<li>Configuration Wizard 更新模板后按七组参数走完，Apply &amp; Reset</li>
+<li>SIP Interfaces 里逐个把 TLS Context Name 改为新证书上下文</li>
+<li>手工补：OXE 的 SIP interface 2 增配 TCP 5060（Edit 后 Apply）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新站点部署远程话音边缘；OTSBC 装完注册不上；向导跑完发现缺承载；iPhone 场景准备；申报侧需要 SBC 的 FQDN 与端口。</p>
+<p>语言信号：OTSBC / SBC / Mediant / OVF / 向导 / wizard / Remote Users / 许可 / license / TLS Context / SIP 接口 / IPG / Media Realm / 5261 / 8061 / 5263 / TCP 5060 / NAT Public IP。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>先签证书 → 证书与 PKI 能力</li>
+<li>申报 SBC 到 OT 侧 → OT 服务器侧设置能力</li>
+<li>SBC 内嵌反代 → 反向代理能力</li>
+<li>iPhone 5265 与推送链路 → iPhone APNS 能力</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：公私 IP 对与 NAT 规则、证书（CA 根 + 签发通道）、License key、OT 与 OXE 的内部地址、客户端端口规划（5261/8061）。</p>
+<ol>
+<li>下载 OVF 与向导软件（Business Portal），ESXi 导入上电。完成标准：虚机控制台可登录</li>
+<li>CLI 初始化管理网口并 write+reload。完成标准：webadmin 可用新 IP 访问</li>
+<li>更新许可并 RESET 保存。完成标准：License Key 页许可生效</li>
+<li>导入 CA 根证书，新建 TLS 上下文完成 CSR 签发加载。完成标准：上下文持有可信证书链</li>
+<li>跑向导：Application/Template 选 Remote Users 与 Alcatel-Lucent Remote Users，七组参数按规划填。完成标准：Apply &amp; Reset 成功</li>
+<li>逐个 SIP 接口替换 TLS Context Name。完成标准：SIP Interfaces 页 Result 核对通过</li>
+<li>手工补 OXE 侧 SIP 接口 TCP 5060。完成标准：interface 2 同时有 UDP 与 TCP 端口</li>
+<li>iPhone 场景另建 SBC 声明（同 FQDN、端口 5265）并在 OT SBC 增配 5265 SIP 接口（转 iPhone APNS 能力）</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户问通道数/CAC 阈值等容量口径 → 停，书内无数值（n30），指向 8AL90065USAG 或 sizing 工具</li>
+<li>iPhone 场景以为向导能全覆盖 → 停，书内两处 Warning 明示必须手工补配且查 TC2639（n06）</li>
+<li>SIP 注册失败 → 先核对 Conversation/Connection 两种身份的 OTCV/OTCT 域配置（n08），再查口令与证书</li>
+</ul>
+<p>输出契约：可用的会话边界控制器（许可/证书/向导配置落地）+ SIP 接口证书核验记录 + 手工补配清单（TCP 5060、iPhone 待办移交 TC2639）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>初始凭据 Admin/Admin 为出厂默认（实验口径），生产首登即改并纳入口令台账（n33）；本卡正文不含环境值，见 book/overview</li>
+<li>iPhone 部署强制手工配置、不在本书实验范围，权威依据 TC2639（p105/p117/n06）</li>
+<li>向导只配 UDP；OXE 建议 TCP 5060 补配，深入信息查 TC1990 或 8AL90065USAG（p117）</li>
+<li>端口矩阵与 Media Realm 网段为实验口径；容量（并发/带宽/CAC 阈值）书内缺位（n30）</li>
+<li>thick wizard 版本口径 Mediant Software (SE/VE) 7.2；向导软件从 Business Portal 下载</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte225en/skills/otm-certificate-pki.html">证书策略与签发（CA、封装、SAN、自建 CA）</a>、<a href="/courses/openxte225en/skills/otm-reverse-proxy.html">反向代理两路线部署与选型（内嵌 RP、Nginx）</a></p><p class="source-page">能力 ID：cap.otm.otsbc-deployment · 来源：OPENXTE225EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch — 移动与远程办公 (Participant's Guide) | edition: Edition 10 | pages: 287 页 -->

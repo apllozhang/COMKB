@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch Fax Center · Starter</h2><p>Edition 04 · 233 页 · 文档整理入库（11 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otfcxte200en/index.html">课程首页</a><a href="/courses/otfcxte200en/digest.html">精华长文</a><a href="/courses/otfcxte200en/overview.html">教书理解</a><a href="/courses/otfcxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otfcxte200en/skills/otfax-installation-ftw.html">OTFC 首次交付（宿主准备、安装、FTW、许可）</a><a href="/courses/otfcxte200en/skills/otfax-sip-channel-integration.html">OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）</a><a href="/courses/otfcxte200en/skills/otfax-mail-exchange-integration.html">OTFC 邮件与 Exchange 集成（SMTP 网关、FAX 连接器、通知排障）</a><a href="/courses/otfcxte200en/skills/otfax-user-administration.html">OTFC 用户与管理员管理（双用户源、CSV、两级管理员）</a><a href="/courses/otfcxte200en/skills/otfax-profile-policy.html">OTFC Profile 策略与电话簿（限制组、呼号限制、通知 Profile、LDAP 电话簿）</a><a href="/courses/otfcxte200en/skills/otfax-directory-routing.html">OTFC 高级目录集成与来传真路由（LDAP、Lookup、NT 免密、路由表、DTMF、Modification）</a><a href="/courses/otfcxte200en/skills/otfax-services-operations.html">OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）</a><a href="/courses/otfcxte200en/skills/otfax-backup-upgrade.html">OTFC 备份、恢复、升级与删除策略（三数据域、五步升级法、零保留）</a><p class="course-nav-group">路由能力</p><a href="/courses/otfcxte200en/skills/otfax-client-coversheet.html">OTFC 客户端部署与封页定制（四件套、Web Client、GPO、封页五步）</a><a href="/courses/otfcxte200en/skills/otfax-solution-planning.html">OTFC 方案评估与部署规划（容量协议合规、架构拓扑、支持矩阵）</a><a href="/courses/otfcxte200en/skills/otfax-reports-monitoring.html">OTFC 报表与监控（31 报表、BIRT、SNMP V2 陷阱）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otfcxte200en/index.html">ot-fax-center（11 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otfcxte200en/index.html">OTFCXTE200EN</a><span>/</span><span aria-current="page">OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）</h1></div><dl><div><dt>Skill ID</dt><dd>otfax-services-operations</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OTFC 服务架构与日常运维（有状态/无状态、Services Status、xmsc、日志与 SIP 日志）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Stateful (Replicated) Services/Components • XMFaxManager • XMConfigManager • XMCoConfig • XMFaxArchive • XMFaultTolerance ; Stateless (Load Balanced) Services/Components • XMFaxDriver • XMDocumentRasterizer • XMSmtpGateway • XMXmlGateway"（p179）
+"Restarting Services … xmsc –ra • Stopping Services … xmsc –oa • Starting Services … xmsc -aa"（p188）
+"Each OTFC component has a dedicated log file. Log files location: • C:\Program Files\Alcatel-Lucent Enterprise\FaxCenter\Trace"（p189）
+"Log Size (default is 20 MB) • Archive Retention Period (default is 15 Days)"（p225）</p>
+</blockquote>
+<p>出处：OTFCXTE200EN p176-191、p225。</p>
+<h2>I — 自述</h2>
+<p>服务架构决定运维动作，三层模型一张图：</p>
+<ol>
+<li><strong>三层模型</strong>：模块（安装单元）→ 服务（Windows 服务，可经服务管理单元管理）→ 组件（经管理界面 Services Status 监控）</li>
+<li>
+<p><strong>四大模块</strong>：Fax Manager Module（系统心脏，含五个组件）；Fax Driver Module（H.323/SIP 收发，可并行多路）；Rasterizer Module（借本机 Office 转传真 TIFF）；SMTP Gateway（监听 25 收作业发通知）</p>
+</li>
+<li>
+<p><strong>组件分工</strong>：XMFaxManager 管收发队列、分发任务、管媒体库；XMCoConfig 管站点配置；XMConfigManager 管系统配置；XMFaxArchive 存传真记录；XMFaultTolerance 监控故障与监督切换</p>
+</li>
+<li><strong>有状态/无状态</strong>：有状态 5 个（复制，持有配置/未决事务/历史）；无状态 4 个（可负载均衡的工作组件，含 XMXmlGateway）</li>
+<li><strong>三通道运维</strong>：查状态走 Web 管理/MMC 的 System Monitor ➤ Services Status；启停走 Windows 服务菜单；脚本化走 Bin\Util 下的 xmsc -ra（重启）/ -oa（停止）/ -aa（启动）</li>
+<li><strong>日志体系</strong>：每组件一个专属日志，统一在 FaxCenter\Trace；默认单文件 20MB、归档保留 15 天，满后 zip 进 Archive；SIP 日志两步用法——管理界面激活"日志中记录 SIP 消息"，再按需调级别</li>
+</ol>
+<p>来传真通知/路由故障的高频落点：ConfigManager.log 与 Smtp.log。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>备份前置的服务检查</strong>（p231，实验 8 开头步骤）：</p>
+<ol>
+<li>经管理界面 System Monitor ➤ Services Status 确认所有组件 Active</li>
+<li>命令行进 C:\Program Files\Alcatel-Lucent Enterprise\FaxCenter\Bin\Util</li>
+<li>执行 xmsc -oa 停全部传真服务（备份动作转备份升级能力）</li>
+</ol>
+<p><strong>SIP 日志激活</strong>（p190-191，讲义口径）：</p>
+<ol>
+<li>管理界面进入 SIP 配置相关页</li>
+<li>激活"日志中记录 SIP 消息"（三步操作）</li>
+<li>按需调日志级别控制信息量，复现问题后回读 Trace 目录日志</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：改完配置要不要重启服务；某个组件状态不是 Active；传真转换卡住疑 Rasterizer；日志把磁盘写满；要看 SIP 信令；邮件通知不到要翻日志。</p>
+<p>语言信号：服务 / services / Services Status / XMFaxManager / FaxDriver / Rasterizer / XMSMTPGateway / XmlGateway / 有状态 / stateful / 无状态 / stateless。</p>
+<p>语言信号（续）：xmsc / 重启 / Trace / 日志 / log / 20MB / 15 天 / SIP 日志 / ConfigManager.log / Smtp.log。</p>
+<p>与相邻能力区分：备份/恢复/升级窗口内的服务停起归备份升级能力；转换失败的根因（Office 弹窗）归首次交付能力；OXE 侧抓包归 SIP 通道集成能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：管理界面或服务器本地管理员权限、问题现象（哪个组件/什么操作后出现）、维护窗口（重启影响收发）。</p>
+<ol>
+<li>定位组件：按流水线分段（提交/转换/发送/通知/归档）判断可疑组件。完成标准：可疑组件锁定</li>
+<li>查状态：System Monitor ➤ Services Status 逐组件核对 Active。完成标准：异常组件确认</li>
+<li>启停操作：单服务走 Windows 服务菜单；全量走 xmsc -ra 重启 / -oa 停止 / -aa 启动（Bin\Util 目录）。完成标准：组件恢复 Active</li>
+<li>翻日志：Trace 目录按组件找专属日志；通知/路由问题优先 ConfigManager.log 与 Smtp.log。完成标准：找到关键报错行</li>
+<li>调日志（如需深查）：System Administrators 经管理界面调日志大小与保留期；SIP 问题先激活 SIP 消息日志再调级别。完成标准：目标信令/事件被捕获</li>
+<li>收尾：日志调回默认口径（20MB/15 天），确认无新增异常。完成标准：系统回到基线</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>组件反复掉 Active → 停，抓专属日志报错根因（依赖/端口/许可），不要循环重启掩盖问题</li>
+<li>转换环节卡死 → 优先怀疑 Office 未预初始化弹窗（首次交付能力的坑位），再查 Rasterizer 日志</li>
+<li>计划重启撞上收发高峰 → 停，约维护窗口；xmsc -oa 会停掉全部传真服务，影响面先讲清</li>
+<li>需要 XML 网关排障但书内只有组件名 → 停，XMXmlGateway 书内仅列入无状态清单，细节转产品文档</li>
+</ul>
+<p>输出契约：组件状态核对表 + 启停操作记录（时间/命令/结果）+ 日志摘录（关键报错行）+ SIP 日志捕获文件（如适用）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>XMFaultTolerance 只作组件介绍（监控故障/监督 failover），高可用怎么部署、怎么演练全书零实操</li>
+<li>日志默认值 20MB/15 天为 R9.2 口径；日志大小与保留期仅 System Administrators 可改</li>
+<li>xmsc 三命令在 <install_path>\FaxCenter\Bin\Util 下执行；参数与书内实验口径一致（含 mysql5 服务名）</li>
+<li>有状态组件的复制机制是架构概念，书中未给"复制怎么配"的路径——HA 需求转产品文档</li>
+<li>组件间两张交互图（p184-185）为讲义图示，本卡按文字口径转写，未逐线复绘</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otfcxte200en/skills/otfax-backup-upgrade.html">OTFC 备份、恢复、升级与删除策略（三数据域、五步升级法、零保留）</a></p><p class="source-page">能力 ID：cap.otfax.services-operations · 来源：OTFCXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch Fax Center - R9.2 Starter (Participant's Guide, Edition 04) | edition: Edition 04 | pages: 233 页 -->

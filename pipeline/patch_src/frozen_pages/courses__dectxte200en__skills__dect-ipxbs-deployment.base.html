@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>8378 IP-xBS 部署与故障换站</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise ·​ DECT 解决方案</h2><p>Edition 12 · 298 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/dectxte200en/index.html">课程首页</a><a href="/courses/dectxte200en/digest.html">精华长文</a><a href="/courses/dectxte200en/overview.html">教书理解</a><a href="/courses/dectxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/dectxte200en/skills/dect-pari-identifier.html">DECT 标识号码体系与 multi-PARI 适配</a><a href="/courses/dectxte200en/skills/dect-product-selection.html">DECT 产品线选型与拓扑决策</a><a href="/courses/dectxte200en/skills/dect-ipxbs-deployment.html">8378 IP-xBS 部署与故障换站</a><a href="/courses/dectxte200en/skills/dect-xbs-sync-topology.html">xBS 空中同步体系与组网域（含外部同步与多站点）</a><a href="/courses/dectxte200en/skills/dect-handset-registration.html">DECT 用户创建与手机注册/注销</a><a href="/courses/dectxte200en/skills/dect-mixed-mode.html">混合 DECT 基础设施部署（TDM + xBS、PLI 统一）</a><a href="/courses/dectxte200en/skills/dect-auto-reregistration.html">DECT 手机自动重注册（PARI/PLI 变更零接触迁移）</a><a href="/courses/dectxte200en/skills/dect-firmware-management.html">DECT 固件双轨升级管理（基站 downstat x / 手机 OTA downstat m）</a><p class="course-nav-group">路由能力</p><a href="/courses/dectxte200en/skills/dect-maintenance-troubleshooting.html">DECT 日常维护与排障（命令族/syslog/WBM）</a><a href="/courses/dectxte200en/skills/dect-radio-survey.html">DECT 无线覆盖勘测（RSSI 门槛/SSK/survey mode）</a><a href="/courses/dectxte200en/skills/dect-ibs-deployment.html">8379 IBS 基础设施部署（UA 板卡/布线/建站）</a><a href="/courses/dectxte200en/skills/dect-sip-dect.html">8328 SIP-DECT 部署（四步注册/双小区）</a><p class="course-nav-group">已安装技能</p><a href="/courses/dectxte200en/index.html">dect-solutions（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/dectxte200en/index.html">DECTXTE200EN</a><span>/</span><span aria-current="page">8378 IP-xBS 部署与故障换站</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>8378 IP-xBS 部署与故障换站</h1></div><dl><div><dt>Skill ID</dt><dd>dect-ipxbs-deployment</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>8378 IP-xBS 部署与故障换站（全局参数/DHCP/注册/换站保 RPN）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"IP-xBS IP configuration •Dynamic •Static ... IP-xBS firmware update •TFTP server •Manual update ... IP-xBS registration •MAC @ in the OXE Database"（p125）
+"A new Vendor Class for the xBS: Vendor id: alcatel.ipxbs.0"（p146）
+"Registration enabled YES ... Can be set to True only in one node of a network."（p147）
+"The manual registration is recommended when replacing a broken base station by a new one (with a new MAC@) When using the automatic registration, the first free RPN will be used and it can be different. This could be problematic if alarming and geo localization is used."（p150）</p>
+</blockquote>
+<p>出处：DECTXTE200EN p125-151, p143-148。</p>
+<h2>I — 自述</h2>
+<p>IP-xBS 开通四步主流程，极简部署 = 1 PARI/1 位置区/1 Site/1 簇（p140）：</p>
+<ol>
+<li><strong>IP 配置</strong>：动态走 DHCP——内部 DHCP 为 xBS 新增 vendor class（alcatel.ipxbs.0），下发 IP/掩码/网关/TFTP/DNS；或静态手工配。仅 PoE Class 2 供电、仅单播。</li>
+<li><strong>固件更新</strong>：TFTP 自动后台下载或 WBM 手动更新（固件管理细节在固件管理能力）。</li>
+<li><strong>注册</strong>：OXE 录 MAC@ 后基站注册入库并自动分配 RPN；注册开关（Registration enabled）全网只能一个节点为 YES，防误收编；Default PARI/Default location area 可设 auto(255) 取首个空闲。</li>
+<li><strong>核验与时间</strong>：dectview xbs 看两行 OK；NTP 时间由 OXE 经 UA 信令下发（UTC+夏令时规则）。</li>
+</ol>
+<p>关键规则：</p>
+<ul>
+<li>WBM（HTTPS，engineer 口径）首次默认解锁、口令可由 OXE 下发；WBM 改动可被 PBX 下发覆盖；非日常运维必需</li>
+<li>无法取 IP 时按 Reset 键 6-10 秒回出厂，用出厂地址 http://192.168.0.2 访问（p78）</li>
+<li>换故障基站走<strong>手动注册</strong>（删旧 MAC@ → 录新 MAC@ → 保留位置名）以保持 RPN——自动注册会让 RPN 漂移，告警与地理定位失准</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>部署实验</strong>（p143-148）：</p>
+<ol>
+<li>全局参数：Radio base type=xBS、Station Base Type=DECT Europe、PLI=31、AC System=1111（实验口径）、Security level=Authentication</li>
+<li>xBS System：Number of PARI=1、Allow xBS Web Based Management=YES、WBM 口令（默认 Engineer00!/Admin00!，实验口径）</li>
+<li>xBS Pari：PARI Number=0、PARI Value=100004100x4（示例）、Area type=1 area of 256 xBS</li>
+<li>xBS Site：Site 0 命名 BREST（默认已存在）；xBS base station 录 Location name=GF-01、Site 0、PARI 0</li>
+<li>开注册：Registration node=1、Registration enabled=YES → 接通基站，DHCP 池 192.168.1.145-155（实验口径）取址</li>
+<li>核验：dectview xbs 输出 "Region 0 (EUROPE) has 1 site(s) with 2 XBS in service"，RPN 已分配</li>
+</ol>
+<p><strong>换站实验</strong>（p149-151）：拔旧站；xBS base station 页删 id 0 的 MAC@；同页录新 MAC@ 重填 GF-01；dectview xbs 两站 OK、RPN 不变。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新部署 IP-xBS；基站上不了线；注册开关怎么配；DHCP 取不到地址；换故障基站；告警定位失准怀疑 RPN 变了。</p>
+<p>语言信号：IP-xBS / 8378 / 部署 / commissioning / DHCP / vendor class / alcatel.ipxbs.0 / MAC 地址 / 注册 / registration / RPN / 换基站 / 更换 / PoE / WBM / 192.168.0.2。</p>
+<p>与相邻能力区分：固件批量升级见固件管理能力；PARI/PLI 字段语义见标识号码能力；部署后状态排障见维护排障（路由）；多 Site 拆分见同步拓扑能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OXE 版本 ≥R12.2、DHCP 可用（或静态规划）、基站 MAC@ 清单、PARI/PLI 规划值。缺 MAC@ → 从基站铭牌或 DHCP 租约取。</p>
+<ol>
+<li>全局参数：PWT/DECT System 配 Radio base type/Station Base Type/PLI/AC/Security level。完成标准：全局参数落库</li>
+<li>建 PARI 与 Site：xBS System / xBS Pari 与 xBS Site。完成标准：PARI Value/Area type/Site Name 就位</li>
+<li>备注册：xBS System 配 SYSLOG（可选）、WBM 口令；录入基站 MAC@ 与位置名。完成标准：基站行在库待收编</li>
+<li>通网络：PoE 接入，DHCP 按 vendor class alcatel.ipxbs.0 下发（外部 DHCP 需自行实现 vendor class 匹配）。完成标准：基站取到 IP</li>
+<li>开注册：Registration node 指定节点 + Registration enabled=YES（多节点网络只开一处）。完成标准：基站入库并分配 RPN</li>
+<li>核验：dectview xbs 看 State=OK、IP/MAC/FW 落表；WBM 核 Time server=OXE。完成标准：两行 OK、RPN 已分配</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>基站灯不亮/取不到地址 → 查 PoE 与 DHCP vendor class，不要先动 OXE 配置</li>
+<li>注册开关开了但基站不入库 → 核对注册节点是否本节点（多节点只能一处为 True），漏配 Registration node 是常见坑（p147 Notes）</li>
+<li>换站后告警定位失准 → 确认是否走了自动注册导致 RPN 漂移；补救=按手动注册流程重新保 RPN 换站</li>
+<li>WBM 里改的参数"自己变回去" → PBX 下发覆盖所致（p77），长期变更回 OXE 数据库做</li>
+</ul>
+<p>输出契约：入库基站表（MAC@/位置名/RPN）+ 注册开关状态记录 + 换站工单闭环记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>实验值（AC=1111、PARI=100004101x4、DHCP 池 192.168.1.145-155、WBM 口令）均为实验口径，生产必须替换并加固</li>
+<li>外部 DHCP 的 vendor class 通用配置方法书内未给（只有内部 DHCP 截图）；细节指针 8AL91047ENAD</li>
+<li>时间服务器可手工改（p148），但夏令时规则来自 Call Server；改 NTP 后的行为未展开</li>
+<li>换站保留的是 RPN 与位置名；基站固件版本差异的处理属固件管理能力</li>
+<li>极简部署外的复杂开局（多 PARI/外部同步）细节按《Getting started with the 8378 DECT IP-xBS solution on OXE》（p140 指针）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/dectxte200en/skills/dect-pari-identifier.html">DECT 标识号码体系与 multi-PARI 适配</a>、<a href="/courses/dectxte200en/skills/dect-firmware-management.html">DECT 固件双轨升级管理（基站 downstat x / 手机 OTA downstat m）</a></p><p class="source-page">能力 ID：cap.dect.ipxbs-deployment · 来源：DECTXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: DECT Solutions (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 298 页 -->

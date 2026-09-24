@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OTC Web 与访客入会</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch · Advanced</h2><p>Edition 08 · 468 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte301en/index.html">课程首页</a><a href="/courses/openxte301en/digest.html">精华长文</a><a href="/courses/openxte301en/overview.html">教书理解</a><a href="/courses/openxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte301en/skills/ota-remote-access.html">OpenTouch 远程接入通道与证书</a><a href="/courses/openxte301en/skills/ota-nomadic-ghost-z.html">Nomadic 移动模式与 Ghost Z 资源池</a><a href="/courses/openxte301en/skills/ota-smartphone-rex.html">OTC 智能手机交付全流程（REX/DISA/APNS）</a><a href="/courses/openxte301en/skills/ota-um-exchange-integration.html">统一消息 UM（Exchange/O365/Gmail/IMAP）</a><a href="/courses/openxte301en/skills/ota-conference-collaboration.html">协作会议（ACS 配置、角色权限、数据会议）</a><a href="/courses/openxte301en/skills/ota-calendar-sync.html">日历在场与日历同步（Calendar presence/synchro）</a><a href="/courses/openxte301en/skills/ota-directory-udas.html">目录搜索与 Single Business Card（UDAS）</a><a href="/courses/openxte301en/skills/ota-enterprise-authentication.html">企业认证集成（LDAP/RADIUS/Kerberos SSO）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte301en/skills/ota-desksharing.html">Desksharing 共享工位（DSU/DSS）</a><a href="/courses/openxte301en/skills/ota-extended-mobility.html">Extended Mobility（QR/NFC 切换与路由修改）</a><a href="/courses/openxte301en/skills/ota-dcs-documents.html">DCS 文档转换服务器（Office 会议演示）</a><a href="/courses/openxte301en/skills/ota-otc-web-guest.html">OTC Web 与访客入会</a><a href="/courses/openxte301en/skills/ota-lab-pod.html">RLAB 实验 POD 与 SIP 运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte301en/index.html">opentouch-advanced（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte301en/index.html">OPENXTE301EN</a><span>/</span><span aria-current="page">OTC Web 与访客入会</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OTC Web 与访客入会</h1></div><dl><div><dt>Skill ID</dt><dd>ota-otc-web-guest</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>OTC Web 与访客入会（浏览器免装、WebRTC、匿名接入）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Alcatel-Lucent OpenTouch™ Conversation for WEB • Available for everyone: OpenTouch Conversation users • OpenTouch Connection users • And also for guests (through intranet or internet)"（p323）
+"Purpose is to access to scheduled or reservationless conferences as anonymous"（p324）
+"No white board • No poll • No recording • No video • No contact list (buddy list) • No history • No scheduling interface"（p334）</p>
+</blockquote>
+<p>出处：OPENXTE301EN p323-337（配 p338-362 数据会议 How-To 的入会环节）。</p>
+<h2>I — 自述</h2>
+<p>OTC Web 是免安装浏览器端，核心价值是访客入会：</p>
+<ol>
+<li><strong>适用面</strong>：OT 用户与无账号访客（内网或互联网）；访客匿名入会，凭访问码定角色，可上传头像、填回呼号码、输领导者码</li>
+<li><strong>能力</strong>：IM/侧栏 IM、桌面共享（发布/观看，发布端可能需插件）、文档共享与批注、上传下载、静音控制、参与者管理</li>
+<li><strong>架构</strong>：外部数据面走反向代理（https 443/8016），音频走 PSTN 回呼或 WebRTC 经 OTSBC（SIPS/SRTP）；内部无需网关</li>
+<li><strong>部署要求</strong>：HTML5 浏览器（JS+Cookies 必开）；WebRTC 音频仅 Chrome/Firefox（Windows/Mac）；自 OT R2.1.1 起免插件入会（G.711 优先）</li>
+<li><strong>功能边界</strong>：无白板/投票/录制/视频/联系人列表/历史/排期界面（排期靠 OTC PC 或 Outlook 加载项）</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>访客入会路径</strong>（p341-362 数据会议实验中的 OTC Web 环节）：</p>
+<ol>
+<li>领导者用 OTC PC 预约会议并发出邀请（邮件含 URL、桥号、访问码）</li>
+<li>访客点邀请 URL 打开 OTC Web 登录页</li>
+<li>填姓名、上传头像、填回呼号码</li>
+<li>有密码的会议输入领导者码或参与者码定角色</li>
+<li>Join 入会：音频经回呼（PSTN）或 WebRTC（OTSBC）接入</li>
+<li>会中使用桌面共享观看、文档下载、IM 与静音控制</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：外部客户/访客不装客户端参会；浏览器入会要什么条件；为什么 OTC Web 里没有录制/视频；防火墙要开什么；访客怎么拿到音频。</p>
+<p>语言信号：OTC Web / 访客 / guest / 匿名 / anonymous / 浏览器 / WebRTC / Chrome / Firefox / 免装 / 头像 / 回呼 / callback / 领导者码 / 访问码。</p>
+<p>与相邻能力区分：会议预约与角色体系 → 协作会议能力；WebRTC 通道的端口与证书 → 远程接入能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：会议邀请（URL/访问码/密码策略）、访客网络环境（内网/互联网）、浏览器形态。</p>
+<ol>
+<li>通道核对：数据面 RP 443/8016 可达；WebRTC 音频走 OTSBC 8061 或 PSTN 回呼。完成标准：访客侧可达</li>
+<li>入会引导：点 URL，填姓名/头像/回呼号，输码定角色后 Join。完成标准：入会成功</li>
+<li>预期管理：向访客说明边界（无视频/录制/白板等）。完成标准：无因预期差的"故障"报单</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>访客要"视频参会"或"录制会议" → 能力边界（p334），走 OTC PC/移动端或另议</li>
+<li>浏览器不是 Chrome/Firefox 要用 WebRTC 音频 → 不支持，改 PSTN 回呼入会</li>
+<li>桌面共享发布要装插件 → 预期行为（免插件仅 R2.1.1+ 的部分能力），提前告知</li>
+</ul>
+<p>输出契约：访客入会引导单（URL/码/音频路径）+ 边界说明（用于客户沟通）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>2019 年口径：WebRTC 仅 Chrome/Firefox（Windows/Mac）——今天的浏览器矩阵按最新 release note 重核（nr-07）</li>
+<li>排期只能在 OTC PC 或 Outlook 做，OTC Web 无排期界面（n29）</li>
+<li>匿名访客的权限完全由所输入的码决定（领导者码/参与者码），码的发放管理归会议领导者</li>
+<li>端口/域名为实验模板口径（ot-podX/otsbc-podX），生产按客户环境替换</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.ota.otc-web-guest · 来源：OPENXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch - Advanced (Participant's Guide, Edition 08) | edition: Edition 08 | pages: 468 页 -->

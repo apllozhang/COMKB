@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OTFC 报表与监控（31 报表、BIRT、SNMP V2 陷阱）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch Fax Center · Starter</h2><p>Edition 04 · 233 页 · 文档整理入库（11 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otfcxte200en/index.html">课程首页</a><a href="/courses/otfcxte200en/digest.html">精华长文</a><a href="/courses/otfcxte200en/overview.html">教书理解</a><a href="/courses/otfcxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otfcxte200en/skills/otfax-installation-ftw.html">OTFC 首次交付（宿主准备、安装、FTW、许可）</a><a href="/courses/otfcxte200en/skills/otfax-sip-channel-integration.html">OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）</a><a href="/courses/otfcxte200en/skills/otfax-mail-exchange-integration.html">OTFC 邮件与 Exchange 集成（SMTP 网关、FAX 连接器、通知排障）</a><a href="/courses/otfcxte200en/skills/otfax-user-administration.html">OTFC 用户与管理员管理（双用户源、CSV、两级管理员）</a><a href="/courses/otfcxte200en/skills/otfax-profile-policy.html">OTFC Profile 策略与电话簿（限制组、呼号限制、通知 Profile、LDAP 电话簿）</a><a href="/courses/otfcxte200en/skills/otfax-directory-routing.html">OTFC 高级目录集成与来传真路由（LDAP、Lookup、NT 免密、路由表、DTMF、Modification）</a><a href="/courses/otfcxte200en/skills/otfax-services-operations.html">OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）</a><a href="/courses/otfcxte200en/skills/otfax-backup-upgrade.html">OTFC 备份、恢复、升级与删除策略（三数据域、五步升级法、零保留）</a><p class="course-nav-group">路由能力</p><a href="/courses/otfcxte200en/skills/otfax-client-coversheet.html">OTFC 客户端部署与封页定制（四件套、Web Client、GPO、封页五步）</a><a href="/courses/otfcxte200en/skills/otfax-solution-planning.html">OTFC 方案评估与部署规划（容量协议合规、架构拓扑、支持矩阵）</a><a href="/courses/otfcxte200en/skills/otfax-reports-monitoring.html">OTFC 报表与监控（31 报表、BIRT、SNMP V2 陷阱）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otfcxte200en/index.html">ot-fax-center（11 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otfcxte200en/index.html">OTFCXTE200EN</a><span>/</span><span aria-current="page">OTFC 报表与监控（31 报表、BIRT、SNMP V2 陷阱）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OTFC 报表与监控（31 报表、BIRT、SNMP V2 陷阱）</h1></div><dl><div><dt>Skill ID</dt><dd>otfax-reports-monitoring</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>OTFC 报表与监控（31 报表、BIRT 自定义、SNMP V2 陷阱）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Reports can be executed by using the available report templates •It is possible to manage and customize the report templates by using the BIRT report designer •To install the BIRT report designer, unzip the .zip file found in the 3rd\birt folder of the OTFC installation package ; 31 reports are available"（p226）
+"SNMP V2 Services • Component status changes •Incoming queue reaches max size •Site outbound quota reaches maximum size •Rasterization failure •Routing failure"（p228）
+"Trace folder stores log files for all the OTFC services."（p225）</p>
+</blockquote>
+<p>出处：OTFCXTE200EN p225-229。</p>
+<h2>I — 自述</h2>
+<p>主动运维三件套：</p>
+<ol>
+<li><strong>报表</strong>：31 个模板（数值 + 图形），覆盖全系统/单用户 × 月/周/日、模块错误摘要；自定义用 BIRT 报表设计器，从安装包 3rd\birt 目录解压安装</li>
+<li><strong>站点级/系统级监控</strong>：路由、来话、去话、排队、错误、传真属性（错误信息/传输信息/时间与大小）分层可查</li>
+<li><strong>SNMP V2 trap 清单</strong>：组件状态变化、入呼队列达上限、站点出呼配额满、光栅化失败、路由失败、XML 文件读取错误、驱动发送错误、分区检测、通道初始化失败；主机监视 trap——组件状态变化、性能计数器、组件状态表、通道状态、远程主机心跳</li>
+<li><strong>关联告警</strong>：LDAP 目录断连也自动产生 SNMP trap；日志层（Trace 目录，默认 20MB/15 天）与 trap 层互补——trap 管"出事了"，日志管"为什么"</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>报表自定义安装</strong>（p226，讲义口径）：</p>
+<ol>
+<li>找到 OTFC 安装包 3rd\birt 目录下的 zip 文件</li>
+<li>解压安装 BIRT 报表设计器</li>
+<li>用设计器管理与自定义报表模板</li>
+<li>按全系统/单用户、月/周/日维度出报表</li>
+</ol>
+<p><strong>SNMP 监控落点</strong>（p228-229）：</p>
+<ol>
+<li>客户网管平台接收 OTFC 的 SNMP V2 trap</li>
+<li>按清单对号：组件状态/队列满/配额满/光栅化失败/路由失败等</li>
+<li>主机监视类 trap 提供性能计数器与心跳，供容量与存活监控</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：领导要月度传真量报表；报表格式要改；网管平台要接传真服务器告警；磁盘/队列告警怎么设；目录断连怎么第一时间知道。</p>
+<p>语言信号：报表 / report / 31 / BIRT / 模板 / 月报 / 周报 / 统计 / SNMP / trap / 告警 / 监控 / monitoring / 队列满 / 配额 / 光栅化 / routing failure / 心跳 / heartbeat / 性能计数器。</p>
+<p>与相邻能力区分：日志排障（日志内容怎么读）归服务运维能力；配额/队列阈值背后的站点配置归 Profile 策略与用户管理能力；计费报表（按人成本）归目录与路由能力的 Accounting 段（OXE 话单 + OmniVista 8770）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：报表需求（维度/周期/受众）、客户网管平台（SNMP V2 接收能力）、告警分级口径。</p>
+<ol>
+<li>出标准报表：按全系统/单用户 × 月/周/日选模板执行。完成标准：报表交付</li>
+<li>装设计器：解压 3rd\birt 下 zip 安装 BIRT。完成标准：设计器可用</li>
+<li>定制模板：按受众改字段与图形。完成标准：自定义模板入模板库</li>
+<li>接网管：客户平台配置接收 OTFC 的 SNMP V2 trap，按清单做告警映射。完成标准：测试 trap 到达平台</li>
+<li>定告警分级：队列满/配额满/光栅化失败等按影响分级，LDAP 断连 trap 确认有落点。完成标准：分级表获客户确认</li>
+<li>建例行：月度报表定期出、trap 值班响应口径入运维手册。完成标准：例行化运转</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户网管平台不支持 SNMP V2 → 停，书内只有 trap 上报一条监控通道，平台侧改造或替代方案另议</li>
+<li>要把 31 个模板之外的指标入报表 → 停，先确认归档库里有没有该数据（BIRT 查库口径书外），不承诺书内没有的字段</li>
+<li>trap 收到了但没人管 → 停，先落值班响应口径再上线告警，避免告警疲劳</li>
+<li>计费/成本类报表诉求 → 转目录与路由能力的 Accounting 机制（OXE 话单 + OmniVista 8770），不走本卡</li>
+</ul>
+<p>输出契约：报表交付物（标准 + 自定义模板）+ SNMP 告警映射表（trap 对号/分级/响应人）+ 例行运维口径说明。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>BIRT 设计器本身是外部工具（Eclipse 生态），安装与设计器用法书内只给 unzip 一句，细节在工具文档</li>
+<li>SNMP 网管平台由客户提供；OTFC 侧 MIB/_oid 明细书内未展开，对接时以产品文档为准</li>
+<li>31 个报表的具体清单与字段书内为概述口径；模板明细以现场版本为准</li>
+<li>主机监视 trap 的阈值调整书内未展开；性能基线需现场采集</li>
+<li>报表数据来源于归档库（XMFaxArchive）；直接查库做定制属书外扩展，升级前按备份升级能力的自定义工具口径预验证</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.otfax.reports-monitoring · 来源：OTFCXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch Fax Center - R9.2 Starter (Participant's Guide, Edition 04) | edition: Edition 04 | pages: 233 页 -->

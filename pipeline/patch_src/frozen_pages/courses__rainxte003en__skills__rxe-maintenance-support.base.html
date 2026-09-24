@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Rainbow 维护与支持体系</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>Rainbow for OmniPCX Enterprise</h2><p>Edition 12 · 314 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte003en/index.html">课程首页</a><a href="/courses/rainxte003en/digest.html">精华长文</a><a href="/courses/rainxte003en/overview.html">教书理解</a><a href="/courses/rainxte003en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte003en/skills/rxe-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte003en/skills/rxe-agent-onboarding.html">OXE 接入 Rainbow 与接入排障</a><a href="/courses/rainxte003en/skills/rxe-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte003en/skills/rxe-routing-rex.html">OXE 用户形态决策与远程延伸路由</a><a href="/courses/rainxte003en/skills/rxe-webrtc-gateway-deployment.html">WebRTC 网关部署与升级</a><a href="/courses/rainxte003en/skills/rxe-oxe-gateway-config.html">OXE 侧 WebRTC 网关配置九件套</a><a href="/courses/rainxte003en/skills/rxe-gateway-pool-sizing.html">共享 WebRTC 网关池与容量规划</a><a href="/courses/rainxte003en/skills/rxe-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte003en/skills/rxe-rcc-association.html">OXE 分机关联与 RCC 模式</a><a href="/courses/rainxte003en/skills/rxe-attendant-consoles.html">两套话务台（4059EE 与 Rainbow Attendant Console）</a><a href="/courses/rainxte003en/skills/rxe-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte003en/skills/rxe-network-readiness.html">Rainbow 网络就绪核查</a><a href="/courses/rainxte003en/skills/rxe-lab-pod-setup.html">RLAB 实验环境与 Pod 配置</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte003en/index.html">rainbow-oxe-integration（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte003en/index.html">RAINXTE003EN</a><span>/</span><span aria-current="page">Rainbow 维护与支持体系</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Rainbow 维护与支持体系</h1></div><dl><div><dt>Skill ID</dt><dd>rxe-maintenance-support</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>Rainbow 维护与支持体系（日志/问题上报/状态页/告警/操作历史/SR）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The integrator partner has the same reports as the customer, so he can help with end user support."（p248）
+"If you subscribe to alerts, you can filter by relevant topics and/or geographical areas. For France, it is useful to tick WW, EMEA &amp; DE."（p249）
+"The ESR will only be created if the partner is certified on Rainbow"（p254）</p>
+</blockquote>
+<p>出处：RAINXTE003EN p245-257。</p>
+<h2>I — 自述</h2>
+<p>运维闭环五入口：</p>
+<ol>
+<li><strong>Help Desk 指南</strong>：help.openrainbow.com 的排障指南/找日志/定位网络或应用问题/报障流程（p246）</li>
+<li><strong>用户日志与问题上报</strong>：用户在 Rainbow 界面 Help and Support、Report a problem（日期时间+描述+截图+同意采集日志）；管理员端看全部用户事件并可下载事件日志；集成商与客户同视角（p247-248）</li>
+<li><strong>云服务可用性</strong>：status.openrainbow.com 状态页（Get updates 订阅告警，按主题/地域过滤）+ 管理门户的计划维护通知（按地域与 Hybrid/Hub 架构过滤、色标关键度、多在晚间周末）（p249-250）</li>
+<li><strong>告警与操作历史</strong>：可设阈值通知音频质量劣化与无音频；全部管理操作留档，多管理员场景查"谁在何时做了什么"，按类别/类型/日期过滤（p251-253）</li>
+<li><strong>SR 流程</strong>：入口为支持邮箱/Emily BOT/Global Welcome Center/电话；ESR 仅为持 Rainbow 认证的伙伴创建；MyPortal 建 SR 两页字段要一次填全（p254-256）</li>
+</ol>
+<p>Web 端取证口径（p248）：网页模式上报不填日期——浏览器日志留存期短，拖几天再取证就没了；桌面/移动端要填日期时间。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>运维场景走查</strong>（p245-257，讲义章无分步实验）：</p>
+<ol>
+<li>多用户报登录问题：先查 status 状态页分流"云故障"与"局部问题"</li>
+<li>单用户问题：管理员进用户事件列表取日志，集成商同视角可代办</li>
+<li>用户自报：Report a problem 附截图与日志授权；Web 模式不填日期</li>
+<li>变更追责：操作历史按类别/日期过滤出操作人</li>
+<li>升级官方：MyPortal 建 SR 按两页字段清单填写（category=Rainbow、severity、版本、SIP trunk、how found 等）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：用户说 Rainbow 全挂了；要开正式工单；查谁改了配置；音频质量差怎么留证据；帮最终用户取日志。</p>
+<p>语言信号：日志 / logs / report a problem / 问题上报 / status / 状态页 / 告警 / alert / 操作历史 / audit / Service Request / SR / ESR / MyPortal / 认证伙伴 / Emily / Welcome Center。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>OXE 侧 agent 排障（incvisu/日志） → OXE 接入能力</li>
+<li>网关侧 mpcheck 与三服务 → 网关部署能力</li>
+<li>用户侧取证后的功能修复 → 按症状分流到对应能力卡</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：问题现象与影响面、发生时间窗、操作者账号与认证状态。影响面未知 → 先做云状态分流再深入。</p>
+<ol>
+<li>分流：status 状态页与计划维护通知判断是否云侧事件。完成标准：云故障/局部问题结论明确</li>
+<li>取证：管理员取用户事件日志；桌面/移动端让用户补上报（含日期）。完成标准：证据在手</li>
+<li>审计：操作历史过滤出变更人与时间。完成标准：责任链清楚</li>
+<li>自修或升级：可自修走对应能力卡；不能自修开 SR。完成标准：处理路径确定</li>
+<li>开 SR：MyPortal 按两页字段一次填全，附日志。完成标准：工单建立且可追踪</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>伙伴未持 Rainbow 认证 → 停，ESR 不会被创建（p254），先补认证或经认证伙伴转报</li>
+<li>Web 端问题拖了几天 → 浏览器日志已过期，取证窗口错过，换桌面端复现</li>
+<li>状态页正常但全网不通 → 查客户侧网络，转网络就绪与 OXE 接入两能力</li>
+<li>想跳过 MyPortal 直接邮箱报障 → 可行但字段不全拖慢分派，工程上仍按字段清单备料</li>
+</ul>
+<p>输出契约：分流结论 + 证据包（事件日志/上报记录/操作历史）+ SR 工单号与字段清单。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>SR 入口多（邮箱/BOT/Welcome Center/电话）但建单门槛唯一：认证伙伴（n29）</li>
+<li>计划维护多在晚间周末执行；订阅告警漏勾地域会收不到事件（p249-250）</li>
+<li>OXE/网关侧的命令级排障在 OXE 接入与网关部署两能力，本卡只管云侧与流程</li>
+<li>描述里附 rainbowagent.log 或 mpcheck 输出可加速定位（工程经验，书内未明示）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte003en/skills/rxe-agent-onboarding.html">OXE 接入 Rainbow 与接入排障</a></p><p class="source-page">能力 ID：cap.rxe.maintenance-support · 来源：RAINXTE003EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: Rainbow / OmniPCX Enterprise (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 314 页 -->

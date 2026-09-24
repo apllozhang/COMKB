@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OTFC 客户端部署与封页定制（四件套、Web Client、GPO、封页五步）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch Fax Center · Starter</h2><p>Edition 04 · 233 页 · 文档整理入库（11 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otfcxte200en/index.html">课程首页</a><a href="/courses/otfcxte200en/digest.html">精华长文</a><a href="/courses/otfcxte200en/overview.html">教书理解</a><a href="/courses/otfcxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otfcxte200en/skills/otfax-installation-ftw.html">OTFC 首次交付（宿主准备、安装、FTW、许可）</a><a href="/courses/otfcxte200en/skills/otfax-sip-channel-integration.html">OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）</a><a href="/courses/otfcxte200en/skills/otfax-mail-exchange-integration.html">OTFC 邮件与 Exchange 集成（SMTP 网关、FAX 连接器、通知排障）</a><a href="/courses/otfcxte200en/skills/otfax-user-administration.html">OTFC 用户与管理员管理（双用户源、CSV、两级管理员）</a><a href="/courses/otfcxte200en/skills/otfax-profile-policy.html">OTFC Profile 策略与电话簿（限制组、呼号限制、通知 Profile、LDAP 电话簿）</a><a href="/courses/otfcxte200en/skills/otfax-directory-routing.html">OTFC 高级目录集成与来传真路由（LDAP、Lookup、NT 免密、路由表、DTMF、Modification）</a><a href="/courses/otfcxte200en/skills/otfax-services-operations.html">OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）</a><a href="/courses/otfcxte200en/skills/otfax-backup-upgrade.html">OTFC 备份、恢复、升级与删除策略（三数据域、五步升级法、零保留）</a><p class="course-nav-group">路由能力</p><a href="/courses/otfcxte200en/skills/otfax-client-coversheet.html">OTFC 客户端部署与封页定制（四件套、Web Client、GPO、封页五步）</a><a href="/courses/otfcxte200en/skills/otfax-solution-planning.html">OTFC 方案评估与部署规划（容量协议合规、架构拓扑、支持矩阵）</a><a href="/courses/otfcxte200en/skills/otfax-reports-monitoring.html">OTFC 报表与监控（31 报表、BIRT、SNMP V2 陷阱）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otfcxte200en/index.html">ot-fax-center（11 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otfcxte200en/index.html">OTFCXTE200EN</a><span>/</span><span aria-current="page">OTFC 客户端部署与封页定制（四件套、Web Client、GPO、封页五步）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OTFC 客户端部署与封页定制（四件套、Web Client、GPO、封页五步）</h1></div><dl><div><dt>Skill ID</dt><dd>otfax-client-coversheet</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>OTFC 客户端部署与封页定制（Windows 四件套、Web Client、GPO 批量、封页五步）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"SendFAX • Web Fax Composer printer • Print to mail ; Silent installation &amp; Installation by Massive Deployment through Group Policy are available"（p83）
+"A reduced client applications set including only independent applications usable by most of the users (no administration tools) is available through the installation files located in the ClientRedistribution folder"（p84）
+"Download the server coversheet to your desktop: •Log in the Fax MMC Snap-in. •Go to the Site Cover Sheets node."（p93）
+"Import the new coversheet using the web administration interface of fax server … Assign the new coversheet in user Profiles."（p95-96）</p>
+</blockquote>
+<p>出处：OTFCXTE200EN p71-96（含 How-To 实验 5）、p130-133。</p>
+<h2>I — 自述</h2>
+<p>用户侧入口与品牌化两条线：</p>
+<ol>
+<li><strong>Web Client</strong>：免安装任意浏览器，http(s)://&lt;服务器名或IP&gt;/fax 需认证；六区界面（Compose/Inbound history/Outbound/Outgoing queue/Manage faxes &amp; contacts/Inbox）；符合美国康复法案 508 条款与欧洲 e-inclusion 无障碍要求</li>
+<li><strong>Windows 四件套</strong>：SendFAX（进阶用户：实时预览、Outlook 模式、电话簿、redact 涂黑；Outlook 模式依赖 'FAX' 地址空间）、Web Fax Composer printer（打印即经 Web 界面发）、Print to Mail（打印成 TIFF 交 Outlook 择机发）、MMC Snap-in（管理端，随服务器已装）</li>
+<li><strong>部署三规则</strong>：静默安装 + 组策略（GPO）批量；精简客户端包在发行介质 ClientRedistribution 文件夹（无管理工具）；认证用域 Windows 账号或 OTFC 内部账号</li>
+<li><strong>封页五步</strong>：Coversheet Editor 编辑 .cse（专有格式，8 语言 2 纸张，内置 Tiff Viewer），或从服务器 MMC 下载底稿（Site Cover Sheets 节点）、另存新名、经 Web 管理界面导入、挂到用户 Profile（一个 Profile 可挂多张）</li>
+</ol>
+<p>队列与历史三视图（用户只见自己，管理员见全部）：外发队列六状态（Preprocessing/Delayed/Ready to Send/Sending/Waiting/Sent）、外发历史（Sent/Failed）、入呼历史（Received/Failed to receive）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>客户端安装与测试</strong>（p130-133，实验 5，实验口径）：</p>
+<ol>
+<li>若 MMC Snap-in 开着先关闭</li>
+<li>发行介质 Client 目录双击 Setup.exe，按向导 Next，选安装语言</li>
+<li>Custom Setup 选装除 MMC Snap-in 与 Java API 外的全部应用</li>
+<li>Web Server 对话框填内部主机名或 URL：fax（也可 http://192.168.1.60 或 https://fax）</li>
+<li>完成安装；提示重启服务器可安全忽略（实验机不做客户端用途）</li>
+<li>用 allen/barkley 账号逐客户端测试 inbound/outbound/queue/投递选项</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：给全员发传真客户端；用户问浏览器能不能发；SendFAX 里要涂黑敏感信息；企业封页怎么上线；用户问传真卡在哪个状态；批量装客户端怎么省事。</p>
+<p>语言信号：客户端 / client / SendFAX / Web Client / Web Fax Composer / Print to Mail / 虚拟打印机 / GPO / 组策略。</p>
+<p>语言信号（续）：静默安装 / silent / ClientRedistribution / 封页 / coversheet / .cse / Cover Sheet Editor / 队列 / queue / 外发历史 / inbound / outbound / 涂黑 / redact。</p>
+<p>与相邻能力区分：封页"经 Profile 下发"的策略面归 Profile 策略能力；通知格式归邮件与 Exchange 集成与 Profile 策略能力；账号与密码归用户管理能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：用户群体画像（进阶/普通/无安装权限）、工作站环境（Win11/10、终端服务）、企业封页素材（Logo/版式）、分发通道（GPO/手工）。</p>
+<ol>
+<li>选入口矩阵：普通用户 Web Client 免安装起步；进阶用户加 SendFAX；打印习惯用户配虚拟打印机。完成标准：入口方案与人群对应</li>
+<li>批量部署：GPO/静默安装推 Full 包或发 ClientRedistribution 精简包。完成标准：目标工作站客户端就位</li>
+<li>客户端服务器地址：按可接受语法填（主机名 fax / http://IP / https://主机名）。完成标准：登录认证通过</li>
+<li>建封页：Coversheet Editor 编辑或从服务器下载底稿另存新名。完成标准：新 .cse 文件就绪</li>
+<li>导入封页：Web 管理界面上传新封页。完成标准：封页出现在服务器列表</li>
+<li>下发生效：在目标用户 Profile 关联封页（可多张）。完成标准：测试传真首页为新封页</li>
+<li>验收：按三视图核对一次收发（队列状态/历史记录），Outlook 模式另验 FAX 连接器依赖。完成标准：全入口可用</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>SendFAX 要开 Outlook/Exchange 模式 → 先确认 'FAX' 地址空间连接器已建，没建就先做邮件与 Exchange 集成</li>
+<li>用户问"为什么耳机…传真卡住" → 按外发队列六状态对号解释（Preprocessing 转换中/Delayed 定时未到/Waiting 等待资源），不要笼统说"在发"</li>
+<li>实验机"客户端装在传真服务器 + 忽略重启" → 停，这是实验口径；生产装用户工作站，该重启就重启</li>
+<li>客户要求手机上发传真 → 停，书内收发入口无移动端形态，按 Features List 与产品线现状答复</li>
+</ul>
+<p>输出契约：客户端部署清单（入口/人群/分发方式）+ 封页上线记录（编辑/导入/Profile 关联）+ 验收测试结果。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>浏览器支持明细以 OTFC Features List 为准（书内只举例 Firefox/Safari/Chrome）</li>
+<li>"Outlook 2022" 为原文笔误（nr-02），客户端邮件环境矩阵以 Features List 为准</li>
+<li>精简客户端包不含管理工具；MMC Snap-in 随服务器安装、也可由客户端包安装——双来源别重复装</li>
+<li>封面语言受安装语言影响（Basic Profile 口径），装错语言的善后在首次交付能力</li>
+<li>.cse 为专有格式；编辑器细节（区域设置/注释/Tiff Viewer）书内为讲义级介绍</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.otfax.client-coversheet · 来源：OTFCXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch Fax Center - R9.2 Starter (Participant's Guide, Edition 04) | edition: Edition 04 | pages: 233 页 -->

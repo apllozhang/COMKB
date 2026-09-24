@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>多语言语音指南与双日历</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Starter</h2><p>Edition  · 649 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte100en/index.html">课程首页</a><a href="/courses/otccxte100en/digest.html">精华长文</a><a href="/courses/otccxte100en/overview.html">教书理解</a><a href="/courses/otccxte100en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte100en/skills/otcc-ccd-matrix-foundation.html">CCD 基础矩阵创建与验证</a><a href="/courses/otccxte100en/skills/otcc-ccs-installation.html">CCS 班长台安装、OXE 声明与 ccs.ini</a><a href="/courses/otccxte100en/skills/otcc-routing-distribution-rules.html">路由规则与分配规则全生命周期</a><a href="/courses/otccxte100en/skills/otcc-agent-supervisor-onboarding.html">ACD 话机、座席与班长创建登录</a><a href="/courses/otccxte100en/skills/otcc-object-tuning.html">CCD 对象参数调优（pilot/PG/队列）</a><a href="/courses/otccxte100en/skills/otcc-voice-guides.html">语音指南三路径（话机录音/.wav 导入/欢迎指南）</a><a href="/courses/otccxte100en/skills/otcc-monitoring-statistics.html">实时监控告警与 Excel 统计</a><a href="/courses/otccxte100en/skills/otcc-multilanguage-calendar.html">多语言语音指南与双日历</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte100en/skills/otcc-supervisor-features.html">座席班长特性配置（监听强插/通用转发/多线/事务码）</a><a href="/courses/otccxte100en/skills/otcc-queue-experience.html">EWT 表与排队位置播报（518）</a><a href="/courses/otccxte100en/skills/otcc-direct-calls-emergency.html">CCD 直接呼叫与紧急关闭</a><a href="/courses/otccxte100en/skills/otcc-statistic-pilot.html">统计型 pilot 与 Call Tag</a><a href="/courses/otccxte100en/skills/otcc-lab-connectivity.html">实验环境与链路打通（POD/ITSP1/ABC-F）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte100en/index.html">otcc-standard-starter（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte100en/index.html">OTCCXTE100EN</a><span>/</span><span aria-current="page">多语言语音指南与双日历</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>多语言语音指南与双日历</h1></div><dl><div><dt>Skill ID</dt><dd>otcc-multilanguage-calendar</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>多语言语音指南与双日历（按语言与时段的自动路由）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Create the pilot 31602 with the following items. Pilot name: After-Sales FR Language number: French"（p591）
+"Function Select the guide function (i.e. Multi-language message) … Language Number Select the language number (i.e. French) Message number Enter the message number for the french voice guide (i.e. 1702)."（p596-597）
+"Maximum of 10 time slot transitions for each of the 7 days of the week. … Maximum of 20 time slot transitions for each of the 7 days of the week."（p616）
+"Special days override the days of the weekly calendar • A maximum of 50 special days can be defined."（p611）
+"A modification carried out in the active transition does not apply immediately … the change-over is only carried out at the exact time indicated by the transition."（p638）</p>
+</blockquote>
+<p>出处：OTCCXTE100EN p583-606（多语言）, p607-642（日历）。</p>
+<h2>I — 自述</h2>
+<p>多语言指南两件事（p13/f22/c19）：</p>
+<ul>
+<li>指南 Function 选 Multi-language message，一个指南号下按语言挂多条消息（French=1702、English=2702）</li>
+<li>每个业务 pilot 设自己的语言（Language Number），同一指南号在不同语言 pilot 上播各自语言的消息</li>
+<li>语言槽与语种的对应取决于目标库配置——录制前必核语言编号表（nr-07）</li>
+</ul>
+<p>双日历体系（f21/p16/c20）：</p>
+<ul>
+<li>pilot 日历：每 pilot 一个，每周每天最多 10 个时间片切换，每切换=规则 ID+状态（Nor/Fwd），管通用转发、路由方向与语音指南</li>
+<li>分配日历：挂分配规则，班长站可配，每天最多 20 个切换，管队列方向、分配阈值与资源/呼叫选择参数</li>
+<li>特殊日：≤50 个、必填日/月/年、不能选过去日期、覆盖周历（两套日历各有特殊日）</li>
+<li>切换语义：只在时间片定义的时间点执行；改"活动中的时间片"不立即生效，测试要提前几分钟（n07）；活动时间片界面绿色显示</li>
+</ul>
+<p>典型组合：开日（工作日时段）用 Rule_0 照常分发；闭日（午休/夜间/周末/特殊日）切 Closed_rule——关 Normal 方向、开 Redirection 播提示（c20）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>双语 pilot 实验</strong>（p588-606）：</p>
+<ol>
+<li>CCS 把 31600 改名 After-Sales EN；OXE 建 31602/After-Sales FR，Language Number=French</li>
+<li>FR pilot 建规则并加 Normal_WQ、Redirection_WQ 方向，Normal_WQ 优先级 0</li>
+<li>建 702/703 多语言指南：Function=Multi-language message，French 挂 1702/1703、English 挂 2702/2703</li>
+<li>四条消息分配板位 4-0 并用 401 录制（法语"Bienvenu…"、英语"Welcome again…"）</li>
+<li>两 pilot 排同一套矩阵：Pres.Guide=702、Level[2]=703</li>
+<li>实测：EN pilot 先"Welcome again…"；FR pilot 先"Bienvenu au service après-vente"</li>
+</ol>
+<p><strong>日历实验</strong>（p617-642）：</p>
+<ol>
+<li>建 Closed_rule：关 Normal_WQ 主方向、开 Redirection_WQ，Pres.Guide=683；建同名分配规则并回 OXE 激活</li>
+<li>Navigator Tab8 核对：闭态仅 Redirection_WQ 可达，拨 Offer 听"无座席"提示</li>
+<li>pilot 日历：周一 08:00 Rule0 / 12:00 Rule1 / 13:30 Rule0 / 19:00 Rule1，复制到周五；周六日与特殊日 00:00 Rule1</li>
+<li>分配日历同步配切换骨架；勾 Activate Time Slices 激活</li>
+<li>开/闭两个时点验证：激活规则 ID 与绿色活动时间片吻合</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：双语客户要按拨打号分流语言；节假日特殊安排；午休/夜间自动切闭态；"改了日历怎么不生效"；特殊日不够用；多语言消息录哪个槽。</p>
+<p>语言信号：Multi-language / 多语言 / Language Number / French / English / "1702" / "2702" / calendar / 时间片 / Closed_rule / 特殊日 / Activate Time Slices / 切换点。</p>
+<p>与相邻能力区分：指南录制与装板 → 语音指南能力；规则与方向本身 → 路由与分配规则能力；统计型 pilot 的三态问候归统计 pilot 卡（路由卡）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：语言清单与目标库语言编号表已核对、营业时间表与节假日表已定、闭态去向已定。</p>
+<ol>
+<li>建语言 pilot：每个语言一个 pilot 并设 Language Number。完成标准：pilot 语言属性正确</li>
+<li>建多语言指南：Function=Multi-language message，按语言挂消息号并录制装板。完成标准：vgstat 全部 ^ 选中</li>
+<li>排矩阵：各语言 pilot 的 Pres.Guide 与 parking level 挂同一多语言指南号。完成标准：各 pilot 播各自语言</li>
+<li>建 Closed_rule 闭环：pilot 规则（关常态方向+开重定向+提示指南）与分配规则并回 OXE 激活。完成标准：闭态拨测听到提示</li>
+<li>配双日历：pilot 日历 ≤10 切换/日、分配日历 ≤20 切换/日，复制跨日、补特殊日。完成标准：周历与特殊日全覆盖</li>
+<li>激活并双时点验证：勾 Activate Time Slices，开/闭各验一次。完成标准：激活规则 ID 与时间片吻合</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>改了日历"不生效" → 切换只在时间点执行，活动时间片上的修改要等下一切换点，测试提前几分钟改（n07）</li>
+<li>播错语言 → 语言槽按库配置核对，勿照抄书中 #1/#2 口径（nr-07）</li>
+<li>特殊日配不了 → 必填年月日且不可选过去日期；上限 50 个（p611）</li>
+<li>新建的 Closed_rule 未生效 → 分配规则要回 OXE 激活（n02）</li>
+</ul>
+<p>输出契约：按语言与时段自动路由的运行矩阵（语言 pilot + 多语言指南 + 双日历 + 特殊日）+ 双时点验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>10/20 切换每日、50 特殊日为 R10.16 容量口径（p611/p616）；切换粒度以时间片定义为准</li>
+<li>ACR 语言技能路由（按主叫语言技能选路）在书外，本书语言分流靠多 pilot（n41/g27）</li>
+<li>日历只切换规则与方向；时间片内的参数微调仍走对象调优卡</li>
+<li>实验语言对（French/English）与节假日（1 月 1 日等）为实验口径</li>
+<li>分配日历由班长站配置——OXE 侧只读核对（p616）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte100en/skills/otcc-voice-guides.html">语音指南三路径（话机录音/.wav 导入/欢迎指南）</a></p><p class="source-page">能力 ID：cap.otcc.multilanguage-calendar · 来源：OTCCXTE100EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Starter (Participant's Guide, Edition 09) | edition: Edition  | pages: 649 页 -->

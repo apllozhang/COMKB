@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Access Guardian 接入认证</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniSwitch LAN Access Switching</h2><p>Edition 23 · 587 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/dt00xte215en/index.html">课程首页</a><a href="/courses/dt00xte215en/digest.html">精华长文</a><a href="/courses/dt00xte215en/overview.html">教书理解</a><a href="/courses/dt00xte215en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/dt00xte215en/skills/swl2-aaa-hardening.html">交换机登录接入与 AAA 管理面加固</a><a href="/courses/dt00xte215en/skills/swl2-lightning-config.html">Lightning Config 快速开局</a><a href="/courses/dt00xte215en/skills/swl2-config-lifecycle.html">配置生命周期（保存/认证/回滚/备份）</a><a href="/courses/dt00xte215en/skills/swl2-virtual-chassis.html">Virtual Chassis 堆叠</a><a href="/courses/dt00xte215en/skills/swl2-vlan-routing.html">VLAN 与 VLAN 间路由</a><a href="/courses/dt00xte215en/skills/swl2-link-redundancy.html">链路与生成树冗余（LAG/STP/DHL）</a><a href="/courses/dt00xte215en/skills/swl2-l3-services.html">三层服务与网关冗余（DHCP/Loopback0/静态路由/VRRP）</a><a href="/courses/dt00xte215en/skills/swl2-qos-acl-policy.html">QoS 与 ACL 策略</a><p class="course-nav-group">路由能力</p><a href="/courses/dt00xte215en/skills/swl2-access-guardian.html">Access Guardian 接入认证</a><a href="/courses/dt00xte215en/skills/swl2-diagnostics.html">诊断工具箱八件套</a><a href="/courses/dt00xte215en/skills/swl2-lldp-poe.html">LLDP/LLDP-MED 与 PoE 管理</a><a href="/courses/dt00xte215en/skills/swl2-upgrade-autofabric.html">软件升级与 Auto-Fabric 零触开局</a><a href="/courses/dt00xte215en/skills/swl2-fleet-tools.html">资产与装机工具（Fleet Supervision/OST）</a><p class="course-nav-group">已安装技能</p><a href="/courses/dt00xte215en/index.html">omniswitch-lan-access（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/dt00xte215en/index.html">DT00XTE215EN</a><span>/</span><span aria-current="page">Access Guardian 接入认证</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Access Guardian 接入认证</h1></div><dl><div><dt>Skill ID</dt><dd>swl2-access-guardian</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>Access Guardian 接入认证（UNP 档案、802.1x/MAC、RADIUS 降级）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Role Based Access Control with UNP (Universal Network Profile) • Auto-sensing, multi-client authentication on a port"（p456）
+"Authentication Method • MAC-based (non-supplicant) or • 802.1x-based (supplicant) ... RADIUS Access-Accept + UNP name"（p457）
+"Users are moved to a specific profile when RADIUS server is not available. ... Auth Server Down Profile1 = ag_SrvDownPrf, Auth Server Down Timeout = 60"（p474）
+"Parameters Default ... retries 3 ... seconds 2 ... auth_port 1812 ... acct_port 1813 ... ssl | no ssl No ssl"（p472）</p>
+</blockquote>
+<p>出处：DT00XTE215EN p454-485。</p>
+<h2>I — 自述</h2>
+<p>基于 UNP 的角色接入控制：认证成功后 RADIUS 以 Filter-Id 属性回传 UNP 名，用户按档案进 VLAN 并吃策略（VLAN+ACL/QoS 策略列表+位置+时段）。</p>
+<ol>
+<li><strong>决策流</strong>（p457-458）：802.1x 开且终端支持走 supplicant 认证；否则 MAC 认证开则以源 MAC 作账号密码</li>
+<li><strong>结果分支</strong>：Pass 按 Filter-Id 入 UNP；Fail 进 Default UNP（注册/隔离）；服务器不可达迁 auth-server-down 档案（默认 60 秒重试重认证）；无匹配 Block 或 pass-alternate 备用档案</li>
+<li><strong>配置五层</strong>（p461-474）：unp port port-type bridge + 802.1x/mac 认证；validity-location/period 位置时段；policy list type unp 挂规则</li>
+<li><strong>档案与 AAA</strong>：unp profile（map vlan + qos-policy-list + 位置/时段策略）；AAA profile（device-authentication + accounting + 服务器）</li>
+<li><strong>RADIUS 默认参数</strong>（p472）：retries 3、timeout 2 秒、认证 1812、计费 1813、SSL 默认关（建议启用 TLS，服务器侧先开）；MAC 会话计时器默认 12 小时</li>
+<li><strong>降级三口径</strong>（p466/p474/p478）：Filter-Id 缺失走 pass-alternate（802.1x 与 MAC 各自可配）；服务器不可达全体迁 auth-server-down 档案；MAC 无登记一律 Block</li>
+<li><strong>监控</strong>：show unp user / status / details（Profile From Auth Server、Role、Source=Radius）</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>Access Guardian 实验</strong>（p476-485，How-To）：</p>
+<ol>
+<li>声明 RADIUS：aaa radius-server my_radius host 192.168.100.102 key（实验口径），device-authentication 802.1x 与 mac，accounting，ip service source-ip Loopback0 radius</li>
+<li>qos flush/apply 清掉全局 ACL 规则，重建 deny_ftp 与 deny_http 规则（改为按用户档案生效）</li>
+<li>policy list type unp enable 挂规则：deny_employees（禁 FTP）、deny_contractors（禁 HTTP）</li>
+<li>unp profile UNP-employee/UNP-contractor：qos-policy-list + map vlan 20/30</li>
+<li>用户口 unp port 1/1/1 port-type bridge + 802.1x-authentication + mac-authentication</li>
+<li>aaa test-radius-server 验证：user employee 返回 Filter-ID=UNP-employee</li>
+<li>客户端开 802.1X（PEAP+免 CA+MSCHAPv2），flush 端口后重连：show unp user 显示 VLAN 20/UNP-employee/Active</li>
+<li>换 contractor 凭据重连：落入 VLAN 30 与 deny_contractors 角色</li>
+<li>关闭 802.1x 走 MAC 认证：服务器无该 MAC 登记，show unp user 显示 Profile=-、Status=Block</li>
+<li>清理：no unp port 后 write memory flash-synchro</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：员工/承包商分区准入；认证后动态下 VLAN 与策略；打印机/摄像头等哑设备接入口；RADIUS 挂了用户怎么办；认证上不了网排查。</p>
+<p>语言信号：Access Guardian / UNP / 802.1x / MAC 认证 / RADIUS / Filter-Id / pass-alternate / auth-server-down / Block / supplicant / PEAP / device-authentication / unp profile / 动态 VLAN 准入。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>非认证的 MAC/IP 分类入 VLAN：VLAN 与路由能力卡（UNP 简单分类）</li>
+<li>全局 ACL 策略写法：QoS 与 ACL 策略能力卡</li>
+<li>RADIUS 服务器上怎么建用户库：书外（本卡只管交换机侧）</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：用户角色矩阵（角色/认证方式/VLAN/策略）、RADIUS 服务器地址与密钥、哑设备清单与放行策略。RADIUS 服务器侧用户库未就绪 → 判停先补书外前提。</p>
+<ol>
+<li>声明服务器：aaa radius-server（建议 TLS）+ aaa device-authentication 802.1x/mac + accounting。完成标准：test-radius-server 返回预期 Filter-ID</li>
+<li>策略改挂档案：全局规则清场，重建规则并 policy list type unp enable。完成标准：列表 enable 且规则挂接</li>
+<li>建 UNP 档案：unp profile map vlan + qos-policy-list（+ 位置/时段按需）。完成标准：show unp profile 与矩阵一致</li>
+<li>端口准入：unp port port-type bridge + 802.1x/mac 认证（+ pass-alternate 备用档案）。完成标准：端口进入认证态</li>
+<li>用户验证：客户端 802.1X 重连，show unp user/details 确认 VLAN、Role、Source=Radius。完成标准：各角色落位正确</li>
+<li>降级验证：服务器不可达演练 auth-server-down 档案；哑设备验证 Block 或放行路径。完成标准：降级行为符合设计</li>
+<li>固化：write memory flash-synchro。完成标准：配置已保存</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>认证通过但进错 VLAN → 查 RADIUS Filter-Id 是否回传（test-radius-server 可单独验证），缺了走 pass-alternate 而不是反复改交换机</li>
+<li>哑设备上线即断网 → 服务器无 MAC 登记时 Block 属设计行为；要么登记 MAC，要么走分类规则/默认档案放行</li>
+<li>RADIUS 服务器侧配置缺失 → 停，用户库/证书在书外，先补齐再回到交换机侧</li>
+<li>802.1x 客户端配置问题（PEAP/证书） → 按 p481 客户端口径核对（免 CA + MSCHAPv2），属客户端域</li>
+</ul>
+<p>输出契约：角色化准入生效（各角色 VLAN/策略落位）+ 降级路径验证记录 + 哑设备处理方案。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>RADIUS 服务器侧（用户库、证书、TLS 开启）全书不教，实验直接用现成 AAA Training Server 192.168.100.102（实验口径）</li>
+<li>"UNP 全称书中两写"（User/Universal Network Profile）见 needs-review nr-03，同一概念</li>
+<li>同端口 802.1x 与 MAC 认证并存时，非 supplicant 设备自动走 MAC 认证（auto-sensing multi-client）</li>
+<li>Captive Portal 挂钩在属性清单中点到（p467），本书不展开部署</li>
+<li>employee/contractor 用户名密码、VLAN 编号均为实验口径（p446/p478）</li>
+<li>MAC 会话 12 小时为默认口径（p472）；改超时属生产化调参，以 CLI Reference 为准</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.swl2.access-guardian · 来源：DT00XTE215EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniSwitch LAN Access Switching (Participant's Guide, Edition 23) | edition: Edition 23 | pages: 587 页 -->

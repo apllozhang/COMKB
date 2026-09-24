@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>CCD 对象参数调优（pilot/PG/队列）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Starter</h2><p>Edition  · 649 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte100en/index.html">课程首页</a><a href="/courses/otccxte100en/digest.html">精华长文</a><a href="/courses/otccxte100en/overview.html">教书理解</a><a href="/courses/otccxte100en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte100en/skills/otcc-ccd-matrix-foundation.html">CCD 基础矩阵创建与验证</a><a href="/courses/otccxte100en/skills/otcc-ccs-installation.html">CCS 班长台安装、OXE 声明与 ccs.ini</a><a href="/courses/otccxte100en/skills/otcc-routing-distribution-rules.html">路由规则与分配规则全生命周期</a><a href="/courses/otccxte100en/skills/otcc-agent-supervisor-onboarding.html">ACD 话机、座席与班长创建登录</a><a href="/courses/otccxte100en/skills/otcc-object-tuning.html">CCD 对象参数调优（pilot/PG/队列）</a><a href="/courses/otccxte100en/skills/otcc-voice-guides.html">语音指南三路径（话机录音/.wav 导入/欢迎指南）</a><a href="/courses/otccxte100en/skills/otcc-monitoring-statistics.html">实时监控告警与 Excel 统计</a><a href="/courses/otccxte100en/skills/otcc-multilanguage-calendar.html">多语言语音指南与双日历</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte100en/skills/otcc-supervisor-features.html">座席班长特性配置（监听强插/通用转发/多线/事务码）</a><a href="/courses/otccxte100en/skills/otcc-queue-experience.html">EWT 表与排队位置播报（518）</a><a href="/courses/otccxte100en/skills/otcc-direct-calls-emergency.html">CCD 直接呼叫与紧急关闭</a><a href="/courses/otccxte100en/skills/otcc-statistic-pilot.html">统计型 pilot 与 Call Tag</a><a href="/courses/otccxte100en/skills/otcc-lab-connectivity.html">实验环境与链路打通（POD/ITSP1/ABC-F）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte100en/index.html">otcc-standard-starter（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte100en/index.html">OTCCXTE100EN</a><span>/</span><span aria-current="page">CCD 对象参数调优（pilot/PG/队列）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>CCD 对象参数调优（pilot/PG/队列）</h1></div><dl><div><dt>Skill ID</dt><dd>otcc-object-tuning</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>CCD 对象参数调优（pilot/PG/队列：wrap-up、pause、服务水平、PG 选项、饱和溢出）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Pause between two calls … The value, expressed in seconds, must be between 1 and 3276."（p168）
+"Wrap Up duration (sec.) … The value, expressed in seconds, must be between 1 and 3276. To delete the wrap-up, enter the value 0."（p168）
+"Last agent withdrawal authorized … If disabled, the last available agent loses this right to preserve the service."（p172-173）
+"Maximum waiting time Enter the maximum waiting time in seconds (i.e. 45) … Address Enter a destination extension number (i.e. 31010) Delay Enter a time-out in seconds (i.e. 60)"（p192-193）
+"green (quality of service equal to or greater than the warning threshold …), yellow (… superior or equal to 0.8 times the threshold), red (… less than 0.8 times)"（p168）</p>
+</blockquote>
+<p>出处：OTCCXTE100EN p166-193, p275-280。</p>
+<h2>I — 自述</h2>
+<p>调优分三层：pilot 计时器、PG 行为选项、队列饱和与溢出参数。</p>
+<p>pilot 计时器（Configurations&gt; Pilot，自动态挂 pilot）：</p>
+<ul>
+<li>wrap-up 与 pause 数值域均为 1-3276 秒；删 pause 填 none、删 wrap-up 填 0（p168）</li>
+<li>手动 wrap-up 时长（idle 态与 pause 态）挂在 PG 上，书中默认口径 600 秒（p185）</li>
+<li>归属口诀：自动 wrap-up/pause 改在 pilot，手动 wrap-up 改在 PG——调错对象就是"怎么改都不生效"（n38）</li>
+</ul>
+<p>服务水平目标（pilot，p168）：</p>
+<ul>
+<li>两参数：% of calls + answered within（时限）；计时从听完指南起、到座席摘机止（排队+振铃之和，n37）</li>
+<li>smiley 三色按 SOP（默认 15 分钟）刷新：绿=达到阈值；黄=低于阈值但 ≥0.8×阈值；红=&lt;0.8×阈值</li>
+</ul>
+<p>PG 行为选项（Configurations&gt; Processing Group&gt; PG Agents，实验逐项开/关对比，c07）：</p>
+<ul>
+<li>Last agent withdrawal authorized（末座席禁退保服务）、Withdrawal after logon（登入即退出）、Call release by agent forbidden（挂机保持）、Eternal Wrap-Up（操作后回 wrap-up）、Wrap Up in Idle/Pause 时长、Ring rotation time-out（默认 15 秒轮转）、Type of search（Cyclic/Sequential/MIT）</li>
+</ul>
+<p>队列参数（System&gt; Queue and Waiting Room）：</p>
+<ul>
+<li>Maximum waiting time：超过即按规则走下一方向（实验 45 秒）</li>
+<li>Queuing overflow：排队超过 Delay 秒改址到指定分机（实验 60 秒改 31010）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>调优实验</strong>（p166-193）：</p>
+<ol>
+<li>Pilot1 设 wrap-up=10s、pause=5s、服务水平目标 85%/15 秒（实验口径）</li>
+<li>公网来话应答挂机后，Real time 核对 10 秒 wrap-up 与 5 秒 pause 计时</li>
+<li>末座席退出实验：先开"允许"测可退，再关测"被拒"，测完恢复</li>
+<li>Eternal Wrap-Up 实验：不开时 wrap-up 中外呼即取消；开启后操作完回 wrap-up 直至计时耗尽</li>
+<li>手动 wrap-up 设 idle=12s、pause=8s 分别实测回闲时长，测完恢复 600 秒</li>
+<li>Ring rotation 用默认 15 秒：两座席登入不接话，15 秒后振铃转到另一座席</li>
+<li>Type of search 三连测：Cyclic 轮流接、Sequential 按序号、MIT 空闲最久先振铃，测完恢复 Cyclic</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：座席挂机后状态时间不对；"wrap-up 改了不生效"；smiley 全红查 SLA 口径；座席要接私人电话（pause）；末座席退不了被投诉；队列饱和后溢出去向验证。</p>
+<p>语言信号：wrap-up / pause / service level / smiley / SOP / Ring rotation / Last agent withdrawal / Eternal Wrap-Up / Type of search / Cyclic / MIT / Maximum waiting time / Queuing overflow / 3276。</p>
+<p>与相邻能力区分：人员与登录 → 座席班长体系能力；监听强插/退出类型命名 → 座席班长特性能力；EWT 阈值播报归排队体验卡（路由卡）；监控呈现归监控与统计能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：座席已登入、业务 SLA 与话后处理时长已定、每个选项测试后恢复默认的纪律。</p>
+<ol>
+<li>定 pilot 计时器：Configurations&gt; Pilot 设 wrap-up 与 pause（1-3276 秒域）。完成标准：来话挂机后按设定计时走 wrap-up → pause → 回闲</li>
+<li>定服务水平：填 % of calls 与 answered within。完成标准：smiley 按 SOP 刷新且颜色与实际达成率一致</li>
+<li>逐项测 PG 选项：每项开启测一次行为、关闭再测一次、测完恢复。完成标准：行为对比记录完整（退出允许/拒绝、挂机保持、wrap-up 保持/取消、轮转时长、选座席方式）</li>
+<li>定队列参数：Maximum waiting time 与 Queuing overflow 地址/延时。完成标准：饱和与改址配置落位并复核（p193 Notes 溢出行为后续实验复核）</li>
+<li>回归验证：恢复全部默认值后再跑一通标准呼叫。完成标准：不残留测试参数影响后续</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>"wrap-up 怎么改都不生效" → 查归属：自动挂 pilot、手动挂 PG（n38）</li>
+<li>SLA 统计与对外承诺对不上 → 计时起点是"听完指南"非"进队"（n37），指南越长余量越大</li>
+<li>EWT 类参数调整后立刻验证 → TSP 滚动计算有滞后，逐步调参勿单通定论（n30）</li>
+<li>手动 wrap-up 时长页找不到 600 秒默认 → 该值挂 PG 不挂 pilot（p185）</li>
+<li>测试值（10s/5s/45s/60s/12s/8s/300s）为实验口径 → 生产按业务测定，不照抄</li>
+</ul>
+<p>输出契约：按业务调好的参数集（pilot 计时器 + SLA + PG 选项 + 队列饱和溢出）+ 逐项行为测试记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>全部数值域为 R10.16 教材口径（1-3276 秒、Ring rotation 15 秒默认、手动 wrap-up 600 秒口径）；扩容与话务建模方法在书外（n30/n41）</li>
+<li>pause 中可接个人/本地/外线呼叫（p279）；wrap-up 中除 Queue info 外任何操作即取消——这是行为语义不是故障</li>
+<li>服务水平阈值按 pilot 业务性质设定（咨询/售后/投诉），原书不给行业基准值（p168）</li>
+<li>smiley 呈现与 Alarms 呈现是两套（服务水平 vs 阈值越限），监控呈现归监控与统计卡</li>
+<li>实验逐项测试值均为实验口径，引用必须标注</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte100en/skills/otcc-supervisor-features.html">座席班长特性配置（监听强插/通用转发/多线/事务码）</a></p><p class="source-page">能力 ID：cap.otcc.object-tuning · 来源：OTCCXTE100EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Starter (Participant's Guide, Edition 09) | edition: Edition  | pages: 649 页 -->

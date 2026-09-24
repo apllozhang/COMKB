@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>交付地基：OMC 首连与 IP 规划</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OXO Connect · Advanced</h2><p>Edition 18 · 601 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte301en/index.html">课程首页</a><a href="/courses/oxocxte301en/digest.html">精华长文</a><a href="/courses/oxocxte301en/overview.html">教书理解</a><a href="/courses/oxocxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte301en/skills/oxoa-sip-networking.html">SIP 组网：公网网关与私网互联</a><a href="/courses/oxocxte301en/skills/oxoa-numbering-ars-suite.html">ARS 路由套件：三表协作与 Internal ARS</a><a href="/courses/oxocxte301en/skills/oxoa-hotel-billing-vertical.html">酒店与计费垂直方案</a><a href="/courses/oxocxte301en/skills/oxoa-security-hardening.html">系统安全加固</a><a href="/courses/oxocxte301en/skills/oxoa-certificate-suite.html">证书与加密传输（证书/DTLS/TLS-SRTP）</a><a href="/courses/oxocxte301en/skills/oxoa-attendant-suite.html">语音导航套件（AA/MLAA/SCR）</a><a href="/courses/oxocxte301en/skills/oxoa-voicemail-mobility.html">语音邮箱与移动办公</a><a href="/courses/oxocxte301en/skills/oxoa-cloud-connect-fleet.html">Cloud Connect 舰队与远程维护</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte301en/skills/oxoa-foundation-ip.html">交付地基：OMC 首连与 IP 规划</a><a href="/courses/oxocxte301en/skills/oxoa-terminal-ecosystem.html">终端生态：PIMphony 与 SIP 话机接入</a><a href="/courses/oxocxte301en/skills/oxoa-shared-devices.html">共享终端：站群监督、Hot Desking 与 Multiset</a><a href="/courses/oxocxte301en/skills/oxoa-multi-entity.html">多实体与伪多公司</a><a href="/courses/oxocxte301en/skills/oxoa-dect-deployment.html">DECT 无线移动</a><a href="/courses/oxocxte301en/skills/oxoa-maintenance-toolkit.html">维护工具箱：Webdiag、Noteworthy 与 LoLa</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte301en/index.html">oxo-connect-advanced（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte301en/index.html">OXOCXTE301EN</a><span>/</span><span aria-current="page">交付地基：OMC 首连与 IP 规划</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>交付地基：OMC 首连与 IP 规划</h1></div><dl><div><dt>Skill ID</dt><dd>oxoa-foundation-ip</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>交付地基：OMC 首连与 IP 规划修改（含 IPDSP 时间前提）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Make a connection to the system with OMC in Expert mode with server authentication … Enter the default installer password pbxk1064 only used for the first connection"（p28）
+"In order to avoid displaying the security alert at each connection, you must install the certificate the 1st time."（p29）
+"The passwords must be different for each customer!"（p31）
+"Change the IP settings for the OXO Connect and the PC before installing the IPDSP … An error message related to loading the lanpbx file will appear."（p14）
+"Click OK &amp; Re-start the OXO Connect"（p35）</p>
+</blockquote>
+<p>出处：OXOCXTE301EN p14, p23-36。</p>
+<h2>I — 自述</h2>
+<p>PBX 侧一切配置从 OMC 开始，两条线：</p>
+<p><strong>线一：安装与首连（四步）</strong></p>
+<ol>
+<li>装 OMC：解压后 setup.exe 以管理员运行，按语言/目录/国家分销渠道/目标产品/显示语言逐项选择</li>
+<li>首连：Expert 菜单 + LAN/WAN + 出厂 IP（192.168.92.246，实验口径）+ Server authentication + 一次性首连密码 pbxk1064</li>
+<li>装证书：Security Alert 里 View certificate→Install certificate→Trusted Root Certification Authorities，之后不再弹告警</li>
+<li>收尾：各账户改密（每客户必须不同）+ 客户信息（带 * 必填、首连强制）+ 右下角连接图标确认</li>
+</ol>
+<p><strong>线二：IP 规划修改</strong>：OMC/Hardware and limits/Lan/IP configuration 四页签（Boards 主 CPU 地址、LAN 掩码与网关、DNS1/DNS2、DHCP 池）改完点 OK 并重启 OXO；客户端 PC 同步改静态地址；生效后用新地址重连。</p>
+<p><strong>IPDSP 前提</strong>（p14）：先改 OXO 与 PC 的 IP，再把 PC 自动对时关后重开（强制 NTP 重同步），最后装 IPDSP——时间差会导致 HTTPS 证书校验失败，表象是 lanpbx 加载错误。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>OMC 安装实验</strong>（p23-32，厂商实验）：</p>
+<ol>
+<li>RLAB 客户端虚机桌面 SOFTS OXO CONNECT 目录解压安装包（实验口径）。</li>
+<li>setup.exe 管理员运行，按向导逐项选择完成安装。</li>
+<li>首连 192.168.92.246 + pbxk1064（实验口径，仅首连）。</li>
+<li>证书装入 Trusted Root 后告警不再出现。</li>
+<li>按讲师给定值改密并录入客户信息（带 * 必填）。</li>
+</ol>
+<p><strong>IP 修改实验</strong>（p33-36，厂商实验）：</p>
+<ol>
+<li>四页签依次填：Boards 192.168.1.246、掩码 255.255.255.0、网关 192.168.1.254、DNS .250/10.20.30.250（实验口径）。</li>
+<li>DHCP 池 192.168.1.30-39（p34 口径；p40 检查清单写 .10-.39，见 nr-02）。</li>
+<li>OK 后重启 OXO Connect。</li>
+<li>PC 改静态五项同网段；生效后改用 RDP 重连验证。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新设备首次管理；重装 OMC；每次连接弹证书告警；pbxk1064 是什么；客户换网段后重新规划 IP；IPDSP 装不上报 lanpbx 错误。</p>
+<p>语言信号：装 OMC / 首次连接 / pbxk1064 / Expert mode / 证书 / security alert / 改 IP / Lan/IP configuration / DHCP 池 / 重启 / IPDSP / lanpbx / NTP / 时间同步。</p>
+<p>与相邻能力区分：本卡到"OMC 可用 + IP 规划到位 + 时间同步"为止；OMC 与 Rainbow 云侧的开户入门在 bundle.oxo-connect-starter（本体入门）；连上之后的 SIP 中继配置归 SIP 组网能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：管理 PC（Windows）、设备管理地址、首连密码（出厂 pbxk1064，已交付设备向客户档案索取）、目标网段规划。缺首连密码且被改过 → 判停，走密码重置流程不要试错。</p>
+<ol>
+<li>安装 OMC 并启动。完成标准：OMC 可用</li>
+<li>首连：Expert+LAN/WAN+Server authentication+首连密码。完成标准：进入系统</li>
+<li>证书入 Trusted Root。完成标准：重连不再告警</li>
+<li>逐账户改密（每客户唯一）+ 客户信息必填项。完成标准：无默认密码、初始化完成</li>
+<li>IP 四页签填写后重启 OXO；PC 改同网段静态地址。完成标准：新地址可达、旧地址失效</li>
+<li>（装 IPDSP 前）PC 自动对时关后重开，核对时间一致再安装。完成标准：lanpbx 不报错</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>IP 改完"连不上" → 先确认自己是否还在用旧地址/旧会话，不要回滚设备</li>
+<li>DHCP 池规划 → 按 p34 口径自定并与 PC 静态地址错开（nr-02 两处不一致，照抄会撞段）</li>
+<li>改 IP 后证书重建 → 已信任客户端要重新信任（p327），提前告知客户</li>
+</ul>
+<p>输出契约：可用的 OMC 管理会话 + 新 IP 规划表（设备/PC/DHCP 池）+ 时间同步确认。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>pbxk1064 是出厂一次性首连密码；生产设备必须已更换——不得把教材默认值写到生产</li>
+<li>全部实验 IP/密码/账号为 RLAB 口径（192.168.1.x 全套），生产按客户网段整体替换</li>
+<li>OMC 版本与设备软件版本的兼容矩阵原书未提； Rainbow 云侧开户/订阅/成员操作属 starter bundle 范畴</li>
+<li>IPDSP 是实验用 ALE 软话机客户端，生产装机同样适用"时间先行"原则但产品形态不同</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.oxoa.foundation-ip · 来源：OXOCXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OXO Connect - Advanced (Participant's Guide, Edition 18) | edition: Edition 18 | pages: 601 页 -->

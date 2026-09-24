@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>远程接入架构与 DMZ 双边缘</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch · 移动与远程办公</h2><p>Edition 10 · 287 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte225en/index.html">课程首页</a><a href="/courses/openxte225en/digest.html">精华长文</a><a href="/courses/openxte225en/overview.html">教书理解</a><a href="/courses/openxte225en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte225en/skills/otm-dmz-security-channels.html">远程接入架构与 DMZ 双边缘</a><a href="/courses/openxte225en/skills/otm-certificate-pki.html">证书策略与签发（CA、封装、SAN、自建 CA）</a><a href="/courses/openxte225en/skills/otm-ot-server-settings.html">OpenTouch 服务器侧远程访问设置</a><a href="/courses/openxte225en/skills/otm-otsbc-deployment.html">OTSBC 部署与向导配置</a><a href="/courses/openxte225en/skills/otm-reverse-proxy.html">反向代理两路线部署与选型（内嵌 RP、Nginx）</a><a href="/courses/openxte225en/skills/otm-otc-pc-modes.html">OTC PC 远程办公两模式（multi-devices、Nomadic SIP）</a><a href="/courses/openxte225en/skills/otm-smartphone-provisioning.html">OTC 智能手机开通（Connection 用户、自动对象、R2.6 单设备）</a><a href="/courses/openxte225en/skills/otm-iphone-apns.html">iPhone+ APNS 推送专项</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte225en/skills/otm-client-access-profiles.html">客户端远程接入两步法（接入配置与路由档案）</a><a href="/courses/openxte225en/skills/otm-smartphone-modes.html">智能手机连接模式与回落（WiFi/3G4G/DTMF、无 SIM）</a><a href="/courses/openxte225en/skills/otm-vmware-ovf.html">VMware 虚机 OVF/OVA 部署</a><a href="/courses/openxte225en/skills/otm-lab-dialtest.html">实验环境与拨测验证（RLAB、编号计划、模拟器预期表）</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte225en/index.html">ot-mobility-remote-worker（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte225en/index.html">OPENXTE225EN</a><span>/</span><span aria-current="page">远程接入架构与 DMZ 双边缘</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>远程接入架构与 DMZ 双边缘</h1></div><dl><div><dt>Skill ID</dt><dd>otm-dmz-security-channels</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>远程接入架构与 DMZ 双边缘（需求分类、组件分工、用例矩阵、DNS 双侧）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Employees who benefit from an OTC client (PC/Mobile) must be able to connect remotely from the Internet to the OpenTouch system with full services"（p34）
+"* Reverse Proxy function can be delivered by OTSBC server; ** VPN access scenario that is a technological alternative"（p35）
+"Reverse Proxy … In charge of managing the HTTPs session to access the Telephony services … OTSBC: In charge of managing and securing the SIP session and the media streams (audio and video) based on RTP or SRTP"（p37）
+"N.U : Not Used (because no VoIP/video on this client); N.A : Not Applicable"（p82）</p>
+</blockquote>
+<p>出处：OPENXTE225EN p33-46, p81-85, p121-127。</p>
+<h2>I — 自述</h2>
+<p>三类远程接入需求决定方案边界：</p>
+<ol>
+<li>公司员工持 OTC 客户端从互联网全功能接入（话音/视频/IM/协作）</li>
+<li>全体员工（含无 OpenTouch 账号者）可远程使用 Web 协作</li>
+<li>外部伙伴/客户从互联网进会议与 Web 协作</li>
+</ol>
+<p>总拓扑是 DMZ 双边缘：反向代理管 HTTPS/Web 服务（话音控制、目录、留言、协作/桌面共享），OTSBC 管 SIP 信令与 RTP/SRTP 媒体；VPN 在拓扑图上标为"技术替代方案"，全书不展开。五类过墙流量：话音 Web 服务、协作 Web 服务、SIP 信令、RTP 媒体、PSTN 话音流。</p>
+<p>组件分工速记：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>职责</th>
+<th>关键特性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>反向代理（RP）</td>
+<td>远程客户端到话音 Web 服务的 HTTPS 会话</td>
+<td>拓扑隐藏、认证（LDAP/RADIUS）、URL 改写/封禁、SSL 卸载；第三方产品</td>
+</tr>
+<tr>
+<td>OTSBC</td>
+<td>SIP 会话与 RTP/SRTP 媒体的管理与保护</td>
+<td>DoS 防护、拓扑隐藏、TLS/SRTP 加密、QoS 与 CAC、NAT 穿越、紧急号码路由</td>
+</tr>
+</tbody>
+</table></div>
+<p>客户端×边缘组件矩阵（查表依据，p40-42/p82）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>客户端</th>
+<th>需 RP</th>
+<th>需 OTSBC</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OTC PC</td>
+<td>是</td>
+<td>是</td>
+<td>全功能（VoIP/视频/IM/桌面共享）</td>
+</tr>
+<tr>
+<td>OTC PC One</td>
+<td>是</td>
+<td>N.U.</td>
+<td>无 VoIP/视频，SBC 用不上（非不支持）</td>
+</tr>
+<tr>
+<td>OTC Web</td>
+<td>是</td>
+<td>—</td>
+<td>协作，仅需 RP</td>
+</tr>
+<tr>
+<td>OTC WebRTC</td>
+<td>是</td>
+<td>是</td>
+<td>浏览器音视频</td>
+</tr>
+<tr>
+<td>OTC iPhone/Android</td>
+<td>是</td>
+<td>是</td>
+<td>带 * 仅音频无视频</td>
+</tr>
+</tbody>
+</table></div>
+<p>DNS 内外分离：内部 DNS 把 OT/conference/SBC FQDN 解析到私网 IP（OTSBC 的 WAN 接入不需内部申报）；公共 DNS 把同一批 FQDN 解析到 RP/SBC 公网 IP；conference FQDN 内部解析到会议簇 IP。同一逻辑服务"内外两套名字+两套地址"。</p>
+<h2>A1 — 书中案例</h2>
+<p>用例矩阵查表（p40-42/p82，讲义案例）：</p>
+<ol>
+<li>确定 user 类型：公司员工（OTC PC/One/智能手机）或外部来宾（OTC Web/WebRTC）</li>
+<li>查矩阵行：该客户端需要 RP 吗、需要 OTSBC 吗</li>
+<li>读符号：N.U.=该客户端无 VoIP 所以 SBC 用不上；N.A.=该组合不适用</li>
+<li>输出组件清单：如"OTC PC One 用户只需 RP，不占 SBC 资源"</li>
+<li>对照 DNS 布局（p43/p85）：内部用户走私网解析，场外用户走公共 DNS 到 RP/SBC 公网 IP</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户要开放远程办公；售前问"需要买/部署哪些边缘组件"；外部客户要进会议；规划 DNS/NAT；有人说"直接给每人发 VPN 就行"。</p>
+<p>语言信号：远程接入 / remote access / DMZ / 边缘 / 双边缘 / 反向代理 / Reverse Proxy / OTSBC / SBC / VPN / 拓扑 / 用例矩阵 / 拓扑隐藏 / SSL 卸载 / 桌面共享 / DNS 解析。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>动手签证书 → 证书与 PKI 能力</li>
+<li>服务器侧申报动作 → OT 服务器侧设置能力</li>
+<li>反代怎么装 → 反向代理部署能力</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：用户类型清单（员工/来宾、各端形态）、公网资源（可做 NAT 的公网 IP 与域名）、内外 DNS 控制权。</p>
+<ol>
+<li>按 p34-36 归类三类需求，确认是否含外部来宾（决定 conference 通道是否必选）。完成标准：需求清单带用户数与客户端形态</li>
+<li>查用例矩阵输出组件清单（RP 必须；有 VoIP 的端加 OTSBC）。完成标准：每类用户有明确的边缘组件行</li>
+<li>定反代路线倾向（内嵌 vs 独立）留待部署能力展开，此处只定"要不要兼任"。完成标准：拓扑图标注 RP 归属</li>
+<li>画 DNS 双侧表：每个公共 FQDN 两行（内部解析目标/公共解析目标）。完成标准：conference FQDN 在两列都有落点</li>
+<li>列端口与 NAT 规划口径：RP 侧公网 443 与 8016（EVS 通知）；OTSBC 侧 5261（OTC）、8061（WebRTC）、RTP/SRTP 7000-7499。完成标准：端口表带 NAT 公私 IP 对占位</li>
+<li>VPN 诉求按"技术替代"口径说明：功能可行但非主推路线，书内不展开</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户问 VPN 隧道/加密算法细节 → 停，书外内容，转客户网络规范</li>
+<li>客户问并发容量/CAC 阈值 → 停，书内无数值（n30），指向 TC2639/8AL90065USAG 或 sizing 工具</li>
+<li>公共 DNS 不在客户或自己控制下 → 停，先解决 DNS 归属再谈公共解析</li>
+</ul>
+<p>输出契约：拓扑选型结论（双边缘组件清单）+ DNS 双侧解析表 + 端口/NAT 规划表。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>VPN 全书仅标"技术替代方案"，无任何配置内容；不要把双边缘方案说成"唯一方案"，但按官方口径它是主路线（p35）</li>
+<li>容量与体验数值全书缺位：CAC 只在 SBC 功能列表出现一次、无阈值；游牧池无算例；带宽无口径（n30，另见 needs-review nr-07）</li>
+<li>RP 是第三方产品（ALE 不提供）；OTSBC 为 ALE OEM（AudioCodes Mediant 平台）</li>
+<li>RP 由 OTSBC 兼任时，认证部分必须另配服务器（p37/p140，两处口径一致）</li>
+<li>公共 DNS 归属（域名商/客户 IT）是原书未证明的假设；端口/IP 具体值均为实验口径（见 book/overview 环境区）</li>
+<li>用例矩阵的 N.U. 与 N.A. 语义不可混用：OTC PC One 是"没有 VoIP 可保护"，别报成"不支持 SBC/加密"（n24）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte225en/skills/otm-certificate-pki.html">证书策略与签发（CA、封装、SAN、自建 CA）</a></p><p class="source-page">能力 ID：cap.otm.dmz-security-channels · 来源：OPENXTE225EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch — 移动与远程办公 (Participant's Guide) | edition: Edition 10 | pages: 287 页 -->

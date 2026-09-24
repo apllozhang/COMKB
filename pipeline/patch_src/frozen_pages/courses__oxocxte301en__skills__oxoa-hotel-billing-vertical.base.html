@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>酒店与计费垂直方案</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OXO Connect · Advanced</h2><p>Edition 18 · 601 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte301en/index.html">课程首页</a><a href="/courses/oxocxte301en/digest.html">精华长文</a><a href="/courses/oxocxte301en/overview.html">教书理解</a><a href="/courses/oxocxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte301en/skills/oxoa-sip-networking.html">SIP 组网：公网网关与私网互联</a><a href="/courses/oxocxte301en/skills/oxoa-numbering-ars-suite.html">ARS 路由套件：三表协作与 Internal ARS</a><a href="/courses/oxocxte301en/skills/oxoa-hotel-billing-vertical.html">酒店与计费垂直方案</a><a href="/courses/oxocxte301en/skills/oxoa-security-hardening.html">系统安全加固</a><a href="/courses/oxocxte301en/skills/oxoa-certificate-suite.html">证书与加密传输（证书/DTLS/TLS-SRTP）</a><a href="/courses/oxocxte301en/skills/oxoa-attendant-suite.html">语音导航套件（AA/MLAA/SCR）</a><a href="/courses/oxocxte301en/skills/oxoa-voicemail-mobility.html">语音邮箱与移动办公</a><a href="/courses/oxocxte301en/skills/oxoa-cloud-connect-fleet.html">Cloud Connect 舰队与远程维护</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte301en/skills/oxoa-foundation-ip.html">交付地基：OMC 首连与 IP 规划</a><a href="/courses/oxocxte301en/skills/oxoa-terminal-ecosystem.html">终端生态：PIMphony 与 SIP 话机接入</a><a href="/courses/oxocxte301en/skills/oxoa-shared-devices.html">共享终端：站群监督、Hot Desking 与 Multiset</a><a href="/courses/oxocxte301en/skills/oxoa-multi-entity.html">多实体与伪多公司</a><a href="/courses/oxocxte301en/skills/oxoa-dect-deployment.html">DECT 无线移动</a><a href="/courses/oxocxte301en/skills/oxoa-maintenance-toolkit.html">维护工具箱：Webdiag、Noteworthy 与 LoLa</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte301en/index.html">oxo-connect-advanced（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte301en/index.html">OXOCXTE301EN</a><span>/</span><span aria-current="page">酒店与计费垂直方案</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>酒店与计费垂直方案</h1></div><dl><div><dt>Skill ID</dt><dd>oxoa-hotel-billing-vertical</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>酒店与计费垂直方案（Hotel 模式、计费三通道、账号码与内部替代）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"OHL allows the synchronization with an Hotel application (PMS) … A PMS is an application used in hotels to handle reservations, check-in, check out, billing, and guest database"（p59）
+"Native Front Desk management on ALE DeskPhone, 4 simultaneous sessions … Room to room call barring … 300 sets (rooms + administrative telephone)"（p64）
+"The OXO Connect provides real time metering on IP network • Metering tickets are transmitted in the XML data format … TicketCollector.xml for current tickets"（p78-80）
+"When activated, AOC Pulse based is deactivated (no mix configuration) • No license"（p73/83）
+"The account codes are configured in the account code table (250 max)"（p93）
+"Example of dialing: the manager wants to substitute to his phone (101, pwd 142536) from the workshop phone 110, to call Australia • 66_101_142536_0+61 2 8306 0000"（p96）</p>
+</blockquote>
+<p>出处：OXOCXTE301EN p57-101。</p>
+<h2>I — 自述</h2>
+<p>酒店方案有两条路线，计费有三条通道，记账有一个编码体系，四者组成垂直整套：</p>
+<p><strong>酒店双路线</strong>（p57-68）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>路线</th>
+<th>通道</th>
+<th>容量/规格</th>
+<th>license</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有 PMS</td>
+<td>OHL（Office Link Driver，V24 或 IP）对接 AHL 兼容酒店软件</td>
+<td>check-in 一步激活账单/DDI/邮箱/语言/密码/姓名</td>
+<td>OHL 无 SW license</td>
+</tr>
+<tr>
+<td>无 PMS</td>
+<td>前台 ALE DeskPhone 内置 Hotel 功能键</td>
+<td>4 并发会话、300 话机、房对房闭锁、房态监控</td>
+<td>无</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>计费三通道</strong>（p72-91）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>通道</th>
+<th>机制</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hotel Metering</td>
+<td>货币/VAT/预付/耗尽切断/蜂鸣阈值/3 级 2 阈/脚注 ≤40 字符</td>
+<td>OMC/Metering/Metering</td>
+</tr>
+<tr>
+<td>Call Accounting Time based</td>
+<td>无 AOC 中继按时长×呼型（国际/国内/本地）出脉冲</td>
+<td>激活即停 AOC 脉冲（互斥）；免 license；首段起即计</td>
+</tr>
+<tr>
+<td>输出通道</td>
+<td>IP：XML 小票（TicketCollector.xml / 归档 _X.xml）经 OLD 供外部计费应用；V24：打印字段+传输参数</td>
+<td>全呼叫跟踪在订阅户 Counting 选 All Calls</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>账号码</strong>（p93-95）：表上限 250 条、码最长 16 位；六字段=码/名称/密码要求/身份识别/闭锁类别/小票掩码（0-9、all、Default）；经功能键或编号计划前缀输入。<strong>内部替代</strong>（p96-101）：格式为 前缀 66 + 分机 + 分机密码 + 外拨号码；场景是“全部话机禁国际、仅经理放行”时任何话机可变成经理外呼——账号码在这里充当权限钥匙。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>酒店模式部署实验</strong>（p69-75，厂商实验）：</p>
+<ol>
+<li>冷复位后进 hotel 模式：OMC Installation Typical 的 Initial Installation Wizard (Hotel)。</li>
+<li>Hotel Parameters 配 check-in 序列（Deposit/姓名/wake-up/DND/语言/闭锁密码）与默认项。</li>
+<li>计费参数：货币、VAT、预付金额、耗尽切断、蜂鸣阈值、3 级 2 阈、脚注（≤40 字符）。</li>
+<li>Call Accounting Time based 按呼型（Int/Nat/Loc）定义脉冲秒数（激活后 AOC 停用）。</li>
+<li>旋转 DDI：客房 DDI 段配 Guest DDI unassigned/assigned（书例 8540 分配给 117 房）。</li>
+<li>房态：确认房态前缀（例 88）；Hotel key 查看 Terminal Class 与 Room status。</li>
+</ol>
+<p><strong>Office Link Driver 实验</strong>（p88-91，厂商实验）：</p>
+<ol>
+<li>OMC Metering 勾选 External metering Activation IP。</li>
+<li>PC 装 OLD 驱动（管理员身份），安装中选 Metering mode。</li>
+<li>Configuration Application 填 OXO IP、管理员密码，TestConnection 后启动。</li>
+<li>打外呼生成计费小票。</li>
+<li>检查 TicketCollector.xml（C:\Users\Public\Public Documents）出现小票记录。</li>
+</ol>
+<p><strong>账号码与内部替代实验</strong>（p97-101，厂商实验）：</p>
+<ol>
+<li>建码 123456 名 CLIENT A、掩码 4（小票遮 4 位）。</li>
+<li>内部编号计划建前缀 69（Account code new）；用 IPDSP 打电话查小票。</li>
+<li>给 104 建可编程键 Account code new 并测试。</li>
+<li>内部替代：核对前缀 66（base 1000 指向账号码 1000 SUBSTITUTION）。</li>
+<li>barring 表 3 删 00 禁止项，经理话机闭锁类别改 3（放行国际）。</li>
+<li>锁定话机拨 66-101-142536-0-0210x41100 以经理身份外呼成功（p101）。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：旅馆/民宿/公寓上电话系统；前台要 check-in/check-out 和房态；客房电话计费与预付切断；没有 PMS 怎么办；外呼费用记到客户/项目账号；经理不在办公室要发国际长途；小票要遮号码位。</p>
+<p>语言信号：酒店 / hotel / PMS / OHL / check-in / 入住 / 房态 / 房对房闭锁 / wake-up / 预付 / deposit / 计费 / metering / TicketCollector / 账号码 / account code / 内部替代 / substitution / 66 前缀。</p>
+<p>与相邻能力区分：计费依赖的中继通道归 SIP 组网能力；小票经 OLD XML 给外部应用后如何入财务系统在书外；多实体分账场景（两公司共享系统）归多实体能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：酒店规模（客房数/前台并发）、有无 PMS 及其 AHL 兼容性、币种与费率策略、记账对象清单。PMS 兼容性未知 → 判停先查 hospitality ecosystem PDF（DSPP）。</p>
+<ol>
+<li>选路线：有 AHL 兼容 PMS 走 OHL（V24/IP）；没有则用前台话机内置 Hotel 键。完成标准：路线成文</li>
+<li>进 hotel 模式：冷复位后跑 Wizard Hotel（默认 Business 模式，直接跑不生效）。完成标准：Hotel 参数可配</li>
+<li>配 Hotel Parameters：check-in 序列、Do at check-in、房态定时、默认语言/闭锁/wake-up、房对房闭锁。完成标准：参数落表</li>
+<li>配计费：Hotel Metering 全参数；无 AOC 中继启用 Call Accounting Time based（确认放弃 AOC）。完成标准：计费通道可用</li>
+<li>配输出：IP 走 OLD（装驱动、TestConnection、核 TicketCollector.xml）或 V24（传输参数）。完成标准：小票落地</li>
+<li>配旋转 DDI 与房态：Guest DDI unassigned/assigned；房态前缀与 Hotel key 字段核对。完成标准：入住流程走通</li>
+<li>（记账需求）建账号码表 + 前缀/功能键入口；内部替代场景核对 66 前缀与闭锁配合。完成标准：小票带码、替代外呼通</li>
+<li>验证：试入住/退房、试呼计费小票、锁定话机替代外呼。完成标准：三场景闭环</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>冷复位会清数据 → 生产改造前必须完整备份（n08：默认 Business 模式必须冷复位切 hotel）</li>
+<li>已有 AOC 脉冲计费的站点 → 不要开 Call Accounting Time based（互斥，n09）</li>
+<li>小票脚注超 40 字符、账号码超 250 条 → 超规格，裁需求</li>
+<li>PMS 不在兼容清单 → 停，先确认 DSPP/生态 PDF 或走无 PMS 路线</li>
+</ul>
+<p>输出契约：酒店路线与参数记录 + 计费通道与小票样例 + 账号码表与替代场景测试结论。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>酒店容量口径：300 话机（客房+行政）、前台 4 并发会话（p64）；Multiset 支持 hotel 模式</li>
+<li>脉冲须由语音运营商传输，否则需外部时长计费器（p72）；外部计费应用的入账逻辑在书外</li>
+<li>PMS 兼容清单以当期 hospitality ecosystem PDF 为准（书引 2025-11 版，跨版本交付需重新核对）</li>
+<li>实验密码/分机号（142536 等）为实验口径；内部替代密码与远程接入码是两套体系，勿混配</li>
+<li>退役/模式切换：冷复位不擦自签证书（n40，推断：净化需另行处理）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte301en/skills/oxoa-sip-networking.html">SIP 组网：公网网关与私网互联</a></p><p class="source-page">能力 ID：cap.oxoa.hotel-billing-vertical · 来源：OXOCXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OXO Connect - Advanced (Participant's Guide, Edition 18) | edition: Edition 18 | pages: 601 页 -->

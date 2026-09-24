@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Rainbow 成员全生命周期管理</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>Rainbow OXO Connect 集成</h2><p>Edition 13 · 251 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte001en/index.html">课程首页</a><a href="/courses/rainxte001en/digest.html">精华长文</a><a href="/courses/rainxte001en/overview.html">教书理解</a><a href="/courses/rainxte001en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte001en/skills/rbx-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte001en/skills/rbx-omc-onboarding.html">OMC 安装首次连接与 IP 规划修改</a><a href="/courses/rainxte001en/skills/rbx-pbx-onboarding.html">OXO 接入 Rainbow 与接入排障</a><a href="/courses/rainxte001en/skills/rbx-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte001en/skills/rbx-gateway-planning.html">WebRTC 网关拓扑决策与容量规划</a><a href="/courses/rainxte001en/skills/rbx-gateway-deployment.html">WebRTC 网关部署与虚拟终端配置</a><a href="/courses/rainxte001en/skills/rbx-attendant-supervision.html">Rainbow 话务台与监督组</a><a href="/courses/rainxte001en/skills/rbx-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte001en/skills/rbx-admin-tools.html">Rainbow 管理员工具（权责/企业目录/信息频道）</a><a href="/courses/rainxte001en/skills/rbx-rcc-association.html">OXO 分机关联与 RCC 模式</a><a href="/courses/rainxte001en/skills/rbx-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte001en/skills/rbx-network-readiness.html">Rainbow 网络就绪核查</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte001en/index.html">rainbow-oxo-connect（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte001en/index.html">RAINXTE001EN</a><span>/</span><span aria-current="page">Rainbow 成员全生命周期管理</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Rainbow 成员全生命周期管理</h1></div><dl><div><dt>Skill ID</dt><dd>rbx-member-lifecycle</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>Rainbow 成员全生命周期管理（创建、设置、删除宽限、账号安全）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Members can be created: Manually • Creation one by one • By invitation • Via email address ... By bulk import • From .CSV file(UTF-8) • Microsoft Azure Active Directory"（p92）
+"When you delete a user, his or her status becomes 'Suspended' for a period of 10 days (called the 'grace period')"（p99）
+"If the user is logged in at the time you make the password change, he/she will be logged out immediately."（p100）
+"(At least 12 characters and contain at least 1 uppercase, 1 number, and 1 special character)"（p93）</p>
+</blockquote>
+<p>出处：RAINXTE001EN p90-110。</p>
+<h2>I — 自述</h2>
+<p>成员 = 邮箱身份的 Rainbow 账户，四条路径开户：</p>
+<ol>
+<li><strong>手动逐个</strong>：Members → Create → 全字段当场配齐（信息最全，适合少量）</li>
+<li><strong>邮件邀请</strong>：Invitations 页签点 Invite（可批量填地址），用户收到 noreply@openrainbow 邮件后自助完成开户，管理员再回补号码/订阅等设置</li>
+<li><strong>CSV 批量导入</strong>：UTF-8 模板（可下载样例）→ 可建/改/删用户、按 MAC 绑设备、设全局参数 → 导入后看同步报告；SSO 场景密码列留空</li>
+<li><strong>Azure AD 同步</strong>：先把 AAD 关联到公司（My Company/Settings，手动操作）→ 建/改/删 + 通讯录搜索；仅 Voice Enterprise 级管理员可用</li>
+</ol>
+<p><strong>成员编辑七分区</strong>（p96）：Information（标识/时区=留言时间戳/可见性/标签）· Permissions · Telephony（设备/分机/公众号码/物理话机）· Programmable keys（可建键组批量套用）· Services（订阅）· Roles（管理权/目录/频道）· Security（改密/改邮箱/改认证）。</p>
+<p><strong>删除规则</strong>：删除 → Suspended 宽限 10 天 → 可恢复或彻底删；恢复后回落 Essential，须重配订阅 + 重挂电话线；宽限期内该邮箱不能用于新建账号。</p>
+<p><strong>密码策略</strong>：≥12 字符 + ≥1 大写 + ≥1 数字 + ≥1 特殊字符（原书口径未单列小写要求）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>手动建户实验</strong>（p102-106）：</p>
+<ol>
+<li>管理员登录，核验自身 Enterprise 订阅</li>
+<li>Members → Create 建 <code>cCpP.user1@...</code>（实验口径）</li>
+<li>填密码/可见性 same as company/订阅 Enterprise</li>
+<li>勾发 enrollment 邮件 → 登实验邮箱收信（查 SPAM、清旧邮件）</li>
+</ol>
+<p><strong>邀请建户实验</strong>（p107-110）：</p>
+<ol>
+<li>Invitations → Invite <code>cCpP.user2@...</code></li>
+<li>用户从邮箱点 Join 完成开户</li>
+<li>管理员补配 Enterprise</li>
+<li>双账户行为测试：互打 / 共享屏幕 / IM 三项全通过</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：批量开户方案选型；用户没收到邮件；删错人怎么救；删除后重建同邮箱报错；改密后用户全掉线；批量改密排期；密码策略是什么。</p>
+<p>语言信号：建用户 / members / 邀请 / invitation / CSV / 批量导入 / Azure AD / AAD 同步 / 删除用户 / grace period / 宽限期 / Suspended / 恢复用户 / 改密码 / 密码策略。</p>
+<p>与相邻能力区分：给成员配电话（设备/分机）见分机关联（路由卡）；订阅开通在公司侧归公司与订阅能力；成员在 Teams 场景的收敛配置属 Teams 集成能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：管理员账号、用户清单（含邮箱）、订阅池余量、认证方式（SSO 与否决定 CSV 密码列）。批量超过数十人 → 优先 CSV/AAD 路径。</p>
+<ol>
+<li>选路径：≤10 人手动或邀请；批量 → CSV（一次性迁移）或 AAD 同步（持续同步诉求）。完成标准：路径确定</li>
+<li>执行开户：</li>
+<li>手动：Members → Create → 全字段（含订阅）。完成标准：成员列表可见</li>
+<li>邀请：Invitations → Invite，用户自助完成开户，管理员回补 Telephony/Services。完成标准：用户完成首登</li>
+<li>CSV：下模板 → 填列 → 导入 → 读同步报告修正错误行。完成标准：报告零错误</li>
+<li>AAD：关联目录 → 同步。完成标准：AD 侧用户在 Rainbow 可见</li>
+<li>七分区核对：尤其 Telephony（设备/分机）与 Services（订阅）——用户"不能打电话"先查这两处。完成标准：电话用户均持 Business/Enterprise/Attendant</li>
+<li>销户：删除 → 记录宽限截止日 → 与客户确认恢复/彻底删。完成标准：处置决定留档</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>新建账号报邮箱被占用 → 查是否 10 天内刚删除的账号（宽限期内邮箱不可复用），等期满或走恢复</li>
+<li>误删恢复后用户"没电话了" → 预期行为：恢复即回落 Essential，重新分订阅 + 重挂电话线，不是数据丢失</li>
+<li>疑似账号冒用 → Security 页立即改密（在线会话即被踢出），这是特性手段；日常批量改密避开工作时间并提前告知</li>
+<li>AAD 导入按钮不存在 → 操作者非 Voice Enterprise 级，先调权限再操作</li>
+</ul>
+<p>输出契约：开户/销户完成清单 + 订阅分配记录 + 宽限期台账（如涉删除）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>平台邮件可能进垃圾箱：原书两处重复警告（p106/p108）；生产应建议客户将 openrainbow.com 发件域加白</li>
+<li>邮箱 = 账号身份且一人不能属两家公司（p47）：跨公司人员归属要先做唯一性决策</li>
+<li>CSV 模板字段与 AAD 属性映射细节以支持站点为准（原书只给样例文件指针）</li>
+<li>密码复杂度按原书四处一致口径记录（≥12 + 大写/数字/特殊字符）；是否强制小写以平台实际校验为准</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte001en/skills/rbx-rcc-association.html">OXO 分机关联与 RCC 模式</a></p><p class="source-page">能力 ID：cap.rbx.member-lifecycle · 来源：RAINXTE001EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: Rainbow OXO Connect (Participant's Guide, Edition 13) | edition: Edition 13 | pages: 251 页 -->

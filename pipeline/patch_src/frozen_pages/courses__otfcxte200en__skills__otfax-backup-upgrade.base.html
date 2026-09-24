@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OTFC 备份、恢复、升级与删除策略（三数据域、五步升级法、零保留）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch Fax Center · Starter</h2><p>Edition 04 · 233 页 · 文档整理入库（11 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otfcxte200en/index.html">课程首页</a><a href="/courses/otfcxte200en/digest.html">精华长文</a><a href="/courses/otfcxte200en/overview.html">教书理解</a><a href="/courses/otfcxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otfcxte200en/skills/otfax-installation-ftw.html">OTFC 首次交付（宿主准备、安装、FTW、许可）</a><a href="/courses/otfcxte200en/skills/otfax-sip-channel-integration.html">OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）</a><a href="/courses/otfcxte200en/skills/otfax-mail-exchange-integration.html">OTFC 邮件与 Exchange 集成（SMTP 网关、FAX 连接器、通知排障）</a><a href="/courses/otfcxte200en/skills/otfax-user-administration.html">OTFC 用户与管理员管理（双用户源、CSV、两级管理员）</a><a href="/courses/otfcxte200en/skills/otfax-profile-policy.html">OTFC Profile 策略与电话簿（限制组、呼号限制、通知 Profile、LDAP 电话簿）</a><a href="/courses/otfcxte200en/skills/otfax-directory-routing.html">OTFC 高级目录集成与来传真路由（LDAP、Lookup、NT 免密、路由表、DTMF、Modification）</a><a href="/courses/otfcxte200en/skills/otfax-services-operations.html">OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）</a><a href="/courses/otfcxte200en/skills/otfax-backup-upgrade.html">OTFC 备份、恢复、升级与删除策略（三数据域、五步升级法、零保留）</a><p class="course-nav-group">路由能力</p><a href="/courses/otfcxte200en/skills/otfax-client-coversheet.html">OTFC 客户端部署与封页定制（四件套、Web Client、GPO、封页五步）</a><a href="/courses/otfcxte200en/skills/otfax-solution-planning.html">OTFC 方案评估与部署规划（容量协议合规、架构拓扑、支持矩阵）</a><a href="/courses/otfcxte200en/skills/otfax-reports-monitoring.html">OTFC 报表与监控（31 报表、BIRT、SNMP V2 陷阱）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otfcxte200en/index.html">ot-fax-center（11 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otfcxte200en/index.html">OTFCXTE200EN</a><span>/</span><span aria-current="page">OTFC 备份、恢复、升级与删除策略（三数据域、五步升级法、零保留）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OTFC 备份、恢复、升级与删除策略（三数据域、五步升级法、零保留）</h1></div><dl><div><dt>Skill ID</dt><dd>otfax-backup-upgrade</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OTFC 备份、恢复、升级与传真删除策略（三数据域、停服语义、五步升级法、零保留）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Backups cannot be performed live … All fax server services (including MySQL) must be stopped (not killed) before backing up."（p216）
+"Make copies of OTFC Data folders … the Data folder • The Bin folder • The Config folder … Export the HKEY_LOCAL_MACHINE\SOFTWARE\Interstar Technologies key from Regedit to a .reg file"（p218）
+"1.Make sure the system is sane 2.Stop traffic 3.Stop services 4.Backup the data 5.Upgrade the system"（p222）
+"There are two types of fax elements that can be deleted, either separately or together: • The fax records … • The fax documents, corresponding to the fax image files stored in the Mediastore folder"（p223）</p>
+</blockquote>
+<p>出处：OTFCXTE200EN p216-224（含 How-To 实验 8）、p230-232。</p>
+<h2>I — 自述</h2>
+<p>灾难底线四件事：</p>
+<ol>
+<li><strong>备份三数据域</strong>：配置与状态（注册表 + Config/Data 文件夹 + MySQL）；传真元数据（MySQL 库）；传真图像与文档（Data\MediaStore）。备份动作口诀：停服（xmsc -oa）、拷 Data/Bin/Config、拷 MySQL 数据目录、导出 Interstar Technologies 注册表键、恢复运行（xmsc -aa）</li>
+<li><strong>停服语义差</strong>：备份前服务必须正常停止（not killed，留状态落盘）；恢复前服务停止（can be killed，数据反正被覆盖）；备份不能热备，约维护窗口</li>
+<li><strong>恢复四前提</strong>：环境与备份时相似、版本等同、拓扑一致、数据回灌到与原安装相同的文件系统路径；恢复前先擦除现有数据；用户私人电话本不在系统备份内（AppData\Roaming\Fax\PhoneBook，用户自备）</li>
+<li><strong>升级五步法</strong>：确认系统健康、停流量、停服务、备份数据、执行升级；善后四口径——升级自动备份被改的状态文件但 CompanyConfig/XmediusArchive 两个数据库除外（升级前手工备库）、Web 包 xmedius.war 整包替换（自定义界面改动要重做）、自定义工具先在测试系统验证、新第三方软件装新禁旧但保留在盘上</li>
+<li><strong>删除策略</strong>：传真记录（归档库元数据）与传真文档（Mediastore 图像文件）可分开或一起删，支持零保留合规</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>OTFC 备份与恢复</strong>（p230-232，实验 8，路径实验口径）：</p>
+<ol>
+<li>管理界面确认全组件 Active 后，Bin\Util 执行 xmsc -oa 停全部传真服务</li>
+<li>停 mysql5 服务</li>
+<li>拷贝 FaxCenter 目录下 Data、Bin、Config 三文件夹</li>
+<li>拷贝 C:\Program Files\MySQL\MySQL Server 8.0\Data 数据库目录</li>
+<li>regedit 导出 HKEY_LOCAL_MACHINE\SOFTWARE\Interstar Technologies 键为 .reg 文件</li>
+<li>xmsc -aa 恢复传真服务</li>
+<li>恢复演练按同序停服，回灌三文件夹与 MySQL 目录，按需导入 .reg，再 xmsc -aa 与启动 mysql5</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：换服务器/重装系统前；版本升级窗口；客户合规要求数据零保留；磁盘满了清历史传真；恢复演练；升级后 Web 界面自定义丢了。</p>
+<p>语言信号：备份 / backup / 恢复 / restore / MediaStore / MySQL / mysql5 / 注册表 / Interstar Technologies / .reg / 冷备 / 停机窗口。</p>
+<p>语言信号（续）：升级 / upgrade / xmedius.war / CompanyConfig / XmediusArchive / 删除策略 / deletion / 零保留 / zero retention / GDPR。</p>
+<p>与相邻能力区分：升级前的服务健康检查与日志 → 服务运维能力；停流量涉及的 OXE 话路 → SIP 通道集成能力；删除策略的合规条款解读在书外。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：维护窗口（停机）、备份存储介质、目标恢复环境规格（版本/拓扑/路径）、升级包与 Release Notes（书外）、合规保留要求。</p>
+<ol>
+<li>预检：System Monitor ➤ Services Status 全组件 Active；确认无进行中传真作业。完成标准：系统健康可进窗口</li>
+<li>冷备：xmsc -oa 停全部传真服务（等待正常退出，禁 taskkill）→ 停 mysql5。完成标准：两类服务均为"已停止"</li>
+<li>拷数据：Data/Bin/Config 三文件夹 + MySQL 数据目录 + 导出 Interstar Technologies 注册表键。完成标准：三类备份物落盘并校验</li>
+<li>恢复运行：xmsc -aa + 启动 mysql5，回读 Services Status。完成标准：全组件 Active</li>
+<li>升级窗口（如执行）：按五步法走，升级前手工备份 CompanyConfig 与 XmediusArchive 两库。完成标准：升级完成且两库有备份</li>
+<li>升级善后：核对 xmedius.war 替换后的 Web 界面；自定义工具（外部通知/JavaApi 脚本/查归档库报表）逐个验证。完成标准：自定义项全部恢复或重做</li>
+<li>删除策略（如需）：按合规口径配置传真记录与传真文档的删除（可分开/一起，支持零保留）。完成标准：策略生效且有确认记录</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>备份脚本里是强杀服务 → 停，改为正常停止（not killed）；强杀备出的档可能损坏，属高危操作</li>
+<li>恢复环境与备份时版本/拓扑/路径不一致 → 停，先对齐环境再回灌，否则恢复不保证可用</li>
+<li>升级想跳过"备份数据"一步 → 停，五步法的第 4 步不可省，且必须含手工备库（数据库不在升级自动备份内）</li>
+<li>客户要"删一半留一半"的混合保留 → 停，书内口径是记录与文档两类可分开/一起删，粒度到类不到条</li>
+<li>零保留生效后客户又要追溯历史 → 停，删除不可逆，合规口径需客户书面确认后再执行</li>
+</ul>
+<p>输出契约：备份物清单（三文件夹/MySQL 目录/.reg）+ 恢复演练记录 + 升级窗口执行单（五步法逐项打勾）+ 删除策略配置与客户确认记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>MySQL 随第三方组件安装（书内默认装成功）；mysql5 服务名与 MySQL Server 8.0 路径为实验口径，生产按实际安装核对</li>
+<li>备份三域不含用户私人电话本（用户自备）；引导进 Public 电话簿属整理建议（推断）</li>
+<li>升级目标版本的兼容性与 Release Notes 在书外；本书只给流程骨架</li>
+<li>删除操作不可逆；GDPR/HIPAA 类合规条款的具体解读在书外，本书只提供"零保留可配置"的技术能力</li>
+<li>xmedius.war、CompanyConfig、XmediusArchive 等命名揭示产品 XMedius 血统（键名/文件名推断，书中未明说）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otfcxte200en/skills/otfax-services-operations.html">OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）</a></p><p class="source-page">能力 ID：cap.otfax.backup-upgrade · 来源：OTFCXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch Fax Center - R9.2 Starter (Participant's Guide, Edition 04) | edition: Edition 04 | pages: 233 页 -->

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>DECT 用户创建与手机注册/注销</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise ·​ DECT 解决方案</h2><p>Edition 12 · 298 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/dectxte200en/index.html">课程首页</a><a href="/courses/dectxte200en/digest.html">精华长文</a><a href="/courses/dectxte200en/overview.html">教书理解</a><a href="/courses/dectxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/dectxte200en/skills/dect-pari-identifier.html">DECT 标识号码体系与 multi-PARI 适配</a><a href="/courses/dectxte200en/skills/dect-product-selection.html">DECT 产品线选型与拓扑决策</a><a href="/courses/dectxte200en/skills/dect-ipxbs-deployment.html">8378 IP-xBS 部署与故障换站</a><a href="/courses/dectxte200en/skills/dect-xbs-sync-topology.html">xBS 空中同步体系与组网域（含外部同步与多站点）</a><a href="/courses/dectxte200en/skills/dect-handset-registration.html">DECT 用户创建与手机注册/注销</a><a href="/courses/dectxte200en/skills/dect-mixed-mode.html">混合 DECT 基础设施部署（TDM + xBS、PLI 统一）</a><a href="/courses/dectxte200en/skills/dect-auto-reregistration.html">DECT 手机自动重注册（PARI/PLI 变更零接触迁移）</a><a href="/courses/dectxte200en/skills/dect-firmware-management.html">DECT 固件双轨升级管理（基站 downstat x / 手机 OTA downstat m）</a><p class="course-nav-group">路由能力</p><a href="/courses/dectxte200en/skills/dect-maintenance-troubleshooting.html">DECT 日常维护与排障（命令族/syslog/WBM）</a><a href="/courses/dectxte200en/skills/dect-radio-survey.html">DECT 无线覆盖勘测（RSSI 门槛/SSK/survey mode）</a><a href="/courses/dectxte200en/skills/dect-ibs-deployment.html">8379 IBS 基础设施部署（UA 板卡/布线/建站）</a><a href="/courses/dectxte200en/skills/dect-sip-dect.html">8328 SIP-DECT 部署（四步注册/双小区）</a><p class="course-nav-group">已安装技能</p><a href="/courses/dectxte200en/index.html">dect-solutions（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/dectxte200en/index.html">DECTXTE200EN</a><span>/</span><span aria-current="page">DECT 用户创建与手机注册/注销</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>DECT 用户创建与手机注册/注销</h1></div><dl><div><dt>Skill ID</dt><dd>dect-handset-registration</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>DECT 用户创建与手机注册/注销（webadmin 与 dectinston/dectrm 双通道）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Warning THE POINT 2.2 HAS TO BE DONE MORE OR LESS SIMULTANEOUSLY WITH POINT 2.1.1 OR 2.1.2 TO REGISTER A DECT ONLY ONE OF THE 2 METHODS MUST BE USED"（p169）
+"command dectinston <directory number> or dectinston -g ... Wait until the set rings, but you don't have to hang up!!! Press 0 to leave. Installation succeed. Effective Security Level : Use Authentication"（p170）
+"Warning TO DEREGISTER A DECT ONLY ONE OF THE 2 METHODS MUST BE USED: POINT 1.1.1 OR 1.1.2"（p175）
+"If the handset has been deregistered to be changed/replaced ... it is not necessary to delete the user from the OXE DB."（p177 Tips）</p>
+</blockquote>
+<p>出处：DECTXTE200EN p162-177, p235-241。</p>
+<h2>I — 自述</h2>
+<p>手机注册是"系统开启等待 + 手机侧发起"的配对动作，两条铁律：<strong>双通道只能取一</strong>、<strong>系统侧与手机侧操作必须近乎同时</strong>。</p>
+<ol>
+<li><strong>建用户</strong>：Users → Create → 目录号 + 姓名（20 字符内）+ Set type。Set type 决定功能面：GAP（基础服务，8214）或 GAP+/A-GAP（多线扩展、监督键、经理/秘书键，需 8234/8244/8254/8262/8262EX）。</li>
+<li><strong>注册通道 A（webadmin）</strong>：Users / &lt;用户&gt; / DECT set 点 DECT Register，同时在手机侧操作；完成后 IPUI N/IPUI O 字段回填。</li>
+<li><strong>注册通道 B（mtcl）</strong>：dectinston &lt;目录号&gt; 或 -g，（可选）指定基站，核对 GAP 特性回显（DN/用户名/MAO type/PARI/PLI），按 Y；手机响铃后<strong>按 0 退出（不要挂断）</strong>，输出 "Installation succeed. Effective Security Level: Use Authentication"。</li>
+<li><strong>手机侧</strong>：依次按 Yes、Select，输 PIN、Ok，输 AC 码（若系统配置了 AC System，实验 1111），选 Normal、Yes；响一声并屏显注册信息。</li>
+<li><strong>注销</strong>：DECT Deregister（webadmin）或 dectrm &lt;目录号&gt;（Y 确认 → "Operation succeed"，输出含 IPEI），同样双通道取一；换机维护场景不删用户，新手机直接重注册。</li>
+</ol>
+<p>安全级别关联（p35-37/p144/p227）：Security level 三级——Identity（默认，仅核对 IPUI-N）/ Authentication（注册时 AC 双侧比对）/ Encryption（仅 IP-xBS 支持，IBS 不可选）；AC 不一致则注册无法成功。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>注册与注销实验</strong>（p167-177，xBS 版与 IBS 版同构）：</p>
+<ol>
+<li>建用户 31015/31016（GAP+）、31017（GAP）（实验口径）</li>
+<li>mtcl 下 dectinston 31015，核对回显，按 Y；手机响铃按 0，输出 "Installation succeed"</li>
+<li>有效安全级别显示 Use Authentication（AC=1111 时手机侧输入该码）</li>
+<li>webadmin 核验 IPUI N/IPUI O 字段已回填（p169）</li>
+<li>注销：dectrm 31015 → Y → "Operation succeed"（输出 IPEI 1410309133756，p176）；手机屏显已注销</li>
+<li>换机演练：不删用户，直接用新手机重注册（p177 Tips）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：给员工开通 DECT 分机；手机注册不上；注册到一半超时；要不要选 GAP 还是 GAP+；员工换新手机；离职回收手机。</p>
+<p>语言信号：注册 / register / DECT Register / dectinston / 注销 / deregister / dectrm / IPUI / IPEI / GAP / GAP+ / A-GAP / Set type / AC 码 / PIN / 安全级别 / Security level / 加密。</p>
+<p>与相邻能力区分：PARI/PLI 变更后的批量迁移见自动重注册能力；AC 与安全级别规划见本卡安全段与标识号码能力；8328 手机的 SIP 注册见 SIP-DECT 能力（路由，另一套语义）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：用户清单（目录号/姓名/机型）、系统 AC System 值、基站已在网。基站未入网 → 先回 IP-xBS/IBS 部署能力。</p>
+<ol>
+<li>建用户：Users → Create，目录号/姓名/Set type 按机型定（8214=GAP，82x4/8262=GAP+）。完成标准：用户在库</li>
+<li>选定单一通道：webadmin 或 mtcl，二选一并贯穿到底。完成标准：无双通道混用</li>
+<li>系统侧发起：DECT Register 或 dectinston <dn>，核对回显 PARI/PLI。完成标准：系统进入等待</li>
+<li>手机侧配对（近乎同时）：依次按 Yes、Select，输 PIN、Ok，输 AC 码，选 Normal、Yes。完成标准：响一声、屏显注册信息</li>
+<li>核验：dectinston 输出 Installation succeed；webadmin IPUI N/O 回填。完成标准：三处证据一致</li>
+<li>注销/换机：DECT Deregister 或 dectrm（双通道取一）；换机不删用户直接重注册。完成标准：IPUI 字段清空/更新</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>注册窗口超时失败 → 重新走一遍配对动作（系统侧与手机侧间隔要短），不要在手机上反复重试</li>
+<li>手机输入 AC 后注册被拒 → 双侧 AC 不一致（p36 硬规则），核对 AC System 与手机输入值</li>
+<li>客户要加密 → 先确认基站是 IP-xBS（IBS 无加密，p37），Security level 字段在 IBS 上选不了 Encryption</li>
+<li>用户报"手机显示信息与分机不符" → 核 IPUI 是否串机，必要时 dectrm 后重注册</li>
+</ul>
+<p>输出契约：用户-手机绑定表（目录号/IPUI/机型/安全级别）+ 注销记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>AC 码是唯一需人工管理的秘密（改 AC 需重注册）；UAK/DCK 自动派生、从不上空口（p36）</li>
+<li>认证级别下自动重注册不重算 UAK、安全级别保持不变（p253）</li>
+<li>注册可经任一类基站完成（混合模式下，p165），注册后的手机在两类基站上都可用</li>
+<li>漫游到访问节点的手机、关机手机不参与本卡的批量动作（详见自动重注册能力限制）</li>
+<li>实验 AC=1111 与分机号 31015-31017 为实验口径；生产值按客户安全策略（策略本身在书外）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/dectxte200en/skills/dect-auto-reregistration.html">DECT 手机自动重注册（PARI/PLI 变更零接触迁移）</a></p><p class="source-page">能力 ID：cap.dect.handset-registration · 来源：DECTXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: DECT Solutions (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 298 页 -->

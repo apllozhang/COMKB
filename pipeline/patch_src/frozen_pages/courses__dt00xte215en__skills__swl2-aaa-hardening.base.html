@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>交换机登录接入与 AAA 管理面加固</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniSwitch LAN Access Switching</h2><p>Edition 23 · 587 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/dt00xte215en/index.html">课程首页</a><a href="/courses/dt00xte215en/digest.html">精华长文</a><a href="/courses/dt00xte215en/overview.html">教书理解</a><a href="/courses/dt00xte215en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/dt00xte215en/skills/swl2-aaa-hardening.html">交换机登录接入与 AAA 管理面加固</a><a href="/courses/dt00xte215en/skills/swl2-lightning-config.html">Lightning Config 快速开局</a><a href="/courses/dt00xte215en/skills/swl2-config-lifecycle.html">配置生命周期（保存/认证/回滚/备份）</a><a href="/courses/dt00xte215en/skills/swl2-virtual-chassis.html">Virtual Chassis 堆叠</a><a href="/courses/dt00xte215en/skills/swl2-vlan-routing.html">VLAN 与 VLAN 间路由</a><a href="/courses/dt00xte215en/skills/swl2-link-redundancy.html">链路与生成树冗余（LAG/STP/DHL）</a><a href="/courses/dt00xte215en/skills/swl2-l3-services.html">三层服务与网关冗余（DHCP/Loopback0/静态路由/VRRP）</a><a href="/courses/dt00xte215en/skills/swl2-qos-acl-policy.html">QoS 与 ACL 策略</a><p class="course-nav-group">路由能力</p><a href="/courses/dt00xte215en/skills/swl2-access-guardian.html">Access Guardian 接入认证</a><a href="/courses/dt00xte215en/skills/swl2-diagnostics.html">诊断工具箱八件套</a><a href="/courses/dt00xte215en/skills/swl2-lldp-poe.html">LLDP/LLDP-MED 与 PoE 管理</a><a href="/courses/dt00xte215en/skills/swl2-upgrade-autofabric.html">软件升级与 Auto-Fabric 零触开局</a><a href="/courses/dt00xte215en/skills/swl2-fleet-tools.html">资产与装机工具（Fleet Supervision/OST）</a><p class="course-nav-group">已安装技能</p><a href="/courses/dt00xte215en/index.html">omniswitch-lan-access（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/dt00xte215en/index.html">DT00XTE215EN</a><span>/</span><span aria-current="page">交换机登录接入与 AAA 管理面加固</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>交换机登录接入与 AAA 管理面加固</h1></div><dl><div><dt>Skill ID</dt><dd>swl2-aaa-hardening</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>交换机登录接入与 AAA 管理面加固（认证链、账号治理、五通道、收缩清单）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Authenticated Switch Access (ASA) provides the ability to restrict which users can configure the switch remotely. ... ASA applies to Telnet, FTP, SNMP, SSH, HTTP, and the console and modem ports."（p95）
+"By default : 2 users 'admin and default' ... Up to 64 users can be configured in the local switch database"（p70）
+"From 8.10R03 a warning message will be displayed ... From 8.10R04 it is mandatory to change the password at first login"（p71）
+"In case you disable console access, and you lose all other means of management access ... (RMA necessary in this case)"（p77）</p>
+</blockquote>
+<p>出处：DT00XTE215EN p65-101。</p>
+<h2>I — 自述</h2>
+<p>一切配置的入口是 AAA：按服务类型逐条声明认证链，再叠加管理面收缩。四层结构：</p>
+<ol>
+<li><strong>认证链</strong>：default/console/telnet/ftp/http/snmp/ssh 七条链各自独立，命令 aaa authentication <service> server1 [server2...] [local]；可挂多服务器 fail-through，exit-on-fail enabled=只用第一个可用服务器，disabled=逐个查完（p69）</li>
+<li><strong>账号治理</strong>：本地库存于 flash/system 的 userTable，出厂 admin/default 两用户、上限 64；密码策略四层——复杂度（禁含用户名/禁连续字符/大小写数字非字母最少个数）、生命周期（min/expiration/history/min-age）、强制刷新 password-refresh、创建时 sha+des 加密（p70-74）</li>
+<li><strong>五通道参数</strong>：console（速率分代、可限 admin-only 或禁用）、EMP（旁路 NI 直连 CMM，无口机型 8.9.R1 起 USB-Ethernet dongle 等效）、WebView（R8 强制 SSL）、SSH/Telnet/FTP、SNMP</li>
+<li><strong>收缩清单</strong>：ASA 限源（上限 64 地址）、ip service 禁不安全端口、会话参数（login-attempt/login-timeout/session-limit）、SSH 强加密（strong-ciphers/strong-hmacs/enforce-pubkey-auth）、session banner</li>
+</ol>
+<p><strong>管理会话并发上限</strong>（p80）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>协议</th>
+<th>上限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Telnet（V4/V6）</td>
+<td>6</td>
+</tr>
+<tr>
+<td>FTP（V4/V6）</td>
+<td>4</td>
+</tr>
+<tr>
+<td>SSH + SFTP</td>
+<td>8</td>
+</tr>
+<tr>
+<td>HTTP</td>
+<td>4</td>
+</tr>
+<tr>
+<td>五类总会话（含 console）</td>
+<td>20</td>
+</tr>
+<tr>
+<td>SNMP</td>
+<td>50</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>版本线</strong>（p70-71）：8.10R03 登录警告 → 8.10R4 强制改默认密码 → 8.10R04 强制首登改密。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>远程接入实验</strong>（p91-101，How-To）：</p>
+<ol>
+<li>前置核查：实验交换机已预配到管理网的静态路由（实验口径，非空配置）</li>
+<li>按地址表核对 7 台交换机 EMP 地址（10.4.Pod#.{1,2,3,5,6,7,8}），从 POD 桌面逐台 ping</li>
+<li>show aaa authentication 确认各服务 1st authentication server = local；SSH 为 denied 则 aaa authentication ssh local</li>
+<li>SSH 测试：ssh admin@10.4.<pod>.3 输入交换机密码登录</li>
+<li>CLI 改会话参数：session cli timeout 60，write memory 后 show session config 验证</li>
+<li>WebView 登录 https://10.4.Pod#.3（R8 强制 SSL），Security &gt; ASA &gt; Session &gt; Configuration 改参数</li>
+<li>WebView 写内存：顶部图标栏第三个图标，Yes 保存</li>
+<li>WebView 建 VLAN 59（Layer 2 &gt; VLAN &gt; "+"），CLI show vlan 验证；再经 VLAN Mgmt 删除并 write memory</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新交换机开通管理接入；升级后 admin 默认密码问题；限制管理来源网段；关 Telnet/HTTP 等不安全服务；SSH 加固；WebView 登不上；账号密码策略合规。</p>
+<p>语言信号：AAA / ASA / 登录认证 / SSH 加固 / 管理面 / console / EMP / WebView / SNMP / 密码策略 / password-policy / admin/switch / 限源 / session timeout / 64 用户。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>开局向导一体化的初始化：Lightning Config 能力</li>
+<li>改完配置怎么保存：配置生命周期能力</li>
+<li>userTable 备份细节：配置生命周期能力（备份线）</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：交换机版本（决定强制改密行为）、运维网段、认证基础设施（本地库或 RADIUS/LDAP）、合规要求。全部通道未确认前不收紧。</p>
+<ol>
+<li>基线核查：show aaa authentication 看七条认证链；确认 admin 密码已改（8.10R04 起强制）。完成标准：各服务认证链明确</li>
+<li>声明认证链：外部服务器先 aaa radius-server 声明（建议 TLS），再逐服务 aaa authentication 挂链，保留 local 兜底与 exit-on-fail 取舍。完成标准：show 显示新链</li>
+<li>账号治理：按密码策略四层设定复杂度/生命周期/刷新；权限按命令域最小化授予。完成标准：策略命令生效且新用户可登录</li>
+<li>管理面收缩：先 aaa switch-access management stations 限源（≤64 地址，含运维网段），再 ip service 禁不安全端口，然后会话参数、SSH 强加密与 session banner。完成标准：仅保留授权通道</li>
+<li>验证后固化：从另一条独立通道重登验证未被锁死，write memory 保存。完成标准：新旧双通道均可用</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>计划禁用 console → 停，先确认至少两条独立远程通道可用，否则全部丢失即 RMA</li>
+<li>WebView 登录失败 → 先 show aaa authentication 查 Http 服务类型（默认服务开但认证未授权），再怀疑账号</li>
+<li>http:// 访问被重定向 → R8 强制 SSL 属预期，改用 https 并接受自签名证书</li>
+<li>需要多因子认证细节 → 超出本书，指向 MFA Application Note（书外）</li>
+</ul>
+<p>输出契约：可用的管理接入清单（通道/认证链/账号策略）+ 已生效的收缩配置 + 保存确认。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>出厂默认 admin/switch、本地库 64 用户上限；升级存量设备后必须逐一核查默认口令是否已换（升级不等于改密）</li>
+<li>console 速率按型号查分代表（多数 9600；6900 部分 V72/C32 系、6860N/6870 为 115200），勿沿用单一默认值（nr-04）</li>
+<li>EMP 相关命令适用于 dongle 等效口；VC 场景所有成员都要插 dongle 才有完整 VC EMP</li>
+<li>实验环境双凭据（admin/Superuser=1 与 admin-netadv/Superuser01!）为 R-Lab 特有，见 book/overview 环境区</li>
+<li>RADIUS/LDAP 服务器侧的部署（用户库、证书）在书外；本书只给交换机侧声明与默认参数（retries 3/timeout 2 秒/1812/1813）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/dt00xte215en/skills/swl2-lightning-config.html">Lightning Config 快速开局</a></p><p class="source-page">能力 ID：cap.swl2.aaa-hardening · 来源：DT00XTE215EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniSwitch LAN Access Switching (Participant's Guide, Edition 23) | edition: Edition 23 | pages: 587 页 -->

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>SIP TLS 扩展加密</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 加密解决方案</h2><p>Edition 05 · 410 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte421en/index.html">课程首页</a><a href="/courses/entpxte421en/digest.html">精华长文</a><a href="/courses/entpxte421en/overview.html">教书理解</a><a href="/courses/entpxte421en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte421en/skills/enc-certificate-trust-chain.html">证书与信任链全生命周期</a><a href="/courses/entpxte421en/skills/enc-native-encryption-bringup.html">加密解决方案开通与 lanpbx.cfg</a><a href="/courses/entpxte421en/skills/enc-dtls-verification-maintenance.html">DTLS 验证、排障与维护闭环</a><a href="/courses/entpxte421en/skills/enc-sip-tls-endpoints.html">SIP TLS 扩展加密</a><a href="/courses/entpxte421en/skills/enc-sip-trunk-tls.html">SIP trunk 的 TLS 与 SRTP</a><a href="/courses/entpxte421en/skills/enc-eegw-deployment.html">EEGW/NSP 大容量部署</a><a href="/courses/entpxte421en/skills/enc-abcf-network-encryption.html">ABC-F 网络加密</a><a href="/courses/entpxte421en/skills/enc-mtls-endpoint-authentication.html">mTLS 双向认证与版本限制</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte421en/skills/enc-pcs-failover.html">PCS 加密接管</a><a href="/courses/entpxte421en/skills/enc-pki-workshop-xca.html">XCA 外部 CA 工坊</a><a href="/courses/entpxte421en/skills/enc-application-encryption.html">应用生态加密与安全下载</a><a href="/courses/entpxte421en/skills/enc-lab-environment.html">实验环境底座（RLAB）</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte421en/index.html">oxe-native-encryption（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte421en/index.html">ENTPXTE421EN</a><span>/</span><span aria-current="page">SIP TLS 扩展加密</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>SIP TLS 扩展加密</h1></div><dl><div><dt>Skill ID</dt><dd>enc-sip-tls-endpoints</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>SIP TLS 扩展加密（sipmotor、SEPLOS 端点、注册与媒体验证）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"TLS signaling: True • SRTP offer answer mode: True • Loose Route with RegID: False"（p140）
+"SRTP Working mode Best Effort … 'None' means RTP: audio flow is in clear mode"（p141）
+"Compatible devices (SEPLOS mode only) … Not supported for third-party devices and older ALE SIP devices"（p88）
+"Run a SIP trace (motortrace 3) and look for the 'X-ALE-CALL-ENCRYPTED' information and TLS signaling"（p142）</p>
+</blockquote>
+<p>出处：ENTPXTE421EN p88-90, p139-145, p244-263。</p>
+<h2>I — 自述</h2>
+<p>SIP 扩展加密与 DTLS 线并行的第二条端点线，由 sipmotor 承载（外部 EGW 场景由 NSP 承载）：</p>
+<ol>
+<li><strong>协议与角色</strong>（p67/p88）：</li>
+<li>TLS 1.2（RFC 5246）承载 SIP 信令；OXE 为 TLS 服务器、SEPLOS 端点为客户端</li>
+<li>端口 5061（服务器认证）；仅 TLS 1.2、SHA-2 证书、RSA 2048-4096 位</li>
+<li>&lt;1500 会话内嵌 sipmotor；超出走 EEGW/NSP</li>
+<li><strong>兼容边界</strong>（p88-89）：</li>
+<li>仅 SEPLOS 模式：ALES（PC/Android/iOS）、Enterprise（ALE-x00）、Essential（仅 ALE-30）、Basic（ALE-x）</li>
+<li>第三方 SIP 设备与老 ALE SIP 设备不支持；CCD agent 场景不可用；仅 IPv4</li>
+<li><strong>系统参数三件套</strong>（SIP Parameters，p140）：</li>
+<li>TLS signaling possible=True（开端口监听；改后重启 CS 或双 bascul，netstat -an|grep 5061 验证）</li>
+<li>SRTP offer answer mode=True（SDP 协商/双密钥/可认证/SRTCP RFC 模式；False 为 OXE 集中式单密钥 THALES 模式）</li>
+<li>Loose Route with RegID=False（True 时相应 INVITE 被 488 Not Acceptable Here 拒绝）</li>
+<li><strong>用户参数</strong>（p141）：SIP Extension Parameters 的 Native encryption=Enable；SRTP Working mode=Best Effort（None=RTP 明文）</li>
+<li><strong>冗余与 PCS 行为</strong>（p89-90）：</li>
+<li>TLS anticipation：与两台 CS 各建一条 TLS 链路（按物理 IP 非角色 IP），REGISTER 刷新维持</li>
+<li>链路断时分支 SIP 端点与本地 PCS 建 SIP TLS；远程工作者按 REGISTER Via 头的 SBC IP 识别（库内最多 10 个）</li>
+<li><strong>验证抓手</strong>（p142-145）：sipregister（contact 带 TLS）、csipsets（TLS/SRTP 列）、motortrace 3（Via SIP/2.0/TLS、RTP/SAVP、X-ALE-CALL-ENCRYPTED: YES）</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>SIP TLS 扩展实验</strong>（p139-145，c04）：</p>
+<ol>
+<li>前提：CA/CS 证书已加载、NE 主参数已配（承接 DTLS 主线实验）</li>
+<li>SIP Parameters 三件套按口径配置，重启 CS</li>
+<li>netstat -an | grep 5061 确认端口进入监听</li>
+<li>ALES 用户 31030/31031 开 Native encryption + SRTP Best Effort</li>
+<li>Phone COS/0 开 Display Encrypted Communication=YES</li>
+<li>ALES 间互打，出现盾牌图标</li>
+<li>sipregister 核对 TLS 注册；csipsets 核对 TLS/SRTP 列</li>
+<li>motortrace 3 + traced 抓 SIP trace，核对 INVITE 的 Via 与 X-ALE-CALL-ENCRYPTED</li>
+</ol>
+<p><strong>NSP 变体</strong>（p244-263，c10）：EEGW+NSP 场景同一套参数，SIP trace 中 INVITE 发往 nsp.oxe.company.com:5061、Via 显示 EEGW IP。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：ALES/软话机注册走 TLS；SIP 话机加密怎么开；为什么 SIP 呼叫没有盾牌；488 拒绝；CCD 客服座席能不能加密；SIP 扩展在分支失效时怎么办。</p>
+<p>语言信号：sipmotor / SEPLOS / TLS signaling / 5061 / SRTP offer answer / Best Effort / ALES / ALE-x00 / 盾牌 / X-ALE-CALL-ENCRYPTED / sipregister / csipsets / motortrace / 488。</p>
+<p>与相邻能力区分：NOE 端点（IPDSP/话机）加密归开通能力（DTLS 线）；中继侧 TLS 归 SIP trunk 能力；EEGW/NSP 承载归 EEGW 部署能力；本卡只管 SIP 扩展（SEPLOS）线。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：证书就位、NE 已启用、端点为 SEPLOS 模式清单内设备。设备是第三方 SIP → 判停（不支持）。</p>
+<ol>
+<li>核兼容：按 I 段边界清单核对端点型号与场景（CCD agent、IPv6 直接出局）。完成标准：可加密端点清单</li>
+<li>配系统参数：SIP Parameters 三件套（TLS 信令 True / SRTP offer answer True / Loose Route False）→ 重启 CS。完成标准：5061 监听确认</li>
+<li>配用户：Native encryption=Enable + SRTP Working mode=Best Effort + COS 开加密图标。完成标准：用户级生效</li>
+<li>验证注册：sipregister 看 contact 带 TLS；csipsets 看 TLS/SRTP 列。完成标准：全列 YES</li>
+<li>验证媒体：互打看盾牌；motortrace 3 核对 TLS Via、RTP/SAVP、X-ALE-CALL-ENCRYPTED: YES。完成标准：三证齐全</li>
+<li>冗余核查：双 CS 环境核对 TLS anticipation（物理 IP 双链路）。完成标准：主备均可注册</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>呼叫被 488 Not Acceptable Here 拒绝 → 先核 Loose Route with RegID 是否被置 True（n16）</li>
+<li>SRTP 认证值要改 → 只在对端（如 SBC）同为 Authenticated 时才改；IPDSP 共存站点实际锁定 Authenticated（n18）</li>
+<li>客户要求第三方 SIP 话机或 IPv6 加密 → 本能力不覆盖，声明边界（n14）</li>
+</ul>
+<p>输出契约：TLS 注册 + 加密媒体验证记录 + 兼容性核查清单。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>SIP TLS with SSM 与 Native Encryption SIP TLS 互斥；SIP 扩展加密整体不兼容 IPv6（p159）</li>
+<li>远程工作者加密的前提：LAN 侧 SRTP 要求 OT-SBC 与 OXE 间走 TLS 且用户开加密（p90）</li>
+<li>CCD agent 场景不可用（p89 自注）——呼叫中心座机加密要提前排除</li>
+<li>实验账号/分机号（eevans/alcatel 等）为实验口径，生产按客户环境替换</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte421en/skills/enc-native-encryption-bringup.html">加密解决方案开通与 lanpbx.cfg</a>、<a href="/courses/entpxte421en/skills/enc-eegw-deployment.html">EEGW/NSP 大容量部署</a></p><p class="source-page">能力 ID：cap.enc.sip-tls-endpoints · 来源：ENTPXTE421EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — Native Encryption (Participant's Guide, Edition 05) | edition: Edition 05 | pages: 410 页 -->

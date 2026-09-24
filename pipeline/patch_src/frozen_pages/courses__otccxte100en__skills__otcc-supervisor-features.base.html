@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>座席班长特性配置（监听强插/通用转发/多线/事务码）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Starter</h2><p>Edition  · 649 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte100en/index.html">课程首页</a><a href="/courses/otccxte100en/digest.html">精华长文</a><a href="/courses/otccxte100en/overview.html">教书理解</a><a href="/courses/otccxte100en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte100en/skills/otcc-ccd-matrix-foundation.html">CCD 基础矩阵创建与验证</a><a href="/courses/otccxte100en/skills/otcc-ccs-installation.html">CCS 班长台安装、OXE 声明与 ccs.ini</a><a href="/courses/otccxte100en/skills/otcc-routing-distribution-rules.html">路由规则与分配规则全生命周期</a><a href="/courses/otccxte100en/skills/otcc-agent-supervisor-onboarding.html">ACD 话机、座席与班长创建登录</a><a href="/courses/otccxte100en/skills/otcc-object-tuning.html">CCD 对象参数调优（pilot/PG/队列）</a><a href="/courses/otccxte100en/skills/otcc-voice-guides.html">语音指南三路径（话机录音/.wav 导入/欢迎指南）</a><a href="/courses/otccxte100en/skills/otcc-monitoring-statistics.html">实时监控告警与 Excel 统计</a><a href="/courses/otccxte100en/skills/otcc-multilanguage-calendar.html">多语言语音指南与双日历</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte100en/skills/otcc-supervisor-features.html">座席班长特性配置（监听强插/通用转发/多线/事务码）</a><a href="/courses/otccxte100en/skills/otcc-queue-experience.html">EWT 表与排队位置播报（518）</a><a href="/courses/otccxte100en/skills/otcc-direct-calls-emergency.html">CCD 直接呼叫与紧急关闭</a><a href="/courses/otccxte100en/skills/otcc-statistic-pilot.html">统计型 pilot 与 Call Tag</a><a href="/courses/otccxte100en/skills/otcc-lab-connectivity.html">实验环境与链路打通（POD/ITSP1/ABC-F）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte100en/index.html">otcc-standard-starter（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte100en/index.html">OTCCXTE100EN</a><span>/</span><span aria-current="page">座席班长特性配置（监听强插/通用转发/多线/事务码）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>座席班长特性配置（监听强插/通用转发/多线/事务码）</h1></div><dl><div><dt>Skill ID</dt><dd>otcc-supervisor-features</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>座席班长特性配置（退出类型/监听强插/通用转发/PG 关闭/多线/事务码）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Unavailable type Enter the number of unavailable types you want to enable (i.e. 2) … Display Unavailable type 1 Enter the name … (i.e. Tea)"（p307）
+"Function Enter the ACD function (i.e. ACD Listening) … Mnemo … (i.e. Help Agent)"（p313）
+"Listen The supervisor listens … Agent is notified … if the parameter Show Supervisor Listening is set to 'True' (default=False in France and Germany)"（p315）
+"Transaction Code Dialing Timer … (the unit is 100ms). The minimum value allowed is 10."（p343）
+"Only calls assigned to type codes Business appear in the EXCEL statistics."（p344）</p>
+</blockquote>
+<p>出处：OTCCXTE100EN p265-303（讲义）, p304-347（How-To）。</p>
+<h2>I — 自述</h2>
+<p>班长特性围绕可编程键（Progr.Keys）与 PG/CCD 参数展开，六件事覆盖日常管控：</p>
+<ul>
+<li>退出类型：每 PG 最多 9 种不可用类型供统计（Tea/Lunch 等），OXE 侧 UNAVAILABLE TYPE PARAMETERS 定义，IPDSP 退出键可见选项（p307）</li>
+<li>监听与强插：班长 Help Agent 键响应座席求助后三选——Listen（旁听，座席侧提示受 Show Supervisor Listening 控制，法/德默认 False）、Restrictive（受限强插，仅座席闻声）、Intrusion（三方强插会议）；另可输座席号选 Permanent 永久监控（p313-315）</li>
+<li>通用转发 pilot 四种激活：话机键（+密码）、CCS 界面 Set to FWD、日历到点切换、按规则（by rule）（c10）</li>
+<li>PG 关闭键：Closing PG + DN（留空则按键手选组），关闭后 Normal_WQ 方向关、溢出/重定向开（c10）</li>
+<li>多线座席：Multi-line 键 + ACD line 键；ACD 呼叫优先接入、私人通话被保持（先登出班长才能改键）（c10）</li>
+<li>事务码/业务码：事务码 1-15 位只存通话记录；业务码 1-3 位进 Excel 统计（上限 1000 个）；摘码窗口 Timer 单位 100ms、最小 10（p293/p343-344/n36）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>班长特性实验</strong>（p304-347）：</p>
+<ol>
+<li>PG 31800 定义两种退出类型 Tea/Lunch，IPDSP 退出键出现两选项</li>
+<li>班长话机 Progr.Keys&gt;2 设 ACD Listening（Mnemo=Help Agent）</li>
+<li>公网来话 Agent1 应答后按 Help 键：班长选 Listen/Restrictive/Intrusion 三态分别验证</li>
+<li>Permanent 监控：Help 键输 31500 选 Permanent，此后座席状态变化班长可见</li>
+<li>通用转发：话机键挂 pilot 31600 + 关闭地址 31010，按键+密码激活，来话转 31010</li>
+<li>日历激活法：周一 09:00 Nor / 17:00 Fwd，把 Fwd 时间改成"当前+5 分钟"观察自动切换</li>
+<li>PG 关闭键挂 31800：按键后 Navigator 显示 Normal_WQ 方向关、Overflow/Redirection 开</li>
+<li>事务码：pilot 摘码 Timer=100（10 秒）、位数 3、Business Code=Yes，挂机后输 123 报 Code registered</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：质检要旁听强插；座席求助键没配；下班一键把 pilot 切走；给班长配"优选组"不生效（归体系卡）；报表要按业务分类（业务码）；跨国部署旁听提示合规。</p>
+<p>语言信号：退出类型 / unavailable type / 监听 / listening / 强插 / intrusion / 通用转发 / general forwarding / Closing PG / multi-line / 事务码 / business code / 100ms / Show Supervisor Listening。</p>
+<p>与相邻能力区分：登录登出与挂组 → 座席班长体系能力；wrap-up 计时行为 → 对象调优能力；转发期间听什么指南归语音指南能力；业务码报表呈现归监控与统计能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：座席班长已登入、管控需求清单（退出类型集、监听策略、转发去向、码类型）、合规口径已确认（旁听提示）。</p>
+<ol>
+<li>定义退出类型：OXE PG 31800 的 UNAVAILABLE TYPE PARAMETERS 设类型数与名称。完成标准：IPDSP 退出键可见全部类型</li>
+<li>配班长监听键：Progr.Keys 设 ACD Listening，三态（Listen/Restrictive/Intrusion）逐一验证。完成标准：旁听与强插行为符合预期且提示口径与市场参数一致</li>
+<li>按需开 Permanent：输座席号选永久监控。完成标准：座席退出/忙状态班长实时可见</li>
+<li>配通用转发：先配 pilot 关闭地址，再按场景选四种激活法之一。完成标准：激活后 Navigator 显示 GF 态、来话走关闭地址</li>
+<li>配 PG 关闭键与多线键：先登出班长再改键。完成标准：关闭后流量走溢出/重定向；ACD 呼叫可打断保持中的私人通话</li>
+<li>配事务码：pilot 摘码 Timer（100ms 单位）、位数、Business Code 属性。完成标准：挂机后摘码成功且业务码进 Excel</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>旁听无提示音/无提示消息 → 查 Show Supervisor Listening（法/德库默认 False），跨国部署先核合规（n25）</li>
+<li>摘码窗口"只有 1 秒" → Timer 单位是 100ms，填 10 才是 10 秒（n36）</li>
+<li>报表里看不到码记录 → 15 位事务码不进统计，只有 1-3 位 Business 码进 Excel（n36）</li>
+<li>班长改键改不了 → 多线配置前必须先登出班长（c10 步骤）</li>
+<li>手册附录的 67/66 前缀（Manual Hold/Park）→ 原书明令 DO NOT PROCEED，仅知识参考（n06）</li>
+</ul>
+<p>输出契约：座席班长管控能力集（退出类型/监听/转发/关闭/多线/码）+ 行为验证与合规口径记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>Show Supervisor Listening、Recordable Voice Guides、ABC Local Call Allowed 等默认值随目标库/国家不同，跨市场部署逐一核对（n25/n26）</li>
+<li>监听与强插的合规要求（是否强制提示）按当地法规确认，书外事项（n25）</li>
+<li>事务码进 CCA/CRM 等外部系统的集成在书外（n41）；业务码上限 1000 个（p478）</li>
+<li>实验值（Tea/Lunch、密码 0000、码 123）为实验口径</li>
+<li>模拟话机全靠前缀操作；Annex 前缀步骤仅供参考不可执行（n06）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte100en/skills/otcc-agent-supervisor-onboarding.html">ACD 话机、座席与班长创建登录</a>、<a href="/courses/otccxte100en/skills/otcc-object-tuning.html">CCD 对象参数调优（pilot/PG/队列）</a></p><p class="source-page">能力 ID：cap.otcc.supervisor-features · 来源：OTCCXTE100EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Starter (Participant's Guide, Edition 09) | edition: Edition  | pages: 649 页 -->

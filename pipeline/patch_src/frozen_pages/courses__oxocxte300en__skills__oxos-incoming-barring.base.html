@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>呼入分发与呼出闭锁</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OXO Connect · Starter</h2><p>Edition 16 · 472 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte300en/index.html">课程首页</a><a href="/courses/oxocxte300en/digest.html">精华长文</a><a href="/courses/oxocxte300en/overview.html">教书理解</a><a href="/courses/oxocxte300en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte300en/skills/oxos-data-collection.html">交付前数据采集</a><a href="/courses/oxocxte300en/skills/oxos-commissioning.html">系统开通双路线与首次连接</a><a href="/courses/oxocxte300en/skills/oxos-terminals.html">终端开通（IP 话机与 DECT）</a><a href="/courses/oxocxte300en/skills/oxos-numbering-groups.html">编号计划与四种组</a><a href="/courses/oxocxte300en/skills/oxos-user-features.html">用户功能与语音信箱</a><a href="/courses/oxocxte300en/skills/oxos-sip-trunk.html">公共 SIP 中继</a><a href="/courses/oxocxte300en/skills/oxos-incoming-barring.html">呼入分发与呼出闭锁</a><a href="/courses/oxocxte300en/skills/oxos-maintenance.html">备份恢复、软件升级与复位</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte300en/skills/oxos-hardware-platform.html">硬件平台与容量</a><a href="/courses/oxocxte300en/skills/oxos-audio-messages.html">消息与彩铃</a><a href="/courses/oxocxte300en/skills/oxos-security.html">安全基线与防盗打</a><a href="/courses/oxocxte300en/skills/oxos-rainbow-integration.html">Rainbow 混合云接入速览</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte300en/index.html">oxo-connect-starter（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte300en/index.html">OXOCXTE300EN</a><span>/</span><span aria-current="page">呼入分发与呼出闭锁</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>呼入分发与呼出闭锁</h1></div><dl><div><dt>Skill ID</dt><dd>oxos-incoming-barring</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>呼入分发与呼出闭锁（话务台组 / 时段表 / 三层限制）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The normal / restricted mode is used for INCOMING calls distribution • 2 DDI numbering plans • One for normal mode, another for restricted mode"（p254）
+"An attendant group is always in parallel mode."（p264）
+"6 barring tables = 6 levels of barring"（p274）
+"disable the parameter "Inhibition Time-ranges", so that extensions follow Normal/restricted mode defined in time ranges."（p283）</p>
+</blockquote>
+<p>出处：OXOCXTE300EN p252-291（呼入管理九页讲义+实验、出局管理十一页讲义+闭锁实验）。</p>
+<h2>I — 自述</h2>
+<p><strong>呼入分发</strong>（谁在什么时间接电话）：</p>
+<ul>
+<li>话务台组（OMC/Attendant groups）：成员可为分机、MSG1-20、General bell、VM 端口（拼自动话务员）；组永远并行（齐振）模式</li>
+<li>Normal/Restricted 双 DDI 计划支撑日夜切换：手动话务台 N/R 键或 Time Ranges 按时段自动切组</li>
+<li>时段表（OMC/Time Ranges）：End 列是派生值，改某段结束时间必须改下一行 Start（n17）</li>
+<li>话务台转移：Attendant diversion 功能键转集体缩位号，受话务员密码保护（n18）</li>
+<li>预公告：每时段配模式（无/分发前播完再振/分发中边播边振）+消息号 1-20+仅忙旗标；个人问候 200 条、消息 20 条、总 320 秒</li>
+</ul>
+<p><strong>呼出闭锁</strong>（谁能拨什么）三层判定：</p>
+<ul>
+<li>第一层 Traffic sharing：用户 LC × 中继组 LC 查矩阵，交点为“+”即可占、空白即禁占（默认 LC=12，12∩12=空即默认禁外呼）</li>
+<li>第二层 Barring：用户 Barring LC 经矩阵定位用哪张闭锁表（6 张=6 级）；表内前缀 Authorized/Forbidden，digit counter 控位数；国际 00 默认全表 Forbidden</li>
+<li>第三层路由：主中继组 0/副中继组 #/ARS 表</li>
+<li>关键坑：默认用户不跟随时段——必须逐话机关闭 Feature Rights Part 2 的 Inhibition Time-ranges，否则时段限呼不生效（n19）</li>
+<li>多 DDI 段：noteworthy 地址 DDIonPRI 支持按所用中继线选 DDI 段发送（T0/T2/模拟/VoIP 全适用）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>呼入分发实验</strong>（p262-269）：</p>
+<ol>
+<li>建组 1：加分机 100、101；组 2 只加 MSG1（工作时段提示音）</li>
+<li>Time Ranges/Monday：8am-7pm 活动组 1、7pm-8am 组 2，复制到周二至周五</li>
+<li>周末页签配置后复制到 Sunday 与 Public Holidays（仅组 2）</li>
+<li>话务台建 Attendant diversion 键，目标集体缩位号（话务员密码保护）</li>
+<li>全局预公告：Preannouncement Overview → Global Greetings → 时段 1 配 Before call distr.+MSG2</li>
+<li>验收：改系统时间测试——营业时间振组 1、非营业时间听 MSG1、来电先播 MSG2 再转</li>
+</ol>
+<p><strong>呼出闭锁实验</strong>（p281-291）：</p>
+<ol>
+<li>Time Ranges 建 4 时段：营业时间默认 LC 可占、非营业默认禁占</li>
+<li>逐话机关 Inhibition Time-ranges（Feature Rights Part 2），否则话机恒 normal（n19）</li>
+<li>副中继组：功能 Secondary trunk group 改 start=401/base=2，再建 start/end=#、base=1</li>
+<li>中继组 2 加 SIP VoIP 接入，Link-Cat. 保持默认 12</li>
+<li>授权一个用户：其 Traffic Sharing LC 改 5，矩阵查 5∩12=+（放行）</li>
+<li>国际闭锁：表 2 加前缀 0053 类型 Authorized；全员 Barring LC 改 2</li>
+<li>核对：Barring Matrix 行 2 列 1=2；验证国际禁呼、0053 可呼</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户要"下班后电话走留言"；节假日自动切换；只放行个别用户外呼；禁国际但放行某国；"限呼配了不生效"排障。</p>
+<p>语言信号：话务台组 / attendant group / 时段 / time ranges / 日夜切换 / Normal / Restricted / 预公告 / preannouncement / 闭锁 / barring / 闭锁表 / Link Category / 矩阵 / traffic sharing / DDIonPRI。</p>
+<p>与相邻能力区分：中继本身不通 → SIP 中继能力；MSG 消息内容制作 → 消息彩铃卡。本能力到"呼入按时段分发+出局权限可控"为止。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：采集表的呼入呼出块（组/时段/欢迎语/权限矩阵）、已注册的 SIP 中继。业务口径未确认 → 判停先确认（权限错了会封住客户外呼）。</p>
+<ol>
+<li>建话务台组：加分机/MSG/VM 端口。完成标准：组号可呼且齐振</li>
+<li>配时段表：逐日建段（End=下一行 Start），复制到周末假日。完成标准：改系统时间实测切组</li>
+<li>配预公告：按段选模式/消息/仅忙旗标。完成标准：来电先闻提示再转</li>
+<li>话务台转移键：绑集体缩位号，话务员密码纳入管理清单。完成标准：N/R 转移生效</li>
+<li>配出局三层：先定 Traffic sharing（谁能占组）→ 再定 Barring 表与 LC → 最后核对矩阵。完成标准：授权用户可呼、其余被拒</li>
+<li>关联时段限呼：逐话机关 Inhibition Time-ranges。完成标准：非营业时间实测禁占</li>
+<li>特例：副中继组 #、DDIonPRI 按中继线选段（需要时）。完成标准：拨 # 走副组、外呼送对 DDI 段</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>"限呼不生效" → 先查 Inhibition Time-ranges 是否逐话机关闭（n19），再查时段 End 值（n17）</li>
+<li>默认全员禁外呼是设计行为（LC 12∩12=空），授权靠改用户 LC，不是改中继组</li>
+<li>国际默认禁——放开某国=在指定表加该国前缀 Authorized，不要整表翻绿</li>
+<li>话务台转移键改不了 → 受话务员密码保护，用管理员权限（n18）</li>
+</ul>
+<p>输出契约：呼入时段矩阵 + 出局权限矩阵（用户×时段×目的地）+ 拨测记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>实验业务口径（拨 9 出局、禁国际等）为样例，生产按客户权限矩阵裁剪（p31）</li>
+<li>Barring 矩阵交点与 digit counter 的完整算法口径在 Expert 文档，书内给判定框架与实例</li>
+<li>时段粒度与假日表（Public Holidays）按客户日历维护，书外流程</li>
+<li>DDIonPRI 需启用 noteworthy 地址，默认关闭</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte300en/skills/oxos-sip-trunk.html">公共 SIP 中继</a></p><p class="source-page">能力 ID：cap.oxos.incoming-barring · 来源：OXOCXTE300EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OXO Connect Starter (Participant's Guide, Edition 16) | edition: Edition 16 | pages: 472 页 -->

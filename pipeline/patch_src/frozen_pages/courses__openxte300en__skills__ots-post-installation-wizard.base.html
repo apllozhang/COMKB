@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OTMS 初始化向导（两模式十节）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch · Starter</h2><p>Edition 10 · 603 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte300en/index.html">课程首页</a><a href="/courses/openxte300en/digest.html">精华长文</a><a href="/courses/openxte300en/overview.html">教书理解</a><a href="/courses/openxte300en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte300en/skills/ots-post-installation-wizard.html">OTMS 初始化向导（两模式十节）</a><a href="/courses/openxte300en/skills/ots-license-flexlm.html">许可体系与 FlexLM（安装、核查、外部切换）</a><a href="/courses/openxte300en/skills/ots-node-declaration-sip.html">双向节点声明与 SIP 打通（含告警对接）</a><a href="/courses/openxte300en/skills/ots-prior-management.html">Prior management（号码段、前缀、拨号规则、UDAS、会议桥）</a><a href="/courses/openxte300en/skills/ots-users-profiles.html">档案与用户供给（三类用户、WPC 批量）</a><a href="/courses/openxte300en/skills/ots-voice-mail.html">语音邮箱、IMAP 收取与通知公告（Local Storage）</a><a href="/courses/openxte300en/skills/ots-clients-multi-devices.html">OTC PC 客户端交付与多终端</a><a href="/courses/openxte300en/skills/ots-maintenance-rehosting.html">维护、备份恢复与 rehosting（TC2149 矩阵）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte300en/skills/ots-sot-installation.html">SOT 自动化装机与虚机手动导入</a><a href="/courses/openxte300en/skills/ots-certificates.html">证书部署三路线</a><a href="/courses/openxte300en/skills/ots-supervision-groups.html">监督组（话务监督、进出组与代接）</a><a href="/courses/openxte300en/skills/ots-lab-connections.html">实验 POD 与系统连接通道</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte300en/index.html">opentouch-starter（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte300en/index.html">OPENXTE300EN</a><span>/</span><span aria-current="page">OTMS 初始化向导（两模式十节）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OTMS 初始化向导（两模式十节）</h1></div><dl><div><dt>Skill ID</dt><dd>ots-post-installation-wizard</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OTMS 初始化向导（Post-installation wizard 两模式十节）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The post-installation proposes two modes: Installation from scratch or From an existing archive"（p89）
+"ALL PASSWORDS ON THIS PAGE MUST CONTAIN AT LEAST 8 CHARACTERS. THERE IS NO ERROR POP-UP IN CASE YOU USE LESS THAN 8 CHARACTERS BUT YOU WILL FACE PROBLEMS AFTERWARDS."（p95）
+"THE DNS MUST BE CONFIGURED TO RESOLVE (FORWARD AND REVERSE RESOLUTION): • OPENTOUCH SERVER FQDN • OMNIVISTA 8770 SERVER FDQN • MAIL SERVER FDQN • LDAP SERVER FDQN • ... CALL SERVER FQDN"（p93）
+"HIGH AVAILABILITY IS NOT MORE SUPPORTED FOR A NEW INSTALLATION DON'T ENABLE IT. KEEP DISABLE."（p94）
+"THE OK STATUS INDICATES THAT THE LOCAL FILE IS PRESENT. BUT THE CONTENT (VALIDITY) OF THE FILE IS NOT CONTROLLED."（p101）</p>
+</blockquote>
+<p>出处：OPENXTE300EN p88-108。</p>
+<h2>I — 自述</h2>
+<p>向导是 OT 服务器软件装完、首次开机自动启动的站点安装（site installation）正式入口，不是可选步骤。两种入口：</p>
+<ul>
+<li><strong>from scratch</strong>：全新初始化，按十节顺序走完，Finish 后向导启动 OT 服务。</li>
+<li><strong>restore from archive</strong>：用备份归档重装或迁移；只填归档目录、键盘、root 与维护账号，许可可借机替换；归档里的旧许可会一并恢复。</li>
+</ul>
+<p>from scratch 十节与硬规则：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>节</th>
+<th>配置内容</th>
+<th>关键硬规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1 Local settings</td>
+<td>键盘/国家/公司/时区+DST</td>
+<td>按现场</td>
+</tr>
+<tr>
+<td>1.2 Network settings</td>
+<td>主机名/IP/掩码/网关/域/DNS/NTP</td>
+<td>主机名小写强制；五类 FQDN 正反向解析齐</td>
+</tr>
+<tr>
+<td>1.3 High availability</td>
+<td>HA 开关</td>
+<td>新装机必须保持 Disable</td>
+</tr>
+<tr>
+<td>1.4 Core/Host accounts</td>
+<td>root 与维护账号 otuser</td>
+<td>口令至少 8 字符且无报错弹窗；用户名互不相同</td>
+</tr>
+<tr>
+<td>1.5 OT accounts</td>
+<td>otAdmin/otProfile/SNMP</td>
+<td>口令另需大写+数字+特殊字符；当场抄录</td>
+</tr>
+<tr>
+<td>1.6 ACS</td>
+<td>Stack name 与 Node ID</td>
+<td>Conferencing Service Address 保持 No</td>
+</tr>
+<tr>
+<td>1.7 Licenses</td>
+<td>FlexLM 本地/外部 + .ice</td>
+<td>OK 状态只代表文件在；可 Skip 但系统不正常</td>
+</tr>
+<tr>
+<td>1.8 Certificate</td>
+<td>ON（Internal SHA256 或外部 PKCS12）或 OFF</td>
+<td>OFF 为全球同款通用证书，官方不推荐</td>
+</tr>
+<tr>
+<td>1.9 Backup configuration</td>
+<td>本地/USB/NFS 备份目的地</td>
+<td>客户决策项</td>
+</tr>
+<tr>
+<td>1.10 Summary + System update</td>
+<td>核对；无补丁选 NO</td>
+<td>Finish 后 OT 服务启动</td>
+</tr>
+</tbody>
+</table></div>
+<p>口令页四条铁律：全部口令至少 8 字符（短了不报错、事后出问题）；用户名不得用 admin/adminnmc/htuser 等既有名；otAdmin/otProfile 口令有复杂度要求；全部账号口令必须当场抄录——8770 声明 OT 节点时逐项要用。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>from scratch 实验</strong>（p88-105，实验口径见 B）：</p>
+<ol>
+<li>OT 首次开机向导自动启动，选 Installation from scratch。</li>
+<li>Local settings 按现场填键盘、国家、公司、时区并勾 D.S.T.。</li>
+<li>Network settings 填主机名小写、IP、掩码、网关、域、DNS 与 NTP。</li>
+<li>对照 DNS 清单核五类 FQDN 正反向解析，缺则先补 DNS。</li>
+<li>High availability 保持 Disable 直接下一步。</li>
+<li>Host accounts 填 root 与维护账号，口令至少 8 字符。</li>
+<li>OT accounts 填 otAdmin、otProfile 与 SNMP 口令并当场抄录。</li>
+<li>ACS 填 Stack name 与 Node ID，Conferencing Service Address 保持 No。</li>
+<li>Licenses 选 Local 或 External 后 Browse 选 .ice 文件。</li>
+<li>Certificate 选 ON（Internal SHA256 或外部 PKCS12）。</li>
+<li>Backup 填 NFS 目的地；Summary 核对后 System Update 选 NO。</li>
+<li>Finish 后向导启动 OT 服务，SSH 横幅可核版本。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新装 OTMS 后首次开机；用备份归档重装或搬迁迁移；向导口令随手填短了事后出问题；客户问 HA 要不要开；向导许可页显示 OK 不放心。</p>
+<p>语言信号：post-installation wizard / 站点安装 / from scratch / restore / archive / 归档恢复 / HA / DNS 正反向 / otAdmin / otProfile / otuser / bics.conf / security off / 初始化向导。</p>
+<p>与相邻能力区分：软件还没装走 SOT 装机（路由卡）；许可装后核查与外部 FlexLM 属许可能力；8770 声明 OT 用这套账号，见节点声明与 SIP 能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：已装完软件待初始化的 OT 服务器；客户网络参数（IP/域名/DNS/NTP）；许可 .ice 与锚定物（物理机 ALUID、虚拟机加密狗）；证书档位与备份目的地两项客户决策。缺许可 → 可 Skip 进系统，但必须立即排补装计划。</p>
+<ol>
+<li>前置核查：五类 FQDN 正反向解析全通、NTP 可达、许可文件在手。完成标准：nslookup 双向全通</li>
+<li>开机进向导，新装选 from scratch，重装迁移选 restore from archive 并指定归档目录</li>
+<li>依次完成本机、网络、HA、账户四节，账户口令当场抄录留档。完成标准：口令全部至少 8 字符且记录在案</li>
+<li>ACS、许可、证书、备份四节按设计填写。完成标准：Summary 各项与设计一致</li>
+<li>Finish 并核服务：SSH 登录横幅显示 OTMS 版本号。完成标准：OT 服务已启动</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>向导许可页 OK 不代表内容有效 → 装完必须用 checkLicensing.sh 与 spadmin 复核（转许可能力）</li>
+<li>许可缺失点了 Skip → 系统不会正常工作，立即排手工补装</li>
+<li>怀疑口令当时填短 → 静默陷阱（无报错），尽早改密并把账号表补全</li>
+<li>客户要求新装机开 HA → 本版本无路径（仅 R2.2.x 迁移保留），转方案与商务讨论</li>
+<li>restore 路径发现旧许可不适用 → 向导许可页借机换新 .ice</li>
+</ul>
+<p>输出契约：服务已启动的 OT 服务器 + 账户口令清单（供 8770 声明与交接）+ 证书/备份目的地决策记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>实验口径（生产必须替换）：root=superuser、otuser=maintenanceuser、otAdmin 口令 Admin-8770、otProfile 口令 Admin-T1、SNMP=adminsnmp；OT 地址 192.168.1.50、备份 NFS 10.20.30.40 的 /mnt/db/backup/podX。</li>
+<li>本地 DNS 服务器仅在 OXE 未做 duplication 时可用；NTP 需确认防火墙放行，事后可用 ot-config.sh --ntp 修改（p93）。</li>
+<li>证书三路线细节与 Windows CA 全流程在证书路由卡；本卡只取向导内决策。</li>
+<li>加密狗挂载（虚拟化场景）属许可域：vSphere 给承载 FlexLM 的虚机加 USB 控制器与 Aladdin USB Device；R-Lab 锚 MAC 无需（n10）。</li>
+<li>UM 语音邮件声明、VPN-less 会议地址属书外专项培训（n39）；向导 ACS 节该问保持 No 即可。</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte300en/skills/ots-license-flexlm.html">许可体系与 FlexLM（安装、核查、外部切换）</a>、<a href="/courses/openxte300en/skills/ots-node-declaration-sip.html">双向节点声明与 SIP 打通（含告警对接）</a></p><p class="source-page">能力 ID：cap.ots.post-installation-wizard · 来源：OPENXTE300EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch — OpenTouch Suite for MLE — Solution Overview / Starter (Participant's Guide) | edition: Edition 10 | pages: 603 页 -->

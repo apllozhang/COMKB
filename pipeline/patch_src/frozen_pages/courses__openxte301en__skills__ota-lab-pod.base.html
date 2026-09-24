@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>RLAB 实验 POD 与 SIP 运营商模拟器</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch · Advanced</h2><p>Edition 08 · 468 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte301en/index.html">课程首页</a><a href="/courses/openxte301en/digest.html">精华长文</a><a href="/courses/openxte301en/overview.html">教书理解</a><a href="/courses/openxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte301en/skills/ota-remote-access.html">OpenTouch 远程接入通道与证书</a><a href="/courses/openxte301en/skills/ota-nomadic-ghost-z.html">Nomadic 移动模式与 Ghost Z 资源池</a><a href="/courses/openxte301en/skills/ota-smartphone-rex.html">OTC 智能手机交付全流程（REX/DISA/APNS）</a><a href="/courses/openxte301en/skills/ota-um-exchange-integration.html">统一消息 UM（Exchange/O365/Gmail/IMAP）</a><a href="/courses/openxte301en/skills/ota-conference-collaboration.html">协作会议（ACS 配置、角色权限、数据会议）</a><a href="/courses/openxte301en/skills/ota-calendar-sync.html">日历在场与日历同步（Calendar presence/synchro）</a><a href="/courses/openxte301en/skills/ota-directory-udas.html">目录搜索与 Single Business Card（UDAS）</a><a href="/courses/openxte301en/skills/ota-enterprise-authentication.html">企业认证集成（LDAP/RADIUS/Kerberos SSO）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte301en/skills/ota-desksharing.html">Desksharing 共享工位（DSU/DSS）</a><a href="/courses/openxte301en/skills/ota-extended-mobility.html">Extended Mobility（QR/NFC 切换与路由修改）</a><a href="/courses/openxte301en/skills/ota-dcs-documents.html">DCS 文档转换服务器（Office 会议演示）</a><a href="/courses/openxte301en/skills/ota-otc-web-guest.html">OTC Web 与访客入会</a><a href="/courses/openxte301en/skills/ota-lab-pod.html">RLAB 实验 POD 与 SIP 运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte301en/index.html">opentouch-advanced（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte301en/index.html">OPENXTE301EN</a><span>/</span><span aria-current="page">RLAB 实验 POD 与 SIP 运营商模拟器</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>RLAB 实验 POD 与 SIP 运营商模拟器</h1></div><dl><div><dt>Skill ID</dt><dd>ota-lab-pod</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>RLAB 实验 POD 与 SIP 运营商模拟器（实验环境底座）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Remote Lab allows accessing a pool of virtual machines and hardware (when required) hosted in a data center."（p5）
+"Pods are independent of each other • Pods have the same configuration • Pods have access to common resources"（p5）
+"ITSP1 SIP Gateway 1 gateway1.itsp1.com 10.20.30.51 ... ITSP1 Public gateway public.itsp1.com 10.20.30.50"（p20）</p>
+</blockquote>
+<p>出处：OPENXTE301EN p3-30。</p>
+<h2>I — 自述</h2>
+<p>全书实验的运行底座，纯教学基础设施：</p>
+<ol>
+<li><strong>POD 结构</strong>：POD 1..n 相互独立、配置相同；公共资源区（10.20.30.x）放 NAS 与 SIP 模拟器；两种形态——全虚拟化（RLAB 专用）与混合课堂模式（加 MIX484 GD4、ALE-300 系话机、POE 交换机等实机）</li>
+<li><strong>八台虚机</strong>（192.168.1.x 网段，实验口径）：OXE（csa/csm）、OMS（.13）、OpenTouch/OTMS（.50）、8770 网管（.70）、DCS 虚机（.31）、ECOSYSTEM（.100，承载 CA/AD/Exchange）、PC Client 10/11（.10/.11）；内部 DNS 192.168.1.254</li>
+<li><strong>ITSP1 模拟器</strong>：SIP 网关 gateway1.itsp1.com（PBX 注册账号 pbxP/alcatel，域 sip.itsp1.fr）与公网网关 public.itsp1.com（MicroSIP 模拟公网/紧急用户）；号码规则含两位 POD 号 PN（主号 3321PN12345、移动 3361/3371PN12345、紧急 112/15/17/18）</li>
+<li><strong>OXE 侧对接</strong>：外部 SIP 网关 Registration ID/Outgoing username=pbxN；DID 翻译 First external=33210N41000、First internal=31000、范围 500</li>
+<li><strong>实验人物</strong>：Barkley 31000 / Backman 31001 / Boop 31002（IPDSP 软话机 TFTP 指向 OXE CS Main）</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>Pod 配置核对实验</strong>（p24-30）：</p>
+<ol>
+<li>RLAB 门户启动全部虚机，确认预置项（许可/FlexLM/机架板卡/用户/语音引导/SIP 中继组）</li>
+<li>机架核对（仅需 OMS）：Software Rack 3U、Rack N°4、Virtual GD4 192.168.1.13</li>
+<li>用户/IPDSP 核对：31000/31001 装 PC Client 10/11，TFTP=192.168.1.3</li>
+<li>混合模式特例：把 31000/31001 的 IP-Softphone Emulation 改 No 并选实际话机类型</li>
+<li>外部 SIP 网关填 pbxN（N=POD 号）</li>
+<li>DID 翻译建 33210N41000 对 31000（范围 500）</li>
+<li>外呼验证：确认公网 SIP 载体可达</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：搭建/核对培训或测试环境；解读书中一切实验值（IP/账号/号码）；区分"实验口径"与生产配置；模拟运营商联调。</p>
+<p>语言信号：RLAB / POD / 实验环境 / ITSP1 / 模拟器 / pbxN / pbxP / 3321PN / DID 翻译 / MicroSIP / IPDSP / 192.168.1.x / 10.20.30.x / letacla / superuser。</p>
+<p>与相邻能力区分：生产远程通道（真实 DMZ/SBC/运营商）→ 远程接入能力；本卡只覆盖教学环境与模拟器。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：POD 号（决定 pbxN 与号码段）、RLAB 门户账号、虚机清单。</p>
+<ol>
+<li>启动虚机并核对七项预置状态。完成标准：预置项全部就位</li>
+<li>核对机架/IPDSP/用户（混合模式改设备类型）。完成标准：话机注册成功</li>
+<li>对接模拟器：pbxN+DID 翻译。完成标准：外呼测试通过</li>
+<li>引用纪律：书中一切实验值只用于实验复现，生产引用必须替换。完成标准：文档无实验值泄漏</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>生产项目里出现 letacla/superuser/pbxN 类值 → 停，这是实验口径，必须替换并纳入安全基线（n49）</li>
+<li>模拟器行为当真实验证 → 模拟器与真实运营商有差异，生产前用真实中继复测</li>
+<li>ITSP2 → 仅在拓扑图出现无细节，别引用</li>
+</ul>
+<p>输出契约：POD 核对清单（七项预置+机架+用户+DID）+ 内外互通测试结论 + 实验口径备忘。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>教学专用基础设施：不入生产方案；BOOK_OVERVIEW 明确"仅作 Boundary 背景与实验口径引用"</li>
+<li>OXE 地址 p9 印作 192.16.8.1.1/.3 为原文排版异常（nr-04），同表其余均为 192.168.1.x</li>
+<li>明文密码（letacla/superuser/1234/training 等）为 2019 年培训文化产物，禁入生产（n49）</li>
+<li>混合模式的课堂硬件清单（MIX484 GD4/ALE-300 系/POE）仅教学语境（p11-18）</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.ota.lab-pod · 来源：OPENXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch - Advanced (Participant's Guide, Edition 08) | edition: Edition 08 | pages: 468 页 -->

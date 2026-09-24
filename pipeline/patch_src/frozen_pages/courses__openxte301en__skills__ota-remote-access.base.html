@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OpenTouch 远程接入通道与证书</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch · Advanced</h2><p>Edition 08 · 468 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte301en/index.html">课程首页</a><a href="/courses/openxte301en/digest.html">精华长文</a><a href="/courses/openxte301en/overview.html">教书理解</a><a href="/courses/openxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte301en/skills/ota-remote-access.html">OpenTouch 远程接入通道与证书</a><a href="/courses/openxte301en/skills/ota-nomadic-ghost-z.html">Nomadic 移动模式与 Ghost Z 资源池</a><a href="/courses/openxte301en/skills/ota-smartphone-rex.html">OTC 智能手机交付全流程（REX/DISA/APNS）</a><a href="/courses/openxte301en/skills/ota-um-exchange-integration.html">统一消息 UM（Exchange/O365/Gmail/IMAP）</a><a href="/courses/openxte301en/skills/ota-conference-collaboration.html">协作会议（ACS 配置、角色权限、数据会议）</a><a href="/courses/openxte301en/skills/ota-calendar-sync.html">日历在场与日历同步（Calendar presence/synchro）</a><a href="/courses/openxte301en/skills/ota-directory-udas.html">目录搜索与 Single Business Card（UDAS）</a><a href="/courses/openxte301en/skills/ota-enterprise-authentication.html">企业认证集成（LDAP/RADIUS/Kerberos SSO）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte301en/skills/ota-desksharing.html">Desksharing 共享工位（DSU/DSS）</a><a href="/courses/openxte301en/skills/ota-extended-mobility.html">Extended Mobility（QR/NFC 切换与路由修改）</a><a href="/courses/openxte301en/skills/ota-dcs-documents.html">DCS 文档转换服务器（Office 会议演示）</a><a href="/courses/openxte301en/skills/ota-otc-web-guest.html">OTC Web 与访客入会</a><a href="/courses/openxte301en/skills/ota-lab-pod.html">RLAB 实验 POD 与 SIP 运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte301en/index.html">opentouch-advanced（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte301en/index.html">OPENXTE301EN</a><span>/</span><span aria-current="page">OpenTouch 远程接入通道与证书</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OpenTouch 远程接入通道与证书</h1></div><dl><div><dt>Skill ID</dt><dd>ota-remote-access</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OpenTouch 远程接入通道与证书（反向代理、OTSBC、ACS FQDN、DAS 规则）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Declare the reverse proxy with the following URL for all services: https://ot-podx.company.com • https://ot-podx.company.com:8016 for EVS (notifications)"（p104）
+"Ports: 5261&lt;-&gt;5261 8061&lt;-&gt;8061 RTP/sRTP ports: 7000-7499&lt;-&gt;7000-7499"（p105）
+"WARNING THIS SPECIFIC FQDN ASSIGNED FOR CONFERENCES INVITATION MUST BE PART (SUBJECT ALTERNATIVE NAME) OF THE REVERSE PROXY AND OPENTOUCH SERVER CERTIFICATES."（p109）
+"WARNING THE DECLARATION ORDER IS IMPORTANT. SEVERAL RULES CAN BE APLLIED AT A TIME"（p108，APLLIED 为原文笔误）</p>
+</blockquote>
+<p>出处：OPENXTE301EN p103-118。</p>
+<h2>I — 自述</h2>
+<p>远程接入是"信封 + 话音 + 规则"三件套，远程客户端与 nomadic/智能手机全靠它：</p>
+<ol>
+<li><strong>反向代理（RP，数据面）</strong>：DMZ 部署，四个公共 URL 在 OT 拓扑声明（API/EVS/ACS/DMS），EVS 通知走 8016，NAT 443/8016</li>
+<li><strong>OTSBC（SIP/媒体面）</strong>：OTC 客户端注册 FQDN+5261，WebRTC 走 otsbc FQDN+8061，RTP/sRTP 媒体段 7000-7499；iPhone+ 另有同 FQDN、5265 端口的专用声明（见智能手机卡）</li>
+<li><strong>DNS/NAT</strong>：外部 DNS 按 POD 给 ot-podN/conf-podN 解析条目，conf-podX 公网指 RP、内网指 ACS 虚拟 IP（双解析）</li>
+<li><strong>证书</strong>：会议 FQDN（conf-podX）必须同时进 RP 与 OT 两张证书的 SAN；流程六步为验证、rehost、CSR、CA 签发、导入、部署</li>
+<li><strong>DAS 规则</strong>：挂在 ACS 的最多 20 条 Unix 正则，按序串行处理所拨号码（前一条输出=后一条输入）；R2.0 起 nomadic 必须有规则 7（+N/N）与规则 8（+M/M）</li>
+</ol>
+<p>端口与入口总表（实验模板口径）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>面</th>
+<th>入口</th>
+<th>端口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据面（RP）</td>
+<td>https 公共 URL</td>
+<td>443、8016（EVS 通知）</td>
+</tr>
+<tr>
+<td>SIP 注册（OTSBC）</td>
+<td>ot-podX FQDN</td>
+<td>5261</td>
+</tr>
+<tr>
+<td>WebRTC 音频</td>
+<td>otsbc-podX FQDN</td>
+<td>8061</td>
+</tr>
+<tr>
+<td>媒体段</td>
+<td>RTP/sRTP</td>
+<td>7000-7499</td>
+</tr>
+<tr>
+<td>会议 SIP 代理</td>
+<td>ACS 互连</td>
+<td>5060 监听、5260 互连</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>远程接入声明与证书全流程</strong>（p103-118 实验）：</p>
+<ol>
+<li>规划 NAT 与外部 DNS（10.20.X.105 对 192.168.2.105，实验口径）</li>
+<li>OmniVista 8770 声明 RP 四个公共 URL（API/EVS:8016/ACS/DMS）</li>
+<li>Eco system/IT server 建 OTSBC 两声明：5261（OTC）与 8061（WebRTC）</li>
+<li>会议服务器管理台 Default 域核对法国 10 条 DAS 规则（重点规则 7/8）</li>
+<li>查 /var/data/bics/bics.conf 与 OT 证书 SAN 确认 ACS 已配置</li>
+<li>未配置则 ot-config.sh --rehost：填 conf-podX/company.com/192.168.1.55（实验口径）</li>
+<li>System services/Security/Certificate 生成 CSR（SHA256）</li>
+<li>到 CA（eco.company.com/CertSrv，实验口径）Base 64 提交、Web Server 模板、下载证书链</li>
+<li>pkcs#7 导入（pkcs#12 需 passphrase）并 Deploy，重登复核 SAN</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：远程/居家员工连不上 OT；会议邀请邮件链接打不开；换域名或证书到期；nomadic/手机呼叫格式不对；新 POD 开通远程通道。</p>
+<p>语言信号：反向代理 / reverse proxy / OTSBC / SBC / 5261 / 8061 / 7000-7499 / 证书 / certificate / SAN / rehost / CSR / conf-pod / DAS 规则 / 正则 / 公共 URL。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>手机经此通道落地 → 智能手机能力</li>
+<li>nomadic 资源池 → Nomadic 能力</li>
+<li>认证经 RP 的限制（Kerberos 不支持经反向代理）→ 外部认证能力</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：公网 IP/域名规划、DMZ 主机、DNS 管理权限、CA 可用性。生产 DMZ 拓扑与证书策略在书外，需按客户环境替换实验模板值。</p>
+<ol>
+<li>声明 RP：拓扑里填 Display name 与四个公共 URL（EVS 带 8016）。完成标准：URL 写入客户端配置模板</li>
+<li>声明 OTSBC：Eco system/IT server 建 5261 与 8061 两条（Network type=WAN）。完成标准：远程客户端可用 FQDN 注册</li>
+<li>DNS/NAT 核对：ot-podN 与 conf-podN 外部解析、443/8016/5261/8061/7000-7499 放行。完成标准：内外解析与端口连通</li>
+<li>DAS 规则核对：Default 域 10 条逐条核对顺序（R2.0 后必含 +N/N 与 +M/M）。完成标准：拨号格式测试通过</li>
+<li>证书流程：验证 SAN；需要时先建内部 DNS 条目再 rehost；随后 CSR、CA 签发、导入、Deploy。完成标准：SAN 含会议 FQDN、邀请链接内外均可解析</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>Deploy 后 WebAdmin 报 "Impossible to retrieve data" 并断会话 → 属正常（证书已换），重开会话即可，勿回滚</li>
+<li>会议 FQDN 只进了 OT 证书、漏了 RP 证书 → 停，重签补 SAN，否则一侧链接必挂</li>
+<li>rehost 前发现内部 DNS 无 conf-podX 条目 → 停，先补 DNS 再执行</li>
+<li>DAS 排障时先分两层：系统选项格式化（p302 五类实例）与规则链，逐层看输出</li>
+</ul>
+<p>输出契约：可用的远程接入通道（URL/端口/FQDN 清单）+ 含会议 FQDN 的证书 + DAS 规则集存档。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>实验 IP/域名（ot-podX、conf-podX、10.20.X.105 等）为模板口径，生产按客户 DMZ/DNS 规划替换</li>
+<li>DAS 规则集仅法国口径（+33/00/0），非法国号码计划需自行推导正则（nr-07 版本纪律：R2.0 规则 7/8）</li>
+<li>Kerberos 认证不支持经反向代理，远程 OTC PC 自动回落账密登录（见外部认证能力 n38）</li>
+<li>证书 CA 形态（内部 Windows CA/OpenSSL/外部商业 CA）书内只给 Windows CA 实验，外部 CA 仅方向性提示</li>
+<li>LDAP 上限"20 vs 5"等容量口径冲突不在本卡（见目录能力与 nr-01）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte301en/skills/ota-smartphone-rex.html">OTC 智能手机交付全流程（REX/DISA/APNS）</a>、<a href="/courses/openxte301en/skills/ota-nomadic-ghost-z.html">Nomadic 移动模式与 Ghost Z 资源池</a></p><p class="source-page">能力 ID：cap.ota.remote-access · 来源：OPENXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch - Advanced (Participant's Guide, Edition 08) | edition: Edition 08 | pages: 468 页 -->

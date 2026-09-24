@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Rainbow 公司体系与订阅开通</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>Rainbow OXO Connect 集成</h2><p>Edition 13 · 251 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte001en/index.html">课程首页</a><a href="/courses/rainxte001en/digest.html">精华长文</a><a href="/courses/rainxte001en/overview.html">教书理解</a><a href="/courses/rainxte001en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte001en/skills/rbx-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte001en/skills/rbx-omc-onboarding.html">OMC 安装首次连接与 IP 规划修改</a><a href="/courses/rainxte001en/skills/rbx-pbx-onboarding.html">OXO 接入 Rainbow 与接入排障</a><a href="/courses/rainxte001en/skills/rbx-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte001en/skills/rbx-gateway-planning.html">WebRTC 网关拓扑决策与容量规划</a><a href="/courses/rainxte001en/skills/rbx-gateway-deployment.html">WebRTC 网关部署与虚拟终端配置</a><a href="/courses/rainxte001en/skills/rbx-attendant-supervision.html">Rainbow 话务台与监督组</a><a href="/courses/rainxte001en/skills/rbx-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte001en/skills/rbx-admin-tools.html">Rainbow 管理员工具（权责/企业目录/信息频道）</a><a href="/courses/rainxte001en/skills/rbx-rcc-association.html">OXO 分机关联与 RCC 模式</a><a href="/courses/rainxte001en/skills/rbx-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte001en/skills/rbx-network-readiness.html">Rainbow 网络就绪核查</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte001en/index.html">rainbow-oxo-connect（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte001en/index.html">RAINXTE001EN</a><span>/</span><span aria-current="page">Rainbow 公司体系与订阅开通</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Rainbow 公司体系与订阅开通</h1></div><dl><div><dt>Skill ID</dt><dd>rbx-company-subscription</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>Rainbow 公司体系与订阅开通（BP/EC、可见性、认证、订阅分配）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"However, the following actions can only be performed by the BP: • Declaration &amp; PBX • Opening of paid subscriptions"（p48）
+"Get into the habit of systematically setting the 'closed' mode as soon as you create a Rainbow company. This is ideal for the vast majority of customers."（p52）
+"Each member must have a subscription to use telephony services • Business • Enterprise • Attendant"（p65）
+"During LAB Use ONLY Voice MONTHLY subscriptions per company. DO NOT USE YEAR PREPAID!!!"（p66）</p>
+</blockquote>
+<p>出处：RAINXTE001EN p33, p46-68。</p>
+<h2>I — 自述</h2>
+<p>云侧开户是 Rainbow 集成的一切前提，四件事按序做：</p>
+<ol>
+<li><strong>建公司</strong>：BP 账号 → 客户公司列表 → Create a client company（先搜索查重；一人不能属两家公司）</li>
+<li><strong>定可见性</strong>：PUBLIC / PRIVATE / CLOSED / ISOLATED 四级——拿不准就 CLOSED（教材明示建议）；ISOLATED 不推荐（用户无法被外部会议邀请）</li>
+<li><strong>定认证</strong>：SSO（Azure AD-SAML/OIDC、ADFS-SAML，配置管理员须 Enterprise 级）或本地密码（≥12 位含大写/数字/特殊字符）+ TOTP（推荐管理员）</li>
+<li><strong>开订阅并分配</strong>：BP 给公司开（月付或预付 1/3/5 年）→ 管理员分给成员；电话服务必须 Business/Enterprise/Attendant</li>
+</ol>
+<p>订阅全景 8 种（p33）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>订阅</th>
+<th>定位</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Essential</td>
+<td>免费试用</td>
+<td>无 SLA、无电话服务；可与付费混用</td>
+</tr>
+<tr>
+<td>Business</td>
+<td>个人/团队日常</td>
+<td>电话服务最低档</td>
+</tr>
+<tr>
+<td>Enterprise</td>
+<td>Business 全量+</td>
+<td>多方视频会议、扩展存储、O365/G Suite 集成</td>
+</tr>
+<tr>
+<td>Attendant</td>
+<td>话务台专用</td>
+<td>等待队列 + 监督控制台</td>
+</tr>
+<tr>
+<td>Enterprise Conference</td>
+<td>Enterprise+无限会议分钟</td>
+<td>按年预付 12 个月</td>
+</tr>
+<tr>
+<td>Conference</td>
+<td>PSTN 会议按量计费</td>
+<td>按分钟/连接付费，组织者可为免费用户</td>
+</tr>
+<tr>
+<td>Connect</td>
+<td>CRM 集成</td>
+<td>各兼容 CRM 专用连接器</td>
+</tr>
+<tr>
+<td>Room</td>
+<td>会议室</td>
+<td>按房间订阅，需额外硬件</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>订阅分配</strong>（p104-109）：</p>
+<ol>
+<li>Members → 选成员 → Services 页签 → 勾 Enterprise → Apply</li>
+<li>Attendant 订购（p176）：Companies → Subscriptions → ATTENDANT → Attendant Monthly</li>
+</ol>
+<p><strong>实验前置约定</strong>（p83/p102，厂商实验）：公司与 PBX 由讲师（BP 角色）预先创建，学员用客户管理员账号 <code>cCpP.admin@ale-training.com</code>（实验口径）登录 web.openrainbow.com 做后续操作——印证"建公司/建 PBX 是 BP 动作、客户管理员从成员层接手"的权责切分。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新客户上 Rainbow；客户管理员建不了 PBX/开不了订阅；选可见性/认证方式；买哪种订阅；免费版能不能打电话。</p>
+<p>语言信号：创建公司 / company / BP / EC / 可见性 / visibility / CLOSED / ISOLATED / SSO / TOTP / 订阅 / subscription / Essential / Business / Enterprise / Attendant / 预付 / prepaid。</p>
+<p>与相邻能力区分：建户之后的人员管理归成员生命周期；公司级目录与频道见管理员工具（路由卡）；PBX 接入属 PBX 接入能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：BP 账号（建司/开订阅）、公司命名与归属、认证基础设施现状（有无 Azure AD/ADFS）、用户数与服务需求。缺 BP 账号 → 找渠道，不要试图用 EC 账号绕过。</p>
+<ol>
+<li>查重并创建公司（BP）：搜名字 → Create a client company → 录必填信息（名称/国家/时区/地址/可见性/联系人）。完成标准：公司出现在客户公司列表</li>
+<li>可见性选型：默认 CLOSED；客户有明确外部协作诉求才评估 PUBLIC/PRIVATE；ISOLATED 须先确认放弃外部 bubble 邀请的代价</li>
+<li>认证选型：有 Azure AD/ADFS → 规划 SSO（确认操作者持 Enterprise）；否则密码 + TOTP（管理员强制建议）</li>
+<li>开订阅（BP）：Companies → Subscriptions → 选类型与月付/预付 → 定数量 → Subscribe。完成标准：公司订阅池就位</li>
+<li>分配订阅：Members → 成员 → Services 页签 → 勾选 → Apply。完成标准：电话用户均持 Business/Enterprise/Attendant</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>需要建 PBX 或开付费订阅而手里只有 EC 管理员 → 停，转 BP（权限设计非故障）</li>
+<li>客户坚持 ISOLATED 又要参加外部会议 → 停，二者不可兼得，升级商务决策</li>
+<li>订阅扣成功但成员无电话 → 查分配（第二步），不要重复购买</li>
+</ul>
+<p>输出契约：可用的公司（可见性/认证已定）+ 公司订阅池 + 成员订阅分配清单。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>BP 专属权限仅两项（申报建 PBX、开付费订阅）——这是渠道体系设计，不是故障（p48）</li>
+<li>原书未展开 SSO 的具体配置步骤（只有指针到支持站点）；跨 IdP（OKTA/Shibboleth 等）须经 ALE 确认（p53 NB）</li>
+<li>公司创建的完整实验在书中缺位（实验中由讲师代做）——步骤 1 为讲义口径</li>
+<li>培训禁用预付是实验口径（p66/p176），生产按客户商务选择</li>
+<li>订阅细节以 help.openrainbow.com 的 Features List 为准（p33/p65 指针），本书订阅表为 Ed13 口径</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte001en/skills/rbx-member-lifecycle.html">Rainbow 成员全生命周期管理</a>、<a href="/courses/rainxte001en/skills/rbx-pbx-onboarding.html">OXO 接入 Rainbow 与接入排障</a></p><p class="source-page">能力 ID：cap.rbx.company-subscription · 来源：RAINXTE001EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: Rainbow OXO Connect (Participant's Guide, Edition 13) | edition: Edition 13 | pages: 251 页 -->

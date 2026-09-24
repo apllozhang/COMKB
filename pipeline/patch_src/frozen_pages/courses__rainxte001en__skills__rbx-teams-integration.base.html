@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Microsoft Teams 集成全流程</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>Rainbow OXO Connect 集成</h2><p>Edition 13 · 251 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte001en/index.html">课程首页</a><a href="/courses/rainxte001en/digest.html">精华长文</a><a href="/courses/rainxte001en/overview.html">教书理解</a><a href="/courses/rainxte001en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte001en/skills/rbx-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte001en/skills/rbx-omc-onboarding.html">OMC 安装首次连接与 IP 规划修改</a><a href="/courses/rainxte001en/skills/rbx-pbx-onboarding.html">OXO 接入 Rainbow 与接入排障</a><a href="/courses/rainxte001en/skills/rbx-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte001en/skills/rbx-gateway-planning.html">WebRTC 网关拓扑决策与容量规划</a><a href="/courses/rainxte001en/skills/rbx-gateway-deployment.html">WebRTC 网关部署与虚拟终端配置</a><a href="/courses/rainxte001en/skills/rbx-attendant-supervision.html">Rainbow 话务台与监督组</a><a href="/courses/rainxte001en/skills/rbx-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte001en/skills/rbx-admin-tools.html">Rainbow 管理员工具（权责/企业目录/信息频道）</a><a href="/courses/rainxte001en/skills/rbx-rcc-association.html">OXO 分机关联与 RCC 模式</a><a href="/courses/rainxte001en/skills/rbx-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte001en/skills/rbx-network-readiness.html">Rainbow 网络就绪核查</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte001en/index.html">rainbow-oxo-connect（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte001en/index.html">RAINXTE001EN</a><span>/</span><span aria-current="page">Microsoft Teams 集成全流程</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Microsoft Teams 集成全流程</h1></div><dl><div><dt>Skill ID</dt><dd>rbx-teams-integration</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>Microsoft Teams 集成全流程（架构、上架、用户配置、在场同步）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The integration is done at the workstation level"（p196）
+"As the user will use Teams for all collaboration services, Rainbow will only provide telephony integration services. So, it is better to apply a restrictive permission to users with Teams integration ... Assign the 'telephony' permission"（p234）
+"THE RAINBOW APPLICATION INTEGRATED INTO TEAMS REQUIRES THE INSTALLATION AND STARTUP OF THE RAINBOW DESKTOP APPLICATION ON THE PC."（p239）
+"we activate the sharing of information with Office 365 ... Synchronization is now active."（p243）</p>
+</blockquote>
+<p>出处：RAINXTE001EN p195-244。</p>
+<h2>I — 自述</h2>
+<p><strong>架构</strong>：工作台级集成（按台落地，非租户一键生效），两个组件分工：</p>
+<ul>
+<li><strong>Rainbow App in Teams</strong>（Telephony Power App）：电话设置/呼转/热键、通话历史（含未接）、语音信箱与提醒、拨号盘</li>
+<li><strong>Rainbow Desktop</strong>：任意应用热键点击外呼（如 F6）、单路呼叫控制（接/挂/取消）、通话中 Mute/DTMF/挂断</li>
+</ul>
+<p><strong>四条呼叫路径</strong>：内呼走 MakeCall API，经 CSTA 到 PBX（p202）；外呼走 MakeCall，经 WebRTC 网关出 PSTN（p203）；外线来话（无网关路径）呈现于话机 + 桌面通知（p205）；来话经网关建 WebRTC 呼叫到电脑（p206）。</p>
+<p><strong>部署四要素</strong>：应用上架（商店或 zip 上传，状态须 Allowed）· 权限同意（管理中心直接批准为最简，或管理员首登时代表组织同意）· 订阅（Business/Enterprise）· 权限收敛（Rainbow 只留 Telephony，协作归 Teams）。</p>
+<p><strong>硬前提</strong>：每台 PC 安装且运行 Rainbow Desktop；SSO 非必需。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>上架与同意实验</strong>（p222-230）：</p>
+<ol>
+<li>Teams 管理中心 → Teams apps → Manage apps → 搜 Rainbow（搜不到则 Upload new app 传 zip）</li>
+<li>状态置 Allowed</li>
+<li>Permissions 页签 Review permissions and consent → Accept</li>
+<li>Go to Azure Active Directory 核验权限已由管理员授予</li>
+</ol>
+<p><strong>用户配置实验</strong>（p231-235）：</p>
+<ol>
+<li>Members → Telephony 页签关联 PBX 与分机（出现 Rainbow number）</li>
+<li>Permissions 页签只授 Telephony</li>
+<li>Services 页签分配 Business/Enterprise</li>
+</ol>
+<p><strong>连接器与在场同步实验</strong>（p236-244）：</p>
+<ol>
+<li>Teams 内 Apps → Built for your org → Add → Sign in</li>
+<li>Desktop 未运行时从 "!" 图标拉起</li>
+<li>先测"改 Teams 状态 Rainbow 不动"（基线）</li>
+<li>激活 O365 信息共享 → 复测状态同步</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户要 Teams 里打电话；Teams 应用上架；权限同意弹给用户了；Teams 用户要什么订阅；装完状态不同步；Rainbow 与 Teams 功能重复怎么收敛；Teams 打 PBX 分机走哪条路。</p>
+<p>语言信号：Teams 集成 / Rainbow for Teams / Teams admin center / consent / 权限同意 / Telephony 权限 / Rainbow Desktop / 点击外拨 / click-to-call / F6 / 在场同步 / presence / O365 / workstation level。</p>
+<p>与相邻能力区分：分机关联的通用做法见分机关联（路由卡）；网关部署属网关部署能力；订阅开通归公司与订阅能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：Teams 租户管理员权限、用户清单与订阅、各 PC 的 Desktop 安装可达性、（外呼场景）WebRTC 网关已部署。无 Teams 管理员 → 判停转客户租户管理员。</p>
+<ol>
+<li>上架：admin.teams.microsoft.com → Teams apps → Manage apps 搜 Rainbow；搜到就把状态置为 Allowed，搜不到就 Upload new app 传 zip（上传后默认 Allowed）。完成标准：用户可安装</li>
+<li>权限同意：管理中心 Rainbow app → Permissions → Review permissions and consent → Accept（推荐）；或管理员首登 App 时勾"代表整个组织"。完成标准：Azure 侧权限已授予（Go to Azure AD 核验）</li>
+<li>用户配置（每用户）：Telephony 关联 PBX 与分机 → Permissions 只授 Telephony → Services 分配 Business/Enterprise。完成标准：三步齐备</li>
+<li>终端交付（每台 PC）：装 Rainbow Desktop 并保持运行 → Teams 内 Apps 添加 Rainbow → Sign in（"!" 图标消失即连接成功）。完成标准：App 激活</li>
+<li>在场同步（按需）：先做基线测试（改 Teams 状态，Rainbow 应不动）；再进 App 设置图标，勾选与 Office 365 共享信息并选账户，复测同步生效。完成标准：前后对照通过</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>权限同意落到普通用户头上 → 管理员未预同意；让该用户先不操作，管理员补方法 A，避免组织级授权悬空</li>
+<li>Teams 里 App 显示 "!" → Desktop 未运行：从图标拉起或先装 Desktop，不要反复重装 Teams App</li>
+<li>用户看不到拨号盘/历史 → 依次查订阅（Business/Enterprise）、Telephony 权限、Desktop 运行态</li>
+<li>打不了外线但内线通 → 外呼路径依赖 WebRTC 网关，转网关部署能力核验</li>
+<li>"装完即同步"写进验收 → 不成立：同步默认关、须手动激活 O365 共享（n53），改验收标准</li>
+</ul>
+<p>输出契约：租户侧就绪（上架+同意）+ 用户配置清单 + 终端交付台账（PC ↔ Desktop/App 状态）+ 在场同步验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>工作台级集成：终端装机量是真实交付工作量，报价时计入（n48）</li>
+<li>Teams 租户侧策略（应用权限策略、紧急呼叫、Direct Routing 共存）原书不覆盖</li>
+<li>协作功能（聊天/会议/文件）归 Teams 原生：Rainbow 侧收敛为 Telephony 是官方建议口径（p234），混开双轨的状态与记录分裂风险要向客户明示</li>
+<li>SSO 与连接器无依赖（p241 Important）：不要把"先上 SSO"排进集成前置</li>
+<li>拨号盘/呼叫历史的详细功能矩阵以 help.openrainbow.com 的 Teams 集成文章为准（p199/p210 指针）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte001en/skills/rbx-gateway-deployment.html">WebRTC 网关部署与虚拟终端配置</a>、<a href="/courses/rainxte001en/skills/rbx-rcc-association.html">OXO 分机关联与 RCC 模式</a></p><p class="source-page">能力 ID：cap.rbx.teams-integration · 来源：RAINXTE001EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: Rainbow OXO Connect (Participant's Guide, Edition 13) | edition: Edition 13 | pages: 251 页 -->

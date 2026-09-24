@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>维护、备份恢复与 rehosting（TC2149 矩阵）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch · Starter</h2><p>Edition 10 · 603 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte300en/index.html">课程首页</a><a href="/courses/openxte300en/digest.html">精华长文</a><a href="/courses/openxte300en/overview.html">教书理解</a><a href="/courses/openxte300en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte300en/skills/ots-post-installation-wizard.html">OTMS 初始化向导（两模式十节）</a><a href="/courses/openxte300en/skills/ots-license-flexlm.html">许可体系与 FlexLM（安装、核查、外部切换）</a><a href="/courses/openxte300en/skills/ots-node-declaration-sip.html">双向节点声明与 SIP 打通（含告警对接）</a><a href="/courses/openxte300en/skills/ots-prior-management.html">Prior management（号码段、前缀、拨号规则、UDAS、会议桥）</a><a href="/courses/openxte300en/skills/ots-users-profiles.html">档案与用户供给（三类用户、WPC 批量）</a><a href="/courses/openxte300en/skills/ots-voice-mail.html">语音邮箱、IMAP 收取与通知公告（Local Storage）</a><a href="/courses/openxte300en/skills/ots-clients-multi-devices.html">OTC PC 客户端交付与多终端</a><a href="/courses/openxte300en/skills/ots-maintenance-rehosting.html">维护、备份恢复与 rehosting（TC2149 矩阵）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte300en/skills/ots-sot-installation.html">SOT 自动化装机与虚机手动导入</a><a href="/courses/openxte300en/skills/ots-certificates.html">证书部署三路线</a><a href="/courses/openxte300en/skills/ots-supervision-groups.html">监督组（话务监督、进出组与代接）</a><a href="/courses/openxte300en/skills/ots-lab-connections.html">实验 POD 与系统连接通道</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte300en/index.html">opentouch-starter（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte300en/index.html">OPENXTE300EN</a><span>/</span><span aria-current="page">维护、备份恢复与 rehosting（TC2149 矩阵）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>维护、备份恢复与 rehosting（TC2149 矩阵）</h1></div><dl><div><dt>Skill ID</dt><dd>ots-maintenance-rehosting</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>维护、备份恢复与 rehosting（三通道、otbr、TC2149 矩阵）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>""otconsole.sh" Available since R2.2 ... Tool (menu) providing access to the main useful commands: 2 sub-menus Easy administration menu Advanced Administration menu"（p519）
+"Automatic backup done every day at 00:01 Full backup on Sunday Incremental backup on other days Saved in "/var/backup/daily" folder and named "fqdn.yyyy-mm-dd-hh-mm.zip""（p541）
+"Performing the re-hosting process with the wrong configuration (hostnames not declared, IP address already used etc...) will result in a deadlock situation. ... it is not possible to fall back to the previous configuration."（p565）
+"the content of the inactive partition will be suppressed and deleted Rollback or update to the inactive partition will NOT be allowed."（p566）
+"Re-hosting an OTMS will NOT update the OmniPCX Enterprise, the OmniVista 8770 server or the OMS"（p567）</p>
+</blockquote>
+<p>出处：OPENXTE300EN p514-578，附录 p579-602（TC2149 ed.04 全文）。</p>
+<h2>I — 自述</h2>
+<p>运维闭环三块：维护三通道、备份体系、rehosting。</p>
+<p>维护三通道（同源不同入口）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>通道</th>
+<th>入口</th>
+<th>适用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原始命令</td>
+<td>checkdns、dla.sh、listtool.sh、ot-config.sh 等</td>
+<td>脚本化与精确控制</td>
+</tr>
+<tr>
+<td>otconsole.sh 菜单</td>
+<td>Easy/Advanced 两级子菜单</td>
+<td>交互式排查（R2.2 起）</td>
+</tr>
+<tr>
+<td>Maintenance Portal</td>
+<td>WebAdmin 进入或 4448 端口直达</td>
+<td>图形化执行与日志下载</td>
+</tr>
+</tbody>
+</table></div>
+<p>备份体系四要点：</p>
+<ul>
+<li>OT 数据库备份覆盖 ICAS（库+语音消息）、SIP SRV、ACS 三组件；自动备份每日 00:01，周日全量、其余增量</li>
+<li>产物落在 /var/backup/daily 并按"主机名.日期时间.zip"命名；手动用 otbr.sh backup 或 restore（host/moh 两种口径）</li>
+<li>介质用 ot-config.sh --storage 选本地/USB/NFS：USB 须 FAT32/NTFS/EXT3 并用 prepareUsbdisk 格式化</li>
+<li>OT-V 本地没有 /var/backup，必须整体挂 NFS、USB 无意义；本地既无该目录又没挂 NFS 时，8770 发起的 OT 备份不工作</li>
+</ul>
+<p>rehosting：ot-config.sh --rehost 复用初始化向导，改 OT 的 IP、主机名、FQDN、DNS 与 License server（隐藏选项 --suspend 支持先挂起再搬迁换子网）；实验口径约 25 分钟完成。三条铁律：</p>
+<ol>
+<li>参数配错即死锁且无回退——动手前必须参数全对、基础设施一致、有可用备份（OT 备份加整盘镜像或虚机快照）。</li>
+<li>inactive 分区内容被清除——旧分区回滚与升级通道关闭，后续仅可平滑升级或全新安装。</li>
+<li>--rehost 只改 OT 自己——OXE/8770/OMS 与生态（DNS/DHCP/SSO/SNMP/防火墙）要按 TC2149 矩阵逐项收尾，漏一项就是"半个系统在新地址"。</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>维护工具实验</strong>（p522-532）：</p>
+<ol>
+<li>listtool.sh 按五类列出全部维护脚本。</li>
+<li>DNS 核查三通道任选其一执行，结果应全 OK。</li>
+<li>日志收集：dla.sh 选 feature 与场景，产物落 /logs/dla。</li>
+<li>otconsole 1-5-1 与 Portal 日志激活均须 root 执行。</li>
+<li>tsa_maintenance 连本机 3595 端口做号码库核查。</li>
+<li>菜单 100 起受口令保护（口令 2998，经 106 2998 进入）。</li>
+</ol>
+<p><strong>备份与 rehosting 实验</strong>（p551-578）：</p>
+<ol>
+<li>ot-config.sh --storage 查现状并配置备份介质。</li>
+<li>实验选 NFS：服务器 10.20.30.40、路径 /mnt/db/backup/podX。</li>
+<li>root 执行 otbr.sh backup host 做手动备份。</li>
+<li>演练 otbr.sh restore host（恢复需先停服务）。</li>
+<li>rehosting 前置：新 FQDN 与 IP 的 DNS 已生效且确认有可用备份。</li>
+<li>root 执行 ot-config.sh --rehost，向导内改主机名与 IP。</li>
+<li>等约 25 分钟完成后以新地址可达并跑检查。</li>
+<li>按 TC2149 矩阵收尾 OXE、8770、OMS 与生态逐项复测。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户搬迁要改 IP 与主机名；系统异常要收集日志；备份策略评审；rehosting 后一半系统还在旧地址；换内外 FlexLM 形态。</p>
+<p>语言信号：维护 / maintenance / otconsole / Maintenance Portal / 4448 / checkdns / dla / 日志收集 / 备份 / otbr / NFS / rehosting / 改 IP / 主机名 / TC2149 / 死锁 / inactive 分区。</p>
+<p>与相邻能力区分：许可锚定物联动（换 FlexLM 形态）→ 许可能力；证书重签与重启 → 证书路由卡；OXE 与 8770 各自的日常备份命令细节在本卡 B 段给指针，深入排障转 TC2149。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：变更窗口与回退预案；新网络参数与 DNS 生效确认；备份可用性证明（OT 备份加镜像或快照）；TC2149 当前版本。</p>
+<ol>
+<li>日常：三通道取一做核查与日志收集。完成标准：问题数据在手</li>
+<li>备份：按形态（物理/OT-V）定介质并演练一次恢复。完成标准：恢复演练通过</li>
+<li>rehosting 评估：列全 TC2149 触达面与业务影响（含会议重建）。完成标准：影响清单经客户确认</li>
+<li>rehosting 执行：前置全绿后跑 --rehost 并等待完成。完成标准：新地址可达且系统检查通过</li>
+<li>收尾：按 TC2149 逐项改 OXE/8770/OMS 与生态并复测。完成标准：端到端呼叫与告警正常</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>参数没全对齐或没有备份 → 停！rehosting 配错即死锁且无回退</li>
+<li>rehost 后 OXE/8770 还在旧地址 → 设计如此（--rehost 只改 OT），按矩阵收尾</li>
+<li>换内外 FlexLM 形态 → 外部虚拟化只认加密狗，许可适配走 eBP 工单（预留商务周期）</li>
+<li>OT-V 想用 USB 备份 → 无意义，必须 NFS</li>
+<li>客户想回滚 inactive 分区 → 通道已关闭，提前告知仅可平滑升级或全新安装</li>
+</ul>
+<p>输出契约：维护核查记录 + 备份恢复演练证据 + rehosting 变更单（TC2149 核对表逐项勾选）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>实验口径（生产必须按现场替换）：rehost 目标 192.168.1.49 与主机名 otms、NFS 10.20.30.40、ots 隐藏菜单口令 2998、耗时约 25 分钟。</li>
+<li>改 OT 或 ACS 集群名称会废掉全部既有会议——变更窗口必须通知全部会议组织者（n22）。</li>
+<li>物理机整盘镜像用 Clonezilla（细节 TC1625）；虚拟化用 vSphere 快照/克隆/备份（p564）。</li>
+<li>dla.sh 选项 1 须 root；菜单 100 起受口令保护（口令 2998）（p480/p531）。</li>
+<li>OXE 备份用 swinst（配置与计费两类文件）；8770 用自带 Maintenance 工具（p547-549）。</li>
+<li>OTBE 的 rehosting 在 OTBE 安装手册（书外，n39）；UM、Nomadic 同为书外专项。</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte300en/skills/ots-license-flexlm.html">许可体系与 FlexLM（安装、核查、外部切换）</a></p><p class="source-page">能力 ID：cap.ots.maintenance-rehosting · 来源：OPENXTE300EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch — OpenTouch Suite for MLE — Solution Overview / Starter (Participant's Guide) | edition: Edition 10 | pages: 603 页 -->

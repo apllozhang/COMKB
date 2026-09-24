@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>统一消息 UM（Exchange/O365/Gmail/IMAP）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OpenTouch · Advanced</h2><p>Edition 08 · 468 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte301en/index.html">课程首页</a><a href="/courses/openxte301en/digest.html">精华长文</a><a href="/courses/openxte301en/overview.html">教书理解</a><a href="/courses/openxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte301en/skills/ota-remote-access.html">OpenTouch 远程接入通道与证书</a><a href="/courses/openxte301en/skills/ota-nomadic-ghost-z.html">Nomadic 移动模式与 Ghost Z 资源池</a><a href="/courses/openxte301en/skills/ota-smartphone-rex.html">OTC 智能手机交付全流程（REX/DISA/APNS）</a><a href="/courses/openxte301en/skills/ota-um-exchange-integration.html">统一消息 UM（Exchange/O365/Gmail/IMAP）</a><a href="/courses/openxte301en/skills/ota-conference-collaboration.html">协作会议（ACS 配置、角色权限、数据会议）</a><a href="/courses/openxte301en/skills/ota-calendar-sync.html">日历在场与日历同步（Calendar presence/synchro）</a><a href="/courses/openxte301en/skills/ota-directory-udas.html">目录搜索与 Single Business Card（UDAS）</a><a href="/courses/openxte301en/skills/ota-enterprise-authentication.html">企业认证集成（LDAP/RADIUS/Kerberos SSO）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte301en/skills/ota-desksharing.html">Desksharing 共享工位（DSU/DSS）</a><a href="/courses/openxte301en/skills/ota-extended-mobility.html">Extended Mobility（QR/NFC 切换与路由修改）</a><a href="/courses/openxte301en/skills/ota-dcs-documents.html">DCS 文档转换服务器（Office 会议演示）</a><a href="/courses/openxte301en/skills/ota-otc-web-guest.html">OTC Web 与访客入会</a><a href="/courses/openxte301en/skills/ota-lab-pod.html">RLAB 实验 POD 与 SIP 运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte301en/index.html">opentouch-advanced（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte301en/index.html">OPENXTE301EN</a><span>/</span><span aria-current="page">统一消息 UM（Exchange/O365/Gmail/IMAP）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>统一消息 UM（Exchange/O365/Gmail/IMAP）</h1></div><dl><div><dt>Skill ID</dt><dd>ota-um-exchange-integration</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>统一消息 UM（Exchange/O365/Gmail/IMAP 四后端与 Impersonation）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The OpenTouch server handles the voice messaging process and the company mail server/Gmail stores voice messages • Single point of storage • Voice messages are stored in Wav format"（p170）
+"Since the release 2.3 ... the OpenTouch server uses now impersonation method instead of delegation"（p189）
+"Gmail platform can be used to store voice mails ... Limited to 500 OpenTouch users"（p176）
+"IMAP4 mail server • No plug-in: less services • No PPR • No Extensions • No MWI • No class of message"（p177）</p>
+</blockquote>
+<p>出处：OPENXTE301EN p168-217。</p>
+<h2>I — 自述</h2>
+<p>UM 把语音留言变成邮件服务器里的一封邮件（Wav 单点存储，容量只受邮件服务器限制）：</p>
+<ol>
+<li><strong>四后端能力递减</strong>：Exchange（本地，全功能）≥ Exchange 云 O365（需 OT 2.5 才有 Outlook 加载项/Office 集成，仅桌面版）&gt; Gmail（OAuth 2.0 接入，上限 500 用户）&gt; IMAP4（无插件，砍 PPR/扩展/MWI/消息类别）</li>
+<li><strong>Exchange 侧钥匙</strong>：特权账号 ICEaccess（AD 账号+邮箱+密码永不过期）+ Impersonation 授权（EMS 给 ApplicationImpersonation 角色；R2.2 前用 delegation 逐邮箱三参数）+ CA 证书入 OT 信任库</li>
+<li><strong>OT 侧三层</strong>：UM 语音邮件系统（Topology/VMS）→ 语音邮箱档案（4 个默认：1 个 UM standard+3 个 Local Storage，Answer only/Direct callback/Attendant call '0'/sent items 副本等参数）→ 信箱分配（建用户时或 Voicemail box 建）</li>
+</ol>
+<p>邮件服务器声明：协议 EWS、端口 443、登录两种格式（DOMAIN\login 或 login@DOMAIN）；云场景 FQDN 固定 outlook.office365.com、需 HTTP proxy 与通知服务公共 URL（按 /ExchangeNotificationService 放行，可省反向代理）。</p>
+<p>维护抓手：守护进程 mascd 与 wireald，异常时 restart；日志在 logs/masc、logs/wireal。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>UM（Exchange）部署实验</strong>（p182-217）：</p>
+<ol>
+<li>AD 建 ICEaccess 账号（勾密码永不过期，实验口径 iceaccess）</li>
+<li>Exchange 管理中心确认其邮箱存在</li>
+<li>EMS 执行 New-ManagementRoleAssignment 授 ApplicationImpersonation（R2.3+ 口径）</li>
+<li>CA 根证书下载并导入 OT 信任库（Server CTL 页签 Add）</li>
+<li>声明邮件服务器：EWS/443/ICEaccess 登录/on-premises，勾日历在场与会议同步两开关</li>
+<li>建 UM 语音邮件系统（Type=UM，Mail server=mail）</li>
+<li>核对语音邮箱档案参数并确认 31200 留言号两侧成对</li>
+<li>档案改动后执行同步（OT/OXE，Warning：不同步模板取不回）</li>
+<li>分配信箱（Voicemail box 建 UM voicemail box 并关联用户）</li>
+<li>验证：留言后 My Messaging 与 Outlook 均可见</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：语音留言进邮箱方案；选哪种邮件后端；留言灯（MWI）不亮；用户问为什么 My Profile 里没有问候语；O365 部署要开什么；Gmail 能不能扛全员。</p>
+<p>语言信号：统一消息 / UM / voice mail / 语音邮箱 / Exchange / O365 / Office 365 / Gmail / IMAP4 / EWS / ICEaccess / impersonation / 委托 / delegation / MWI / PPR / 信箱 / voicemail box / MASC / Wireal。</p>
+<p>与相邻能力区分：日历在场与会议同步 → 日历同步能力（配置同源但机制独立）；本地存储邮箱的日历 → TC2558（超出本卡）；话机留言键的 OXE 侧参数在本卡 A1 步骤 7。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：邮件后端类型与版本（Exchange 版本/OT 版本）、特权账号治理、证书链、用户规模（Gmail 500 上限卡）。</p>
+<ol>
+<li>选型确认：按后端能力递减谱系与版本门槛确认方案。完成标准：选型与版本矩阵书面确认</li>
+<li>Exchange 侧授权：R2.3+ 用 Impersonation（EMS 一条命令）；R2.2 及以前用 delegation（每邮箱三参数）。完成标准：Get-ManagementRoleAssignment 可见</li>
+<li>证书入信任库：CA 根证书导入 Server CTL。完成标准：证书在列</li>
+<li>声明邮件服务器（EWS/443/登录格式/位置；云场景加 proxy 与通知 URL）。完成标准：两开关已勾</li>
+<li>建 UM 系统与核对档案。完成标准：VMS 关联 mail、档案参数确认</li>
+<li>同步后分配信箱并验证留言投递。完成标准：My Messaging 与 Outlook 双侧可见</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>留言不进邮箱 → 高频根因是 ICEaccess/Impersonation 配置，先查授权再查证书</li>
+<li>档案改了没效果 → 查是否漏同步（Warning p201）</li>
+<li>My Profile 里没有问候语 → 先让用户用话机录一遍（网页端不能从零创建，p211）</li>
+<li>客户用自建 IMAP → 提前把 PPR/扩展/MWI/消息类别四项降级写进方案，不按 Exchange 体验承诺</li>
+<li>Gmail 方案超 500 用户 → 停，改 Exchange/O365 或 IMAP 并重新谈预期</li>
+</ul>
+<p>输出契约：后端选型结论 + Exchange 侧授权与证书记录 + UM 三层配置单 + 留言投递验证结果。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>版本分界：OT ≤2.2.x 用 delegation、2.3 起用 impersonation；升级 OT 后要同步换 Exchange 侧方案，两代混用出疑难（n44）</li>
+<li>O365 的 Outlook 加载项/联系人同步/Office 集成要 OT 2.5+ 且仅桌面版 Office（n23）</li>
+<li>凭据（ICEaccess 密码等）实验值必须替换生产值并纳入 vault 管理（n49）</li>
+<li>本地存储邮箱（Local Storage 档案）的日历特性走 TC2558，不在 UM 流程内（n32）</li>
+<li>UM 实现的生产化细节以 TC2391 为准</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte301en/skills/ota-calendar-sync.html">日历在场与日历同步（Calendar presence/synchro）</a></p><p class="source-page">能力 ID：cap.ota.um-exchange-integration · 来源：OPENXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OpenTouch - Advanced (Participant's Guide, Edition 08) | edition: Edition 08 | pages: 468 页 -->

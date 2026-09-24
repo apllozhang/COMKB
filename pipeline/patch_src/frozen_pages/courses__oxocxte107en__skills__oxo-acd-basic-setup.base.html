@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OXO Connect 基础 ACD 全流程搭建</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OXO Connect · 呼叫中心</h2><p>Edition 07 · 218 页 · 文档整理入库（15 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte107en/index.html">课程首页</a><a href="/courses/oxocxte107en/digest.html">精华长文</a><a href="/courses/oxocxte107en/overview.html">教书理解</a><a href="/courses/oxocxte107en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte107en/skills/oxo-acd-basic-setup.html">OXO Connect 基础 ACD 全流程搭建</a><a href="/courses/oxocxte107en/skills/oxo-acd-call-scenarios.html">ACD 呼入六场景排障</a><a href="/courses/oxocxte107en/skills/oxo-acd-routing.html">呼叫特征化与 Smart Call Routing 路由表设计</a><a href="/courses/oxocxte107en/skills/oxo-acd-queue.html">ACD 等待队列管理（容量公式与出口配置）</a><a href="/courses/oxocxte107en/skills/oxo-acd-search-noanswer.html">坐席搜索模式选型与无应答处理</a><a href="/courses/oxocxte107en/skills/oxo-acd-login-status.html">坐席签入签出（free seating）与状态排障</a><a href="/courses/oxocxte107en/skills/oxo-multi-secretary.html">Multi-Secretary 多秘书方案配置</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte107en/skills/oxo-omc-first-connect.html">OMC 安装与首次连接</a><a href="/courses/oxocxte107en/skills/oxo-ip-replan.html">OXO 与客户端 IP 规划修改</a><a href="/courses/oxocxte107en/skills/oxo-acd-schedule-calendar.html">ACD 营业时段与例外日配置</a><a href="/courses/oxocxte107en/skills/oxo-supervisor-app.html">Supervisor 班长台部署与实时监控</a><a href="/courses/oxocxte107en/skills/oxo-agent-app.html">Agent 坐席席面部署（弹屏/打标/客户库）</a><a href="/courses/oxocxte107en/skills/oxo-statistics-app.html">Statistics 统计应用与报表导出</a><a href="/courses/oxocxte107en/skills/oxo-dtmf-client-popup.html">DTMF 客户码识别弹屏</a><a href="/courses/oxocxte107en/skills/oxo-acd-voice-prompts.html">ACD 语音提示定制</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte107en/index.html">oxo-connect-call-center（15 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte107en/index.html">OXOCXTE107EN</a><span>/</span><span aria-current="page">OXO Connect 基础 ACD 全流程搭建</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OXO Connect 基础 ACD 全流程搭建</h1></div><dl><div><dt>Skill ID</dt><dd>oxo-acd-basic-setup</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>基础 ACD 全流程搭建（OXO Connect）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The prefixes used to manage the agent status are • 501: on duty • 502: off duty • 503: clerical work • 504: temporary absence ... Group ACD n°1, internal prefix:505, DDI N°: 41505 ..."（p70）
+"Validate the ACD Setup process by pressing the ''OK'' key. Restart the ACD engine in order to apply changes"（p48）
+"Select the ''Virtual terminals'' ... ''Media'' parameter ticked for all ACD ports (don't touch)"（p80）</p>
+</blockquote>
+<p>出处：OXOCXTE107EN p43-48（向导）、p69-77（基础配置实验）、p80-84（向导后台生成物）。</p>
+<h2>I — 自述</h2>
+<p>搭一套基础 ACD 分两层：<strong>向导定骨架，菜单做精调</strong>。</p>
+<ol>
+<li><strong>第一层 · ACD Setup 向导一次成型</strong>（OMC 内五步）：</li>
+<li>General 页签：端口数（与 MLAA 共享，上限 16）、坐席状态前缀、ACD 组与 DDI 关联</li>
+<li>ACD Group 页签：给组挂语音邮箱</li>
+<li>Profiles 页签：生成坐席/班长预定义按键 profile</li>
+<li>Agents/Supervisors 页签：把 profile 套到具体话机</li>
+<li>按 OK 校验 → <strong>重启 ACD 引擎</strong>（不重启不生效，新手第一大坑）</li>
+<li><strong>第二层 · ACD Services 菜单精细调整</strong>：</li>
+<li>Smart Call Routing / Line parameters：号码进组路由</li>
+<li>Agent parameters：建坐席、入组、定 rank</li>
+<li><strong>向导后台自动生成物</strong>（排障前先知道"向导动过什么"）：</li>
+<li>ACD 端口虚拟终端（Media 参数已勾选，<strong>不许动</strong>）</li>
+<li>cyclic 模式寻线组、邮箱动态呼转、DDI 关联、预定义 profiles</li>
+<li><strong>完成判定</strong>：核对四个菜单（Subscribers list / Hunting groups list / 内部编号计划 / 公共编号计划）+ 实呼验证</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>基础三组搭建实验</strong>（p69-77，厂商实验，含标准验证步骤）</p>
+<ul>
+<li><strong>输入</strong>：客户要求 3 个 ACD 组；坐席话机 101/102/103；话务台 100</li>
+<li><strong>步骤</strong>：</li>
+<li>General 页签核对前缀 501-504；添加各组 DDI（内部前缀 505/506/507 分别对应 41505/41506/41507）</li>
+<li>ACD Group 页签为三组建邮箱</li>
+<li>Profiles 页签生成按键 profile</li>
+<li>Agents/Supervisors 页签：101/102/103 套 Agent profile，100 套 Supervisor profile</li>
+<li>Line parameters 维护 505-507 / 41505-07 进组条目</li>
+<li>Agent parameters 坐席入组定 rank —— 组1：101(r1)+102(r2)；组2：102(r1)+103(r2)；组3：103(r1)+102(r2)+101(r3)</li>
+<li>Voice messages 选 Transfer mode 下载默认语音</li>
+<li><strong>验证</strong>：核对四个菜单；实呼每组确认"先欢迎语后转坐席"；用 501-504 前缀与功能键切换四态测试</li>
+</ul>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：</p>
+<ol>
+<li>"新装了一台 OXO，要上呼叫中心"——从零交付</li>
+<li>"再建一个 ACD 组给售后用"——扩组</li>
+<li>"坐席 profile 怎么批量下发"——向导 Profiles 页签</li>
+<li>"改了 ACD 配置怎么不生效"——忘记重启引擎</li>
+</ol>
+<p>语言信号：配 ACD / 建 ACD 组 / 呼叫中心初始化 / ACD Setup / set up ACD / hunting group / DDI 关联 / 501 502 503 504 / profile 下发。</p>
+<p>与相邻能力区分：已有 ACD 的"来话行为异常"→ 六场景排障能力；按客户分流来话 → 特征化路由能力；本能力只管"从零把 ACD 骨架立起来"。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：组数与各组 DDI 号、坐席话机清单（分机号）、坐席-组归属与优先序、营业时段（可后置）。缺 DDI 规划或坐席清单时先询问，不要猜号。</p>
+<ol>
+<li>前置检查：OMC / System Miscellaneous / Feature design / part 2，确认 "Group called with signalization mode" <strong>未勾选</strong>。完成标准：确认为 setup mode。</li>
+<li>ACD Setup 向导 General 页签：核对状态前缀 501-504；设置端口数；录入各组内部前缀与 DDI。完成标准：三组 DDI 关联出现在列表。</li>
+<li>ACD Group 页签：为每组勾选 voice mailbox。完成标准：组名后带邮箱标识。</li>
+<li>Profiles 页签：生成 Agent/Supervisor 预定义 profiles。完成标准：profile 列表出现。</li>
+<li>Agents/Supervisors 页签：为坐席/班长话机套对应 profile。完成标准：目标话机已关联。</li>
+<li>按 OK → <strong>重启 ACD 引擎</strong>。完成标准：重启完成无报错。</li>
+<li>ACD-SCR Services / Smart Call Routing：维护 Line parameters 进组条目。完成标准：来话号码能匹配进组。</li>
+<li>Agent parameters：建坐席、入组、定 rank、置 on duty。完成标准：组归属与优先序正确。</li>
+<li>Voice messages：Transfer mode → 选组 → Default messages → 上传；不配置的组点列号排除。完成标准：各组提示音就位。</li>
+<li>验证：核对四个菜单；实呼每组；四态前缀切换测试。完成标准：全部行为符合预期。</li>
+</ol>
+<p>输出契约：可接听的 ACD 组清单（组号/内部前缀/DDI/坐席/rank）+ 验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>教材全部密码与网段是实验值，生产必须替换；生产安全加固与真实中继对接不在原书范围</li>
+<li>端口数的规划依据（从话务量反推）书中未给，只有上限 16；超 32 坐席 / 8 组 / 16 端口的需求不在 OXO ACD 范围</li>
+<li>向导自动生成的虚拟终端与 Media 参数<strong>不要手改</strong>（p80 "don't touch"）</li>
+<li>与相邻能力区分：来话行为异常走六场景排障；按主叫/被叫分流走特征化路由</li>
+<li>Multi-Secretary 是独立方案（多秘书能力），不要在基础向导里混配</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte107en/skills/oxo-acd-call-scenarios.html">ACD 呼入六场景排障</a>、<a href="/courses/oxocxte107en/skills/oxo-acd-routing.html">呼叫特征化与 Smart Call Routing 路由表设计</a>、<a href="/courses/oxocxte107en/skills/oxo-acd-login-status.html">坐席签入签出（free seating）与状态排障</a></p><p class="source-page">能力 ID：cap.oxo-cc.basic-setup · 来源：OXOCXTE107EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OXO Connect 呼叫中心 (Participant's Guide, Edition 07) | edition: Edition 07 | pages: 218 页 -->

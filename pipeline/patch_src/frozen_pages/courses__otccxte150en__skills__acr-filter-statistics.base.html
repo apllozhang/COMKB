@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>ACR 过滤器与统计报表</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/paths.html">学习路径</a><a href="/field/index.html">现场支持</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 →</a></nav><button type="button" class="button secondary sm" id="btn-back" data-fallback="/field/index.html" style="margin-left:auto;margin-right:8px;min-height:36px">← 返回</button></header>
+<div class="course-layout"><div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="拖动调整目录宽度" tabindex="0" title="拖动缩放目录宽度"></div><button type="button" class="sidebar-rail" id="sidebar-rail" aria-label="展开课程目录" title="展开目录" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><aside class="course-sidebar"><div class="sidebar-heading"><button type="button" class="sidebar-dock" id="sidebar-dock" aria-label="收起课程目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录</button><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced Call Routing</h2><p>Edition 01 · 470 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte150en/index.html">课程首页</a><a href="/courses/otccxte150en/digest.html">精华长文</a><a href="/courses/otccxte150en/overview.html">教书理解</a><a href="/courses/otccxte150en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte150en/skills/acr-script-editor-fundamentals.html">ACR 脚本编辑器与调试工具链</a><a href="/courses/otccxte150en/skills/acr-ccd-matrix-foundation.html">ACR 基础 CCD 矩阵地基</a><a href="/courses/otccxte150en/skills/acr-redirect-redistribution.html">ACR 重定向与再分发兜底</a><a href="/courses/otccxte150en/skills/acr-direct-call-dica.html">ACR 坐席直拨融合</a><a href="/courses/otccxte150en/skills/acr-internal-database-routing.html">ACR 内部数据库路由</a><a href="/courses/otccxte150en/skills/acr-rule-combination-advanced.html">ACR 综合规则组合与高级构件</a><a href="/courses/otccxte150en/skills/acr-asm-deployment.html">ACR 外部 ASM 部署与双机热备</a><a href="/courses/otccxte150en/skills/acr-database-query-routing.html">ACR 外部数据库查询路由</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte150en/skills/acr-list-rules.html">ACR 授权与非授权名单规则</a><a href="/courses/otccxte150en/skills/acr-call-tag-transfer.html">ACR Call Tag 生成与传递</a><a href="/courses/otccxte150en/skills/acr-multilanguage-voiceguide.html">ACR 多语言语音引导与语言偏好分发</a><a href="/courses/otccxte150en/skills/acr-filter-statistics.html">ACR 过滤器与统计报表</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte150en/index.html">otcc-advanced-call-routing（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte150en/index.html">OTCCXTE150EN</a><span>/</span><span aria-current="page">ACR 过滤器与统计报表</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>ACR 过滤器与统计报表</h1></div><dl><div><dt>Skill ID</dt><dd>acr-filter-statistics</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>ACR 过滤器与统计报表（AND/OR 语义、Super/Hyper-Filter、实时窗口、Excel 三模板）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Up to 200 filters • 7 skills per filter max • The call distribution is not impacted by the filters"（p285）
+"Super-Filter: Group of Filters declared in the same node • Hyper-Filter: Group of Filters declared in different nodes • 25 objects per Super-Filter /Hyper-Filter … allow to apply the logical function OR on the call profiles"（p303）
+"When a new filter is created, we cannot retrieve, in Excel files, data prior to the filter creation date • But, keep in mind that 20 predefined filters originally exist"（p302）
+"Filter: Detail Statistics (Formfilter.xls) … Filters: Summary of the statistics (FormFilterS.xls) … Agents per Filter (FormAgentPerFilter.xls)"（p299-301）</p>
+</blockquote>
+<p>出处：OTCCXTE150EN p283-317。</p>
+<h2>I — 自述</h2>
+<p>过滤器是统计分组视角，不改路由——想让某类呼叫优先要改的是优先级、ISM 成本或脚本。</p>
+<p>规格口径：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>过滤器总数</td>
+<td>最多 200 个（系统出厂预置 20 个，有历史数据）</td>
+</tr>
+<tr>
+<td>每过滤器技能数</td>
+<td>最多 7 个（含级别区间与强制/可选）</td>
+</tr>
+<tr>
+<td>过滤器语义</td>
+<td>AND（技能全满足才计入）</td>
+</tr>
+<tr>
+<td>Super-Filter</td>
+<td>同节点过滤器组，每组 25 对象，OR 语义</td>
+</tr>
+<tr>
+<td>Hyper-Filter</td>
+<td>跨节点过滤器组，每组 25 对象，OR 语义</td>
+</tr>
+<tr>
+<td>对分发的影响</td>
+<td>无（仅实时观测与统计口径）</td>
+</tr>
+<tr>
+<td>数据时效</td>
+<td>Excel 数据从过滤器创建时刻起算</td>
+</tr>
+</tbody>
+</table></div>
+<p>过滤器可基于呼叫档案、授权名单或非授权名单，可配服务水准目标（如 75% 呼叫 15 秒内）与效率告警阈值。</p>
+<p>实时观测窗口族：Real time/Filter、Waiting Room（快捷键 CTRL 加左键）、Calls in Waiting Room、Breakdown by Criteria、临时过滤器（窗口关即失效）、Statistics/Last received calls（近一小时）。</p>
+<p>Excel 三模板分工：Formfilter.xls 明细（按时间片粒度）、FormFilterS.xls 汇总（每过滤器一行）、FormAgentPerFilter.xls 坐席乘过滤器交叉活动；Super/Hyper-Filter 亦可出 Excel。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>过滤器实验（c11）</strong>：</p>
+<ol>
+<li>建 Filter 1：Car 技能 4-9 强制加 English 4-9 强制</li>
+<li>同法建 Filter 2（Home 加 English 强制）与 Filter 3（Car 加 Home 加 English 均 5-9 any）</li>
+<li>全部配服务水准 75% 15 秒、效率 85%（实验口径）</li>
+<li>Super Objects 建 Super-Filter：选入 Filter 1 与 Filter 2</li>
+<li>实时窗口依次看三个过滤器：Filter 3 无数据（没有同时带三种技能需求的档案）</li>
+<li>Super-Filter 有数据（Filter 1 与 Filter 2 的并集）</li>
+<li>坐席全忙时呼各入口，开 Calls in Waiting Room 观察等待呼叫</li>
+<li>出 Excel 明细与汇总两张报表核对粒度差异</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：交付验收要业务视角报表；监控大客户呼叫量；Filter 口径数字对不上；要跨节点合并统计；月中要新口径报表。</p>
+<p>语言信号：过滤器 / Filter / Super-Filter / Hyper-Filter / AND / OR / 服务水准 / Service Level / 实时监控 / Real time / Excel 报表 / Formfilter / 等待房间观测 / 临时过滤器。</p>
+<p>与相邻能力区分：呼叫优先级控制，见 综合规则组合能力；业务入口与档案，见 CCD 矩阵地基能力；名单类过滤器的前提，见 名单规则卡（路由）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：业务分组口径（技能组合与级别）、服务水准目标值、节点拓扑（跨节点时）。报表口径先与客户书面确认。</p>
+<ol>
+<li>规划过滤器清单：每组口径是 AND 还是 OR，决定建 Filter 还是 Super-Filter。完成标准：口径表评审通过</li>
+<li>CCS 的 Filter 页建过滤器：技能加级别区间加强制/可选。完成标准：过滤器保存</li>
+<li>配服务水准目标与效率告警阈值。完成标准：阈值可告警</li>
+<li>（跨口径统计）Super Objects 建 Super/Hyper-Filter 选入成员。完成标准：组内 25 对象以内</li>
+<li>实时窗口核对：逐个过滤器看实时数据。完成标准：AND/OR 口径与预期一致</li>
+<li>出 Excel 明细与汇总报表。完成标准：粒度与行数符合模板分工</li>
+<li>新口径过滤器提前建（数据从创建时刻起算）。完成标准：交付日历含建过滤器节点</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>Filter 长期零数据 → 停，AND 口径下可能没有呼叫同时带全部技能，改 OR 组或收窄技能</li>
+<li>想用过滤器让呼叫优先 → 停，过滤器不影响分发，改优先级/成本/脚本</li>
+<li>月中要历史报表 → 停，新过滤器无历史，先用预置 20 个过滤器口径救急</li>
+<li>临时过滤器窗口关了数据没了 → 正常，临时过滤器只活到窗口关闭</li>
+</ul>
+<p>输出契约：过滤器与超组配置 + 实时观测视图 + Excel 报表样张。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>"Super-Filer / Hyper-Filer"（p314）为原文拼写（照录）</li>
+<li>过滤器建在 CCS；预置 20 个过滤器之外的口径均从创建时刻起算</li>
+<li>服务水准与效率阈值样例值为实验口径，目标值须与客户约定</li>
+<li>服务水准的历史测算方法（话务建模）原书不涉及，仅给观测口径</li>
+<li>跨节点 Hyper-Filter 的多节点组网前提在书外（混合链路细节同为书外）</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.acr.filter-statistics · 来源：OTCCXTE150EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var layout = document.querySelector('.course-layout');
+  var KEY = 'ale-comm-sidebar';
+  var WKEY = 'ale-comm-sidebar-w';
+  function applyCollapsed(on){
+    if(!layout) return;
+    layout.classList.toggle('sidebar-collapsed', !!on);
+    try{ localStorage.setItem(KEY, on ? '1' : '0'); }catch(e){}
+    var dock = document.getElementById('sidebar-dock');
+    var rail = document.getElementById('sidebar-rail');
+    var old = document.getElementById('sidebar-toggle');
+    if (dock) {
+      dock.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> 展开'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg> 收起目录';
+      dock.setAttribute('aria-label', on ? '展开课程目录' : '收起课程目录');
+    }
+    if (old) old.hidden = true;
+    if (rail) rail.hidden = !on;
+  }
+  var saved = null;
+  try{ saved = localStorage.getItem(KEY); }catch(e){}
+  if (layout) {
+    var w = null;
+    try{ w = localStorage.getItem(WKEY); }catch(e){}
+    if (w) {
+      var n = parseInt(w, 10);
+      if (n >= 220 && n <= 480) layout.style.setProperty('--sidebar-w', n + 'px');
+    }
+    applyCollapsed(saved === '1');
+  }
+  var dock = document.getElementById('sidebar-dock');
+  var rail = document.getElementById('sidebar-rail');
+  if (dock) dock.addEventListener('click', function(){
+    applyCollapsed(!layout.classList.contains('sidebar-collapsed'));
+  });
+  if (rail) rail.addEventListener('click', function(){ applyCollapsed(false); });
+
+  var rz = document.getElementById('sidebar-resizer');
+  if (rz && layout) {
+    var dragging = false, startX = 0, startW = 300;
+    function setW(px){
+      px = Math.max(220, Math.min(480, px));
+      layout.style.setProperty('--sidebar-w', px + 'px');
+      try{ localStorage.setItem(WKEY, String(px)); }catch(e){}
+    }
+    rz.addEventListener('pointerdown', function(e){
+      dragging = true;
+      rz.classList.add('active');
+      rz.setPointerCapture(e.pointerId);
+      startX = e.clientX;
+      startW = layout.getBoundingClientRect().width ? parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10) : 300;
+      e.preventDefault();
+    });
+    rz.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      setW(startW + (e.clientX - startX));
+    });
+    rz.addEventListener('pointerup', function(e){
+      dragging = false;
+      rz.classList.remove('active');
+      try{ rz.releasePointerCapture(e.pointerId); } catch(_){}
+    });
+    rz.addEventListener('keydown', function(e){
+      var cur = parseInt(getComputedStyle(layout).getPropertyValue('--sidebar-w') || '300', 10);
+      var step = e.shiftKey ? 24 : 8;
+      if (e.key === 'ArrowLeft') { setW(cur - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setW(cur + step); e.preventDefault(); }
+    });
+  }
+
+  var back = document.getElementById('btn-back');
+  if (back) back.addEventListener('click', function(e){
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.href = back.getAttribute('data-fallback') || '/index.html';
+  });
+})();
+</script>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Advanced Call Routing (Participant's Guide, Issue 01) | edition: Edition 01 | pages: 470 页 -->
