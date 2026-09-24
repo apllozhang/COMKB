@@ -118,14 +118,24 @@ def cmd_terms(code):
             en = e["en"]
             if len(en) < 3:
                 continue
-            if re.search(r"(?<![A-Za-z0-9])" + re.escape(en) + r"(?![A-Za-z0-9])", tl):
-                hits.append(e)
-        out = "\n".join("- %s => %s%s" % (e["en"], e["zh"],
-                                          "（禁用旧译：%s）" % "、".join(e["zh_alt"][:2]) if e["zh_alt"] else "")
-                         for e in hits) or "（本块无术语表命中）"
+            if not re.search(r"(?<![A-Za-z0-9])" + re.escape(en) + r"(?![A-Za-z0-9])", tl):
+                continue
+            scoped = code in e.get("books", [])
+            if not (e.get("global") or scoped):
+                continue  # 作用域外：本书不约束
+            hits.append((e, 0 if scoped else e.get("prio", 1)))
+        # 优先级：本书词汇表 > 共识全局 > curated；同优先级按 en 长度降序（复合词条在前）
+        hits.sort(key=lambda x: (x[1], -len(x[0]["en"]), x[0]["en"].lower()))
+        lines = []
+        for e, prio in hits:
+            tag = {0: "本书词汇表", 1: "共识全局", 2: "通用基线"}[prio]
+            note = "（禁用旧译：%s）" % "、".join(e["zh_alt"][:2]) if e.get("zh_alt") else ""
+            alt = "（旧译 %s 不用）" % e["alt_note"] if e.get("alt_note") else ""
+            lines.append("- %s => %s [%s]%s%s" % (e["en"], e["zh"], tag, note, alt))
+        out = "\n".join(lines) if lines else "（本块无术语表命中）"
         io.open(os.path.join(p["terms"], fp), "w", encoding="utf-8", newline="").write(out)
         n += 1
-    print("terms: %d 块术语清单 -> %s" % (n, p["terms"]))
+    print("terms: %d 块术语清单（按书作用域过滤）-> %s" % (n, p["terms"]))
 
 
 # ---------------- check ----------------
