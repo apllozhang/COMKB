@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.opentouch-advanced",
+  "generated_at": "2026-09-23",
+  "destinations": {
+    "cap.ota.remote-access": { "promoted_to": "ota-remote-access" },
+    "cap.ota.nomadic-ghost-z": { "promoted_to": "ota-nomadic-ghost-z" },
+    "cap.ota.smartphone-rex": { "promoted_to": "ota-smartphone-rex" },
+    "cap.ota.um-exchange-integration": { "promoted_to": "ota-um-exchange-integration" },
+    "cap.ota.conference-collaboration": { "promoted_to": "ota-conference-collaboration" },
+    "cap.ota.calendar-sync": { "promoted_to": "ota-calendar-sync" },
+    "cap.ota.directory-udas": { "promoted_to": "ota-directory-udas" },
+    "cap.ota.enterprise-authentication": { "promoted_to": "ota-enterprise-authentication" },
+    "cap.ota.desksharing": { "served_by": "opentouch-advanced-router" },
+    "cap.ota.extended-mobility": { "served_by": "opentouch-advanced-router" },
+    "cap.ota.dcs-documents": { "served_by": "opentouch-advanced-router" },
+    "cap.ota.otc-web-guest": { "served_by": "opentouch-advanced-router" },
+    "cap.ota.lab-pod": { "served_by": "opentouch-advanced-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 }
+}

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>SSH 免密分发体系</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Advanced</h2><p>— · 543 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte401en/index.html">课程首页</a><a href="/courses/entpxte401en/digest.html">精华长文</a><a href="/courses/entpxte401en/overview.html">教书理解</a><a href="/courses/entpxte401en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte401en/skills/entadv-ssh-trust-foundation.html">SSH 免密分发体系</a><a href="/courses/entpxte401en/skills/entadv-cs-redundancy.html">CS 冗余部署与切换维护</a><a href="/courses/entpxte401en/skills/entadv-ip-domain-pcs.html">IP 域与 PCS 域级生存性</a><a href="/courses/entpxte401en/skills/entadv-overflow-rerouting.html">公私网双向溢出与重路由</a><a href="/courses/entpxte401en/skills/entadv-direct-ip-link.html">Direct IP Link 全 IP 组网</a><a href="/courses/entpxte401en/skills/entadv-audit-broadcast.html">Audit 与 Broadcast 数据一致性</a><a href="/courses/entpxte401en/skills/entadv-multiline-supervision.html">多线监督与经理助理组</a><a href="/courses/entpxte401en/skills/entadv-hunting-pickup-speeddial.html">寻线代接组与速拨编号体系</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte401en/skills/entadv-desk-sharing.html">办公桌共享（DSS/DSU）</a><a href="/courses/entpxte401en/skills/entadv-multi-device.html">多设备用户与 Twinset</a><a href="/courses/entpxte401en/skills/entadv-lab-pod-baseline.html">实验/交付前置环境基线</a><a href="/courses/entpxte401en/skills/entadv-cli-toolbox.html">维护命令与事件/许可速查</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte401en/index.html">oxe-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte401en/index.html">ENTPXTE401EN</a><span>/</span><span aria-current="page">SSH 免密分发体系</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>SSH 免密分发体系</h1></div><dl><div><dt>Skill ID</dt><dd>entadv-ssh-trust-foundation</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>SSH 免密分发体系（oxe-ssh-auth 对机 / oxe-nw-sshkey-sync 全网）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"From N3 onwards, for security reasons SSHv2 is enabled by default with public key authentication. … Host based authentication is no longer supported, thanks to CIS compliance requirements."（p57）
+"Before starting the synchronization, the tool checks if passwordless connectivity already exists … and starts synchronizing the keys only if it does not exist already."（p60）
+"Usage: oxe-nw-sshkey-sync –f &lt;.csv file&gt; … <Main CS IP Address, Node X>,<mtcl password>,<swinst password>,<root password>,<log file>"（p64）
+"Password CSV file ssh_multi.csv, Config(/tmpd/config) folders are cleared ! Done !!!"（p206）</p>
+</blockquote>
+<p>出处：ENTPXTE401EN p55-68, p203-208。</p>
+<h2>I — 自述</h2>
+<p>N3 起 SSHv2+公钥认证是每台 OXE 的默认基线，host-based 认证已被 CIS 合规移除。mastercopy、pcscopy、audit、broadcast 全部依赖免密——密钥没分发，这些功能必失败。三层结构：</p>
+<ol>
+<li><strong>机制层</strong>：mtcl/swinst/root 三账户在每台 CS 各持独立密钥对；授权表为各账户 .ssh 下的 authorized_keys</li>
+<li><strong>对机工具 oxe-ssh-auth -c &lt;远端IP&gt;</strong>：root 执行，处理"一对"OXE；先检查免密是否已存在，已同步则跳过；可选"同一密码套用本地与远端全部三账户"（默认 y）</li>
+<li><strong>全网工具 oxe-nw-sshkey-sync -f <csv></strong>：从主 CS 运行时自动按 MAO 推导 twin/PCS/网络节点/4645 清单，先主 CS 后 twin CS 逐对同步；全网每节点各跑一次即可；结束时自动删除 csv 与凭证目录，日志归档 /tmpd/oxenwsynclogs.zip</li>
+</ol>
+<p>密钥存储路径（p67）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>账户</th>
+<th>私钥/公钥路径</th>
+<th>授权表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mtcl</td>
+<td>/usr2/mtcl/.ssh/id_rsa(.pub)</td>
+<td>/usr2/mtcl/.ssh/authorized_keys</td>
+</tr>
+<tr>
+<td>swinst</td>
+<td>/usr2/soft_install/bin/.ssh/id_rsa(.pub)</td>
+<td>同目录 authorized_keys</td>
+</tr>
+<tr>
+<td>root</td>
+<td>/root/.ssh/id_rsa(.pub)</td>
+<td>同目录 authorized_keys</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>对机同步（本地冗余实验，p100-103）</strong>：</p>
+<ol>
+<li>root 登录 csa 执行 oxe-ssh-auth -c 192.168.1.2（实验口径）</li>
+<li>输入远端 mtcl 密码；"同一密码套用全部账户"选 y</li>
+<li>工具输出 All Done OK!!!；两侧 more authorized_keys 各含 6 条公钥（2 机×3 账户）</li>
+</ol>
+<p><strong>全网同步（PCS 实验，p203-208）</strong>：</p>
+<ol>
+<li>准备 /tmpd/ssh_multi.csv：每行"IP,节点名&gt;,mtcl 密码&gt;,swinst 密码&gt;,root 密码&gt;,日志文件"</li>
+<li>root 执行 oxe-nw-sshkey-sync -f /tmpd/ssh_multi.csv（含 csa/csb/pcs 三节点）</li>
+<li>完成后 csv 自动删除；root 解压 oxenwsynclogs.zip 查 /tmpd/logs/oxenwsync.log</li>
+<li>核验：authorized_keys 共 9 条（3 节点×3 账户）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：mastercopy/pcscopy/audit/broadcast 报认证失败；新装冗余对/PCS/网络节点后的初始化；换密码后免密失效；怀疑 host-based 老脚本失效。</p>
+<p>语言信号：SSH 免密 / public key / oxe-ssh-auth / oxe-nw-sshkey-sync / ssh_multi.csv / authorized_keys / 密钥分发 / scp 失败 / N3。</p>
+<p>与相邻能力区分：免密建好后做库克隆与切换 → CS 冗余能力；audit/broadcast 前提核查 → 数据一致性能力。</p>
+<h2>S — 现场症状（工单语言）</h2>
+<p>下列说法命中本能力时优先打开本页；与「A2 未来触发」配套使用。</p>
+<ul><li>mastercopy 报连不上对端 / Permission denied (publickey)</li><li>oxe-ssh-auth 建免密后 authorized_keys 条数对不上</li><li>脚本批量分发密钥后部分节点仍要密码</li><li>N3 之后强制 SSHv2，旧工具无法登录</li><li>升级/克隆前怀疑 SSH 地基未就绪</li></ul>
+
+<h2>E — 可执行步骤</h2>
+<p>输入契约：root 权限、两端（或全网）mtcl/swinst/root 密码、CS 间防火墙互信（trusted hosts）。缺 root 或密码 → 判停，不要试图绕过认证。</p>
+<ol>
+<li>前提核查：确认两侧版本 ≥N3、防火墙已互信。完成标准：CS 间 22 端口可达且未被防火墙拒</li>
+<li>单对场景：root 执行 oxe-ssh-auth -c &lt;远端IP&gt;，按提示输密码（可复用同一密码）。完成标准：输出 All Done OK!!!</li>
+<li>全网场景：备好五段式 CSV → 每节点各跑一次 oxe-nw-sshkey-sync -f。完成标准：csv 自动删除且日志归档成功</li>
+<li>核验：more /usr2/mtcl/.ssh/authorized_keys 数公钥条数（两机 6 条、三机 9 条）。完成标准：条数与节点×账户数一致且含对端公钥</li>
+<li>联动验证：跑一次目标功能（如 pcscopy）确认免密生效。完成标准：目标功能无认证报错</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>mastercopy 报 scp/授权失败 → 先回到本卡核验 authorized_keys，再查是否在正确的机器上执行</li>
+<li>authorized_keys 条数不符 → 重跑对应工具（工具自带幂等：已同步会跳过）</li>
+<li>老 host-based 免密脚本失效 → CIS 合规移除（p57），改走三账户密钥分发，不降级 SSH 配置</li>
+</ul>
+<p>输出契约：全网免密互通的三账户密钥体系 + authorized_keys 条数核验记录。</p>
+<h2>V — 验收与回退</h2>
+<p><strong>验收（DoD，全部满足才收工）</strong></p>
+<ul><li>两侧 authorized_keys 条数与规划一致（含根校验）</li><li>免密 ssh 互测成功，无需交互输密码</li><li>信任建立过程可复核（命令与输出留档）</li></ul>
+<p><strong>回退 / 判停</strong></p>
+<ul><li>免密异常：核对目标机 authorized_keys 权限与属主，勿整表清空生产密钥</li><li>批量脚本部分失败：仅重跑失败节点，不重复对已成功节点写入</li><li>误加无关公钥：按条目删除，删除后重测免密再收工</li></ul>
+
+<h2>B — 边界</h2>
+<ul>
+<li>全部协同功能依赖本卡；免密未建立时不要先排查目标功能本身（p57/p71）</li>
+<li>csv 中含明文密码：工具结束自动删除 csv 与 config 目录（p206），不要自行留副本</li>
+<li>生产系统的口令治理与证书轮换不在本书范围（实验口径明文口令仅限 RLAB）</li>
+<li>防火墙 trusted hosts 配置本身属 netadmin 维护域（本书在冗余/audit 章内嵌教学，无独立章）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte401en/skills/entadv-cs-redundancy.html">CS 冗余部署与切换维护</a>、<a href="/courses/entpxte401en/skills/entadv-audit-broadcast.html">Audit 与 Broadcast 数据一致性</a></p><p class="source-page">能力 ID：cap.entadv.ssh-trust-foundation · 来源：ENTPXTE401EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Advanced (Participant's Guide, Edition 13) | edition: — | pages: 543 页 -->

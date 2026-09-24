@@ -1,0 +1,42 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\otcad-acd-maintenance.md": "f6bce9c173c08dba9d4764220611e78c23f4830d425f24b1a9c5f82c3d836b18",
+    "references\\capabilities\\otcad-acr-objects.md": "2c62680dda781efdab7ad6f9bdbf50c854dd05ba70f0a95014fb08be20753840",
+    "references\\capabilities\\otcad-asm-script-advanced.md": "5ec0f8ba39d3bfe25d78dfb79e4a0131844a29517ff11ed6e65466980084fc4e",
+    "references\\capabilities\\otcad-ccs-onboarding.md": "92940808d0fd60f3b1cf13a5ec047e2622c5df2c89c1f49866466bb50b2b7320",
+    "references\\capabilities\\otcad-ccs-server.md": "3ae968c362f51d9f0b05a59d44ff087202a8ef44a357dfbd265ec7b654881f1f",
+    "references\\capabilities\\otcad-ccta-ticket-analysis.md": "a371d57488d482d525015e1cc8a4962b74187ec107eb87848b5d73316daf58c2",
+    "references\\capabilities\\otcad-excel-report-customization.md": "242f2ccadfa39cff94406cf69fd124f44138905a6b992d2bc4d633ba443d4c1f",
+    "references\\capabilities\\otcad-ism-skill-matching.md": "a0c1fcd49dfb30b2091cb087f3d107b1537ac63fbb6d1d5fa3040577d406d93e",
+    "references\\capabilities\\otcad-remote-pg-mutual-aid.md": "7e5543388bd0b9d5cc1ea6a8a5070b7098392167d58f6e556dfa7306297fe2a6",
+    "references\\capabilities\\otcad-soft-panel-manager.md": "439e5246cac92aeacc093937f2d924f86c20df43b2695bc305813f4cd97d0458",
+    "references\\capabilities\\otcad-special-features.md": "895cb77f9813649860dc87a416ec8e69c7abf53323e9d3ac76b69a283244e383",
+    "references\\capabilities\\otcad-spm-deployment.md": "f6973eb87fc51c6beb55b2bcf6110f91c7bcdf298a7c1d155137f2a43fde9ba6",
+    "references\\capability-index.md": "c726d122c7cd24b2c820aab8ad5534121b390b6bdfbc0dd1429754cb9afbe9c5",
+    "references\\cheatsheet.md": "787a339aea19cdc21c45f0fefd70a994ae3b36063b7c1efa8da89d8189ea90f5",
+    "references\\glossary.md": "b6f1adff429056bba00d7388c7b6a1eac2019705042332dc3286d00ca3617955",
+    "references\\overview.md": "63d764af3ffebef2973cd670ee0e54347fde023576b2069345d8f391d0bcaa9b",
+    "SKILL.md": "3e4062d466b01156466f87ef51be7669ece48c0a87cf06f912943695ef8f389e"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.otcc-standard-advanced",
+  "bundle_sha256": "c26188e5855f0145769992eb2ce25f73abf781f8b615c24738b7de28cb3236de",
+  "variant": "single",
+  "run_id": "run-20260924-200011-2fe054",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 12,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

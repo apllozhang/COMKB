@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>分析体系</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Rainbow Hub</h2><p>Edition 16 · 351 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte101en/index.html">课程首页</a><a href="/courses/rainxte101en/digest.html">精华长文</a><a href="/courses/rainxte101en/overview.html">教书理解</a><a href="/courses/rainxte101en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte101en/skills/hub-company-voice-subscription.html">Rainbow 公司体系与 Voice 订阅开通</a><a href="/courses/rainxte101en/skills/hub-cloud-pbx-provisioning.html">Cloud PBX 声明与话务配置</a><a href="/courses/rainxte101en/skills/hub-member-telephony.html">成员管理与话务配置</a><a href="/courses/rainxte101en/skills/hub-zero-touch-provisioning.html">ALE 设备 zero-touch 部署与 DECT 移动</a><a href="/courses/rainxte101en/skills/hub-device-maintenance.html">设备维护日志与 Generic SIP 接入</a><a href="/courses/rainxte101en/skills/hub-hunt-groups.html">呼叫组与话务分配</a><a href="/courses/rainxte101en/skills/hub-attendant-supervision.html">话务台与监督组</a><a href="/courses/rainxte101en/skills/hub-welcome-service-ivr.html">欢迎服务与 IVR</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte101en/skills/hub-network-readiness.html">Rainbow Hub 网络就绪核查</a><a href="/courses/rainxte101en/skills/hub-multisite.html">多站点配置</a><a href="/courses/rainxte101en/skills/hub-analytics.html">分析体系</a><a href="/courses/rainxte101en/skills/hub-maintenance-support.html">Hub 维护与支持体系</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte101en/index.html">rainbow-hub（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte101en/index.html">RAINXTE101EN</a><span>/</span><span aria-current="page">分析体系</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>分析体系</h1></div><dl><div><dt>Skill ID</dt><dd>hub-analytics</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>分析体系（CDR 话单、仪表盘、组报表、MOS 质量）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Pure VoIP Rainbow audio/video call doesn't generate CDR"（p318）
+"To follow the evolution of your users' uses (adoption rate), either over the last 7 days or over the last 30 days. You can export the data in CSV format."（p319）
+"For reasons of sensitivity specific to each country and/or customer, a company administrator may disable individual statistics for a specific group."（p325）
+"Jitter: under 30ms the level is acceptable • RTT: latency must not exceed 150ms • Packet loss: must not exceed 1%"（p328）</p>
+</blockquote>
+<p>出处：RAINXTE101EN p317-328。</p>
+<h2>I — 自述</h2>
+<p>运营数据三个视角，口径不同别混用：</p>
+<ol>
+<li><strong>CDR 话单</strong>（计费用）：覆盖经 Cloud PBX 的入/出/内部呼叫，月度 .csv；纯 Rainbow VoIP 音视频呼叫<strong>不产生</strong> CDR；ALE 每月 1 日出文件；BP 三通道获取——月度邮件附件 / 网页手工下载 / REST API 自动拉取；ALE 不计费不开票（计费归提供 SIP trunk 的 BP）</li>
+<li><strong>分析仪表盘</strong>（行为用）：全局页看近 7/30 天采纳率、用户活跃、许可、1对1/群组/电话量、MOS、终端类型，可导 CSV；Voice 页按呼向 × 目的地（用户/组/欢迎服务/AA）过滤，周期最长 1 年；欢迎服务统计一次最多 5 个；IVR 统计含取消呼叫与主叫停留时长（min/avg/max）；Groups 页来话/接听/等待/时长四类各 4 图，一次最多 5 组同屏</li>
+<li><strong>MOS 质量票</strong>（排障用）：所有呼叫结束即采集（默认启用），汇入音质量仪表盘，支撑逐用户排障与网络/防火墙问题定位；技术明细页可过滤</li>
+</ol>
+<p>关键数字口径（p319-328）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全局仪表盘周期</td>
+<td>近 7/30 天，可导 CSV</td>
+</tr>
+<tr>
+<td>Voice 页周期</td>
+<td>最长 1 年</td>
+</tr>
+<tr>
+<td>欢迎服务统计</td>
+<td>一次最多 5 个</td>
+</tr>
+<tr>
+<td>组对比</td>
+<td>一次最多 5 组同屏</td>
+</tr>
+<tr>
+<td>抖动（Jitter）</td>
+<td>&lt;30 ms 可接受</td>
+</tr>
+<tr>
+<td>单向时延（RTT）</td>
+<td>≤150 ms</td>
+</tr>
+<tr>
+<td>丢包（Packet loss）</td>
+<td>≤1%</td>
+</tr>
+</tbody>
+</table></div>
+<p>隐私开关（p325）：公司管理员可按组关闭成员级统计（各国劳动合规敏感度差异）；关闭后服务器仍采集，只是组管理员无权查看。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>分析口径要点</strong>（p317-328，讲义，无实验）：书中本章为概念页（截图级），无分步 How-To。典型使用链路：</p>
+<ol>
+<li>月度取 CDR 对账（BP 计费口径）</li>
+<li>仪表盘看采纳率与话务趋势</li>
+<li>组报表核对团队接听</li>
+<li>MOS 明细定位音质差的用户与网络段</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：月度话费对账数据从哪来；统计"全员话务量"发现少了纯 VoIP 部分；客户要坐席绩效报表（劳动合规）；用户反映通话质量差怎么定位；验收要出运营报告。</p>
+<p>语言信号：CDR / 话单 / call detail record / 计费 / billing / 仪表盘 / dashboard / 采纳率 / adoption / 报表 / reports / MOS / 质量票 / quality ticket / 抖动 / jitter / RTT / 丢包 / packet loss / 成员级统计 / 隐私。</p>
+<p>与相邻能力区分：话务机制与队列参数归呼叫组能力；欢迎服务/IVR 统计的配置侧归欢迎服务 IVR 能力；计费责任与商务模式归网络就绪（trunk 商务）与 Cloud PBX 口径。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：统计目的（计费/行为/质量）、时间范围、涉及组与成员、隐私合规口径（是否允许成员级统计）。</p>
+<ol>
+<li>定口径：计费对账用 CDR、行为分析用仪表盘、音质排障用 MOS——三者不混用。完成标准：口径与目的一致</li>
+<li>取 CDR：BP 经邮件/网页/REST API 三通道之一取月度文件（每月 1 日出）。完成标准：话单在手且覆盖经 PBX 呼叫</li>
+<li>出行为报告：仪表盘选周期与过滤（Voice 页 ≤1 年、服务/组 ≤5）→ 导 CSV。完成标准：报告成文</li>
+<li>质量排障：MOS 明细页过滤问题用户 → 对照抖动 &lt;30 ms/RTT ≤150 ms/丢包 ≤1% 阈值定位网络段。完成标准：劣化原因指向网络或终端</li>
+<li>隐私设置（如需）：公司管理员按组关闭成员级统计并告知客户法务口径。完成标准：开关状态与说明留档</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>用 CDR 做"全员话务量"统计 → 停，纯 VoIP 呼叫不产生 CDR（n50），全量行为用仪表盘</li>
+<li>客户要坐席绩效报表 → 停，先过当地法务/HR：成员级统计涉及劳动监控合规，可按组关闭（n51）</li>
+<li>话费争议 → 停，ALE 不计费不开票（p318/n14），计费解释权在 BP/运营商，CDR 只是数据</li>
+<li>MOS 差但终端正常 → 按 Network Requirements 口径查网络（转网络就绪能力），不在本卡改配置</li>
+</ul>
+<p>输出契约：运营/质量报告（CDR 对账+仪表盘导出+MOS 结论）+ 隐私开关状态记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>CDR 文件格式与字段细节在 TBE099_Rainbow Hub - Voice services（p318 指针），书内不展开</li>
+<li>MOS 阈值为排查口径，承诺 SLA 在合同层（p328 是参考值）</li>
+<li>组报表在 Hub 集中于 Reports 页签（p327）；仪表盘分区与图形随版本演进，以实际界面为准</li>
+<li>实验章节无分析实操（概念章）；"欢迎服务统计最多 5 个/组对比最多 5 组"为工具口径，可能随版本调整</li>
+<li>成员级统计关闭后数据仍采集（p325）——"关了就删数据"是误读</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte101en/skills/hub-hunt-groups.html">呼叫组与话务分配</a></p><p class="source-page">能力 ID：cap.hub.analytics · 来源：RAINXTE101EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Rainbow Hub (Participant's Guide, Edition 16) | edition: Edition 16 | pages: 351 页 -->

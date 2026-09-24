@@ -1,0 +1,42 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\enc-abcf-network-encryption.md": "c2dd99248904303220297c581454c62cafe49e0b88244ac4fe93f51c22944c3f",
+    "references\\capabilities\\enc-application-encryption.md": "085c7450137523f072f2359be13c1443e7abcbc21de69b8a06998834b23026c6",
+    "references\\capabilities\\enc-certificate-trust-chain.md": "a93279c9ed7fec855f22273ed3a6819f12c05dcd0ca01fa2c13c40de0845d378",
+    "references\\capabilities\\enc-dtls-verification-maintenance.md": "a0f49f29e72725fca33d1e5dd09e682902e33efee6b30e86fe9ea41ceed0f860",
+    "references\\capabilities\\enc-eegw-deployment.md": "f03922448e1ebdb1a4c468c1979cd98678423d4e0ba195ccbe8daf31b9571c36",
+    "references\\capabilities\\enc-lab-environment.md": "d57f37a4a6e169a9b88b99e3ab57492eef645871a6228a41229234ab0144ad68",
+    "references\\capabilities\\enc-mtls-endpoint-authentication.md": "d9a33bcea8e5b6dea7d803370715b9609fced6eae39344d377f8ab6384f4cc4b",
+    "references\\capabilities\\enc-native-encryption-bringup.md": "60428ecc91d2eafd2a1be372dae22aeb932cec657627da593d44943a48b4f838",
+    "references\\capabilities\\enc-pcs-failover.md": "ef23e09b4a5fa4b4fc14b92bf09fccb717fe51afab0761f46a0bc980c89e674e",
+    "references\\capabilities\\enc-pki-workshop-xca.md": "0c9a2de2496574a3c1c2db7ffd87eb60ba7cdab70c1e1cab49f55e4313b7610b",
+    "references\\capabilities\\enc-sip-tls-endpoints.md": "19585052f62e9b60dc34075b498cf41bfb8d475dac72b31e84d69669ba87be26",
+    "references\\capabilities\\enc-sip-trunk-tls.md": "b82a33119c9b8828b0058efacaeb116f02b9160db1ba67aa53ea3660d25d0fab",
+    "references\\capability-index.md": "919c77c9060f322fe9614696e8abd93836a82abc5bae810397eac1cecc53b748",
+    "references\\cheatsheet.md": "dc20ebc397c39bf1ac0884a8bb846a08f9b343839e156b2d254edf262b981c78",
+    "references\\glossary.md": "d07cf4a9d18fb0af7e205be8faa6b04f6a204095f56264563f1121a2a5fd6722",
+    "references\\overview.md": "b3ef8fc297773a9a2a1caf927b7c33eb2cfde949583b77e7d6471e4d7264a093",
+    "SKILL.md": "e3c7cb2ad53454d5407f135f13ac808c891a152db2117cec24ced6a631823ad7"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.oxe-native-encryption",
+  "bundle_sha256": "3fcad6412b0ab520a88e65dfbc7a084e4ec1186f00101fabbfe4a622430dd43c",
+  "variant": "single",
+  "run_id": "run-20260924-200007-819498",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 12,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

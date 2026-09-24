@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.oxe-sip",
+  "generated_at": "2026-09-23",
+  "destinations": {
+    "cap.osip.protocol-foundation": { "promoted_to": "osip-protocol-foundation" },
+    "cap.osip.user-forms": { "promoted_to": "osip-user-forms" },
+    "cap.osip.sip-device-provisioning": { "promoted_to": "osip-sip-device-provisioning" },
+    "cap.osip.deskphone-provisioning": { "promoted_to": "osip-deskphone-provisioning" },
+    "cap.osip.ales-provisioning": { "promoted_to": "osip-ales-provisioning" },
+    "cap.osip.certificate-management": { "promoted_to": "osip-certificate-management" },
+    "cap.osip.otsbc-carrier-interconnect": { "promoted_to": "osip-otsbc-carrier-interconnect" },
+    "cap.osip.remote-workers": { "promoted_to": "osip-remote-workers" },
+    "cap.osip.codec-negotiation": { "served_by": "oxe-sip-router" },
+    "cap.osip.sip-troubleshooting": { "served_by": "oxe-sip-router" },
+    "cap.osip.dm-management": { "served_by": "oxe-sip-router" },
+    "cap.osip.sip-features": { "served_by": "oxe-sip-router" },
+    "cap.osip.lab-environment": { "served_by": "oxe-sip-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 }
+}

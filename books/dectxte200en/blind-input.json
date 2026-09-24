@@ -1,0 +1,227 @@
+{
+ "code": "dectxte200en",
+ "capability_catalog": [
+  {
+   "slug": "dect-pari-identifier",
+   "name": "DECT 标识号码体系与 multi-PARI 适配",
+   "description": "PARI/RPN/RFPI/PARK/PLI/IPUI 六号码关系；PARK=PLI+PARI 拼接算例；PLI 逻辑 AND 匹配与 multi-PARI 降位规则（30/29）；每类硬件一个 PARI、每节点最多 8 个"
+  },
+  {
+   "slug": "dect-product-selection",
+   "name": "DECT 产品线选型与拓扑决策",
+   "description": "8379 IBS（TDM/无加密/256 台）、8378 IP-xBS（全 IP/2032 台/11+11）、8328 SIP-DECT（低成本/20 手机/仅欧洲频段）三线分流；六种拓扑四格能力判定；混合无法外部同步时 >1km 间距"
+  },
+  {
+   "slug": "dect-ipxbs-deployment",
+   "name": "8378 IP-xBS 部署与故障换站",
+   "description": "全局参数 → DHCP（vendor class alcatel.ipxbs.0）→ 注册开关（全网单节点、auto=255）→ dectview 核验；换故障站手动注册保 RPN（自动注册 RPN 漂移害告警定位）"
+  },
+  {
+   "slug": "dect-xbs-sync-topology",
+   "name": "xBS 空中同步体系与组网域",
+   "description": "内部同步树 ≤24 级零配置；Sync Master 禁载通信、Backup 强制邻近同源；Sync Cluster 仅特殊场景；>2 PARI 需 Sync Highway；Site 是切换边界、跨站只有 roaming；外部同步 + Flag External Handoff"
+  },
+  {
+   "slug": "dect-handset-registration",
+   "name": "DECT 用户创建与手机注册/注销",
+   "description": "webadmin 与 dectinston/dectrm 双通道互斥且两侧近乎同时；GAP/GAP+ 机型对应；手机侧 PIN+AC 序列；IPUI 回填核验；换机保留用户；AC 不一致无法注册"
+  },
+  {
+   "slug": "dect-mixed-mode",
+   "name": "混合 DECT 基础设施部署",
+   "description": "Mixed 模式双 PARI（IBS x0/xBS x4 形态）；PLI 必须适配（实验 30）；PLI=30 让全部用户跨类漫游；跨类切换靠外部同步链路；无法同步时间距 >1km"
+  },
+  {
+   "slug": "dect-auto-reregistration",
+   "name": "DECT 手机自动重注册",
+   "description": "相近 PARI 用 -update、彻底变化用 -forceUpdate（先推手机后改系统，顺序不可逆）；-f 批量与 ReinstallSuccess/NOK 双清单；2-3s/机；关机/出覆盖/访问节点手机更新不了；机型版本表 p252"
+  },
+  {
+   "slug": "dect-firmware-management",
+   "name": "DECT 固件双轨升级管理",
+   "description": "基站 downstat x：TFTP 后台下载到 RAM 不中断业务、空闲重启、最低 v73b0003；手机 downstat m：语音优先、回充电座生效、6-8 小时/机；A/X/M 模式与六态状态机"
+  },
+  {
+   "slug": "dect-maintenance-troubleshooting",
+   "name": "DECT 日常维护与排障",
+   "description": "dectview 标志判读（P/M/B/+/OK/NOK/OOS）；xbssynchro/incvisu/listerm/listibs/outserv/inserv/tcdump；syslog 端口 514 四级（Debug 禁常开）；深度分析转 8AL91443ENAA"
+  },
+  {
+   "slug": "dect-radio-survey",
+   "name": "DECT 无线覆盖勘测",
+   "description": "话音门槛 -70dBm（容易）/-60dBm（金属）、站间同步 -80dBm；SSK 套件构成；*7378423* 开关 survey mode 与按键语义；勘测机与交付机分离；方法论在 8AL90874USAA"
+  },
+  {
+   "slug": "dect-ibs-deployment",
+   "name": "8379 IBS 基础设施部署",
+   "description": "1 条 UA 链路=3 B 信道、主偶从奇端口；SYT 800m/LY278 1200m；Line delay 三档；全网 1 PARI/256 台；无加密、切换限同一 media gateway；dectview ibs/listerm/listibs 核验"
+  },
+  {
+   "slug": "dect-sip-dect",
+   "name": "8328 SIP-DECT 部署",
+   "description": "SIP 语义（PARI/PLI 不适用）；DHCP 固定 IP + Alcatel-Lucent terminals only=NO；四步注册闭环；双小区先声明 Extension 者为主站、链路约 5 分钟；仅欧洲频段/仅 8214/电话本不集成/WAN 断全断"
+  }
+ ],
+ "cases": [
+  {
+   "id": "should-pari-01",
+   "prompt": "现场两套 DECT 基站，一套 TDM 一套 IP 的，手机在两类基站之间老锁不住，是不是标识哪里没配对？"
+  },
+  {
+   "id": "should-pari-02",
+   "prompt": "帮我算一下，PLI 是 31、PARI 是 10000400100 的时候，手机里存的那个 13 位号码是多少？"
+  },
+  {
+   "id": "should-select-01",
+   "prompt": "一个仓库加办公的园区要上无绳电话，60 来个人，机房里还有老 UA 板卡，是接着用还是上全 IP 的基站？"
+  },
+  {
+   "id": "should-select-02",
+   "prompt": "客户要求 DECT 通话加密，但他们现网是 IBS 基站，能不能直接满足？"
+  },
+  {
+   "id": "should-deploy-01",
+   "prompt": "新到两台 8378 基站接上电了，OXE 里一直看不到设备，从哪查起？"
+  },
+  {
+   "id": "should-deploy-02",
+   "prompt": "车间一台 DECT 基站烧了换了新硬件，结果告警系统里的位置信息全乱了，怎么回事？"
+  },
+  {
+   "id": "should-sync-01",
+   "prompt": "电梯井旁边那几台基站互相同步老不稳，切换跟着出问题，有什么办法把它们分组处理？"
+  },
+  {
+   "id": "should-sync-02",
+   "prompt": "我们一台 OXE 上要跑三个 PARI，同步链路要怎么把它们串起来？"
+  },
+  {
+   "id": "should-hsreg-01",
+   "prompt": "行政部来了一批新的 8244 手机，要开十个 DECT 分机，系统侧和手机上分别要做什么？"
+  },
+  {
+   "id": "should-hsreg-02",
+   "prompt": "有员工离职要回收 DECT 手机，分机号还要留给接手的人，怎么操作最省事？"
+  },
+  {
+   "id": "should-mixed-01",
+   "prompt": "厂里原来一套 TDM 的 DECT 用得好好的，现在仓库想加几台 IP 基站，老手机还能用吗？"
+  },
+  {
+   "id": "should-mixed-02",
+   "prompt": "混合模式下手机在 IBS 和 IP 基站之间走动，通话中切换老断，还有什么要配的？"
+  },
+  {
+   "id": "should-rereg-01",
+   "prompt": "公司换编号计划，PARI 得整个换掉，三百多台手机总不能一台台重装吧？"
+  },
+  {
+   "id": "should-rereg-02",
+   "prompt": "批量重注册跑完了，怎么确认哪些手机没迁成功？"
+  },
+  {
+   "id": "should-fw-01",
+   "prompt": "二十几台基站要升固件，白天不能停业务，这个怎么安排比较稳？"
+  },
+  {
+   "id": "should-fw-02",
+   "prompt": "手机固件下发一晚上了，有几台状态一直停在等刷写那一步，是不成功了吗？"
+  },
+  {
+   "id": "should-maint-01",
+   "prompt": "用户说手机走到某层通话就断，我先跑什么命令判断是不是切换的问题？"
+  },
+  {
+   "id": "should-maint-02",
+   "prompt": "二线让我们提供基站的运行日志，怎么把日志集中收出来发给他们？"
+  },
+  {
+   "id": "should-survey-01",
+   "prompt": "三楼信号检测总在临界值附近，覆盖边界到底怎么划比较靠谱？"
+  },
+  {
+   "id": "should-survey-02",
+   "prompt": "手机上开了那个信号勘测的界面，现在音量键不好使了还特别费电，怎么关掉？"
+  },
+  {
+   "id": "should-ibs-01",
+   "prompt": "老机房还有 8379 的基站要扩两台，UA 板卡端口和布线距离有什么讲究？"
+  },
+  {
+   "id": "should-ibs-02",
+   "prompt": "IBS 状态表里有台站显示 OOS 而不是 NOK，这俩有什么区别，怎么把它拉回服务？"
+  },
+  {
+   "id": "should-sip-01",
+   "prompt": "门店就十几个人，想用最省钱的方式上 DECT，那套 SIP 的基站怎么部署？"
+  },
+  {
+   "id": "should-sip-02",
+   "prompt": "两台 8328 组了双小区，第二台上电半天了状态页还不显示对方，要等多久或者怎么处理？"
+  },
+  {
+   "id": "bait-pari-01",
+   "prompt": "手机注册的时候是不是要手动把那个 13 位的系统号输进去？"
+  },
+  {
+   "id": "bait-select-01",
+   "prompt": "产品线已经定了用 IP-xBS，现在把第一批基装配进网里，具体怎么弄？"
+  },
+  {
+   "id": "bait-deploy-01",
+   "prompt": "基站换好了，但最近同步树老乱、Master 频繁变来变去，这个在哪处理？"
+  },
+  {
+   "id": "bait-mixed-01",
+   "prompt": "混合模式的 PLI 已经降到 30 了，现在要把三百台老手机推到新 PARI 上，用什么工具？"
+  },
+  {
+   "id": "bait-hsreg-01",
+   "prompt": "手机都注册好了，下一步要把这批手机的固件统一升个级"
+  },
+  {
+   "id": "bait-rereg-01",
+   "prompt": "重注册时提示几台 8262 版本太老不支持，直接跳过它们行不行？"
+  },
+  {
+   "id": "bait-fw-01",
+   "prompt": "固件刚升完，正好机房有台基站要换掉，换的时候要注意什么？"
+  },
+  {
+   "id": "bait-survey-01",
+   "prompt": "勘测做完了各点 RSSI 都达标，但基站之间就是同步不起来，这是覆盖问题吗？"
+  },
+  {
+   "id": "bait-ibs-01",
+   "prompt": "IBS 和 IP 基站混着用之后，一部分老手机在新基站上漫游不过去，是基站没装好吗？"
+  },
+  {
+   "id": "bait-sip-01",
+   "prompt": "8328 的手机注册是不是也用 mtcl 里那条安装命令，跟普通 DECT 手机一样操作？"
+  },
+  {
+   "id": "bait-oos-01",
+   "prompt": "帮我们把整个园区的 DECT 无线方案设计出来：天线选型、布点图纸、勘测报告全套"
+  },
+  {
+   "id": "bait-oos-02",
+   "prompt": "DECT 的话务量怎么用 Erlang 模型估算？给个公式和参数表"
+  },
+  {
+   "id": "bait-oos-03",
+   "prompt": "OXE 的外线 SIP 中继怎么对接运营商？"
+  },
+  {
+   "id": "edge-pli-01",
+   "prompt": "新旧两个 PARI 末两位不一样，PLI 降到 30 够不够用？"
+  },
+  {
+   "id": "edge-rssi-01",
+   "prompt": "勘测读数正好 -70dBm，这个点算达标还是不达标？"
+  },
+  {
+   "id": "edge-cap-01",
+   "prompt": "一个 PARI 下面挂到第 255 台 xBS 会发生什么？"
+  }
+ ]
+}

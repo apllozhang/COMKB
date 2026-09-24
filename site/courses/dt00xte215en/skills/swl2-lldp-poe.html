@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>LLDP/LLDP-MED 与 PoE 管理</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniSwitch LAN Access Switching</h2><p>Edition 23 · 587 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/dt00xte215en/index.html">课程首页</a><a href="/courses/dt00xte215en/digest.html">精华长文</a><a href="/courses/dt00xte215en/overview.html">教书理解</a><a href="/courses/dt00xte215en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/dt00xte215en/skills/swl2-aaa-hardening.html">交换机登录接入与 AAA 管理面加固</a><a href="/courses/dt00xte215en/skills/swl2-lightning-config.html">Lightning Config 快速开局</a><a href="/courses/dt00xte215en/skills/swl2-config-lifecycle.html">配置生命周期（保存/认证/回滚/备份）</a><a href="/courses/dt00xte215en/skills/swl2-virtual-chassis.html">Virtual Chassis 堆叠</a><a href="/courses/dt00xte215en/skills/swl2-vlan-routing.html">VLAN 与 VLAN 间路由</a><a href="/courses/dt00xte215en/skills/swl2-link-redundancy.html">链路与生成树冗余（LAG/STP/DHL）</a><a href="/courses/dt00xte215en/skills/swl2-l3-services.html">三层服务与网关冗余（DHCP/Loopback0/静态路由/VRRP）</a><a href="/courses/dt00xte215en/skills/swl2-qos-acl-policy.html">QoS 与 ACL 策略</a><p class="course-nav-group">路由能力</p><a href="/courses/dt00xte215en/skills/swl2-access-guardian.html">Access Guardian 接入认证</a><a href="/courses/dt00xte215en/skills/swl2-diagnostics.html">诊断工具箱八件套</a><a href="/courses/dt00xte215en/skills/swl2-lldp-poe.html">LLDP/LLDP-MED 与 PoE 管理</a><a href="/courses/dt00xte215en/skills/swl2-upgrade-autofabric.html">软件升级与 Auto-Fabric 零触开局</a><a href="/courses/dt00xte215en/skills/swl2-fleet-tools.html">资产与装机工具（Fleet Supervision/OST）</a><p class="course-nav-group">已安装技能</p><a href="/courses/dt00xte215en/index.html">omniswitch-lan-access（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/dt00xte215en/index.html">DT00XTE215EN</a><span>/</span><span aria-current="page">LLDP/LLDP-MED 与 PoE 管理</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>LLDP/LLDP-MED 与 PoE 管理</h1></div><dl><div><dt>Skill ID</dt><dd>swl2-lldp-poe</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>LLDP/LLDP-MED 与 PoE 管理（语音 VLAN、供电等级、优先级）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"IEEE 802.1AB – Link Layer Discovery Protocol (LLDP) ... Enabled by default on the OmniSwitches"（p488）
+"LLDP is configured at port level (or NI or chassis), but not at linkagg level."（p502）
+"Power available at the PD 12.95 W 25.50 W 51 W 71 W Maximum power delivered by the EPS 15.40 W 30.0 W 60 W 100 W"（p513）
+"Fast PoE : 2X60, 6360, 6860E, 6860N, 6865, 6870 • Note: OS6360 – P10A does not support FPoE"（p510）
+"<num> - specific delay value in seconds in multiples of 5. Value should be within 120 to 600 seconds"（p520）</p>
+</blockquote>
+<p>出处：DT00XTE215EN p486-505, p506-521。</p>
+<h2>I — 自述</h2>
+<p>终端接入的两个配套域：发现协议给话机"指路"，供电管理保终端"有电"。</p>
+<ol>
+<li><strong>LLDP 基础</strong>（p488/p502/p504）：IEEE 802.1AB，默认收发双开、30 秒发送间隔、TTL 保持倍乘 4（邻居信息存活 120 秒）；配置层级为端口/槽/机箱，不支持 linkagg 级；TLV 管理（system-name/description/capabilities/management-address）丰富邻居数据库</li>
+<li><strong>LLDP-MED 四扩展</strong>（p494-499）：网络策略（按应用类型下发 VLAN+l2-priority+dscp）、位置 ID（紧急呼叫）、扩展供电（PSE/PD/优先级/功率）、资产清单</li>
+<li><strong>话机自动入语音 VLAN</strong>（p496）：lldp network-policy <id> application voice vlan <vid> l2-priority <p> dscp <d>，chassis med network-policy 挂接，端口使能 med TLV</li>
+<li><strong>动态入网</strong>：配合 unp mobile-tag + unp classification lldp med-endpoint ip-phone，话机口动态落语音 VLAN</li>
+<li><strong>PoE 供电四档</strong>（p513，见下表）；端口 LED 琥珀=已供电、绿=已连接未供电</li>
+<li><strong>PoE 管理</strong>（p516-520）：lanpower port power（mW）、slot maxpower（W）、show lanpower 看余量与实耗；优先级 low（默认）/high/critical 定断电顺序，priority-disconnect 管预算不足准入</li>
+<li><strong>特殊特性</strong>：Fast PoE（上电即供）与 Perpetual PoE（重启不断电）需型号线支持并升级 FPGA/CPLD；delayed-start 延迟 120-600 秒（5 的倍数）且与 FPoE/PPoE 互斥、必须 write memory</li>
+</ol>
+<p><strong>PoE 供电等级</strong>（p513）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>标准</th>
+<th>PD 可用</th>
+<th>PSE 最大</th>
+<th>最大电流</th>
+<th>功率级</th>
+<th>线缆</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>802.3af（Type 1）</td>
+<td>12.95 W</td>
+<td>15.4 W</td>
+<td>350 mA</td>
+<td>3 级（1-3）</td>
+<td>Cat3/Cat5</td>
+</tr>
+<tr>
+<td>802.3at Type 2（PoE+）</td>
+<td>25.5 W</td>
+<td>30 W</td>
+<td>600 mA</td>
+<td>4 级（1-4）</td>
+<td>Cat5</td>
+</tr>
+<tr>
+<td>802.3bt Type 3（4PPoE）</td>
+<td>51 W</td>
+<td>60 W</td>
+<td>600 mA/对</td>
+<td>6 级（1-6）</td>
+<td>Cat5</td>
+</tr>
+<tr>
+<td>802.3bt Type 4（4PPoE）</td>
+<td>71 W</td>
+<td>100 W</td>
+<td>960 mA/对</td>
+<td>8 级（1-8）</td>
+<td>Cat5</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>LLDP 实验</strong>（p501-505，How-To）：</p>
+<ol>
+<li>三台交换机对全部互联口 lldp port &lt;口&gt; notification enable</li>
+<li>各互联口 lldp port tlv management port-description enable</li>
+<li>6870-A show lldp statistics：各口 Tx/Rx 计数增长、零错误</li>
+<li>show lldp remote-system：此时对端 System Name 仍为 (null)</li>
+<li>show lldp local-system：本机系统名、发送间隔 30 秒/TTL 倍乘 4 等参数</li>
+<li>丰富化：lldp chassis tlv management system-name/description/capabilities/management-address enable</li>
+<li>复查 remote-system：系统名（Pod20sw7 等）、型号版本描述、管理 IP 出现（前后对比）</li>
+</ol>
+<p>PoE 章为纯讲义无实验（p506-521）；OST 的 PoE 向导（一键修复不启动的设备）属工具能力，见资产与装机工具卡。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：IP 话机自动进语音 VLAN；话机流量 QoS 标记下发；AP/话机/摄像头供电规划；PoE 预算不足断谁；交换机重启摄像头不能断电；邻居设备盘点。</p>
+<p>语言信号：LLDP / LLDP-MED / network-policy / 语音 VLAN / voice vlan / l2-priority / dscp / mobile tag / 邻居 / TLV / PoE / 供电 / 预算 / lanpower / Fast PoE / Perpetual PoE / 优先级 critical / delayed-start。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>话机流量标记的交换机侧策略（auto-QoS 按 MAC 优先级 5）：QoS 与 ACL 策略能力卡</li>
+<li>mobile-tag 动态入 VLAN 的 UNP 机制：VLAN 与路由、Access Guardian 能力卡</li>
+<li>OST 里看 PoE：资产与装机工具能力卡</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：话机/AP 型号与功率、语音 VLAN 编号与 QoS 规划值、交换机 PoE 预算与端口清单。语音标记取值按企业 QoS 规划（nr-02，勿照抄教材）。</p>
+<ol>
+<li>邻居基线：LLDP 默认双开，直接 show lldp remote-system 确认拓扑可见。完成标准：邻居数据库成型</li>
+<li>丰富化 TLV：按需 enable system-name/description/management-address 等并配 notification。完成标准：远端信息可读、变化有 trap</li>
+<li>语音策略：lldp network-policy（application voice + vlan + l2-priority + dscp，取值按企业规划）挂 chassis 与端口。完成标准：话机取到语音 VLAN 并按规划打标</li>
+<li>动态入网（按需）：unp profile mobile-tag + unp classification lldp med-endpoint ip-phone。完成标准：话机口动态落 VLAN</li>
+<li>供电规划：show lanpower 核对预算与余量；按设备等级与业务重要性设端口优先级（low/high/critical）。完成标准：断电顺序明确</li>
+<li>特性启用（按需）：FPoE/PPoE 核对型号线与 FPGA/CPLD 前提；delayed-start 核对 120-600 秒、互斥与 write memory 要求。完成标准：供电策略落地且固化</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>LLDP 配到 linkagg 上 → 不生效，逐物理口配置</li>
+<li>话机标记值照抄教材 → 教材两页不一致（nr-02），按企业 QoS 规划定值并 show lldp config 核查</li>
+<li>OS6360-P10A 承诺 FPoE/PPoE → 不支持（p510-511），选型阶段拦下</li>
+<li>同机柜要 delayed-start 又要 FPoE/PPoE → 互斥，二选一</li>
+<li>预算核查对不上 → 每型号 PoE 预算查 specification guide/datasheet，本卡不承诺具体预算值</li>
+</ul>
+<p>输出契约：话机自动入语音 VLAN 且标记合规 + PoE 预算与断电顺序方案 + 邻居可视化的 TLV 配置。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>LLDP-MED 两页示例数值不一致（p496: 5/46 与 p499: 7/14）按 nr-02 处置：不编造统一值</li>
+<li>LLDP 运行参数（30 秒/TTL×4 等）取自 8.7.98.R03 截图口径（p504，nr-08），随版本可能漂移</li>
+<li>Fast/Perpetual PoE 支持线：2X60/6360/6860E/6860N/6865/6870，且需先升级 FPGA/CPLD（按 release note）</li>
+<li>EEE（802.3az）节能仅铜口 100/1000M，U 型光口机型不支持（p512）</li>
+<li>PoE 端口单位是 mW、槽单位是 W，混用会差三个数量级（p516）</li>
+<li>位置 ID（紧急呼叫）与资产清单 TLV 本卡仅点到，落地细节查 Network Configuration Guide</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.swl2.lldp-poe · 来源：DT00XTE215EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniSwitch LAN Access Switching (Participant's Guide, Edition 23) | edition: Edition 23 | pages: 587 页 -->

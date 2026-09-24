@@ -1,0 +1,760 @@
+schema_version: 1
+bundle_id: bundle.oxe-starter
+book:
+  title: OmniPCX Enterprise - Starter (Participant's Guide, Edition 12)
+  author: ALE Training Services
+  source_pack: ENTPXTE400EN.pdf (821 pages)
+  baseline_tag: OXE R101.1 MD4 / RLAB / ITSP1
+entry:
+  name: oxe-starter
+  description: 'OmniPCX Enterprise（OXE）基础开局与日常维护的准入闭环：安全登录与密码治理、系统启停、CS 双地址与内部防火墙、NTP/chrony 对时、空库与 OPS 许可、
+    三类媒体网关上架（GD4/OMS/XL）、用户终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）、编号计划与 COS、呼叫处理业务域（语音指南/话务台/Entity/计时器）、
+    公共 SIP 中继全链路与弹性、外呼闭锁与紧急呼叫、备份恢复与维护排障、T0/T2 传统中继与 UMC 云管理。适用于单机（stand-alone）口径的开局、配置、
+    拨测与一线排障问答；高可用组网、Cloud Connect 深度、运营商生产参数不在原书范围（见 out_of_scope）。
+
+    '
+  core_principles:
+  - 准入链顺序即实验顺序：登录加固 → 启停 → IP/防火墙 → 时间 → 空库与许可，前一步是后一步的前提；跳章必须自检依赖
+  - 双 IP 地址体系：物理接口地址永远可达（含话务停止），Role MAIN 地址仅话务运行时生效——设备与外部应用统一指向 Role 地址；停话务后传文件必须用物理地址
+  - 安全基线 N3 起默认全关：iptables 默认 DROP 入站/转发，互通全靠可信主机白名单；"Allow SSH for all" 只是开局便门，配完必须 Deny 收口
+  - 库与许可是一对：空库创建连 OPS 一起抹掉，"停话务 → 建库 → 恢复 OPS → 起话务"顺序不可乱；软件每 5 天自查许可，CPU-ID 不一致给 30 天宽限再进降级三阶段
+  - 业务路由固定流水线：ARS 前缀 → 鉴别符 → ARS 表 → 中继组 → NPD → DID 翻译器 → 外部网关；闭锁 = Area × Public COS × 实体状态（默认 Night 态）的交点
+  out_of_scope:
+  - CS Duplication 空间冗余、PCS、多节点组网（原书明示 Advanced 课程）
+  - Cloud Connect/RTR 深度与 FlexLM 服务器搭建（ENTPXTE402 与 CPU Loading 课程）
+  - SIP 运营商生产参数与紧急显示管理（TC2005 与运营商文档）；4645 防盗打加固（SA0046/TC1774）
+  - 话机硬件规格目录、Crystal 硬件细节、产品限额全集（MyPortal 文档组）；SBC/QoS/中继深调
+  stop_conditions:
+  - 需要空间冗余、多节点组网或 PCS 方案 → 超出 Starter 单机口径，转 Advanced 课程口径并显式说明
+  - 需要具体运营商 SIP/ISDN 参数（号段/信令变体/CLIR/紧急显示）→ 指向 TC2005、SA0046/TC1774 与运营商文档，不照抄实验值
+  - 涉及 RLAB/ITSP1 实验环境值（密码/IP/账号/号段）→ 按 book/overview 实验口径声明处理，不当作生产配置
+  - 用户要求把教材密码照搬上生产 → 拒绝，给出首登加固的改密与策略收紧步骤
+router_entry:
+  name: oxe-starter-router
+  description: 'OXE Starter 能力路由入口：按用户意图分发到 14 张能力卡——首登加固、CS 网络与防火墙、空库与许可、媒体网关上架、用户终端开通、
+    编号计划与 COS、呼叫处理、公共 SIP 中继八个 promoted 能力，以及系统启停、时间同步、4645 语音邮件、闭锁与紧急、备份与维护排障、传统中继与 UMC 六张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.ents.first-login-hardening
+  revision: 1
+  status: active
+  slug: ents-first-login-hardening
+  title: OXE 首登加固（四账户与密码治理）
+  importance: critical
+  importance_rationale: 对应 task-01，一切操作的准入；默认密码残留与 root 直登误解是最高频安全事件源
+  one_liner: 三通道登录四账户分工；密码 ≥14 位九规则；失败 3-5 次锁 15 分钟；老化 10-366 天（开区间）且与 RADIUS 互斥
+  intents:
+  - 登录 OXE
+  - 修改系统账户密码
+  - 配置密码策略与账户锁定
+  - 启用 client 账户
+  - OXE SSH login
+  keywords:
+  - mtcl
+  - swinst
+  - root
+  - client
+  - V24
+  - SSHv2
+  - 密码策略
+  - 锁定
+  - 老化
+  - RADIUS
+  - "900 秒"
+  also_read:
+  - ents-cs-network-firewall
+  - ents-system-start-stop
+  card: cards/ents-first-login-hardening.md
+  frontmatter:
+    description: '通过 V24/SSHv2/控制台登录 OXE 并治理四账户（mtcl/swinst/root/client）与密码策略（14 位九规则、失败锁定、老化期）。当用户要"登录系统/改密码/
+      设锁定或老化/启用 client"时使用。不适用于 IP 地址与防火墙配置（CS 网络与防火墙能力）；root 仅本地直登，IP 侧必须 mtcl su。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - security
+    - accounts
+  source_evidence:
+  - source_id: src-entpxte400
+  - location: p82-107
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-01，准入第一关
+- capability_id: cap.ents.system-start-stop
+  revision: 1
+  status: active
+  slug: ents-system-start-stop
+  title: OXE 系统启停与 autostart 管理
+  importance: medium
+  importance_rationale: 对应 task-02，操作短但"重启后话务没起""停话务无命令"是高频困惑；作为其它能力的依赖步骤经路由可达即可
+  one_liner: 起话务 Easy 8/RUNTEL，停话务只有 Easy 7（连带取消 autostart）；无独立停话务命令；role 与 (E) 提示符判状态
+  intents:
+  - 启动或停止话务应用
+  - 重启或停机
+  - 管理 autostart
+  - 查系统运行状态
+  keywords:
+  - swinst
+  - Easy menu
+  - RUNTEL
+  - autostart
+  - shutdown
+  - role
+  - 停话务
+  - 重启
+  - Absent 提示符
+  card: cards/ents-system-start-stop.md
+  frontmatter:
+    description: 'OXE 的启动、停止、重启与 autostart 管理（swinst Easy/Expert、RUNTEL、5 秒取消窗口、role 判读）。当用户要"起/停话务/重启/管自启/判运行态"时
+      经路由使用。不适用于登录与账户（首登加固能力）；Easy 7 停话务会自动取消 autostart。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - start-stop
+  source_evidence:
+  - source_id: src-entpxte400
+  - location: p108-125
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 短操作域，路由可达即可
+- capability_id: cap.ents.cs-network-firewall
+  revision: 1
+  status: active
+  slug: ents-cs-network-firewall
+  title: Call Server IP 寻址与内部防火墙
+  importance: critical
+  importance_rationale: 对应 task-03/04，网络不通全停；N3 起默认全关与双地址体系是 OXE 网络的两把钥匙
+  one_liner: 物理地址永远可达、Role MAIN 地址仅话务运行时生效；netadmin 改动必须 Apply+重启；iptables 默认 DROP，互通靠可信主机白名单
+  intents:
+  - 配置 Call Server IP 地址
+  - 配置 Role 地址
+  - 配置内部防火墙与可信主机
+  - OXE 连不上排查
+  - netadmin firewall
+  keywords:
+  - netadmin
+  - Role 地址
+  - 物理地址
+  - iptables
+  - 可信主机
+  - trusted host
+  - SSH for all
+  - oxedomain
+  - CSV 导入
+  - 重启生效
+  also_read:
+  - ents-first-login-hardening
+  card: cards/ents-cs-network-firewall.md
+  frontmatter:
+    description: '配置 CS 双地址（物理+Role MAIN）与内部 iptables 防火墙（可信主机单加/网段/域名/CSV 批量、SSH 便门收口）。当用户要"配 IP/改网段/配防火墙/
+      加白名单/网络通不了"时使用。不适用于话机 DHCP 服务（用户终端开通能力）；netadmin 一切改动必须 Apply 并重启系统。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - network
+    - firewall
+    - security
+  source_evidence:
+  - source_id: src-entpxte400
+  - location: p126-163
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-03/04，网络地基
+- capability_id: cap.ents.time-sync
+  revision: 1
+  status: active
+  slug: ents-time-sync
+  title: OXE 时间同步（NTP/chrony）
+  importance: medium
+  importance_rationale: 对应 task-05，专项且操作面小；计费/留言/排障依赖时间，但独立触发频率有限
+  one_liner: chrony 渐进同步（client/server、UDP 123）+ 停 chronyd 才能瞬时拨钟；时区改动必须重启；chronyc sources 见 ^* 为判据
+  intents:
+  - 部署 NTP 时间同步
+  - 瞬时校时
+  - 配置时区
+  - chrony 巡检
+  keywords:
+  - NTP
+  - chrony
+  - chronyd
+  - 瞬时同步
+  - 渐进同步
+  - 时区
+  - "UDP 123"
+  - iburst
+  - stratum
+  also_read:
+  - ents-cs-network-firewall
+  card: cards/ents-time-sync.md
+  frontmatter:
+    description: 'OXE 时间同步部署与巡检（chrony 服务器配置、瞬时/渐进两阶段法、时区、维护命令）。当用户要"对时/配 NTP/时间不对/改时区"时经路由使用。
+      不适用于话机侧时间显示问题（用户终端开通能力）；瞬时同步必须先停 chronyd。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - ntp
+    - time
+  source_evidence:
+  - source_id: src-entpxte400
+  - location: p164-183
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 专项域，路由可达即可
+- capability_id: cap.ents.db-license
+  revision: 1
+  status: active
+  slug: ents-db-license
+  title: 空数据库创建与 OPS 许可管理
+  importance: critical
+  importance_rationale: 对应 task-06/07，功能解锁前提；空库抹许可与降级模式节奏是最贵的误操作区
+  one_liner: 空库只能在话务停止时建且连 OPS 一起抹；"停话务 → 建库 → 恢复 OPS → 起话务"顺序固定；5 天自检/30 天宽限/降级三阶段；spadmin+FlexLM 巡检
+  intents:
+  - 创建空数据库
+  - 恢复或备份 OPS 许可
+  - 对接 FlexLM
+  - 处理降级模式告警
+  - spadmin 巡检
+  keywords:
+  - MAO
+  - OPS
+  - swk
+  - 许可
+  - license
+  - spadmin
+  - PANIC
+  - 降级模式
+  - FlexLM
+  - CPU-ID
+  - CC-SUITE-ID
+  - 空库
+  also_read:
+  - ents-media-gateway-deployment
+  - ents-backup-maintenance
+  card: cards/ents-db-license.md
+  frontmatter:
+    description: 'MAO 空库创建（国家码/Direct Link）与 OPS 许可全流程（四文件恢复备份、许可 ID 体系、CAPEX/OPEX、spadmin 巡检、FlexLM 对接、降级模式判读）。
+      当用户要"建空库/恢复许可/许可告警/Software protection error/对接 FlexLM"时使用。不适用于日常配置备份（备份与维护能力）；空库必然连许可一起抹。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - database
+    - licensing
+  source_evidence:
+  - source_id: src-entpxte400
+  - location: p184-223
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-06/07，功能解锁前提
+- capability_id: cap.ents.media-gateway-deployment
+  revision: 1
+  status: active
+  slug: ents-media-gateway-deployment
+  title: 媒体网关上架（GD4/OMS/XL）
+  importance: critical
+  importance_rationale: 对应 task-08/09/10，话机与中继的承载面；crystal/MAC 规则与 rstcpl 整架风险是高频事故源
+  one_liner: OPS 自动建架 + WBM 声明 + mgconfig/omsconfig 板侧配置；crystal 1-255（18/19 保留）；自动 crystal 或 DHCP 必须登记 MAC；rstcpl 打在 GD 上=整架重启
+  intents:
+  - 上架 GD4 硬件网关
+  - 部署 OMS 虚拟媒体网关
+  - 上架 XL 机架
+  - 配置压缩器与子板
+  - 板卡不入服排查
+  keywords:
+  - GD4
+  - OMS
+  - XL
+  - GDXL
+  - FXS32
+  - shelf
+  - mgconfig
+  - omsconfig
+  - crystal number
+  - MAC
+  - rstcpl
+  - 压缩器
+  - ARMADA
+  also_read:
+  - ents-user-terminal-provisioning
+  card: cards/ents-media-gateway-deployment.md
+  frontmatter:
+    description: '三类媒体网关的上架：GD4 机架（Shelf/Board/mgconfig）、OMS 虚拟网关（四强制字段/omsconfig）、XL 高密度模拟（奇数机位/GA-XL 机位），以及 crystal/MAC/
+      压缩器联动规则。当用户要"装机架/配网关/板子起不来/加压缩器"时使用。不适用于用户与终端声明（用户终端开通能力）；OMS 机架禁止加板。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - hardware
+    - media-gateway
+  source_evidence:
+  - source_id: src-entpxte400
+  - location: p245-268, p757-772
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-08/09/10，承载面施工
+- capability_id: cap.ents.user-terminal-provisioning
+  revision: 1
+  status: active
+  slug: ents-user-terminal-provisioning
+  title: 用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）
+  importance: critical
+  importance_rationale: 对应 task-11..15，最高频交付动作；绑定标识三法与 DHCP 默认关是现场高频卡点
+  one_liner: 分机号全系统唯一 ≤8 位；IP 话机绑 MAC、IPDSP 绑 Phone Identifier、TDM 绑物理地址；初始密码 0000；CS 内部 DHCP 默认关闭
+  intents:
+  - 创建用户与开通话机
+  - IP 话机静态或动态开通
+  - 部署 IPDSP 软话机
+  - User Profile 批量建户
+  - 配置 CS 内部 DHCP
+  - 话机换机与日志收集
+  keywords:
+  - 建户
+  - commissioning
+  - MAC
+  - IPDSP
+  - ALE-300
+  - TDM
+  - ANALOG
+  - User Profile
+  - DHCP
+  - dhcpd
+  - termstat
+  - "0000"
+  - getlogs
+  also_read:
+  - ents-numbering-cos
+  card: cards/ents-user-terminal-provisioning.md
+  frontmatter:
+    description: '用户开通三法与终端维护：IP 话机静态/动态开通、IPDSP 软话机、数字/模拟 TDM 用户、User Profile 批量建户、CS 内部 DHCP、换机/日志/摘挂服。
+      当用户要"开户/装话机/换机/软话机不入服/配 DHCP/批量建户"时使用。不适用于机架板卡上架（网关上架能力）；TDM 功耗约束（事件 3757）在本卡边界。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - users
+    - provisioning
+    - dhcp
+  source_evidence:
+  - source_id: src-entpxte400
+  - location: p287-365
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-11..15，最高频交付
+- capability_id: cap.ents.numbering-cos
+  revision: 1
+  status: active
+  slug: ents-numbering-cos
+  title: 编号计划与 COS 管理
+  importance: high
+  importance_rationale: 对应 task-16/17，全系统路由地基与功能权限面；改前缀不改指南是隐蔽事故源
+  one_liner: 前缀唯一对应功能 ≤8 位；Timer 23（3 秒）消解 31T/31000 歧义；Phone Features COS 256 类管功能开关；Connection/Transfer 矩阵管连转
+  intents:
+  - 规划或维护编号计划
+  - 创建前缀与后缀
+  - 管理 Phone Features COS
+  - 配置 Connection/Transfer 矩阵
+  keywords:
+  - 编号计划
+  - prefix
+  - suffix
+  - Timer 23
+  - COS
+  - 呼转前缀
+  - 摘机路由
+  - Connection COS
+  - Transfer COS
+  - 矩阵
+  - 缩位拨号
+  also_read:
+  - ents-call-processing
+  card: cards/ents-numbering-cos.md
+  frontmatter:
+    description: '编号计划（前缀/后缀/Timer 23 饱和对策/分段规划）与 COS 管理（Phone Features COS 七分区、Connection/Transfer 矩阵、摘机路由、默认溢出）。
+      当用户要"设计拨号计划/功能码被拒/限制互拨/调 COS"时使用。不适用于外呼区域闭锁（Public COS 在闭锁与紧急能力）；改前缀必须同步核对语音指南。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - numbering
+    - cos
+  source_evidence:
+  - source_id: src-entpxte400
+  - location: p366-424
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-16/17，路由与权限地基
+- capability_id: cap.ents.call-processing
+  revision: 1
+  status: active
+  slug: ents-call-processing
+  title: 呼叫处理业务域（语音指南/话务台/Entity/计时器）
+  importance: high
+  importance_rationale: 对应 task-18/19/20/25，内部呼叫处理主干；Absent 态与 MOH 二步激活是高频误判点
+  one_liner: 指南四槽+1 动态（GD4/GA4 16 并发、OMS 120）；MOH 激活=删 Tone 2+建 VG 2；话务台必须属组且 4059EE 只管操作；CDT 四状态 3+1 路由；计时器 76/144/trunk COS 300
+  intents:
+  - 部署静态语音指南与 MOH
+  - 部署话务台与 4059EE
+  - 管理 Entity 与 CDT
+  - 调优呼叫分配计时器
+  keywords:
+  - 语音指南
+  - voice guide
+  - MOH
+  - 音乐保持
+  - 话务台
+  - attendant
+  - "4059"
+  - BLF
+  - Entity
+  - CDT
+  - 夜转
+  - 溢出
+  - Timer 76
+  also_read:
+  - ents-voicemail-4645
+  - ents-barring-emergency
+  card: cards/ents-call-processing.md
+  frontmatter:
+    description: '内部呼叫处理四大件：静态语音指南与 MOH、话务台体系（组/话务台/4059EE/BLF）、Entity 与 CDT（状态小时表/经理组/夜转）、呼叫分配计时器调优。
+      当用户要"配等待音乐/建话务台/夜间切换/溢出太慢"时使用。不适用于 4645 留言（语音邮件能力）与外呼闭锁（闭锁与紧急能力）；话务台无应答自动转 Absent。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - call-processing
+    - attendant
+    - timers
+  source_evidence:
+  - source_id: src-entpxte400
+  - location: p425-525, p700-719
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-18/19/20/25，业务主干
+- capability_id: cap.ents.voicemail-4645
+  revision: 1
+  status: active
+  slug: ents-voicemail-4645
+  title: OmniMessage 4645 语音邮件与邮件通知
+  importance: medium
+  importance_rationale: 对应 task-21，留言基础业务；"没邮件通知"的排查链（CoS 默认 None/SMTP/防火墙/from 域名）是主要触发场景
+  one_liner: 一节点仅一套留言系统；7000 信箱/30 端口/500(600) 小时；通知三档 None 默认/Basic/Advanced（附件）；SMTP 经 netadmin 声明+防火墙加白
+  intents:
+  - 部署 4645 语音邮件
+  - 分配与管理信箱
+  - 配置邮件通知
+  - 声明 SMTP 服务器
+  keywords:
+  - "4645"
+  - OmniMessage
+  - 语音邮件
+  - 信箱
+  - voicemail
+  - VPIM
+  - IMAP
+  - 邮件通知
+  - SMTP
+  - Eva_tool
+  also_read: []
+  card: cards/ents-voicemail-4645.md
+  frontmatter:
+    description: 'OmniMessage 4645 部署与邮箱管理：四拓扑选择、库内声明（CPU Name 用物理地址）、信箱分配与首访、邮件通知三档与 SMTP 声明、Eva_tool 巡检。
+      当用户要"装语音邮件/留言通知/信箱管理/SMTP"时经路由使用。不适用于等待音与保持音乐（呼叫处理能力）；通知默认 None 档。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - voicemail
+    - smtp
+  source_evidence:
+  - source_id: src-entpxte400
+  - location: p526-571
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 独立业务但低频，路由可达即可
+- capability_id: cap.ents.sip-trunk
+  revision: 1
+  status: active
+  slug: ents-sip-trunk
+  title: 公共 SIP 中继开通与弹性
+  importance: critical
+  importance_rationale: 对应 task-22，全书中权重最高的实验链；ARS 强制与鉴别符顺序是最大坑区
+  one_liner: 去话九步流水线（ARS/鉴别符/ARS 表/TG/NPD/DID/网关）；SIP 禁直抓必须走 ARS；标准 TG 32 接入成对 62 通道；双网关走 ARS 第二路由或 SIP Pool
+  intents:
+  - 开通公共 SIP 中继
+  - 配置 ARS 与鉴别符
+  - 配置 NPD 与 DID 翻译器
+  - 配置回叫翻译器
+  - SIP 网关备份与负载均衡
+  keywords:
+  - SIP 中继
+  - trunk group
+  - 外部网关
+  - SIP Ext Gateway
+  - ARS
+  - 鉴别符
+  - discriminator
+  - NPD
+  - DID
+  - 回叫
+  - Pool Number
+  - Supervision timer
+  - G722
+  also_read:
+  - ents-numbering-cos
+  - ents-barring-emergency
+  card: cards/ents-sip-trunk.md
+  frontmatter:
+    description: '公共 SIP 中继全链路：中继组与外部网关、ARS 与鉴别符链、NPD/DID 翻译器、回叫规则、国际/紧急专用表、双网关备份与 Pool 负载均衡、编解码两级放行。
+      当用户要"接 SIP 外线/外显不对/来话 484/网关互备"时使用。不适用于外呼权限控制（闭锁与紧急能力）；运营商参数按 TC2005，实验值不外带。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - sip-trunk
+    - ars
+    - carrier
+  source_evidence:
+  - source_id: src-entpxte400
+  - location: p572-656
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-22，权重最高实验链
+- capability_id: cap.ents.barring-emergency
+  revision: 1
+  status: active
+  slug: ents-barring-emergency
+  title: 外呼闭锁与紧急呼叫通知
+  importance: medium
+  importance_rationale: 对应 task-23/24，合规与安全刚需；实体默认 Night 态与鉴别符顺序是最高频错；独立触发频率中等
+  one_liner: 闭锁=Area × Public COS（四状态列）× 实体状态（默认 Night）；8 逻辑/256 真实鉴别符/64 Area/32 COS；紧急组 ≤10 台仅 stand-alone；P-ANI 位置头依赖 Direct IP Link
+  intents:
+  - 配置外呼闭锁
+  - 管理 Area 与 Public COS
+  - 配置紧急呼叫通知
+  - 配置 Location ID 与 P-ANI
+  keywords:
+  - 闭锁
+  - barring
+  - Public COS
+  - Area
+  - 鉴别符
+  - 实体状态
+  - Night
+  - 紧急呼叫
+  - emergency
+  - P-ANI
+  - Location ID
+  - Tone 34
+  also_read:
+  - ents-sip-trunk
+  card: cards/ents-barring-emergency.md
+  frontmatter:
+    description: '外呼闭锁（真实鉴别符分区、Public COS 四状态放行、Entity 连带影响）与紧急呼叫（紧急区域、紧急组、Location ID/P-ANI 外发）。当用户要"限打国际/
+      防盗打/紧急通知/外呼带位置"时经路由使用。不适用于功能级 COS（编号计划与 COS 能力）；实体默认 Night 态，只开 Day 不生效。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - barring
+    - emergency
+    - security
+  source_evidence:
+  - source_id: src-entpxte400
+  - location: p657-699, p604-607
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 合规专项，路由可达即可
+- capability_id: cap.ents.backup-maintenance
+  revision: 1
+  status: active
+  slug: ents-backup-maintenance
+  title: 数据库备份恢复与维护排障工具箱
+  importance: medium
+  importance_rationale: 对应 task-26/27，运维抓手域；恢复用物理地址与"非故障现象"判读是主要触发场景；偏工具查询与流程执行
+  one_liner: 自动备份每日 5:45（DAY..MONTH/OPS/IMMED 分区）；恢复时停话务必须用 CS 物理地址；oxetrace 三路抓包、incinfo 释义、infocollect 交支持
+  intents:
+  - 备份数据库
+  - 恢复数据库
+  - 抓包与日志排障
+  - 事件查询与释义
+  - 生成支持材料
+  keywords:
+  - 备份
+  - backup
+  - 恢复
+  - restore
+  - IMMED
+  - oxetrace
+  - tcpdump
+  - infocollect
+  - incvisu
+  - incinfo
+  - syslog
+  - securitystatustool
+  also_read:
+  - ents-db-license
+  card: cards/ents-backup-maintenance.md
+  frontmatter:
+    description: '数据库备份与恢复（自动 5:45、手工 IMMED、secure/Cloud 剥离选项、物理地址规则）与维护排障八件套（oxetrace/ippstat/incvisu/incinfo/syslog/
+      securitystatustool/infocollect/tcpdump）。当用户要"备份/回滚/抓包/查事件/给支持材料"时经路由使用。不适用于空库与许可恢复（空库与许可能力）。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - backup
+    - maintenance
+    - troubleshooting
+  source_evidence:
+  - source_id: src-entpxte400
+  - location: p720-756
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 运维域，路由可达即可
+- capability_id: cap.ents.legacy-trunks-umc
+  revision: 1
+  status: active
+  slug: ents-legacy-trunks-umc
+  title: 传统中继（T0/T2）与 UMC 云管理
+  importance: low
+  importance_rationale: 对应 task-28/29，传统运营商场景与云侧新交付模式均为低频；UMC 原书纯讲义无实验，指针型知识为主
+  one_liner: T0=BRA 2B+D、T2=PRA 30 通道，信令按运营商（VN=France/ETSI=all countries），同步 IP 架 200-254；UMC 三功能前提 N3-MD3+SPS/PoD+云连接
+  intents:
+  - 开通 T0 中继组
+  - 开通 T2 中继组
+  - 评估或使用 UMC 云管理
+  - UMC 向导建 SIP 中继
+  keywords:
+  - T0
+  - T2
+  - ISDN
+  - BRA
+  - PRA
+  - 中继组
+  - 同步优先级
+  - NOS
+  - UMC
+  - Easy users
+  - Easy SIP trunk
+  - Fleet Dashboard
+  also_read:
+  - ents-sip-trunk
+  card: cards/ents-legacy-trunks-umc.md
+  frontmatter:
+    description: '传统 ISDN 中继（T0/T2 建组五步、信令变体、同步优先级、抓取前缀）与 UMC 云管理平台（Easy users/Easy SIP trunk/Expert Configuration、前提与排除清单）。
+      当用户要"开 ISDN 外线/T2 告警/云平台建户建中继"时经路由使用。不适用于 SIP 中继（SIP 中继能力）；UMC 排除话务台/ACD/多实体等场景。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - isdn
+    - trunk-group
+    - umc
+  source_evidence:
+  - source_id: src-entpxte400
+  - location: p773-814
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 低频与传统场景，路由可达即可

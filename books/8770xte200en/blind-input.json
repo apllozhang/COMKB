@@ -1,0 +1,232 @@
+{
+ "code": "8770xte200en",
+ "capability_catalog": [
+  {
+   "slug": "ovnms-platform-installation",
+   "name": "OmniVista 8770 平台安装",
+   "description": "专用服务器七步装链（Windows 数据配置 > ServerSetup > 补丁 > 首连）；IE ESC 关闭与 Defender 排除 C:\\8770 是 Alarms/Topology 前提；客户端 URL 下载/WMIC/Zulu 放行；公司名等参数装后不可改"
+  },
+  {
+   "slug": "ovnms-node-onboarding",
+   "name": "OmniVista 8770 节点接入",
+   "description": "siteid 核查、Network > Subnetwork > PCX 三级声明（节点号=网络号×100+节点号）、四种同步语义、实时同步核验与 NMC Alarm server 排障、OXE SSH 可信主机/MindTerm、OXO Connect 经 OMC 纳管（声明节点 1x100+80=180）"
+  },
+  {
+   "slug": "ovnms-user-provisioning",
+   "name": "OmniVista 8770 用户开通",
+   "description": "Profile（auto. recognition 开关+大写名）/Meta profile（号段同步+自动取号）/批量文件（XXXX/NULL、action ADD MODIFY DELETE）/WBM 轻客户端（+;-;#、三红线、默认密码 1234）"
+  },
+  {
+   "slug": "ovnms-alarm-management",
+   "name": "OmniVista 8770 告警管理",
+   "description": "incident manager（Network severity=None+Topological YES）、rstcpl/incvisu 验证 #2042/#1125、相关/非相关处置、邮件（server:port）/脚本（%1 %2）/字典出口、SNMP Proxy（hypervisor 只填 IP、trap 162、Windows SNMP 服务不能卸）"
+  },
+  {
+   "slug": "ovnms-security-administration",
+   "name": "OmniVista 8770 安全管理",
+   "description": "密码策略（B+C<A）、管理员与组（多组取最高、单登录豁免）、锁定四路解锁（ToolsOmniVista 选项 4/WBM 邮件重置）、OXE Access Profile 11 档共用（删本地 MIB 生效）、OXE 白名单（Secure access 前提）、TLS/POODLE 全网元前提"
+  },
+  {
+   "slug": "ovnms-audit-compliance",
+   "name": "OmniVista 8770 审计合规",
+   "description": "双侧启用（AuditServer+OXE Process audit/mtcl/Secure access）、mao 三日志留痕、System 页重建 PbxName Not Empty、History/Detail 导出（Immediate/Scheduled）、8770 自身 log 不适用导出；仅支持 OXE"
+  },
+  {
+   "slug": "ovnms-backup-restore",
+   "name": "OmniVista 8770 备份恢复",
+   "description": "8770 备份四块内容与版本绑定（nmcVersion）、恢复前提删节点删告警、rehosting 三场景（改 IP/改 FQDN/换机）；OXE bck 备份取回与 swinst 七步恢复链（停电话、role address 失效用物理 IP、Autostart 设回）"
+  },
+  {
+   "slug": "ovnms-license-management",
+   "name": "OmniVista 8770 许可管理",
+   "description": "ACTIS 出证 nmc.license、四段锁结构（8770Handle 申报节点、Modules 布尔键+用户数键、8770Clients 并发 30、Security 键 0-5）、N-1 版本规则（R5.2 吃 15/16）、spadmin/About 查询、换文件五步、超限受限模式（仅 Directory+Configuration）"
+  },
+  {
+   "slug": "ovnms-reports-scheduling",
+   "name": "OmniVista 8770 报表与任务编排",
+   "description": "报告生成/文件邮件导出/计划（上限 TXT 4000 行、50 页、库 100000 行，SMTP server:port 语法）；Scheduler Job/Task/jobset（Simple/Synchronized、Maximum start delay 补跑语义）；五类 purge 与 Purge job 链、LDIF 恢复预定义 job"
+  },
+  {
+   "slug": "ovnms-maintenance-operations",
+   "name": "OmniVista 8770 维护运营",
+   "description": "8770 Diagnostic 采集（C:\\TS 出 HTML+zip）、DirManag（389 无 LDAPS）/HeidiSQL（dba 只读）；NMC 服务两层（4 个 Automatic 与约 20 个被监督、不要手动 Start）；日志 2x5MB 滚动、/nmclog/、TraceType --1 查完改回 0"
+  },
+  {
+   "slug": "ovnms-topology-views",
+   "name": "OmniVista 8770 Topology 视图",
+   "description": "Standard 视图（背景地图 1100x793 入 topology\\maps 重启 NMC Service Manager、虚拟 ACT 重启 Topology）、Custom 编辑器建屏、告警重定向（Redirecting alarms + Source Object hierarchy）；只显示相关告警、incident 386 不可用"
+  },
+  {
+   "slug": "ovnms-oxe-ui-efficiency",
+   "name": "OmniVista 8770 OXE 配置界面高效操作",
+   "description": "Configure 界面六类手法：搜索、冻结列、网格/文件切换、属性列选择、图形视图配键（Function/Content/Mnemo）、树与网格导入导出（.txt/.prg）"
+  },
+  {
+   "slug": "ovnms-network-drive",
+   "name": "OmniVista 8770 网络驱动器映射",
+   "description": "远程共享（REPORTS_ECO/BACKUP_ECO）+ 同名同密 ADM8770（Administrators 组、移出 Users、五项用户权利）+ ExecdEx/SaveRestore 服务 Nt account .\\ADM8770、立即备份 Search 验收"
+  }
+ ],
+ "cases": [
+  {
+   "id": "should-install-01",
+   "prompt": "客户买了台新服务器要装 OmniVista 8770，从系统配置到第一次登录管理员，步骤和注意事项有哪些？"
+  },
+  {
+   "id": "should-install-02",
+   "prompt": "8770 装完了，但 Alarms 和 Topology 应用里始终没有数据，网络是通的，可能是什么原因？"
+  },
+  {
+   "id": "should-node-01",
+   "prompt": "OXE 的网络号是 1、节点号是 2，在 8770 里声明节点号应该填多少？同步方式怎么选？"
+  },
+  {
+   "id": "should-node-02",
+   "prompt": "OXE 上建了个用户，8770 这边要等很久甚至要手动同步才能看到，实时同步不工作了怎么排查？"
+  },
+  {
+   "id": "should-user-01",
+   "prompt": "客户开局要批量开 300 个用户，希望号码自动从号段里取，用什么方案？模板文件怎么改？"
+  },
+  {
+   "id": "should-user-02",
+   "prompt": "前台文员想自己在网页上给新员工开电话账号，不想装厚客户端，可以怎么做？有什么限制？"
+  },
+  {
+   "id": "should-alarm-01",
+   "prompt": "怎么验证 OXE 的告警真的能送到 8770？有没有主动触发一条告警的办法？"
+  },
+  {
+   "id": "should-alarm-02",
+   "prompt": "客户要求凡是 Major 级告警都自动发邮件给网管邮箱，另外还要把告警转发到他们的 NMS 平台，怎么做？"
+  },
+  {
+   "id": "should-sec-01",
+   "prompt": "管理员账号密码连错几次被锁了，现在谁都登不进去，有哪些解锁办法？AdminNmc 也锁了怎么办？"
+  },
+  {
+   "id": "should-sec-02",
+   "prompt": "安全部要求密码 90 天过期、提前 30 天提醒、最短使用 30 天才能改，这套参数在 8770 里能配吗？"
+  },
+  {
+   "id": "should-audit-01",
+   "prompt": "客户被审计要求提供证据：谁在什么时候改过 OXE 上的用户配置，这个能查吗？怎么开？"
+  },
+  {
+   "id": "should-audit-02",
+   "prompt": "Audit 应用的 System 页怎么查都查不出数据，条件都没错，是不是坏了？"
+  },
+  {
+   "id": "should-backup-01",
+   "prompt": "8770 服务器要从机房 A 搬到机房 B，IP 和主机名都会变，怎么把配置和数据完整迁过去？"
+  },
+  {
+   "id": "should-backup-02",
+   "prompt": "要给 OXE 恢复数据库备份，业务窗口只有夜里半小时，恢复过程要注意什么？恢复完连不上 OXE 了怎么回事？"
+  },
+  {
+   "id": "should-lic-01",
+   "prompt": "用户反映 8770 里大半个应用都不见了，只剩 Directory 和 Configuration，重启也没用，什么情况？"
+  },
+  {
+   "id": "should-lic-02",
+   "prompt": "客户扩容买了新许可，文件下载下来了，怎么把 8770 的许可换掉并确认生效？"
+  },
+  {
+   "id": "should-node-03",
+   "prompt": "新采购的 OXO Connect 要纳入 8770 管理，OMC 装好后 8770 侧怎么声明节点？备份会放到哪个目录？"
+  },
+  {
+   "id": "should-user-03",
+   "prompt": "想给一批用户预设好功能键（比如一键呼班长），用户建好后按键自动下发，怎么配置？"
+  },
+  {
+   "id": "should-sec-03",
+   "prompt": "改了 OXE 的 Access Profile 之后，客户端界面对象可见性完全没变化，配置明明保存了，为什么？"
+  },
+  {
+   "id": "should-backup-03",
+   "prompt": "5.1 版本时做的 8770 备份，现在服务器升到 5.2 了，这份备份还能直接还原吗？"
+  },
+  {
+   "id": "should-reports-01",
+   "prompt": "管理层要每周一早上自动收到一份上周的告警明细报表邮件，在 8770 里怎么配？"
+  },
+  {
+   "id": "should-maint-01",
+   "prompt": "8770 上一个服务停了，我在 Service Manager 里要点 Start 拉起来吗？听说有的服务不能手动启。"
+  },
+  {
+   "id": "should-topo-01",
+   "prompt": "客户要一块自己园区做背景的网络监控大屏，能把核心板卡和服务器摆上去连线吗？"
+  },
+  {
+   "id": "should-ui-01",
+   "prompt": "想导出 OXE 上配置好的编号计划和网格数据留档，以后还能导回去，在 8770 里怎么操作最快？"
+  },
+  {
+   "id": "should-netdrv-01",
+   "prompt": "备份和报表都要落到客户的文件服务器共享上，8770 这边要配哪些东西才能写进去？"
+  },
+  {
+   "id": "bait-install-01",
+   "prompt": "8770 装好了，第一台 OXE 怎么注册进来并同步数据？"
+  },
+  {
+   "id": "bait-node-01",
+   "prompt": "节点都同步好了，怎么在 8770 里给 OXE 上的用户批量开户？"
+  },
+  {
+   "id": "bait-user-01",
+   "prompt": "新来的运维管理员要开账号，只能看 Alarms 应用不能碰 Configuration，权限怎么配？"
+  },
+  {
+   "id": "bait-alarm-01",
+   "prompt": "话机故障的告警为什么不在 Topology 拓扑图上显示？我想让话机状态也上图。"
+  },
+  {
+   "id": "bait-audit-01",
+   "prompt": "OXO Connect 上的管理员操作也要进 8770 的 Audit 审计，怎么配？"
+  },
+  {
+   "id": "bait-backup-01",
+   "prompt": "备份想存到客户 NAS 的共享目录上，立即备份对话框里怎么看不到网络位置？"
+  },
+  {
+   "id": "bait-lic-01",
+   "prompt": "Topology 应用里加了背景地图，下拉列表里始终不出现新地图。"
+  },
+  {
+   "id": "bait-reports-01",
+   "prompt": "审计的操作记录想每天自动生成报告发邮件，这个怎么落地？"
+  },
+  {
+   "id": "bait-maint-01",
+   "prompt": "给 ALE 开支持工单前要采集服务器诊断信息，用什么工具、产出什么文件？"
+  },
+  {
+   "id": "edge-node-01",
+   "prompt": "同步选 Partial 还是 Complete？日常用哪个，开局用哪个？"
+  },
+  {
+   "id": "edge-alarm-01",
+   "prompt": "告警确认（acknowledge）之后是不是就算处理完了？为什么列表里还在？"
+  },
+  {
+   "id": "edge-sched-01",
+   "prompt": "计划任务设了周六执行，服务器周五关机周一开机，任务还跑吗？"
+  },
+  {
+   "id": "edge-lic-01",
+   "prompt": "手头有一份很老的许可文件，能不能装到 R5.2 上先把应用解锁再说？"
+  },
+  {
+   "id": "edge-pwd-01",
+   "prompt": "生产环境能不能直接照书里的密码（比如 Superuser2580*）先上线，后面再改？"
+  },
+  {
+   "id": "edge-ha-01",
+   "prompt": "8770 支不支持双机热备？客户要求网管不能有单点故障。"
+  }
+ ]
+}

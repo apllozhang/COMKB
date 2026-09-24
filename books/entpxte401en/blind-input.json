@@ -1,0 +1,223 @@
+{
+ "code": "entpxte401en",
+ "capability_catalog": [
+  {
+   "slug": "entadv-ssh-trust-foundation",
+   "name": "SSH 免密分发体系",
+   "description": "oxe-ssh-auth 对机同步、oxe-nw-sshkey-sync 全网五段 CSV 同步、三账户密钥路径与 authorized_keys 条数核验；N3 起 SSHv2 强制、host-based 已移除"
+  },
+  {
+   "slug": "entadv-cs-redundancy",
+   "name": "CS 冗余部署与切换维护",
+   "description": "本地/空间冗余部署（netadmin/防火墙/MAO 三参数/mastercopy/autostart）、role/twin/bascul 演练、double main 与参考 MG 裁决、120 分钟窗口与 440 处置、不停机升级 11 步"
+  },
+  {
+   "slug": "entadv-ip-domain-pcs",
+   "name": "IP 域与 PCS 域级生存性",
+   "description": "建域/地址段/CAC（只闸跨域，-1 不限）/编解码选择链/域 0 硬规则；PCS 部署（锁 332/console 首配/WBM 声明/pcscopy）、四状态判读、回切计时器、30 天上限与单向同步"
+  },
+  {
+   "slug": "entadv-overflow-rerouting",
+   "name": "公私网双向溢出与重路由",
+   "description": "本地/组网私到公溢出（三类触发、COS 双开关+闭锁双层权利、thin sector、OoS 溢出参数+pcscopy）；公到私重路由（判别器+ARS、TG=-1 每表一条且首位、Time-based 定序）"
+  },
+  {
+   "slug": "entadv-direct-ip-link",
+   "name": "Direct IP Link 全 IP 组网",
+   "description": "ABC-F2 全互联；系统选项三态 Enabled 不可逆（回退=库恢复）；接入 1 IP 信令、两端带宽/加密/接入数一致否则 2879；容量三层（100 节点/1488 并发/约 10000 呼时）；hybvisu/trkvisu/rsthyb 维护与加删节点"
+  },
+  {
+   "slug": "entadv-audit-broadcast",
+   "name": "Audit 与 Broadcast 数据一致性",
+   "description": "Audit 两阶段（specific/shared/不审计对象、模拟强制+全网备份、链式对象两解法）；Broadcast（buffer 10 分钟→LOG→lupd.dat 闭环、128 广播域、激活三法、RLOG 静默失败巡检）"
+  },
+  {
+   "slug": "entadv-multiline-supervision",
+   "name": "多线监督与经理助理组",
+   "description": "Multi-keys/Multi-MCDU 两形态；监督键（状态/代接/铃型/No Call；20/100/15000 上限；话务台与寻线组不可监督）；经理助理键对、过滤表 1000×16、screening/unscreening 互斥、四个辅助键"
+  },
+  {
+   "slug": "entadv-hunting-pickup-speeddial",
+   "name": "寻线代接组与速拨编号体系",
+   "description": "寻线三搜索+COS 随组+camp-on 溢出公式+multiline 三分支；组代接/直接代接自动成组（zdpost pickup_id）；速拨 32500（默认 4000）、直接/范围/open/timed、闭锁受控、edabv 查询"
+  },
+  {
+   "slug": "entadv-desk-sharing",
+   "name": "办公桌共享（DSS/DSU）",
+   "description": "DSS 真 MAC/DSU 虚拟 MAC aa:bb:分机号；前缀 62/63 与键位；五个系统选项（忙时重置 6004/自动登出/免密/改密/即时登录适用面）；dsstat/ippstat 验证"
+  },
+  {
+   "slug": "entadv-multi-device",
+   "name": "多设备用户与 Twinset",
+   "description": "主站+至多 4 副站（DECT/REX 各 1、禁用清单）；建关联清空两机数据；Partial busy/Specific supervision；主站退服三参数（退服期间改不生效）；Twinset Get Call 无感移机"
+  },
+  {
+   "slug": "entadv-lab-pod-baseline",
+   "name": "实验/交付前置环境基线",
+   "description": "RLAB 双拓扑、ITSP1 号码规则（PN=POD 号）、VM 启动顺序与组网网卡迁移、OXE 预配置基线——全部实验口径，生产无此环节"
+  },
+  {
+   "slug": "entadv-cli-toolbox",
+   "name": "维护命令与事件/许可速查",
+   "description": "按功能域归类的命令地图（role/twin/domstat/cnx dom/compvisu/multitool/hybvisu/trkstat/prog_diff 等）、事件号对照（440/427/428/431/432/6004/6005/2879 等）、许可锁锚点（186/332/185）"
+  }
+ ],
+ "cases": [
+  {
+   "id": "should-ssh-01",
+   "prompt": "两台 OXE 要做冗余，先把 root 和 mtcl 的免密配好，用什么工具、怎么验证配好了？"
+  },
+  {
+   "id": "should-ssh-02",
+   "prompt": "全网 8 个节点的 SSH 密钥要同步，一个个 pair 配太慢了，有没有批量办法？"
+  },
+  {
+   "id": "should-cs-01",
+   "prompt": "客户要求版本升级业务不中断，OXE 冗余系统怎么做？"
+  },
+  {
+   "id": "should-cs-02",
+   "prompt": "机房断电后两台呼叫服务器都起来了，现在话务台看不到一半话机，怎么判断谁该是主？"
+  },
+  {
+   "id": "should-idp-01",
+   "prompt": "远端站点划成一个 IP 域，怎么限制它和总部之间的并发通话数？"
+  },
+  {
+   "id": "should-idp-02",
+   "prompt": "分部和中心断网了，pcsview 看到是 ACTIVE，远端话机现在归谁管？链路恢复后会自动切回来吗？"
+  },
+  {
+   "id": "should-ovf-01",
+   "prompt": "两个站点之间 IP 断了，希望用户拨对方分机还能通，自动从公网绕，这个怎么配？"
+  },
+  {
+   "id": "should-ovf-02",
+   "prompt": "用户从公网拨分部的外线号，能不能让这个电话自动走我们专线进来，省长途费？"
+  },
+  {
+   "id": "should-dil-01",
+   "prompt": "两个 OXE 节点之间想取消 VPN 直接全 IP 互联，需要哪些前提和步骤？"
+  },
+  {
+   "id": "should-dil-02",
+   "prompt": "直链起不来，incvisu 里报 2879，两端我都看了一遍没发现问题，该怎么逐项核对？"
+  },
+  {
+   "id": "should-aud-01",
+   "prompt": "新装了一个节点，怎么把全网的编号计划和用户数据弄到它上面？"
+  },
+  {
+   "id": "should-aud-02",
+   "prompt": "广播看着跑完了，但远端节点的用户没建起来，/usr4/mao 下多了些 RLOG 文件，什么情况？"
+  },
+  {
+   "id": "should-mls-01",
+   "prompt": "秘书要能看到老板话机的忙闲和振铃，振铃时能一键接起来，怎么配？"
+  },
+  {
+   "id": "should-mls-02",
+   "prompt": "老板希望只有外部客户来电才转给助理，内部同事来电还是响自己桌面，能实现吗？"
+  },
+  {
+   "id": "should-hps-01",
+   "prompt": "客服组 6 个人，来话要轮流分摊别总打给同一个人，组怎么建？"
+  },
+  {
+   "id": "should-hps-02",
+   "prompt": "销售部要给常用客户设短号，拨两位数就出去，而且这些号要受外呼权限管，怎么弄？"
+  },
+  {
+   "id": "should-desk-01",
+   "prompt": "呼叫中心要上共享工位，坐席来了随便坐，登录自己工号配置就跟着走，怎么实现？"
+  },
+  {
+   "id": "should-desk-02",
+   "prompt": "有坐席投诉通话打到一半被强制登出、电话断了，还看到 6004 的事件，为什么？"
+  },
+  {
+   "id": "should-mdev-01",
+   "prompt": "高管要一台桌面话机加一个 DECT 手柄都响他同一个号码，怎么配？"
+  },
+  {
+   "id": "should-mdev-02",
+   "prompt": "通话打到一半要从话机挪到旁边会议室的话机上，对方不能察觉，有这个功能吗？"
+  },
+  {
+   "id": "should-lab-01",
+   "prompt": "我在 POD 5 上做实验，教材里的拨号计划和我的号不一样，怎么换算？"
+  },
+  {
+   "id": "should-lab-02",
+   "prompt": "组网实验前要把 192.168.1.1 从 CSA 挪到 NODE 1 上，具体在 Rlab 里怎么操作？"
+  },
+  {
+   "id": "should-cli-01",
+   "prompt": "维护 OXE 的话，看主备状态、看域内设备、看中继通道占用分别用什么命令？"
+  },
+  {
+   "id": "should-cli-02",
+   "prompt": "部署 PCS 之前许可文件里要确认哪个锁？在哪里看？"
+  },
+  {
+   "id": "bait-ssh-01",
+   "prompt": "audit 全网跑完了，NODE2 的用户在 NODE1 编号计划里看不到，是不是 SSH 密钥没同步？要不要重新分发密钥？"
+  },
+  {
+   "id": "bait-cs-01",
+   "prompt": "分部的 IP 链路断了，中心的冗余 CS 会把分部话机接管过来吗？"
+  },
+  {
+   "id": "bait-idp-01",
+   "prompt": "分部断网期间，远端用户要能继续打出外线和接听来电，配置上要补什么？"
+  },
+  {
+   "id": "bait-ovf-01",
+   "prompt": "直链断了一条，现在要把链路本身重新建起来，先查什么？"
+  },
+  {
+   "id": "bait-dil-01",
+   "prompt": "直链都建好了，现在新节点要拿全网的数据库，是在链路上加接入解决吗？"
+  },
+  {
+   "id": "bait-aud-01",
+   "prompt": "在节点 A 改了中继组的前缀，等了两个广播周期节点 B 还是没变，是不是 broadcast 坏了？"
+  },
+  {
+   "id": "bait-mls-01",
+   "prompt": "寻线组里那台 multiline 话机一线忙时来话不落它的空闲键，是监督键配错了吗？"
+  },
+  {
+   "id": "bait-hps-01",
+   "prompt": "把前台话务台的等待队列调成 8 路，再给话务台建个监督组"
+  },
+  {
+   "id": "bait-desk-01",
+   "prompt": "DSU 用户想把他工位上的键位配置永久搬到自己的固定话机上，以后不再共享了"
+  },
+  {
+   "id": "bait-lab-01",
+   "prompt": "客户生产环境用的 SIP 中继运营商入呼总是号码显示不对，按教材 ITSP1 的号码规则帮我查一下"
+  },
+  {
+   "id": "bait-cli-01",
+   "prompt": "incvisu 里报了 440，我直接把备机重启一次能恢复吗？"
+  },
+  {
+   "id": "bait-scope-01",
+   "prompt": "帮我们做一个 500 用户站点的 Erlang 话务模型和中继带宽计算"
+  },
+  {
+   "id": "edge-30day-01",
+   "prompt": "我们的 PCS 因为中心机房搬迁已经连续激活 35 天了，现在会怎样？还能继续顶着吗？"
+  },
+  {
+   "id": "edge-irreversible-01",
+   "prompt": "我们把 Direct IP Link 系统选项切到 Enabled 之后又后悔了，能改回 Disabled 吗？"
+  },
+  {
+   "id": "edge-prefix-01",
+   "prompt": "教材写组代接默认前缀是 55，现场拨 55 没反应，到底该拨哪个？"
+  }
+ ]
+}

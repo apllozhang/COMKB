@@ -1,0 +1,42 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\acr-asm-deployment.md": "1a3728ac399f86372ed0c28877eb955a9b6a1ea2580713b7507f80726f4a31f5",
+    "references\\capabilities\\acr-call-tag-transfer.md": "44aa7ea8c5daf6917d1769e2e47a6c633f9fbf471f4eb6f544f1698b3759d08f",
+    "references\\capabilities\\acr-ccd-matrix-foundation.md": "48efa942663d5df8511d4416963af7231b352c11d8b8b87d935b83146204f14e",
+    "references\\capabilities\\acr-database-query-routing.md": "8dade387341aadbd0d862e74d45b8ed36949c3d0f778dc3f5d1af8dbb2d67880",
+    "references\\capabilities\\acr-direct-call-dica.md": "bccac9d94482cd28a33e9adbb544e157d2fba0060f6136a5e31a3d84049c226a",
+    "references\\capabilities\\acr-filter-statistics.md": "c318075bbee22b085e6ea6d688f08877ae71e3c56b540397c891f77a37a932db",
+    "references\\capabilities\\acr-internal-database-routing.md": "020a68cbda728eec0b5c2a04139a8d8b3555ad3bd758457145b8970e8e1d175d",
+    "references\\capabilities\\acr-list-rules.md": "51f44fc5482de501837f5e1ae9acfb25ad019379a78b35944527a07acb1a17ed",
+    "references\\capabilities\\acr-multilanguage-voiceguide.md": "dab2e1f7fc394c1d612adab67c7bed30de3d0a374f3e8ecf0a0fefb53a69f559",
+    "references\\capabilities\\acr-redirect-redistribution.md": "cca08b9dc94a37220ec06e67b372e249477a423f90d22d849e859029f080b50c",
+    "references\\capabilities\\acr-rule-combination-advanced.md": "d08634799594dcc10d5d78343a500fdc1a792e217178f2bed4bb501e1400de0a",
+    "references\\capabilities\\acr-script-editor-fundamentals.md": "8ee7e5289b0aa6dc299a04b48a2882ea56ce7edb1f3d48a90b3656101dac52a3",
+    "references\\capability-index.md": "16a468936b957405db5f8e377372ae6f86588948bbaf22e1edcb8d0e431616df",
+    "references\\cheatsheet.md": "0b388c22901da3aadef0876f9fa5f07d14c5a230272e8e422212699aea229e03",
+    "references\\glossary.md": "16b845dfe93340a691f5a33dab93cf5d26898cc58ef0e22f93bb2b71b57ae6fb",
+    "references\\overview.md": "c6eeaa5a0256ecbafa8ec04e75362b6ab6a0838247966ac837195e6ef76a41dd",
+    "SKILL.md": "3f68a1ac60ca5644f23c2156b9a7661d142eeaea379b38fee0042dd3476a7c38"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.otcc-advanced-call-routing",
+  "bundle_sha256": "33883cbe01b6f31e41dc406011034ffad7dbd0184d0121c6f0e73102d20b2318",
+  "variant": "single",
+  "run_id": "run-20260924-200012-c373da",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 12,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

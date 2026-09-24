@@ -1,0 +1,42 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\rbx-admin-tools.md": "d0b76aa30ce109e0f26a6b87d8316e603d36db7dfe4053f7de7524523e78cb27",
+    "references\\capabilities\\rbx-attendant-supervision.md": "fe297d4a417fb0d2e3cd7b0a66d4120552b324bf7264309de26b42992fbc27a1",
+    "references\\capabilities\\rbx-company-subscription.md": "fe5867c0802b99a86f13bbf8567b048eda338e2c9d5a3110564fca7693005176",
+    "references\\capabilities\\rbx-gateway-deployment.md": "0e3ff7b1f6a334622f01b0973a7de936a831bbc384de2f4d24da2386ce741f70",
+    "references\\capabilities\\rbx-gateway-planning.md": "976d8b345798fc995b68d7562f80c9641145b2f68d649fe716ee28d0c6960840",
+    "references\\capabilities\\rbx-maintenance-support.md": "06b056da997d470999c3bb53689dcbf11a2f19b1ddd6b7ed1ca31af026224e8e",
+    "references\\capabilities\\rbx-member-lifecycle.md": "9577c7173350a88ad61f24b00a283b0e3553de74d7d047ec54e5e9e13a336c80",
+    "references\\capabilities\\rbx-network-readiness.md": "6cc06a85fc309305244cf7fa0c5acd13bcb85a329da689a5be446b13b3923414",
+    "references\\capabilities\\rbx-omc-onboarding.md": "4f2302a71f89c3a11db468095d3f24b29e0dab03f062f7396815a400b8b31d7f",
+    "references\\capabilities\\rbx-pbx-onboarding.md": "d2ba72e4181bfab90222537e7bec5e48b6008e637cbfe568c2a03e9d442ffcf2",
+    "references\\capabilities\\rbx-rcc-association.md": "3adc615050462f08da49c33f6b91a8890d7de9dc7a2e53f1e831b6782edf582d",
+    "references\\capabilities\\rbx-teams-integration.md": "88457de57ed7be8a193e5886df10247172e4fc414549f0eedf279d3338b7db89",
+    "references\\capability-index.md": "566bf25d192a648dc10ae14fb61bd507468d5b30476d4f309648073b23362393",
+    "references\\cheatsheet.md": "6694aac45901883c1f2481d6b954698b3151cabdf1229be8e7443bcb773cf73f",
+    "references\\glossary.md": "b7c20c184ff95d271dc59d77964e72f6b4c8284d2aac33404ad18dafacf912c4",
+    "references\\overview.md": "b4f63bcc4c93a7b4415cb4da7a5a4ee9e78ed4b08c55ad23acf0596b689d93aa",
+    "SKILL.md": "7b5daadcb6a281b551f83901adfdb7a665c6015328eaa916477f7313a392d25d"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.rainbow-oxo-connect",
+  "bundle_sha256": "a8fc74d663e40eba641664107b8e692cef249a077bce5c99535b9f82e059e8a2",
+  "variant": "single",
+  "run_id": "run-20260924-200019-3bcd1d",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 12,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

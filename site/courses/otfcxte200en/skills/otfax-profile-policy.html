@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OTFC Profile 策略与电话簿（限制组、呼号限制、通知 Profile、LDAP 电话簿）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch Fax Center · Starter</h2><p>Edition 04 · 233 页 · 文档整理入库（11 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otfcxte200en/index.html">课程首页</a><a href="/courses/otfcxte200en/digest.html">精华长文</a><a href="/courses/otfcxte200en/overview.html">教书理解</a><a href="/courses/otfcxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otfcxte200en/skills/otfax-installation-ftw.html">OTFC 首次交付（宿主准备、安装、FTW、许可）</a><a href="/courses/otfcxte200en/skills/otfax-sip-channel-integration.html">OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）</a><a href="/courses/otfcxte200en/skills/otfax-mail-exchange-integration.html">OTFC 邮件与 Exchange 集成（SMTP 网关、FAX 连接器、通知排障）</a><a href="/courses/otfcxte200en/skills/otfax-user-administration.html">OTFC 用户与管理员管理（双用户源、CSV、两级管理员）</a><a href="/courses/otfcxte200en/skills/otfax-profile-policy.html">OTFC Profile 策略与电话簿（限制组、呼号限制、通知 Profile、LDAP 电话簿）</a><a href="/courses/otfcxte200en/skills/otfax-directory-routing.html">OTFC 高级目录集成与来传真路由（LDAP、Lookup、NT 免密、路由表、DTMF、Modification）</a><a href="/courses/otfcxte200en/skills/otfax-services-operations.html">OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）</a><a href="/courses/otfcxte200en/skills/otfax-backup-upgrade.html">OTFC 备份、恢复、升级与删除策略（三数据域、五步升级法、零保留）</a><p class="course-nav-group">路由能力</p><a href="/courses/otfcxte200en/skills/otfax-client-coversheet.html">OTFC 客户端部署与封页定制（四件套、Web Client、GPO、封页五步）</a><a href="/courses/otfcxte200en/skills/otfax-solution-planning.html">OTFC 方案评估与部署规划（容量协议合规、架构拓扑、支持矩阵）</a><a href="/courses/otfcxte200en/skills/otfax-reports-monitoring.html">OTFC 报表与监控（31 报表、BIRT、SNMP V2 陷阱）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otfcxte200en/index.html">ot-fax-center（11 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otfcxte200en/index.html">OTFCXTE200EN</a><span>/</span><span aria-current="page">OTFC Profile 策略与电话簿（限制组、呼号限制、通知 Profile、LDAP 电话簿）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OTFC Profile 策略与电话簿（限制组、呼号限制、通知 Profile、LDAP 电话簿）</h1></div><dl><div><dt>Skill ID</dt><dd>otfax-profile-policy</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OTFC Profile 策略与电话簿（默认两档、限制组、呼号限制、通知 Profile、LDAP 电话簿）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"By default, the Basic and No Faxing Rights profiles are available: • The Basic profile allows the user to fax at a normal fax priority. • The No Faxing Rights profile does not allow the transmission of faxes."（p118）
+"A barring table could be linked to one/several user profile(s) • E.g. National only: International numbers are forbidden"（p121）
+"'Exchange integration' has to be checked with 'Message body format: Text'. Format used for email notification, not for web access!"（p126）
+"There are two types of Phone Books: • Public (corporate): assigned to users through their profile • Personal (private): accessible and manageable only by each user"（p135）</p>
+</blockquote>
+<p>出处：OTFCXTE200EN p117-139。</p>
+<h2>I — 自述</h2>
+<p>Profile 是策略中枢，六块属性五种挂接：</p>
+<ol>
+<li><strong>六块属性</strong>：Profile information（名称/组织/电话信息）、Cover Sheets（默认与允许封页）、Billing Codes（三类计费码）、Fax Options（优先级/重试/分辨率等）、Security（选项/覆盖策略/号码限制）、Notification 设置</li>
+<li><strong>默认两档</strong>：Basic（正常优先级可发）与 No Faxing Rights（禁发）；一个 Profile 可服务多个用户</li>
+<li><strong>出方向闭锁</strong>：Restriction group（barring table）挂一个/多个 Profile，如"仅国内：禁国际号"——与 OXE 语音侧闭锁是两套体系</li>
+<li><strong>入方向拒收</strong>：站点级 Calling Number Restriction（Sites ➤ General Settings ➤ Calling Number restrictions），来话在呼叫建立阶段直接拒接</li>
+<li><strong>邮件通知 Profile</strong>：每语言一份，经用户 Profile 关联才生效；Exchange 场景勾 "Exchange integration" + 正文 Text（只影响邮件通知不影响 Web 访问）</li>
+<li><strong>电话簿两类</strong>：Public（企业级，经 Profile 下发、仅管理员管、Webadmin 可建多本可分组、CSV 导入）；Personal（仅用户本人）；电话簿可经 LDAP 访问——主机级 Fax Archive 属性勾 Enable LDAP Access、站点级 General Settings 设认证、LDAP Attribute Mapping 匹配属性</li>
+</ol>
+<p>封页与公共电话簿同规则：仅管理员管理、经 Profile 下发。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>禁国际号码策略</strong>（p120-121，讲义口径）：</p>
+<ol>
+<li>建 Restriction group（barring table），条目口径"National only：禁国际号码"</li>
+<li>路径 Sites ➤ Site ➤ Configuration ➤ Profile 打开目标 Profile</li>
+<li>把拦截表关联到该 Profile（可挂多个 Profile）</li>
+<li>套用用户外发国际号即被拦截</li>
+</ol>
+<p><strong>LDAP 电话簿访问</strong>（p138-139）：</p>
+<ol>
+<li>System Configuration ➤ Fax Archive 属性勾 Enable LDAP Access（主机级开关）</li>
+<li>Configuration ➤ General Settings 属性里设 LDAP 认证（站点级）</li>
+<li>LDAP Attribute Mapping 匹配 OTFC 与 LDAP 服务器属性</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：给部门分等级传真策略；禁发国际号/高价号；某些来传真的号码直接拉黑；Exchange 用户通知格式乱码或带图异常；企业共享联系人库；多语言组织通知模板。</p>
+<p>语言信号：Profile / Basic / No Faxing Rights / 限制组 / restriction group / barring / 仅国内 / national only / 呼号限制 / calling number / 计费码 / billing code。</p>
+<p>语言信号（续）：优先级 / 重试 / resolution / 通知 / notification / Exchange integration / Text / 电话簿 / phone book / Public / Personal / LDAP。</p>
+<p>与相邻能力区分：账号本身的开户删户归用户管理能力；外发号码在电话系统侧的变换归目录与路由能力（Modification Table）；封页编辑与导入动作归客户端与封页能力（经路由）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：站点与用户已就位、企业策略（谁能发/发哪里/通知格式）、企业联系人清单或 LDAP 目录信息。</p>
+<ol>
+<li>定 Profile 框架：默认两档起步，按部门/合规需求增补（一份可服务多用户）。完成标准：Profile 清单与覆盖人群表</li>
+<li>配 Fax Options 与 Billing Codes：优先级/重试/分辨率按成本与时效定，计费码按财务口径。完成标准：策略参数表入档</li>
+<li>出方向闭锁：建 Restriction group 并挂目标 Profile。完成标准：测试号（如国际号）被拦截</li>
+<li>入方向拒收：站点级 Calling Number restrictions 加黑名单。完成标准：黑名单来话呼叫建立即拒</li>
+<li>通知 Profile：按语言核对每语言一份的模板，Exchange 场景勾 Exchange integration + Text。完成标准：测试通知格式正确</li>
+<li>电话簿：Public 电话簿 Webadmin 建本/分组/CSV 导入，经 Profile 下发。完成标准：用户端可见企业电话簿</li>
+<li>LDAP 电话簿（如需）：勾 Enable LDAP Access、站点认证、属性映射三处配置。完成标准：LDAP 侧联系人可检索</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户要求"禁国际"却要留给特殊审批 → 停，书内拦截表无审批流概念，按黑白名单口径管理预期或另想流程</li>
+<li>通知里看不到传真图像 → 先分清邮件通知与 Web 访问两条线（Exchange integration + Text 只管前者），不要改错地方</li>
+<li>LDAP 属性映射对不上 → 停，按客户目录实勘字段重配映射，不猜属性名</li>
+<li>把 Restriction group 当语音侧闭锁 → 停，两套体系独立，涉及 OXE 侧闭锁转语音侧方案</li>
+</ul>
+<p>输出契约：Profile 体系表（属性/挂接/覆盖人群）+ 限制组与黑名单清单 + 通知 Profile 配置记录 + 电话簿（含 LDAP 访问）就绪说明。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>出方向 Restriction group 与入方向 Calling Number Restriction 方向相反、层级不同（Profile 级 vs 站点级），混用是常见错误源</li>
+<li>邮件通知格式的 "Exchange integration + Text" 只影响邮件通知，Web Client 显示无关——排障先分两条线</li>
+<li>私人电话簿不在系统备份覆盖内（Users\<username>\AppData\Roaming\Fax\PhoneBook，p219）；敏感组织建议引导常用联系人进 Public 电话簿（整理建议，原文只给路径）</li>
+<li>具体合规条款（GDPR/HIPAA 类）解读在书外；Profile 里的安全选项细节以现场版本界面为准</li>
+<li>封面的编辑器操作（.cse 五步）在客户端与封页能力（经路由）；本卡只管"经 Profile 下发"这半边</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otfcxte200en/skills/otfax-user-administration.html">OTFC 用户与管理员管理（双用户源、CSV、两级管理员）</a>、<a href="/courses/otfcxte200en/skills/otfax-client-coversheet.html">OTFC 客户端部署与封页定制（四件套、Web Client、GPO、封页五步）</a></p><p class="source-page">能力 ID：cap.otfax.profile-policy · 来源：OTFCXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch Fax Center - R9.2 Starter (Participant's Guide, Edition 04) | edition: Edition 04 | pages: 233 页 -->

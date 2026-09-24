@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.visual-automated-attendant",
+  "generated_at": "2026-09-23",
+  "destinations": {
+    "cap.vaa.install-sip-integration": { "promoted_to": "vaa-install-sip-integration" },
+    "cap.vaa.multitenant-tree-design": { "promoted_to": "vaa-multitenant-tree-design" },
+    "cap.vaa.prompt-tts-asr": { "promoted_to": "vaa-prompt-tts-asr" },
+    "cap.vaa.ivr-option-nodes": { "promoted_to": "vaa-ivr-option-nodes" },
+    "cap.vaa.master-slave-ha": { "promoted_to": "vaa-master-slave-ha" },
+    "cap.vaa.maintenance-backup": { "promoted_to": "vaa-maintenance-backup" },
+    "cap.vaa.db-integration": { "promoted_to": "vaa-db-integration" },
+    "cap.vaa.statistics-reporting": { "promoted_to": "vaa-statistics-reporting" },
+    "cap.vaa.webadmin-administration": { "served_by": "visual-automated-attendant-router" },
+    "cap.vaa.pcs-opex-licensing": { "served_by": "visual-automated-attendant-router" },
+    "cap.vaa.server-sizing-virtualization": { "served_by": "visual-automated-attendant-router" },
+    "cap.vaa.architecture-redundancy": { "served_by": "visual-automated-attendant-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 }
+}

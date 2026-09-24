@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OTMC 产品定位与部署形态</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch Message Center · Starter</h2><p>Edition 08 · 259 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otmcxte200en/index.html">课程首页</a><a href="/courses/otmcxte200en/digest.html">精华长文</a><a href="/courses/otmcxte200en/overview.html">教书理解</a><a href="/courses/otmcxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otmcxte200en/skills/otmsg-install-site-setup.html">OTMC 服务器安装与站点配置</a><a href="/courses/otmcxte200en/skills/otmsg-license-management.html">FlexLM 许可证体系部署与更换</a><a href="/courses/otmcxte200en/skills/otmsg-declaration-sync.html">OXE/OTMC 双向声明进 8770 与同步</a><a href="/courses/otmcxte200en/skills/otmsg-sip-trunk-provisioning.html">OXE 侧 SIP 对接 OTMC</a><a href="/courses/otmcxte200en/skills/otmsg-user-mailbox-provisioning.html">Connection 用户与语音邮箱交付</a><a href="/courses/otmcxte200en/skills/otmsg-mailbox-profiles.html">语音邮箱 profile 定制与问候语管理</a><a href="/courses/otmcxte200en/skills/otmsg-notification-smtp-sms.html">SMTP/SMS 通知部署与排障</a><a href="/courses/otmcxte200en/skills/otmsg-backup-statistics.html">OpenTouch 备份恢复与语音信箱统计</a><p class="course-nav-group">路由能力</p><a href="/courses/otmcxte200en/skills/otmsg-product-positioning.html">OTMC 产品定位与部署形态</a><a href="/courses/otmcxte200en/skills/otmsg-web-portal.html">用户自助门户 My Profile 与 MyMessaging</a><a href="/courses/otmcxte200en/skills/otmsg-imap-access.html">IMAP 客户端访问语音邮箱</a><a href="/courses/otmcxte200en/skills/otmsg-general-announcement.html">企业广播 General Announcement</a><p class="course-nav-group">已安装技能</p><a href="/courses/otmcxte200en/index.html">ot-message-center（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otmcxte200en/index.html">OTMCXTE200EN</a><span>/</span><span aria-current="page">OTMC 产品定位与部署形态</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OTMC 产品定位与部署形态</h1></div><dl><div><dt>Skill ID</dt><dd>otmsg-product-positioning</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>OTMC 产品定位与部署形态（三通道/组网边界/规模口径）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The OpenTouch™ Message Center is a stand-alone voice mail system installed on a single server, including automated attendant capabilities"（p5）
+"Direct SIP trunk group between OXE and OTMC • Only one SIP trunk is supported towards the front node"（p18）
+"OTMC-V can be virtualized with VMware ESXi • vMotion, VMware Dynamic Resources Scheduling (manual / semi-automatic) are supported (Other VMware services are not supported)"（p15）
+"Scalability must be managed using the OpenTouch Capacity Planning Tool dedicated for OTMC"（p19）</p>
+</blockquote>
+<p>出处：OTMCXTE200EN p3-32（f01-f07、p01、n26/n27/n28 归并）。</p>
+<h2>I — 自述</h2>
+<p><strong>定位三句话</strong>：单服务器独立语音邮件系统（定义含自动话务员能力）；只服务 OmniPCX Enterprise 的 Connection 用户；取代 46xx/8440 旧方案。消息存 OTMC 服务器或 SAN，运行于 SUSE Linux Enterprise。</p>
+<p><strong>访问三通道</strong>：任意话机走 TUI；Premium Deskphone 8xx8 与 Smart Deskphone 8088 经信封键走 GUI（可视化信箱 VVM，默认要 TUI 密码）；任意 IMAP 邮件客户端。</p>
+<p><strong>连接三要素</strong>：OXE 与 OTMC 间直连 SIP trunk group 仅一条、指向 front node（Bypass 按全部端口，与用户数无关）；OXE 间 PRS 链路支撑话机 GUI 显示（端口 2570）；VPIM 用于 OTMC 互联与三方信箱互通。</p>
+<p><strong>形态两分支</strong>：物理机（许可绑 ALUID）与 OTMC-V 虚机（许可绑 dongle；vMotion/DRS 白名单，同主机可多实例、可混跑第三方虚机；限制与功能等同物理版）。</p>
+<p><strong>规模口径表</strong>：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th>数值</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>三个 SUSE 安装模式标注</td>
+<td>各 15000 users</td>
+<td>p62</td>
+</tr>
+<tr>
+<td>话机 GUI 显示并发上限</td>
+<td>5000 用户（8 系/80x8/8088，经 PRS）</td>
+<td>p18</td>
+</tr>
+<tr>
+<td>扩容评估</td>
+<td>必须用 OTMC 专用 Capacity Planning Tool（用法书外）</td>
+<td>p19</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>组网边界</strong>：集中式/分布式 OXE 子网均支持（集中式也仅一条 SIP trunk 指向 front node）；OXE ABC Supra 网络不支持集中式 VM。</p>
+<h2>A1 — 书中案例</h2>
+<p>本章（OTMC Overview 与 Topology for labs）为概念与拓扑讲义，无 How-To 实验；p19 仅给容量压缩场景示例图（2800/1200 用户，示例口径），工具用法在书外。实验拓扑表（六虚机、DNS 域、IP/账号）是教学专用基础设施，作实验口径对照，不构成交付动作。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：售前评估 OTMC 适不适合客户；物理还是虚拟怎么选；客户要 VMware 全家桶；多站点集中信箱可行吗；15000/5000 上限怎么解释。</p>
+<p>语言信号：OTMC 是什么 / OTMC-V / 部署形态 / 商业包 / 集中式语音邮件 / centralized VM / VPIM / ABC Supra / 容量 / 15000 / 5000 / PRS / 46xx / 8440。</p>
+<p>与相邻能力区分：动手装机归 otmsg-install-site-setup；话路参数归 otmsg-sip-trunk-provisioning；许可落地归 otmsg-license-management。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户站点数、用户数、话机型号清单、虚拟化平台现状。</p>
+<ol>
+<li>形态决策：物理（ALUID 绑定）与 OTMC-V（dongle 绑定、vMotion/DRS 白名单）二选一。完成标准：形态结论成文</li>
+<li>组网决策：集中/分布式评估；确认 OXE 网络类型（Supra 排除集中式 VM）。完成标准：拓扑约束成文</li>
+<li>容量口径：引用 15000/5000 必带前提（安装模式标注/经 PRS 的 GUI 并发）；扩容评估转 Capacity Planning Tool。完成标准：规模结论与书外清单</li>
+<li>交付衔接：把结论移交装机与对接能力。完成标准：进入实施</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户要 VMware HA/FT 等全套服务 → 停，白名单只有 vMotion 与手动/半自动 DRS（n26）</li>
+<li>客户要硬件规格或精确产品上限 → 停，指向 feature list / product limits（n28）</li>
+<li>客户是 ABC Supra 网络又要集中信箱 → 停，不支持，转分布式 + VPIM 互联方案（n27）</li>
+</ul>
+<p>输出契约：部署形态与组网决策结论（含书外依赖清单）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>自动话务员（AA）只是 OTMC 定义中附带的能力，Starter 级别不教 AA 配置（p5/p225）；"arrive on AA"播报选项已废弃（n19）</li>
+<li>硬件/软件规格、产品上限、容量规划工具用法、UM（Exchange/Domino/Gmail）落地、三方 VM 互通细节全部书外（n28）</li>
+<li>OMS 与 OmniPCX Enterprise GD 仅在实验拓扑表出现，书中未展开用途与全称——不补释义（g24）</li>
+<li>PRS/VPIM/ICE/MLE 等缩写书中未给全称，如实标注；实验拓扑环境值集中见 book/overview</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otmcxte200en/skills/otmsg-install-site-setup.html">OTMC 服务器安装与站点配置</a></p><p class="source-page">能力 ID：cap.otmsg.product-positioning · 来源：OTMCXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch Message Center Starter (Participant's Guide, Issue 08) | edition: Edition 08 | pages: 259 页 -->

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>软件升级与 Auto-Fabric 零触开局</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniSwitch LAN Access Switching</h2><p>Edition 23 · 587 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/dt00xte215en/index.html">课程首页</a><a href="/courses/dt00xte215en/digest.html">精华长文</a><a href="/courses/dt00xte215en/overview.html">教书理解</a><a href="/courses/dt00xte215en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/dt00xte215en/skills/swl2-aaa-hardening.html">交换机登录接入与 AAA 管理面加固</a><a href="/courses/dt00xte215en/skills/swl2-lightning-config.html">Lightning Config 快速开局</a><a href="/courses/dt00xte215en/skills/swl2-config-lifecycle.html">配置生命周期（保存/认证/回滚/备份）</a><a href="/courses/dt00xte215en/skills/swl2-virtual-chassis.html">Virtual Chassis 堆叠</a><a href="/courses/dt00xte215en/skills/swl2-vlan-routing.html">VLAN 与 VLAN 间路由</a><a href="/courses/dt00xte215en/skills/swl2-link-redundancy.html">链路与生成树冗余（LAG/STP/DHL）</a><a href="/courses/dt00xte215en/skills/swl2-l3-services.html">三层服务与网关冗余（DHCP/Loopback0/静态路由/VRRP）</a><a href="/courses/dt00xte215en/skills/swl2-qos-acl-policy.html">QoS 与 ACL 策略</a><p class="course-nav-group">路由能力</p><a href="/courses/dt00xte215en/skills/swl2-access-guardian.html">Access Guardian 接入认证</a><a href="/courses/dt00xte215en/skills/swl2-diagnostics.html">诊断工具箱八件套</a><a href="/courses/dt00xte215en/skills/swl2-lldp-poe.html">LLDP/LLDP-MED 与 PoE 管理</a><a href="/courses/dt00xte215en/skills/swl2-upgrade-autofabric.html">软件升级与 Auto-Fabric 零触开局</a><a href="/courses/dt00xte215en/skills/swl2-fleet-tools.html">资产与装机工具（Fleet Supervision/OST）</a><p class="course-nav-group">已安装技能</p><a href="/courses/dt00xte215en/index.html">omniswitch-lan-access（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/dt00xte215en/index.html">DT00XTE215EN</a><span>/</span><span aria-current="page">软件升级与 Auto-Fabric 零触开局</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>软件升级与 Auto-Fabric 零触开局</h1></div><dl><div><dt>Skill ID</dt><dd>swl2-upgrade-autofabric</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>软件升级与 Auto-Fabric 零触开局（版本策略、升级通道、七步链、LBD）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Starting with 8.10R4 signed images are available for the whole portfolio (already available for OS6570M since 8.9R4) • U-boot password protection is available since 8.7R3 – be careful when enabling it (no AOS recovery possible in case you lose this password)"（p531）
+"Generally, use the latest 'GA' (General Availability) or 'MR' (Maintenance) release"（p532）
+"1- Auto-VC 2- Automatic remote configuration 3- Auto-LACP 4- Auto-Routing 5- Auto-SPB Fabric 6- Auto-Network Profiling 7- Auto-MVRP"（p538）
+"Do you want to disable auto-configurations on this switch [Y/N]? ... If input is [Y] then auto-VC, RCL and auto-fabric are disabled"（p539）</p>
+</blockquote>
+<p>出处：DT00XTE215EN p529-535, p536-554。</p>
+<h2>I — 自述</h2>
+<p>两件"规模化"的事：把存量设备升到正确版本，让新站点插上就自动成网。</p>
+<ol>
+<li><strong>升级三通道</strong>（p533）：直连 FTP/SFTP、OmniVista 本地（2500 4.X/Terra）、OmniVista Cirrus（最简单，软件包内置推荐）；U-boot/ONIE/FPGA/CPLD 升级走 CLI 且失败即 RMA</li>
+<li><strong>版本策略</strong>（p531-532）：日常取最新 GA/MR；8.10R4 起全系列签名镜像（OS6570M 自 8.9R4）；合规场景按 FIPS 140-2/JITC/Common Criteria 认证清单选；软件包从 MyPortal 下载</li>
+<li><strong>升级步骤不在本教材</strong>：p533 明示"standard operation"，按 AOS Release Notes 执行；堆叠环境滚动升级（ISSU）见 Virtual Chassis 能力卡</li>
+<li><strong>Auto-Fabric 七步链</strong>（p538-552）：Auto-VC；RCL 远程配置（VLAN 1 与 127 各 3 次共 6 次 DHCP 取指令文件，取到 vcboot.cfg 会重置设备）</li>
+<li><strong>后续五步</strong>：Auto-LACP；Auto-Routing；Auto-SPB（BVLAN 4000-4015 映射 ECT 1-16，4×9 秒邻接窗）；Auto-Network Profiling；Auto-MVRP（STP 切 flat）</li>
+<li><strong>首启 Y/N 语义相反</strong>（p539）：输入 Y 才是禁用自动配置；N 或不答=启用。伴随 LBD 环路检测：周期组播帧回收即判环路，端口强制 down+日志+trap，可手动恢复</li>
+<li><strong>各协议可单独关闭</strong>：auto-fabric protocols <x> admin-state disable（p553）</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p>本章为纯讲义无 How-To 实验；讲义级关键素材（p539-552）：</p>
+<ol>
+<li>首启提示 "Do you want to disable auto-configurations [Y/N]?"：答 N 或不答即启用 Auto-VC/RCL/Auto-Fabric</li>
+<li>RCL 在 VLAN 1 与 127 各试 3 次（共 6 次）取 DHCP 与指令文件，auto-config-abort 可取消</li>
+<li>RCL 结束时若下载到 vcboot.cfg，设备自动重置加载</li>
+<li>Auto-LACP 生成的聚合口径：agg 127、size 16、actor admin-key 65535</li>
+<li>Auto-SPB 4 个 Hello（4×9 秒）内未成邻接则不参与 SPB</li>
+<li>Auto-MVRP 在 LACP 与 SPB 发现后全局启用，并把 STP 切为 flat 模式</li>
+<li>LBD 检测到环路：端口强制 down、错误日志、SNMP trap，需人工恢复</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：选升级版本与通道；U-boot 密码要不要开；底层固件升级风险评估；新站点十几台零触开局；首启提示怎么答；RCL 空跑怎么停；自动成网后防环。</p>
+<p>语言信号：升级 / 软件版本 / GA / MR / 签名镜像 / U-boot / ONIE / FPGA / RMA / Auto-Fabric / 零触 / zero-touch / Auto-VC / RCL / Auto-LACP / Auto-SPB / MVRP / LBD / 环路检测 / vcboot.cfg。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>堆叠滚动升级（ISSU 命令与目录）：Virtual Chassis 能力卡</li>
+<li>升级前的配置备份与回滚基线：配置生命周期能力卡</li>
+<li>Lightning Config 单台开局：Lightning Config 能力卡</li>
+<li>升级后的版本验证（show microcode loaded）：诊断工具箱能力卡</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：设备清单与当前版本、目标版本（GA/MR 或合规清单）、升级窗口、新站点拓扑与 DHCP/指令文件就绪度。U-boot/ONIE/FPGA/CPLD 升级必须单独立项。</p>
+<ol>
+<li>版本决策：按 GA/MR 或合规认证清单（FIPS/JITC/CC）定目标版本；核对 8.10R4 签名镜像口径。完成标准：目标版本成文</li>
+<li>通道选择：Cirrus 最简、OmniVista 本地、FTP/SFTP 直连；步骤按 AOS Release Notes（书外）。完成标准：升级 SOP 就位</li>
+<li>风险隔离：U-boot 密码启用前密码必须入库存档（丢失无恢复）；底层固件升级逐台分批、避开业务窗口。完成标准：回退与 RMA 预案明确</li>
+<li>零触准备（新站点）：DHCP 与指令文件（vcboot.cfg）就绪，或明确让新机空跑前 auto-config-abort。完成标准：RCL 能取到正确指令</li>
+<li>首启操作口径：要自动入网答 N（或不答）；要手工配置才答 Y；批量开局前统一操作口径。完成标准：无人为误答</li>
+<li>成网核验：七步链逐项确认（VC/聚合/路由/SPB/画像/MVRP），LBD 开启防环。完成标准：拓扑与模板一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>现场没准备好 DHCP/指令文件 → 别让新机空跑 RCL（白等 6 轮还可能被旧模板重置），先 abort 或断网</li>
+<li>U-boot 密码无流程保障 → 停，没有双人存档制度就不启用</li>
+<li>升级中 U-boot/ONIE/FPGA/CPLD 失败 → 无软恢复路径即 RMA，事前按 release note 核对前置固件</li>
+<li>单台或几台的小站点 → 用 Lightning Config 更直接，Auto-Fabric 面向规模化新站点</li>
+<li>vcboot.cfg 模板设计需求 → 书外依赖架构师输入，本卡只管链路行为</li>
+</ul>
+<p>输出契约：版本决策与升级 SOP（含风险预案）或零触成网的站点（七步链核验记录）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>本教材不覆盖升级操作步骤（p533 明示），一切步骤按 AOS Release Notes；本卡只提供版本策略与风险边界</li>
+<li>Auto-Fabric 七步的协议细节（SPB/ECT/ISID、RCL 指令文件格式）书中仅一页机制图，深配置查 Network Configuration Guide 与架构师模板</li>
+<li>Auto-VC 期间 Demo License 默认启用（p540），正式部署换正式许可</li>
+<li>默认 SPB 值（BVLAN 4000-4015、控制 BVLAN 4000、0x8000）为 Auto-Fabric 出厂口径，手工组网未必相同</li>
+<li>版本号口径：8.10R4（签名镜像全系）、8.7R3（U-boot 密码）、8.9R4（OS6570M 签名/X48C4E 混插），保留原文位数</li>
+<li>Fleet Supervision/OST 等工具面 → 资产与装机工具能力卡</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.swl2.upgrade-autofabric · 来源：DT00XTE215EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniSwitch LAN Access Switching (Participant's Guide, Edition 23) | edition: Edition 23 | pages: 587 页 -->

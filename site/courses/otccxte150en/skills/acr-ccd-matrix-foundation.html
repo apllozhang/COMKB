@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>ACR 基础 CCD 矩阵地基</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced Call Routing</h2><p>Edition 01 · 470 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte150en/index.html">课程首页</a><a href="/courses/otccxte150en/digest.html">精华长文</a><a href="/courses/otccxte150en/overview.html">教书理解</a><a href="/courses/otccxte150en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte150en/skills/acr-script-editor-fundamentals.html">ACR 脚本编辑器与调试工具链</a><a href="/courses/otccxte150en/skills/acr-ccd-matrix-foundation.html">ACR 基础 CCD 矩阵地基</a><a href="/courses/otccxte150en/skills/acr-redirect-redistribution.html">ACR 重定向与再分发兜底</a><a href="/courses/otccxte150en/skills/acr-direct-call-dica.html">ACR 坐席直拨融合</a><a href="/courses/otccxte150en/skills/acr-internal-database-routing.html">ACR 内部数据库路由</a><a href="/courses/otccxte150en/skills/acr-rule-combination-advanced.html">ACR 综合规则组合与高级构件</a><a href="/courses/otccxte150en/skills/acr-asm-deployment.html">ACR 外部 ASM 部署与双机热备</a><a href="/courses/otccxte150en/skills/acr-database-query-routing.html">ACR 外部数据库查询路由</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte150en/skills/acr-list-rules.html">ACR 授权与非授权名单规则</a><a href="/courses/otccxte150en/skills/acr-call-tag-transfer.html">ACR Call Tag 生成与传递</a><a href="/courses/otccxte150en/skills/acr-multilanguage-voiceguide.html">ACR 多语言语音引导与语言偏好分发</a><a href="/courses/otccxte150en/skills/acr-filter-statistics.html">ACR 过滤器与统计报表</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte150en/index.html">otcc-advanced-call-routing（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte150en/index.html">OTCCXTE150EN</a><span>/</span><span aria-current="page">ACR 基础 CCD 矩阵地基</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>ACR 基础 CCD 矩阵地基</h1></div><dl><div><dt>Skill ID</dt><dd>acr-ccd-matrix-foundation</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>ACR 基础 CCD 矩阵地基（双 Pilot、等待房间、坐席技能档案、混合链路）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"For the "standard matrix": Create one "normal" Pilot: 3x600 • Create one normal Waiting Queue: 3x999700 … Create one ACR Pilot: 3x603 … Create on Waiting Room: 3x999703"（p22，实验口径）
+"Rule Number It is possible to declare up to 30 rules per pilot … Priority The priority value is from 0 to 9. 0 being the highest priority."（p26）
+"Weight Weight used by the Individual Skill Mapping (ISM) calculation algorithm to classify domains (1 for the least important to 20 for the most important)."（p37）
+"the ACD prefix is mandatory prior to create the CCD matrix objects"（p22）</p>
+</blockquote>
+<p>出处：OTCCXTE150EN p19-41。</p>
+<h2>I — 自述</h2>
+<p>基础矩阵是全书一切实验的公共地基，普通链路与 ACR 链路并行：</p>
+<ol>
+<li><strong>ACD 前缀先行</strong>：前缀是建一切 CCD 对象的前提（先查 Translator/Prefix Plan）；前缀加数字是话机上的坐席动作码</li>
+<li><strong>普通链路</strong>：Pilot → Waiting Queue → Agent Processing Group（FIFO 队列，CCD 常规分发）</li>
+<li><strong>ACR 链路</strong>：ACR Pilot → Waiting Room → 同一坐席处理组（房间不按 FIFO，ASM 列表附着其上）</li>
+<li><strong>入口分流</strong>：统计 Pilot 挂呼叫档案后汇入 ACR Pilot（车险/家险两类入口）</li>
+<li><strong>规则结构</strong>：每 Pilot 最多 30 条路由规则（编号 0-29）、分发规则最多 10 条；优先级三处同口径 0-9 且 0 最高</li>
+<li><strong>技能体系</strong>：域（1-16 字符、ID 0-99、权重 1-20）挂技能（缩写 1-4 字符）；呼叫档案最多 7 技能、级别 1-9、强制/可选、语言偏好 1-7</li>
+</ol>
+<p>话机与坐席侧动作码表（ACD 前缀 + 数字）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>数字</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>不可用</td>
+</tr>
+<tr>
+<td>2</td>
+<td>整理（Wrap up）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>呼叫主管</td>
+</tr>
+<tr>
+<td>5</td>
+<td>注销</td>
+</tr>
+<tr>
+<td>6</td>
+<td>登录</td>
+</tr>
+</tbody>
+</table></div>
+<p>关键约束：等待房间与等待队列不能同开；ACD Station 类型（Agent/Supervisor）建户后不可改；坐席须有至少 1 个活动技能才参与分发。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>矩阵十九步（c01，关键段）</strong>：</p>
+<ol>
+<li>核查 ACD 前缀存在（Translator/Prefix Plan），确认 CCS 安装时勾选 ASM script 组件</li>
+<li>建坐席处理组（实验口径 3x999800），建普通队列 3x999700 挂到该组</li>
+<li>建普通 Pilot 3x600（路由方向接队列）与 ACR Pilot 3x603（路由方向接等待房间 3x999703）</li>
+<li>Pilot Rule Guide 建规则，Pilot Rule Direction 配优先级与方向开关</li>
+<li>Distribution Rule 建分发规则并激活，配资源选择与呼叫选择两级配置</li>
+<li>建 ACD 授权话机、Superuser 与坐席话机；建坐席/主管用户（ACD Station 一次定型）</li>
+<li>建混合链路：类型 Hybrid、邻接网络号异于本地（0-31）、至少 2 个 access 成对</li>
+<li>telnet 执行 hybvisu -f all 校验：两个 access 的 Main State 均须为 up</li>
+<li>建统计 Pilot（3x650/3x651）并指 Routing Pilot 为 ACR Pilot</li>
+<li>CCS 侧建技能域与技能、呼叫档案（English+Car / English+Home），坐席配技能级别</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：从零搭 OTCC 标准版呼叫中心矩阵；ACR Pilot 挂不上等待房间；坐席登录不了处理组；混合链路起不来；配呼叫档案和技能。</p>
+<p>语言信号：ACD 前缀 / 处理组 / Waiting Queue / Waiting Room / ACR Pilot / 统计 Pilot / Pilot Rule Guide / Distribution Rule / 呼叫档案 / Call Profile / 技能域 / Weight / 混合链路 / hybvisu。</p>
+<p>与相邻能力区分：矩阵好了写脚本，见 脚本编辑器能力；统计与过滤器，见 过滤器统计卡（路由）；上外部 ASM，见 外部 ASM 部署能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户编号方案（ACD 前缀与号段）、坐席名单与技能需求、OMF/CCS 管理权限。前缀不存在先解决前缀，其余全部卡住。</p>
+<ol>
+<li>核 ACD 前缀与 CCS 的 ASM script 组件。完成标准：前缀动作码可用、脚本编辑器可见</li>
+<li>建坐席处理组 → 普通队列 → 普通 Pilot（链路一）。完成标准：普通呼叫可排队进组</li>
+<li>建等待房间 → ACR Pilot（链路二，房间与队列不同开）。完成标准：ACR Pilot 路由方向指向房间</li>
+<li>建路由规则（0-29）与分发规则（10 条内），配两级优先级（0 最高）。完成标准：生效规则可切换</li>
+<li>建 ACD 话机、坐席/主管用户、附件名单与坐席操作数据。完成标准：坐席可登录处理组</li>
+<li>建混合链路并 hybvisu -f all 校验。完成标准：两 access 均 up</li>
+<li>建统计 Pilot 汇入 ACR Pilot。完成标准：统计 Pilot 可配置呼叫档案</li>
+<li>CCS 侧建域/技能/呼叫档案，坐席配技能级别。完成标准：档案与坐席技能可互相匹配</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>建 CCD 对象报前缀缺失 → 停，先规划前缀（顺序约束非故障）</li>
+<li>坐席建成 Supervisor → 停，类型不可改，删号重建；批量开户前先核名单</li>
+<li>房间与队列想同开 → 停，结构性互斥，二选一</li>
+<li>链路 access 起不来 → 核对邻接网络号异于本地、Multi access=YES、成对配置</li>
+</ul>
+<p>输出契约：可跑普通 CCD 的矩阵 + ACR 对象就位的双链路 + 技能档案体系。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>矩阵编号（3xXXX）全部为实验口径，生产按客户编号方案整体替换；p22 "3X800" 为笔误（nr-02）</li>
+<li>多节点组网下 ACR 的细节在书外；混合链路仅覆盖本地 CCD 呼叫前提（f09 条件）</li>
+<li>ACD 前缀规划依赖客户编号方案，原书不给规划方法</li>
+<li>技能域也可由 mgr 或 OmniVista 8770 管理、坐席技能可用 Skill Matrix 批量配（多入口并存，原书未讲冲突处理，推断以单一入口为准）</li>
+<li>CCS 安装未勾 ASM 组件时矩阵能建而脚本不可用（n01）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte150en/skills/acr-script-editor-fundamentals.html">ACR 脚本编辑器与调试工具链</a>、<a href="/courses/otccxte150en/skills/acr-filter-statistics.html">ACR 过滤器与统计报表</a></p><p class="source-page">能力 ID：cap.acr.ccd-matrix-foundation · 来源：OTCCXTE150EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Advanced Call Routing (Participant's Guide, Issue 01) | edition: Edition 01 | pages: 470 页 -->

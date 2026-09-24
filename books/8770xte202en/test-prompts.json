@@ -1,0 +1,98 @@
+{
+  "skill": "omnivista-directory",
+  "version": "0.1.0",
+  "bundle": "bundle.omnivista-directory",
+  "capability_catalog": [
+    {"slug": "ovdir-oxe-sync-ldap", "name": "OXE 节点注册与同步", "description": "前置三查（siteid/netadmin/信任列表）、Network/Subnetwork/OXE 三级声明、节点号拼装（含 p95 勘误口径）、adfexc/mtcl 凭据与 SSH、Complete-Partial × Separate-Global 同步、日志与时间戳核验"},
+    {"slug": "ovdir-auto-creation", "name": "目录树搭建与 PCX 自动创建", "description": "建 Country/City/Department 树；全局 AutomaticCreation 三开关+节点 Location+两前提；UID 撞名告警与 Extension 构造（按 PCX、只对自动创建生效）；Cut/Paste 自动继承；类型转换删数据"},
+    {"slug": "ovdir-links-rename", "name": "六类链接与改名语义", "description": "主/多设备/副/传真/杂项/附加资源六类链接基数与 CC 继承规则；四入口改名行为对比（Users/WBM 最佳、Configuration 断链）；断链修复流程；目录侧改 CC 须 PCX 已有同名 CC"},
+    {"slug": "ovdir-msad-azure-pipelines", "name": "MSAD 与 Azure AD 同步管道", "description": "Access info 八字段声明（多 AD）、一条映射硬规则（sn 不可删/电话只从 8770 写回/abObjectGUID 隐藏）、同步规则 Flat/Tree 与 Filter、Complete/Partial 调度、删除二态；Azure AD 四步框架（Graph API、恒为主节点、不 provision OXE 用户）"},
+    {"slug": "ovdir-click-to-call", "name": "Click to Call 交付", "description": "五环链：DDI 翻译器 → ISDN 构造（前缀+安装号+话机号，三类失败分支）→ 前缀规则（Prefix to delete 双重语义）→ 属性关联（默认三项+Misc1-5）→ STAP 三态与关联话机；OXE SIP 话机全线不支持"},
+    {"slug": "ovdir-confidentiality", "name": "目录保密级别与访问级别", "description": "条目保密四级（Green/Orange/Red/Administration 8770）×个人数据五种的行为矩阵（本人级别不放大他人可见性）；Company/Web Directory 各五档访问级别在 Security 授予；匿名只读 Green 非个人数据"},
+    {"slug": "ovdir-replication", "name": "目录复制主从部署", "description": "前提 checklist；Slave 建 Consumer（ID 65535）→ Master 副本（1-65534）+协议+属性集 → Initialize+调度；1 主 4 从/5 副本/7 天断联阈值；Master-only 写入；只冗余目录不冗余服务器、LDAPS 不支持"},
+    {"slug": "ovdir-domains-delegation", "name": "管理域与委派", "description": "Domain Management+Directory 双许可、默认关闭需激活；域=DN 级别集合×管理员组；三预定义组权限档；Delegation 下放；strict view 检索语义；定制视图简化开户"},
+    {"slug": "ovdir-msad-plugin", "name": "MSAD 插件开户", "description": "AD 右键按 Meta profile 一键开通 8770/OXE 用户；前置三件（MSAD8770Admin 改密重启 NMC Java Service、空闲号段同步、Meta profile）；properties 生成传递安装；IE 三前提（版本风险）；更新仅 CC+称谓"},
+    {"slug": "ovdir-ldif-tools", "name": "LDIF 导入导出与管理工具管道", "description": "GUI 三范围（Entry/Sublevel/Branch）×本地/服务器导出、Add and modify 导入只增改不删除；CLI 六件套（ConvertLdif/ExportLdap/ImportLdap/Ldif2Csv/Csv2Ldif/PurgeLdap/LinkDn）；misc10 删除跟随；p.conf 根名高危点与 dirmanag 救援"},
+    {"slug": "ovdir-client-dictionary", "name": "目录词典与 Web 客户端定制", "description": "LdapAttributes 属性改名（上下文选行、版本号自增、dict_user.zip 自动下载）；客户端三层定制（GlobalParameters/搜索/网格/详情/编辑、用户参数、主题存 cookie）；备份先行（LDIF+Themes）否则没有回退点"},
+    {"slug": "ovdir-platform-basics", "name": "8770 平台基础", "description": "四套件 15 应用+WBM 四应用分工；MariaDB+LDAP 双存储与多协议架构；p9 版本兼容矩阵（Purple R101.x 仅 R5.2）；虚拟化平台清单与 Capacity Planning tool；RLAB 实验平台仅作 Boundary 背景"}
+  ],
+  "test_cases": [
+    {"id": "should-oxe-01", "type": "should_trigger", "prompt": "客户的 OXE 要接入 8770 目录，节点声明的那些字段怎么填？网络号节点号怎么算？", "expected_behavior": "激活 ovdir-oxe-sync-ldap，三级声明+节点号拼装（含勘误口径）"},
+
+    {"id": "should-oxe-02", "type": "should_trigger", "prompt": "8770 上对 OXE 做了完整同步，怎么确认同步真的成功了？", "expected_behavior": "激活 ovdir-oxe-sync-ldap，日志 NMCSyncLdapPbx + Date of last modification 核验"},
+
+    {"id": "should-auto-01", "type": "should_trigger", "prompt": "PCX 上建了个新用户，8770 目录里没有自动出现这个人，要检查哪些开关？", "expected_behavior": "激活 ovdir-auto-creation，三开关+两前提排障序"},
+
+    {"id": "should-auto-02", "type": "should_trigger", "prompt": "公司有两个同名同姓的员工都要自动建到目录里，第二个一直建不出来还报告警", "expected_behavior": "激活 ovdir-auto-creation，UID 撞名告警+Extension 构造解法"},
+
+    {"id": "should-links-01", "type": "should_trigger", "prompt": "有人配了 DECT 副机，建完链接发现副机的话机成本中心被改了，这是怎么回事？", "expected_behavior": "激活 ovdir-links-rename，副链 CC 继承主链接语义"},
+
+    {"id": "should-links-02", "type": "should_trigger", "prompt": "同事直接在配置界面改了用户姓名，现在目录里多出一个新人、原主链接断了，怎么修复？", "expected_behavior": "激活 ovdir-links-rename，断链生成新人+删新人重挂修复流程"},
+
+    {"id": "should-msad-01", "type": "should_trigger", "prompt": "客户要把本地 Active Directory 的人员同步到 8770 目录，同步规则和属性映射怎么配？", "expected_behavior": "激活 ovdir-msad-azure-pipelines，声明+映射+规则三层"},
+
+    {"id": "should-msad-02", "type": "should_trigger", "prompt": "AD 里删了一个账号，8770 目录里这个人还挂着，能不能让它自动删掉？", "expected_behavior": "激活 ovdir-msad-azure-pipelines，Automatic deletion 二态（默认标记删除）"},
+
+    {"id": "should-azure-01", "type": "should_trigger", "prompt": "客户现在已经全上云了，用 Entra ID，8770 还能同步人员吗？跟接本地 AD 有什么区别？", "expected_behavior": "激活 ovdir-msad-azure-pipelines，Azure AD 四步框架+五点差异"},
+
+    {"id": "should-ctc-01", "type": "should_trigger", "prompt": "想让前台在网页目录里点一下号码就直接呼到对方座机，这套 Click to Call 要配哪些东西？", "expected_behavior": "激活 ovdir-click-to-call，五环链交付步骤"},
+
+    {"id": "should-ctc-02", "type": "should_trigger", "prompt": "目录里有些人员的 ISDN 号码是空的没生成，可能是什么原因？", "expected_behavior": "激活 ovdir-click-to-call，ISDN 构造三类失败分支排查"},
+
+    {"id": "should-conf-01", "type": "should_trigger", "prompt": "HR 总监的手机号不能让普通员工在网页目录里查到，怎么设置？", "expected_behavior": "激活 ovdir-confidentiality，保密级别+匿名可见性行为矩阵"},
+
+    {"id": "should-conf-02", "type": "should_trigger", "prompt": "要给前台开个能看全公司联系方式的账号，但不想让她能改数据，权限档怎么给？", "expected_behavior": "激活 ovdir-confidentiality，两应用访问级别分档授予"},
+
+    {"id": "should-repl-01", "type": "should_trigger", "prompt": "客户要求目录数据做冗余，两台 8770 主从复制怎么部署？", "expected_behavior": "激活 ovdir-replication，部署顺序+数字口径"},
+
+    {"id": "should-repl-02", "type": "should_trigger", "prompt": "从服务器上有人直接改了一个人员资料，第二天改动没了，为什么会这样？", "expected_behavior": "激活 ovdir-replication，Consumer 改动复制后消失+Master-only 纪律"},
+
+    {"id": "should-dom-01", "type": "should_trigger", "prompt": "集团有三个分公司，想让各地管理员只看到并管理自己的人，8770 怎么分域？", "expected_behavior": "激活 ovdir-domains-delegation，双许可+建域+归组"},
+
+    {"id": "should-dom-02", "type": "should_trigger", "prompt": "分公司的管理员开户时界面太复杂，能不能给他一个精简的开户页面？", "expected_behavior": "激活 ovdir-domains-delegation，定制视图按账户绑定"},
+
+    {"id": "should-plugin-01", "type": "should_trigger", "prompt": "帮助台希望在 AD 里右键用户就直接开通 8770 和 OXE 的账号，怎么实现？", "expected_behavior": "激活 ovdir-msad-plugin，插件部署+Meta profile 开户"},
+
+    {"id": "should-plugin-02", "type": "should_trigger", "prompt": "MSAD 插件打开后界面上少了好几个字段，插件要不要重装？", "expected_behavior": "激活 ovdir-msad-plugin，IE 信任站点/活动内容三前提排查"},
+
+    {"id": "should-ldif-01", "type": "should_trigger", "prompt": "8770 目录要定期做备份，最好还能在误删分支后整个恢复回来，怎么弄？", "expected_behavior": "激活 ovdir-ldif-tools，Branch 导出+导入恢复"},
+
+    {"id": "should-ldif-02", "type": "should_trigger", "prompt": "外部 HR 系统里删掉的人，8770 目录里怎么让他们自动跟着删掉？", "expected_behavior": "激活 ovdir-ldif-tools，misc10 标记+PurgeLdap 删除跟随"},
+
+    {"id": "should-dict-01", "type": "should_trigger", "prompt": "客户想把目录里的 Misc.1 字段显示名改成护照号，界面上的字段名能改吗？", "expected_behavior": "激活 ovdir-client-dictionary，词典定制+上下文选行"},
+
+    {"id": "should-dict-02", "type": "should_trigger", "prompt": "网页目录客户端想改成客户自己的 Logo 和配色，改坏了能不能还原？", "expected_behavior": "激活 ovdir-client-dictionary，主题定制+备份回退双通道"},
+
+    {"id": "should-plat-01", "type": "should_trigger", "prompt": "客户的 OXE 准备升到 Purple R101.2，现在 8770 是 R5.1，版本上有没有问题？", "expected_behavior": "激活 ovdir-platform-basics，p9 兼容矩阵（仅 R5.2 可配）"},
+
+    {"id": "should-plat-02", "type": "should_trigger", "prompt": "8770 能不能装在虚拟机上？支持哪些虚拟化平台？", "expected_behavior": "激活 ovdir-platform-basics，虚拟化平台清单与许可口径"},
+
+    {"id": "bait-oxe-01", "type": "should_not_trigger", "prompt": "OXE 已经同步过了，PCX 上新建的用户在目录里找不到，是不是节点没注册好？再注册一次行不行？", "expected_behavior": "同步已确认的前提下应激活 ovdir-auto-creation（开关/前提/UID 排障），不应重复走 ovdir-oxe-sync-ldap 注册"},
+
+    {"id": "bait-msad-01", "type": "should_not_trigger", "prompt": "AD 管理员想给某个新员工立刻开个带话机的账号，不等同步周期，有没有更快的办法？", "expected_behavior": "应激活 ovdir-msad-plugin（AD 右键开户），不应停留在 ovdir-msad-azure-pipelines 的定时同步"},
+
+    {"id": "bait-links-01", "type": "should_not_trigger", "prompt": "要把几个领导的人员条目藏起来不让员工搜到，改他们的链接类型有用吗？", "expected_behavior": "应激活 ovdir-confidentiality（保密级别），不应激活 ovdir-links-rename（链接与可见性无关）"},
+
+    {"id": "bait-ctc-01", "type": "should_not_trigger", "prompt": "点击外呼能打通，但通话杂音很大老掉线，8770 里再调一下前缀规则能解决吗？", "expected_behavior": "媒体质量问题在书外，不应激活 ovdir-click-to-call 当作可修；前缀规则只管号码改写"},
+
+    {"id": "bait-conf-01", "type": "should_not_trigger", "prompt": "让武汉分公司的管理员登录后只能看到武汉的人员和用户，这个用保密级别做行吗？", "expected_behavior": "应激活 ovdir-domains-delegation（管理域切割可见性），不应激活 ovdir-confidentiality"},
+
+    {"id": "bait-dom-01", "type": "should_not_trigger", "prompt": "把财务部的人员条目保密级别从 Green 改成 Orange，在管理域里配还是哪里配？", "expected_behavior": "应激活 ovdir-confidentiality（条目级保密），不应激活 ovdir-domains-delegation"},
+
+    {"id": "bait-repl-01", "type": "should_not_trigger", "prompt": "8770 服务器本身的双机热备/整机高可用怎么配？是不是复制做好了主机挂了从机就能接管？", "expected_behavior": "应声明边界：复制只冗余目录不冗余服务器（ovdir-replication Boundary），整机高可用超出原书范围"},
+
+    {"id": "bait-ldif-01", "type": "should_not_trigger", "prompt": "两台 8770 的目录数据想每天晚上自动互相同步保持一致，写个 LDIF 定时导入行不行？", "expected_behavior": "应激活 ovdir-replication（复制机制），不应激活 ovdir-ldif-tools 硬造双向同步"},
+
+    {"id": "bait-dict-01", "type": "should_not_trigger", "prompt": "要把全员 Misc.1 字段的值批量填成工号，用词典定制工具能做吗？", "expected_behavior": "应激活 ovdir-ldif-tools（数据值批量维护），不应激活 ovdir-client-dictionary（它只改显示名）"},
+
+    {"id": "bait-plat-01", "type": "should_not_trigger", "prompt": "8770 的话务统计报表和计费系统怎么配置出账？", "expected_behavior": "超出本书范围（Reports suite 属其它教材），不应激活 ovdir-platform-basics 当作可解，应声明边界"},
+
+    {"id": "edge-compat-01", "type": "edge_case", "prompt": "客户 OXE 是 Purple R101.0，8770 暂时只有 R5.0 的许可，先凑合用行不行？", "expected_behavior": "按矩阵如实回答：R101.x 仅兼容 8770 R5.2，R5.0 不行；给升级路径而不是口头放行"},
+
+    {"id": "edge-uid-01", "type": "edge_case", "prompt": "UID 构造改成 Extension 之后，手工在目录里建的两个同名人员为什么还是会撞名？", "expected_behavior": "按边界回答：UID construction 只对自动创建生效（n03），手工建人不走该构造"},
+
+    {"id": "edge-repl-01", "type": "edge_case", "prompt": "从机房断网 8 天后恢复了，主服务器这 8 天新建的人员会自动补到从机吗？", "expected_behavior": "按 nr 口径回答：超 7 天断联期主侧新增数据丢失，须走 LDIF 导出导入六步人工恢复"},
+
+    {"id": "edge-pcn-01", "type": "edge_case", "prompt": "书里那个 Personal Calling Number 的配置流程能不能直接在客户生产环境用？", "expected_behavior": "按边界回答：原书标注 FOR INFORMATION ONLY 未验证（n13），先测试环境演练并核对 NPD 标志语义"}
+  ]
+}

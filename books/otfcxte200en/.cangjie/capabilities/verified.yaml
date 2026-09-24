@@ -1,0 +1,659 @@
+schema_version: 1
+bundle_id: bundle.ot-fax-center
+book:
+  title: OpenTouch Fax Center - R9.2 Starter (Participant's Guide, Edition 04)
+  author: ALE Training Services
+  source_pack: OTFCXTE200EN.pdf (233 pages)
+  baseline_tag: OTFC R9.2 / OXE SIP (TC3048) / Windows Server 2022 生态
+entry:
+  name: ot-fax-center
+  description: 'OpenTouch Fax Center（OTFC）纯软件 FoIP 传真服务器的首次交付与长期运维支持：宿主准备与软件安装、 First Time Setup Wizard 最小可用系统、许可两级控制、
+    与 OXE 的 SIP 话路对接（含 OXE 侧 MGR 七步与传真抓包）、SMTP/Exchange 邮件集成、用户/管理员/Profile 策略体系、目录集成与来传真路由、服务架构运维、备份升级与删除策略。
+    适用于 OTFC 的配置、选型、排障与方案落地问答；生产化端口全表、OXE 侧网关参数与 HA 部署不在原书范围内（见 out_of_scope）。
+
+    '
+  core_principles:
+  - 四级模型：System 管 Site，Site 是隔离的虚拟传真服务器（一份传真只属一个站点），用户恒以 SMTP 地址标识且必须绑定 Site+Profile 才能用系统
+  - 交付主线四步：准备服务器（DNS 正反解/IIS 四角色服务/服务账号/Office 预初始化）→ 装软件（禁用 MS SMTP 释放 25 端口）→ FTW 十二项搭最小可用系统 → 许可去水印解锁通道
+  - 两大外部集成缺一不可：OXE 侧 SIP 话路（OTFC UDP 5360 + MGR 七步 + TC3048）与邮件通道（SMTP 网关独占 25 + Exchange FAX 地址空间连接器）
+  - 运维闭环：9 服务分有状态（复制）/无状态（负载均衡），xmsc -ra/-oa/-aa 一键启停；备份冷备不可 kill、恢复可 kill；升级五步法且数据库不在自动备份内
+  - 实验环境口径：教材密码、IP、账号、号段仅限实验；端口全表、45 格式、sizing 一律外置 OTFC Features List
+  out_of_scope:
+  - 端口使用表全表、服务器资源推荐数值、45 种格式明细、浏览器支持清单（原书外置 OTFC Features List）
+  - OXE 侧 SIP 网关参数细节（编码/号码变换/中继属性，原书明示参照 TC3048，本书只给 MGR 菜单骨架）
+  - XMFaultTolerance 高可用部署与演练、SIP/TLS 加密信令启用路径（书内零实操）
+  - 许可商务流程细节、GDPR/HIPAA 类合规条款解读、OmniVista 8770 侧报表配置
+  stop_conditions:
+  - 需要生产端口白名单或 sizing 数值 → 指向 OTFC Features List（书内 p38/p42 为指针页），不以实验口径搪塞
+  - OXE 侧互通做不通或要配中继参数 → 先要 TC3048 再上站，本书菜单骨架不足以保证话路通
+  - 客户要 HA/Failover 部署或 TLS 加密话路 → 声明书内边界，转产品文档/专业服务，不虚构步骤
+  - 涉及实验环境复刻（192.168.1.x 网段、Alcatel1!@123、mtcl） → 参考 book/overview 环境区背景并标注实验口径，不进生产
+router_entry:
+  name: ot-fax-center-router
+  description: 'OTFC 传真中心能力路由入口：按用户意图分发到 11 张能力卡——首次交付、SIP 通道集成、邮件与 Exchange 集成、用户管理、Profile 策略、目录与路由、
+    服务运维、备份升级八个 promoted 能力，以及客户端与封页、方案规划、报表监控三张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.otfax.installation-ftw
+  revision: 1
+  status: active
+  slug: otfax-installation-ftw
+  title: OTFC 首次交付（宿主准备、安装、FTW、许可）
+  importance: critical
+  importance_rationale: 对应 task-03/04/05/06，从裸机到最小可用系统的交付主线；安装失败第一大来源（宿主前提）与 25 端口冲突都在这条链上
+  one_liner: 四步主线——准备服务器（DNS 正反解/IIS 四角色/Office 预初始化）、Setup 安装（禁 MS SMTP）、FTW 十二项搭最小可用系统、许可去水印解锁 2 通道
+  intents:
+  - 安装 OpenTouch Fax Center
+  - 跑 First Time Setup Wizard
+  - 准备传真服务器宿主
+  - 处理 OTFC 许可与水印
+  - install OTFC fax server
+  - First Time Setup Wizard steps
+  keywords:
+  - FTW
+  - FirstTimeSetup.exe
+  - IIS
+  - 角色服务
+  - 服务账号
+  - DNS 反向解析
+  - Microsoft SMTP
+  - "25 端口"
+  - QOS 0/0/240
+  - 评估许可
+  - watermark
+  - 水印
+  - MAC 地址
+  - 第三方软件
+  also_read:
+  - otfax-sip-channel-integration
+  card: cards/otfax-installation-ftw.md
+  frontmatter:
+    description: 'OTFC 首次交付全链：服务器准备（网络正反解、IIS 四角色服务、服务账号六权限、Office 预初始化）、Setup.exe 安装（语言副作用、禁用 Microsoft SMTP）、
+      First Time Setup Wizard 十二项最小配置、评估许可边界与正式许可导入。当用户要"装 OTFC/跑向导/去水印/装不上"时使用。不适用于 OXE 话路对接（SIP 通道集成）；
+      关防火墙与教材密码均为实验口径。
+
+      '
+    tags:
+    - procedure
+    - otfc
+    - installation
+    - ftw
+    - licensing
+  source_evidence:
+  - source_id: src-otfcxte200
+  - location: p43-70, p52-53
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-03/04/05/06，交付起点
+- capability_id: cap.otfax.sip-channel-integration
+  revision: 1
+  status: active
+  slug: otfax-sip-channel-integration
+  title: OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）
+  importance: critical
+  importance_rationale: 对应 task-13/14/15，收发传真的话路命脉；两侧任缺一边即不通，OXE 侧只有菜单骨架是最大边界
+  one_liner: OTFC 侧 UDP 5360 + Dial Plan（单 PBX 全路由/冗余 Peer List）+ OXE 侧 MGR 七步菜单（参数参照 TC3048）+ CHtrace/SIP trace/tcpdump 三法抓包
+  intents:
+  - 配置 OTFC 与 OXE 的 SIP 对接
+  - OXE 侧配传真 SIP 网关
+  - 传真话路不通排障
+  - OXE 空间冗余配置
+  - configure SIP between OTFC and OXE
+  keywords:
+  - SIP
+  - T.38
+  - G.711
+  - "5360"
+  - trunk
+  - 中继组
+  - MGR
+  - mtcl
+  - Trusted IP
+  - Prefix plan
+  - 前缀计划
+  - Peer List
+  - 空间冗余
+  - 抓包
+  - CHtrace
+  - tcpdump
+  - TC3048
+  also_read:
+  - otfax-installation-ftw
+  - otfax-services-operations
+  card: cards/otfax-sip-channel-integration.md
+  frontmatter:
+    description: 'OTFC 与 OXE 的传真话路打通：OTFC 侧 SIP 配置（UDP 5360、OXE 声明、Dial Plan、空间冗余 Peer List）、OXE 侧 MGR 七步菜单序列（Trunk groups 到 Prefix plan，
+      参数参照 TC3048）、传真故障抓包三法（CHtrace/motortrace/tcpdump 转 Wireshark）。当用户要"接 OXE/话路不通/配冗余/抓包"时使用。
+      不适用于邮件通道（邮件与 Exchange 集成）；无 TC3048 不承诺参数级交付。
+
+      '
+    tags:
+    - procedure
+    - sip
+    - oxe
+    - integration
+    - troubleshooting
+  source_evidence:
+  - source_id: src-otfcxte200
+  - location: p140-155, p148-150
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-13/14/15，话路命脉
+- capability_id: cap.otfax.mail-exchange-integration
+  revision: 1
+  status: active
+  slug: otfax-mail-exchange-integration
+  title: OTFC 邮件与 Exchange 集成（SMTP 网关、FAX 连接器、通知排障）
+  importance: critical
+  importance_rationale: 对应 task-16，邮件是传真的主入口场景；feedback address、许可特性、Receive Connector 拦截是三大现场坑
+  one_liner: SMTP 网关独占 25 端口收作业发通知，Exchange 建 fax:* 地址空间 Send Connector 指向网关智能主机，通知被拦调 Receive Connector
+  intents:
+  - 集成邮件系统发传真
+  - Exchange 建 FAX 地址空间连接器
+  - 传真通知邮件收不到
+  - 传真邮件寻址格式
+  - configure Exchange send connector for fax
+  keywords:
+  - SMTP Gateway
+  - XMSMTPGateway
+  - feedback address
+  - NDR
+  - 邮件中继
+  - Send Connector
+  - FAX address space
+  - fax:*
+  - 智能主机
+  - smart host
+  - Receive Connector
+  - Outlook 模式
+  - 许可特性
+  also_read:
+  - otfax-profile-policy
+  - otfax-services-operations
+  card: cards/otfax-mail-exchange-integration.md
+  frontmatter:
+    description: 'OTFC 邮件链路打通与排障：SMTP 网关职责（监听 25、feedback address 不能为空、不能与其他 SMTP 共存）、直连与前置邮件服务器两种拓扑、
+      寻址格式全集（号码@FQDN、[FAX:]、Outlook 联系人）、Exchange ''FAX'' 地址空间 New-SendConnector 与核验、通知被拦调 Receive Connector。
+      当用户要"邮件发传真/建连接器/通知不到/寻址怎么写"时使用。SMTP connector 为许可特性；通知 Profile 格式在 Profile 策略能力。
+
+      '
+    tags:
+    - procedure
+    - smtp
+    - exchange
+    - integration
+    - troubleshooting
+  source_evidence:
+  - source_id: src-otfcxte200
+  - location: p156-175
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-16，主入口场景
+- capability_id: cap.otfax.user-administration
+  revision: 1
+  status: active
+  slug: otfax-user-administration
+  title: OTFC 用户与管理员管理（双用户源、CSV、两级管理员）
+  importance: critical
+  importance_rationale: 对应 task-07/08，云侧外运营最高频动作；双源可共存与备份管理员防锁死是两个认知纠偏点
+  one_liner: 用户恒以 SMTP 地址标识且必须绑 Site+Profile；内部库与 AD 可共存，CSV 仅 Webadmin；System/Site 两级管理员 + 官方推荐备份管理员
+  intents:
+  - 创建管理 OTFC 用户
+  - 批量导入用户 CSV
+  - 建 System/Site 管理员
+  - 配置管理员认证方式
+  - manage OTFC users and administrators
+  keywords:
+  - Internal Users
+  - Active Directory
+  - NT Account
+  - CSV
+  - 批量导入
+  - SMTP 地址
+  - 时区
+  - 管理员
+  - backupadmin
+  - 备份管理员
+  - SAML
+  - SSO
+  also_read:
+  - otfax-profile-policy
+  - otfax-directory-routing
+  card: cards/otfax-user-administration.md
+  frontmatter:
+    description: 'OTFC 用户与管理员的全生命周期：内部库/AD 双源共存、手工建户要素（邮箱/Profile/密码/传真号/时区）、CSV 批量导入导出（仅 Webadmin）、
+      System/Site 两级管理员与认证方式（内部服务器/AD/SAML）、备份管理员防锁死。当用户要"开传真账号/批量导入/建管理员/密码丢了"时使用。
+      不适用于 Profile 策略内容（Profile 策略能力）与外部用户自动归类（目录与路由能力）。
+
+      '
+    tags:
+    - procedure
+    - users
+    - administrators
+    - otfc
+  source_evidence:
+  - source_id: src-otfcxte200
+  - location: p97-116
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-07/08，运营主体
+- capability_id: cap.otfax.profile-policy
+  revision: 1
+  status: active
+  slug: otfax-profile-policy
+  title: OTFC Profile 策略与电话簿（限制组、呼号限制、通知 Profile、LDAP 电话簿）
+  importance: high
+  importance_rationale: 对应 task-11/12，合规与成本控制的核心；出方向限制组与入方向呼号限制方向相反是最常见混用
+  one_liner: Profile 六块属性挂五类机制——限制组（出方向挂 Profile）、呼号限制（入方向站点级）、邮件通知 Profile（每语言一份）、公共电话簿与封页经 Profile 下发
+  intents:
+  - 设计 OTFC 用户 Profile
+  - 禁发国际传真号码
+  - 配置传真邮件通知格式
+  - 管理企业电话簿与 LDAP 访问
+  - configure OTFC profile policy
+  keywords:
+  - Profile
+  - Basic
+  - No Faxing Rights
+  - Restriction group
+  - 限制组
+  - barring
+  - 仅国内
+  - Calling Number Restriction
+  - 呼号限制
+  - billing codes
+  - 计费码
+  - Mail Notification Profile
+  - 电话簿
+  - phone book
+  - LDAP Attribute Mapping
+  also_read:
+  - otfax-user-administration
+  - otfax-client-coversheet
+  card: cards/otfax-profile-policy.md
+  frontmatter:
+    description: 'OTFC 的策略中枢：Profile 六块属性（信息/封页/计费码/传真选项/安全/通知）、默认 Basic 与 No Faxing Rights 两档、出方向 Restriction group 拦截表、
+      站点级入方向 Calling Number Restriction、每语言一份的邮件通知 Profile（Exchange 场景勾 Exchange integration+Text）、公共/私人电话簿与 LDAP 访问三处开关。
+      当用户要"分级传真策略/禁国际号/改通知格式/共享联系人库"时使用。封页编辑五步在客户端与封页能力。
+
+      '
+    tags:
+    - procedure
+    - profile
+    - policy
+    - phonebook
+    - otfc
+  source_evidence:
+  - source_id: src-otfcxte200
+  - location: p117-139
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-11/12，策略中枢
+- capability_id: cap.otfax.directory-routing
+  revision: 1
+  status: active
+  slug: otfax-directory-routing
+  title: OTFC 高级目录集成与来传真路由（LDAP、Lookup、NT 免密、路由表、DTMF、Modification）
+  importance: high
+  importance_rationale: 对应 task-18/19，大客户落地必需；"目录查得到但用不了"的最高频根因（Lookup 没配）与路由四旋钮都在本卡
+  one_liner: LDAP 声明（389/Search base/属性映射）加 Site/Profile Lookup 两表授权外部用户，路由表三类规则（Default 恒最后）、DTMF 补拨、Modification Table 规整号码、8770 计费
+  intents:
+  - 集成 AD/LDAP 目录
+  - 配置 Site/Profile Lookup 自动归类
+  - 配置来传真路由表与 DTMF
+  - 规整外发传真号码
+  - configure OTFC LDAP and inbound routing
+  keywords:
+  - LDAP
+  - Search base
+  - "389"
+  - 属性映射
+  - Site Lookup
+  - Profile Lookup
+  - samAccountName
+  - NT Account Lookup
+  - 免密登录
+  - IIS
+  - Incoming Routing Table
+  - "$did:?????$"
+  - DTMF
+  - 补拨
+  - Modification Table
+  - ARS
+  - accounting
+  - "8770"
+  also_read:
+  - otfax-user-administration
+  - otfax-sip-channel-integration
+  card: cards/otfax-directory-routing.md
+  frontmatter:
+    description: 'OTFC 的大客户目录与路由机制：AD/任意 LDAP 声明与属性映射、Site/Profile Lookup 两张 if 规则表（无 Site+Profile 即拒用）、NT Account 免密两路
+      （专用接口或 samAccountName 过滤器 + IIS 禁匿名）、来传真路由表三类规则（$did 匹配、Default 恒最后）、DTMF 补拨语法、Modification Table 号码规整、
+      OXE 话单对接 OmniVista 8770 计费。当用户要"接 AD/自动分站点/免密登录/按被叫号投人/号码多拨 33/传真计费"时使用。
+
+      '
+    tags:
+    - procedure
+    - ldap
+    - routing
+    - advanced
+    - otfc
+  source_evidence:
+  - source_id: src-otfcxte200
+  - location: p192-213
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-18/19，大客户纵深
+- capability_id: cap.otfax.services-operations
+  revision: 1
+  status: active
+  slug: otfax-services-operations
+  title: OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）
+  importance: critical
+  importance_rationale: 对应 task-17/24，售后日常抓手；组件流水线分段与两个高频日志文件名是排障第一入口
+  one_liner: 模块/服务/组件三层，9 服务分有状态复制与无状态负载均衡；Services Status 查状态、xmsc -ra/-oa/-aa 启停、Trace 目录每组件一个日志（默认 20MB/15 天）
+  intents:
+  - 查 OTFC 服务状态与重启
+  - 读 OTFC 组件日志排障
+  - 激活 SIP 日志
+  - 理解服务架构分类
+  - OTFC service management
+  keywords:
+  - Services Status
+  - XMFaxManager
+  - FaxDriver
+  - Rasterizer
+  - 有状态
+  - stateful
+  - 无状态
+  - stateless
+  - xmsc
+  - Trace
+  - ConfigManager.log
+  - Smtp.log
+  - "20MB"
+  - SIP 日志
+  also_read:
+  - otfax-backup-upgrade
+  card: cards/otfax-services-operations.md
+  frontmatter:
+    description: 'OTFC 服务架构认知与日常运维动作：四大模块与 9 个服务的有状态（XMFaxManager/XMConfigManager/XMCoConfig/XMFaxArchive/XMFaultTolerance，复制）与
+      无状态（Driver/Rasterizer/SMTP/XML Gateway，负载均衡）分类、System Monitor ➤ Services Status、xmsc -ra/-oa/-aa 三命令、Trace 目录日志体系
+      （每组件一个文件、默认 20MB/15 天、zip 归档）、SIP 日志两步激活。当用户要"重启服务/看日志/组件不 Active/抓 SIP 信令"时使用。
+      高可用部署（XMFaultTolerance）书内零实操，属边界。
+
+      '
+    tags:
+    - procedure
+    - services
+    - operations
+    - logs
+    - otfc
+  source_evidence:
+  - source_id: src-otfcxte200
+  - location: p176-191, p225
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-17/24，运维抓手
+- capability_id: cap.otfax.backup-upgrade
+  revision: 1
+  status: active
+  slug: otfax-backup-upgrade
+  title: OTFC 备份、恢复、升级与删除策略（三数据域、五步升级法、零保留）
+  importance: high
+  importance_rationale: 对应 task-20/21/22，灾难底线与合规刚需；备份不可 kill/恢复可 kill 的语义差与升级数据库陷阱是两大易错点
+  one_liner: 冷备三数据域（Data/Bin/Config + MySQL + Interstar 注册表键），恢复四前提（版本/拓扑/路径/先擦除），升级五步法（数据库不在自动备份内），记录与图像可分开删实现零保留
+  intents:
+  - 备份恢复 OTFC 系统
+  - 升级 OTFC 版本
+  - 配置传真删除策略零保留
+  - 迁移传真服务器
+  - backup restore upgrade OTFC
+  keywords:
+  - 备份
+  - backup
+  - restore
+  - MediaStore
+  - mysql5
+  - Interstar Technologies
+  - 注册表键
+  - 冷备
+  - 维护窗口
+  - upgrade
+  - xmedius.war
+  - CompanyConfig
+  - XmediusArchive
+  - 删除策略
+  - 零保留
+  - zero retention
+  also_read:
+  - otfax-services-operations
+  card: cards/otfax-backup-upgrade.md
+  frontmatter:
+    description: 'OTFC 的灾难底线与合规保留：备份三数据域与三备份物（Data/Bin/Config、MySQL 数据目录、Interstar Technologies 注册表键）、备份停服不可 kill 与恢复可 kill 的
+      语义差、恢复四前提、升级五步法与四个善后口径（手工备 CompanyConfig/XmediusArchive 两库、xmedius.war 替换、自定义工具预验证）、传真记录与传真文档分开/一起删的零保留策略。
+      当用户要"备份/恢复/升级/清历史传真/合规零保留"时使用。
+
+      '
+    tags:
+    - procedure
+    - backup
+    - upgrade
+    - compliance
+    - otfc
+  source_evidence:
+  - source_id: src-otfcxte200
+  - location: p216-224, p230-232
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-20/21/22，灾难底线
+- capability_id: cap.otfax.client-coversheet
+  revision: 1
+  status: active
+  slug: otfax-client-coversheet
+  title: OTFC 客户端部署与封页定制（四件套、Web Client、GPO、封页五步）
+  importance: medium
+  importance_rationale: 对应 task-09/10，用户侧体验载体；操作偏一次性交付，独立触发频率中等，经路由可达即可
+  one_liner: Web Client 免安装六区界面、Windows 四件套（SendFAX/Web Fax Composer/Print to Mail/MMC）、静默+GPO 批量与 ClientRedistribution 精简包、封页 Editor 五步经 Profile 生效
+  intents:
+  - 部署 OTFC 客户端
+  - 批量安装传真客户端
+  - 定制企业封页
+  - 查询传真队列状态
+  - deploy OTFC client coversheet
+  keywords:
+  - SendFAX
+  - Web Client
+  - Web Fax Composer
+  - Print to Mail
+  - 虚拟打印机
+  - GPO
+  - 静默安装
+  - ClientRedistribution
+  - coversheet
+  - 封页
+  - ".cse"
+  - Cover Sheet Editor
+  - 队列状态
+  - redact
+  card: cards/otfax-client-coversheet.md
+  frontmatter:
+    description: 'OTFC 用户侧入口与品牌化：Web Client（/fax 六区界面、508 无障碍合规）、Windows 四件套功能与适配人群、静默安装/GPO 批量/ClientRedistribution 精简包、
+      封页 .cse 五步闭环（Editor 编辑或服务器下载底稿、另存、Web 导入、挂 Profile）、外发队列六状态三视图。当用户要"装客户端/批量推/做封页/传真卡在哪"时经路由使用。
+      SendFAX Outlook 模式依赖 FAX 连接器（邮件与 Exchange 集成能力）。
+
+      '
+    tags:
+    - procedure
+    - clients
+    - coversheet
+    - otfc
+  source_evidence:
+  - source_id: src-otfcxte200
+  - location: p71-96, p130-133
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 用户侧载体，路由可达即可
+- capability_id: cap.otfax.solution-planning
+  revision: 1
+  status: active
+  slug: otfax-solution-planning
+  title: OTFC 方案评估与部署规划（容量协议合规、架构拓扑、支持矩阵）
+  importance: medium
+  importance_rationale: 对应 task-01/02，一次性售前支撑类；数值大头在 Features List，书内只给口径与拓扑结构，经路由可达即可
+  one_liner: 单服务器 15000 用户/30 端口、T.38 14.4k 与 G.711 33.8k、五类发送入口四类接收去向、合规卖点三清单、多网关号段分流与支持矩阵核对
+  intents:
+  - 评估 OTFC 方案容量与协议
+  - 规划传真服务器部署架构
+  - 核对支持软件矩阵
+  - 应答传真合规要求
+  - OTFC capacity planning
+  keywords:
+  - 容量
+  - "15000 用户"
+  - "30 端口"
+  - T.38
+  - G.711
+  - FoIP
+  - GDPR
+  - HIPAA
+  - 零保留
+  - 多网关
+  - 多站点
+  - SIP trunk
+  - OTFC-V
+  - 支持矩阵
+  - Features List
+  card: cards/otfax-solution-planning.md
+  frontmatter:
+    description: 'OTFC 售前与规划支撑：容量与传输口径（单服务器 15000 用户/30 端口、T.38/G.711 速率、SIP/TCP 与 SIP/TLS 能力项）、五类发送入口与四类接收去向、
+      入局路由四法、合规三清单（加密/零保留/审计）、部署形态与多网关多站点拓扑、OS/虚拟化/邮件/客户端支持矩阵。当用户要"选型/容量/拓扑/合规应答"时经路由使用。
+      端口全表、格式清单、sizing 数值一律指向 OTFC Features List，不以书内口径硬答。
+
+      '
+    tags:
+    - reference
+    - planning
+    - presales
+    - otfc
+  source_evidence:
+  - source_id: src-otfcxte200
+  - location: p3-42
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 售前支撑域，路由可达即可
+- capability_id: cap.otfax.reports-monitoring
+  revision: 1
+  status: active
+  slug: otfax-reports-monitoring
+  title: OTFC 报表与监控（31 报表、BIRT、SNMP V2 陷阱）
+  importance: medium
+  importance_rationale: 对应 task-23，主动运维支撑域；BIRT 工具与网管平台都在书外，书内给的是清单与安装入口，经路由可达即可
+  one_liner: 31 个报表模板（BIRT 自定义装在 3rd\birt）、站点/系统两级监控视图、SNMP V2 trap 清单（队列满/配额满/光栅化失败/路由失败/心跳等）
+  intents:
+  - 出 OTFC 传真量报表
+  - 自定义报表模板
+  - 接入 SNMP 监控告警
+  - 查询站点传真统计
+  - OTFC reports SNMP monitoring
+  keywords:
+  - 报表
+  - "31 reports"
+  - BIRT
+  - 模板
+  - SNMP
+  - trap
+  - 告警
+  - 队列满
+  - 配额
+  - 光栅化失败
+  - Routing failure
+  - 心跳
+  - 性能计数器
+  card: cards/otfax-reports-monitoring.md
+  frontmatter:
+    description: 'OTFC 的运营可视化与告警：31 个报表模板（全系统/单用户 × 月/周/日、模块错误摘要）、BIRT 报表设计器（安装包 3rd\birt 解压安装）、
+      站点级/系统级监控视图、SNMP V2 trap 清单（组件状态/队列满/配额满/光栅化失败/路由失败/XML 错误/驱动错误/分区/通道初始化/主机监视心跳）。
+      当用户要"出报表/改模板/接网管告警"时经路由使用。BIRT 工具用法与网管平台在书外；计费报表走目录与路由能力的 Accounting 段。
+
+      '
+    tags:
+    - reference
+    - reports
+    - monitoring
+    - snmp
+    - otfc
+  source_evidence:
+  - source_id: src-otfcxte200
+  - location: p225-229
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 主动运维域，路由可达即可

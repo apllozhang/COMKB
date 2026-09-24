@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>CCTA 话务票据分析</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced</h2><p>Edition  · 597 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte101en/index.html">课程首页</a><a href="/courses/otccxte101en/digest.html">精华长文</a><a href="/courses/otccxte101en/overview.html">教书理解</a><a href="/courses/otccxte101en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte101en/skills/otcad-ism-skill-matching.html">ISM 技能匹配与排序口径</a><a href="/courses/otccxte101en/skills/otcad-remote-pg-mutual-aid.html">Remote PG 分布式互助与 ABC-F 链路</a><a href="/courses/otccxte101en/skills/otcad-spm-deployment.html">Soft Panel Manager 部署与基础设置</a><a href="/courses/otccxte101en/skills/otcad-soft-panel-manager.html">Soft Panel 可视化配置（视图/挂件/消息/告警）</a><a href="/courses/otccxte101en/skills/otcad-ccta-ticket-analysis.html">CCTA 话务票据分析</a><a href="/courses/otccxte101en/skills/otcad-special-features.html">特殊功能开关（优先转接/忙音/代接/监听/永恒整理/中继预留）</a><a href="/courses/otccxte101en/skills/otcad-excel-report-customization.html">Excel 报表模板定制</a><a href="/courses/otccxte101en/skills/otcad-ccs-server.html">CCS Server 集中接入</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte101en/skills/otcad-acr-objects.html">ACR 对象与技能体系</a><a href="/courses/otccxte101en/skills/otcad-asm-script-advanced.html">ASM 脚本与 LCA 主干</a><a href="/courses/otccxte101en/skills/otcad-ccs-onboarding.html">CCS 安装与实验环境定稿</a><a href="/courses/otccxte101en/skills/otcad-acd-maintenance.html">ACD 维护命令箱</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte101en/index.html">otcc-standard-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte101en/index.html">OTCCXTE101EN</a><span>/</span><span aria-current="page">CCTA 话务票据分析</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>CCTA 话务票据分析</h1></div><dl><div><dt>Skill ID</dt><dd>otcad-ccta-ticket-analysis</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>CCTA 话务票据分析（安装、导入 .Z、过滤与 ASCII 导出）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"2 types of tickets exist: • Tickets "events" • Displays the changes of the objects state … • Tickets "communications" • Displays the information of communications: date and time of the call, duration of conversation, agent responding to the call, called pilot, cause of end of the call"（p483）
+"The Importation that permit to import daily and automatically the CCd communication and events tickets … • The Ticket Tracer which aims is the visualization"（p484）
+"PABX Enter the IP address of the Call Server … The files will be dropped in C:/Program Data /Alcatel /Ticket Analyzer/ (name or IP address of the pcx)."（p493-494）</p>
+</blockquote>
+<p>出处：OTCCXTE101EN p480-497。</p>
+<h2>I — 自述</h2>
+<p>CCTA（Contact Center Ticket Analyser）是 CCd 票据的离线分析工具，解析 .Z 文件，装后得到两个程序（\Program Files(x86)\Alcatel\Ticket Analyser）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>工具</th>
+<th>职责</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Importation</td>
+<td>从 PCX（每日自动）导入通信/事件两类票据</td>
+<td>首连声明站点：PABX=Call Server IP、User=mtcl、Use SSH 按 OXE 实际、Tickets type=both</td>
+</tr>
+<tr>
+<td>Ticket Tracer</td>
+<td>可视化过滤分析并导出</td>
+<td>File &gt; Open（Tickets on PC，按 PABX IP 拼路径）&gt; 过滤器 &gt; 报表 &gt; Functions &gt; File ASCII 导出</td>
+</tr>
+</tbody>
+</table></div>
+<p>数据口径（p488，书中只给样例码）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>结束原因 End cause</td>
+<td>共 40 种；样例 0=主叫挂机、1=系统挂机、26=坐席挂机</td>
+</tr>
+<tr>
+<td>呼叫类型 Call type</td>
+<td>共 10 种；样例 0=非 ACR、1=ACR 呼叫</td>
+</tr>
+<tr>
+<td>过滤维度</td>
+<td>Headers selection（列选择）+ Object selection（对象筛选）+ 激活</td>
+</tr>
+</tbody>
+</table></div>
+<p>导入落盘：C:/ProgramData/Alcatel/Ticket Analyzer/<PCX 名或 IP>（原文路径含空格，见 nr-07）。离线分析不占 CCS 连接。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>从安装到 ASCII 报表</strong>（p491-497）：</p>
+<ol>
+<li>Client10 从 NAS 运行 ccta_setup.msi，向导默认项装完</li>
+<li>启动 Importation，首连声明站点：PABX=192.168.1.3、User=mtcl、Password 按现场填、Use SSH 不勾、Tickets type=both</li>
+<li>点 Test 连接确认后导入，核对 C:/ProgramData/Alcatel/Ticket Analyzer/192.168.1.3 出现 .Z 文件</li>
+<li>运行 Ticket Tracer：File &gt; Open &gt; Tickets on PC，PABX 填 192.168.1.3，Type=Communication，选起止日期后 Validate</li>
+<li>过滤器选 Long Ticket、全部对象、ID Mao、Column，Validate 生成报表</li>
+<li>Functions &gt; File ASCII 定路径导出，Notepad/Excel 打开核对结束原因等字段</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：复盘某天为什么放弃率飙高；客户要呼叫明细报表（谁接的、多久、为什么结束）；核对 ACR 呼叫占比；离线分析不想到生产 CCS 上跑。</p>
+<p>语言信号：CCTA / Ticket Analyser / 票据 / ticket / .Z / Importation / Ticket Tracer / 结束原因 / end cause / 呼叫类型 / ASCII / 明细 / 话务分析 / Long Ticket。</p>
+<p>与相邻能力区分：CCS 实时统计与 Excel 日报转 Excel 报表卡；实时看板转 Soft Panel 卡；SPM 部署问题转 SPM 部署卡。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OXE 票据机制开启且有在产话务、一台 Windows 客户端、OXE 的 mtcl 凭据（现场实际值）。票据未产生 → 停，先确认 OXE 侧票据机制开启。</p>
+<ol>
+<li>装 ccta_setup.msi（默认路径）。完成标准：Ticket Analyser 目录下两个程序可用</li>
+<li>Importation 声明站点并导入（Tickets type=both）。完成标准："Import process is successful"、.Z 文件落盘</li>
+<li>Ticket Tracer 打开票据：按类型与起止日期加载。完成标准：记录列表出现</li>
+<li>过滤器选列与对象后出报表。完成标准：可见主叫/坐席/Pilot/时长/结束原因等列</li>
+<li>Functions &gt; File ASCII 导出并核对内容。完成标准：文本可读、字段与报表一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>要 40 种结束原因全表 → 停，书中只有样例码（0/1/26），全表在 CCTA 工具文档，不编造</li>
+<li>要实时监控 → 停，CCTA 是离线工具，实时需求走 Soft Panel/CCS Real time</li>
+<li>导入要 SSH → 停，按 OXE 侧实际开启情况勾选；实验环境未开 SSH（g48）</li>
+</ul>
+<p>输出契约：可复现的票据导入配置 + 过滤后的明细报表 + ASCII 导出文件（复盘或交付附件）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>书示登录 mtcl/mtcl 是文档示例（p493），实验 OXE 实际口令不同（Superuser2580*，实验口径）；生产按现场凭据</li>
+<li>结束原因 40 种/呼叫类型 10 种只给样例码，其余编码不外推（p33 口径）</li>
+<li>路径书写以实际文件系统为准（ProgramData 无空格）；原文含空格写法见 nr-07</li>
+<li>CCTA 版本与 OXE 票据格式随版本演进，导入失败先核对版本配套（书内未展开版本矩阵）</li>
+<li>票据含主叫号码等敏感数据，导出文件的分发要按客户数据保护要求管理（书内未覆盖，n40 同族边界）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte101en/skills/otcad-excel-report-customization.html">Excel 报表模板定制</a></p><p class="source-page">能力 ID：cap.otcad.ccta-ticket-analysis · 来源：OTCCXTE101EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition - Advanced (Participant's Guide, Edition 07) | edition: Edition  | pages: 597 页 -->

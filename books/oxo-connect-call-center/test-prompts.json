@@ -1,0 +1,90 @@
+{
+  "book": "oxo-connect-call-center",
+  "version": "1.0.0",
+  "generated": "2026-09-23",
+  "capability_list_for_blindtest": "见盲测 agent prompt（15 能力 name+description）",
+  "promoted_trigger_tests": {
+    "oxo-acd-basic-setup": [
+      {"id": "bs-st-01", "type": "should_trigger", "prompt": "新装了一台 OXO，要上呼叫中心，帮我从零配一套 ACD，三个组"},
+      {"id": "bs-st-02", "type": "should_trigger", "prompt": "建一个新的 ACD 组给售后团队用，坐席是 201 和 202 两部话机"},
+      {"id": "bs-nt-01", "type": "should_not_trigger", "prompt": "客户来电有时候响一声就断了，有时候又正常", "expect_route": "oxo-acd-call-scenarios", "notes": "跨能力诱饵"},
+      {"id": "bs-nt-02", "type": "should_not_trigger", "prompt": "帮我装一下 OMC 管理软件", "expect_route": "oxo-omc-first-connect", "notes": "跨能力诱饵(router)"},
+      {"id": "bs-edge-01", "type": "edge_case", "prompt": "ACD 配置改完了怎么不生效？"}
+    ],
+    "oxo-acd-call-scenarios": [
+      {"id": "cs-st-01", "type": "should_trigger", "prompt": "客户打热线响一声就断了，坐席明明都闲着"},
+      {"id": "cs-st-02", "type": "should_trigger", "prompt": "非工作时间打进来听到一段话就挂了，能不能让他们留言到邮箱"},
+      {"id": "cs-nt-01", "type": "should_not_trigger", "prompt": "怎么新建一个 ACD 组", "expect_route": "oxo-acd-basic-setup", "notes": "跨能力诱饵"},
+      {"id": "cs-nt-02", "type": "should_not_trigger", "prompt": "坐席说登录了但电话不进来", "expect_route": "oxo-acd-login-status", "notes": "跨能力诱饵"},
+      {"id": "cs-edge-01", "type": "edge_case", "prompt": "排队的人听到什么提示音？能不能自己按键盘留言走人"}
+    ],
+    "oxo-acd-routing": [
+      {"id": "rt-st-01", "type": "should_trigger", "prompt": "VIP 大客户来电要直接进专属坐席组"},
+      {"id": "rt-st-02", "type": "should_trigger", "prompt": "英国来电进英文组、德国来电进德文组，怎么配"},
+      {"id": "rt-nt-01", "type": "should_not_trigger", "prompt": "组内的电话怎么在坐席之间轮流分配", "expect_route": "oxo-acd-search-noanswer", "notes": "跨能力诱饵"},
+      {"id": "rt-nt-02", "type": "should_not_trigger", "prompt": "欢迎语怎么换", "expect_route": "oxo-acd-voice-prompts", "notes": "跨能力诱饵(router)"},
+      {"id": "rt-edge-01", "type": "edge_case", "prompt": "配了路由条目但大客户的电话进了兜底组，哪里错了"}
+    ],
+    "oxo-acd-queue": [
+      {"id": "qu-st-01", "type": "should_trigger", "prompt": "队列长度设多少合适？我们有 5 个在值坐席"},
+      {"id": "qu-st-02", "type": "should_trigger", "prompt": "想让排队客户听到预计等待时间怎么配"},
+      {"id": "qu-nt-01", "type": "should_not_trigger", "prompt": "坐席怎么登录签入", "expect_route": "oxo-acd-login-status", "notes": "跨能力诱饵"},
+      {"id": "qu-nt-02", "type": "should_not_trigger", "prompt": "建一个新 ACD 组", "expect_route": "oxo-acd-basic-setup", "notes": "跨能力诱饵"},
+      {"id": "qu-edge-01", "type": "edge_case", "prompt": "坐席下班签出之后，队列容量是不是就变小了"}
+    ],
+    "oxo-acd-search-noanswer": [
+      {"id": "sn-st-01", "type": "should_trigger", "prompt": "电话老是给同一个人接，想让大家轮流接听"},
+      {"id": "sn-st-02", "type": "should_trigger", "prompt": "坐席们怎么被自动变成 off duty 了"},
+      {"id": "sn-nt-01", "type": "should_not_trigger", "prompt": "怎么把坐席加进 ACD 组并定优先级", "expect_route": "oxo-acd-basic-setup", "notes": "跨能力诱饵（rank 初始配置在搭建）"},
+      {"id": "sn-nt-02", "type": "should_not_trigger", "prompt": "坐席登录了不接电话", "expect_route": "oxo-acd-login-status", "notes": "跨能力诱饵"},
+      {"id": "sn-edge-01", "type": "edge_case", "prompt": "响了 10 秒没人接就转下一个，这个能改吗"}
+    ],
+    "oxo-acd-login-status": [
+      {"id": "ls-st-01", "type": "should_trigger", "prompt": "坐席说他登录了但电话一直不进来"},
+      {"id": "ls-st-02", "type": "should_trigger", "prompt": "话机屏幕上显示 1:01 是什么意思"},
+      {"id": "ls-nt-01", "type": "should_not_trigger", "prompt": "排队的人会听到什么提示", "expect_route": "oxo-acd-call-scenarios", "notes": "跨能力诱饵"},
+      {"id": "ls-nt-02", "type": "should_not_trigger", "prompt": "班长想实时看坐席状态", "expect_route": "oxo-supervisor-app", "notes": "跨能力诱饵(router)"},
+      {"id": "ls-edge-01", "type": "edge_case", "prompt": "504 是什么号码"}
+    ],
+    "oxo-multi-secretary": [
+      {"id": "ms-st-01", "type": "should_trigger", "prompt": "三个老板共用一个秘书，秘书得知道来电是替哪位老板接的"},
+      {"id": "ms-st-02", "type": "should_trigger", "prompt": "诊所前台要同时接三个医生的电话，下班后转留言"},
+      {"id": "ms-nt-01", "type": "should_not_trigger", "prompt": "普通 ACD 组怎么搭建", "expect_route": "oxo-acd-basic-setup", "notes": "跨能力诱饵"},
+      {"id": "ms-nt-02", "type": "should_not_trigger", "prompt": "怎么按客户来源分流来电", "expect_route": "oxo-acd-routing", "notes": "跨能力诱饵"},
+      {"id": "ms-edge-01", "type": "edge_case", "prompt": "秘书转接的时候能看到是哪个老板的电话吗"}
+    ]
+  },
+  "router_reach_tests": [
+    {"id": "rr-01", "prompt": "第一次连 OXO 一直弹安全告警", "expect": "oxo-omc-first-connect"},
+    {"id": "rr-02", "prompt": "OXO 要换到客户的网段，地址怎么改", "expect": "oxo-ip-replan"},
+    {"id": "rr-03", "prompt": "国庆假期别让热线进呼叫中心", "expect": "oxo-acd-schedule-calendar"},
+    {"id": "rr-04", "prompt": "班长要实时盯着坐席和队列", "expect": "oxo-supervisor-app"},
+    {"id": "rr-05", "prompt": "坐席接电话时电脑上要自动弹出客户资料（按来电号码匹配）", "expect": "oxo-agent-app"},
+    {"id": "rr-06", "prompt": "上个月的来话量和应答率报表怎么导出", "expect": "oxo-statistics-app"},
+    {"id": "rr-07", "prompt": "让客户输工单号再转人工，坐席屏幕直接带出工单", "expect": "oxo-dtmf-popup"},
+    {"id": "rr-08", "prompt": "欢迎语要换成客户公司的名字", "expect": "oxo-acd-voice-prompts"}
+  ],
+  "output_tasks": [
+    {
+      "id": "task-queue-calc",
+      "capability": "oxo-acd-queue",
+      "task": "OXO ACD 组X 周一在值坐席 3 人，话务因子 K=1.5；周二 2 人在值 K=0.4。分别算队列长度，并算当队列里有 4 通电话、平均通话时长 180 秒时周三的预计等待播报值（周三在值 2 人）。",
+      "inputs": "如上数值",
+      "checks": ["周一 ceil(3*1.5)=5", "周二 ceil(2*0.4)=ceil(0.8)=1", "周三 (4/2+1)*180=540 秒", "口径说明：N 只数 On duty"]
+    },
+    {
+      "id": "task-routing-design",
+      "capability": "oxo-acd-routing",
+      "task": "需求：意大利(0039)来话进组2；大客户 Acme（CLI 0102233445 拨 DDI 尾号 41010）进组1；大客户没拨对 DDI 时进组3 兜底；其他所有来话进组3。给出 Line parameters 填表顺序与每条目的 CLI/DDI/目标组。",
+      "inputs": "如上需求",
+      "checks": ["顺序：Acme 双匹配(CLI 0102233445+DDI 41010→组1) 最先", "次填 0039 仅CLI→组2", "最后兜底(全空或最宽)→组3", "说明三级优先与特殊→一般原则"]
+    },
+    {
+      "id": "task-scenario-triage",
+      "capability": "oxo-acd-call-scenarios",
+      "task": "诊断三单报障：①组A 营业中，来电响一声即被释放，坐席有空闲；②组B 周六来电播'非营业时间'；③组C 全员登出后连来 3 通电话，第 1 通转到了某个号码，第 2/3 通却听劝漏音。各判入哪个场景、下一步查什么。",
+      "inputs": "如上三单",
+      "checks": ["①判场景4 端口全忙（非队满）→查端口占用16上限与MLAA共享", "②判场景6 关闭→查例外日/时段配置", "③判场景5→仅首呼转 Transfer number 属正常特性", "每单给出下一步动作"]
+    }
+  ]
+}

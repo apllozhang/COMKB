@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OTFC 高级目录集成与来传真路由（LDAP、Lookup、NT 免密、路由表、DTMF、Modification）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch Fax Center · Starter</h2><p>Edition 04 · 233 页 · 文档整理入库（11 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otfcxte200en/index.html">课程首页</a><a href="/courses/otfcxte200en/digest.html">精华长文</a><a href="/courses/otfcxte200en/overview.html">教书理解</a><a href="/courses/otfcxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otfcxte200en/skills/otfax-installation-ftw.html">OTFC 首次交付（宿主准备、安装、FTW、许可）</a><a href="/courses/otfcxte200en/skills/otfax-sip-channel-integration.html">OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）</a><a href="/courses/otfcxte200en/skills/otfax-mail-exchange-integration.html">OTFC 邮件与 Exchange 集成（SMTP 网关、FAX 连接器、通知排障）</a><a href="/courses/otfcxte200en/skills/otfax-user-administration.html">OTFC 用户与管理员管理（双用户源、CSV、两级管理员）</a><a href="/courses/otfcxte200en/skills/otfax-profile-policy.html">OTFC Profile 策略与电话簿（限制组、呼号限制、通知 Profile、LDAP 电话簿）</a><a href="/courses/otfcxte200en/skills/otfax-directory-routing.html">OTFC 高级目录集成与来传真路由（LDAP、Lookup、NT 免密、路由表、DTMF、Modification）</a><a href="/courses/otfcxte200en/skills/otfax-services-operations.html">OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）</a><a href="/courses/otfcxte200en/skills/otfax-backup-upgrade.html">OTFC 备份、恢复、升级与删除策略（三数据域、五步升级法、零保留）</a><p class="course-nav-group">路由能力</p><a href="/courses/otfcxte200en/skills/otfax-client-coversheet.html">OTFC 客户端部署与封页定制（四件套、Web Client、GPO、封页五步）</a><a href="/courses/otfcxte200en/skills/otfax-solution-planning.html">OTFC 方案评估与部署规划（容量协议合规、架构拓扑、支持矩阵）</a><a href="/courses/otfcxte200en/skills/otfax-reports-monitoring.html">OTFC 报表与监控（31 报表、BIRT、SNMP V2 陷阱）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otfcxte200en/index.html">ot-fax-center（11 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otfcxte200en/index.html">OTFCXTE200EN</a><span>/</span><span aria-current="page">OTFC 高级目录集成与来传真路由（LDAP、Lookup、NT 免密、路由表、DTMF、Modification）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OTFC 高级目录集成与来传真路由（LDAP、Lookup、NT 免密、路由表、DTMF、Modification）</h1></div><dl><div><dt>Skill ID</dt><dd>otfax-directory-routing</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OTFC 高级目录集成与来传真路由（LDAP、Lookup 表、NT 免密、路由表、DTMF、Modification、计费）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Whether the system needs to assign a fax to a user (inbound faxing) or retrieve a user's Personal Information to send a fax (outbound faxing) … the system will always begin its queries with the user's SMTP Address."（p194）
+"A user who is not associated to any existing Site and any existing Profile is not allowed to use OTFC. Through these lookup tables it is possible to grant the faxing rights to some users"（p198）
+"The routing can be done by a multiple combination of routing rules: •Direct rules •Directory Lookup rules •Default rule … (except the Default rule, that remains the last)"（p205）
+"(&amp;(objectClass=user)(objectCategory=person)(samAccountName=$NtAccountName$))"（p202）</p>
+</blockquote>
+<p>出处：OTFCXTE200EN p192-213。</p>
+<h2>I — 自述</h2>
+<p>目录与路由是大客户落地的五个机制：</p>
+<ol>
+<li><strong>目录声明</strong>：新装默认只用内部目录；可加 AD 或任意 LDAP——勾 enabled、服务器地址、端口 389、Search base（搜索树起点）、Test connection 验证；Attributes 页签做 OTFC-LDAP 属性映射；目录断连自动产生 SNMP trap</li>
+<li><strong>Lookup 两表</strong>：外部用户必须有 Site+Profile 才能用系统；Site Lookup 与 Profile Lookup 都是"基于目录属性的 if 规则"（可按邮箱/传真号/职务等字段过滤），Profile 默认规则是"用用户设置里指定的 Profile"</li>
+<li><strong>免密登录两路</strong>：AD NT Account Lookup 专用接口，或 LDAP 集成配 samAccountName 搜索过滤器再加 Conditions 条件；Web 自动登录还需 IIS 禁匿名 + 启 Windows 认证且 OTFC 服务器是域成员</li>
+<li>
+<p><strong>路由四旋钮</strong>：Incoming Routing Table 三类规则（Direct、Directory Lookup、Default 兜底恒排最后，Directories Lookup 匹配值 $did:?????$）；DTMF 补拨（+33155667000 P 1234，P=暂停，可激活 4 位分机语音提示）</p>
+</li>
+<li>
+<p><strong>号码规整与计费</strong>：Modification Table 规整目录带来的号码（超过 6 位且 33 开头的外部号把 33 换成 00）；外发传真在 OXE 生成计费票，OmniVista 8770 取票出报表，票默认映射传真号</p>
+</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>来传真按目录 owner 投递</strong>（p205-208，讲义流程，号码实验口径）：</p>
+<ol>
+<li>PSTN 呼 0123431500，OXE 收到 123431500</li>
+<li>传真服务器侧收到 31500</li>
+<li>Incoming Routing Table 的 Directories Lookup 用 $did:?????$ 匹配 DDI 号</li>
+<li>查内部库或 LDAP 命中 owner（如 barkley@company.com，传真号 33123431500）</li>
+<li>按通知规则投递邮箱；通知故障查 ConfigManager.log 与 Smtp.log</li>
+</ol>
+<p><strong>Modification Table 规整</strong>（p210-211）：</p>
+<ol>
+<li>联系人 Mr Dupond 存国际格式 33298765432</li>
+<li>规则：超过 6 位且 33 开头，前两位 33 替换为 00（ARS 前缀+国内前缀）</li>
+<li>实际呼出 00298765432</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：AD 用户查得到但用不了传真；外部用户自动分配站点与 Profile；SendFAX/Web 免密登录；来传真按被叫号投人；用户拨国际格式联系人号码多拨 33；传真成本按人出报表。</p>
+<p>语言信号：LDAP / Search base / 属性映射 / Lookup / Site Lookup / Profile Lookup / NT Account / samAccountName / 免密 / SSO 登录 / IIS / Windows Authentication。</p>
+<p>语言信号（续）：Incoming Routing Table / $did / DDI / DTMF / 补拨 / 分机 / Modification Table / ARS / 计费 / accounting / 8770。</p>
+<p>与相邻能力区分：目录连接本身的声明属本卡，账号手工管理属用户管理能力；SIP 话路不通属 SIP 通道集成能力；Web Client 里的电话簿属 Profile 策略能力（本卡管 LDAP 访问链的服务端）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户 AD/LDAP 结构实勘结果（端口/Search base/属性）、编号计划（DDI 号段/分机规则）、OTFC 服务器域成员身份（免密场景）。</p>
+<ol>
+<li>声明目录：enabled + 服务器 + 端口 389 + Search base + Test connection。完成标准：连接测试通过</li>
+<li>属性映射：Attributes 页签逐项匹配 OTFC 与 LDAP 属性。完成标准：关键字段（SMTP/传真号/职务）映射齐全</li>
+<li>配 Lookup 两表：Site Lookup 与 Profile Lookup 按 if 规则落外部用户归类。完成标准：抽样外部用户能被归到 Site+Profile</li>
+<li>免密登录（如需）：AD NT Account Lookup 接口或 samAccountName 过滤器 + IIS 禁匿名/启 Windows 认证。完成标准：域内用户打开 Web 免密直达</li>
+<li>入局路由表：Direct 与 Directory Lookup 规则按精度排序，$did:?????$ 按实际号长调整，Default 兜底确认在最后。完成标准：测试号路由到正确用户</li>
+<li>号码规整：Modification Table 按客户 PSTN 拨号口径配规则。完成标准：联系人国际格式号码实际呼出正确</li>
+<li>DTMF 补拨（如需）：目的号 + P + 分机语法，来话方向按需激活 4 位分机语音提示。完成标准：补拨传真可达</li>
+<li>计费（如需）：OXE 计费票对接 OmniVista 8770，确认映射口径（默认传真号，按人核算改电话号）。完成标准：8770 出测试报表</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>AD 用户查得到但用不了 → 先查两张 Lookup 表规则命中，别只盯目录连接（无 Site+Profile 即拒用是设计行为）</li>
+<li>自动登录仍弹凭据框 → 按三前提逐项核：域成员、禁匿名、启 Windows 认证，顺序按原文先禁匿名</li>
+<li>来传真通知不到但路由正常 → 查 ConfigManager.log 与 Smtp.log，再转邮件与 Exchange 集成能力</li>
+<li>想把 Default 兜底规则排到前面 → 停，Default 恒最后不可移动，只能把精确规则前置</li>
+<li>客户目录不是 AD 且字段命名非常规 → 停，先实勘属性再映射，属性名不猜</li>
+</ul>
+<p>输出契约：目录集成参数表（服务器/Search base/映射）+ Lookup 规则清单 + 免密登录配置记录 + 路由/DTMF/Modification 三表配置与测试记录 + 计费映射口径说明。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>DNIS/CSID/ANI/DDI/ARS 等缩写书内未给全称，括注均为通用电信含义（推断）；引用时保留标注</li>
+<li>端口 389 为 LDAP 明文口径，LDAPS 书内未展开；目录基础设施由客户提供</li>
+<li>目录断连的 SNMP trap 需要客户网管侧有落点，否则只能被动发现（推断后果，原文只说产生 trap）</li>
+<li>计费链路的 8770 侧报表配置在书外；DTMF 语音提示内容与多语言支持书内未展开</li>
+<li>规则示例号段（31500/33123431500、33/00 前缀）均为实验/法国示例口径，生产按客户编号计划替换</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otfcxte200en/skills/otfax-user-administration.html">OTFC 用户与管理员管理（双用户源、CSV、两级管理员）</a>、<a href="/courses/otfcxte200en/skills/otfax-sip-channel-integration.html">OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）</a></p><p class="source-page">能力 ID：cap.otfax.directory-routing · 来源：OTFCXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch Fax Center - R9.2 Starter (Participant's Guide, Edition 04) | edition: Edition 04 | pages: 233 页 -->

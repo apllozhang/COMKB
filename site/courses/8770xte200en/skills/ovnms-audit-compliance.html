@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OmniVista 8770 审计合规（Audit 启用 / mao 日志 / 检索导出）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 安装与网络管理</h2><p>Edition 47 · 705 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte200en/index.html">课程首页</a><a href="/courses/8770xte200en/digest.html">精华长文</a><a href="/courses/8770xte200en/overview.html">教书理解</a><a href="/courses/8770xte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte200en/skills/ovnms-platform-installation.html">OmniVista 8770 平台安装（服务器 + 客户端 + 补丁 + 首连）</a><a href="/courses/8770xte200en/skills/ovnms-node-onboarding.html">OmniVista 8770 节点接入（OXE 注册同步 + SSH 安全 + OXO Connect 纳管）</a><a href="/courses/8770xte200en/skills/ovnms-user-provisioning.html">OmniVista 8770 用户开通（Profile / Meta profile / 批量 / WBM）</a><a href="/courses/8770xte200en/skills/ovnms-alarm-management.html">OmniVista 8770 告警管理（接入 + 定制出口 + SNMP Proxy）</a><a href="/courses/8770xte200en/skills/ovnms-security-administration.html">OmniVista 8770 安全管理（密码策略 / 管理员与组 / 访问控制 / TLS）</a><a href="/courses/8770xte200en/skills/ovnms-audit-compliance.html">OmniVista 8770 审计合规（Audit 启用 / mao 日志 / 检索导出）</a><a href="/courses/8770xte200en/skills/ovnms-backup-restore.html">OmniVista 8770 备份恢复（8770 数据库 rehosting + OXE swinst 全链）</a><a href="/courses/8770xte200en/skills/ovnms-license-management.html">OmniVista 8770 许可管理（锁结构 / 查询 / 更新 / 受限模式）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte200en/skills/ovnms-reports-scheduling.html">OmniVista 8770 报表与任务编排（Reports / Scheduler / 自动维护）</a><a href="/courses/8770xte200en/skills/ovnms-maintenance-operations.html">OmniVista 8770 维护运营（诊断工具 / NMC 服务与日志）</a><a href="/courses/8770xte200en/skills/ovnms-topology-views.html">OmniVista 8770 Topology 视图（标准视图 / 自定义视图 / 告警重定向）</a><a href="/courses/8770xte200en/skills/ovnms-oxe-ui-efficiency.html">OmniVista 8770 OXE 配置界面高效操作（搜索/冻结/网格/导入导出）</a><a href="/courses/8770xte200en/skills/ovnms-network-drive.html">OmniVista 8770 网络驱动器映射（报表与备份落网络存储）</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte200en/index.html">omnivista-8770-nms（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte200en/index.html">8770XTE200EN</a><span>/</span><span aria-current="page">OmniVista 8770 审计合规（Audit 启用 / mao 日志 / 检索导出）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OmniVista 8770 审计合规（Audit 启用 / mao 日志 / 检索导出）</h1></div><dl><div><dt>Skill ID</dt><dd>ovnms-audit-compliance</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OmniVista 8770 审计合规（Audit 启用 / mao 日志 / 检索导出）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Browse to nmc &gt; OmniVista 8770 &gt; nms &gt; Service &gt; AuditServer ... Audit process Validate the check box to enable the Audit application"（p426）
+"The rsh command converts the /DHS3data/mao/mao_hdet file ... into the text file /DHS3data/mao/list_fhdet.txt"（p427）
+"2011/09/20 16:33:22 CREATE Subscriber 101 31004 (nms|adminnmc)"（p428）
+"The search options set up by default don't work. Erase all search entries and create the following entry: PbxName Not Empty"（p431）
+"Warning: THIS PART DOES NOT APPLY FOR THE AUDIT INFORMATION ON OMNIVISTA 8770 LOGS"（p433）</p>
+</blockquote>
+<p>出处：8770XTE200EN p416-434（Audit 应用讲义与 How-To）。</p>
+<h2>I — 自述</h2>
+<p>审计能力=让 OXE 上的管理操作留下"谁在何时改了什么"的痕迹，并在 8770 侧检索、导出、出报告。三个边界先行：</p>
+<ul>
+<li>只审计 OXE：OXO/OpenTouch 的管理操作不进 Audit 应用（应用 Limits 原文 Only for OmniPCX Enterprise）</li>
+<li>8770 自身 log（客户端登录、Accounting/Reports 应用访问）只可查看，不适用右键导出功能</li>
+<li>双侧开关缺一不可：8770 侧 AuditServer + OXE 侧 Process audit</li>
+</ul>
+<p><strong>启用清单（双侧）</strong></p>
+<ul>
+<li>8770 侧：Administration 应用 nmc &gt; OmniVista 8770 &gt; nms &gt; Service &gt; AuditServer &gt; Specific 页勾 Audit process；同页配审计记录保留天数、导出 CSV 寿命与 Keep one backup</li>
+<li>OXE 侧（Configuration 应用选 OXE）：Data Collection 页勾 Process audit；Software download 页填 mtcl 维护账号（rsh 执行 list_fhdet 转换 mao_hdet 用）；Connectivity 页勾 Secure Access for System Management（把 8770 管理员名记入 OXE 的 mao_hist）</li>
+<li>同步：Configuration 或 Audit 应用右键 OXE &gt; Synchronization &gt; Audit information（日同步自动取回）</li>
+</ul>
+<p><strong>OXE 侧三日志（痕迹本体）</strong></p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>文件</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/usr3/mao/mao_log_hist</td>
+<td>8770 管理员连接记录（nms|账户名）</td>
+</tr>
+<tr>
+<td>/usr3/mao/mao_hist</td>
+<td>管理操作行：时间 + CREATE/UPDATE/ACTION + 对象 + (来源|操作者)</td>
+</tr>
+<tr>
+<td>/usr3/mao/mao_hdet &gt; list_fhdet.txt</td>
+<td>rsh 转换的操作明细文本（8770 检索用）；/var/log/shell.log 另存命令历史</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>检索与导出（8770 侧）</strong></p>
+<ul>
+<li>Operations 页：双击行看明细；广播场景 User 字段显示源节点（如 1.2）</li>
+<li>System 页：默认搜索条件无效（产品行为），先清空全部默认条目再建 PbxName Not Empty</li>
+<li>8770 log 页：选服务器看客户端登录登出与 Accounting/Reports 应用访问（先开关一遍应用再查）</li>
+<li>导出：右键 OXE &gt; Export——Immediate on local drive（目录任选）或 Scheduled on Server（固定 8770\Client\data\audit）；粒度 History（13 个主参数）或 Detail（追加 Attributes 全量）；CSV 打开建议文本编辑器</li>
+<li>报告：Reports 应用 Audit &gt; Predefined Reports &gt; Detailed Reports 复制到个人文件夹 &gt; Generate Report（附加过滤可空）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>审计实验</strong>（p425-434）：</p>
+<ol>
+<li>AuditServer 勾 Audit process 并配保留参数</li>
+<li>OXE 侧勾 Process audit、填 mtcl、勾 Secure Access</li>
+<li>分别用 AdminNmc 与 Expert1 在配置界面做增删改</li>
+<li>OXE 上查 mao_hist 出现 (nms|adminnmc) 标注的 CREATE Subscriber 行</li>
+<li>右键 Audit information 同步后，Audit 应用 Operations 页见操作记录</li>
+<li>System 页清默认条件建 PbxName Not Empty，查出数据</li>
+<li>8770 log 页开关一遍应用后看到登录记录</li>
+<li>导出 CSV 落盘（Immediate 或 Scheduled 两模式各验一次）；Reports 复制 Detailed Reports 生成报告</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：等保审计取证；追查"谁改了配置"；客户要 OXO 操作审计；审计数据导出归档；定期审计报告。</p>
+<p>语言信号：Audit / AuditServer / Process audit / mao_hist / mao_hdet / list_fhdet / 审计同步 / PbxName Not Empty / History Detail / 8770 log / Detailed Reports / 操作留痕。</p>
+<p>与相邻能力区分：登录认证与密码锁定（安全管理能力）；告警与故障（告警管理能力）；本能力管"事后取证与留痕"。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户审计保留期要求（天数）、mtcl 凭据（现场已自定义）、Secure access 可开启确认。</p>
+<ol>
+<li>8770 侧启用 AuditServer 并按客户要求配保留天数。完成标准：Audit 应用可打开</li>
+<li>OXE 侧三开关：Process audit + mtcl + Secure Access。完成标准：三项勾选保存</li>
+<li>做一次已知操作（建/改/删用户）。完成标准：mao_hist 出现带操作者标注的记录行</li>
+<li>右键 Audit information 同步。完成标准：Operations 页检索到该操作</li>
+<li>System 页建 PbxName Not Empty 查询。完成标准：返回该 OXE 的审计数据</li>
+<li>8770 log 页核对客户端登录与应用访问。完成标准：登录登出可见</li>
+<li>导出：Immediate（自选目录）或 Scheduled（固定目录）+ History/Detail 选粒度。完成标准：CSV 落盘可打开</li>
+<li>计划报告：Reports 复制 Detailed Reports &gt; Schedule（挂入报表任务体系）。完成标准：计划任务执行成功</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户要 OXO/OpenTouch 操作审计 → 判停说明边界（Audit 仅 OXE），给替代方案再立项</li>
+<li>System 页查出空结果 → 先清默认条件（默认条件无效是产品行为），不是丢数据</li>
+<li>要导出 8770 自身 log → 导出功能不适用，只能页面查看或走服务器文件</li>
+<li>mao_hist 无管理员名 → 查 Connectivity 页 Secure Access 是否勾选</li>
+</ul>
+<p>输出契约：审计启用核对单 + mao 日志样例 + 检索/导出记录 + 审计报告计划。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>审计对象仅 OXE；OXO/OpenTouch 管理操作不留痕于 Audit 应用</li>
+<li>rsh/mtcl 凭据明文通道是 OXE 侧既有口径；生产网络隔离与凭据轮换按客户基线</li>
+<li>保留天数与导出 CSV 寿命须符合客户合规要求；NmcArchive 文件夹清理（磁盘/目录双阈值）在维护运营卡覆盖</li>
+<li>审计的批量报告分发（邮件/计划）复用 Reports 体系，见 reports-scheduling 卡</li>
+<li>Secure Access for System Management 同时影响 OXE 侧访问白名单（安全管理卡），变更需联动评估</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte200en/skills/ovnms-security-administration.html">OmniVista 8770 安全管理（密码策略 / 管理员与组 / 访问控制 / TLS）</a>、<a href="/courses/8770xte200en/skills/ovnms-reports-scheduling.html">OmniVista 8770 报表与任务编排（Reports / Scheduler / 自动维护）</a></p><p class="source-page">能力 ID：cap.ovnms.audit-compliance · 来源：8770XTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 — Setup & Network Management (Participant's Guide, Edition 47) | edition: Edition 47 | pages: 705 页 -->

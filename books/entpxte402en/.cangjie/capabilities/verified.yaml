@@ -1,0 +1,660 @@
+schema_version: 1
+bundle_id: bundle.oxe-loading
+book:
+  title: OmniPCX Enterprise — 系统装载 (Participant's Guide, Edition 12)
+  author: ALE Training Services
+  source_pack: ENTPXTE402EN.pdf (415 pages)
+  baseline_tag: OXE R101.1 MD4 / S.O.T. / Cloud Connect / OPEX PoD / RLAB
+entry:
+  name: oxe-loading
+  description: 'OmniPCX Enterprise（OXE）软件加载与云许可交付支持：用 S.O.T. 部署工具完成 CS 从物理板卡、虚机到 GAS 一体机的全形态软件加载与补丁/多版本管理，OXE-V 虚拟化选型与虚机交付，GAS 加载与后安装，Cloud Connect 云连接（FTR/RTR），OPEX/Purple on Demand 订阅许可与 LMS 同步。
+    适用于 OXE 软件交付、云注册与订阅许可的配置、排障与验收问答；OXE 数据库业务配置（用户/路由/编号计划）不在原书范围内（见 out_of_scope）。
+
+    '
+  core_principles:
+  - 一切软件交付围绕 S.O.T.：一台自带 DHCP/FTP 服务的虚机，Standalone 加载物理机、Hosted 加载虚机；一次只允许一个部署任务
+  - 双分区是升级安全模型：第二版本不停话音装好、切换才重启；静态补丁停话音或装 inactive，动态补丁可热装但必须在静态之后；补丁累积包含此前全部修正
+  - 虚拟化平台决定许可路径：FlexLM+加密狗仅 ESXi/KVM；Hyper-V/Nutanix/AWS 必须 Cloud Connect；FlexLM 与 RTR 两种模式互斥
+  - FTR 是云服务门禁：swk 含 CCSID、电话应用已启动、连通性全绿才能注册；备机禁做 FTR；panic 后 PIN 是唯一出路
+  - RTR 与 LMS 都靠对账维持许可：RTR 资格期 30 天起、OK 加 0.5 天/NOK 减 1 天；OXE 每 4 小时与 LMS 对账，失联或超订会进 panic 逐渐锁死系统
+  - 实验环境口径：教材密码、账号与网段仅限实验；加载 completed 之后角色寻址、许可恢复、业务配置是独立的后置清单
+  out_of_scope:
+  - OXE 数据库业务配置（用户创建、编号计划、路由、话机开通）——原书指向 Starter 课程
+  - 虚拟化设计权威细节（TBE043）、AWS 部署（TC3142en-Ed01）、GAS 安装权威步骤（TC3138）
+  - N3 以下版本迁移的执行细节（TC3104en-Ed08 指南）
+  - 生产安全基线加固与容量规划方法论（原书仅引用 CIS 条目一次，不展开）
+  stop_conditions:
+  - 需要建用户/配路由/做编号计划 → 明确超出本书范围，指向 Starter 课程，不以加载口径搪塞
+  - 虚拟化平台版本不在 Ed12 矩阵内 → 以 TBE043 最新版复核，不按教材矩阵硬答
+  - RTR 失败扣减口径争议 → 按 needs-review nr-01 双口径如实说明，监控按保守口径设计
+  - 涉及 RLAB 实验环境搭建与节点口令 → 参考 book/overview 环境区背景并标注实验口径，不虚构生产配置
+router_entry:
+  name: oxe-loading-router
+  description: 'OXE 系统装载 能力路由入口：按用户意图分发到 12 张能力卡——SOT 安装、CS 加载、补丁与多版本、虚拟化交付、GAS 交付、云连接、RTR 许可、OPEX 订阅八个 promoted 能力，
+    以及分发器模式、SOT 媒体与项目、GAS 运维、Fleet Dashboard 四张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.entload.sot-installation
+  revision: 1
+  status: active
+  slug: entload-sot-installation
+  title: S.O.T. 部署工具的安装、初始化、更新与 Template Factory
+  importance: critical
+  importance_rationale: 对应 task-02/03/04，全书工具主线第一步；SOT 装不起来则一切加载场景无从谈起
+  one_liner: ISO 内含 OVA、Standalone 加物理机 Hosted 加虚机；首连强制改密设口令短语；更新仅限同主版本；Template Factory 可降级启用
+  intents:
+  - 部署 SOT 虚拟机
+  - 更新 SOT 版本
+  - 启用 Template Factory
+  - SOT 首连初始化
+  - deploy SOT virtual machine
+  keywords:
+  - SOT
+  - Standalone
+  - Hosted
+  - Template Factory
+  - 降级模式
+  - ova
+  - setIp
+  - setKb
+  - SOT update
+  - 子网
+  - 口令短语
+  - TC2456
+  also_read:
+  - entload-sot-media
+  card: cards/entload-sot-installation.md
+  frontmatter:
+    description: '部署并初始化 S.O.T. 部署工具（Standalone/Hosted 两模式、首连改密与口令短语、网络规则、zip+MD5 更新、Template Factory 标准与降级模式）。
+      当用户要"装 SOT/更新 SOT/建虚机模板/降级模式/忘了 SOT 密码"时使用。不适用于往 SOT 传媒体与建加载项目（媒体与项目卡）；跨主版本更新被禁止。
+
+      '
+    tags:
+    - procedure
+    - sot
+    - deployment
+    - template-factory
+  source_evidence:
+  - source_id: src-entpxte402
+  - location: p22-48, p155-165, p189-203
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-02/03/04，工具主线前提
+- capability_id: cap.entload.cs-loading
+  revision: 1
+  status: active
+  slug: entload-cs-loading
+  title: OXE 呼叫服务器单版本全加载与加载后初始化
+  importance: critical
+  importance_rationale: 对应 task-06，核心交付动作，其余加载场景由此派生；"completed 之后还差什么"是最高频疑问
+  one_liner: 网络引导（BOOTP/DHCP）经 TFTP 与 FTP 完成安装；空盘才自动装、已装盘须 grubboot ETHER；加载后密码九条规则与角色寻址/许可是独立后置清单
+  intents:
+  - 全新安装 OXE 呼叫服务器
+  - 加载卡在等待目标机
+  - 加载后初始化清单
+  - 设 OXE 账户密码
+  - load full release on OXE
+  keywords:
+  - grubboot ETHER
+  - BOOTP
+  - startup.txt
+  - 单版本
+  - Standard Installation
+  - RUNTEL
+  - autostart
+  - siteid
+  - 角色寻址
+  - 密码规则
+  - aging
+  - V24
+  also_read:
+  - entload-sot-media
+  card: cards/entload-cs-loading.md
+  frontmatter:
+    description: '用 SOT 完成 OXE 呼叫服务器单版本全加载（网络引导时序、启动相位链、grubboot/BIOS 强制引导）与加载后初始化（键盘、四账户密码九条规则、aging、角色寻址、许可恢复、国家码、板卡上线）。
+      当用户要"装 OXE/加载不动/设密码/加载后还要做什么"时使用。不适用于多版本与补丁（补丁与多版本卡）；数据库业务配置在书外。
+
+      '
+    tags:
+    - procedure
+    - loading
+    - oxe
+    - onboarding
+  source_evidence:
+  - source_id: src-entpxte402
+  - location: p49-92
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-06，核心交付动作
+- capability_id: cap.entload.patch-management
+  revision: 1
+  status: active
+  slug: entload-patch-management
+  title: OXE 多版本加载、分区切换与静态/动态补丁管理
+  importance: critical
+  importance_rationale: 对应 task-07/08，升级不停机的关键能力与日常维护最高频动作；维护窗口口径（静态=停机、动态=热装）决定客户沟通
+  one_liner: 双分区装第二版本不打断话音、切换才重启；静态补丁停话音或装 inactive、动态补丁必须排在静态之后；补丁累积包含全部此前修正
+  intents:
+  - 多版本加载与分区切换
+  - 安装静态/动态补丁
+  - 升级回退预案
+  - 补丁维护窗口评估
+  - install patch on OXE
+  keywords:
+  - inactive partition
+  - 静态补丁
+  - 动态补丁
+  - N420536
+  - siteid
+  - Duplicate all
+  - Switch partition
+  - Switch time
+  - Switch back
+  - downstat
+  - 回退
+  - ver2cho
+  also_read:
+  - entload-cs-loading
+  card: cards/entload-patch-management.md
+  frontmatter:
+    description: 'OXE 的多版本加载、分区复制与切换，静态/动态补丁安装双场景（active 停话音/inactive 先复制），版本命名读法（N420536a、siteid 全串）与回退预案。
+      当用户要"升级/打补丁/切分区/回退/排维护窗口"时使用。不适用于首次安装（CS 加载卡）；N3 以下迁移禁用多版本机制。
+
+      '
+    tags:
+    - procedure
+    - patch
+    - multi-version
+    - upgrade
+    - oxe
+  source_evidence:
+  - source_id: src-entpxte402
+  - location: p50-110
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-07/08，升级与日常维护主体
+- capability_id: cap.entload.oxe-v-deployment
+  revision: 1
+  status: active
+  slug: entload-oxe-v-deployment
+  title: OXE-V 虚拟化：平台选型、许可路径与 OXE/OMS 虚机交付
+  importance: critical
+  importance_rationale: 对应 task-10/11/12，全书代价最高的架构决策（平台锁死许可路径）叠加虚机交付主路径
+  one_liner: 平台矩阵决定许可路径（FlexLM 仅 ESXi/KVM，其余强制 Cloud Connect 且与 RTR 互斥）；OXE 规格模板四档；OMS 每台 120 通道、每 OXE 240 台
+  intents:
+  - 选择虚拟化平台与许可路径
+  - 生成并加载 OXE 虚机
+  - 加载 OMS 媒体网关虚机
+  - OMS 容量与许可计算
+  - deploy OXE-V virtual machine
+  keywords:
+  - OXE-V
+  - ESXi
+  - Hyper-V
+  - KVM
+  - Nutanix
+  - AWS
+  - FlexLM
+  - dongle
+  - OMS
+  - Lock 384
+  - Lock 385
+  - OVF generation
+  - virsh
+  - IPXE
+  - omsconfig
+  also_read:
+  - entload-sot-installation
+  - entload-patch-management
+  card: cards/entload-oxe-v-deployment.md
+  frontmatter:
+    description: 'OXE-V 虚拟化的选型与交付：五类平台矩阵与版本口径（含 Hyper-V 代次）、许可双路径与互斥铁律、OXE VM 生成加载（ESXi .ova 线与 KVM 模板线）、OMS 虚机交付与容量许可（120 通道/240 台/Lock 384-385）。
+      当用户要"选虚拟化方案/装 OXE 虚机/装 OMS/算媒体容量"时使用。不适用于 GAS 一体机（GAS 交付卡）；平台演进以 TBE043 为准。
+
+      '
+    tags:
+    - decision
+    - procedure
+    - oxe-v
+    - virtualization
+    - licensing
+  source_evidence:
+  - source_id: src-entpxte402
+  - location: p131-154, p166-188, p204-218
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-10/11/12，架构决策+虚机交付
+- capability_id: cap.entload.gas-delivery
+  revision: 1
+  status: active
+  slug: entload-gas-delivery
+  title: GAS 通用设备服务器：硬件前置、软件加载与后安装向导
+  importance: critical
+  importance_rationale: 对应 task-13/14，一体机形态交付主路径；硬件前置表与后安装向导字段是开局必经
+  one_liner: BP 自备硬件按前置表（360GB/硬件 RAID/50 并发 WebRTC 上限）；BootDVD+GAS iso 经 SOT 加载；后安装向导六段含 FlexLM 与 WebRTC GW 参数
+  intents:
+  - 加载 GAS 服务器
+  - 执行 GAS 后安装向导
+  - 配置 FlexLM 许可
+  - 配置 WebRTC 网关参数
+  - install Generic Appliance Server
+  keywords:
+  - GAS
+  - Rocky
+  - BootDVD
+  - oxeswspostinst.bin
+  - 后安装
+  - FlexLM
+  - ALU-ID
+  - .ice
+  - '27000'
+  - PBXID
+  - TURN
+  - PXE
+  - 硬件 RAID
+  also_read:
+  - entload-gas-ops
+  - entload-sot-media
+  card: cards/entload-gas-delivery.md
+  frontmatter:
+    description: 'GAS 一体机的完整交付：硬件前置表逐格核对、SOT 加载（BIOS 取 MAC、PXE 引导）、后安装向导六段（国家码/OXE 参数/冗余/可选组件/WebRTC GW 参数/许可）、FlexLM 许可安装与 OXE 对接（端口 27000）。
+      当用户要"装 GAS/填后安装向导/配 FlexLM/WebRTC 网关参数"时使用。不适用于 GAS 日常运维（GAS 运维卡）；RAINBOW_PBXID 必须用 Rainbow 云正式值。
+
+      '
+    tags:
+    - procedure
+    - gas
+    - deployment
+    - flexlm
+  source_evidence:
+  - source_id: src-entpxte402
+  - location: p219-282
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-13/14，一体机交付主路径
+- capability_id: cap.entload.cloud-connect
+  revision: 1
+  status: active
+  slug: entload-cloud-connect
+  title: Cloud Connect 云连接：网络前提、FTR 首次注册与 PIN 恢复
+  importance: critical
+  importance_rationale: 对应 task-16/17，一切云服务的门禁；checkCloudConfig 与 CCTool 是排障唯一直接入手点
+  one_liner: 出站 443 XMPP/WSS+80 SOCKS5 连 connect2.opentouch.com；FTR 用 swk 里的 CCSID 换永久凭证；备机禁做；panic 后 6 位 PIN（5 天有效）是唯一出路
+  intents:
+  - 配置 DNS 代理并验证云连通性
+  - 执行 FTR 首次注册
+  - FTR 失败排障
+  - PIN 恢复 panic
+  - perform First Time Registration
+  keywords:
+  - Cloud Connect
+  - FTR
+  - CC-SUITE-ID
+  - CCSID
+  - checkCloudConfig
+  - XMPP
+  - SOCKS5
+  - connect2.opentouch.com
+  - PIN code
+  - panic
+  - helpdesk
+  - XMPP_CONNECTED
+  - '6214'
+  - '6207'
+  also_read:
+  - entload-rtr-licensing
+  - entload-pod-licensing
+  card: cards/entload-cloud-connect.md
+  frontmatter:
+    description: 'OXE 接入 Cloud Connect 的完整链路：netadmin 配 DNS/代理、checkCloudConfig.sh 连通性验证（443/80/53）、FTR 自动与手动执行、CC-SUITE-ID 身份体系、备机与 PCS 边界、FTR with PIN panic 恢复。
+      当用户要"连云/FTR 失败/查 Suite Id/panic 恢复/放行防火墙"时使用。不适用于 RTR 状态监控（RTR 卡）；LMS 订阅在订阅许可卡。
+
+      '
+    tags:
+    - procedure
+    - cloud-connect
+    - ftr
+    - troubleshooting
+  source_evidence:
+  - source_id: src-entpxte402
+  - location: p283-301, p310-331
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-16/17，云服务门禁
+- capability_id: cap.entload.rtr-licensing
+  revision: 1
+  status: active
+  slug: entload-rtr-licensing
+  title: RTR 许可开关：资格期状态机、事件监控与 FlexLM 互斥
+  importance: high
+  importance_rationale: 对应 task-18，dongle-less 许可核心；"Call your administrator"与 Duplicated 是高危现场场景
+  one_liner: 每日应答 OK 加 0.5 天/NOK 减 1 天、30 天归零进 panic；Dashboard 四级状态加 Duplicated 双扣；FlexLM 与 RTR 互斥
+  intents:
+  - 启用 RTR 许可
+  - 解读资格期与 Dashboard 状态
+  - 处置 Duplicated 告警
+  - RTR 事件排障
+  - monitor Right To Run status
+  keywords:
+  - RTR
+  - Qualifying Period
+  - 资格期
+  - dongle-less
+  - Panic Flag
+  - Soon Blocked
+  - Duplicated
+  - Force RTR
+  - '647'
+  - '648'
+  - '650'
+  - FlexLM 互斥
+  also_read:
+  - entload-cloud-connect
+  - entload-fleet-dashboard
+  card: cards/entload-rtr-licensing.md
+  frontmatter:
+    description: 'RTR 许可开关的启用与运维：资格期数值律（30 天/+0.5/-1）、Fleet Dashboard 四级状态与通知阈值、事件码 647-651、Duplicated 双扣与 PIN 恢复、FlexLM 互斥核对、Save/Restore 持久性。
+      当用户要"开 RTR/查资格期/话机显示 Call your administrator/Duplicated/事件码"时使用。不适用于 FTR 执行与连通性（云连接卡）。
+
+      '
+    tags:
+    - procedure
+    - rtr
+    - licensing
+    - monitoring
+  source_evidence:
+  - source_id: src-entpxte402
+  - location: p302-308, p331-337
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-18，dongle-less 许可核心
+- capability_id: cap.entload.pod-licensing
+  revision: 1
+  status: active
+  slug: entload-pod-licensing
+  title: OPEX / Purple on Demand：订阅许可、LMS 同步、panic 时间线与 C2P 转换
+  importance: critical
+  importance_rationale: 对应 task-19/20，OPEX 模式交付与排障主力场景；计数不一致即 panic 的对账判据是运维生命线
+  one_liner: lock 431 开 OPEX、24 项订阅按 Unitary/On activation/By threshold 消耗；OXE 每 4 小时与 LMS 对账，失联 30 天或超订会进 panic；C2P 下单即定局
+  intents:
+  - 下载并安装 PoD 许可
+  - 核查 OXE 与 LMS 许可同步
+  - 配置订阅消耗与阈值
+  - 评估 C2P 转换
+  - configure Purple on Demand licensing
+  keywords:
+  - OPEX
+  - PoD
+  - LMS
+  - lmsagent
+  - lock 431
+  - OPEX activation
+  - spadmin
+  - Voice Enterprise
+  - Room
+  - C2P
+  - MyPortal
+  - panic mode
+  - '4059'
+  - '652'
+  - '654'
+  also_read:
+  - entload-cloud-connect
+  card: cards/entload-pod-licensing.md
+  frontmatter:
+    description: 'OPEX/Purple on Demand 订阅许可全链条：MyPortal 下载许可（项目须 Active）、swk 三件套（CCSID/lock 431=1/重启）、三种消耗类型与许可映射规则、spadmin 对账（lms/oxe 两列必须一致）、panic 时间线（超订 15/45 天、失联 30 天）、C2P 转换范围与件号。
+      当用户要"转 OPEX/装 PoD 许可/对账/订阅超了/许可拒绝"时使用。不适用于 FTR/RTR 链路（云连接与 RTR 卡）。
+
+      '
+    tags:
+    - procedure
+    - opex
+    - pod
+    - licensing
+    - troubleshooting
+  source_evidence:
+  - source_id: src-entpxte402
+  - location: p350-408
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-19/20，OPEX 交付与排障主力
+- capability_id: cap.entload.distributor-loading
+  revision: 1
+  status: active
+  slug: entload-distributor-loading
+  title: Easy Installation 分发器模式：无 SOT 环境的本地加载
+  importance: high
+  importance_rationale: 对应 task-09，客户现场约束下的唯一官方替代路径；单流程单场景，路由可达即可
+  one_liner: iso/zip 传到 /tmpd，OXE 用 swinst 9-10 自己当分发器解包安装；全版本/静态补丁强制 inactive；Rload 解包物要 9-7 手动清理
+  intents:
+  - 无 SOT 环境加载版本
+  - 分发器模式装补丁
+  - 清理 Rload 目录
+  - local load as distributor
+  keywords:
+  - Distributor
+  - 分发器
+  - tmpd
+  - Rload
+  - swinst
+  - Local load
+  - Cleaning operation
+  - downstat
+  also_read:
+  - entload-patch-management
+  - entload-cs-loading
+  card: cards/entload-distributor-loading.md
+  frontmatter:
+    description: '客户现场不允许部署 SOT 时的替代加载：信任主机、/tmpd 传输、swinst 2-9-10 分发器菜单、分区强制规则（全版本/静态补丁进 inactive）、Rload 与 /tmpd 清理方向、动态补丁 downstat 收尾。
+      当用户要"现场没条件架 SOT 怎么装/Rload 占满磁盘"时经路由使用。常规加载走 CS 加载与补丁卡。
+
+      '
+    tags:
+    - procedure
+    - distributor
+    - loading
+    - oxe
+  source_evidence:
+  - source_id: src-entpxte402
+  - location: p111-130
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 单场景替代路径，路由可达即可
+- capability_id: cap.entload.sot-media
+  revision: 1
+  status: active
+  slug: entload-sot-media
+  title: SOT 媒体传输与加载项目配置（公共动作）
+  importance: medium
+  importance_rationale: 对应 task-05，所有加载场景的公共前置；作为独立触发频率低但被各加载卡引用
+  one_liner: 媒体三库（Windows/NFS/本地）、FTP 或 SFTP 2222 传文件、Refresh 后 Declare；Easy 向导与 Expert 独立管理两种项目模式
+  intents:
+  - 向 SOT 传输软件媒体
+  - 声明媒体与许可文件
+  - 创建加载项目
+  - declare media in SOT
+  keywords:
+  - Declare media
+  - upload
+  - SFTP
+  - Greenfield
+  - Expert mode
+  - Easy mode
+  - OVF generation
+  - MAC
+  - OPS
+  also_read: []
+  card: cards/entload-sot-media.md
+  frontmatter:
+    description: 'SOT 的媒体管理与加载项目公共配置：三库与格式语义、FTP/SFTP 2222 传输通道、Refresh/Declare 流程、Easy/Expert 两种项目模式、OVF generation 与 MAC 规则、许可随项目部署。
+      当用户要"传版本给 SOT/声明媒体/建项目"时经路由使用。SOT 本身部署在 SOT 安装卡；各加载场景差异字段在对应加载卡。
+
+      '
+    tags:
+    - procedure
+    - sot
+    - media
+  source_evidence:
+  - source_id: src-entpxte402
+  - location: p33-34, p84-95, p101-102
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 公共前置动作，路由可达即可
+- capability_id: cap.entload.gas-ops
+  revision: 1
+  status: active
+  slug: entload-gas-ops
+  title: GAS 日常运维：版本、备份、host 升级与 UPS
+  importance: medium
+  importance_rationale: 对应 task-15，售后日常运维域；命令三件套为主，独立触发频率低于交付场景
+  one_liner: gasversion 查五层版本、gasbackup 出 tar.gz+PostInstall.cfg、全新安装加备份等于免后安装；host 升级是全系统停机窗口；UPS 默认 30% 关机
+  intents:
+  - 查 GAS 组件版本
+  - 备份恢复 GAS
+  - 升级 GAS 宿主系统
+  - 配置 UPS 监控
+  - backup and upgrade GAS
+  keywords:
+  - gasversion
+  - gasbackup
+  - uhwconf
+  - gas-rocky-update.sh
+  - NUT
+  - UPS
+  - 备份
+  - 静默恢复
+  also_read:
+  - entload-gas-delivery
+  card: cards/entload-gas-ops.md
+  frontmatter:
+    description: 'GAS 交付后的日常运维：gasversion/gasbackup/uhwconf 三件套、备份归档内容与"全新安装+备份=免后安装"等式、host Rocky 升级两条路（SOT 项目或 gas-rocky-update.sh）、UPS 的 NUT 监控（默认 30% 阈值、5 秒轮询）。
+      当用户要"备份 GAS/升 GAS 版本/断电保护"时经路由使用。GAS 初装与后安装在 GAS 交付卡。
+
+      '
+    tags:
+    - reference
+    - gas
+    - maintenance
+  source_evidence:
+  - source_id: src-entpxte402
+  - location: p236-241, p275-282
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 运维命令域，路由可达即可
+- capability_id: cap.entload.fleet-dashboard
+  revision: 1
+  status: active
+  slug: entload-fleet-dashboard
+  title: Fleet Dashboard 云端机队服务：Inventory、Offer、远程控制台与软件更新
+  importance: medium
+  importance_rationale: 云端远程运维服务域；偏"查资源与云端动作"，RTR 数值判读已在 RTR 卡，路由可达即可
+  one_liner: 五服务（Inventory/Get offer/Push offer/远程控制台/软件更新）；控制台单会话 1 分钟超时且入 shell.log 审计；更新只管传输、切换归 BP
+  intents:
+  - 云端盘点 OXE 资产
+  - 推取许可与 offer 文件
+  - 使用远程控制台
+  - 云端下发软件更新
+  - Fleet Dashboard services
+  keywords:
+  - Fleet Dashboard
+  - Inventory
+  - offer
+  - remote console
+  - shell.log
+  - Software update
+  - cdn-oxe-sw-update
+  - SPS 合同
+  - technical advanced
+  also_read:
+  - entload-rtr-licensing
+  card: cards/entload-fleet-dashboard.md
+  frontmatter:
+    description: 'Fleet Dashboard 云端机队管理：五服务开关与用途、动作状态字段三段读法（D/I/A/S 与 P/O/K/F）、远程控制台三约束（单会话/1 分钟超时/shell.log 审计）、软件更新前提（SPS 合同+technical advanced+cdn 域名白名单）。
+      当用户要"云端看资产/远程进 OXE/云端更版本"时经路由使用。RTR 状态数值判读在 RTR 卡。
+
+      '
+    tags:
+    - reference
+    - fleet-dashboard
+    - cloud
+    - maintenance
+  source_evidence:
+  - source_id: src-entpxte402
+  - location: p310, p338-348
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 云端服务域，路由可达即可

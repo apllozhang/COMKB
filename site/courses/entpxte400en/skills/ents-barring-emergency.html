@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>外呼闭锁与紧急呼叫通知</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Starter</h2><p>Edition 12 · 821 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte400en/index.html">课程首页</a><a href="/courses/entpxte400en/digest.html">精华长文</a><a href="/courses/entpxte400en/overview.html">教书理解</a><a href="/courses/entpxte400en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte400en/skills/ents-first-login-hardening.html">OXE 首登加固（四账户与密码治理）</a><a href="/courses/entpxte400en/skills/ents-cs-network-firewall.html">Call Server IP 寻址与内部防火墙</a><a href="/courses/entpxte400en/skills/ents-db-license.html">空数据库创建与 OPS 许可管理</a><a href="/courses/entpxte400en/skills/ents-media-gateway-deployment.html">媒体网关上架（GD4/OMS/XL）</a><a href="/courses/entpxte400en/skills/ents-user-terminal-provisioning.html">用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）</a><a href="/courses/entpxte400en/skills/ents-numbering-cos.html">编号计划与 COS 管理</a><a href="/courses/entpxte400en/skills/ents-call-processing.html">呼叫处理业务域（语音指南/话务台/Entity/计时器）</a><a href="/courses/entpxte400en/skills/ents-sip-trunk.html">公共 SIP 中继开通与弹性</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte400en/skills/ents-system-start-stop.html">OXE 系统启停与 autostart 管理</a><a href="/courses/entpxte400en/skills/ents-time-sync.html">OXE 时间同步（NTP/chrony）</a><a href="/courses/entpxte400en/skills/ents-voicemail-4645.html">OmniMessage 4645 语音邮件与邮件通知</a><a href="/courses/entpxte400en/skills/ents-barring-emergency.html">外呼闭锁与紧急呼叫通知</a><a href="/courses/entpxte400en/skills/ents-backup-maintenance.html">数据库备份恢复与维护排障工具箱</a><a href="/courses/entpxte400en/skills/ents-legacy-trunks-umc.html">传统中继（T0/T2）与 UMC 云管理</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte400en/index.html">oxe-starter（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte400en/index.html">ENTPXTE400EN</a><span>/</span><span aria-current="page">外呼闭锁与紧急呼叫通知</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>外呼闭锁与紧急呼叫通知</h1></div><dl><div><dt>Skill ID</dt><dd>ents-barring-emergency</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>外呼闭锁与紧急呼叫（Area、Public COS、紧急通知、Location ID）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"8 Logical discriminators are available for the system • 256 different Real Discriminators can be managed • 64 areas are available … 32 Access Classes Of Service"（p660）
+"THE STATE (NIGHT, DAY, MODE 1, MODE 2) ARE THE ENTITY'S STATE. BY DEFAULT, AN ENTITY IS IN THE STATE NIGHT."（p674）
+"Maximum 100 emergency notifications can be queued (FIFO mode) • Feature available only for stand-alone systems … Maximum 10 devices in the system emergency group"（p683）
+"THE USE OF DIRECT IP LINKS BY THE SYSTEM IS A MANDATORY PREREQUISITE FOR SENDING LOCATION ID."（p693）</p>
+</blockquote>
+<p>出处：ENTPXTE400EN p657-699, p604-607。</p>
+<h2>I — 自述</h2>
+<p>外呼闭锁与紧急通知共用同一套鉴别符/Area 骨架：</p>
+<ol>
+<li><strong>闭锁三要素</strong>：外呼权限=Area（号码分区）×Public COS（32 类，四实体状态列放行矩阵）×Entity 状态的交点检查；用户挂 Public COS、外呼号码落 Area、实体当前态决定放行列</li>
+<li><strong>鉴别符链</strong>：ARS 前缀挂逻辑鉴别符（0-7）→ 实体选择器映射真实鉴别符（0-255，必须已存在才能关联）→ 真实鉴别符规则把号段（如 00/06/07）划入 Area（1-64）</li>
+<li><strong>默认值</strong>：实体默认 Night 态——只开 Day 列不放行是最高频错；默认 Public COS 2 仅 Area 1 全放行</li>
+<li><strong>换 Entity 的连带</strong>：改用户实体会换鉴别符选择器映射，闭锁行为随之变化（p667 Warning）</li>
+<li><strong>紧急通知四要素</strong>：系统参数定紧急 Area（1-64，0=关闭）；紧急号划入该 Area 且 Public COS 放行；紧急组（全系统 1 组、≤10 台 ≥3 行显示的 NOE 商务话机/IPDSP，仅 business 模式，stand-alone only、需 ARS）</li>
+<li><strong>通知与位置</strong>：判定为紧急后组内设备收 Tone 34+弹窗（动作仅 Clear/Snooze 20 秒/Callback），EMG log 查 ≤100 条 FIFO；Location ID（P-ANI）取值源在 NPD（None/NPD/Entity/IP domain 四级），强制前提=系统启用 Direct IP Link</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>外呼闭锁实验</strong>（p669-681，How-To）：</p>
+<ol>
+<li>核对用户 Entity=1、Public COS=2，ARS 前缀逻辑鉴别符=0</li>
+<li>核对实体选择器映射与鉴别符 0-public 的 Area 分区</li>
+<li>基线拨测：紧急/国内/移动/国际全通（全在 Area 1）</li>
+<li>禁国际：把 00 移入 Area 2，拨 0044 被拒</li>
+<li>禁移动：06/07 建入 Area 3，拨 06/07 被拒且国内不受影响</li>
+<li>放行：Access COS 2 的 Area 2/3 四状态全 1（提醒实体默认 Night 态）</li>
+<li>换 COS 与换 Entity 各复测一次，确认权限面与鉴别符面独立生效</li>
+</ol>
+<p><strong>紧急呼叫实验</strong>（p689-699，How-To）：</p>
+<ol>
+<li>紧急号 112/15/17/18 划入 Area 64 且四状态放行，系统参数 Emergency numbers area=64</li>
+<li>基线抓包：呼 112 时 INVITE 无 P-Access-Network-Info</li>
+<li>系统启用 Direct IP Link（强制前提）</li>
+<li>NPD 的 Location ID Source=Entity，实体 1 填位置串</li>
+<li>网关 P_ANI Header 选 Emergency only</li>
+<li>复测呼 112：INVITE 出现 P-ANI 头，普通呼叫不携带</li>
+<li>建紧急组并验证 Tone 34、弹窗、Snooze/Callback/Clear 与 EMG log</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：限制部门/客房外呼；防盗打加固；"明明放行了还打不出去"；紧急事件要通知保安台；合规要求外呼带位置信息；紧急号码显示问题。</p>
+<p>语言信号：闭锁 / barring / Public COS / Access COS / Area / 区号 / 鉴别符 / discriminator / 实体状态 / Night / 紧急呼叫 / emergency / 紧急组 / P-ANI / Location ID / 位置。</p>
+<p>与相邻能力区分：功能级权限（能否呼转/强插）见编号计划与 COS 能力；外呼走的 SIP 中继链路见 SIP 中继能力；紧急号码的 ARS 表配置见 SIP 中继能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户外呼权限矩阵（谁可打哪类号）、紧急事件响应流程（通知谁/用什么设备）、运营商 Location ID 格式要求（如需外发）。</p>
+<ol>
+<li>盘点现状：用户 Entity/Public COS、ARS 前缀鉴别符、实体选择器、Area 分区表。完成标准：四层现状成文</li>
+<li>分区：按号码段设计 Area（如国际/移动/本地分开），真实鉴别符规则先行建好。完成标准：拨测号码落对 Area</li>
+<li>授权：Access COS 按 Area×四状态填放行矩阵，注意实体默认 Night 态。完成标准：各 COS 拨测与权限矩阵一致</li>
+<li>紧急区域：紧急号划专用 Area 并全状态放行，系统参数 Emergency numbers area 启用。完成标准：紧急号在闭锁下仍可拨</li>
+<li>紧急组与位置：建组（≤10 台商务设备），按需配 Location ID 链（Direct Link/NPD/实体值/网关开关）。完成标准：紧急呼叫触发通知，P-ANI 复测达标</li>
+<li>回归：改 COS/换 Entity/切实体状态三组对照拨测。完成标准：行为与设计表一致，紧急通路不受闭锁影响</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>Area 放行了还打不出去 → 先查实体当前状态列（默认 Night，n25），再查用户挂的 COS ID</li>
+<li>想给逻辑鉴别符映射一个新真实鉴别符 → 必须先建真实鉴别符（n26），顺序不可倒</li>
+<li>客户是多节点/PCS 组网要紧急通知 → 停，仅 stand-alone 单节点支持（n31），转组网方案评估</li>
+<li>紧急呼叫不带位置 → 逐项查 Direct IP Link 启用、NPD 取值源、网关 P-ANI 开关（n32），任一缺失即不外发</li>
+</ul>
+<p>输出契约：受控的外呼权限矩阵 + 紧急通知链路（组/区域/位置）+ 拨测记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>实验号段（0044/06/07、紧急 112/15/17/18 的回叫规则）为 ITSP1 模拟器口径（n29），生产按运营商与当地合规</li>
+<li>紧急通知仅 stand-alone、需 ARS、组 ≤10 台 business 模式设备（n31）；客房/坐席/话务台/DSS 设备不收通知</li>
+<li>Location ID 仅 SIP 中继外呼携带；≤N2 异构网络自动弃用但不掉话（p605）</li>
+<li>紧急号码显示管理随运营商而异（n29），Location ID 外发格式按运营商定义</li>
+<li>本卡不覆盖 ACD/坐席级外呼管控</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte400en/skills/ents-sip-trunk.html">公共 SIP 中继开通与弹性</a></p><p class="source-page">能力 ID：cap.ents.barring-emergency · 来源：ENTPXTE400EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Starter (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 821 页 -->

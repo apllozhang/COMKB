@@ -1,0 +1,626 @@
+schema_version: 1
+bundle_id: bundle.oxe-native-encryption
+book:
+  title: OmniPCX Enterprise — Native Encryption (Participant's Guide, Edition 05)
+  author: ALE Training Services
+  source_pack: ENTPXTE421EN.pdf (410 pages)
+  baseline_tag: OXE R101.2 / EEGW ost 12.02 / OMS oms_16.06 / RLAB
+entry:
+  name: oxe-native-encryption
+  description: 'OXE 加密解决方案（FSNE）的交付与运维支持：证书与信任链全生命周期（PKI 三模式、PKCS#7 五步闭环、CTL/TOFU）、系统参数与 lanpbx.cfg 开通、DTLS/SIP TLS 验证排障与维护闭环、
+    SIP TLS 扩展与中继（OTSBC+OXE 双侧）、EEGW/NSP 大容量部署、ABC-F 网络加密、mTLS 双向认证与版本限制处置。适用于 OXE R101.x 信令（DTLS/TLS 1.2/IPSec）与媒体（SRTP）
+    加密的配置、选型、排障与验收问答；企业 PKI 运营治理、EEGW VM 规格等生产化数值不在原书范围内（见 out_of_scope）。
+
+    '
+  core_principles:
+  - 加密由 Call Server 强制执行：NE 开启后 IPMG 与 PCS 一律加密，端点按用户选项逐台加密，trunk/ABC-F 链路两端能力不匹配即退出服务
+  - 信任锚是 CTL：端点用 CTL 验证 CS 身份；获取走 lanpbx.cfg 自动推送（首连 TOFU）或手工预置；CA 更新必须立即重生成 lanpbx+重启+重做 PCS 证书
+  - 私钥尽量不出端点：PKCS#7 路线（CSR 在实体上生成、外部 CA 只回签证书）是推荐主线；PKCS#12 私钥搬家且 SAN 手工易错，仅端点证书场景
+  - 容量分界 1500/15000：内嵌 EGW 承载 1500 并发 DTLS/TLS 会话以内，超出强制 EEGW（每 CS 一台 VM，连带 CS 重启风险）
+  - 媒体加密=信令加密×参数叠加：SIP TLS 只管信令，SRTP 要求系统 NE 与网关 RTP/SRTP 参数同时开启；端到端任何一环缺失即明文
+  - 实验环境口径：教材密码、账号、网段、许可值仅限实验；所有菜单路径为 netadmin/lanpbxbuild/WBM 导航坐标
+  out_of_scope:
+  - 企业 PKI 运营治理（CA 私钥保管、CRL/OCSP 基础设施、审批流程）——原书只有概念页，签发环节在客户 CA 规程
+  - EEGW VM 的 CPU/内存规格与压测口径（S.O.T. 仅按最大用户数 Sizing）；trunk/EEGW 侧抓包位置与 SIP TLS 解密
+  - 真实运营商 TLS 对接参数与 SBC 型号差异（实验用 ITSP2 模拟器与 OTSBC）；SIP TLS with SSM 与 IPv6 场景（不兼容）
+  - 课程评估/RLAB 平台运营等教学基础设施操作细节
+  stop_conditions:
+  - 需要企业 PKI 运营或真实 CA 签发排期 → 明确指向客户 CA 规程，不以实验"秒签"口径搪塞
+  - 站点要求 SIP TLS with SSM、IPv6 或第三方 SIP 话机加密 → 原书明确不兼容，声明边界不硬配
+  - EEGW VM 规格与容量规划超出"最大用户数"口径 → 指向 OXE 安装文档与压测依据
+  - 证书吊销（CRL/OCSP）执行、集中监控/SIEM 集成 → 原书无操作实验，转客户安全方案
+router_entry:
+  name: oxe-native-encryption-router
+  description: 'OXE 加密解决方案能力路由入口：按用户意图分发到 12 张能力卡——证书信任链、加密开通、验证维护、SIP TLS 扩展、SIP trunk、EEGW 部署、ABC-F 网络、mTLS 八个 promoted
+    能力，以及 PCS 接管、XCA 工坊、应用生态加密、实验环境四张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.enc.certificate-trust-chain
+  revision: 1
+  status: active
+  slug: enc-certificate-trust-chain
+  title: 证书与信任链全生命周期
+  importance: critical
+  importance_rationale: 对应 task-01/task-04/task-17，全书一切加密动作的钥匙；PKI 模式与 SAN 策略是交付方案的第一决策点
+  one_liner: PKI 三模式选 PKCS#7 主线（私钥不出机）、CSR 五步闭环、CTL 经 lanpbx/TOFU 或手工预置、CA 更新有连锁义务
+  intents:
+  - 选择 PKI 模式与证书格式
+  - 生成 CSR 并导入签发证书
+  - 规划 CTL 分发与 TOFU
+  - 证书备份与 CA 更新
+  - generate CSR import certificate OXE
+  keywords:
+  - CA
+  - CSR
+  - PKCS#7
+  - PKCS#12
+  - CTL
+  - TOFU
+  - SAN
+  - Common Name
+  - 证书链
+  - 证书备份
+  - "7300"
+  - netadmin
+  also_read:
+  - enc-native-encryption-bringup
+  - enc-mtls-endpoint-authentication
+  card: cards/enc-certificate-trust-chain.md
+  frontmatter:
+    description: 'OXE 证书与信任链全生命周期（内嵌/外部 CA 选型、PKCS#7 主线五步闭环、CTL/TOFU 分发、CN/SAN 命名规则、备份与 CA 更新连锁）。当用户要"选 PKI 方案/生成 CSR/导证书/
+      配 CTL/备份证书"时使用。不适用于加密参数开通（加密解决方案开通能力）；企业 PKI 运营治理在原书范围外。
+
+      '
+    tags:
+    - procedure
+    - pki
+    - certificate
+    - oxe
+  source_evidence:
+  - source_id: src-entpxte421
+  - location: p13-25, p78-108, p113-118, p391-403
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-01/04/17 核心，交付第一关口
+- capability_id: cap.enc.native-encryption-bringup
+  revision: 1
+  status: active
+  slug: enc-native-encryption-bringup
+  title: 加密解决方案开通与 lanpbx.cfg
+  importance: critical
+  importance_rationale: 对应 task-05/task-06，功能开关本体；lanpbxbuild 的 duplication 规则与 cipher suite 硬件代价是高频错误源
+  one_liner: NE 参数三件套+用户级部分加密+lanpbxbuild 签名（DTLS 端口 32643）；AES-256 有压缩器降额与 GD3 禁用红线
+  intents:
+  - 启用加密解决方案系统参数
+  - 按用户开启加密
+  - 生成维护 lanpbx.cfg
+  - 选择 SRTP cipher suite
+  - enable native encryption OXE
+  keywords:
+  - Enable Native encryption
+  - lanpbx.cfg
+  - lanpbxbuild
+  - DTLS_SRV
+  - "32643"
+  - Authentication for SRTP
+  - AES-256
+  - 压缩器
+  - 部分加密
+  - copy to twin
+  also_read:
+  - enc-certificate-trust-chain
+  - enc-dtls-verification-maintenance
+  card: cards/enc-native-encryption-bringup.md
+  frontmatter:
+    description: '加密解决方案开通三层推进：Native Encryption 系统参数、用户级部分加密、lanpbx.cfg 生成与签名（lanpbxbuild 规则与 DTLS 字段）。当用户要"打开加密/给用户开加密/
+      生成 lanpbx/选 SRTP 套件"时使用。不适用于证书获取（证书信任链能力）；IPMG 与 PCS 恒加密不可明文。
+
+      '
+    tags:
+    - procedure
+    - dtls
+    - configuration
+    - oxe
+  source_evidence:
+  - source_id: src-entpxte421
+  - location: p63-74, p119-125, p228-233
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-05/06，功能开关本体
+- capability_id: cap.enc.dtls-verification-maintenance
+  revision: 1
+  status: active
+  slug: enc-dtls-verification-maintenance
+  title: DTLS 验证、排障与维护闭环
+  importance: high
+  importance_rationale: 对应 task-07/task-08，交付验收与运维本体；事件 5992 的"全站重启"级行为必须进变更窗口
+  one_liner: cryptview/ippstat/twin 命令族+事件 5991-5995 处置+证书备份+Wireshark 抓包（加密=噪音）
+  intents:
+  - 验证加密是否生效
+  - 处置加密解决方案事件
+  - 备份证书
+  - 抓包证明媒体加密
+  - cryptview ippstat troubleshooting
+  keywords:
+  - cryptview
+  - ippstat
+  - twin
+  - incvisu
+  - "5992"
+  - "5993"
+  - "5995"
+  - Wireshark
+  - mirror set lan
+  - 证书备份
+  - 加密图标
+  also_read:
+  - enc-native-encryption-bringup
+  card: cards/enc-dtls-verification-maintenance.md
+  frontmatter:
+    description: '加密验证与维护闭环：命令族（cryptview/ippstat/twin/sipregister/sipextgw）、事件 5991/5992/5993/5995 处置、证书备份规则、Wireshark 媒体验证。
+      当用户要"验证加密生效/查事件/备份证书/抓包证明"时使用。不适用于参数配置修正（开通能力）；trunk 侧抓包位置在原书范围外。
+
+      '
+    tags:
+    - procedure
+    - maintenance
+    - troubleshooting
+    - dtls
+  source_evidence:
+  - source_id: src-entpxte421
+  - location: p107, p126-138, p129-133
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-07/08，验收与运维本体
+- capability_id: cap.enc.sip-tls-endpoints
+  revision: 1
+  status: active
+  slug: enc-sip-tls-endpoints
+  title: SIP TLS 扩展加密
+  importance: high
+  importance_rationale: 对应 task-09，SIP 侧基础能力；SEPLOS 限制与 488 参数陷阱决定方案可行性
+  one_liner: sipmotor 承载 TLS 1.2（端口 5061）；SEPLOS 设备专用，参数三件套+motortrace 验证 X-ALE-CALL-ENCRYPTED
+  intents:
+  - 启用 SIP 扩展 TLS 加密
+  - 排查 SIP TLS 注册失败
+  - 验证 SIP 媒体加密
+  - sipmotor TLS 5061 SEPLOS
+  keywords:
+  - sipmotor
+  - SEPLOS
+  - ALES
+  - TLS signaling
+  - "5061"
+  - SRTP offer answer
+  - motortrace
+  - X-ALE-CALL-ENCRYPTED
+  - "488"
+  - sipregister
+  - csipsets
+  also_read:
+  - enc-native-encryption-bringup
+  - enc-eegw-deployment
+  card: cards/enc-sip-tls-endpoints.md
+  frontmatter:
+    description: 'SIP TLS 扩展加密（sipmotor/NSP 承载、SEPLOS 兼容清单、参数三件套、冗余与 PCS 行为、motortrace 验证）。当用户要"ALE 软话机/ SIP 话机加密/盾牌图标/
+      488 拒绝"时使用。不适用于 NOE 端点 DTLS 线（开通能力）；第三方 SIP 设备与 CCD agent 不支持。
+
+      '
+    tags:
+    - procedure
+    - sip-tls
+    - endpoints
+    - oxe
+  source_evidence:
+  - source_id: src-entpxte421
+  - location: p88-90, p139-145, p244-263
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-09，SIP 侧基础能力
+- capability_id: cap.enc.sip-trunk-tls
+  revision: 1
+  status: active
+  slug: enc-sip-trunk-tls
+  title: SIP trunk 的 TLS 与 SRTP
+  importance: critical
+  importance_rationale: 对应 task-11/task-12，客户最常要的"话音加密"落点；"信令不等于媒体"决定表是验收总纲
+  one_liner: OTSBC 与 OXE 两侧成对配置；媒体加密=系统 NE×网关 RTP/SRTP 参数；端口 5061/6261 四组合与 0 覆盖陷阱；四步安全停用
+  intents:
+  - 配置加密 SIP 中继
+  - 配置 OTSBC TLS context
+  - 验证中继 SRTP
+  - 安全停用加密解决方案
+  - OTSBC SIP TLS SRTP trunk
+  keywords:
+  - OTSBC
+  - TLS contexts
+  - Proxy Set
+  - Media Security
+  - AES-CM-128-HMAC-SHA1-80
+  - RTP or SRTP
+  - "5061"
+  - "6261"
+  - SIPMOTOR
+  - 停用
+  - "0.0.0.0"
+  also_read:
+  - enc-sip-tls-endpoints
+  - enc-eegw-deployment
+  card: cards/enc-sip-trunk-tls.md
+  frontmatter:
+    description: 'SIP trunk 的 SIP TLS 与 SRTP（OTSBC 侧八步、OXE 侧网关与端口、信令/媒体决定表、端口 0 覆盖陷阱、四步安全停用）。当用户要"运营商中继加密/SBC 配 TLS/
+      中继 SRTP 验证/关掉加密"时使用。不适用于 SIP 扩展线（SIP TLS 扩展能力）；真实运营商对接参数在原书范围外。
+
+      '
+    tags:
+    - procedure
+    - sip-trunk
+    - srtp
+    - otsbc
+  source_evidence:
+  - source_id: src-entpxte421
+  - location: p93, p159-198, p166-168
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-11/12，中继加密与回退
+- capability_id: cap.enc.eegw-deployment
+  revision: 1
+  status: active
+  slug: enc-eegw-deployment
+  title: EEGW/NSP 大容量部署
+  importance: critical
+  importance_rationale: 对应 task-13/task-14，规模分界后的必经形态；CS 连带重启是全书中风险最高的变更
+  one_liner: 超 1500 会话强制 EEGW VM（每 CS 一台、上限 15000）；声明/改名都触发证书重生成+重启；冗余必须用 NSP FQDN
+  intents:
+  - 部署外部加密网关 EEGW
+  - 声明 SIP Translator NSP
+  - 用 S.O.T. 生成 EEGW VM
+  - 迁移内嵌 EGW 到 EEGW
+  - EEGW NSP deployment capacity
+  keywords:
+  - EEGW
+  - OST
+  - ostconfig
+  - SIP Translator
+  - NSP
+  - nsp.oxe.company.com
+  - S.O.T.
+  - Greenfield
+  - "1500"
+  - "15000"
+  - Download Certificates
+  also_read:
+  - enc-certificate-trust-chain
+  - enc-sip-trunk-tls
+  card: cards/enc-eegw-deployment.md
+  frontmatter:
+    description: 'EEGW/NSP 大容量部署（容量分界与许可公式、五条硬规则、CS 侧六步、S.O.T. 生成 VM、内嵌到外部迁移、NSP FQDN 与内部 DNS）。当用户要"扩容上 EEGW/装外部网关/
+      NSP 是什么/EEGW 重启影响"时使用。不适用于内嵌 EGW 开通（开通能力）；EEGW VM 规格在原书范围外。
+
+      '
+    tags:
+    - procedure
+    - eegw
+    - deployment
+    - capacity
+  source_evidence:
+  - source_id: src-entpxte421
+  - location: p77, p199-216, p217-282
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-13/14，大容量主线
+- capability_id: cap.enc.abcf-network-encryption
+  revision: 1
+  status: active
+  slug: enc-abcf-network-encryption
+  title: ABC-F 网络加密
+  importance: high
+  importance_rationale: 对应 task-15/task-16，多节点组网核心；端到端短木桶与链路两端一致性是设计验收的关键判据
+  one_liner: 节点间 IPSec（500/2579）+SRTP 经加密链路分发；链路参数两端同值且须 DOWN 才能改；任一环缺失即明文
+  intents:
+  - 启用节点间链路加密
+  - 部署内部 PKI 双节点
+  - 规划 hybrid/direct 拓扑
+  - 验证跨节点加密
+  - ABC-F IPsec link encryption
+  keywords:
+  - ABC-F
+  - ABC-IP
+  - hybrid link
+  - direct link
+  - transit node
+  - IPSec
+  - OpenSwan
+  - "500"
+  - "2579"
+  - hybvisu
+  - 内部 PKI
+  also_read:
+  - enc-certificate-trust-chain
+  card: cards/enc-abcf-network-encryption.md
+  frontmatter:
+    description: 'ABC-F 网络加密（IPSec 链路规则、内部 PKI 双节点签发、端到端短木桶、拓扑禁区、hybvisu 验证）。当用户要"节点间加密/多站点组网/链路 Encryption 参数/跨节点
+      明文排障"时使用。不适用于单节点端点加密（开通能力）；与 IP Premium Security 不互通。
+
+      '
+    tags:
+    - procedure
+    - abc-f
+    - ipsec
+    - network
+  source_evidence:
+  - source_id: src-entpxte421
+  - location: p283-332, p293-303
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-15/16，多节点组网
+- capability_id: cap.enc.mtls-endpoint-authentication
+  revision: 1
+  status: active
+  slug: enc-mtls-endpoint-authentication
+  title: mTLS 双向认证与版本限制
+  importance: high
+  importance_rationale: 对应 task-18，安全强化终点；OpenSSL 3.0 对 1024 位出厂证书的断裂是升级后最常见翻车点
+  one_liner: 激活后全员（含明文用户）必须有证书、首连总是加密；1024 位设备两条出路——换 ≥2048 位证书或 N4 起降 SSL level
+  intents:
+  - 启用双向认证 mTLS
+  - 部署端点证书
+  - 处置 1024 位证书设备
+  - 调整 SSL security level
+  - mutual TLS authentication endpoint certificate
+  keywords:
+  - mTLS
+  - Mutual TLS Authentication
+  - "6261"
+  - SSL security level
+  - OpenSSL 3.0
+  - "2048"
+  - GW.pfx
+  - DTLSPkeyPassphrase
+  - Endpoint CTL
+  - SCEP
+  also_read:
+  - enc-pki-workshop-xca
+  card: cards/enc-mtls-endpoint-authentication.md
+  frontmatter:
+    description: 'mTLS 双向认证启用与版本限制（范围规则、全员证书义务、端点证书三线部署、OpenSSL 3.0 断裂与 SSL level 降级、SSH 临时开放闭环）。当用户要"开双向认证/装端点证书/
+      老话机连不上/降 SSL level"时使用。不适用 CA 侧做证（PKI 工坊路由卡）；客户设备台账在原书范围外。
+
+      '
+    tags:
+    - procedure
+    - mtls
+    - certificate
+    - security
+  source_evidence:
+  - source_id: src-entpxte421
+  - location: p81-83, p165-168, p354-379
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-18，安全强化终点
+- capability_id: cap.enc.pcs-failover
+  revision: 1
+  status: active
+  slug: enc-pcs-failover
+  title: PCS 加密接管
+  importance: medium
+  importance_rationale: 对应 task-10，多站点架构刚需但为一次性部署；救援前提与共用 lanpbx 规则路由可达即可
+  one_liner: 端点必须连过 CS 才能被救援；PCS 与主 CS 共用 lanpbx；证书同 CA 异证书且导入前先打 tar；断网演练要预备操作路径
+  intents:
+  - 部署 PCS 加密救援
+  - 做 PCS 断网演练
+  - PCS certificate pcscopy
+  keywords:
+  - PCS
+  - 救援
+  - rescue
+  - pcscopy
+  - pcsview
+  - 断网演练
+  - tar
+  card: cards/enc-pcs-failover.md
+  frontmatter:
+    description: 'PCS 加密接管（救援前提、PCS 证书打 tar 导入、pcscopy 下发、断网演练与恢复）。当用户要"分支救援/PCS 失联接管/pcsview 验证"时经路由使用。
+      端点未连过主 CS 不在救援范围；PCS 外接 EEGW 归 EEGW 部署能力。
+
+      '
+    tags:
+    - procedure
+    - pcs
+    - failover
+  source_evidence:
+  - source_id: src-entpxte421
+  - location: p91-92, p146-156, p212-215
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 一次性部署段，路由可达即可
+- capability_id: cap.enc.pki-workshop-xca
+  revision: 1
+  status: active
+  slug: enc-pki-workshop-xca
+  title: XCA 外部 CA 工坊
+  importance: medium
+  importance_rationale: 对应 task-17 的签发侧操作，教学替身工具；客户已有 CA 时优先用客户的，独立触发频率低
+  one_liner: XCA 建库造根 CA、CSR 导入签发（P7 推荐）、端点实体 PKCS#12（CN=MAC、命名严格匹配）、根证书格式转换
+  intents:
+  - 用 XCA 制作根 CA
+  - 签发 CSR 与端点实体
+  - 转换证书格式
+  - XCA sign CSR root CA
+  keywords:
+  - XCA
+  - 根 CA
+  - End Entity
+  - GW.pfx
+  - softphone_cert.pem
+  - PKCS#12
+  - crl2pkcs7
+  - conv-proper-p7-format
+  card: cards/enc-pki-workshop-xca.md
+  frontmatter:
+    description: 'XCA 外部 CA 工坊（建库、根 CA 自签、CSR 导入签发、PKCS#12 端点实体、格式转换）。当用户要"做证书/签 CSR/导出 GW.pfx/转 p7 格式"时经路由使用。
+      客户已有 CA 优先用客户的；OXE 侧导入归证书信任链能力。
+
+      '
+    tags:
+    - reference
+    - xca
+    - pki
+    - certificate
+  source_evidence:
+  - source_id: src-entpxte421
+  - location: p333-353, p380-403
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 签发侧工坊，路由可达即可
+- capability_id: cap.enc.application-encryption
+  revision: 1
+  status: active
+  slug: enc-application-encryption
+  title: 应用生态加密与安全下载
+  importance: medium
+  importance_rationale: 讲义查表型知识域（五应用+HTTPS 下载），无独立实验；VAA 120→60 等容量代价是引用时的关键前提
+  one_liner: 4645 自动受保护、录音换钥、VAA 加密 120→60 端口、DC 不受影响、Rainbow WG 信令恒加密；HTTPS 替代 TFTP 有前提
+  intents:
+  - 加密语音信箱与录音
+  - 评估 VAA/DC 加密代价
+  - 启用 HTTPS 安全下载
+  - "4645 VAA recording encryption"
+  keywords:
+  - "4645"
+  - voice mail
+  - OmniPCX Record
+  - VAA
+  - Dispatch Console
+  - Rainbow WebRTC Gateway
+  - HTTPS
+  - TFTP
+  - DHCP option 66
+  card: cards/enc-application-encryption.md
+  frontmatter:
+    description: '应用生态加密与安全下载（4645/录音/VAA/DC/Rainbow WG 五条路径与容量代价、HTTPS 替代 TFTP 的前提与限制）。当用户要"留言/录音加密/VAA 端口/固件 HTTPS
+      下载"时经路由使用。讲义查表型知识，应用自身细节以其文档为准。
+
+      '
+    tags:
+    - reference
+    - applications
+    - voicemail
+    - recording
+  source_evidence:
+  - source_id: src-entpxte421
+  - location: p63-64, p73-74, p94-99
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 查表型知识域，路由可达即可
+- capability_id: cap.enc.lab-environment
+  revision: 1
+  status: active
+  slug: enc-lab-environment
+  title: 实验环境底座（RLAB）
+  importance: medium
+  importance_rationale: 对应 task-02/03/15，一次性支撑类；全部为实验口径，仅作其余能力的背景与 Boundary 引用
+  one_liner: 两套拓扑（stand-alone 双 CS / ABC-F 双节点）、Pod 五步初始配置、NTP 与信任库约束、VM 同 IP 禁忌
+  intents:
+  - 搭建加密实验 POD
+  - 切换网络实验室拓扑
+  - RLAB pod ITSP2 setup
+  keywords:
+  - RLAB
+  - POD
+  - NTP
+  - ca-certgen
+  - DID
+  - NPD
+  - ITSP2
+  - hybvisu
+  card: cards/enc-lab-environment.md
+  frontmatter:
+    description: 'RLAB 实验环境底座（两套拓扑、Pod 初始配置五步、时间同步与信任库规则、拓扑切换）。当用户要"搭实验环境/Pod 配置/模拟器验证"时经路由使用。
+      全部 IP/账号/号码为实验口径，生产环境不适用本卡。
+
+      '
+    tags:
+    - reference
+    - lab
+    - rlab
+  source_evidence:
+  - source_id: src-entpxte421
+  - location: p27-57, p283-290
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 教学基础设施，路由可达即可

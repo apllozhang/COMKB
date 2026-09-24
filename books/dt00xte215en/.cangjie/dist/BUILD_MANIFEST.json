@@ -1,0 +1,43 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\swl2-aaa-hardening.md": "9378ee0173cd5308b9a35857ff5ab4878b033e118ada19ac7e5bc0806a7c6d4c",
+    "references\\capabilities\\swl2-access-guardian.md": "02df3b5cab0061df9b729751d5e7a914662173ed735c42e7c153dd8848647819",
+    "references\\capabilities\\swl2-config-lifecycle.md": "f8bbf9a5cd12c0544a2783d232bd4166fc694c504e2478e95630b4804af86e63",
+    "references\\capabilities\\swl2-diagnostics.md": "f7ef6d64183a4c5a195a34a0624d4276cb2b14875f549ca14dfc2363865b3909",
+    "references\\capabilities\\swl2-fleet-tools.md": "61e274c014f10a17401584ffca69f570bc01810788518c03b334b19a59a379ac",
+    "references\\capabilities\\swl2-l3-services.md": "6eea76c26023dcd28cdf795244d4971be1426c199f84b8ad3ec4959693711ef6",
+    "references\\capabilities\\swl2-lightning-config.md": "2bcb7beb657a381b8f6b09d58b59bc630636d873a9ec95cc0ee8046e19e60fcc",
+    "references\\capabilities\\swl2-link-redundancy.md": "fb4d04678d8433dea453bb2f37287ddfc9c817c798452eb37cca95e960146a16",
+    "references\\capabilities\\swl2-lldp-poe.md": "ca9a0776023cb80433859fc0f19e8089dde94ae018b536d3de8331b43e6ac227",
+    "references\\capabilities\\swl2-qos-acl-policy.md": "9e41c6228d9fe5c95e9ea82be9736d4b1744c155f7eae644a6737714b6d7a603",
+    "references\\capabilities\\swl2-upgrade-autofabric.md": "d554f3dc42848a940e5682f5ef57cef5d3c5b879af2c057d874ac9590835eb6e",
+    "references\\capabilities\\swl2-virtual-chassis.md": "e67f0b38482b1c3643a0047a8073052995881ed5cee815c6324623b2f1fe3fca",
+    "references\\capabilities\\swl2-vlan-routing.md": "7b9aecc3907a9917dd03316744be2743cc64268e97903b7492ee135f1b8f9327",
+    "references\\capability-index.md": "a75339a6b90d4f7e07c2aef07143aaff39588924effc8a5c88f33b86814fffe0",
+    "references\\cheatsheet.md": "887b630e985901509a4b24360deecdcbfd1fcf400bbd1243ba97f6e2eae75c7a",
+    "references\\glossary.md": "bde9157ab01d22a1c191f2088fb09c7ad6f1f85f5a26017d2de5781293c8cbdc",
+    "references\\overview.md": "3d192a3e9bc5ad0cb7b4ca624c10907e9630137c2eadff07550cf50688b5571b",
+    "SKILL.md": "cd762f997bfe69a52a9f08f82f51d3b8570531592aad02a47a70bfd5db1e4411"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.omniswitch-lan-access",
+  "bundle_sha256": "248734aff2640513746290cebc995b8f7f6995eeffc5dd7c6c77fb22adc01899",
+  "variant": "single",
+  "run_id": "run-20260924-200001-0c0045",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 13,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

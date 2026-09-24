@@ -1,0 +1,721 @@
+schema_version: 1
+bundle_id: bundle.omnivista-8770-nms
+book:
+  title: OmniVista 8770 — Setup & Network Management (Participant's Guide, Edition 47)
+  author: ALE Training Services
+  source_pack: 8770XTE200EN.pdf (705 pages)
+  baseline_tag: OmniVista 8770 R5.2 (8770.5.2.21.01) / Windows 2022 & 2019 / RLAB
+entry:
+  name: omnivista-8770-nms
+  description: 'OmniVista 8770 网络管理平台的安装与日常运维闭环：Windows 服务器/客户端安装、 OXE 与 OXO Connect 节点注册同步、
+    用户开通（Profile/Meta profile/批量/WBM）、告警接入与出口（邮件/脚本/SNMP Proxy）、权限与审计、报表任务与自动维护、
+    8770/OXE 两层备份恢复、许可管理。适用于 8770 R5.2 单机交付与运维问答；高可用设计、生产安全基线与容量规划工具不在原书范围内（见 out_of_scope）。
+
+    '
+  core_principles:
+  - 8770 是装在专用 Windows 服务器上的套件集合体（MariaDB + LDAP + Apache/Wildfly + 应用套件），安装参数（公司名/成本中心/端口/目录管理器登录）装后大多不可改，唯一后悔药是 RestoreContext.ini + 备份恢复/rehosting
+  - 节点接入的钥匙是号对号：声明节点号 = 网络号×100 + 节点号，与 OXE siteid 一致才能同步；OXO Connect 同理换算（如 1x100+80=180），备份目录按声明节点落盘
+  - 同步是数据流起点：Complete/Partial × Separate/Global 四语义按需选；OXE 改动经实时事件回传，但 profile、键 profile、空闲号码段必须主动同步才可见
+  - 告警集中在 Alarms：相关/非相关决定自动/手动清除；出口三条——人工签名、邮件（server:port 语法）、脚本（%1/%2 变量），对外走 SNMP Proxy（trap 162，hypervisor 只填 IP）
+  - 安全三层：8770 账户/组（多组取最高）> OXE Access Profile（11 档全体 OXE 共用，改后删本地 MIB）> OXE 侧访问白名单（Secure access 前提）
+  - 兜底双铁律：备份与版本强绑定（nmcVersion）且备份期网管不可用、OXE 恢复须停电话；许可超限进受限模式（仅 Directory+Configuration，服务器不停机）
+  out_of_scope:
+  - 8770 高可用/双机/多 8770 分级设计（书内仅许可 Redundancy 字段一笔带过，生产引 High Availability 文档）
+  - 生产安全基线（实验明文密码替换、Defender 排除与 IE ESC 关闭的客户审批、POODLE/TLS 全网元摸底方法）
+  - RLAB 实验平台搭建、hypervisor 侧 SNMP 规则、Capacity Planning 工具用法
+  - OXE 侧系统命令完整语法（siteid/netadmin/swinst 只教 8770 视角）与话务分析深水区（仅 OXE 且未展开）
+  stop_conditions:
+  - 用户要求生产环境照抄本书实验密码/IP/账号 → 拒绝并引用 B 边界（实验口径，见 needs-review nr-06）
+  - 要求跨版本恢复 8770 备份或 OXE 恢复不接受停电话窗口 → 判停说明前提，不提供"热恢复"方案
+  - 需要 8770 集群/容灾/多级网管方案 → 超出单机闭环，转 High Availability 产品文档
+  - OXO 章法语残句影响理解 → 按 needs-review nr-02 语义转述，不逐字引用
+router_entry:
+  name: omnivista-8770-nms-router
+  description: 'OmniVista 8770 安装与网络管理能力路由入口：按用户意图分发到 13 张能力卡——平台安装、节点接入、用户开通、告警管理、安全管理、
+    审计合规、备份恢复、许可管理八个 promoted 能力，以及报表任务、维护运营、Topology 视图、OXE 界面操作、网络驱动器五张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.ovnms.platform-installation
+  revision: 1
+  status: active
+  slug: ovnms-platform-installation
+  title: OmniVista 8770 平台安装（服务器 + 客户端 + 补丁 + 首连）
+  importance: critical
+  importance_rationale: 对应 task-01/02/03，全书一切操作的前提；公司名/成本中心等参数装后不可改，装错只能重装
+  one_liner: 专用服务器七步装链（配置 > 组件 > 安装 > 补丁 > 首连）；IE ESC 关闭与 Defender 排除 C:\8770 是 Alarms/Topology 前提
+  intents:
+  - 安装 OmniVista 8770 服务器
+  - 安装 8770 客户端
+  - 安装补丁
+  - 首次连接 8770
+  - install OmniVista 8770 server
+  keywords:
+  - ServerSetup
+  - dedicated server
+  - IE ESC
+  - Defender
+  - PatchInstaller
+  - Patch_history
+  - RestoreContext.ini
+  - WMIC
+  - Zulu
+  - 独占
+  - 补丁
+  - 首连
+  - "30"
+  - "85%"
+  also_read:
+  - ovnms-node-onboarding
+  card: cards/ovnms-platform-installation.md
+  frontmatter:
+    description: '在专用 Windows 服务器上安装 OmniVista 8770（Windows 数据配置、ServerSetup 七步链、补丁、IE ESC 与 Defender 前置、首连改密）并分发管理客户端
+      （URL 下载、WMIC、Zulu 放行）。当用户要"装 8770/装客户端/打补丁/首次连接"时使用。不适用于节点注册（节点接入能力）与许可文件内容（许可管理能力）；
+      公司名、成本中心方式、端口、目录管理器登录名装后不可改。
+
+      '
+    tags:
+    - procedure
+    - omnivista-8770
+    - installation
+    - windows-server
+  source_evidence:
+  - source_id: src-8770xte200en
+  - location: p55-106, p618-639
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-01/02/03，一切交付的前提
+- capability_id: cap.ovnms.node-onboarding
+  revision: 1
+  status: active
+  slug: ovnms-node-onboarding
+  title: OmniVista 8770 节点接入（OXE 注册同步 + SSH 安全 + OXO Connect 纳管）
+  importance: critical
+  importance_rationale: 对应 task-04/05/11，被管对象接入的第一关口；节点号公式与同步语义是全数据流的起点
+  one_liner: 三级树声明（节点号=网络号×100+节点号）> 四语义同步 > 31234 实时核验；OXE SSH 可信主机链；OXO 经 OMC 纳管（声明节点 180 落盘）
+  intents:
+  - 注册 OXE 节点
+  - 同步 OXE 数据
+  - 配置 OXE SSH
+  - 纳管 OXO Connect
+  - OXE node registration synchronization
+  keywords:
+  - siteid
+  - Subnetwork
+  - "101"
+  - adfexc
+  - mtcl
+  - Complete
+  - Partial
+  - Separate
+  - Global
+  - 实时同步
+  - NMCSyncLdapPbx
+  - trusted hosts
+  - MindTerm
+  - OMC
+  - OmniPCX Office
+  - "180"
+  also_read:
+  - ovnms-user-provisioning
+  - ovnms-alarm-management
+  card: cards/ovnms-node-onboarding.md
+  frontmatter:
+    description: '把 OXE/OXO Connect 接入 8770：siteid 核查、Network > Subnetwork > PCX 三级声明、节点号公式、四种同步语义、实时同步核验与排障、
+      OXE SSH 安全链路（可信主机/MindTerm/SFTP）、OXO Connect 的 OMC 安装连接与声明（声明节点换算与备份目录）。当用户要"接节点/同步/实时不联动/SSH 加固/纳管 OXO"时使用。
+      不适用于用户开通（用户开通能力）；OXE 侧命令完整语法在 OXE 系统文档。
+
+      '
+    tags:
+    - procedure
+    - omnivista-8770
+    - node-registration
+    - synchronization
+    - oxo-connect
+  source_evidence:
+  - source_id: src-8770xte200en
+  - location: p109-136, p640-667
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-04/05/11，数据流起点
+- capability_id: cap.ovnms.user-provisioning
+  revision: 1
+  status: active
+  slug: ovnms-user-provisioning
+  title: OmniVista 8770 用户开通（Profile / Meta profile / 批量 / WBM）
+  importance: critical
+  importance_rationale: 对应 task-07/08/09/10，日常最高频运维；批量文件语义与 WBM 三红线决定交付效率
+  one_liner: 三层递进（手建 > Profile 复用 > Meta profile 自动取号）+ 批量文件（XXXX/NULL/action）；WBM 轻客户端与 thick client 文件互不通用
+  intents:
+  - 创建 OXE 用户
+  - 配置 Meta profile 自动取号
+  - 批量开通用户
+  - WBM 用户管理
+  - mass provisioning OmniVista
+  keywords:
+  - Profile
+  - BASIC
+  - auto. recognition
+  - Meta profile
+  - 空闲号段
+  - 自动取号
+  - "XXXX"
+  - "NULL"
+  - Import user data
+  - Action
+  - secretCode
+  - WBM
+  - Activity report
+  - "1234"
+  also_read:
+  - ovnms-node-onboarding
+  card: cards/ovnms-user-provisioning.md
+  frontmatter:
+    description: '8770 用户开通全路径：OXE Profile 与 Key profile 引用建户（自动识别开关+大写名）、Meta profile 绑号段自动取号（建后必须同步）、
+      批量文件导出导入（XXXX/NULL 语义、action、Scheduler 核验）、WBM 轻客户端单建与批量（+;-;# 语义、三红线）。当用户要"建用户/批量开户/自动取号/WBM 开户"时使用。
+      不适用于管理员权限（安全管理能力）；thick client 与 WBM 批量文件互不通用。
+
+      '
+    tags:
+    - procedure
+    - omnivista-8770
+    - users
+    - provisioning
+    - wbm
+  source_evidence:
+  - source_id: src-8770xte200en
+  - location: p170-260
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-07/08/09/10，日常最高频
+- capability_id: cap.ovnms.alarm-management
+  revision: 1
+  status: active
+  slug: ovnms-alarm-management
+  title: OmniVista 8770 告警管理（接入 + 定制出口 + SNMP Proxy）
+  importance: critical
+  importance_rationale: 对应 task-12/13/14，运维价值最高的域；相关/非相关分流与出口三条决定值班流程设计
+  one_liner: OXE incident manager 全上送 + rstcpl/incvisu 验证（#2042/#1125）；出口三加一——签名、邮件（server:port）、脚本（%1/%2）、SNMP Proxy trap
+  intents:
+  - 配置 OXE 告警上送
+  - 定制告警通知
+  - 部署 SNMP Proxy
+  - 处置告警
+  - OmniVista alarm management
+  keywords:
+  - Alarms
+  - correlated
+  - acknowledge
+  - rstcpl
+  - incvisu
+  - "#2042"
+  - "#1125"
+  - Incident Filter
+  - Network severity
+  - SNMP Proxy
+  - hypervisor
+  - "162"
+  - Alarms Filters
+  - 字典
+  also_read:
+  - ovnms-node-onboarding
+  - ovnms-topology-views
+  card: cards/ovnms-alarm-management.md
+  frontmatter:
+    description: '8770 告警闭环：OXE incident manager 参数与 incident filter 定向、rstcpl/incvisu 验证、六级色标与相关/非相关处置（确认≠清除）、
+      人工签名/邮件通知/脚本执行三出口、SNMP Proxy 部署与过滤（Windows SNMP 服务+hypervisor 声明+trap 外送）。当用户要"接告警/告警通知/转 trap/告警字段改名"时使用。
+      不适用于 Topology 显示（Topology 视图能力）；V3 声明与卸载流程书中标注仅供信息。
+
+      '
+    tags:
+    - procedure
+    - omnivista-8770
+    - alarms
+    - snmp
+    - troubleshooting
+  source_evidence:
+  - source_id: src-8770xte200en
+  - location: p269-324
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-12/13/14，运维价值最高
+- capability_id: cap.ovnms.security-administration
+  revision: 1
+  status: active
+  slug: ovnms-security-administration
+  title: OmniVista 8770 安全管理（密码策略 / 管理员与组 / 访问控制 / TLS）
+  importance: high
+  importance_rationale: 对应 task-17，安全审计必查项；多组取最高与本地 MIB 缓存是高频困惑源
+  one_liner: 密码策略（B+C<A）> 管理员/组（取最高+单登录+四路解锁）> OXE Access Profile（11 档共用、删本地 MIB）> OXE 白名单（Secure access 前提）
+  intents:
+  - 配置密码策略
+  - 管理管理员与组
+  - 解锁锁定账户
+  - 配置 OXE 访问控制
+  - OmniVista security administration
+  keywords:
+  - Password Policy
+  - 单登录
+  - AdminNmc
+  - ToolsOmniVista
+  - 锁定
+  - 解锁
+  - Access Profile
+  - "Profile 9"
+  - 本地 MIB
+  - Object Model Save
+  - User Access Control
+  - Secure access
+  - POODLE
+  - "TLS 1.3"
+  also_read:
+  - ovnms-audit-compliance
+  card: cards/ovnms-security-administration.md
+  frontmatter:
+    description: '8770 安全三层模型：Security 应用密码策略与锁定解锁四路径、预定义账户与组权限（多组取最高、单登录豁免）、OXE Access Profile 十一档
+      （全体 OXE 共用、改后删客户端本地 MIB）、OXE 侧 User Access Control 大写白名单（Secure access 前提）、TLS/POODLE 加固前提。
+      当用户要"配权限/解锁/密码策略/访问白名单/关 SSLv3"时使用。不适用于操作审计（审计合规能力）；与 AD/Radius 集成仅列选项。
+
+      '
+    tags:
+    - procedure
+    - omnivista-8770
+    - security
+    - access-control
+  source_evidence:
+  - source_id: src-8770xte200en
+  - location: p363-415
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-17，合规必查
+- capability_id: cap.ovnms.audit-compliance
+  revision: 1
+  status: active
+  slug: ovnms-audit-compliance
+  title: OmniVista 8770 审计合规（Audit 启用 / mao 日志 / 检索导出）
+  importance: high
+  importance_rationale: 对应 task-18，合规与追责场景刚需；仅支持 OXE 与 System 页默认条件无效是两大边界
+  one_liner: 双侧启用（AuditServer + OXE Process audit/mtcl/Secure access）> mao 三日志留痕 > PbxName Not Empty 检索 > History/Detail 导出与报告
+  intents:
+  - 启用 Audit 审计
+  - 检索管理操作记录
+  - 导出审计数据
+  - 生成审计报告
+  - OmniVista audit
+  keywords:
+  - AuditServer
+  - Process audit
+  - mao_hist
+  - list_fhdet
+  - PbxName Not Empty
+  - "8770 log"
+  - History
+  - Detail
+  - 审计同步
+  - Detailed Reports
+  - "13"
+  also_read:
+  - ovnms-security-administration
+  - ovnms-reports-scheduling
+  card: cards/ovnms-audit-compliance.md
+  frontmatter:
+    description: '8770 审计闭环：8770 侧 AuditServer 与 OXE 侧 Process audit/mtcl/Secure access 双侧启用、mao 三日志（连接/操作/明细）留痕、
+      Audit information 同步检索（System 页须重建 PbxName Not Empty 条件）、History/Detail 两粒度导出（Immediate/Scheduled）与审计报告。
+      当用户要"开审计/查谁改了配置/导出审计/审计报告"时使用。仅支持 OXE；8770 自身 log 不适用导出功能。
+
+      '
+    tags:
+    - procedure
+    - omnivista-8770
+    - audit
+    - compliance
+  source_evidence:
+  - source_id: src-8770xte200en
+  - location: p416-434
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-18，合规追责
+- capability_id: cap.ovnms.backup-restore
+  revision: 1
+  status: active
+  slug: ovnms-backup-restore
+  title: OmniVista 8770 备份恢复（8770 数据库 rehosting + OXE swinst 全链）
+  importance: critical
+  importance_rationale: 对应 task-22/25，两层灾备底线；版本绑定与恢复窗口是预案设计的硬约束
+  one_liner: 8770 备份四块内容、版本绑定（nmcVersion）、rehosting 三场景改址；OXE bck 备份取回与 swinst 七步恢复链（停电话+物理 IP）
+  intents:
+  - 备份恢复 8770 数据库
+  - rehosting 换机改址
+  - 备份恢复 OXE 数据
+  - swinst 恢复
+  - OmniVista backup restore rehosting
+  keywords:
+  - Immediate backup
+  - Restore - databases
+  - rehosting
+  - RestoreContext.ini
+  - nmcVersion
+  - svNMCName
+  - PCX - Backup
+  - bck
+  - "/usr4/BACKUP"
+  - swinst
+  - 停电话
+  - role address
+  - Autostart
+  also_read:
+  - ovnms-network-drive
+  - ovnms-license-management
+  card: cards/ovnms-backup-restore.md
+  frontmatter:
+    description: '两层灾备：8770 数据库备份（LDAP/MariaDB/其他/RestoreContext.ini 四块、版本绑定、备份期不可用）与恢复（删节点删告警前提、rehosting 改 IP/改 FQDN/换机三场景）；
+      OXE 备份（bck 命令 + FTP/SFTP 取回 + OXEBackup 目录）与 swinst 七步恢复链（停电话、role address 失效用物理 IP、Autostart 设回）。
+      当用户要"备份/恢复/换机/改 IP/灾备预案"时使用。跨版本恢复不存在；高可用不在本书范围。
+
+      '
+    tags:
+    - procedure
+    - omnivista-8770
+    - backup
+    - restore
+    - disaster-recovery
+  source_evidence:
+  - source_id: src-8770xte200en
+  - location: p503-521, p568-593
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-22/25，灾备底线
+- capability_id: cap.ovnms.license-management
+  revision: 1
+  status: active
+  slug: ovnms-license-management
+  title: OmniVista 8770 许可管理（锁结构 / 查询 / 更新 / 受限模式）
+  importance: high
+  importance_rationale: 对应 task-26，扩容续费场景；超限受限模式误判为故障是最贵的坑
+  one_liner: ACTIS 出证 nmc.license > 四段锁结构（8770Handle/Modules/8770Clients 30/Security 0-5）> spadmin/About 查询 > 换文件更新 > 超限进受限模式
+  intents:
+  - 查询 8770 许可
+  - 更新许可文件
+  - 处理许可超限
+  - 规划许可包型
+  - OmniVista license nmc.license
+  keywords:
+  - nmc.license
+  - sw8770
+  - ACTIS
+  - "8770Handle"
+  - spadmin
+  - Modules
+  - "8770Clients"
+  - Security 键
+  - 受限模式
+  - restricted mode
+  - Start Pack
+  - Full Pack
+  - NMCLicServer
+  also_read:
+  - ovnms-platform-installation
+  card: cards/ovnms-license-management.md
+  frontmatter:
+    description: '8770 许可全生命周期：许可链五环（ACTIS > nmc.license > License Server）、文件四段结构（8770Handle 申报节点锁、Modules 应用锁与用户数键、
+      8770Clients 并发 30、Security 键 0-5）、包型（Start/Full Pack + 选项）、N-1 版本规则、查询三口（About/文件/spadmin）、换文件更新五步、
+      超限受限模式处置（仅 Directory+Configuration 可用，重启无效）。当用户要"查许可/扩容/换许可/应用消失"时使用。
+
+      '
+    tags:
+    - procedure
+    - omnivista-8770
+    - license
+  source_evidence:
+  - source_id: src-8770xte200en
+  - location: p594-617
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-26，扩容续费
+- capability_id: cap.ovnms.reports-scheduling
+  revision: 1
+  status: active
+  slug: ovnms-reports-scheduling
+  title: OmniVista 8770 报表与任务编排（Reports / Scheduler / 自动维护）
+  importance: high
+  importance_rationale: 对应 task-19/20/21，运营报表刚需与长期稳定的关键；报告截断与错过补跑是高频误判
+  one_liner: 报告生成/导出/计划（上限 TXT 4000 行、各格式 50 页、库 100000 行）+ Job/Task/jobset 编排 + 五类 purge 与 LDIF 恢复
+  intents:
+  - 生成与分发报告
+  - 计划报告任务
+  - 编排 Scheduler 任务
+  - 配置自动维护清除
+  keywords:
+  - Reports
+  - "4000"
+  - "100000"
+  - 截断
+  - Export E-MAIL
+  - SMTP
+  - Simple job
+  - Synchronized task
+  - jobset
+  - Maximum start delay
+  - Purge
+  - DailyJob.ldif
+  - WeeklyJob.ldif
+  card: cards/ovnms-reports-scheduling.md
+  frontmatter:
+    description: '8770 报表与任务体系：Reports 生成/文件邮件导出（SMTP server:port 语法）/计划分发与大小上限（TXT 4000 行/50 页/库 100000 行）、
+      Scheduler 任务模型（Job/Task/jobset、Simple/Synchronized、Maximum start delay 补跑语义）、五类数据清除参数与 Purge job 组装、
+      预定义 job 的 LDIF 恢复。当用户要"出报表/发报表/排任务/清理数据/救预定义任务"时经路由使用。话务分析仅 OXE。
+
+      '
+    tags:
+    - procedure
+    - omnivista-8770
+    - reports
+    - scheduler
+    - maintenance
+  source_evidence:
+  - source_id: src-8770xte200en
+  - location: p443-502
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 运营域，路由可达即可
+- capability_id: cap.ovnms.maintenance-operations
+  revision: 1
+  status: active
+  slug: ovnms-maintenance-operations
+  title: OmniVista 8770 维护运营（诊断工具 / NMC 服务与日志）
+  importance: high
+  importance_rationale: 对应 task-23/24，二线排障与 SR 支持的基础；被监督服务不要手动 Start 是高频误操作
+  one_liner: 三件套采数据（Diagnostic/DirManag/HeidiSQL）+ 两层服务模型（4 Automatic vs 约 20 被监督）+ 日志滚动与 TraceType 细跟踪（查完改回）
+  intents:
+  - 采集诊断信息
+  - 直查 LDAP 与 SQL 数据
+  - 管理 NMC 服务
+  - 查看与跟踪日志
+  keywords:
+  - "8770 Diagnostic"
+  - DirManag
+  - HeidiSQL
+  - nmc5
+  - Service Manager
+  - Automatic
+  - Manual
+  - TraceType
+  - nmclog
+  - "2x5MB"
+  also_read:
+  - ovnms-platform-installation
+  card: cards/ovnms-maintenance-operations.md
+  frontmatter:
+    description: '8770 排障工具箱与服务体系：8770 Diagnostic 采集（C:\TS 出 HTML+zip 交支持）、DirManag（389 明文口）/HeidiSQL（dba 只读直查），
+      NMC 服务两层模型（四个 Automatic 与约 20 个被监督服务、连锁启停、不要手动 Start）、日志位置与 2x5MB 滚动、/nmclog/ Web 查看、
+      TraceType --1 详细跟踪（查完必须改回 0）。当用户要"采数据/查库/管服务/看日志"时经路由使用。
+
+      '
+    tags:
+    - reference
+    - omnivista-8770
+    - maintenance
+    - troubleshooting
+  source_evidence:
+  - source_id: src-8770xte200en
+  - location: p522-567
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 排障工具域，路由可达即可
+- capability_id: cap.ovnms.topology-views
+  revision: 1
+  status: active
+  slug: ovnms-topology-views
+  title: OmniVista 8770 Topology 视图（标准视图 / 自定义视图 / 告警重定向）
+  importance: medium
+  importance_rationale: 对应 task-15/16，客户定制大屏高频但边界清晰；只显相关告警与 incident 386 边界决定期望管理
+  one_liner: Standard 自动视图（背景地图 1100x793 入 maps 重启）+ Custom 编辑器建屏 + 告警重定向（Redirecting alarms）；只显示相关告警
+  intents:
+  - 配置 Topology 标准视图
+  - 构建自定义视图
+  - 告警重定向
+  keywords:
+  - Topology
+  - Standard
+  - Custom
+  - Edit mode
+  - "1100x793"
+  - topology\maps
+  - Virtual equipment
+  - Redirecting alarms
+  - Source Object hierarchy
+  - "386"
+  card: cards/ovnms-topology-views.md
+  frontmatter:
+    description: '8770 Topology 图形监控：Standard 视图（随配置树自动生成、背景地图规范与重启要求、虚拟 ACT 显示）、Custom 视图编辑器（视图/元素/链接/标签/底色/Default view）、
+      告警重定向（复制对象层级粘到 Source Object hierarchy、rstcpl 验证）。当用户要"搭监控图/加背景图/告警上图"时经路由使用。
+      只显示相关告警；OXE R11.2 起 incident 386 不可用于 Topology。
+
+      '
+    tags:
+    - procedure
+    - omnivista-8770
+    - topology
+    - visualization
+  source_evidence:
+  - source_id: src-8770xte200en
+  - location: p325-362
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 可视化域，路由可达即可
+- capability_id: cap.ovnms.oxe-ui-efficiency
+  revision: 1
+  status: active
+  slug: ovnms-oxe-ui-efficiency
+  title: OmniVista 8770 OXE 配置界面高效操作（搜索/冻结/网格/导入导出）
+  importance: medium
+  importance_rationale: 对应 task-06，操作手法类；独立触发价值低但日常配置效率的地基
+  one_liner: 搜索、冻结列、网格/文件切换、属性选择、图形视图配键、树与网格导入导出（.txt/.prg）
+  intents:
+  - OXE 配置界面检索与视图操作
+  - 配置导出导入
+  keywords:
+  - Configure
+  - Freeze
+  - 冻结列
+  - Grid
+  - Attributes Selection
+  - Graphical View
+  - Mnemo
+  - Export Grid
+  - ".prg"
+  card: cards/ovnms-oxe-ui-efficiency.md
+  frontmatter:
+    description: '8770 内 OXE 图形配置界面（Configure）的六类提效手法：条件搜索、冻结列、网格/文件视图切换、属性列选择、图形视图预配可编程键、
+      树与网格两级导入导出留档。当用户问"怎么高效核对/导出/导入 OXE 配置"时经路由使用。配置语义本身（继承/同步/权限）由对应能力覆盖。
+
+      '
+    tags:
+    - reference
+    - omnivista-8770
+    - oxe
+    - efficiency
+  source_evidence:
+  - source_id: src-8770xte200en
+  - location: p158-167
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 操作手法域，路由可达即可
+- capability_id: cap.ovnms.network-drive
+  revision: 1
+  status: active
+  slug: ovnms-network-drive
+  title: OmniVista 8770 网络驱动器映射（报表与备份落网络存储）
+  importance: medium
+  importance_rationale: 对应 task-27，生产部署常见要求；服务账号同名同密与五项权利是成败关键
+  one_liner: 远程共享（REPORTS_ECO/BACKUP_ECO）+ 同名同密 ADM8770（Administrators 组+五项权利）+ ExecdEx/SaveRestore 注入 .\ADM8770
+  intents:
+  - 映射网络驱动器
+  - 配置服务账号写网络盘
+  keywords:
+  - Map network drive
+  - ADM8770
+  - REPORTS_ECO
+  - BACKUP_ECO
+  - ExecdEx
+  - SaveRestore
+  - Nt account
+  - 用户权利
+  - 同名同密
+  card: cards/ovnms-network-drive.md
+  frontmatter:
+    description: '让报表导出（ExecdEx）与备份恢复（SaveRestore）落网络存储：远程服务器建共享与 ADM8770 账号、8770 侧同名同密本地账号
+      （入 Administrators、移出 Users、五项用户权利）、以 ADM8770 映射驱动器、两服务配 Nt account（.\ADM8770 大写带前缀）、立即备份 Search 验收。
+      当用户要"备份到网络盘/报表落 NAS/服务账号"时经路由使用。环境值见 book/overview。
+
+      '
+    tags:
+    - procedure
+    - omnivista-8770
+    - network-drive
+    - windows
+  source_evidence:
+  - source_id: src-8770xte200en
+  - location: p668-698
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 生产化补丁，路由可达即可

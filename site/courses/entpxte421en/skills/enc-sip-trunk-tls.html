@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>SIP trunk 的 TLS 与 SRTP</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 加密解决方案</h2><p>Edition 05 · 410 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte421en/index.html">课程首页</a><a href="/courses/entpxte421en/digest.html">精华长文</a><a href="/courses/entpxte421en/overview.html">教书理解</a><a href="/courses/entpxte421en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte421en/skills/enc-certificate-trust-chain.html">证书与信任链全生命周期</a><a href="/courses/entpxte421en/skills/enc-native-encryption-bringup.html">加密解决方案开通与 lanpbx.cfg</a><a href="/courses/entpxte421en/skills/enc-dtls-verification-maintenance.html">DTLS 验证、排障与维护闭环</a><a href="/courses/entpxte421en/skills/enc-sip-tls-endpoints.html">SIP TLS 扩展加密</a><a href="/courses/entpxte421en/skills/enc-sip-trunk-tls.html">SIP trunk 的 TLS 与 SRTP</a><a href="/courses/entpxte421en/skills/enc-eegw-deployment.html">EEGW/NSP 大容量部署</a><a href="/courses/entpxte421en/skills/enc-abcf-network-encryption.html">ABC-F 网络加密</a><a href="/courses/entpxte421en/skills/enc-mtls-endpoint-authentication.html">mTLS 双向认证与版本限制</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte421en/skills/enc-pcs-failover.html">PCS 加密接管</a><a href="/courses/entpxte421en/skills/enc-pki-workshop-xca.html">XCA 外部 CA 工坊</a><a href="/courses/entpxte421en/skills/enc-application-encryption.html">应用生态加密与安全下载</a><a href="/courses/entpxte421en/skills/enc-lab-environment.html">实验环境底座（RLAB）</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte421en/index.html">oxe-native-encryption（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte421en/index.html">ENTPXTE421EN</a><span>/</span><span aria-current="page">SIP trunk 的 TLS 与 SRTP</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>SIP trunk 的 TLS 与 SRTP</h1></div><dl><div><dt>Skill ID</dt><dd>enc-sip-trunk-tls</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>SIP trunk 的 SIP TLS 与 SRTP（OTSBC+OXE 双侧、信令/媒体决定表、安全停用）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The Native SIP TLS trunk feature deals with signaling only • The media encryption (SRTP) depends on the activation of the 'native encryption' … and on the management of 'SRTP' parameter in the external SIP gateway"（p161）
+"Index 1, Name OXE TLS, TLS Version TLSv1.2 … DH key Size 2048"（p175）
+"RESTART THE SIPMOTOR PROCESS AFTER THE CONFIGURATION."（p190）
+"setting the SIP TLS (Mutual Auth.) port number as '0' overrides the SIP-External Gateway Parameter: 'SIP TLS Mutual Authentication parameter: True'"（p167）</p>
+</blockquote>
+<p>出处：ENTPXTE421EN p93, p159-193, p194-198, p264-271, p377-379。</p>
+<h2>I — 自述</h2>
+<p>运营商方向的加密中继：SBC 侧与 OXE 两侧成对配置，外加一条"信令≠媒体"的总纲：</p>
+<ol>
+<li><strong>信令/媒体决定表</strong>（p161，验收总纲）：</li>
+</ol>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>系统 NE</th>
+<th>网关 SRTP 参数</th>
+<th>媒体结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>关</td>
+<td>RTP or RTP/SRTP 或 RTP</td>
+<td>RTP 明文（仅信令可加密）</td>
+</tr>
+<tr>
+<td>开</td>
+<td>RTP</td>
+<td>RTP 明文</td>
+</tr>
+<tr>
+<td>开</td>
+<td>RTP or SRTP</td>
+<td>明文（对不支持 SRTP 的对端回落）</td>
+</tr>
+<tr>
+<td>开</td>
+<td>RTP/SRTP</td>
+<td>SRTP（信令与话音全加密）</td>
+</tr>
+</tbody>
+</table></div>
+<ol>
+<li><strong>OTSBC 侧清单</strong>（WebAdmin，p175-184）：</li>
+<li>TLS contexts：TLSv1.2+DTLSv1.2、Cipher server AES256:AES128、DH key 2048</li>
+<li>证书四步：导入 RootCA、生成 4096 私钥、生成 CSR（CN=SBC 的 IP，SHA-256）、导入签发证书</li>
+<li>SIP Interfaces（OXE 侧）：挂 context、UDP 置不使用、TLS port 5061</li>
+<li>Proxy Sets（OXE）：Proxy Address 带 5061、Transport type TLS</li>
+<li>Media Security：Enable + AES-CM-128-HMAC-SHA1-80；IP Profile 用 Offer Both–Answer Prefered Secure 兼容未加密用户</li>
+<li><strong>OXE 侧清单</strong>（p185-193）：</li>
+<li>TLS signaling possible=Yes → 重启 CS</li>
+<li>外部 SIP 网关：远程域=SBC IP、端口 5061、Transport type TLS Client、SRTP=RTP or SRTP</li>
+<li>本地 SIP 网关：SIP TLS (Server Auth.) 5061 /（Mutual Auth.）6261，改端口须重启 SIPMOTOR</li>
+<li>对端 CA 不同时经 11.9.3 导入 SBC 的 CTL</li>
+<li><strong>端口四组合与陷阱</strong>（p166-168）：</li>
+<li>0/0 无 TLS；5061/0 仅服务器认证；0/6261 仅互认证；5061/6261 并存</li>
+<li>互认证端口填 0 会静默覆盖外部网关的 True，MAO 界面不会自动变 False（n15）</li>
+<li><strong>mTLS 成对规则</strong>（p378-379）：本地网关互认证端口=OTSBC Proxy Set 的 host:port；外部网关 SIP 端口=OTSBC SIP Interface 的 TLS 端口</li>
+<li><strong>安全停用</strong>（p194-198 四步）：系统参数取消勾选；用户 Native Encryption=Disable（SIP 用户再加 SRTP=None）；lanpbxbuild 里 DTLS1/2 填 0.0.0.0、FQDN 清空；重启（duplication 双 bascul）后互打确认 CLEAR</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>OTSBC 侧实验</strong>（p173-184，c06 步骤 1-9）：</p>
+<ol>
+<li>WebAdmin 建 TLS context（OXE TLS：TLSv1.2/DTLSv1.2、AES256:AES128、DH 2048）</li>
+<li>导入 RootCA（ca-certgen.cer，实验口径）</li>
+<li>生成 4096 私钥；生成 CSR（CN=SBC IP、SHA-256）交 CA 签发</li>
+<li>导入签发证书（.cer，Base-64 X.509）</li>
+<li>SIP Interfaces 挂 context，TLS port 5061</li>
+<li>Proxy Set 地址改 5061/TLS</li>
+<li>Media Security Enable + AES-CM-128-HMAC-SHA1-80</li>
+<li>IP Profile 设 Offer Both–Answer Prefered Secure</li>
+</ol>
+<p><strong>OXE 侧实验</strong>（p185-193，c07 步骤 2-7）：</p>
+<ol>
+<li>TLS signaling possible=Yes 后重启 OXE</li>
+<li>外部网关 ITSP_GW 配 TLS Client/5061/SRTP=RTP or SRTP</li>
+<li>改 SRTP 认证后按警告执行 dhs3_init -R SIPMOTOR</li>
+<li>对端 CA 不同时 11.9.3.1 导入 SBC CTL（自动同步 twin）</li>
+<li>IPDSP 与公网 MicroSIP 互打，看挂锁图标</li>
+<li>sipextgw -g 3 核对 IN SERVICE；cryptview 列出受保护网关与扩展计数</li>
+</ol>
+<p><strong>安全停用</strong>（p194-198，c08）：按 I 段第 6 条四步执行，最后互打确认 CLEAR 模式。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：运营商 SIP 中继要加密；SBC 和 OXE 两侧怎么配；中继信令加密了语音有没有加密；6261 端口；互认证开不生效；怎么把加密安全关掉回退。</p>
+<p>语言信号：OTSBC / WebAdmin / TLS contexts / Proxy Set / SIP Interface / Media Security / AES-CM-128-HMAC-SHA1-80 / Offer Both / RTP or SRTP / 5061 / 6261 / SIPMOTOR / 停用 / deactivation。</p>
+<p>与相邻能力区分：SIP 扩展（SEPLOS）加密归 SIP TLS 扩展能力；SBC 指向 NSP FQDN 与内部 DNS 归 EEGW 部署能力；验证命令族细节归验证与维护能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：NE 已启用、SBC 可达、CA 签发通道可用、trunk 组类型为 "ISDN all countries"。运营商侧 TLS 参数未知 → 判停向运营商索取。</p>
+<ol>
+<li>SBC 侧八步：按 I 段第 2 条清单顺序配置（context、证书、接口、Proxy、媒体、Profile）。完成标准：SBC 侧无红色告警</li>
+<li>OXE 侧参数：TLS signaling possible=Yes → 重启 CS。完成标准：netstat 见 5061 监听</li>
+<li>外部网关：远程域/端口/Transport/SRTP 按 I 段第 3 条配置。完成标准：网关保存</li>
+<li>本地网关端口：按四组合决策 5061/6261 取值；两侧端口成对核对。完成标准：端口对照表通过</li>
+<li>生效与信任：dhs3_init -R SIPMOTOR；CA 不同则 11.9.3 导入对端 CTL。完成标准：进程重启完成</li>
+<li>验收：互打看挂锁或抓包；cryptview 网关计数；对照决定表确认媒体真加密。完成标准：信令与媒体双证</li>
+<li>（如需回退）安全停用：按 I 段第 6 条四步执行并验证明文。完成标准：CLEAR 通话确认</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户说"中继已加密"要验收 → 按 p161 决定表核对网关 SRTP 参数与系统 NE 同时开启，只看 TLS 不算媒体加密（n13）</li>
+<li>互认证配置了 True 但实际没生效 → 查本地网关互认证端口是否被填 0（覆盖陷阱，MAO 仍显示 True，n15）</li>
+<li>TLS 建链失败 → 按 n29 两侧端口成对核对（本地网关 6261 对 Proxy Set、外部网关端口对 SIP Interface）</li>
+<li>对端 SBC 的 SRTP 不合规 → RTP or SRTP 参数下会回落明文，与运营商核对 SRTP 能力</li>
+</ul>
+<p>输出契约：双侧配置记录 + 端口对照表 + 信令/媒体双验证证据（或干净的停用验证）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>真实运营商的 TLS 对接参数（证书策略、SRTP profile、SBC 型号差异）在书外——实验用 ITSP2 模拟器与 OTSBC</li>
+<li>Native SIP TLS 可独立于 NE 使用，但只保护信令；"上了 TLS 语音就加密"是误解（n13）</li>
+<li>SIP TLS with SSM 与 NE 的 SIP TLS 不兼容；中继加密不兼容 IPv6（p159）</li>
+<li>NSP FQDN 冗余指向规则归 EEGW 部署能力（p266）</li>
+<li>实验口径：SBC Admin/Admin、ITSP_GW ID 3、证书由 trainer 签发——生产全部替换</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte421en/skills/enc-sip-tls-endpoints.html">SIP TLS 扩展加密</a>、<a href="/courses/entpxte421en/skills/enc-eegw-deployment.html">EEGW/NSP 大容量部署</a></p><p class="source-page">能力 ID：cap.enc.sip-trunk-tls · 来源：ENTPXTE421EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — Native Encryption (Participant's Guide, Edition 05) | edition: Edition 05 | pages: 410 页 -->

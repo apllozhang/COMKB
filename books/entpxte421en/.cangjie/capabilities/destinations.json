@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.oxe-native-encryption",
+  "generated_at": "2026-09-24",
+  "destinations": {
+    "cap.enc.certificate-trust-chain": { "promoted_to": "enc-certificate-trust-chain" },
+    "cap.enc.native-encryption-bringup": { "promoted_to": "enc-native-encryption-bringup" },
+    "cap.enc.dtls-verification-maintenance": { "promoted_to": "enc-dtls-verification-maintenance" },
+    "cap.enc.sip-tls-endpoints": { "promoted_to": "enc-sip-tls-endpoints" },
+    "cap.enc.sip-trunk-tls": { "promoted_to": "enc-sip-trunk-tls" },
+    "cap.enc.eegw-deployment": { "promoted_to": "enc-eegw-deployment" },
+    "cap.enc.abcf-network-encryption": { "promoted_to": "enc-abcf-network-encryption" },
+    "cap.enc.mtls-endpoint-authentication": { "promoted_to": "enc-mtls-endpoint-authentication" },
+    "cap.enc.pcs-failover": { "served_by": "oxe-native-encryption-router" },
+    "cap.enc.pki-workshop-xca": { "served_by": "oxe-native-encryption-router" },
+    "cap.enc.application-encryption": { "served_by": "oxe-native-encryption-router" },
+    "cap.enc.lab-environment": { "served_by": "oxe-native-encryption-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 }
+}

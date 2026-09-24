@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.oxe-starter",
+  "generated_at": "2026-09-23",
+  "destinations": {
+    "cap.ents.first-login-hardening": { "promoted_to": "ents-first-login-hardening" },
+    "cap.ents.cs-network-firewall": { "promoted_to": "ents-cs-network-firewall" },
+    "cap.ents.db-license": { "promoted_to": "ents-db-license" },
+    "cap.ents.media-gateway-deployment": { "promoted_to": "ents-media-gateway-deployment" },
+    "cap.ents.user-terminal-provisioning": { "promoted_to": "ents-user-terminal-provisioning" },
+    "cap.ents.numbering-cos": { "promoted_to": "ents-numbering-cos" },
+    "cap.ents.call-processing": { "promoted_to": "ents-call-processing" },
+    "cap.ents.sip-trunk": { "promoted_to": "ents-sip-trunk" },
+    "cap.ents.system-start-stop": { "served_by": "oxe-starter-router" },
+    "cap.ents.time-sync": { "served_by": "oxe-starter-router" },
+    "cap.ents.voicemail-4645": { "served_by": "oxe-starter-router" },
+    "cap.ents.barring-emergency": { "served_by": "oxe-starter-router" },
+    "cap.ents.backup-maintenance": { "served_by": "oxe-starter-router" },
+    "cap.ents.legacy-trunks-umc": { "served_by": "oxe-starter-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 }
+}

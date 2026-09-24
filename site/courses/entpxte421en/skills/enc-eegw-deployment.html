@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>EEGW/NSP 大容量部署</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 加密解决方案</h2><p>Edition 05 · 410 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte421en/index.html">课程首页</a><a href="/courses/entpxte421en/digest.html">精华长文</a><a href="/courses/entpxte421en/overview.html">教书理解</a><a href="/courses/entpxte421en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte421en/skills/enc-certificate-trust-chain.html">证书与信任链全生命周期</a><a href="/courses/entpxte421en/skills/enc-native-encryption-bringup.html">加密解决方案开通与 lanpbx.cfg</a><a href="/courses/entpxte421en/skills/enc-dtls-verification-maintenance.html">DTLS 验证、排障与维护闭环</a><a href="/courses/entpxte421en/skills/enc-sip-tls-endpoints.html">SIP TLS 扩展加密</a><a href="/courses/entpxte421en/skills/enc-sip-trunk-tls.html">SIP trunk 的 TLS 与 SRTP</a><a href="/courses/entpxte421en/skills/enc-eegw-deployment.html">EEGW/NSP 大容量部署</a><a href="/courses/entpxte421en/skills/enc-abcf-network-encryption.html">ABC-F 网络加密</a><a href="/courses/entpxte421en/skills/enc-mtls-endpoint-authentication.html">mTLS 双向认证与版本限制</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte421en/skills/enc-pcs-failover.html">PCS 加密接管</a><a href="/courses/entpxte421en/skills/enc-pki-workshop-xca.html">XCA 外部 CA 工坊</a><a href="/courses/entpxte421en/skills/enc-application-encryption.html">应用生态加密与安全下载</a><a href="/courses/entpxte421en/skills/enc-lab-environment.html">实验环境底座（RLAB）</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte421en/index.html">oxe-native-encryption（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte421en/index.html">ENTPXTE421EN</a><span>/</span><span aria-current="page">EEGW/NSP 大容量部署</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>EEGW/NSP 大容量部署</h1></div><dl><div><dt>Skill ID</dt><dd>enc-eegw-deployment</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>EEGW/NSP 大容量部署（外部加密网关、SIP Translator、S.O.T. 生成）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"External Virtual Machine mandatory • OXE redundancy: one dedicated EEGW per Call Server • Includes the SIP Translator (NSP) • Virtualization of OXE mandatory"（p200）
+"The call server goes for reboot if the link with the external EGW is lost"（p203）
+"Warning THE CALL SERVER ASSOCIATED TO THE EEGW VIRTUAL MACHINE WILL REBOOT TOO!"（p239）
+"NSP FQDN is mandatory as soon as CS redundancy is implemented."（p266）</p>
+</blockquote>
+<p>出处：ENTPXTE421EN p77, p199-216, p217-243, p244-271, p272-282。</p>
+<h2>I — 自述</h2>
+<p>会话数超 1500 后的强制形态：EEGW 虚拟机（OST 包，Rocky Linux）承载 DTLS，内含 NSP 承载 SIP TLS：</p>
+<ol>
+<li><strong>容量分界与许可</strong>（p63/p77/p109/p200）：</li>
+</ol>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>形态</th>
+<th>会话上限</th>
+<th>形态要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内嵌 EGW（CS/PCS 内）</td>
+<td>&lt;1500 并发 DTLS/TLS</td>
+<td>默认，零额外部署</td>
+</tr>
+<tr>
+<td>EEGW（每 CS 一台）</td>
+<td>1500-15000</td>
+<td>强制 VM、OXE 须虚拟化、需人工报价</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>会话数=受保护端点报价数+3×(GD4/GD-XL/GD3/INTIP3B/OXE-MS)+3×外部 SIP 网关+3×节点数</li>
+<li>许可 #424（系统 DTLS/TLS 会话）与 #359（并发 SIP TLS 通信）两个维度</li>
+<li><strong>五条硬规则</strong>（p200-203/p239）：</li>
+<li>EEGW 强制外部 VM；OXE 自身必须虚拟化部署</li>
+<li>CS 与其 EEGW 必须同物理主机、同一虚拟交换机</li>
+<li>CS-EEGW 间专用明文 UA/UDP 链路兼做存活监控，断链 CS 直接重启</li>
+<li>EEGW VM 上证书操作触发重启时，关联 CS 连坐重启——变更按 CS 重启级规划</li>
+<li>冗余场景每台 CS 一台专属 EEGW</li>
+<li><strong>CS 侧六步部署</strong>（p204-210）：</li>
+<li>声明：netadmin 20（EEGW IP）+19.2（Translator 名 nsp）——任一变更都要重生成 CS 证书+OXE 重启+copy to twin</li>
+<li>防火墙/解析：EEGW IP 进 CS 内部防火墙（11.1.3）；Translator FQDN 必须可解析（内部 DNS 17.2 或外部 DNS 委托）</li>
+<li>证书：SAN 按五字段顺序装 EEGW 地址/FQDN/通配符/Translator FQDN</li>
+<li>lanpbx.cfg：DTLS_SRV 填 EEGW IP（端口默认 32643）</li>
+<li>VM：ostconfig 配 IP 与 CS 地址 → 11 Download Certificates（SSH key 已存在时勿重生成）→ 12 Certificate check 核对 SAME</li>
+<li><strong>NSP 指向规则</strong>（p247/p266/p29）：仅外部 EGW 场景强制声明 Translator；冗余场景 SBC 必须用 NSP FQDN（内部 DNS 仅主 CS 应答→返回主 CS 的 EEGW IP），单机才可直填 EEGW IP</li>
+<li><strong>S.O.T. 工厂流程</strong>（p272-282）：Greenfield 工程、产品 OST、FTP 补媒体（upload/sot）、机器类型 EEGW/Sizing/IP，Deploy 生成 .ova 后 ESXi 部署；首登 root/letacla1 立即改密（Rocky ≥14 位强化规则）</li>
+<li><strong>内嵌→外部迁移四阶段</strong>（p216）：mao 声明 EEGW IP、重生成证书（EEGW IP 入 SAN）、重建 lanpbx（DTLS1/2=两台 EEGW IP）、装 VM，最后整体重启</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>EEGW 部署实验</strong>（p217-243，c09 步骤 1-8）：</p>
+<ol>
+<li>netadmin 20.2 声明 EEGW：Main=192.168.1.7、twin=192.168.1.8（实验口径），确认触发证书重生成</li>
+<li>11.1.3 受限访问加 eegwcpua/eegwcpub 信任主机</li>
+<li>重做 PEM 证书闭环：CSR 含 EEGW 的 IP/DNS SAN，签发后经 11.9.1.4 导入并 View 核对</li>
+<li>copy to twin 后 dhs3_init -R NGINX</li>
+<li>lanpbxbuild 里 j=192.168.1.7、k=192.168.1.8，Apply 后重启 CS</li>
+<li>WBM 的 IP/Encryption GW 显示 EGW IP 不等于 CS IP（EXTERNAL）</li>
+<li>两台 EEGW 各自 ostconfig 配 IP/CS 地址并 Download Certificates（CS 连带重启）</li>
+<li>Certificate check 显示 SAME；cryptview 显示 DTLS server address (External EGW)</li>
+</ol>
+<p><strong>NSP 切换实验</strong>（p264-271，c11）：SBC Proxy Set 改指 nsp.oxe.company.com:5061，17.2 激活内部 DNS，SBC console ping 验证解析到主 CS 的 EEGW IP 后全链路加密。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：站点超 1500 会话怎么扩；EEGW 怎么装；NSP/SIP Translator 是什么；改 EEGW IP 要动什么；EEGW 重启会不会影响话务；SBC 该指向哪个地址。</p>
+<p>语言信号：EEGW / External Encryption Gateway / OST / ostconfig / SIP Translator / NSP / nsp.oxe / S.O.T. / Greenfield / OVA / ESXi / 1500 / 15000 / Download Certificates / config ost / 内部 DNS。</p>
+<p>与相邻能力区分：容量计算与许可看本卡 I 段第 1 条（Sizing 细节书外）；证书 SAN 装配归证书与信任链能力；SBC 侧 TLS context 归 SIP trunk 能力；PCS 外接 EEGW 归 PCS 接管（路由卡）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：会话数测算超过 1500、OXE 已虚拟化、ESXi 资源就位、变更窗口按"CS 重启"批准。OXE 是物理机 → 判停（EEGW 前置不满足）。</p>
+<ol>
+<li>测算与报价：按公式算会话数；EEGW 需人工报价，15000 为上限。完成标准：容量与许可方案成文</li>
+<li>声明：netadmin 20 声明 EEGW IP、19.2 声明 Translator 名——一步到位避免改名循环。完成标准：声明保存并知悉重启代价</li>
+<li>网络前置：11.1.3 把 EEGW IP 加入内部防火墙；17.2 激活内部 DNS 或外部 DNS 委托。完成标准：防火墙与解析双就绪</li>
+<li>证书与 lanpbx：重生成证书（EEGW 地址入 SAN）→ lanpbx DTLS 指向 EEGW → copy to twin。完成标准：SAN 核验通过</li>
+<li>生成 VM：S.O.T. 建 Greenfield 工程（仅 Chrome/Firefox），媒体缺失先 FTP 上传，Deploy 出 .ova。完成标准：ESXi 部署完成</li>
+<li>配置 VM：首登按 Rocky 规则改密（≥14 位）、ostconfig 配 IP/CS 地址、Download Certificates、Certificate check 核对 SAME。完成标准：证书两侧一致</li>
+<li>验证：config ost 两行 IN SERVICE；cryptview 显示 External EGW；SBC ping NSP FQDN 解析正确。完成标准：端到端加密通话</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>变更窗口只按"VM 重启"申报 → 停下重报：EEGW 证书下载/声明变更会连带 CS 重启（p239 大写警告）</li>
+<li>冗余站点把 SBC 指到固定 EEGW IP → 必须改用 NSP FQDN，否则主备切换后信令断（n22）</li>
+<li>EEGW VM 规格（CPU/内存）怎么定 → Sizing 只按最大用户数（p276），规格与压测口径在书外，按 OXE 安装文档</li>
+<li>下载证书提示 SSH Key 已存在 → 勿重生成（答 n），否则破坏既有信任关系（n24）</li>
+</ul>
+<p>输出契约：EEGW/NSP 上线 + 证书一致核验 + SBC 指向与解析验证 + 变更窗口记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>EEGW 的 VM 规格、压测口径、跨主机高可用不在原书范围（Sizing 仅"最大用户数"）</li>
+<li>transit/大容量拓扑下的抓包点与 SIP TLS 解密原书未覆盖</li>
+<li>PCS 侧外接 EEGW 的判断（PCS EGW IP=PCS IP 即内嵌、不同即外接）在 PCS 路由卡</li>
+<li>全部 IP/口令/主机名（eegwcpua、letacla1、Superuser2580* 等）为实验口径，生产必须替换</li>
+<li>会话公式是许可计数口径，实际并发话务建模在书外</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte421en/skills/enc-certificate-trust-chain.html">证书与信任链全生命周期</a>、<a href="/courses/entpxte421en/skills/enc-sip-trunk-tls.html">SIP trunk 的 TLS 与 SRTP</a></p><p class="source-page">能力 ID：cap.enc.eegw-deployment · 来源：ENTPXTE421EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — Native Encryption (Participant's Guide, Edition 05) | edition: Edition 05 | pages: 410 页 -->

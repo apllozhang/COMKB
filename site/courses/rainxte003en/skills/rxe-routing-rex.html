@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OXE 用户形态决策与远程延伸路由</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Rainbow for OmniPCX Enterprise</h2><p>Edition 12 · 314 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte003en/index.html">课程首页</a><a href="/courses/rainxte003en/digest.html">精华长文</a><a href="/courses/rainxte003en/overview.html">教书理解</a><a href="/courses/rainxte003en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte003en/skills/rxe-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte003en/skills/rxe-agent-onboarding.html">OXE 接入 Rainbow 与接入排障</a><a href="/courses/rainxte003en/skills/rxe-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte003en/skills/rxe-routing-rex.html">OXE 用户形态决策与远程延伸路由</a><a href="/courses/rainxte003en/skills/rxe-webrtc-gateway-deployment.html">WebRTC 网关部署与升级</a><a href="/courses/rainxte003en/skills/rxe-oxe-gateway-config.html">OXE 侧 WebRTC 网关配置九件套</a><a href="/courses/rainxte003en/skills/rxe-gateway-pool-sizing.html">共享 WebRTC 网关池与容量规划</a><a href="/courses/rainxte003en/skills/rxe-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte003en/skills/rxe-rcc-association.html">OXE 分机关联与 RCC 模式</a><a href="/courses/rainxte003en/skills/rxe-attendant-consoles.html">两套话务台（4059EE 与 Rainbow Attendant Console）</a><a href="/courses/rainxte003en/skills/rxe-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte003en/skills/rxe-network-readiness.html">Rainbow 网络就绪核查</a><a href="/courses/rainxte003en/skills/rxe-lab-pod-setup.html">RLAB 实验环境与 Pod 配置</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte003en/index.html">rainbow-oxe-integration（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte003en/index.html">RAINXTE003EN</a><span>/</span><span aria-current="page">OXE 用户形态决策与远程延伸路由</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OXE 用户形态决策与远程延伸路由</h1></div><dl><div><dt>Skill ID</dt><dd>rxe-routing-rex</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OXE 用户形态决策与远程延伸路由（RCC/REX/Tandem/Ghost Z/溢出）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Rainbow Essential license • Allows only to control your physical device via the Rainbow application (RCC mode) • Call routing is not possible"（p109）
+"A Remote Extension (REX) is a special type of device that allows OXE to reroute calls to an external resource … each REX needs an internal technical equipment called Ghost Z"（p111）
+"Multi-lines are required on extensions part of a tandem."（p124）
+"The DECT device cannot be set up in tandem with a REX (OXE management limitation)"（p139）</p>
+</blockquote>
+<p>出处：RAINXTE003EN p106-130, p139。</p>
+<h2>I — 自述</h2>
+<p>先定形态再动手，四种用户形态（p106-118）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>形态</th>
+<th>订阅前提</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无 REX（RCC）</td>
+<td>Essential 或未配路由</td>
+<td>Rainbow 仅监督话机（接/挂/转），音频全在话机，用 OXE 公网资源</td>
+</tr>
+<tr>
+<td>话机+REX（tandem）</td>
+<td>Business/Enterprise</td>
+<td>可改路由到手机/家庭/其他外部号；agent 按路由自动改写 REX</td>
+</tr>
+<tr>
+<td>纯 REX（无话机）</td>
+<td>Business/Enterprise + 网关</td>
+<td>Rainbow 当软电话，WebRTC 网关必须</td>
+</tr>
+<tr>
+<td>仅 DECT 话机</td>
+<td>Business/Enterprise</td>
+<td>DECT 不能直接 tandem，须建 Virtual UA 做 multi-devices</td>
+</tr>
+</tbody>
+</table></div>
+<p>路由四案例矩阵（p116，选 Office phone 路由时）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>案例</th>
+<th>用户档案手机号</th>
+<th>REX 内容</th>
+<th>振铃终端</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Case 1</td>
+<td>无手机号</td>
+<td>空</td>
+<td>仅话机</td>
+</tr>
+<tr>
+<td>Case 2</td>
+<td>配专业手机</td>
+<td>专业手机</td>
+<td>话机+专业手机同响</td>
+</tr>
+<tr>
+<td>Case 3</td>
+<td>配个人手机</td>
+<td>个人手机</td>
+<td>话机+个人手机同响</td>
+</tr>
+<tr>
+<td>Case 4</td>
+<td>两个都配</td>
+<td>专业手机（专业优先）</td>
+<td>话机+专业手机同响</td>
+</tr>
+</tbody>
+</table></div>
+<p>机制要点：</p>
+<ol>
+<li><strong>Ghost Z</strong>：REX 专用的 OXE 内部技术资源，每路并发呼叫占一个、通话结束释放；Ghost Z 池大小=REX 并发上限（p111/p122）</li>
+<li><strong>Tandem</strong>：主站=Deskphone、副站=REX；两端必须 multi-line（至少 2 线）；配置只做在主站，自动同步副站（p124-125）</li>
+<li><strong>路由不是转发</strong>：Call Routing is not a Forwarding——路由改 REX 指向的外部目的地，与 forwarding 是两个机制（p109/p114）</li>
+<li><strong>computer 路由特殊</strong>：REX 被 agent 写入 BBB 前缀 17 位 Rainbow number，走 WebRTC 网关；mobile/home/other 走 OXE 公网 trunk（p113/p142）</li>
+<li><strong>两级溢出</strong>：主站失效溢副站（系统参数+COS）；主副都无应答溢 associate（留言信箱），计时器 100ms 步进（150 即 15 秒）（p126-127）</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>远程延伸配置实验</strong>（p119-130，参考 TC2462）：</p>
+<ol>
+<li>系统参数勾选 REX 出局实体与 ARS 实体两个 Local Features 参数</li>
+<li>建 Ghost Z：目录号用字母开头（如 DB1000）、Set Type Analog、机架/板卡/设备地址 255</li>
+<li>Ghost Z 的 Facilities 页签勾 Ghost Z 且 Feature 选 Remote extension</li>
+<li>声明 REX：目录号按 21 加主号 QMCDU 编号（如 2131000），Set Type 选 Remote extension</li>
+<li>给主站 31000 与副站 2131000 各配至少 2 条 multi-line（Prog. Keys 页签）</li>
+<li>主站 31000 的 Assoc. Sets 页签声明 tandem：副站号 2131000、勾 Main set in the tandem</li>
+<li>溢出第一级：勾 Overflow to sec tandem if main OOS 与配套 COS 两项</li>
+<li>溢出第二级：实体 Overflow timer（100ms 步进）、COS 勾无应答溢 associate、主设备关联留言信箱号</li>
+<li>给用户分配 Enterprise 订阅（Essential 不能改路由）</li>
+<li>Nomadic 测试：路由选 Other phone 填外部号后做来去话，再用 remotesets 查 REX 自动号码</li>
+<li>档案逐个配专业/家庭/个人手机并切路由，对照四案例矩阵核对 REX 内容与振铃</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：给用户选接入形态；振铃终端不对；REX 并发上不去；DECT 用户上 Rainbow；"我在 Rainbow 上接不了电话"。</p>
+<p>语言信号：REX / 远程延伸 / Ghost Z / tandem / multi-line / 溢出 / overflow / nomadic / DECT / Virtual UA / 路由 / routing / 转发 / forwarding / remotesets。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>computer 路由的网关侧落地 → 网关部署与 OXE 侧网关配置两能力</li>
+<li>只做分机绑定不做路由 → 分机关联能力（路由卡）</li>
+<li>Ghost Z 数量与话务量核算 → 共享池与容量能力</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OXE 版本与用户话机类型（物理话机/DECT/无话机）、订阅档位、用户档案手机号口径。形态未定 → 先用形态矩阵决策再施工。</p>
+<ol>
+<li>形态决策：按四形态矩阵对号（订阅、话机、预期行为）。完成标准：形态与订阅方案成文</li>
+<li>Ghost Z 容量：按并发呼叫数建池，目录号字母开头优化拨号计划。完成标准：池大小与话务匹配</li>
+<li>声明 REX：编号 21 加主号 QMCDU，Set Type 选 Remote extension。完成标准：REX 设备在册</li>
+<li>配 multi-line：主副站各至少 2 线。完成标准：tandem 成员分机均有 multi-line</li>
+<li>声明 tandem：只在主站 Assoc. Sets 做，确认自动同步副站。完成标准：主副站配对生效</li>
+<li>配溢出：两级参数与 COS 按清单勾选。完成标准：主站失效/无应答路径实测可达</li>
+<li>行为验证：切路由做 Nomadic 来去话，remotesets 核对 REX 自动号码。完成标准：与四案例矩阵一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>来话振铃终端与预期不符 → 先查用户档案手机号字段与 REX 实际内容（remotesets），不按转发思路排障</li>
+<li>DECT 用户要上路由 → 停，走 Virtual UA 方案并讲清两个代价（重建 DECT、Virtual UA 不可 RCC）</li>
+<li>4059EE 场景要求关联话机"非 multi-line" → 场景相反，不要把 tandem 经验照搬（n20）</li>
+<li>用户只有 Essential 却要改路由 → 停，先升订阅（Business/Enterprise），不硬调参数</li>
+</ul>
+<p>输出契约：用户形态与订阅方案 + Ghost Z/REX/tandem 配置记录 + 路由行为验证结论。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>远程延伸的完整生产依据在 TC2462（p121/p125 各章指向），本卡为培训实验口径的提炼</li>
+<li>Ghost Z 数量规划联动容量工具（TBE067 推算压缩器，p151），书内无直接换算表</li>
+<li>"RCC 呼纯 Rainbow 用户不通"为机制推断（书中以测试问题呈现未给答案，nr-04），现场实测确认</li>
+<li>实验分机号（31000/2131000）、Ghost 示例号（DB1000）与留言信箱号为实验口径，现场按自己编号计划重排</li>
+<li>OXE 网络的多节点 REX 用途（OT/Remote Agent）书中仅点名，未展开</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte003en/skills/rxe-webrtc-gateway-deployment.html">WebRTC 网关部署与升级</a>、<a href="/courses/rainxte003en/skills/rxe-oxe-gateway-config.html">OXE 侧 WebRTC 网关配置九件套</a></p><p class="source-page">能力 ID：cap.rxe.routing-rex · 来源：RAINXTE003EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Rainbow / OmniPCX Enterprise (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 314 页 -->

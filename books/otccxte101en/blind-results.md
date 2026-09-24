@@ -1,0 +1,40 @@
+# otccxte101en 盲判结果（仅依据能力目录，判卷前锁定）
+
+- should-ism-01 | otcad-ism-skill-matching | 坐席列表怎么算对应三级漏斗与 Cman/Copt 排序口径
+- should-ism-02 | otcad-ism-skill-matching | 最久空闲轮流接对应 PLTR/LIT 切换及其限制
+- should-remote-01 | otcad-remote-pg-mutual-aid | 跨站点坐席互助与忙时溢出对应 Remote PG 互助落地
+- should-remote-02 | otcad-remote-pg-mutual-aid | Remote_PG blocked 与 hybvisu 链路排查属互助链路判读
+- should-spmd-01 | otcad-spm-deployment | 墙板统计不动属 SPM 基础设置（统计节拍/CCD Filters 总开关）排查
+- should-spmd-02 | otcad-spm-deployment | 部署端口与独享服务器门槛属部署与基础设置能力
+- should-panel-01 | otcad-soft-panel-manager | 实时看板排队/等待/坐席状态属挂件配置
+- should-panel-02 | otcad-soft-panel-manager | 超阈值切红+发邮件对应告警四步（阈值+Validity timer+邮件+告警视图）
+- should-ccta-01 | otcad-ccta-ticket-analysis | 昨日呼叫明细复盘与导出对应 Ticket Tracer 与 ASCII 导出
+- should-ccta-02 | otcad-ccta-ticket-analysis | 结束原因 26 含义与取值全集对应结束原因 40 种枚举
+- should-special-01 | otcad-special-features | 整理计时不被打断对应永恒整理（Auto return to wrap up）
+- should-special-02 | otcad-special-features | 同组接走来响铃来电对应 #013 组内代接
+- should-excel-01 | otcad-excel-report-customization | 自定义柱状图改模板属 Custom 工作表定制
+- should-excel-02 | otcad-excel-report-customization | 半小时粒度 16 点后无数据对应单表只覆盖 0:00-16:00 的限制
+- should-ccss-01 | otcad-ccs-server | 20 个监督员直连连不上对应连接数 >9 强制上 CCS Server
+- should-ccss-02 | otcad-ccs-server | 外部 Server 连不上 AFE 对应 adm_acd -servccs option 10 验证与一 AFE 一 Server
+- should-acro-01 | otcad-acr-objects | 等待室/Pilot/呼叫档案对象建设属 ACR 对象配置路径
+- should-acro-02 | otcad-acr-objects | 有人排队坐席空闲不分配先查阻塞传导链（无技能坐席>等待室阻塞>Pilot 阻塞）
+- should-asms-01 | otcad-asm-script-advanced | 编辑器双击打不开对应专用 asm-se_setup.msi 安装+JRE 前提
+- should-asms-02 | otcad-asm-script-advanced | 改脚本保存不生效对应一 Pilot 一脚本须重新激活
+- should-ccso-01 | otcad-ccs-onboarding | 新装 CCsupervision 连不上对应八步安装与 ccs.ini 声明后必须重启
+- should-ccso-02 | otcad-ccs-onboarding | 软话机登录/SIP 网关注册/DID 翻译对应 POD 定稿四件套
+- should-maint-01 | otcad-acd-maintenance | 查 Pilot/队列/处理组命令对应 adm_acd 命令树与 pildstctx/pgctx
+- should-maint-02 | otcad-acd-maintenance | 清 ASM 历史记忆对应 -salb 28 与 kill alb 清理
+- bait-ism-01 | otcad-asm-script-advanced | 写带 SEQUENCE 与记忆路由的 LCA 脚本属脚本主干开发，不是 ISM 排序口径
+- bait-acro-01 | otcad-asm-script-advanced | 在编辑器里设规则积木块属性属脚本编辑器操作，与 ACR 对象建设路径无关
+- bait-asms-01 | otcad-ism-skill-matching | Cman 同分谁排前面属 ISM 排序公式，不是脚本编辑器问题
+- bait-spmd-01 | otcad-soft-panel-manager | 仪表盘挂件黄红阈值颜色属可视化配置，与部署无关
+- bait-panel-01 | otcad-spm-deployment | FlexLM 许可服务器安装属部署三件套，与挂件配置无关
+- bait-ccta-01 | otcad-soft-panel-manager | 实时等待人数上大屏属 Soft Panel 实时挂件，CCTA 是离线票据分析
+- bait-excel-01 | otcad-ccta-ticket-analysis | 原始票据导出文本对应 Ticket Tracer ASCII 导出，不是改 Excel 模板
+- bait-ccss-01 | otcad-ccs-onboarding | 客户端首次装完声明 OXE 属安装 onboarding（ccs.ini），不是 Server 扩容问题
+- bait-ccso-01 | otcad-ccs-server | 停内部 serv_ccs 切外部 Server 对应 CCS Server 集中接入语义（内部未停则外部被拒）
+- bait-special-01 | otcad-acr-objects | 坐席技能等级与呼叫档案配置属 ACR 技能体系双侧配置路径
+- bait-remote-01 | none | OXE 节点间 Direct IP Link 组网属 OXE 网络范畴，本目录 ACD 能力均不覆盖
+- edge-ism-01 | otcad-ism-skill-matching | 统计 5 分钟刷新与 LIT 逐呼叫公平性属该能力口径边界
+- edge-ccss-01 | otcad-ccs-server | 连接数 9/10/29 阈值属 CCS Server 连接数强制口径
+- edge-remote-01 | otcad-remote-pg-mutual-aid | 最大等待时间设 0 的语义对应 MWT 门限秒数（0-3276）口径

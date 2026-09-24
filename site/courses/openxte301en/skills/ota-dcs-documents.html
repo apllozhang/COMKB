@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>DCS 文档转换服务器（Office 会议演示）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch · Advanced</h2><p>Edition 08 · 468 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte301en/index.html">课程首页</a><a href="/courses/openxte301en/digest.html">精华长文</a><a href="/courses/openxte301en/overview.html">教书理解</a><a href="/courses/openxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte301en/skills/ota-remote-access.html">OpenTouch 远程接入通道与证书</a><a href="/courses/openxte301en/skills/ota-nomadic-ghost-z.html">Nomadic 移动模式与 Ghost Z 资源池</a><a href="/courses/openxte301en/skills/ota-smartphone-rex.html">OTC 智能手机交付全流程（REX/DISA/APNS）</a><a href="/courses/openxte301en/skills/ota-um-exchange-integration.html">统一消息 UM（Exchange/O365/Gmail/IMAP）</a><a href="/courses/openxte301en/skills/ota-conference-collaboration.html">协作会议（ACS 配置、角色权限、数据会议）</a><a href="/courses/openxte301en/skills/ota-calendar-sync.html">日历在场与日历同步（Calendar presence/synchro）</a><a href="/courses/openxte301en/skills/ota-directory-udas.html">目录搜索与 Single Business Card（UDAS）</a><a href="/courses/openxte301en/skills/ota-enterprise-authentication.html">企业认证集成（LDAP/RADIUS/Kerberos SSO）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte301en/skills/ota-desksharing.html">Desksharing 共享工位（DSU/DSS）</a><a href="/courses/openxte301en/skills/ota-extended-mobility.html">Extended Mobility（QR/NFC 切换与路由修改）</a><a href="/courses/openxte301en/skills/ota-dcs-documents.html">DCS 文档转换服务器（Office 会议演示）</a><a href="/courses/openxte301en/skills/ota-otc-web-guest.html">OTC Web 与访客入会</a><a href="/courses/openxte301en/skills/ota-lab-pod.html">RLAB 实验 POD 与 SIP 运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte301en/index.html">opentouch-advanced（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte301en/index.html">OPENXTE301EN</a><span>/</span><span aria-current="page">DCS 文档转换服务器（Office 会议演示）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>DCS 文档转换服务器（Office 会议演示）</h1></div><dl><div><dt>Skill ID</dt><dd>ota-dcs-documents</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>DCS 文档转换服务器（Office 文档会议演示）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Natively, without any installation of additional component, only 'pdf' and 'images' documents can be shared"（p365）
+"Warning Failure to perform these updates will result in documents that remain in the queued state and do not get converted."（p375）
+"Hyper-threading must be deactivated on the VM: set the option 'Hyperthreaded Core Sharing' to 'None'"（p373）</p>
+</blockquote>
+<p>出处：OPENXTE301EN p363-383。</p>
+<h2>I — 自述</h2>
+<p>DCS 决定会议能不能演示 Office 文档，两模式两形态：</p>
+<ol>
+<li><strong>Basic（零安装）</strong>：ACS 内嵌，只支持 pdf 与图片（png/gif/jpeg）；Office 文档只能当附件（attachment 可下载）</li>
+<li><strong>Advanced（装 DCS）</strong>：doc/docx/ppt/pptx/xls/xlsx 可作 presentation（参与者不可下载；attachment 可下载）</li>
+<li><strong>内部 DCS</strong>：OT 服务器 KVM 上自动构建 Windows 虚机（供 Windows/Office 介质与密钥，约 20 分钟+15-30 分钟）；兼容 Win7 32 位 + Office 2010/2019（US English）</li>
+<li><strong>外部 DCS</strong>：ESXi 虚机（必须 Hyperthreaded Core Sharing=None）或物理机；兼容面更宽（Win 8.1/2008R2/2012R2/Win10 + Office 2010/2013/2016）；ACS 管理台登记地址与管理员账号，DCS 软件由 OT 自动推送更新</li>
+<li><strong>Windows 侧预配置四件</strong>：关防火墙、UAC 从不通知、账号密码永不过期、注册表 Winlogon 四键自动登录（改完必须重启虚机）</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>DCS-V 外部虚机部署实验</strong>（p374-383）：</p>
+<ol>
+<li>前提：Windows 机装好 Office，激活双许可并打齐强制更新（否则文档卡 queued）</li>
+<li>关闭专用/公用网络防火墙，UAC 设为从不通知</li>
+<li>账号勾密码永不过期（实验口径 Administrator/superuser）</li>
+<li>注册表 Winlogon 四键（AutoAdminLogon/DefaultDomainName/DefaultUserName/DefaultPassword）后重启虚机</li>
+<li>挂 DCS ISO，拷 dcs_install.bat 等三文件到 C:\temp 执行</li>
+<li>重启后验证自动登录与 DCS 两窗口自启</li>
+<li>OT 侧声明：Advanced Settings 配 Remote DC 地址与管理员账号</li>
+<li>测试：OTC PC 上传 Office 文档为 presentation 并演示成功</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：会议里要放 PPT/Word/Excel；文档一直 queued 不转换；DCS 装哪（内部还是外部）；Office 版本兼容性；虚机装完转换服务不起。</p>
+<p>语言信号：DCS / Document Conversion Server / 文档转换 / presentation / 演示 / queued / KVM / ESXi / Hyperthreaded / dcs_install / Remote DC / Office 转换 / pdf 图片。</p>
+<p>与相邻能力区分：会议本体（预约/角色/密码）→ 协作会议能力；文档的下载权限规则也在会议卡（presentation 不可下载）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：Windows/Office 许可与介质（ALE 不提供）、虚拟化平台、Office 文档使用需求。</p>
+<ol>
+<li>选形态：内部 KVM（OT 一体化）或外部 VM/物理机（按规模与运维习惯）。完成标准：形态确认</li>
+<li>Windows 预配置四件+重启。完成标准：自动登录生效、DCS 组件自启</li>
+<li>OT 侧声明外部 DCS（地址+账号）。完成标准：管理台登记成功</li>
+<li>端到端测试：上传 Office 文档作 presentation。完成标准：能转换能演示</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>文档卡 queued → 根因在 Windows 侧（许可未激活或强制更新未打齐），别去查 ACS 配置（n30）</li>
+<li>改完注册表不重启 → 自动登录不生效、DCS 组件不起（n31）</li>
+<li>客户的 Office 是俄语等小语种 → 多数西欧语言可用，其余需手动装语言包（p371 语境）</li>
+<li>最新兼容性 → 以 OT release note 为准（书内明示口径会过时）</li>
+</ul>
+<p>输出契约：DCS 形态与部署记录 + Windows 预配置清单 + Office 演示端到端验证结论。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>Windows 与 Office 的介质和许可 ALE 一概不提供，项目预算自备（p367）</li>
+<li>内部 DCS 兼容面窄（Win7 32 位 + Office 2010/2019 US English），外部更宽——选型时对照矩阵</li>
+<li>p371 "Windows 2010" 为原文笔误（应为 Windows 10，nr-05）</li>
+<li>实验虚机账号（Administrator/superuser）为实验口径，生产必须替换</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.ota.dcs-documents · 来源：OPENXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch - Advanced (Participant's Guide, Edition 08) | edition: Edition 08 | pages: 468 页 -->

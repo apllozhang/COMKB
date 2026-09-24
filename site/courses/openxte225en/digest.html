@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>整理摘要 · OPENXTE225EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch · 移动与远程办公</h2><p>Edition 10 · 287 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte225en/index.html">课程首页</a><a href="/courses/openxte225en/digest.html">精华长文</a><a href="/courses/openxte225en/overview.html">教书理解</a><a href="/courses/openxte225en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte225en/skills/otm-dmz-security-channels.html">远程接入架构与 DMZ 双边缘</a><a href="/courses/openxte225en/skills/otm-certificate-pki.html">证书策略与签发（CA、封装、SAN、自建 CA）</a><a href="/courses/openxte225en/skills/otm-ot-server-settings.html">OpenTouch 服务器侧远程访问设置</a><a href="/courses/openxte225en/skills/otm-otsbc-deployment.html">OTSBC 部署与向导配置</a><a href="/courses/openxte225en/skills/otm-reverse-proxy.html">反向代理两路线部署与选型（内嵌 RP、Nginx）</a><a href="/courses/openxte225en/skills/otm-otc-pc-modes.html">OTC PC 远程办公两模式（multi-devices、Nomadic SIP）</a><a href="/courses/openxte225en/skills/otm-smartphone-provisioning.html">OTC 智能手机开通（Connection 用户、自动对象、R2.6 单设备）</a><a href="/courses/openxte225en/skills/otm-iphone-apns.html">iPhone+ APNS 推送专项</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte225en/skills/otm-client-access-profiles.html">客户端远程接入两步法（接入配置与路由档案）</a><a href="/courses/openxte225en/skills/otm-smartphone-modes.html">智能手机连接模式与回落（WiFi/3G4G/DTMF、无 SIM）</a><a href="/courses/openxte225en/skills/otm-vmware-ovf.html">VMware 虚机 OVF/OVA 部署</a><a href="/courses/openxte225en/skills/otm-lab-dialtest.html">实验环境与拨测验证（RLAB、编号计划、模拟器预期表）</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte225en/index.html">ot-mobility-remote-worker（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte225en/index.html">OPENXTE225EN</a><span>/</span><span aria-current="page">整理摘要</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">DIGEST</p><h1>整理摘要 — 全书精华</h1></div></header><article class="markdown-body"><h1>DIGEST — OpenTouch 移动与远程办公 集成精华长文</h1>
+<blockquote>
+<p>源：OPENXTE225EN Issue 10（287 页，OpenTouch R2.6 口径）· 文档整理入库 · 2026-09-23
+定位：10 分钟建立"把 OpenTouch 通信服务安全开放到互联网"的全局认知；操作细节按需查 12 张能力卡。</p>
+</blockquote>
+<h2>一、这套东西是什么</h2>
+<p>OpenTouch 是 ALE 面向中大型企业的通信套件（OTMS 管理 + OXE 呼叫服务器 + OmniVista 8770 网管）。这本教材解决一件事：<strong>让 OTC PC 与智能手机从互联网全功能接入公司通信系统</strong>——话音、视频、IM、协作、会议一个不少。</p>
+<p>整本教材就是一条交付主线：<strong>证书打底、服务器侧申报、DMZ 边缘部署（OTSBC + 反向代理）、客户端开通（PC 两模式、智能手机、iPhone 推送）、拨测收口</strong>，五段按序推进。</p>
+<p>三组数字先记住：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>数字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RP + OTSBC</td>
+<td>DMZ 双边缘：反代管 Web 服务通道，SBC 管 SIP/媒体通道；VPN 只是官方标注的"技术替代"</td>
+</tr>
+<tr>
+<td>CA 签发</td>
+<td>远程访问必须 CA 证书；预载"通用证书"（security off）被官方明确反对——话费欺诈与服务盗用风险</td>
+</tr>
+<tr>
+<td>5261 / 8061 / 5265</td>
+<td>OTSBC 公网端口：OTC 客户端 / WebRTC / iPhone+ 专用声明</td>
+</tr>
+</tbody>
+</table></div>
+<h2>二、架构三件事：拓扑、DNS、证书</h2>
+<ul>
+<li><strong>双边缘分工</strong>：反向代理（RP）管话音与协作 Web 服务的 HTTPS 会话（拓扑隐藏、认证、URL 封禁、SSL 卸载），是第三方产品；OTSBC 管 SIP 信令与 RTP/SRTP 媒体（DoS 防护、加密、CAC、NAT 穿越）。RP 可由 OTSBC 7.2+ 兼任，但认证部分要另配服务器。</li>
+<li><strong>用例矩阵查表</strong>：OTC PC 要 RP+OTSBC；OTC PC One 只要 RP（N.U.——没有 VoIP 可保护，别报成"不支持 SBC"）；OTC Web 只要 RP；WebRTC 与手机端要 RP+OTSBC。</li>
+<li><strong>DNS 内外分离</strong>：同一批 FQDN 两套解析——内部解析到私网 IP，公共 DNS 解析到 RP/SBC 公网 IP；OTSBC 的 WAN 接入不用进内部 DNS。</li>
+<li><strong>证书红线</strong>：远程访问必须 CA 签发；封装看私钥在哪生成（本机生成走 PKCS7，CA 生成走带口令的 PKCS12）；会议服务专用 FQDN 必须进反代与 OT 服务器证书的 SAN；换证书后话机侧 CTL 必须重签（另一培训规程）。</li>
+</ul>
+<h2>三、部署链四段</h2>
+<ol>
+<li>
+<p><strong>服务器侧申报</strong>：三小步，缺一段客户端就进不来。</p>
+</li>
+<li>
+<p>OmniVista 8770 申报反代四 URL（API/EVS/ACS/DMS），EVS 必须带 :8016 端口，漏写则通知类功能失效</p>
+</li>
+<li>申报 OTSBC：5261 给 OTC 客户端、8061 给 WebRTC</li>
+<li>会议侧核对 DAS 规则（强制、国家相关、顺序重要）并配 ACS 会议专用 FQDN</li>
+<li>
+<p>ACS 没随初装配置就跑 ot-config.sh --rehost，再重签证书把会议名加进 SAN</p>
+</li>
+<li>
+<p><strong>OTSBC 部署</strong>：OVF 上电、CLI 初始化（改完 write + reload）、更新许可、TLS 上下文配证书。</p>
+</li>
+<li>
+<p>跑"Alcatel-Lucent Remote Users"向导模板，一键生成绝大部分对象</p>
+</li>
+<li>向导两个坑：只给 OXE 配 UDP（手工补 TCP 5060）；iPhone 对象不覆盖（官方明示查 TC2639）</li>
+<li>
+<p>收尾把每个 SIP 接口的证书换成自签发的</p>
+</li>
+<li>
+<p><strong>反向代理两路线</strong>：功能同向，按现场条件选。</p>
+</li>
+<li>
+<p>已有 OTSBC 且许可含 HTTP proxy 就内嵌（省一台机器）；否则独立 Nginx 虚机</p>
+</li>
+<li>OT 2.2 起 Nginx 必须 remoteworker.conf 与 conference.conf 两份同改（OTES 退场、会议共享走反代）</li>
+<li>反代层认证生产要做：Nginx 用 LDAP 模块（仅 Python 2，daemon 监听 8888）；内嵌路线认证 daemon 要专用机器</li>
+<li>
+<p>模板链接以 TC2639 最新版为准，书内快照可能过期</p>
+</li>
+<li>
+<p><strong>客户端开通</strong>：PC 与手机都是"接入配置 + 路由档案"两步；用手机直接拨号时永远本机发话，"dial from"设置不影响——这是设计行为不是故障。</p>
+</li>
+</ol>
+<h2>四、终端形态三张表</h2>
+<p>OTC PC 两模式并存：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>模式</th>
+<th>原理</th>
+<th>资源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>multi-devices（新法）</td>
+<td>SIP 分机绑副设备，主话机保留</td>
+<td>COS 振铃参数 + 506/507 两前缀并在用户 COS 授权</td>
+</tr>
+<tr>
+<td>Nomadic SIP（老法仍在）</td>
+<td>主话机冻结、SIP 软话机顶替</td>
+<td>每并发占 1 SIP 设备 + 1 Ghost Z，池化、退出才释放</td>
+</tr>
+</tbody>
+</table></div>
+<p>智能手机自动对象矩阵（关联一次自动建，按模式增减）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>对象</th>
+<th>Mobile only</th>
+<th>WiFi only</th>
+<th>Dual</th>
+<th>Dual+GSM 号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>远程分机 RE + Tandem</td>
+<td>建</td>
+<td>建</td>
+<td>建</td>
+<td>建</td>
+</tr>
+<tr>
+<td>SIP 设备</td>
+<td>—</td>
+<td>建</td>
+<td>建</td>
+<td>建</td>
+</tr>
+<tr>
+<td>直连速拨号 + 判别器 + ARS</td>
+<td>—</td>
+<td>—</td>
+<td>部分</td>
+<td>建</td>
+</tr>
+</tbody>
+</table></div>
+<p>关联完还要手工核两处：Entity 判别器逻辑→物理关联、公网接入 COS 区域授权（barring）——自动不等于零手工。编号前缀四则记牢：RE 目录号严禁字母开头；手机设备号用 D、速拨号用 A、Ghost Z 可用 B。</p>
+<p>连接模式与 R2.6 分界：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>能力面</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>场内/场外 WiFi、3G/4G</td>
+<td>Web 服务 + VoIP（全功能）</td>
+</tr>
+<tr>
+<td>无数据连接</td>
+<td>仅 DTMF 回落：打/挂电话、留言、有限路由</td>
+</tr>
+<tr>
+<td>Android 无 SIM</td>
+<td>纯 VoIP 话机；代价是回落、私人呼叫、短信三项不可用</td>
+</tr>
+<tr>
+<td>R2.6 起</td>
+<td>远程分机可直接做用户唯一设备（免去永不入服的假主设备，修复离线呼转）</td>
+</tr>
+</tbody>
+</table></div>
+<p>iPhone+ 推送链路：后台来话走 APNS 推送唤醒（多次 SIP invite 是设计行为）；防火墙放行 TCP 5223/2195/2196/443；SBC 5265 声明；场外 TCP 场景由 kamailio-wasp/wspcfg 缓冲 invite；APNS 证书一年一换（年度 hotfix）。</p>
+<h2>五、交付红线与维护抓手</h2>
+<p>四条红线：</p>
+<ol>
+<li>教材全部域名/公网/口令/号码是实验值，上生产必须整体替换并按安全基线管理</li>
+<li>容量数值全书缺位：CAC 无阈值、游牧池无算例、带宽无口径——以 TC2639、8AL90065USAG 或 ALE sizing 工具为准</li>
+<li>iPhone 完整手工配置书内明示"not part of this lab"，权威依据 TC2639</li>
+<li>版本分界别套错：内嵌反代要 OTSBC 7.2+；Nginx 双 conf 要 OT 2.2+；单设备配法要 R2.6+</li>
+</ol>
+<p>验证与维护抓手：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>抓手</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>拨测预期表</td>
+<td>模拟器三格式（10/11/13 位）核对落点与主叫显示两个维度</td>
+</tr>
+<tr>
+<td>证书 SAN 核验</td>
+<td>证书 Details 页确认会议 FQDN 在列</td>
+</tr>
+<tr>
+<td>nginx -t</td>
+<td>Nginx 配置校验后再启动</td>
+</tr>
+<tr>
+<td>ping 会议 FQDN</td>
+<td>rehost 后的解析验证</td>
+</tr>
+<tr>
+<td>kamailio-wasp/wspcfg 状态与日志</td>
+<td>iPhone+ 推送链路排障（service 命令 + loglevel.sh）</td>
+</tr>
+</tbody>
+</table></div>
+<h2>六、速查卡</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>要做的事</th>
+<th>去哪张能力卡</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>规划拓扑/选边缘组件/DNS 分离</td>
+<td>otm-dmz-security-channels</td>
+</tr>
+<tr>
+<td>定证书方案/签证书/查 SAN</td>
+<td>otm-certificate-pki</td>
+</tr>
+<tr>
+<td>申报反代与 SBC/DAS/会议 FQDN</td>
+<td>otm-ot-server-settings</td>
+</tr>
+<tr>
+<td>部署 OTSBC/跑向导/SIP 证书</td>
+<td>otm-otsbc-deployment</td>
+</tr>
+<tr>
+<td>装反代（内嵌或 Nginx）/配认证</td>
+<td>otm-reverse-proxy</td>
+</tr>
+<tr>
+<td>PC 副设备/游牧池</td>
+<td>otm-otc-pc-modes</td>
+</tr>
+<tr>
+<td>开通工作手机/自动对象核验</td>
+<td>otm-smartphone-provisioning</td>
+</tr>
+<tr>
+<td>iPhone 推送/5265/四端口</td>
+<td>otm-iphone-apns</td>
+</tr>
+<tr>
+<td>客户端接入/路由档案/手机进会议/虚机部署/拨测</td>
+<td>路由入口（ot-mobility-remote-worker-router）</td>
+</tr>
+</tbody>
+</table></div>
+<h2>版权</h2>
+<ul>
+<li>本精华长文为 ALE Training Services《OpenTouch — 移动与远程办公》（OPENXTE225EN R2.6 Issue 10）的内部学习整理，仅供内部学习使用；教材版权归 ALE Training Services 所有（Alcatel-Lucent 商标归 Nokia、授权 ALE 使用）。</li>
+</ul></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch — 移动与远程办公 (Participant's Guide) | edition: Edition 10 | pages: 287 页 -->

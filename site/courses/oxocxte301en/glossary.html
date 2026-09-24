@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>术语词典 · OXOCXTE301EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OXO Connect · Advanced</h2><p>Edition 18 · 601 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte301en/index.html">课程首页</a><a href="/courses/oxocxte301en/digest.html">精华长文</a><a href="/courses/oxocxte301en/overview.html">教书理解</a><a href="/courses/oxocxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte301en/skills/oxoa-sip-networking.html">SIP 组网：公网网关与私网互联</a><a href="/courses/oxocxte301en/skills/oxoa-numbering-ars-suite.html">ARS 路由套件：三表协作与 Internal ARS</a><a href="/courses/oxocxte301en/skills/oxoa-hotel-billing-vertical.html">酒店与计费垂直方案</a><a href="/courses/oxocxte301en/skills/oxoa-security-hardening.html">系统安全加固</a><a href="/courses/oxocxte301en/skills/oxoa-certificate-suite.html">证书与加密传输（证书/DTLS/TLS-SRTP）</a><a href="/courses/oxocxte301en/skills/oxoa-attendant-suite.html">语音导航套件（AA/MLAA/SCR）</a><a href="/courses/oxocxte301en/skills/oxoa-voicemail-mobility.html">语音邮箱与移动办公</a><a href="/courses/oxocxte301en/skills/oxoa-cloud-connect-fleet.html">Cloud Connect 舰队与远程维护</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte301en/skills/oxoa-foundation-ip.html">交付地基：OMC 首连与 IP 规划</a><a href="/courses/oxocxte301en/skills/oxoa-terminal-ecosystem.html">终端生态：PIMphony 与 SIP 话机接入</a><a href="/courses/oxocxte301en/skills/oxoa-shared-devices.html">共享终端：站群监督、Hot Desking 与 Multiset</a><a href="/courses/oxocxte301en/skills/oxoa-multi-entity.html">多实体与伪多公司</a><a href="/courses/oxocxte301en/skills/oxoa-dect-deployment.html">DECT 无线移动</a><a href="/courses/oxocxte301en/skills/oxoa-maintenance-toolkit.html">维护工具箱：Webdiag、Noteworthy 与 LoLa</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte301en/index.html">oxo-connect-advanced（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte301en/index.html">OXOCXTE301EN</a><span>/</span><span aria-current="page">术语词典</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">GLOSSARY</p><h1>术语词典 — 中英对照</h1></div></header><article class="markdown-body"><h1>GLOSSARY — OXO Connect Advanced 术语表</h1>
+<blockquote>
+<p>阶段 3 产出（源：candidates/glossary.md，62 条，六类：concept 27 / role 5 / subscription 5 / product 11 / protocol 9 / resource 5）。
+口径：定义只采信本书正文；DDI、RSL、NMC、CTI、ADL、RPN、PLI 等缩写书中未给全称的如实标注；p191/p345/p502 法文残句与 p321 排版噪声见 needs-review nr-03。</p>
+</blockquote>
+<h1>OXO Connect Advanced (OXOCXTE301EN Ed18) — 关键术语词典</h1>
+<blockquote>
+<p>文档整理流水线术语提取器产出。取材方法：全量扫描 source_fulltext.txt（601 页全部通读），所有页码均回原文核验。
+用途：下游能力卡的共享中英对照词典。</p>
+</blockquote>
+<h2>一、核心概念域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OMC</td>
+<td>OXO 的 Windows 管理工具</td>
+<td>Expert 模式 LAN/WAN 连接并服务器认证；对象树覆盖配置全域；内置 Webdiag 入口与 MLAA 图形树编辑器</td>
+<td>p23-32 及全书</td>
+</tr>
+<tr>
+<td>ARS (Automatic Route Selection)</td>
+<td>自动选路</td>
+<td>按被叫号码与可选时段自动选中继组，饱和/故障溢出；三表协作兼做号码变换（加/吸收/替换/透明）</td>
+<td>p194-205</td>
+</tr>
+<tr>
+<td>Internal ARS</td>
+<td>内部 ARS</td>
+<td>用 ARS 机制把一个入站 DDI 按日组+时段路由到不同内部目的地；虚拟 Provider+Local 索引技法</td>
+<td>p225-231</td>
+</tr>
+<tr>
+<td>Entity</td>
+<td>多实体</td>
+<td>系统内最多 4 个逻辑公司：独立 MoH、可选实体间禁呼；话务员组全实体公共不受限</td>
+<td>p242-248</td>
+</tr>
+<tr>
+<td>Pseudo multi-company</td>
+<td>伪多公司</td>
+<td>链路类别配对+矩阵直线+ARS 透明线实现两公司共享系统、各走各的外线、账单分离</td>
+<td>p249-251</td>
+</tr>
+<tr>
+<td>Multiset / Twinset</td>
+<td>多话机组/双机组</td>
+<td>1 主+最多 2 副共享主站目录号与服务级别；主有线+副 DECT 常称 Twinset；与 Rainbow 侧同名概念不同物</td>
+<td>p184-189</td>
+</tr>
+<tr>
+<td>Hot Desking (HDP/HDU)</td>
+<td>共享话机</td>
+<td>HDU 在任意 HDP 登录（683/682）取回个人环境；200+200 容量；Webdiag 与 OMC 双通道监督</td>
+<td>p173-177</td>
+</tr>
+<tr>
+<td>Nomadic mode</td>
+<td>游牧模式</td>
+<td>游牧话机（多为手机）替代本地话机；VMU 远程定制选项 6 激活；CLI 按主叫身份规则发送；SIP 话机不支持</td>
+<td>p465-468</td>
+</tr>
+<tr>
+<td>Remote substitution</td>
+<td>远程替代</td>
+<td>拨替代 DDI+接入码+分机+密码以该分机外呼；内部号加 # 前缀（#100-#199）经内部 ARS 回环</td>
+<td>p469-480</td>
+</tr>
+<tr>
+<td>Account code</td>
+<td>账号码</td>
+<td>外呼费用记到客户/项目账号：表上限 250、码 ≤16 位；内部替代场景被当权限钥匙用</td>
+<td>p93-95</td>
+</tr>
+<tr>
+<td>OHL / AHL</td>
+<td>酒店链路</td>
+<td>经 Office Link Driver（V24/IP）对接 AHL 兼容酒店应用；OHL 无 SW license</td>
+<td>p65</td>
+</tr>
+<tr>
+<td>PMS</td>
+<td>酒店管理系统</td>
+<td>管预订/入住退房/账单/客史；经 OHL 与 OXO 同步（兼容性查 DSPP/生态 PDF）</td>
+<td>p59, p65</td>
+</tr>
+<tr>
+<td>Automated Attendant (AA)</td>
+<td>自动画务员</td>
+<td>两棵树（白天/夜间）每树两级 100 节点、4 语言；定制需 license；支持免费拨号与 AATypTrf 转接</td>
+<td>p405-421</td>
+</tr>
+<tr>
+<td>MLAA</td>
+<td>多树话务员</td>
+<td>基于 ACD 引擎按 DID/CLI 路由最多 5 棵树（3 级）；语音总量硬上限 12000 秒；端口与 ACD 共享 16</td>
+<td>p427-442</td>
+</tr>
+<tr>
+<td>SCR</td>
+<td>智能路由</td>
+<td>按 CLI/DDI/DTMF 客户码/开闭时间路由来话；10000 规则；X 通配符；错误走备份目的地</td>
+<td>p450-458</td>
+</tr>
+<tr>
+<td>Personal Assistant</td>
+<td>个人助理</td>
+<td>每订阅户迷你 AA：三目的地（内部/外部/移动）+转话务员；noteworthy PerAssAlwd 默认禁用</td>
+<td>p385-387</td>
+</tr>
+<tr>
+<td>Stations groups supervision</td>
+<td>站群监督</td>
+<td>一台监督话机监控最多 8 号：pop-up+音调+键闪烁三路通知；系统上限 50 键</td>
+<td>p111-115</td>
+</tr>
+<tr>
+<td>Cloud Connect (CCI)</td>
+<td>云连接基础设施</td>
+<td>OXO 主动发起永久 HTTPS+按需 VPN（免改防火墙）；注册自动免 license；Fleet 数据一天一刷新</td>
+<td>p262-289</td>
+</tr>
+<tr>
+<td>Fleet Dashboard</td>
+<td>舰队门户</td>
+<td>OXE 与 OXO 通用：安装基础/SA 合同/Inventory（每日刷新）/批量 SW 更新（advanced 权限）</td>
+<td>p267-280</td>
+</tr>
+<tr>
+<td>OXO Connectivity</td>
+<td>单系统云门户</td>
+<td>VPN 配置、Watchdog/OMC 复位、许可清单、DSP 统计、默认密码检出、单台更新</td>
+<td>p265-275</td>
+</tr>
+<tr>
+<td>Noteworthy address</td>
+<td>内存读写地址</td>
+<td>服务器全局参数（labels/flags）四类内存区；写错致系统恶化、cold reset 回默认、清单 TC1398</td>
+<td>p574-578</td>
+</tr>
+<tr>
+<td>DTLS</td>
+<td>话机信令加密</td>
+<td>ALE VoIP 话机信令通道加密（TLS 1.2）：语音仍明文；300 连接、免 license、仅 OCE</td>
+<td>p359-364</td>
+</tr>
+<tr>
+<td>SIP Registrar / B2BUA</td>
+<td>注册服务器/背靠背代理</td>
+<td>OXO 是自己 SIP 客户端的 Registrar 并作 B2BUA 中转呼叫；注册失败入历史表</td>
+<td>p140-141</td>
+</tr>
+<tr>
+<td>RTP Proxy / Direct RTP</td>
+<td>媒体三处理</td>
+<td>DSP 通道（压缩）→RTP proxy（同编解码仅路由）→Direct RTP（端点直连最优）；TLS 下不可用</td>
+<td>p144-148</td>
+</tr>
+<tr>
+<td>DECT Cluster</td>
+<td>DECT 集群</td>
+<td>空口同步基站组：切换仅集群内；站点最多 20、每站最多 8 集群；成员由 OXO 强加</td>
+<td>p506, p517</td>
+</tr>
+<tr>
+<td>Site Survey Kit (SSK)</td>
+<td>站点勘测工具箱</td>
+<td>2 台勘测专用 xBS（固件与生产不同）+天线+话机；-72 dBm 划语音质量区；手册 8AL90874USAA</td>
+<td>p529-534</td>
+</tr>
+<tr>
+<td>SUOTA</td>
+<td>空中升级</td>
+<td>DECT 话机经 8378/8379 升级：并发 50、下载 4-8 小时且话务优先、swap 须充电座</td>
+<td>p526</td>
+</tr>
+</tbody>
+</table></div>
+<h2>二、角色域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>installer</td>
+<td>安装员会话</td>
+<td>OMC/Webdiag 主管理角色：全功能调试、证书、抓包、DECT；首连密码 pbxk1064 仅首连</td>
+<td>p28, p560, p572</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>操作员会话</td>
+<td>Webdiag/MMC：上传实体 MoH、Hot Desking 监督注销、解锁用户账户；亦是语音录制入口</td>
+<td>p570</td>
+</tr>
+<tr>
+<td>manufacturer</td>
+<td>制造商会话</td>
+<td>Webdiag 第三会话（ALE 技术支持专用）</td>
+<td>p560, p568</td>
+</tr>
+<tr>
+<td>Supervisor</td>
+<td>监督者</td>
+<td>站群监督监督方：仅 DeskPhones；3 方会议/应用内/ACD 登录时不能应答通知</td>
+<td>p112, p114</td>
+</tr>
+<tr>
+<td>HDU / HDP</td>
+<td>共享用户/共享话机位</td>
+<td>Hot Desking 两角色：一 HDP 同时只容一 HDU，抢占自动注销前者</td>
+<td>p174-176</td>
+</tr>
+</tbody>
+</table></div>
+<h2>三、许可/订阅域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HDU 计费包</td>
+<td>Hot Desking 许可</td>
+<td>前 2 个 HDU 免费、之后按 50 一包；容量上限 200 HDP/200 HDU</td>
+<td>p174</td>
+</tr>
+<tr>
+<td>IP-DECT 用户 license</td>
+<td>无线用户许可</td>
+<td>IP-DECT 按用户上 license；DECT 用户总量上限 200</td>
+<td>p495</td>
+</tr>
+<tr>
+<td>MLAA 树 license</td>
+<td>话务员树许可</td>
+<td>树数分 1 或 5 两档；树数与端口（共享 16）受其约束</td>
+<td>p428</td>
+</tr>
+<tr>
+<td>SCR + Supervisor Console license</td>
+<td>智能路由许可</td>
+<td>SCR 功能 license + 1 个监督台 license（日志从监督台出）</td>
+<td>p458</td>
+</tr>
+<tr>
+<td>免 license 功能清单</td>
+<td>免许可口径</td>
+<td>Call Accounting、自动密码检查、订阅户密码管理、DTLS、TLS/SRTP、Cloud Connect、OHL 免 license；OCE-FE 只需硬件</td>
+<td>p73/316/321/360/367/287</td>
+</tr>
+</tbody>
+</table></div>
+<h2>四、产品域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OXO Connect Evolution (OCE)</td>
+<td>演进型平台</td>
+<td>DTLS、SIP TLS/SRTP 原生、4K 证书、公网 Server 证书等高级能力的主承载平台</td>
+<td>p13, p346-367</td>
+</tr>
+<tr>
+<td>OXO Connect Office (OCO)</td>
+<td>非演进平台</td>
+<td>自身无原生 TLS/SRTP，经 OCE-FE SIP 代理获得加密中继能力</td>
+<td>p375</td>
+</tr>
+<tr>
+<td>OCE Front-End (OCE FE)</td>
+<td>OCE 前端</td>
+<td>原为外部 WebRTC 网关，新增 SIP TLS/SRTP 代理角色；GW 与 PROXY 各 20 通话；license 免费只需硬件</td>
+<td>p375-378</td>
+</tr>
+<tr>
+<td>PowerCPU EE / IP Box</td>
+<td>CPU 板形态</td>
+<td>LoLa 模式进入方式不同（Dip switch vs 电源键）；V24 config 口 115200 8N1</td>
+<td>p569, p585</td>
+</tr>
+<tr>
+<td>8088 Smart DeskPhone</td>
+<td>安卓高端话机</td>
+<td>7 寸触摸屏 Android 6.0.1；仅 v2+ 受 OXO 支持；Private Store 默认禁装应用</td>
+<td>p104-108</td>
+</tr>
+<tr>
+<td>8378 IP-xBS / 8379 IBS / 8328</td>
+<td>DECT 基站三系</td>
+<td>IP 轨 xBS（80 台/11 并发）、TDM 轨 IBS（60 台/6 并发）、SIP-DECT 单基站小分支</td>
+<td>p484-486, p494-495</td>
+</tr>
+<tr>
+<td>8158s / 8168s</td>
+<td>VoWLAN 话机</td>
+<td>仅 NOE 模式上 OXO；WinPDM+Desktop Programmer 部署；≤R4.x 显示为 8118/8128</td>
+<td>p549-552</td>
+</tr>
+<tr>
+<td>ALE-2 / ALE-3</td>
+<td>入门 SIP 话机</td>
+<td>黑白屏 3 键 2 账号 / 彩屏 4 键 4 账号；双千兆 PoE；G.711/G.729/G.722/OPUS/ILBC</td>
+<td>p152</td>
+</tr>
+<tr>
+<td>LoLa</td>
+<td>系统加载工具</td>
+<td>完整装载软件+应用包+license；Installation/Mono 迁移/Install-Restore 三流程；话机配置须 OMC 先存</td>
+<td>p582-591</td>
+</tr>
+<tr>
+<td>Webdiag</td>
+<td>Web 调试工具</td>
+<td>三会话+七块信息树：抓包/状态/Hot Desking/解锁/Cloud Connect/Rainbow status/证书管理主接口</td>
+<td>p559-570</td>
+</tr>
+<tr>
+<td>ITSP1</td>
+<td>SIP 运营商模拟器</td>
+<td>RLAB 公共区模拟运营商（gateway1/public.itsp1.com）；账号 pbxP/alcatel；教学专用</td>
+<td>p16-22</td>
+</tr>
+</tbody>
+</table></div>
+<h2>五、协议域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIP</td>
+<td>会话发起协议</td>
+<td>REGISTER/Digest 注册（端口 5059）、B2BUA、SIP Option 私网监督、RFC 3325/4028、SIPS 在 OCE-FE 不支持</td>
+<td>p140-154, p378</td>
+</tr>
+<tr>
+<td>TLS / SRTP</td>
+<td>中继加密组合</td>
+<td>SIP-TLS（5061）+SRTP；服务器证书或双向认证；四套 AES-CTR 套件；OCE 原生或 OCE-FE 代理</td>
+<td>p365-378</td>
+</tr>
+<tr>
+<td>DECT / GAP</td>
+<td>数字无线标准</td>
+<td>ETSI EN 300 175-1~-8 + GAP EN 300 444；FDMA/TDMA/TDD 10 载波×24 时隙；ADPCM G726</td>
+<td>p499-501</td>
+</tr>
+<tr>
+<td>LDAPS / StartTLS</td>
+<td>LDAP 加密通道</td>
+<td>LDAPS 636 与 StartTLS 389（推荐默认）；证书校验 Mandatory 默认</td>
+<td>p332</td>
+</tr>
+<tr>
+<td>端口族</td>
+<td>端口地图</td>
+<td>443（管理 HTTPS）、50443（互联网专用）、5059（SIP 话机）、5061（SIP-TLS）、7780（DTLS）、10443/11443（话机/HAN）；加固关闭 21/1721/5061/8729/8888/17069/23400</td>
+<td>p300, p337, p346-356</td>
+</tr>
+<tr>
+<td>XMPP</td>
+<td>更新指令协议</td>
+<td>Cloud Connect 软件更新链路中 Update Agent 与 Update Service 间通信；二进制走 HTTPS</td>
+<td>p270</td>
+</tr>
+<tr>
+<td>AOC</td>
+<td>运营商计费脉冲</td>
+<td>支持 AOC 的中继直接脉冲计费；与 Call Accounting Time based 互斥不可混配</td>
+<td>p73, p82-83</td>
+</tr>
+<tr>
+<td>PKCS#10 / CSR</td>
+<td>证书签名请求</td>
+<td>外部 PKI 签发路径的申请格式（WebDIAG 生成下载、外部 CA 签、导回安装）</td>
+<td>p350-355</td>
+</tr>
+<tr>
+<td>V24</td>
+<td>串行接口通道</td>
+<td>计费打印/外部计量可走 V24（TC002_US）；CPU 调试口 115200 8N1</td>
+<td>p77, p297, p569</td>
+</tr>
+</tbody>
+</table></div>
+<h2>六、资源/数值域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实验网络基线</td>
+<td>实验口径总表</td>
+<td>PC .10 / OXO .246 / 网关 .254 / DNS .250 与 10.20.30.250；SIP 账号 pbxP/alcatel；安装号 210P41000、DDI 41100-41199</td>
+<td>p6, p12-21</td>
+</tr>
+<tr>
+<td>出厂与实验口令表</td>
+<td>口令清单</td>
+<td>pbxk1064（OMC 首连）、Alcatel1（教室 Webdiag）、OMCAdmin（代理）、admin/00!（xBS）、780911/615243（实验接入码）等——全部实验口径生产必改</td>
+<td>p12-572 多处</td>
+</tr>
+<tr>
+<td>系统容量快查表</td>
+<td>上限速查</td>
+<td>酒店 300 话机/4 会话；账号码 250；监督 50 键×8 号；HD 200/200；实体 4；紧急号码 100；AA 2 树 100 节点；MLAA 5 树/12000 秒；SCR 10000；DECT 80/60/200；DTLS 300</td>
+<td>p64-495 多处</td>
+</tr>
+<tr>
+<td>书外技术文档索引</td>
+<td>TC 清单</td>
+<td>TC1143（安全）、TC1398（noteworthy）、TC2249（密码审计）、TC002（V24）、TC2349（WinPDM）、8AL90874USAA（SSK）、Global Limits、Cross compatibility</td>
+<td>p297-591 多处</td>
+</tr>
+<tr>
+<td>DECT 标识五件套</td>
+<td>无线标识</td>
+<td>PARI（系统 ID，全系统一个）、RFPI（xBS）、PARK（话机侧）、PLI（=31）、IPUI（话机，14 位八进制）；原注法文（nr-03）</td>
+<td>p502</td>
+</tr>
+</tbody>
+</table></div></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OXO Connect - Advanced (Participant's Guide, Edition 18) | edition: Edition 18 | pages: 601 页 -->

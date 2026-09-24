@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OPEX / Purple on Demand：订阅许可、LMS 同步、panic 时间线与 C2P 转换</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 系统装载</h2><p>Edition 12 · 415 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte402en/index.html">课程首页</a><a href="/courses/entpxte402en/digest.html">精华长文</a><a href="/courses/entpxte402en/overview.html">教书理解</a><a href="/courses/entpxte402en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte402en/skills/entload-sot-installation.html">S.O.T. 部署工具的安装、初始化、更新与 Template Factory</a><a href="/courses/entpxte402en/skills/entload-cs-loading.html">OXE 呼叫服务器单版本全加载与加载后初始化</a><a href="/courses/entpxte402en/skills/entload-patch-management.html">OXE 多版本加载、分区切换与静态/动态补丁管理</a><a href="/courses/entpxte402en/skills/entload-oxe-v-deployment.html">OXE-V 虚拟化：平台选型、许可路径与 OXE/OMS 虚机交付</a><a href="/courses/entpxte402en/skills/entload-gas-delivery.html">GAS 通用设备服务器：硬件前置、软件加载与后安装向导</a><a href="/courses/entpxte402en/skills/entload-cloud-connect.html">Cloud Connect 云连接：网络前提、FTR 首次注册与 PIN 恢复</a><a href="/courses/entpxte402en/skills/entload-rtr-licensing.html">RTR 许可开关：资格期状态机、事件监控与 FlexLM 互斥</a><a href="/courses/entpxte402en/skills/entload-pod-licensing.html">OPEX / Purple on Demand：订阅许可、LMS 同步、panic 时间线与 C2P 转换</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte402en/skills/entload-distributor-loading.html">Easy Installation 分发器模式：无 SOT 环境的本地加载</a><a href="/courses/entpxte402en/skills/entload-sot-media.html">SOT 媒体传输与加载项目配置（公共动作）</a><a href="/courses/entpxte402en/skills/entload-gas-ops.html">GAS 日常运维：版本、备份、host 升级与 UPS</a><a href="/courses/entpxte402en/skills/entload-fleet-dashboard.html">Fleet Dashboard 云端机队服务：Inventory、Offer、远程控制台与软件更新</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte402en/index.html">oxe-loading（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte402en/index.html">ENTPXTE402EN</a><span>/</span><span aria-current="page">OPEX / Purple on Demand：订阅许可、LMS 同步、panic 时间线与 C2P 转换</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OPEX / Purple on Demand：订阅许可、LMS 同步、panic 时间线与 C2P 转换</h1></div><dl><div><dt>Skill ID</dt><dd>entload-pod-licensing</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OPEX / Purple on Demand：订阅许可、LMS 同步、panic 时间线与 C2P 转换</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"In OPEX subscription mode, licenses of elements in OXE system ... are managed through a License Manager Server in the cloud • This new feature is also called "Purple on Demand" (PoD)"（p351）
+"A new lock, 431: 1 means new OPEX mode (0 for CAPEX mode) • Previous CAPEX locks are no more taken in account • Except lock Beta tests 87 and lock Release 165"（p354）
+"Warning CORRECT "SWK" FILE IS MANDATORY, WITH: CCSID (CLOUD CONNECT SUITE ID) LOCK 431: OPEX MODE SET TO "1""（p388）
+"OXE checks every 4 hours that licenses are synchronized ... If can't update the LMS licenses because the max of licenses is reached, the OXE switches in panic mode ... The incident 652 is sent"（p371）
+"To be able to download and implement the POD license files, the Project status must be seen Active"（p384）</p>
+</blockquote>
+<p>出处：ENTPXTE402EN p350-408。</p>
+<h2>I — 自述</h2>
+<p>OPEX/PoD 把许可从"装在机器上的文件"变成"云上池子的消耗额度"：硬件仍 CAPEX，用户/话务员/话务台/录音等订阅由云端 LMS 按项目池管理；OXE 侧只剩 lmsagent（无状态 HTTPS 桥，跑主/备/PCS 全部 CS、备机只读）与 spadmin 视图。</p>
+<p>三种订阅消耗类型：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>消耗类型</th>
+<th>触发点</th>
+<th>适用订阅</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unitary</td>
+<td>实例创建即耗；LMS 无余量拒建</td>
+<td>Softphone、API Telephony、VNA、VNA Broadcast</td>
+</tr>
+<tr>
+<td>On activation</td>
+<td>激活（OPEX activation=Yes）才耗；停用释放且保留配置</td>
+<td>仅 Voice Enterprise 与 Room</td>
+</tr>
+<tr>
+<td>By threshold</td>
+<td>加阈值才向 LMS 要许可（WBM Opex Licences 菜单维护）</td>
+<td>Attendant Console（4059 上限 0-1000）、Voice Agent（ACD 0-2800）、API Recording Cnx（DR-Link 0-15000）、VAA（端口侧声明）、OPR 三档</td>
+</tr>
+</tbody>
+</table></div>
+<p>许可映射规则（建用户前先对）：</p>
+<ul>
+<li>tandem/multi-device 无软话机=1 份 Voice Enterprise；带软话机（SIP/IP）=Voice Enterprise+ALE Softphone 双份</li>
+<li>DSU/DSS 办公共享=两份 Voice Enterprise（双方 flag 都开）；客房=1 份 Room（按客人管理时房间与客人双开、各占一份）</li>
+<li>4059 关联设备占 1 份 Voice Enterprise；副机挂为 tandem 时 flag 强制归 0 并释放许可</li>
+<li>ACD 站的 flag 不可启用、登录时耗 Voice Agent(CCD)</li>
+</ul>
+<p>同步与 panic 数值律：</p>
+<ul>
+<li>每 4 小时对账：LMS 满员更新失败即 panic+事件 652；LMS 不可达发 654，连续 30 天不可达 panic+652；panic 后同步恢复自动解除</li>
+<li>启动期无条件按本地旧消耗值起业务，但一切要向 LMS 要许可的管理动作（建用户、开 activation）被拒</li>
+<li>超订时间线：15 天后随机停用空闲用户/话务员的 activation、下调话务台上限、拒 CC 新登录与 DR-Link 新录音（Softphone 超订始终不自动处置）；45 天后全部停用、话务台清零</li>
+<li>LMS 失联超 30 天则 15 天后即执行最狠档</li>
+</ul>
+<p>目录与转换口径：</p>
+<ul>
+<li>24 个商用订阅（对照约 500 个 CAPEX 软件项；OV8770 由约 60 项并为 1），UMC 免费无订阅，No PRS，不含 ISDN/模拟中继</li>
+<li>C2P 转换五步：准备、校验、导出 JSON 到 MyPortal、调量、购物车（下单即定局）；C2P 件号 3EYxxxxxMA（PoD 为 3EYxxxxxAA）</li>
+<li>C2P 排除 OPR、ALE Connect、Selfcare、VNA、API Management；OT-SBC 例外只需 C2P 维护订阅</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>PoD 许可下载与 LMS 同步核查</strong>（p381-408，How-To）：</p>
+<ol>
+<li>MyPortal 顶栏 Installed Base 进 Asset &amp; service manager</li>
+<li>Explore Purple Assets 点 Search，左侧选客户项目</li>
+<li>项目状态必须 Active，按产品点 CPU ID 图标下载 .swk</li>
+<li>装 swk（须含 CCSID 与 LOCK 431=1）并重启 OXE</li>
+<li>spadmin 1 核 OPEX Flag=1、PANIC Flag=0；2 核 431 Opex Mode=1</li>
+<li>前提收口：FTR Registered、RTR Enabled=Yes、swinst 配好 NTP</li>
+<li>spadmin 11 读四列计数（lms/oxe 两列必须一致，否则 panic）</li>
+<li>10 Force LMS synchronization 至 "Synchonization done…"</li>
+<li>实测：建话机开 activation 复核计数 +1；设 DR-Link 阈值 5 复核 "0 | 5/5 | 25"</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户要从 CAPEX 转 OPEX；装了许可系统还是 CAPEX 行为；LMS 断了能不能开户；话机报 No license available / 402 Payment required；订阅买多少怎么算；C2P 流程怎么走。</p>
+<p>语言信号：OPEX / PoD / Purple on Demand / LMS / lmsagent / lock 431 / OPEX activation / spadmin / Voice Enterprise / Room / 4059 / panic mode / C2P / 3EY / MyPortal / Active。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>FTR/RTR 链路问题 → 云连接卡与 RTR 卡</li>
+<li>云端 Dashboard 服务 → 机队服务卡（路由）</li>
+<li>计费商务谈判 → 本卡 Boundary</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：LMS 侧项目与许可池已建（项目状态 Active）、swk 含 CCSID 与 lock 431=1、FTR/RTR 已通、NTP 已配。LMS 侧没建项目 → 判停先推商务/交付链路。</p>
+<ol>
+<li>下载许可：MyPortal Asset &amp; service manager 逐产品下载 .swk。完成标准：项目 Active 且文件到手</li>
+<li>装许可：swk 入 OXE 后重启。完成标准：重启完成</li>
+<li>开关核对：spadmin 核 OPEX Flag=1、PANIC Flag=0、431 Opex Mode=1。完成标准：三处一致</li>
+<li>前提收口：incvisu 见 6201 CCagent 与 6250 LmsAgent started；登录横幅 Panic LMS Check=0。完成标准：双 agent 在跑</li>
+<li>对账：spadmin 11 读四列（中间 lms/oxe 必须相等），10 强制同步。完成标准：Synchonization done 且两列一致</li>
+<li>实测消耗：建/删用户与软话机、设阈值，逐项复核计数增减。完成标准：计数与配置联动正确</li>
+<li>排障：NOE 屏显 No license available 或 SIP 402（事件 5816、sipalarm.log）→ 查许可链。完成标准：根因定位</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>装了许可系统仍按 CAPEX 行为 → 按"swk 含 CCSID、lock 431=1、确实重启过"三件套顺序排查</li>
+<li>LMS 不可达时想建带许可的用户 → 停，设备不会创建；删除/停用可做、同步延后</li>
+<li>收到 654 事件 → 按剩余天数倒排修复窗口：失联 30 天后 15 天即执行最狠降级</li>
+<li>C2P 转换中想加 add-on → 停，转换期不允许；范围外扩容走常规 PoD 无折扣</li>
+<li>引用 spadmin 计数示例 → p404 例子有排版错误（nr-02），判据以"lms/oxe 一致"为准</li>
+</ul>
+<p>输出契约：OPEX 生效基线（Flag/计数/同步记录）+ 订阅消耗台账（阈值与映射核对）+ panic 应急预案。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>CAPEX 模式下 OPEX activation 旗标"显示但不生效"——判断系统模式以 lock 431/spadmin 的 OPEX Flag 为准（p399）</li>
+<li>订阅目录 24 项与件号是 Ed12 时点快照，商务目录动态变化；仅显示申请人所在国家授权的条目</li>
+<li>OPEX 收窄两点：ACD 不再分 CCD/RSI、DR-Link 不再分 IP/TDM，各自合并为单一阈值（p405）</li>
+<li>OV8770 订阅四个缩水点：30 客户端、5 万管理用户、不能管 CAPEX OXE、不能管 OXO/OpenTouch（p363）</li>
+<li>其他应用的 LMS 校验周期与失联后果（8770 每夜/VAA 午夜/O2G 12h/OPR 24h；30 天宽限后各自失效）按 p375 口径</li>
+<li>VAA/VNA 无原生负载均衡高可用；VNA 的 911 并发由 SIP 中继承载（p364）</li>
+<li>实验口径：NTP 192.168.1.252、许可池 "15 | 0/0 | 18" 为演示值</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte402en/skills/entload-cloud-connect.html">Cloud Connect 云连接：网络前提、FTR 首次注册与 PIN 恢复</a></p><p class="source-page">能力 ID：cap.entload.pod-licensing · 来源：ENTPXTE402EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — 系统装载 (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 415 页 -->

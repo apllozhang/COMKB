@@ -1,0 +1,673 @@
+schema_version: 1
+bundle_id: bundle.oxe-advanced
+book:
+  title: OmniPCX Enterprise - Advanced (Participant's Guide, Edition 13)
+  author: ALE Training Services
+  source_pack: ENTPXTE401EN.pdf (543 pages)
+  baseline_tag: OmniPCX Enterprise R101.1 MD4 / Advanced Ed13 / RLAB
+entry:
+  name: oxe-advanced
+  description: 'OmniPCX Enterprise 高级部署与运维支持：SSH 免密地基、CS 冗余（本地/空间）与不停机升级、IP 域与 CAC、PCS 域级生存性、公私网双向溢出与重路由、
+    Direct IP Link 全 IP 组网、Audit/Broadcast 数据一致性，以及多线监督、经理助理、寻线代接、速拨、办公桌共享、多设备等话机级业务。适用于 OXE 企业级机制的配置、演练、
+    排障与行为解释问答；冗余拓扑/域规划等设计决策的话务输入、生产安全基线与 Starter 级前置不在原书范围内（见 out_of_scope）。
+
+    '
+  core_principles:
+  - 高可用分层各管一段：CS 冗余保呼叫控制（已建立通话跨切换存活）、IP 域+PCS 保远程域断链自治、公私网溢出保电话网退路——三层不可互替
+  - SSHv2 公钥免密自 N3 起是协同地基：mastercopy/pcscopy/audit/broadcast 全依赖；oxe-ssh-auth 管一对、oxe-nw-sshkey-sync 以 CSV 管全网
+  - 冗余对铁律同版本同类平台；备机失联窗口默认 120 分钟（0-120 可配），超时触发 440 事件只能 mastercopy 整库克隆
+  - IP 域按设备初始化时 IP 归属落域且 CS/PCS 必须域 0；CAC 只闸跨域通话数（-1 不限）；PCS 是域级生存性而非热备（30 天上限、库单向同步）
+  - Direct IP Link 启用是一次性决策：Disabled→Migrating（必须重启）→Enabled 不可逆；两端带宽/加密/接入数不一致即 2879 拒建
+  - Audit 直改表须先模拟+强烈建议备份全网库；Broadcast 默认 10 分钟周期非即时；trunk 组前缀/ARS 表/IP 域等本地对象不广播不审计
+  - 实验口径纪律：书中 IP/账号/密码/号码仅限 RLAB；生产化依据指向 My Portal 技术文档与 Starter 教材，容量数字须带标称上限前提
+  out_of_scope:
+  - Starter 级内容：装机、barring、ARS 基础、GD/OMS SSH 方法、swinst/netadmin 入门（原书多处 REFER TO STARTER TRAINING）
+  - 话务模型（Erlang）与带宽计算方法论；15000/100000/1488/10000 呼时等均为标称口径
+  - 生产安全基线（证书轮换、口令治理、PKI 管理）与 OmniVista 8770/4645 VM/DECT/SIP 终端装机操作
+  - RLAB/SIP 模拟器教学基础设施搭建与培训评估流程
+  stop_conditions:
+  - 需要冗余拓扑选择、域与编号规划、PCS 布点等设计输入 → 标注书外，指向客户网络设计与 My Portal 技术文档，不以实验口径搪塞
+  - Direct IP Link 已 Enabled 想改回 → 如实说明不可逆（只能恢复数据库备份），引导走变更/回滚流程而非尝试改系统选项
+  - 引用容量数字做承诺 → 强制带前提（每链/每节点/每系统+标称口径），缺话务模型时明确说明
+  - 客户期望 PCS 长期顶班或给无 MG 纯 SIP 域配 PCS → 按 30 天上限与救援边界如实纠偏
+router_entry:
+  name: oxe-advanced-router
+  description: 'OXE Advanced 能力路由入口：按用户意图分发到 12 张能力卡——SSH 免密、CS 冗余、IP 域与 PCS、双向溢出、Direct IP Link、Audit/Broadcast、
+    多线监督、组业务与速拨八个 promoted 能力，以及办公桌共享、多设备、实验环境基线、维护命令速查四张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.entadv.ssh-trust-foundation
+  revision: 1
+  status: active
+  slug: entadv-ssh-trust-foundation
+  title: SSH 免密分发体系
+  importance: critical
+  importance_rationale: 对应 task-02 且为 BOOK_OVERVIEW 优先级第 1 位——mastercopy/pcscopy/audit/broadcast 的强制地基，失败即全线卡壳
+  one_liner: N3 起 SSHv2 公钥认证强制；oxe-ssh-auth 管一对、oxe-nw-sshkey-sync 以五段 CSV 管全网，authorized_keys 条数核验
+  intents:
+  - 分发 SSH 免密密钥
+  - mastercopy 或 pcscopy 认证失败
+  - oxe-ssh-auth 用法
+  - oxe-nw-sshkey-sync CSV 格式
+  - ssh passwordless between OXE
+  keywords:
+  - oxe-ssh-auth
+  - oxe-nw-sshkey-sync
+  - ssh_multi.csv
+  - authorized_keys
+  - SSHv2
+  - 公钥
+  - 免密
+  - CIS
+  - mtcl
+  - swinst
+  - root
+  - '440'
+  also_read:
+  - entadv-cs-redundancy
+  - entadv-audit-broadcast
+  card: cards/entadv-ssh-trust-foundation.md
+  frontmatter:
+    description: '建立并核验 OXE 全网 SSH 免密体系（oxe-ssh-auth 对机同步、oxe-nw-sshkey-sync 全网 CSV 同步、三账户密钥路径与 authorized_keys 核验）。
+      当用户要"配免密/同步密钥/协同功能认证失败排查"时使用。不替代目标功能本身：mastercopy/audit 等失败先回本卡核验再转对应能力卡；host-based 认证已被 CIS 移除。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - ssh
+    - security
+  source_evidence:
+  - source_id: src-entpxte401
+  - location: p55-68, p100-103, p203-208
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-02，一切协同机制的闸门
+- capability_id: cap.entadv.cs-redundancy
+  revision: 1
+  status: active
+  slug: entadv-cs-redundancy
+  title: CS 冗余部署与切换维护
+  importance: critical
+  importance_rationale: 对应 task-03/04/05/06，企业高可用核心交付；120 分钟窗口与 double main 裁决是故障处置的硬依据
+  one_liner: main+standby 实时 scp 复制；bascul 切换已建立通话保持；失联 120 分钟触发 440 只能 mastercopy；不停机升级 11 步轮换
+  intents:
+  - 部署本地/空间冗余 CS 对
+  - 执行冗余切换或不停机升级
+  - 处理 double main 或 440 事件
+  - mastercopy 克隆数据库
+  - CS duplication bascul switchover
+  keywords:
+  - mastercopy
+  - bascul
+  - twin
+  - Reference Media Gateway
+  - 参考媒体网关
+  - double main
+  - pseudo main
+  - spatial redundancy
+  - 空间冗余
+  - '440'
+  - preferred CS
+  - Copy to Twin
+  - swinst
+  also_read:
+  - entadv-ssh-trust-foundation
+  - entadv-ip-domain-pcs
+  card: cards/entadv-cs-redundancy.md
+  frontmatter:
+    description: '呼叫服务器冗余全流程：本地/空间冗余部署（netadmin、防火墙、MAO 三参数、mastercopy、autostart）、切换演练（role/twin/bascul）、double main 与参考
+      MG 裁决、120 分钟失联窗口与 440 处置、不停机升级 11 步。当用户要"建冗余/切换/升级/双主/克隆库"时使用。同版本同类平台是硬前提；GD/OMS SSH 方法属 Starter。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - redundancy
+    - high-availability
+  source_evidence:
+  - source_id: src-entpxte401
+  - location: p69-138
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-03/04/05/06，高可用主线
+- capability_id: cap.entadv.ip-domain-pcs
+  revision: 1
+  status: active
+  slug: entadv-ip-domain-pcs
+  title: IP 域与 PCS 域级生存性
+  importance: critical
+  importance_rationale: 对应 task-07/08/09/10，远程站点生存性核心；域 0 硬规则与 PCS 四状态/30 天上限是配置与演练的判读字典
+  one_liner: 域按初始化 IP 落域且 CS/PCS 必须域 0；CAC 只闸跨域；PCS 许可锁 332+四状态+回切计时器，库单向同步最长激活 30 天
+  intents:
+  - 规划配置 IP 域与 CAC
+  - 部署 PCS
+  - 断链救援与回切演练
+  - 处理设备不落域或跨域拒呼
+  - PCS survivability pcsview
+  keywords:
+  - IP domain
+  - domain 0
+  - CAC
+  - Domain Max Voice Connection
+  - OPUS
+  - G722
+  - PCS
+  - pcsview
+  - pcscopy
+  - TFTP Backup
+  - '332'
+  - '431'
+  - '432'
+  - '30 天'
+  also_read:
+  - entadv-overflow-rerouting
+  card: cards/entadv-ip-domain-pcs.md
+  frontmatter:
+    description: 'IP 域机制（建域/地址段/CAC/编解码选择链/域 0 硬规则）与 PCS 全流程（许可锁 332、部署、断链救援、四状态判读、回切计时器、单向同步与 30 天上限）。
+      当用户要"建域/CAC 限制/装 PCS/断链演练/分部生存性"时使用。PCS 救不了 4645/SIP 传真/无 MG 域的 SIP 设备；域规划的话务输入属书外。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - ip-domain
+    - pcs
+    - survivability
+  source_evidence:
+  - source_id: src-entpxte401
+  - location: p139-233
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-07/08/09/10，边缘生存性主线
+- capability_id: cap.entadv.overflow-rerouting
+  revision: 1
+  status: active
+  slug: entadv-overflow-rerouting
+  title: 公私网双向溢出与重路由
+  importance: critical
+  importance_rationale: 对应 task-11/21，多站点韧性的最后防线与省费闭环；COS 双开关/thin sector/-1 路由置顶是配置正确性的关键
+  one_liner: 断链/饱和时经 Node Access Prefix+DID 翻译走公网（话务台恒放行、SIP 扩展不适用）；反方向判别器挂 ARS 用 TG=-1 还原内号走专线
+  intents:
+  - 配置私到公溢出（本地/组网）
+  - 配置公到私重路由
+  - 规划 thin sector 或 DID 翻译
+  - 处理来电显示变成外部号类问题
+  - overflow rerouting ARS
+  keywords:
+  - overflow
+  - 溢出
+  - Node Access Prefix
+  - thin sector
+  - DID
+  - ARS
+  - rerouting
+  - discriminator
+  - '-1'
+  - OoS overflow
+  - 话务台
+  - CAC 饱和
+  also_read:
+  - entadv-ip-domain-pcs
+  - entadv-direct-ip-link
+  card: cards/entadv-overflow-rerouting.md
+  frontmatter:
+    description: '公私网双向溢出体系：本地与组网私到公溢出（三类触发、双层权利、thin sector、OoS 溢出参数、pcscopy 同步）与公到私重路由（判别器+ARS 双路由+
+      Time-based 定序、TG=-1 每表一条且首位）。当用户要"配断链退路/省费路由/翻译外号/显示异常"时使用。ARS 与闭锁基础属 Starter；本地溢出实验 RLAB 不可执行。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - overflow
+    - routing
+  source_evidence:
+  - source_id: src-entpxte401
+  - location: p217-233, p499-536
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-11/21，退路与省费闭环
+- capability_id: cap.entadv.direct-ip-link
+  revision: 1
+  status: active
+  slug: entadv-direct-ip-link
+  title: Direct IP Link 全 IP 组网
+  importance: critical
+  importance_rationale: 对应 task-18，新一代组网主线；Enabled 不可逆与两端一致性（2879）是变更管理与排障的核心约束
+  one_liner: ABC-F2 全互联免中继；系统选项三态 Enabled 不可逆；接入 1 IP 信令+至多 24 接入×62 通道；两端带宽/加密/接入数一致否则 2879
+  intents:
+  - 建立或迁移 Direct IP Link 组网
+  - 处理 2879 或链路建不起来
+  - 加删组网节点
+  - 评估直链容量与监控方式
+  - direct ip link ABC-F2
+  keywords:
+  - Direct IP Link
+  - ABC-F2
+  - Link_xx
+  - Migrating
+  - Enabled
+  - 不可逆
+  - '2879'
+  - '1488'
+  - hybvisu
+  - trkvisu
+  - rsthyb
+  - IPSec
+  - SRTP
+  also_read:
+  - entadv-audit-broadcast
+  card: cards/entadv-direct-ip-link.md
+  frontmatter:
+    description: 'Direct IP Link（ABC-F2）组网全流程：系统选项三态（Migrating 必须重启、Enabled 不可逆只能库恢复回退）、99 条自动空链与 Link_xx 命名、接入创建规则
+      （接入 1 IP 信令、两端对称否则 2879）、容量三层口径（100 节点/1488 并发/约 10000 呼时）、加密栈与加删节点。当用户要"建直链/迁移组网/链路排障/算容量"时使用。
+      话务层不断链绕行；SNMP 监管不可用。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - networking
+    - direct-ip-link
+  source_evidence:
+  - source_id: src-entpxte401
+  - location: p383-423
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-18，组网主线（含不可逆决策）
+- capability_id: cap.entadv.audit-broadcast
+  revision: 1
+  status: active
+  slug: entadv-audit-broadcast
+  title: Audit 与 Broadcast 数据一致性
+  importance: high
+  importance_rationale: 对应 task-19/20，组网数据治理双工具；audit 直改表的破坏性与 broadcast 的 RLOG 静默失败是事故高发点
+  one_liner: Audit 两阶段对账（必须模拟+备份，链式对象跑两遍）；Broadcast 走 buffer→LOG→lupd.dat 序号闭环，默认 10 分钟、RLOG 静默失败
+  intents:
+  - 执行全网 Audit 对账
+  - 启用或巡检 Broadcast
+  - 新节点并入全网导数据
+  - 处理 RLOG 或数据分叉
+  - audit broadcast OXE database
+  keywords:
+  - audit
+  - broadcast
+  - reference node
+  - specific
+  - shared
+  - 模拟
+  - cleanbroad
+  - lupd.dat
+  - RLOG
+  - prog_diff
+  - maohist
+  - Immediate Broadcast
+  also_read:
+  - entadv-ssh-trust-foundation
+  - entadv-direct-ip-link
+  card: cards/entadv-audit-broadcast.md
+  frontmatter:
+    description: '全网数据库一致性双工具：Audit（两阶段、specific/shared/不审计对象、参考节点、模拟模式+全网备份+链式对象两解法）与 Broadcast（buffer/LOG/RLOG/lupd.dat
+      闭环、128 广播域、激活三法、Immediate Broadcast、对象行为矩阵与不广播清单）。当用户要"对账/同步/新节点导数/查 RLOG"时使用。共用防火墙四类地址+SSH 免密前提。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - audit
+    - broadcast
+    - database
+  source_evidence:
+  - source_id: src-entpxte401
+  - location: p424-498
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-19/20，数据治理主线
+- capability_id: cap.entadv.multiline-supervision
+  revision: 1
+  status: active
+  slug: entadv-multiline-supervision
+  title: 多线监督与经理助理组
+  importance: high
+  importance_rationale: 对应 task-13/14，秘书/工作组场景地基；multiline 是一切监督类特性的前置，20/100/15000 上限决定方案可行性
+  one_liner: Multi-keys/Multi-MCDU 两形态；监督键五档铃型+四条硬上限；经理助理键对+过滤表 1000×16+screening/unscreening 互斥
+  intents:
+  - 配置多线与监督键
+  - 建经理/助理组与过滤表
+  - 设计助理顶班（away/溢出助理）
+  - 核算监督容量上限
+  - multiline supervision manager assistant
+  keywords:
+  - multiline
+  - Multi-MCDU
+  - supervision key
+  - 监督键
+  - manager
+  - assistant
+  - screening
+  - unscreening
+  - filtering table
+  - 过滤表
+  - multitool
+  - Selective Filtering
+  - Routing Assistant
+  also_read:
+  - entadv-hunting-pickup-speeddial
+  card: cards/entadv-multiline-supervision.md
+  frontmatter:
+    description: 'Multiline 地基上的监督类业务：两种多线形态与键属性、监督键（状态/代接/铃型/No Call 与 20/100/15000 上限、话务台与寻线组不可监督）、经理/助理组
+      （键对、过滤表 1000×16、screening/unscreening 互斥、Selective Filtering、四个辅助键）。当用户要"配多线/监督/秘书过滤/顶班"时使用。双方先有 multiline 键是硬前置。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - multiline
+    - supervision
+  source_evidence:
+  - source_id: src-entpxte401
+  - location: p255-295
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-13/14，话机级业务核心组
+- capability_id: cap.entadv.hunting-pickup-speeddial
+  revision: 1
+  status: active
+  slug: entadv-hunting-pickup-speeddial
+  title: 寻线代接组与速拨编号体系
+  importance: high
+  importance_rationale: 对应 task-12/15，客服/团队场景高频需求；前缀勘误（nr-01）与缩位号绕闭锁是两大易错点
+  one_liner: 寻线三搜索+COS 随组+camp-on 溢出；组代接/直接代接自动成组；速拨 32500（默认 4000）直接/范围双形态、默认绕闭锁
+  intents:
+  - 建寻线组与溢出策略
+  - 配代接组
+  - 管理速拨编号体系
+  - 处理缩位号闭锁合规
+  - hunting group pickup speed dial
+  keywords:
+  - hunting group
+  - 寻线组
+  - cyclical
+  - sequential
+  - parallel
+  - camp-on
+  - pickup
+  - 代接
+  - speed dial
+  - 缩位拨号
+  - edabv
+  - cfgUpdate
+  - '32500'
+  also_read:
+  - entadv-multiline-supervision
+  card: cards/entadv-hunting-pickup-speeddial.md
+  frontmatter:
+    description: '团队话务与拨号效率：寻线组（三搜索、COS 随进出组、camp-on 百分比公式、溢出号、multiline 三分支）、代接组（组代接/直接代接、PickupGroup Name 自动成组、
+      zdpost pickup_id 核验）、速拨体系（32500 索引默认 4000、直接/范围/open/timed、实体映射、edabv 查询、闭锁受控）。当用户要"建组轮接/代接/短号/拨号管控"时使用。
+      一台话机只属一个寻线组；前缀以现场 Prefix Plan 实查为准。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - hunting
+    - pickup
+    - speed-dial
+  source_evidence:
+  - source_id: src-entpxte401
+  - location: p234-254, p296-326
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-12/15，高频客户需求组
+- capability_id: cap.entadv.desk-sharing
+  revision: 1
+  status: active
+  slug: entadv-desk-sharing
+  title: 办公桌共享（DSS/DSU）
+  importance: medium
+  importance_rationale: 对应 task-16，灵活办公场景；独立触发频率中等，虚拟 MAC 与 6004 行为解释经路由可达即可
+  one_liner: DSS 真 MAC+DSU 虚拟 MAC（aa:bb:分机号）；登录即恢复配置；忙时重置默认 True（6004）、即时登录仅限特定机型族
+  intents:
+  - 配置办公桌共享
+  - 解释 DSU 忙时被顶或 6004
+  - 规划共享工位机型
+  - desk sharing DSS DSU
+  keywords:
+  - desk sharing
+  - 办公桌共享
+  - DSS
+  - DSU
+  - 虚拟 MAC
+  - '6004'
+  - dsstat
+  - ippstat
+  - LogOn
+  - LogOff
+  - free seating
+  also_read:
+  - entadv-multi-device
+  card: cards/entadv-desk-sharing.md
+  frontmatter:
+    description: '办公桌共享：DSS/DSU 角色化配置（前缀 62/63 与键位、虚拟 MAC 规则）、五个系统选项（忙时重置 6004/自动登出/免密/改密/即时登录适用面）、dsstat/ippstat/doministat
+      验证。当用户要"工位漫游/共享话机/DSU 行为解释"时经路由使用。固定一号多机场景转多设备卡；机型支持面是硬边界。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - desk-sharing
+  source_evidence:
+  - source_id: src-entpxte401
+  - location: p327-351
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 单场景特性，路由可达即可
+- capability_id: cap.entadv.multi-device
+  revision: 1
+  status: active
+  slug: entadv-multi-device
+  title: 多设备用户与 Twinset
+  importance: medium
+  importance_rationale: 对应 task-17，一号多机与快速移机；破坏性关联（清数据）是必须提前警告的红线
+  one_liner: 主站+至多 4 副站（DECT/REX 各 1）；建关联清空两机数据；Twinset Get Call 无感移机；主站退服三参数联动
+  intents:
+  - 配置多设备用户或 Twinset
+  - 执行快速移机
+  - 规划主站退服兜底
+  - multi device twinset tandem
+  keywords:
+  - multi device
+  - twinset
+  - tandem
+  - 主站
+  - 副站
+  - Twinset Get Call
+  - '652'
+  - REX
+  - '651'
+  - partial busy
+  - specific supervision
+  - zdpost
+  also_read:
+  - entadv-desk-sharing
+  - entadv-multiline-supervision
+  card: cards/entadv-multi-device.md
+  frontmatter:
+    description: '多设备用户/Twinset：主副站结构（至多 4 副、机型矩阵与禁用清单）、呼叫与忙态语义（Partial busy/Specific supervision）、REX 振铃控制、主站退服三参数
+      （退服期间改参数不生效）、Twinset Get Call 快速移机、zdpost tandem 字段核验。当用户要"一号多机/移机/主备话机兜底"时经路由使用。关联创建是破坏性操作，先备份。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - multi-device
+  source_evidence:
+  - source_id: src-entpxte401
+  - location: p352-371
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 单场景特性，路由可达即可
+- capability_id: cap.entadv.lab-pod-baseline
+  revision: 1
+  status: active
+  slug: entadv-lab-pod-baseline
+  title: 实验/交付前置环境基线
+  importance: medium
+  importance_rationale: 对应 task-01 与全部实验的底座；纯教学基础设施知识，生产无对应环节，独立触发价值低
+  one_liner: RLAB 双拓扑+ITSP1 号码规则（PN=POD 号）+启动顺序与组网 VM 网卡迁移前置，全部实验口径
+  intents:
+  - 搭建教材同构实验环境
+  - 换算 POD 号码规则
+  - 处理实验 IP 冲突或 ping 不通
+  - RLAB pod ITSP1 numbering
+  keywords:
+  - RLAB
+  - POD
+  - ITSP1
+  - SIP 模拟器
+  - IPDSP
+  - pbxN
+  - remoteN
+  - '3321'
+  - '41000'
+  - Remove Interface
+  - IP 冲突
+  card: cards/entadv-lab-pod-baseline.md
+  frontmatter:
+    description: 'RLAB 实验底座：集中式/组网双 Pod 拓扑、公共资源区与 ITSP1 号码规则（PN=两位 POD 号）、VM 启动顺序与组网实验的网卡迁移、OXE 预配置基线。
+      当用户要"搭实验/换算号码/排查实验环境"时经路由使用。一切 IP/账号/密码为实验口径，生产严禁照搬；培训评估流程不在本卡。
+
+      '
+    tags:
+    - reference
+    - oxe
+    - lab
+  source_evidence:
+  - source_id: src-entpxte401
+  - location: p5-54, p372-382
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 教学基础设施域，路由可达即可
+- capability_id: cap.entadv.cli-toolbox
+  revision: 1
+  status: active
+  slug: entadv-cli-toolbox
+  title: 维护命令与事件/许可速查
+  importance: medium
+  importance_rationale: 横切全部任务的索引域；"用什么命令看/事件号什么意思"类问题经路由分发到各能力卡处置
+  one_liner: 按功能域归类的命令地图 + 事件号对照（440/427/428/431/432/6004/6005/2879 等）+ 许可锁锚点（186/332/185 等）
+  intents:
+  - 查状态该用什么命令
+  - 解释事件号含义
+  - 核验许可锁
+  - maintenance commands incident codes
+  keywords:
+  - incvisu
+  - incinfo
+  - spadmin
+  - role
+  - bascul
+  - domstat
+  - cnx dom
+  - compvisu
+  - multitool
+  - hybvisu
+  - trkstat
+  - prog_diff
+  - '440'
+  - '2879'
+  - '6005'
+  - '186'
+  - '332'
+  also_read: []
+  card: cards/entadv-cli-toolbox.md
+  frontmatter:
+    description: 'OXE 维护速查：按功能域（许可/冗余/PCS/域话务/话机特性/组网/一致性）归类的命令地图、事件号对照表（440/427/428/431/432/6004/6005/2879/288x/2832/2846）、
+      许可锁与版本锚点。当用户要"查状态/看事件/核许可"时经路由使用并转入对应能力卡处置。事件与输出以 R101.1 为口径，随版本可能漂移。
+
+      '
+    tags:
+    - reference
+    - oxe
+    - maintenance
+    - troubleshooting
+  source_evidence:
+  - source_id: src-entpxte401
+  - location: p79, p94, p113, p160-163, p182, p346, p395, p405, p412-417, p476-498
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 索引域，路由可达即可

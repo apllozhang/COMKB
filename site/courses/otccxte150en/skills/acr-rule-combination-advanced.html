@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>ACR 综合规则组合与高级构件</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced Call Routing</h2><p>Edition 01 · 470 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte150en/index.html">课程首页</a><a href="/courses/otccxte150en/digest.html">精华长文</a><a href="/courses/otccxte150en/overview.html">教书理解</a><a href="/courses/otccxte150en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte150en/skills/acr-script-editor-fundamentals.html">ACR 脚本编辑器与调试工具链</a><a href="/courses/otccxte150en/skills/acr-ccd-matrix-foundation.html">ACR 基础 CCD 矩阵地基</a><a href="/courses/otccxte150en/skills/acr-redirect-redistribution.html">ACR 重定向与再分发兜底</a><a href="/courses/otccxte150en/skills/acr-direct-call-dica.html">ACR 坐席直拨融合</a><a href="/courses/otccxte150en/skills/acr-internal-database-routing.html">ACR 内部数据库路由</a><a href="/courses/otccxte150en/skills/acr-rule-combination-advanced.html">ACR 综合规则组合与高级构件</a><a href="/courses/otccxte150en/skills/acr-asm-deployment.html">ACR 外部 ASM 部署与双机热备</a><a href="/courses/otccxte150en/skills/acr-database-query-routing.html">ACR 外部数据库查询路由</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte150en/skills/acr-list-rules.html">ACR 授权与非授权名单规则</a><a href="/courses/otccxte150en/skills/acr-call-tag-transfer.html">ACR Call Tag 生成与传递</a><a href="/courses/otccxte150en/skills/acr-multilanguage-voiceguide.html">ACR 多语言语音引导与语言偏好分发</a><a href="/courses/otccxte150en/skills/acr-filter-statistics.html">ACR 过滤器与统计报表</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte150en/index.html">otcc-advanced-call-routing（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte150en/index.html">OTCCXTE150EN</a><span>/</span><span aria-current="page">ACR 综合规则组合与高级构件</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>ACR 综合规则组合与高级构件</h1></div><dl><div><dt>Skill ID</dt><dd>acr-rule-combination-advanced</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>ACR 综合规则组合与高级构件（APPLY 语义、IDLE/COM、IQUEUE、LIST 变量、混合选呼）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Single ACR Rules Have to be used alone in the APPLY instruction: LAST CALLED AGENT, REDIRECTION, REDISTRIBUTION, IVR • Combinable Rules: AUTHORIZED LIST, UNAUTHORIZED LIST, ISM, IDLE, COM"（p244）
+"When 2 “APPLY” instructions are encountered, the 1st one has no effect on the result sent back to the call handling • When only 1 “APPLY” instruction is used, the agent list of a rule is build according to the agent list of the previous rule"（p245）
+"Allows to overwrite the parking level management done in the routing rule • Up to 7 levels: Levels “1…6” • Level “Next”"（p249）
+"There are 16 automatic lists, indexed from 1 to 16 … The “agent” type list • The “skill” type list"（p258）</p>
+</blockquote>
+<p>出处：OTCCXTE150EN p230-282。</p>
+<h2>I — 自述</h2>
+<p>规则组合三法则与四个高级构件，是复杂业务脚本的工具箱：</p>
+<ol>
+<li><strong>单用规则</strong>（LCA/Redirection/Redistribution/IVR）必须独占 APPLY；<strong>可组合规则</strong>（Authorized/Unauthorized/ISM/IDLE/COM）可串接；IDLE 与 COM 互斥</li>
+<li><strong>APPLY 数量决定语义</strong>：仅 1 个 APPLY 时前规则输出=后规则输入（链式过滤，名单真正约束坐席）；两个及以上 APPLY 时各自独立，第一个的结果被丢弃（名单约束静默失效——全书最反直觉语义）</li>
+<li><strong>IDLE/COM 排序</strong>：IDLE 按 asm_ag_free_duration 分 PLTR/LIT 两语义；COM 按登录后服务呼叫数比率排，参数对它无影响</li>
+<li><strong>IQUEUE</strong>：脚本内覆写等待房间停放体验——1-6 级每级可配引导（号/掐断/时长/重播）、EWT 表或地址；NEXT 级在重选重跑而上一停放未播完时接管；未指定的级回落路由规则配置</li>
+<li><strong>LIST 变量</strong>：16 个 LIST[%1..16]，元素定类型——skill 型（供 ISM，超 7 技能截断：先删低级别可选再删低级别强制）与 agent 型（供名单规则，无上限）；"+"合并同技能取高级别，"-"移除元素</li>
+<li><strong>其他构件</strong>：CLEAR AGENT LIST 清空前列表重算；RULE_IVR 送 CCivr 资源组并可传档案；DISPLAY_AGENT 屏显四类取值（显式串/显示变量/自动变量/Call Tag 值）</li>
+</ol>
+<p>呼叫选择统一排座次（CCD/ACR 混跑）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>次序</th>
+<th>比什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一</td>
+<td>呼叫选择优先级（0-9，0 最高）</td>
+</tr>
+<tr>
+<td>第二（默认 False）</td>
+<td>最低 ISM 成本，再看最长实际等待</td>
+</tr>
+<tr>
+<td>第二（True）</td>
+<td>最长实际等待，再看最低 ISM 成本</td>
+</tr>
+</tbody>
+</table></div>
+<p>ISM 成本三档：非 ISM 的 ACR 呼叫为 0；ISM 的 ACR 呼叫按档案计算（不低于 0）；等待队列里的普通 CCD 呼叫为无穷——这是 ACR 呼叫默认插队的机制本质。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>1Apply 与 2Apply 对照（c10 步骤 3-4）</strong>：</p>
+<ol>
+<li>脚本 1Apply：单 APPLY 写 RULE_AUTHORIZED_LIST 31501 31502 加 RULE_ISM</li>
+<li>坐席技能：31501 有 Car、31502 只有 Home、31500 有 Car 但不在名单</li>
+<li>呼 ACR Pilot：仅 31501 振铃（31500 技能匹配但被前列表过滤）</li>
+<li>脚本 2Apply：两个 APPLY 分写名单与 ISM</li>
+<li>同场景复测：31500 也被呼——名单结果未作为 ISM 输入，约束静默失效</li>
+</ol>
+<p><strong>Addition 脚本（IQUEUE 加 CLEAR，c10 步骤 5）</strong>：</p>
+<ol>
+<li>录停放引导 701-706 与 IQUEUE 专属引导 751-756、NEXT 757（实验口径）</li>
+<li>档案含 Home：ISM 加 IQUEUE，坐席全忙时客户听各级专属引导直到有坐席</li>
+<li>无 Home：第 1 序列转坐席 31500 并屏显 NO HOME、不可达停 12 秒</li>
+<li>第 2 序列 CLEAR_PREVIOUS_LIST 后走 LAST_CALLED_AGENT 重算</li>
+<li>分别呼两个统计 Pilot，Debugger 验证三条路径</li>
+</ol>
+<p><strong>混合选呼两场景（c10 步骤 7-8）</strong>：</p>
+<ol>
+<li>队列 31999700 优先级 9、房间 31999703 优先级 8：房间呼叫先被处理</li>
+<li>两处均改 9：默认按最低 ISM 成本；ACR Actual Waiting 置 TRUE 后按最长实际等待</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：名单加技能组合不生效；想让客户等待时听分级引导；坐席按空闲或话务量均匀分配；ACR 与普通 CCD 呼叫抢坐席；动态拼名单。</p>
+<p>语言信号：APPLY / 单用规则 / 可组合规则 / IDLE / COM / IQUEUE / 停放级 / NEXT / LIST 变量 / CLEAR AGENT LIST / IVR 规则 / ISM 成本 / ACR Actual Waiting / 插队。</p>
+<p>与相邻能力区分：单规则语法与调试，见 脚本编辑器能力；名单数据维护，见 名单规则卡（路由）；排序参数文件，见 脚本编辑器能力（LIT/PLTR 段）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：业务组合需求（哪些规则串联）、坐席技能与名单数据、引导录音资源（用 IQUEUE 时）。</p>
+<ol>
+<li>画组合草图：确认每个规则属单用还是可组合，IDLE 与 COM 不共存。完成标准：组合方案合法</li>
+<li>要求"名单约束技能"的必须写成单 APPLY 链式。完成标准：APPLY 数量与语义一致</li>
+<li>需要停放体验控制时配 IQUEUE 各级参数。完成标准：未指定级回落行为已确认</li>
+<li>动态名单用 agent 型 LIST 拼装后交名单规则。完成标准：Debugger 里 LIST 内容正确</li>
+<li>混跑站点核对呼叫选择优先级与 ACR Actual Waiting 口径。完成标准：两处配置与业务一致</li>
+<li>Debugger 全路径验证：写对照实验（1Apply 与 2Apply 各测一遍）。完成标准：坐席命中与设计一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>名单形同虚设 → 停，查 APPLY 数量，两个以上即失效，改单 APPLY</li>
+<li>想同时按空闲和话务量排序 → 停，IDLE 与 COM 互斥，二选一</li>
+<li>ACR 呼叫持续插队普通来电 → 停，用优先级或 ACR Actual Waiting=TRUE 平衡并向客户讲清</li>
+<li>IQUEUE 引导未播完就被重选打断 → 正常，NEXT 级接管，配 NEXT 引导即可</li>
+</ul>
+<p>输出契约：复合业务脚本 + 组合语义对照验证记录 + 混跑选呼口径。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>两 APPLY 第一个失效是产品语义（p245/p270 实验），版本升级也应以现场验证为准</li>
+<li>SET 指令（PRIORITY/RESELECTION_TIMEOUT）不占 APPLY（p25 条件）</li>
+<li>语言偏好参与 ISM 成本计算的具体算法原书只给示例（成本 0/3），未给公式全貌</li>
+<li>多语言引导与 CCivr 档案传递分别在多语言卡与 Call Tag 卡（路由）展开</li>
+<li>引导号 701-706/751-757 等为实验口径；停放级基础管理仍在路由规则，IQUEUE 只做覆写</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte150en/skills/acr-script-editor-fundamentals.html">ACR 脚本编辑器与调试工具链</a>、<a href="/courses/otccxte150en/skills/acr-list-rules.html">ACR 授权与非授权名单规则</a></p><p class="source-page">能力 ID：cap.acr.rule-combination-advanced · 来源：OTCCXTE150EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Advanced Call Routing (Participant's Guide, Issue 01) | edition: Edition 01 | pages: 470 页 -->

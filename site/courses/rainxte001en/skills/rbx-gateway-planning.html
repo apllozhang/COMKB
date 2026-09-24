@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>WebRTC 网关拓扑决策与容量规划</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Rainbow OXO Connect 集成</h2><p>Edition 13 · 251 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte001en/index.html">课程首页</a><a href="/courses/rainxte001en/digest.html">精华长文</a><a href="/courses/rainxte001en/overview.html">教书理解</a><a href="/courses/rainxte001en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte001en/skills/rbx-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte001en/skills/rbx-omc-onboarding.html">OMC 安装首次连接与 IP 规划修改</a><a href="/courses/rainxte001en/skills/rbx-pbx-onboarding.html">OXO 接入 Rainbow 与接入排障</a><a href="/courses/rainxte001en/skills/rbx-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte001en/skills/rbx-gateway-planning.html">WebRTC 网关拓扑决策与容量规划</a><a href="/courses/rainxte001en/skills/rbx-gateway-deployment.html">WebRTC 网关部署与虚拟终端配置</a><a href="/courses/rainxte001en/skills/rbx-attendant-supervision.html">Rainbow 话务台与监督组</a><a href="/courses/rainxte001en/skills/rbx-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte001en/skills/rbx-admin-tools.html">Rainbow 管理员工具（权责/企业目录/信息频道）</a><a href="/courses/rainxte001en/skills/rbx-rcc-association.html">OXO 分机关联与 RCC 模式</a><a href="/courses/rainxte001en/skills/rbx-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte001en/skills/rbx-network-readiness.html">Rainbow 网络就绪核查</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte001en/index.html">rainbow-oxo-connect（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte001en/index.html">RAINXTE001EN</a><span>/</span><span aria-current="page">WebRTC 网关拓扑决策与容量规划</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>WebRTC 网关拓扑决策与容量规划</h1></div><dl><div><dt>Skill ID</dt><dd>rbx-gateway-planning</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>WebRTC 网关拓扑决策与容量规划（三拓扑对比、版本前提、选型）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The WebRTC Gateway brings voice interoperability between Rainbow Clients and PBX ecosystem. • This enables an audio media relationship between Rainbow applications and devices of a PBX connected to Rainbow"（p118）
+"Type of Rainbow GW | OXO Connect (Power CPU EE) | OXO Connect evolution (IPBox) — Internal GW: Not supported / 20 calls max. ; External GW (NUC): 50 calls max. / 50 calls max. ; OCE-FE GW: 20 calls max. / Not supported"（p129）
+"50 VoIP calls maximum if the WebRTC gateway is external on Mini PC or ESXi server • 20 VoIP calls maximum with OCE integrated WebRTC gateway or if the WebRTC gateway is external on OCE Front End"（p147）
+"Maximum of OXO users with Rainbow VoIP option increased from 50 to 150"（p147）</p>
+</blockquote>
+<p>出处：RAINXTE001EN p117-129, p146-147。</p>
+<h2>I — 自述</h2>
+<p>网关只建"音频媒体"关系，呼叫控制始终在 PBX（p118）——排障分流的总纲。三拓扑功能等价，差异在承载硬件、容量与许可：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>拓扑</th>
+<th>承载</th>
+<th>版本前提</th>
+<th>通话上限</th>
+<th>许可要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OCE 集成</td>
+<td>OCE（IPBox）内部虚拟机</td>
+<td>R3.2+</td>
+<td>20</td>
+<td>免 SIP trunk 许可（bypass）；Power CPU EE 不支持</td>
+</tr>
+<tr>
+<td>OCE Front End</td>
+<td>独立 IPBox 前置于呼叫服务器</td>
+<td>双端 ≥R4.0 MD</td>
+<td>20</td>
+<td>专用许可免费（FTR 自动给）；无 PBX 能力/无 UTL；仅配 Power CPU EE</td>
+</tr>
+<tr>
+<td>外部 VM/NUC</td>
+<td>ESXi 虚拟机或迷你 PC</td>
+<td>—</td>
+<td>50</td>
+<td>需 SIP trunk 许可（R3.2 前唯一选择）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>容量对照表</strong>（p147，Rainbow VoIP 用户数 → 推荐通道数）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>用户数</th>
+<th>外部拓扑通道</th>
+<th>集成/FE 通道</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>10</td>
+<td>7</td>
+<td>7</td>
+</tr>
+<tr>
+<td>20</td>
+<td>11</td>
+<td>11</td>
+</tr>
+<tr>
+<td>30</td>
+<td>15</td>
+<td>15</td>
+</tr>
+<tr>
+<td>50</td>
+<td>20</td>
+<td>20</td>
+</tr>
+<tr>
+<td>70</td>
+<td>27</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>100</td>
+<td>36</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>150</td>
+<td>50（打满上限）</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>用户上限：OXO Rainbow VoIP 用户已从 50 提到 150（两种硬件均适用）；150 仅在极低话务下成立（原书 * 注）</li>
+</ul>
+<p><strong>终端形态规则</strong>（p123，与拓扑无关都要做）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>用户形态</th>
+<th>终端结构</th>
+<th>版本</th>
+<th>许可</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有物理话机</td>
+<td>Multiset：物理主站 + Free Rainbow in Twinset 虚拟副站</td>
+<td>R6.0 起</td>
+<td>1 UTL（副站不额外占）</td>
+</tr>
+<tr>
+<td>有物理话机（旧版）</td>
+<td>Multiset：物理主站 + Anydevice 副站</td>
+<td>R5.2 及以前</td>
+<td>许可口径需核 TC2479</td>
+</tr>
+<tr>
+<td>纯软话机</td>
+<td>Anydevice 单终端</td>
+<td>—</td>
+<td>1 UTL</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>容量决策素材</strong>（p146-147，讲义，无实验——选型即查表）：</p>
+<ul>
+<li>80 用户站点 → 外部拓扑、通道介于 27-36</li>
+<li>OCE 站点超 50 用户 → 改用/加用外部网关（原书明示扩展路径）</li>
+<li>带 * 行（70/100/150）→ 20 通道下的方向性值，实际取决于话务量</li>
+</ul>
+<p><strong>硬件适配</strong>（p129 矩阵）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>站点硬件</th>
+<th>可选拓扑</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Power CPU EE</td>
+<td>集成不可用 → 二选一：FE（20）或外部（50）</td>
+</tr>
+<tr>
+<td>Evolution（IPBox）</td>
+<td>集成 20 可用（默认低成本项）；FE 明示 Not supported</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：给客户选 WebRTC 网关方案；Power CPU EE 能不能用集成网关；最多支持多少用户/并发；通道数怎么定；FE 和外部怎么选；Twinset 和 Anydevice 怎么配。</p>
+<p>语言信号：WebRTC 网关 / 拓扑 / 集成网关 / OCE Front End / Front-End / NUC / ESXi / 容量 / dimensioning / 通道数 / channels / 20 通话 / 50 通话 / 150 用户 / UTL / Twinset / Anydevice / Multiset。</p>
+<p>与相邻能力区分：选型后的施工 → 网关部署能力；"能通但没声音"类排障按本卡"媒体 vs 呼控"分界先分流（媒体找部署卡，呼控找 PBX 侧）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：PBX 硬件形态（Power CPU EE 还是 Evolution/IPBox）、系统版本、Rainbow 话音用户数与话务特征、预算（SIP trunk 许可/硬件）。用户数与话务未知 → 判停先勘测。</p>
+<ol>
+<li>核硬件与版本：</li>
+<li>Power CPU EE → 集成出局；版本 ≥R4.0 MD 可选 FE（20），否则外部（50）</li>
+<li>Evolution/IPBox → 集成（R3.2+，20）为默认低成本项；需 &gt;20 通话 → 外部（50）</li>
+<li>版本 &lt;R4.0.020.002 → 自动配置不可用（两处原文口径差异见 nr-01），先升级</li>
+<li>定容量：查对照表得推荐通道数；校验并发上限（外部 50 / 集成与 FE 20）；&gt;50 话音用户的 OCE 站点 → 外部拓扑。完成标准：拓扑 + 通道数成文</li>
+<li>定终端形态：有话机用户 → Multiset + Twinset 副站（R6.0+）；纯软话机 → Anydevice；核 UTL 数量（每电话用户 1 UTL）。完成标准：终端清单 + UTL 口径确认</li>
+<li>方案评审：许可（SIP trunk bypass 与否）、硬件采购（FE 需整 IPBox）、后续扩容路径。完成标准：方案过审</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>用户数 &gt;150 → 超出 OXO Rainbow VoIP 上限，转 OpenTouch/其他方案线（原书范围外）</li>
+<li>话务量未知且用户数 &gt;50 → 不承诺"150 也够"，按 * 注要求先做话务评估（工具与建模在书外）</li>
+<li>客户要求 FE 挂 Evolution 呼叫服务器 → 组合不存在（p129 Not supported），改推荐集成或外部</li>
+<li>现场只有 R5.2 且要建副站 → 按旧语义用 Anydevice 并说明升级后要换 Twinset，避免白占 UTL</li>
+</ul>
+<p>输出契约：拓扑选型结论（含版本/硬件依据）+ 通道数方案 + 终端形态与 UTL 清单。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>容量表的 * 行（70/100/150）是 20 通道下的方向性指示值，实际取决于通道数与用户话务——引用数字必须带此前提（p147 原注）</li>
+<li>TURN 服务器配置、防火墙白名单、编号计划与闭锁：书外（安装指南/cookbook/TC2479），本卡不覆盖取值</li>
+<li>OCE-FE 开局有多个场景分支（新装/加装/有无 Fleet 参考），操作必须按 MyPortal 最新版 Rainbow WebRTC cookbook（p137 "essential to follow"）</li>
+<li>Anydevice 的版本语义（R5.2/R6.0 分界）在升级混存的系统上要逐台核对</li>
+<li>网关只管音频不管呼叫控制：路由不通/打不出去属 PBX 编号计划与 ARS 域（p121 安装员保留项）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte001en/skills/rbx-gateway-deployment.html">WebRTC 网关部署与虚拟终端配置</a>、<a href="/courses/rainxte001en/skills/rbx-network-readiness.html">Rainbow 网络就绪核查</a></p><p class="source-page">能力 ID：cap.rbx.gateway-planning · 来源：RAINXTE001EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Rainbow OXO Connect (Participant's Guide, Edition 13) | edition: Edition 13 | pages: 251 页 -->

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>DTLS 验证、排障与维护闭环</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 加密解决方案</h2><p>Edition 05 · 410 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte421en/index.html">课程首页</a><a href="/courses/entpxte421en/digest.html">精华长文</a><a href="/courses/entpxte421en/overview.html">教书理解</a><a href="/courses/entpxte421en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte421en/skills/enc-certificate-trust-chain.html">证书与信任链全生命周期</a><a href="/courses/entpxte421en/skills/enc-native-encryption-bringup.html">加密解决方案开通与 lanpbx.cfg</a><a href="/courses/entpxte421en/skills/enc-dtls-verification-maintenance.html">DTLS 验证、排障与维护闭环</a><a href="/courses/entpxte421en/skills/enc-sip-tls-endpoints.html">SIP TLS 扩展加密</a><a href="/courses/entpxte421en/skills/enc-sip-trunk-tls.html">SIP trunk 的 TLS 与 SRTP</a><a href="/courses/entpxte421en/skills/enc-eegw-deployment.html">EEGW/NSP 大容量部署</a><a href="/courses/entpxte421en/skills/enc-abcf-network-encryption.html">ABC-F 网络加密</a><a href="/courses/entpxte421en/skills/enc-mtls-endpoint-authentication.html">mTLS 双向认证与版本限制</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte421en/skills/enc-pcs-failover.html">PCS 加密接管</a><a href="/courses/entpxte421en/skills/enc-pki-workshop-xca.html">XCA 外部 CA 工坊</a><a href="/courses/entpxte421en/skills/enc-application-encryption.html">应用生态加密与安全下载</a><a href="/courses/entpxte421en/skills/enc-lab-environment.html">实验环境底座（RLAB）</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte421en/index.html">oxe-native-encryption（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte421en/index.html">ENTPXTE421EN</a><span>/</span><span aria-current="page">DTLS 验证、排障与维护闭环</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>DTLS 验证、排障与维护闭环</h1></div><dl><div><dt>Skill ID</dt><dd>enc-dtls-verification-maintenance</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>DTLS 加密验证、排障与维护闭环（命令族、事件码、备份、抓包）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"'cryptview' command indicates if the OmniPCX Enterprise is secured."（p131）
+"5992 Minor 'FSNE:EGW – Remaining Validity Period of the CA Certificate. : P1' … If P1 is 0, the certificate becomes invalid and all end points with FSNE enabled reboot"（p132）
+"ALE strongly recommends to systematically backup certificates and keys whenever modifications are performed"（p107）
+"press the 'Play' button to check whether the communication is encrypted or not"（p138）</p>
+</blockquote>
+<p>出处：ENTPXTE421EN p126-138, p107, p132-133, p290。</p>
+<h2>I — 自述</h2>
+<p>交付验收与日常运维的两个闭环——命令验证与事件驱动：</p>
+<ol>
+<li><strong>验证命令族</strong>（mtcl 下执行，p129-131/p143/p192-193/p242）：</li>
+</ol>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>看什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ippstat &lt;分机&gt;（option 2/3）</td>
+<td>单机 DTLS=Yes、SRTP 套件能力；option 3 列全节点话机表</td>
+</tr>
+<tr>
+<td>twin</td>
+<td>主备 CS 通信模式 Crypted/clear</td>
+</tr>
+<tr>
+<td>cryptview</td>
+<td>System is DTLS secured、SSL level、DTLS server（内/外部 EGW）、受保护 coupler 表、mTLS 状态、网关/扩展计数</td>
+</tr>
+<tr>
+<td>sipregister / csipsets</td>
+<td>SIP 扩展 TLS 注册与 TLS/SRTP 列</td>
+</tr>
+<tr>
+<td>sipextgw -g <n></td>
+<td>外部网关 State/Transport/SRTP 模式</td>
+</tr>
+<tr>
+<td>config ost / pcsview / hybvisu -f all</td>
+<td>EEGW 状态表 / PCS 救援态 / ABC-F 链路 UP 与 Encryption</td>
+</tr>
+</tbody>
+</table></div>
+<ol>
+<li><strong>原生加密事件码</strong>（incvisu/incinfo 查看，p132）：</li>
+</ol>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>事件</th>
+<th>级别</th>
+<th>含义与动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5991</td>
+<td>Minor</td>
+<td>系统无反应 → 查 OXE 与端点两侧 CTL 配置、看 netadmin 历史文件</td>
+</tr>
+<tr>
+<td>5992</td>
+<td>Minor</td>
+<td>CA 证书剩余 P1 天 → P1=0 证书失效、全部 FSNE 端点重启，到期前必须换证</td>
+</tr>
+<tr>
+<td>5993</td>
+<td>Major</td>
+<td>主备 CS 连接是否加密 → P1=0 明文，修证书后重启 CS</td>
+</tr>
+<tr>
+<td>5995</td>
+<td>Major</td>
+<td>EGW 菜单与 netadmin 配置的 CS IP 不一致 → 核对两处后重启 CS</td>
+</tr>
+</tbody>
+</table></div>
+<p>EST 注册类事件另族：5779（成功）/5780（失败）归 IPMG 自动续期（p84）。</p>
+<ol>
+<li>
+<p><strong>证书备份规则</strong>（p107/p133）：</p>
+</li>
+<li>
+<p>每次证书变更后系统化备份：netadmin 11.9.1.5 导出（PKCS#12 或 PKCS#7），或 swinst 备 Linux Data 时自动随备份</p>
+</li>
+<li>导出口令 ≥8 位、含大写+小写+数字+特殊字符各 1（单引号除外）；PCS 证书 11.9.2.4 导出打 tar</li>
+<li>
+<p>警告：必须转存到存储介质——磁盘崩溃后靠它导入恢复</p>
+</li>
+<li>
+<p><strong>Wireshark 抓包验证</strong>（p134-138）：话机 COS 放开 PC 口、tnet 开镜像、Decode As 选 RTP、Stream Analysis 播放；加密=噪音，明文=语音</p>
+</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>维护闭环</strong>（p126-133，c02 步骤 10-11）：</p>
+<ol>
+<li>启动 IPDSP，PC 不认识 CA 时弹证书提示选 Accept permanently</li>
+<li>31000 与 31002 互打，通话窗口出现加密图标</li>
+<li>spadmin（option 2）核对许可 424/4359 授权值（实验口径 75/30）</li>
+<li>ippstat 31000 核对 DTLS 与 SRTP 套件；twin 核对 Communication Mode: Crypted</li>
+<li>cryptview 核对 System is DTLS secured 与参数快照</li>
+<li>incvisu 扫 5991/5992/5993/5995 四个事件</li>
+<li>netadmin 11.9.1.5.1 导出证书备份并转存介质</li>
+</ol>
+<p><strong>抓包验证</strong>（p134-138，c03）：</p>
+<ol>
+<li>话机 COS 的 PC Port 置 Cascad. not filt.（IPDSP 直接跳过此段）</li>
+<li>tnet d &lt;分机&gt;（默认口令 *tx8000#）→ mirror set lan 开镜像</li>
+<li>PC 接话机 PC 口，Wireshark 抓包</li>
+<li>Decode As 选 RTP；Telephony 菜单进 RTP 的 Stream Analysis 后点 Play</li>
+<li>播放为不可辨识噪音 = 媒体已加密</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：加密到底生效没有；话机没出加密图标；主备之间是不是明文；证书快到期怎么防；事件 5992/5993/5995 怎么处置；向客户证明媒体已加密。</p>
+<p>语言信号：cryptview / ippstat / twin / incvisu / 事件 5991 / 5992 / 5993 / 5995 / 证书备份 / export certificates / Wireshark / mirror set lan / RTP Stream / 加密图标 / System is DTLS secured。</p>
+<p>与相邻能力区分：参数配错类故障归开通能力的生效动作清单；SIP trunk 起不来查 sipalarm.log 归 SIP trunk 能力；端点信任库坏了要恢复出厂看本卡 B 段（p108）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：加密已配置（参数+lanpbx+重启完成）、可登录 mtcl。配置未完成 → 判停回开通能力。</p>
+<ol>
+<li>命令验证：按 I 段命令族逐项跑（ippstat/twin/cryptview 三件起步）。完成标准：cryptview 显示 System is DTLS secured</li>
+<li>行为验证：加密端点互打看加密图标；明文端点对照。完成标准：图标与命令结论一致</li>
+<li>抓包取证：按 c03 五步抓 RTP 流播放。完成标准：噪音=加密的录音/截图留档</li>
+<li>事件巡检：incvisu 扫四个 FSNE 事件；对 5992 建立 P1 天数台账。完成标准：无 Major 事件或已定位</li>
+<li>备份归档：证书变更后 11.9.1.5 导出并转存介质；随变更单记录口令保管位置。完成标准：备份可追溯</li>
+<li>到期运维：按 5992 的 P1 提前续期换证；换证后重生成 lanpbx + 重启 + 同步 twin。完成标准：续期闭环</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>5992 的 P1=0 已发生 → 证书已失效、FSNE 端点会重启，立即换证并按变更窗口重启 CS，不要再排障</li>
+<li>话机信任库损坏或站点搬移后连不上 → 恢复出厂（启动时按 i 再按 #，Reset to Defaults）回 TOFU 模式；注意同时清掉端上定制（p108）</li>
+<li>抓包点不止话机 PC 口（trunk 侧/EEGW 侧）→ 原书未覆盖，声明边界后按客户监控方案另行设计</li>
+</ul>
+<p>输出契约：验证结论（命令+图标+抓包三证）+ 事件台账 + 证书备份归档。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>Wireshark 教学只覆盖话机 PC 口镜像一种位置；SIP TLS 解密（密钥日志）与 trunk/EEGW 侧抓包点在书外</li>
+<li>事件 5992"全站重启"是产品行为不是配置错误——变更窗口规划必须把它算进去</li>
+<li>cryptview 的 IP/Encryption GW 菜单为只读展示；真正的 EGW 声明在 netadmin 20（n12）</li>
+<li>集中监控/SIEM 集成不在原书范围</li>
+<li>*tx8000# 与许可值为实验口径/产品默认值，生产必须替换</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte421en/skills/enc-native-encryption-bringup.html">加密解决方案开通与 lanpbx.cfg</a></p><p class="source-page">能力 ID：cap.enc.dtls-verification-maintenance · 来源：ENTPXTE421EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — Native Encryption (Participant's Guide, Edition 05) | edition: Edition 05 | pages: 410 页 -->

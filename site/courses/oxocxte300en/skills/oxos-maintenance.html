@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>备份恢复、软件升级与复位</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OXO Connect · Starter</h2><p>Edition 16 · 472 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte300en/index.html">课程首页</a><a href="/courses/oxocxte300en/digest.html">精华长文</a><a href="/courses/oxocxte300en/overview.html">教书理解</a><a href="/courses/oxocxte300en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte300en/skills/oxos-data-collection.html">交付前数据采集</a><a href="/courses/oxocxte300en/skills/oxos-commissioning.html">系统开通双路线与首次连接</a><a href="/courses/oxocxte300en/skills/oxos-terminals.html">终端开通（IP 话机与 DECT）</a><a href="/courses/oxocxte300en/skills/oxos-numbering-groups.html">编号计划与四种组</a><a href="/courses/oxocxte300en/skills/oxos-user-features.html">用户功能与语音信箱</a><a href="/courses/oxocxte300en/skills/oxos-sip-trunk.html">公共 SIP 中继</a><a href="/courses/oxocxte300en/skills/oxos-incoming-barring.html">呼入分发与呼出闭锁</a><a href="/courses/oxocxte300en/skills/oxos-maintenance.html">备份恢复、软件升级与复位</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte300en/skills/oxos-hardware-platform.html">硬件平台与容量</a><a href="/courses/oxocxte300en/skills/oxos-audio-messages.html">消息与彩铃</a><a href="/courses/oxocxte300en/skills/oxos-security.html">安全基线与防盗打</a><a href="/courses/oxocxte300en/skills/oxos-rainbow-integration.html">Rainbow 混合云接入速览</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte300en/index.html">oxo-connect-starter（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte300en/index.html">OXOCXTE300EN</a><span>/</span><span aria-current="page">备份恢复、软件升级与复位</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>备份恢复、软件升级与复位</h1></div><dl><div><dt>Skill ID</dt><dd>oxos-maintenance</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>备份恢复、软件升级与系统复位（运维三板斧）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"OMC \ Data Saving &amp; Swapping \Date &amp; Time Data Saving • Program the date of the first back-up, the periodicity of the next ones"（p296）
+"Restore of a recovery point is only supported in the same major release … Supported file system is EXT2"（p304）
+"2 versions simultaneously available on a system An active version A replacement version"（p316）
+"When Cold reset is triggered without selecting any sub options • The following settings are not deleted: • Installer passwords • Network settings • Management services access flags • Cloud Connect parameters"（p323）</p>
+</blockquote>
+<p>出处：OXOCXTE300EN p292-324（数据保存讲义+备份实验、软件下载讲义、系统复位讲义）。</p>
+<h2>I — 自述</h2>
+<p><strong>备份四线</strong>：</p>
+<ul>
+<li>基础自动备份：OMC/Data Saving &amp; Swapping/Date &amp; Time Data Saving 定首次日期与周期；PowerCPU EE 存 eMMC/MSDB、OCE 存文件系统</li>
+<li>OMC 手动备份恢复：Read all from PCX → Save As → Backup/Store 到外部介质（.cdb）；恢复走 Auto-Connect for Restore（installer 密码）</li>
+<li>OCE SD 卡：关机插卡、AES 256 加密、多恢复点（最旧自动滚动删除）；卡 2-32GB、SD/SDHC 支持 SDXC 不支持、仅 OMC 格式化、EXT2；恢复仅限同主版本</li>
+<li>DBAdapter：跨版本打开旧库自动透明转换（MyPortal 装 DBAdapterSetup.msi）</li>
+</ul>
+<p><strong>软件升级</strong>：系统同时保留 active+replacement 双版本；MyPortal 下载三件套（PBX 软件 zip+配套 OMC zip+配套技术通函）；下载流程=传输、Data saving、Swap（排程在 SW-downloading）、restore；回退用 switchover 切回前版本。</p>
+<p><strong>三种复位</strong>：</p>
+<ul>
+<li>Warm：重启不丢库，解锁硬件故障（手动关机再开=Warm）</li>
+<li>Cold：回默认配置；不勾子选项时保留 installer 密码、网络设置、管理服务接入旗标、Cloud Connect 参数</li>
+<li>Factory：Cold 全删之外再删系统日志，状态接近 Lola 安装态（LOLA 书内无定义，见 needs-review nr-04）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>备份恢复实验</strong>（p307-314）：</p>
+<ol>
+<li>OMC → Comm → Read all from PCX（主对象默认勾选），传输完成</li>
+<li>File → Save As 命名保存（默认 Documents\OMC）</li>
+<li>导出外部介质：先 Comm → Disconnect，再 Backup/Store 到 USB/网络盘</li>
+<li>导入：断开状态下 Backup → Restore → 选介质上的库</li>
+<li>在线恢复：Auto-Connect for Restore，输 installer 密码，选 Classic data → OK</li>
+<li>传输完成提示重启 → Yes；系统自动 warm reset 后重连</li>
+<li>验收：OMC 在线且配置与备份一致；部分更新在重启后生效</li>
+</ol>
+<p><strong>讲义口径操作</strong>（p315-324，无独立实验——见 needs-review nr-05）：</p>
+<ol>
+<li>升级三件套从 MyPortal 下载并解压到管理 PC</li>
+<li>OMC/Tools/Software download → 下载密码 → 会话生效</li>
+<li>Swap 排程：OMC/Data saving and swapping/SW-downloading</li>
+<li>回退：switchover 切回 active 前版本</li>
+<li>复位入口：话机 MMC 话务员会话 Menu/Operator/Expert/System reset 或 OMC Expert/System Miscellaneous/System Reset</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：交付收尾建备份制度；升级前快照；升级失败要回退；系统故障选哪种复位；设备转手要清干净；换 CPU 板。</p>
+<p>语言信号：备份 / backup / 恢复 / restore / SD 卡 / DBAdapter / .cdb / 软件下载 / software download / Swap / switchover / 版本 / 升级 / warm reset / cold reset / factory reset / 复位。</p>
+<p>与相邻能力区分：复位后重建配置 → 开通能力（初始安装向导）；升级前的密码与安全核对 → 安全基线卡。本能力到"可恢复的备份体系+受控版本"为止。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：当前库状态、目标版本三件套、介质（USB/网络盘/SD 卡）、installer 密码。Cold/Factory 前无有效备份 → 判停先补备份。</p>
+<ol>
+<li>建制度：设自动备份首次日期与周期。完成标准：备份计划成文并生效</li>
+<li>手动快照：Read all from PCX → Save As → 导出外部介质。完成标准：介质上有可导入的 .cdb</li>
+<li>（OCE）SD 卡线：关机插卡 → OMC 格式化 → 启用计划备份。完成标准：恢复点生成</li>
+<li>升级：核版本配套、下载三件套、先备份 → Software download → Swap 排程。完成标准：新版本 active、业务拨测通过</li>
+<li>回退：switchover 切回前版本。完成标准：业务恢复且原因记录</li>
+<li>故障复位：按损失最小原则选 Warm → Cold（带选项）→ Factory。完成标准：复位后按预案重建</li>
+<li>跨版本读旧库：装 DBAdapter 后透明转换。完成标准：旧 .cdb 可在最新 OMC 打开</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>SD 卡想跨主版本恢复 → 不支持（n21），回滚走 switchover 而不是恢复点</li>
+<li>换 CPU 后服务起不来 → 软件钥匙与主 CPU 序列号绑定，必须重新生成 license（n22）</li>
+<li>"Cold=全清"是误解——转手/回收要勾全子选项或用 Factory（n23）</li>
+<li>Factory 后系统接近 Lola 态且删除系统日志——排障证据在复位前先导出</li>
+</ul>
+<p>输出契约：备份制度（周期/介质/恢复点）+ 版本台账（active/replacement）+ 复位操作记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>软件下载与 Swap、复位均为讲义口径，无书内实验验收步骤（needs-review nr-05）</li>
+<li>eMMC 复用需重新生成许可；SD 卡为 ALE 不提供的选件</li>
+<li>MyPortal 下载权限在客户/伙伴账户侧，书外流程</li>
+<li>下载密码（系统启动时定制）纳入密码管理清单，与七账户密码表同域</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte300en/skills/oxos-commissioning.html">系统开通双路线与首次连接</a></p><p class="source-page">能力 ID：cap.oxos.maintenance · 来源：OXOCXTE300EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OXO Connect Starter (Participant's Guide, Edition 16) | edition: Edition 16 | pages: 472 页 -->

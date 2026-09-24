@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OpenTouch 备份恢复与语音信箱统计</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch Message Center · Starter</h2><p>Edition 08 · 259 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otmcxte200en/index.html">课程首页</a><a href="/courses/otmcxte200en/digest.html">精华长文</a><a href="/courses/otmcxte200en/overview.html">教书理解</a><a href="/courses/otmcxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otmcxte200en/skills/otmsg-install-site-setup.html">OTMC 服务器安装与站点配置</a><a href="/courses/otmcxte200en/skills/otmsg-license-management.html">FlexLM 许可证体系部署与更换</a><a href="/courses/otmcxte200en/skills/otmsg-declaration-sync.html">OXE/OTMC 双向声明进 8770 与同步</a><a href="/courses/otmcxte200en/skills/otmsg-sip-trunk-provisioning.html">OXE 侧 SIP 对接 OTMC</a><a href="/courses/otmcxte200en/skills/otmsg-user-mailbox-provisioning.html">Connection 用户与语音邮箱交付</a><a href="/courses/otmcxte200en/skills/otmsg-mailbox-profiles.html">语音邮箱 profile 定制与问候语管理</a><a href="/courses/otmcxte200en/skills/otmsg-notification-smtp-sms.html">SMTP/SMS 通知部署与排障</a><a href="/courses/otmcxte200en/skills/otmsg-backup-statistics.html">OpenTouch 备份恢复与语音信箱统计</a><p class="course-nav-group">路由能力</p><a href="/courses/otmcxte200en/skills/otmsg-product-positioning.html">OTMC 产品定位与部署形态</a><a href="/courses/otmcxte200en/skills/otmsg-web-portal.html">用户自助门户 My Profile 与 MyMessaging</a><a href="/courses/otmcxte200en/skills/otmsg-imap-access.html">IMAP 客户端访问语音邮箱</a><a href="/courses/otmcxte200en/skills/otmsg-general-announcement.html">企业广播 General Announcement</a><p class="course-nav-group">已安装技能</p><a href="/courses/otmcxte200en/index.html">ot-message-center（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otmcxte200en/index.html">OTMCXTE200EN</a><span>/</span><span aria-current="page">OpenTouch 备份恢复与语音信箱统计</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OpenTouch 备份恢复与语音信箱统计</h1></div><dl><div><dt>Skill ID</dt><dd>otmsg-backup-statistics</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OpenTouch 备份恢复与语音信箱统计（8770 备份/opentouchd/statistics.properties）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The OmniVista 8770 Server establishes an SSH connection to the OpenTouch for running the backup command. … The 8770 server retrieves the backup archive from the OpenTouch server via SFTP."（p231）
+"Enter the command service opentouchd start in order to restart the OpenTouch services"（p245）
+"DON'T DELETE THE USER … FROM THE USERS APPLICATION! IF YOU DO SO, THE VIRTUAL SIP DEVICE WILL BE DELETED FROM THE OXE!"（p243）
+"Once the 'statistics.properties' file has been modified, don't forget to stop and start the masc service."（p258）</p>
+</blockquote>
+<p>出处：OTMCXTE200EN p228-258（c12/c13、f23/f24、p22/p23/p25、n10/n30 归并）。</p>
+<h2>I — 自述</h2>
+<p><strong>备份恢复（8770 发起两段式）</strong>，链路五步：</p>
+<ol>
+<li>8770 经 SSH 执行备份命令</li>
+<li>OTMC 生成归档（$BACKUP8770_HOME 下按 8770 FQDN/时间戳存放，含 filelist.txt、ngvm3、.zip、.zip.md5、version.txt）</li>
+<li>8770 经 SFTP 取回归档，OTMC 侧临时目录删除</li>
+<li>恢复方向相反：SFTP 传回备份、service iced stop 停服务、执行恢复、清临时文件</li>
+<li>管理员手工 service opentouchd start（重启 &lt;5 分钟）</li>
+</ol>
+<p>备份内容为 OpenTouch 数据库（ESS/ICS/ACS/FAX/MOH）+ 特定数据（IP 配置/许可/证书/设备部署数据）。</p>
+<p><strong>配置面</strong>：8770 侧默认备份目录（默认 C:\8770_ARC\OTBackup）、阈值（两级=次要/主要告警）、Record Life（超期备份由 Scheduler 每日清理）；OT 节点 Maintenance 页签维护账号（备份/恢复与 SSH 凭据）。跨版本恢复（旧版备份 → 高版本系统）必须勾 Force。</p>
+<p><strong>语音信箱统计</strong>：配置文件 /var/data/ics-group/vms/ngvm3/statistics.properties，按频率输出 XML/HTML/CSV：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enableStatistics</td>
+<td>disabled</td>
+<td>总开关</td>
+</tr>
+<tr>
+<td>enableStatisticsGeneration</td>
+<td>enabled</td>
+<td>生成开关</td>
+</tr>
+<tr>
+<td>fileLocation</td>
+<td><streamRepository>/statistics</td>
+<td>输出目录，须手工创建并注意读写权限</td>
+</tr>
+<tr>
+<td>frequencyGeneration</td>
+<td>day</td>
+<td>month / week / day</td>
+</tr>
+<tr>
+<td>timeGeneration</td>
+<td>22:00:00</td>
+<td>生成时刻</td>
+</tr>
+<tr>
+<td>historicSize</td>
+<td>10</td>
+<td>保留份数，超限滚动删旧，0 永不删</td>
+</tr>
+<tr>
+<td>freshness</td>
+<td>P10DT0H0M0S</td>
+<td>删除数据保鲜期（ISO 8601 周期）</td>
+</tr>
+<tr>
+<td>frequencyGC</td>
+<td>after generation</td>
+<td>清理节奏（含 dayGC/timeGC）</td>
+</tr>
+</tbody>
+</table></div>
+<p>统计项按用户：登录名、电话号码、信箱 ID、信箱状态、留言总数/新留言/已听/已归档/已删。改完配置必须 service mascd stop/start。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>备份恢复演练 + 统计启用</strong>（c12+c13，维护账号等环境值见 book/overview）：</p>
+<ol>
+<li>配备份目录与阈值：Maintenance 应用 → Preferences → Maintenance &gt;OT Configuration（目录/阈值/Record Life）</li>
+<li>配备份参数：Configuration 应用选 OpenTouch → Maintenance 页签：勾 Automatic database save、填维护账号</li>
+<li>执行备份：Operations 双击 OT 节点 – Backup，选 All OT data，Simple job 选 Now</li>
+<li>恢复验证准备：从 OT Configuration 窗口删测试用户（绝不能从 Users 应用删——会连带删 OXE 侧虚拟 SIP 设备，n10）</li>
+<li>执行恢复：Operations 双击 OT 节点 – Restore → 选备份目录（时间戳目录名口径）；跨版本勾 Force</li>
+<li>核对测试用户已恢复；SSH 维护账号登录 → su - 到 root → service opentouchd start（&lt;5 分钟）</li>
+<li>统计配置：编辑 /var/data/ics-group/vms/ngvm3/statistics.properties（实验口径：启用、频率 day、指定星期与时刻、输出到自建目录）</li>
+<li>手工创建输出目录并确认读写权限；service mascd stop → service mascd start</li>
+<li>到生成时刻核对输出目录中的 XML/HTML/CSV 文件与统计项完整性</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：上线前定备份策略；恢复演练与 RTO 验证；系统迁移/版本升级前备份；客户要信箱用量报表；"统计文件一直不生成"。</p>
+<p>语言信号：备份 / backup / 恢复 / restore / opentouchd / iced / SFTP / Record Life / Force / 统计 / statistics / statistics.properties / mascd / XML / CSV / 报表。</p>
+<p>与相邻能力区分：备份的前提（OTMC 已纳管、有数据）→ otmsg-declaration-sync；统计反映的信箱策略 → otmsg-mailbox-profiles。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：8770 可用、维护账号就位；虚拟环境须已有外置 NFS（NFS server 部署按 TC2024，书外）。统计需求：客户要的频率/格式/保留策略。</p>
+<ol>
+<li>备份基线：配目录/阈值/保留期，手动跑一次全量备份。完成标准：归档在 8770 侧可查</li>
+<li>恢复演练：删测试对象、执行恢复、核对数据、手工起服务。完成标准：RTO 实测成文（&lt;5 分钟口径）</li>
+<li>统计启用：改 properties、建目录、重启 mascd。完成标准：文件按频率产出</li>
+<li>交付归档：备份策略/恢复步骤/统计样例写入运维手册。完成标准：客户可自运维</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>恢复完服务没起 → 设计行为：起服务必须管理员手工做（service opentouchd start，&lt;5 分钟），不要提前判失败（p245）</li>
+<li>恢复测试要删用户 → 只能走 OT Configuration 窗口；从 Users 应用删会连带删 OXE 虚拟 SIP 设备（n10）</li>
+<li>统计文件不生成 → 先查目录是否手工创建/读写权限、mascd 是否重启（n30），再看配置</li>
+<li>虚拟环境备份目录配在本地 → 停，违反"必须外置 NFS"硬规则（n05）</li>
+</ul>
+<p>输出契约：可运转的备份恢复闭环（含恢复后起服务步骤）+ 按频率产出的统计文件与样例报告。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>NFS server 部署在 8770 上按 TC2024（Business Portal 可取），本书零步骤（n29）</li>
+<li>归档时间戳格式 YYYY-MM-DD-hh-mm、恢复目录示例为 YYYYMMDDhhmmss 口径（p233/p244）</li>
+<li>HA 场景的备份差异不在本书（HA 本身书外，n23）</li>
+<li>实验维护账号（otuser/maintenanceuser、root/superuser）、实验统计参数值见 book/overview</li>
+<li>masc 服务名以原文口径记录（service mascd stop/start，p258）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otmcxte200en/skills/otmsg-declaration-sync.html">OXE/OTMC 双向声明进 8770 与同步</a></p><p class="source-page">能力 ID：cap.otmsg.backup-statistics · 来源：OTMCXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch Message Center Starter (Participant's Guide, Issue 08) | edition: Edition 08 | pages: 259 页 -->

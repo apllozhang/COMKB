@@ -1,0 +1,43 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\rxe-agent-onboarding.md": "9cb887bbc5d32ed640e6bbd1b8cf2d0936568ba029bfee12b84ffc2243be15e7",
+    "references\\capabilities\\rxe-attendant-consoles.md": "d8bb579b1115c9fccb94008663052a9868269014128ef664a5515877e4563317",
+    "references\\capabilities\\rxe-company-subscription.md": "86f35a9d8b8f7263c2c4678e778617bd0c66f81998767ca57370d8c8ed319f51",
+    "references\\capabilities\\rxe-gateway-pool-sizing.md": "85efb2029689b0d55527a7d05967926b40666d964cb7b861a6ae8cb740cb7de7",
+    "references\\capabilities\\rxe-lab-pod-setup.md": "6f3ab54eff36d56b7dc814e39635d0df23b125446ec75c9a4b849ebee826433b",
+    "references\\capabilities\\rxe-maintenance-support.md": "fc9895d2a51ecb525fce3a407ff783a30ecfba05e4d445da792118b6b49cdcf8",
+    "references\\capabilities\\rxe-member-lifecycle.md": "0df6a94c8b2fb16f173bef5893cf7726edbae5552535bda50a8992b648f2a2c8",
+    "references\\capabilities\\rxe-network-readiness.md": "1355e1c2c63cc52ca7089142941667907aa7b37874afff56d0289bc15db23029",
+    "references\\capabilities\\rxe-oxe-gateway-config.md": "cb76348f3130f32193facf21b768351d10f159cc39cd36e5fc3367b0204918c6",
+    "references\\capabilities\\rxe-rcc-association.md": "5cff62653ef21c370cb5c32c74f7241e6414d35c204310ce30127ded2a3195e3",
+    "references\\capabilities\\rxe-routing-rex.md": "4a8bbcb43017462527eb7e55557b4dee393a00c28b93034f0f37aed4d5e90f84",
+    "references\\capabilities\\rxe-teams-integration.md": "e0bd334f587879dbf123510aad08ed69c95d3cfb15520e0420ae49f86e57a7d8",
+    "references\\capabilities\\rxe-webrtc-gateway-deployment.md": "f849d60cb4a570d8da66080a6542f4f4be13b79c934612f1bf4986df17184684",
+    "references\\capability-index.md": "a46cd3ee79a74611138388e51dce2e660c81772da4c23405b7907f4a24da79b5",
+    "references\\cheatsheet.md": "7f37027ee8a5b68b79f5f4d4b09f5ebe298cbe40d405351e4336c7ddc18a8dc6",
+    "references\\glossary.md": "bbfcd6a449365b384f821c170fdb49eb8b8e565c212688a6531b9dd049c9ec87",
+    "references\\overview.md": "3c96c1f0d81d74343b2db2a07f0725718995beb6290e54bd750fe496b1d1f763",
+    "SKILL.md": "ba904c4ecc21a987a8534b04d2c97662065249e868e91de3d646cc70d59da5f0"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.rainbow-oxe-integration",
+  "bundle_sha256": "2c0e69f53ed598f6ec4e670f33c1564c3b9ab2249686a1960a2c8f557330d67b",
+  "variant": "single",
+  "run_id": "run-20260924-200020-edb249",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 13,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

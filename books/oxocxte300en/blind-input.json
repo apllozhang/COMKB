@@ -1,0 +1,227 @@
+{
+ "code": "oxocxte300en",
+ "capability_catalog": [
+  {
+   "slug": "oxos-data-collection",
+   "name": "交付前数据采集",
+   "description": "七块安装输入清单：生态 IP 规划、FTR 三参考值与终端清单、七账户密码表、编号计划、信箱/组/按键要求、呼入呼出权限与 Rainbow 前提、备份计划"
+  },
+  {
+   "slug": "oxos-commissioning",
+   "name": "系统开通双路线与首次连接",
+   "description": "Cloud Connect（FTR 经 ETH1 上云、许可自动下载）与 Standard（OMC 首连 192.168.92.246、证书入受信任根、.msl+.csl 双钥匙、逐客户改密）双路线；IP 四页签修改必须重启；初始安装向导与 Hotel 唯一入口"
+  },
+  {
+   "slug": "oxos-terminals",
+   "name": "终端开通（IP 话机与 DECT）",
+   "description": "Auto-Provision+DHCP 池总前置；IP 话机 static/dynamic（Dynamic Alcatel 语义）；IP-DECT xBS ARI+GAP+LED 六步；8328 SIP-DECT 两段注册与 no_pack_support_for_siphone 旗标；FXS 网关接入"
+  },
+  {
+   "slug": "oxos-numbering-groups",
+   "name": "编号计划与四种组",
+   "description": "四层拨号计划与 Base 映射（0-2199）、先删冲突段再建新段、安装号去首位；hunt 三种分发（500 被 VM 保留）、pick-up 代接键、broadcast 扬声器约束、manager/secretary 双 multiline"
+  },
+  {
+   "slug": "oxos-user-features",
+   "name": "用户功能与语音信箱",
+   "description": "键三类与键 profile；动态路由两级两计时（3276 秒上限、级联 5、apply diversion 总开关）；Feature Rights+键两段式；信箱三态双模、录音监听、远程访问、General 信箱"
+  },
+  {
+   "slug": "oxos-sip-trunk",
+   "name": "公共 SIP 中继",
+   "description": "周边四项+网关九页签；DNS 先于 Outbound Proxy、网关建后回填 Gateway index 两处顺序依赖；SIP registration success 验收；Profile 导入与 Easy Connect；ARS 短号紧急号补充"
+  },
+  {
+   "slug": "oxos-incoming-barring",
+   "name": "呼入分发与呼出闭锁",
+   "description": "话务台组恒并行+时段表（End=下一行 Start）+Normal/Restricted 双 DDI 计划+预公告；出局三层（Traffic sharing→Barring→6 张闭锁表、00 默认禁、默认 LC=12）；Inhibition Time-ranges 逐话机关闭；DDIonPRI"
+  },
+  {
+   "slug": "oxos-maintenance",
+   "name": "备份恢复、软件升级与复位",
+   "description": "四线备份（自动周期/OMC 手动 .cdb/OCE SD 卡 AES 256 同主版本/DBAdapter）；双版本+Swap+switchover 回退；Warm/Cold/Factory 三档复位与数据保留矩阵"
+  },
+  {
+   "slug": "oxos-hardware-platform",
+   "name": "硬件平台与容量",
+   "description": "四平台两 CPU 线（OCE IPBox/PowerCPU EE 三档，≤300 用户）；DSP 通道 16/48/60/76；IPBox 接口与 ETH1；HSL 三机柜 5 米；启动八步"
+  },
+  {
+   "slug": "oxos-audio-messages",
+   "name": "消息与彩铃",
+   "description": "MSG1-20（默认 4 条、许可 20、总 320 秒）五种用途；Music on Hold 仅外线保持、三源、Entity 1-4；.wav 格式硬约束（16-bit PCM 或 A/μ-law 8kHz Mono）"
+  },
+  {
+   "slug": "oxos-security",
+   "name": "安全基线与防盗打",
+   "description": "密码三句常识+管理密码 8 位三类字符+信箱弱密码拒绝；R10.1 前旧默认密码表弃用；盗打损失口径与应急；TC1143 强制指针"
+  },
+  {
+   "slug": "oxos-rainbow-integration",
+   "name": "Rainbow 混合云接入速览",
+   "description": "PBXID+激活码接入（域名保持 openrainbow.com）；Webdiag connected with final password 判据与 ccrbagent.log；RCC 中间态音频在话机；网关四拓扑 20/50 通话与容量表；Twinset/Anydevice 与 UTL；深入转姊妹技能"
+  }
+ ],
+ "cases": [
+  {
+   "id": "should-collect-01",
+   "prompt": "下周要给一家酒店客户交付 OXO，开工前我要准备哪些安装数据？"
+  },
+  {
+   "id": "should-collect-02",
+   "prompt": "客户编号方案要预留一段号给以后的功能用，规划分机段有什么技巧？"
+  },
+  {
+   "id": "should-comm-01",
+   "prompt": "新到的 OCE 盒子客户有外网，怎么把它注册到 Cloud Connect 上？"
+  },
+  {
+   "id": "should-comm-02",
+   "prompt": "客户现场用 10.88.x.x 网段，OMC 里怎么改 OXO 的 IP 和 DHCP 池？改完要做什么？"
+  },
+  {
+   "id": "should-term-01",
+   "prompt": "新采购的 IP 话机插上网络一直注册不上系统，可能是什么原因？"
+  },
+  {
+   "id": "should-term-02",
+   "prompt": "客户仓库有台 8328 基站和几支 8214 话机，怎么接到 OXO 上用？"
+  },
+  {
+   "id": "should-num-01",
+   "prompt": "我想在 OXO 上新建一段 400-499 的缩位拨号，但系统提示和现有功能冲突了怎么办？"
+  },
+  {
+   "id": "should-num-02",
+   "prompt": "销售部几个人要共用一个号码轮着接听，另外有人出差时希望别人能接他的来电，怎么配？"
+  },
+  {
+   "id": "should-user-01",
+   "prompt": "老板的电话响 10 秒没人接就自动转到秘书，另外要防止别人插入他的通话，怎么配？"
+  },
+  {
+   "id": "should-user-02",
+   "prompt": "用户说他设置了遇忙前转但完全不生效，可能哪里出了问题？"
+  },
+  {
+   "id": "should-sip-01",
+   "prompt": "运营商给了 SIP 账号和参数，OXO 上配完网关怎么确认注册成功了？"
+  },
+  {
+   "id": "should-sip-02",
+   "prompt": "SIP 网关页签里 Outbound Proxy 一栏是灰的填不了，怎么回事？"
+  },
+  {
+   "id": "should-inbar-01",
+   "prompt": "客户要求上班时间来电进前台、下班后自动播放留言提示，节假日也按休息处理，怎么实现？"
+  },
+  {
+   "id": "should-inbar-02",
+   "prompt": "我们配了非营业时间禁外呼，但员工话机下班后还是能打出去，哪里没配对？"
+  },
+  {
+   "id": "should-maint-01",
+   "prompt": "OXO 要从现在的版本升级到新版，升级前和升级中要注意什么？失败了怎么退回来？"
+  },
+  {
+   "id": "should-maint-02",
+   "prompt": "设备要退租还给经销商，怎么把上面的客户数据清干净？直接 Cold 复位够吗？"
+  },
+  {
+   "id": "should-hw-01",
+   "prompt": "客户 250 个用户要混合 TDM 接入，OXO 这边硬件怎么选？扩展机柜有什么限制？"
+  },
+  {
+   "id": "should-hw-02",
+   "prompt": "SIP 中继并发要扩到 70 路，OXO 的 DSP 资源够不够？怎么扩？"
+  },
+  {
+   "id": "should-audio-01",
+   "prompt": "客户提供了几段等待音乐想换成自己公司的，文件是普通 MP3，能直接传吗？"
+  },
+  {
+   "id": "should-audio-02",
+   "prompt": "内线之间保持电话时怎么没有音乐，只有嘟嘟声，是坏了吗？"
+  },
+  {
+   "id": "should-sec-01",
+   "prompt": "接到通报说有客户话费异常暴增，全是夜里的国际呼叫，怀疑电话系统被黑了，怎么处理？"
+  },
+  {
+   "id": "should-sec-02",
+   "prompt": "OXO 的管理密码有什么构造要求？老系统那些网传默认密码还能用吗？"
+  },
+  {
+   "id": "should-rb-01",
+   "prompt": "客户要求把 OXO 接到 Rainbow 上，我手上该拿什么凭证、填到哪里、怎么确认接通了？"
+  },
+  {
+   "id": "should-rb-02",
+   "prompt": "用户把话机分机关联到 Rainbow 之后，用电脑接电话却没有声音，是不是配错了？"
+  },
+  {
+   "id": "bait-collect-01",
+   "prompt": "按采集清单配好了 hunt 组 501，怎么验证三种分发方式都正常？"
+  },
+  {
+   "id": "bait-comm-01",
+   "prompt": "系统已经能登 OMC 了，现在要把 50 台新话机全部开通上线"
+  },
+  {
+   "id": "bait-term-01",
+   "prompt": "话机开通好了，想给销售部建一个共接号码轮听，怎么建？"
+  },
+  {
+   "id": "bait-num-01",
+   "prompt": "编号计划里拨 0 是外线，现在要求只允许两个用户能拨 0 出去，怎么控制？"
+  },
+  {
+   "id": "bait-user-01",
+   "prompt": "外线打进来的电话，下班后怎么自动转到留言信箱？"
+  },
+  {
+   "id": "bait-sip-01",
+   "prompt": "SIP 中继注册成功了，但有些用户还是打不出国际长途，查哪里？"
+  },
+  {
+   "id": "bait-inbar-01",
+   "prompt": "出局都是通的，但运营商中继上注册不上，History Table 一直没有注册成功记录"
+  },
+  {
+   "id": "bait-maint-01",
+   "prompt": "系统刚做了 Factory 复位，现在要重新把基础配置建起来"
+  },
+  {
+   "id": "bait-rb-01",
+   "prompt": "客户要在 Rainbow 云侧给 200 个员工批量开户并分配订阅，再配置 Teams 集成"
+  },
+  {
+   "id": "bait-rb-02",
+   "prompt": "OXO 自带的 ACD 排队和坐席组怎么配置？要不要装什么许可？"
+  },
+  {
+   "id": "bait-sec-01",
+   "prompt": "把 TC1143 里第 4 章的防火墙端口清单逐条列给我，我要直接照着配"
+  },
+  {
+   "id": "bait-audio-01",
+   "prompt": "欢迎语录音好了，怎么让它只在非营业时间来电时先播放？"
+  },
+  {
+   "id": "bait-hw-01",
+   "prompt": "硬件定了用 PowerCPU EE，现在把 OMC 装上做首次连接"
+  },
+  {
+   "id": "edge-version-01",
+   "prompt": "我们的 OXO 版本正好是 R4.0.020.002，WebRTC 网关自动配置到底能不能用？"
+  },
+  {
+   "id": "edge-hunt-01",
+   "prompt": "hunt group 500 空着没用，我拿来当销售组行不行？"
+  },
+  {
+   "id": "edge-hotel-01",
+   "prompt": "已经营业的酒店想从 Business 模式切成 Hotel 模式，直接改个设置就行吗？"
+  }
+ ]
+}

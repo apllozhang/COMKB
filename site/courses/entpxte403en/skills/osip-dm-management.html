@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>SIP 设备管理选型与 profile 体系</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · SIP</h2><p>Edition 12 · 465 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte403en/index.html">课程首页</a><a href="/courses/entpxte403en/digest.html">精华长文</a><a href="/courses/entpxte403en/overview.html">教书理解</a><a href="/courses/entpxte403en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte403en/skills/osip-protocol-foundation.html">SIP 协议机理与 OXE SIP 架构</a><a href="/courses/entpxte403en/skills/osip-user-forms.html">SIP 用户形态选型与容量核算</a><a href="/courses/entpxte403en/skills/osip-sip-device-provisioning.html">SIP Device 用户开通与维护</a><a href="/courses/entpxte403en/skills/osip-deskphone-provisioning.html">ALE 话机 SIP 开通与 NOE↔SIP 切换</a><a href="/courses/entpxte403en/skills/osip-ales-provisioning.html">ALES 软终端开通与认证</a><a href="/courses/entpxte403en/skills/osip-certificate-management.html">OXE DM 证书定制与安全级</a><a href="/courses/entpxte403en/skills/osip-otsbc-carrier-interconnect.html">经 SBC 的 SIP 运营商接入与 OTSBC 部署</a><a href="/courses/entpxte403en/skills/osip-remote-workers.html">远程办公方案与落地</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte403en/skills/osip-codec-negotiation.html">编解码协商与验证</a><a href="/courses/entpxte403en/skills/osip-sip-troubleshooting.html">SIP 跟踪采集与维护排障</a><a href="/courses/entpxte403en/skills/osip-dm-management.html">SIP 设备管理选型与 profile 体系</a><a href="/courses/entpxte403en/skills/osip-sip-features.html">ALE SIP 业务特性配置</a><a href="/courses/entpxte403en/skills/osip-lab-environment.html">POD 实验环境与运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte403en/index.html">oxe-sip（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte403en/index.html">ENTPXTE403EN</a><span>/</span><span aria-current="page">SIP 设备管理选型与 profile 体系</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>SIP 设备管理选型与 profile 体系</h1></div><dl><div><dt>Skill ID</dt><dd>osip-dm-management</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>SIP 设备管理选型与 profile 体系（OXE DM vs 8770、配置文件、二进制）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Since OXE N1, the SIP device management can also be done directly on OXE ('SIP DM on OXE' feature) for local and remote SIP equipment's."（p146）
+"This option is not taken into account for ALES clients, which are only supported on OXE DM"（p148）
+"A SIP DM profile is assigned to each SIP user. The DM profile will adapt to the sub type of device to generate a compatible configuration file of settings ... By default, profile 0 is configured. Possibility to have up to 100 profiles"（p152）
+"There is no backup of configuration files. After database restoration, the manager must generate all configurations files manually"（p166）</p>
+</blockquote>
+<p>出处：ENTPXTE403EN p144-167。</p>
+<h2>I — 自述</h2>
+<p>DM 是终端批量管理的中枢，选型错误代价高：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>OXE DM</th>
+<th>8770 DM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>支持终端</td>
+<td>仅 8008、ALES、ALE-2/3/30/x00</td>
+<td>另支持 8088 酒店/Huddle Room 与停产机型（8001/8018/8028s 等）</td>
+</tr>
+<tr>
+<td>优势</td>
+<td>客户级证书更安全、按节点 DM profile、随 CS 冗余更韧、二进制自动更新+配置即时通知</td>
+<td>集中化：跨节点/跨网、用户与设备模板、即插即用</td>
+</tr>
+<tr>
+<td>开关</td>
+<td>系统参数 "Device Management in 8770"：勾=8770 管，取消=OXE 管（ALES 不受此参数影响，恒归 OXE）</td>
+<td>同左</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>DM profile 体系：默认 profile 0、上限 100；ALE-S 与 8008 本地/远程共用一份，ALE-x 系要两份（本地无 SBC、远程配 SBC）；改 profile 即为该 profile 全部设备重生成配置并发 SIP NOTIFY；profile 必须先建后配用户</li>
+<li>配置文件命名：话机 config.<mac>.xml（/DHS3data/mao/DM/dmictouch）；ALES conf_<login 十六进制>.xml（dmsoftphone 目录，邮箱登录按域分目录）</li>
+<li>二进制：随 OXE 版本交付存 /DHS3bin/downbin；设备比对版本头后才全量下载；升级按轮询（每天固定时刻或重启时）；ALES 无 binaries 托管</li>
+<li>运维暗坑：配置文件无备份，数据库恢复后须手工 generate all configuration files；"Activate the Web Server" 系统选项须为 true</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>DM 激活与 profile 3</strong>（c05 步骤 2/4，p174-180）：</p>
+<ol>
+<li>WBM System/Other System Param. 取消勾选 "Device Management In 8770"（Warning：关 8770 会删其配置文件，存量话机 reset flash 预案）。</li>
+<li>SIP device management/DM profile → Create：Profile number=3、LDAP、DNS/SNTP、DTMF、话务特性、admin 密码与 SSH。</li>
+<li>用户 31033 挂 profile 3 后入网，/usr3/mao/DM/dmictouch/ 下生成 config.3c28a608010d.xml。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新装站点选 DM 架构；存量 8770 迁移 OXE DM；规划 profile 数量与远程/本地分治；数据库恢复后终端全部拿不到配置。</p>
+<p>语言信号：Device Management / DM / 8770 / OXE DM / DM profile / profile 0 / 100 个 / config.<mac>.xml / dmictouch / dmsoftphone / downbin / 二进制 / 轮询 / 生成全部配置文件 / generate all。</p>
+<p>与相邻能力区分：证书与 mTLS 认证找证书管理；话机按 profile 开通找话机开通；远程 profile 双地址参数找远程办公。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：终端家族清单（有无 8088/停产机型）、是否已用 8770、冗余模式、迁移窗口。存量 8088/停产机型在册 → 判停混合拓扑。</p>
+<ol>
+<li>选架构：有 8088 酒店/停产机型 → 混合（话机留 8770，ALES 归 OXE）；纯 ALE 家族 → OXE DM。完成标准：架构决策成文</li>
+<li>激活与迁移：关 "Device Management in 8770" 前排维护窗口与 reset flash 预案。完成标准：迁移方案过审</li>
+<li>规划 profile：按子型与本地/远程分治（ALE-x 两份、ALE-S/8008 一份）；profile 先建后配用户。完成标准：profile 清单就绪</li>
+<li>验证下发：话机入网后核 dmictouch/dmsoftphone 目录文件与 nginx access.log；二进制看 downbin 轮询。完成标准：配置与升级链路通</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>直接关 8770 DM 而无窗口预案 → 停，全站配置即删（n08）</li>
+<li>先配用户后建 profile → 停，引用悬空（n49）</li>
+<li>灾备演练只恢复数据库 → 停，补 generate all configuration files 步骤（n43）</li>
+</ul>
+<p>输出契约：DM 架构决策 + profile 规划表 + 配置文件/二进制下发验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>8770 存量迁移细节（模板搬运/批量导）书内只给拓扑原则，操作细节以 8770 文档为准</li>
+<li>配置文件命名示例（MAC/login 十六进制）为 p156 原文口径；CTL 目录异写见 nr-03</li>
+<li>mTLS 下载认证与证书内容归证书管理卡，本卡只划体系边界</li>
+<li>profile 上限 100、默认 0 为 Ed12 口径</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.osip.dm-management · 来源：ENTPXTE403EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - SIP (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 465 页 -->

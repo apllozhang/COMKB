@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>整理摘要 · OXOCXTE301EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OXO Connect · Advanced</h2><p>Edition 18 · 601 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte301en/index.html">课程首页</a><a href="/courses/oxocxte301en/digest.html">精华长文</a><a href="/courses/oxocxte301en/overview.html">教书理解</a><a href="/courses/oxocxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte301en/skills/oxoa-sip-networking.html">SIP 组网：公网网关与私网互联</a><a href="/courses/oxocxte301en/skills/oxoa-numbering-ars-suite.html">ARS 路由套件：三表协作与 Internal ARS</a><a href="/courses/oxocxte301en/skills/oxoa-hotel-billing-vertical.html">酒店与计费垂直方案</a><a href="/courses/oxocxte301en/skills/oxoa-security-hardening.html">系统安全加固</a><a href="/courses/oxocxte301en/skills/oxoa-certificate-suite.html">证书与加密传输（证书/DTLS/TLS-SRTP）</a><a href="/courses/oxocxte301en/skills/oxoa-attendant-suite.html">语音导航套件（AA/MLAA/SCR）</a><a href="/courses/oxocxte301en/skills/oxoa-voicemail-mobility.html">语音邮箱与移动办公</a><a href="/courses/oxocxte301en/skills/oxoa-cloud-connect-fleet.html">Cloud Connect 舰队与远程维护</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte301en/skills/oxoa-foundation-ip.html">交付地基：OMC 首连与 IP 规划</a><a href="/courses/oxocxte301en/skills/oxoa-terminal-ecosystem.html">终端生态：PIMphony 与 SIP 话机接入</a><a href="/courses/oxocxte301en/skills/oxoa-shared-devices.html">共享终端：站群监督、Hot Desking 与 Multiset</a><a href="/courses/oxocxte301en/skills/oxoa-multi-entity.html">多实体与伪多公司</a><a href="/courses/oxocxte301en/skills/oxoa-dect-deployment.html">DECT 无线移动</a><a href="/courses/oxocxte301en/skills/oxoa-maintenance-toolkit.html">维护工具箱：Webdiag、Noteworthy 与 LoLa</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte301en/index.html">oxo-connect-advanced（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte301en/index.html">OXOCXTE301EN</a><span>/</span><span aria-current="page">整理摘要</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">DIGEST</p><h1>整理摘要 — 全书精华</h1></div></header><article class="markdown-body"><h1>DIGEST — OXO Connect Advanced 精华长文</h1>
+<blockquote>
+<p>源：OXOCXTE301EN Edition 18（601 页）· 文档整理入库 · 2026-09-23
+定位：10 分钟建立对 OXO Connect 进阶交付的全局认知；操作细节按需查 14 张能力卡。</p>
+</blockquote>
+<h2>一、这本书是什么</h2>
+<p>《OXO Connect - Advanced》（ALE 官方售后进阶培训教材，R6.3/Ed18 口径）讲的是从"会用 OXO"到"能独立交付复杂站点"的那一段：公网/私网 SIP 组网与 ARS 选路、酒店与计费等垂直方案、AA/MLAA/SCR 呼叫处理增强、语音邮箱与移动办公、Cloud Connect 云舰队、安全与证书体系、DECT 无线、Webdiag/LoLa 维护。</p>
+<p>全书隐含主线就两条：<strong>OMC/Webdiag 双工具操作</strong> × <strong>编号计划/中继组/ARS 三件套</strong>——所有增强功能最终都落到这两条轴上，且每个实验都以"行为验证"收口（History Table 消息、显示字符、LED、计费小票文件）。</p>
+<p>三个先记住的数字：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>数字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5 通话</td>
+<td>SIP 网关 Media 带宽最少 5 通话——不设就外呼不通（公网 p48/私网 p215 同规则）</td>
+</tr>
+<tr>
+<td>50443</td>
+<td>互联网远程维护的入站目标端口永远是它（专用访问控制），公网侧端口可换</td>
+</tr>
+<tr>
+<td>-72 dBm</td>
+<td>DECT 站点勘测的语音质量区边界，验收以通话中测音质为准</td>
+</tr>
+</tbody>
+</table></div>
+<h2>二、组网主线：从一根 SIP 中继到两张网</h2>
+<ol>
+<li><strong>公网 SIP 网关九步法</strong>（p37-56）：LAN IP/DNS、编号计划、VoIP 接入与中继组、网关九 tab、SIP 账号、回填网关索引、验证注册。两条硬顺序：DNS tab 先于 Domain Proxy tab（不填 DNS 字段出不来）；网关索引要等网关建好后回填。验收判据：History Table 显示 "SIP registration success"。</li>
+<li><strong>排障三层</strong>：注册层查 History Table；信令层 Webdiag TCP Dump 选 SIP 抓包；分析层 Wireshark。默认 Security tab 是明文——要加密另走 TLS/SRTP。</li>
+<li><strong>ARS 是路由大脑</strong>：编号计划触发（base=ARS）→ ARS 表匹配并变换号码（加/吸收/替换/透明）→ 中继组列表按序选路。多运营商标准构图：移动走 GSM 网关、其它走低价 VoIP、ISDN 备份——两个列表共享同一子线索引即实现溢出；传真强制走某线路用流量分担矩阵。</li>
+<li><strong>Internal ARS 反转用法</strong>（p225-241）：把一个入站 DDI 按日组+时段分流到不同内部分机或欢迎消息。技法五级：编号计划 Secondary Trunk Group base=ARS；ARS 表子线替换成分机号；每目的地建虚拟 Provider；列表 Index 选 Local；Day Groups 与 Hours 排时段。</li>
+<li><strong>私网组网双向溢出</strong>（p206-224）：两台 OXO 经私网网关互联（Domain Proxy 填对端 IP、Protocol 选 SIP Option），私→公溢出（显示 T）与公→私优先强制（显示 P）各配一轮 ARS 行。</li>
+</ol>
+<h2>三、垂直与增强：按 license 分层</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>领域</th>
+<th>免 license</th>
+<th>要 license</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>垂直</td>
+<td>OHL 酒店链路、Call Accounting Time based（与 AOC 互斥）</td>
+<td>多实体 MoH（4 实体-10 分钟）</td>
+</tr>
+<tr>
+<td>呼叫处理</td>
+<td>AA 默认树（留言/转话务员；冷复位后默认 2 端口接外呼）</td>
+<td>AA 树定制、MLAA 树数（1/5）、SCR+Supervisor Console</td>
+</tr>
+<tr>
+<td>终端</td>
+<td>站群监督、Multiset</td>
+<td>Hot Desking（前 2 HDU 免费、后按 50 包）</td>
+</tr>
+<tr>
+<td>安全</td>
+<td>密码体系/自动检查/DTLS/TLS-SRTP/Cloud Connect</td>
+<td>—</td>
+</tr>
+<tr>
+<td>无线</td>
+<td>—</td>
+<td>IP-DECT 用户（200 上限）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>酒店</strong>：有 PMS 走 OHL（Office Link Driver，V24/IP），无 PMS 用前台话机内置 Hotel 键（4 并发会话、300 话机、房对房闭锁）。进 hotel 模式必须先冷复位（默认 Business 模式）。计费三通道：Hotel Metering（预付/切断/3 级 2 阈）、Call Accounting Time based（按时长×呼型出脉冲、激活即停 AOC）、输出走 OLD 的 XML 小票（TicketCollector.xml）或 V24。</li>
+<li><strong>账号码</strong>：表 250 条、码 16 位；内部替代（66 前缀+分机+密码）把账号码当权限钥匙——全员禁国际、仅经理放行的场景任何话机可"变成"经理外呼。</li>
+<li><strong>语音邮箱与移动</strong>：远程接入三要素（VM 的 DDI+远程权+认证，ACC 可升级为三级控制）；锁定从 10 分钟起步逐次翻倍、封顶 1440 分钟。游牧模式经 VMU 选项 6 激活（SIP 话机不支持）；远程替代拨 DDI+接入码+分机+密码，内部号加 # 前缀走内部 ARS 回环。</li>
+<li><strong>MLAA 两条排障铁律</strong>：line parameters 不随配置存档保存；端口与消息改动要 ACD 引擎复位或等 10 分钟。</li>
+</ul>
+<h2>四、安全与证书：R6.2 生产基线</h2>
+<ul>
+<li><strong>密码</strong>：首登强制改全部默认密码；管理密码固定 8 位含大小写数字；AutoPwdChk 默认 4 周自动检查（01-52 可配、00 禁用、warm reset 后必查），弱密码生成 urgent alarm。</li>
+<li><strong>网络面</strong>：Network IP Services 三开关收敛 WAN/LAN 服务；ETH1 可限至仅 SIP trunk（OMC/WebDiag/OSC 全封）；两级开关是"与"关系——系统级关死时用户级开了也无效。</li>
+<li><strong>锁定公式</strong>：认证连续失败锁时翻倍（10→20→…），封顶 1440 分钟；本地 LAN 不受锁；解锁五途。</li>
+<li><strong>证书</strong>：四类证书一张端口矩阵（443/30443、50443、7780、10443、11443）；R6.2 起 4K，但 4K 存储格式不同——<strong>回滚前必须先经 WebDIAG 切回 2K</strong>，否则 OMC 报错。</li>
+<li><strong>DTLS 别当全案</strong>：只加密 ALE 话机信令（TLS 1.2），语音包仍明文；语音机密性走 SIP 中继 TLS/SRTP（OCE 原生免 license；OCO 老平台走 OCE-FE 代理，GW 与 PROXY 各 20 通话）。</li>
+</ul>
+<h2>五、云、无线与维护</h2>
+<ul>
+<li><strong>Cloud Connect</strong>：OXO 主动外连（免改防火墙）、注册自动免 license；状态串 "Connected with final credentials"；Fleet 数据库一天一刷——注册后 24 小时才可见，当场看不到不算失败。软件更新看指示灯 [D..]/[.S.]/[..P]，执行要 advanced 权限。</li>
+<li><strong>远程维护</strong>：SIP-only 站点没有 modem 通道，只能走 IP；IAD 转发"公网任意端口→50443"，绝不直接转发到 443；更安全走管理 VPN（专用 IP 仅 OMC 可配，warm reset 生效）。</li>
+<li><strong>DECT</strong>：双轨容量（IP 轨 80 xBS/11 并发、TDM 轨 60 IBS/6 并发、200 手柄）；切换仅同集群内、站间不切换；"同步优先于信号"——话机可能赖在同步但信号差的基站。勘测 -72 dBm 划界+通话中测音质；SUOTA 并发 50、下载 4-8 小时且给话务让路、swap 须充电座。</li>
+<li><strong>维护三件</strong>：Webdiag 三会话（installer 全功能/operator 管 MoH 与解锁/manufacturer 给支持）+七块信息树；noteworthy 是地下层调参（清单以 TC1398 为准、写错致系统恶化、cold reset 全回默认、铃音基址随版本变化必须现算）；LoLa 管系统加载与迁移（话机配置与语音提示必须 OMC 先存）。</li>
+</ul>
+<h2>六、速查卡</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>要做的事</th>
+<th>去哪张能力卡</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>接运营商/站点组网/注册排障</td>
+<td>oxoa-sip-networking</td>
+</tr>
+<tr>
+<td>多运营商分流/分时段来电分配</td>
+<td>oxoa-numbering-ars-suite</td>
+</tr>
+<tr>
+<td>酒店模式/客房计费/账号码</td>
+<td>oxoa-hotel-billing-vertical</td>
+</tr>
+<tr>
+<td>安全基线/弱密码/锁定/端口加固</td>
+<td>oxoa-security-hardening</td>
+</tr>
+<tr>
+<td>证书/DTLS/加密中继/4K 回滚</td>
+<td>oxoa-certificate-suite</td>
+</tr>
+<tr>
+<td>语音导航/客户码分流</td>
+<td>oxoa-attendant-suite</td>
+</tr>
+<tr>
+<td>远程查邮箱/游牧/远程替代</td>
+<td>oxoa-voicemail-mobility</td>
+</tr>
+<tr>
+<td>上云/批量更新/远程维护/目录同步</td>
+<td>oxoa-cloud-connect-fleet</td>
+</tr>
+<tr>
+<td>OMC 首连/改 IP/终端/共享/多实体/DECT/维护工具</td>
+<td>路由入口（oxo-connect-advanced-router）</td>
+</tr>
+</tbody>
+</table></div>
+<h2>版权</h2>
+<ul>
+<li>本精华长文为 ALE Training Services《OXO Connect - Advanced》（OXOCXTE301EN Edition 18）的内部学习整理，仅供内部学习使用；教材版权归 ALE Training Services 所有。</li>
+</ul></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OXO Connect - Advanced (Participant's Guide, Edition 18) | edition: Edition 18 | pages: 601 页 -->

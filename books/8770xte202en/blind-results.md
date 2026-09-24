@@ -1,0 +1,41 @@
+# 8770xte202en 盲判结果（仅依据能力目录，判卷前锁定）
+
+- should-oxe-01 | ovdir-oxe-sync-ldap | 节点声明字段与网络号/节点号计算对应三级声明与节点号拼装
+- should-oxe-02 | ovdir-oxe-sync-ldap | 确认完整同步成功对应日志与时间戳核验
+- should-auto-01 | ovdir-auto-creation | PCX 建人目录未出现，应查 AutomaticCreation 三开关与节点 Location 前提
+- should-auto-02 | ovdir-auto-creation | 同名同姓建不出并告警对应 UID 撞名告警与 Extension 构造
+- should-links-01 | ovdir-links-rename | 配副机后话机成本中心被改对应链接 CC 继承规则
+- should-links-02 | ovdir-links-rename | 配置界面改名断主链接对应四入口改名行为对比与断链修复流程
+- should-msad-01 | ovdir-msad-azure-pipelines | 本地 AD 同步的同步规则与属性映射是该能力核心
+- should-msad-02 | ovdir-msad-azure-pipelines | AD 删号目录残留对应删除二态
+- should-azure-01 | ovdir-msad-azure-pipelines | Entra ID 同步与本地 AD 差异对应 Azure AD 四步框架，同属该能力
+- should-ctc-01 | ovdir-click-to-call | 网页目录点击外呼整套配置即五环链交付
+- should-ctc-02 | ovdir-click-to-call | ISDN 号未生成对应 ISDN 构造三类失败分支
+- should-conf-01 | ovdir-confidentiality | 手机号对普通员工隐藏对应条目保密级别×个人数据行为矩阵
+- should-conf-02 | ovdir-confidentiality | 只读账号权限档对应 Web Directory 访问级别在 Security 授予
+- should-repl-01 | ovdir-replication | 两台主从复制部署对应 Consumer/副本/Initialize 流程
+- should-repl-02 | ovdir-replication | 从机改动次日消失对应 Master-only 写入
+- should-dom-01 | ovdir-domains-delegation | 分公司管理员各管各的对应域=DN 级别集合×管理员组
+- should-dom-02 | ovdir-domains-delegation | 精简开户页面对应定制视图简化开户
+- should-plugin-01 | ovdir-msad-plugin | AD 右键一键开通 8770/OXE 即插件开户能力本身
+- should-plugin-02 | ovdir-msad-plugin | 插件界面缺字段对应 properties 生成传递安装环节问题
+- should-ldif-01 | ovdir-ldif-tools | 定期备份与误删分支恢复对应 LDIF 导出/导入管道
+- should-ldif-02 | ovdir-ldif-tools | 外部系统删人目录跟随删对应 misc10 删除跟随
+- should-dict-01 | ovdir-client-dictionary | Misc.1 显示名改名对应 LdapAttributes 属性改名
+- should-dict-02 | ovdir-client-dictionary | Logo 配色定制与还原对应客户端主题定制与备份先行
+- should-plat-01 | ovdir-platform-basics | Purple R101.2 与 8770 R5.1 配套对应 p9 版本兼容矩阵
+- should-plat-02 | ovdir-platform-basics | 虚拟机部署对应虚拟化平台清单
+- bait-oxe-01 | ovdir-auto-creation | OXE 已同步、新建用户不入目录应查自动创建开关，重新注册节点是错误方向
+- bait-msad-01 | ovdir-msad-plugin | 不等同步周期立刻开带话机账号对应 AD 右键插件一键开通
+- bait-links-01 | ovdir-confidentiality | 藏条目防搜索属保密级别范畴，改链接类型解决不了
+- bait-ctc-01 | none | 通话杂音掉线是话音质量问题，前缀规则管不了，目录能力无一覆盖
+- bait-conf-01 | ovdir-domains-delegation | 管理员按分公司隔离可见与管辖属管理域 strict view，保密级别管的是数据不是管理员
+- bait-dom-01 | ovdir-confidentiality | 条目保密级别 Green/Orange 在目录条目上配，与管理域无关
+- bait-repl-01 | none | 服务器整机双机热备超出目录复制范围（复制只冗余目录不冗余服务器），目录能力无一覆盖
+- bait-ldif-01 | ovdir-replication | 两台目录数据自动互相同步应走主从复制，LDIF 定时导入不成立
+- bait-dict-01 | ovdir-ldif-tools | 批量填字段值是数据写入，应走 LDIF/Csv2Ldif 导入，词典工具只改显示名
+- bait-plat-01 | none | 话务统计报表与计费出账不在能力目录任何一项范围内
+- edge-compat-01 | ovdir-platform-basics | 版本能否凑合用落到兼容矩阵判断
+- edge-uid-01 | ovdir-auto-creation | UID/Extension 构造只对自动创建生效，手工建人撞名属该能力边界
+- edge-repl-01 | ovdir-replication | 断联 8 天超 7 天阈值对应复制断联补数语义
+- edge-pcn-01 | none | Personal Calling Number 配置流程不在能力目录内，仅属实验边界背景

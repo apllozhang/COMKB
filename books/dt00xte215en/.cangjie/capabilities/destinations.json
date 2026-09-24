@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.omniswitch-lan-access",
+  "generated_at": "2026-09-23",
+  "destinations": {
+    "cap.swl2.aaa-hardening": { "promoted_to": "swl2-aaa-hardening" },
+    "cap.swl2.lightning-config": { "promoted_to": "swl2-lightning-config" },
+    "cap.swl2.config-lifecycle": { "promoted_to": "swl2-config-lifecycle" },
+    "cap.swl2.virtual-chassis": { "promoted_to": "swl2-virtual-chassis" },
+    "cap.swl2.vlan-routing": { "promoted_to": "swl2-vlan-routing" },
+    "cap.swl2.link-redundancy": { "promoted_to": "swl2-link-redundancy" },
+    "cap.swl2.l3-services": { "promoted_to": "swl2-l3-services" },
+    "cap.swl2.qos-acl-policy": { "promoted_to": "swl2-qos-acl-policy" },
+    "cap.swl2.access-guardian": { "served_by": "omniswitch-lan-access-router" },
+    "cap.swl2.diagnostics": { "served_by": "omniswitch-lan-access-router" },
+    "cap.swl2.lldp-poe": { "served_by": "omniswitch-lan-access-router" },
+    "cap.swl2.upgrade-autofabric": { "served_by": "omniswitch-lan-access-router" },
+    "cap.swl2.fleet-tools": { "served_by": "omniswitch-lan-access-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 }
+}

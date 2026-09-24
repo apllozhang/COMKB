@@ -1,0 +1,44 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\ents-backup-maintenance.md": "a043b954857205566e3bf0f4f4e7002a0d8feab010b81a8b635482141a7d73b7",
+    "references\\capabilities\\ents-barring-emergency.md": "61e324ce0253d00218db8985d4e3e3faab8fe74aa1e115234a368fcd711ad349",
+    "references\\capabilities\\ents-call-processing.md": "1d1c855dab7ded14f401e99fff18d8ddec463584d19b4deee0a0239754f52097",
+    "references\\capabilities\\ents-cs-network-firewall.md": "e0c693b270e57e39ac102c857fb7412f3cf393753d930fe92f031898cd158eea",
+    "references\\capabilities\\ents-db-license.md": "3eb91d72db2c90b620230ea95c9c3cd852f29ee005d98bdad9bf660d7b007092",
+    "references\\capabilities\\ents-first-login-hardening.md": "318884ac0527b47d589946bd986b4f6327b7cda09535b79e70c59b98b68309e4",
+    "references\\capabilities\\ents-legacy-trunks-umc.md": "a3ff666fcd6373c6620c28fe5e8c9035343bf2e43653efec7e22949d6fa6c511",
+    "references\\capabilities\\ents-media-gateway-deployment.md": "5becd29e67156702b015b430d7c746f823a7a3779bda3a61ee5192c8d8ffb240",
+    "references\\capabilities\\ents-numbering-cos.md": "b0a800a1fe2b6ec8d09f256054cba895fa2e5f111708960e652c4cda80987b16",
+    "references\\capabilities\\ents-sip-trunk.md": "c6fafbc45e9902bc39aba8e679cfc48b38c77cbf697b987f73f0a7ecea9431d4",
+    "references\\capabilities\\ents-system-start-stop.md": "f2be12aa47a9146d774f4e03a023cb08e8b406eaf5e35569b999f0f8fea7c012",
+    "references\\capabilities\\ents-time-sync.md": "3ffc54d902d31cdc4b3b89da8a3daae5da75b4fd8c95c5739c391eaabca4fb01",
+    "references\\capabilities\\ents-user-terminal-provisioning.md": "2188d9062787a01d87206ade7d0f81cc27c21274d81aa12b861cc5689d2077d6",
+    "references\\capabilities\\ents-voicemail-4645.md": "b8f46b3f2c0018cc0fb649cbdeaa2bd526510229781ae40eee28e3b8bd540e23",
+    "references\\capability-index.md": "882f76458276a82961f0efca15039f1a31aafd18f366bc4fec58c31b1c401a0f",
+    "references\\cheatsheet.md": "239e5890d80f82ba2047f284af935e53aba0bb1b50d31b1769dbb407cbad8dce",
+    "references\\glossary.md": "d95d859a6d1e2a5be95290c833ba72f4827ef01ba5bb4614463b7ccba5dc211d",
+    "references\\overview.md": "a486c2360251c8bde2981bf919e6bfd890de99f99d8f4bb48fa8d96c4a28e713",
+    "SKILL.md": "40179fec079ddf6c6479430c3260432c5159aa5eaf60b925d812680d5c8c4f11"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.oxe-starter",
+  "bundle_sha256": "a937104cb42a84697c54b94c5679f19f5d6a1a6256a96c96e6f5def45d9df8dd",
+  "variant": "single",
+  "run_id": "run-20260924-200002-60ae69",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 14,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

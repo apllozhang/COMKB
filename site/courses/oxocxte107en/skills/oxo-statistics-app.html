@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Statistics 统计应用与报表导出</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OXO Connect · 呼叫中心</h2><p>Edition 07 · 218 页 · 文档整理入库（15 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte107en/index.html">课程首页</a><a href="/courses/oxocxte107en/digest.html">精华长文</a><a href="/courses/oxocxte107en/overview.html">教书理解</a><a href="/courses/oxocxte107en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte107en/skills/oxo-acd-basic-setup.html">OXO Connect 基础 ACD 全流程搭建</a><a href="/courses/oxocxte107en/skills/oxo-acd-call-scenarios.html">ACD 呼入六场景排障</a><a href="/courses/oxocxte107en/skills/oxo-acd-routing.html">呼叫特征化与 Smart Call Routing 路由表设计</a><a href="/courses/oxocxte107en/skills/oxo-acd-queue.html">ACD 等待队列管理（容量公式与出口配置）</a><a href="/courses/oxocxte107en/skills/oxo-acd-search-noanswer.html">坐席搜索模式选型与无应答处理</a><a href="/courses/oxocxte107en/skills/oxo-acd-login-status.html">坐席签入签出（free seating）与状态排障</a><a href="/courses/oxocxte107en/skills/oxo-multi-secretary.html">Multi-Secretary 多秘书方案配置</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte107en/skills/oxo-omc-first-connect.html">OMC 安装与首次连接</a><a href="/courses/oxocxte107en/skills/oxo-ip-replan.html">OXO 与客户端 IP 规划修改</a><a href="/courses/oxocxte107en/skills/oxo-acd-schedule-calendar.html">ACD 营业时段与例外日配置</a><a href="/courses/oxocxte107en/skills/oxo-supervisor-app.html">Supervisor 班长台部署与实时监控</a><a href="/courses/oxocxte107en/skills/oxo-agent-app.html">Agent 坐席席面部署（弹屏/打标/客户库）</a><a href="/courses/oxocxte107en/skills/oxo-statistics-app.html">Statistics 统计应用与报表导出</a><a href="/courses/oxocxte107en/skills/oxo-dtmf-client-popup.html">DTMF 客户码识别弹屏</a><a href="/courses/oxocxte107en/skills/oxo-acd-voice-prompts.html">ACD 语音提示定制</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte107en/index.html">oxo-connect-call-center（15 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte107en/index.html">OXOCXTE107EN</a><span>/</span><span aria-current="page">Statistics 统计应用与报表导出</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Statistics 统计应用与报表导出</h1></div><dl><div><dt>Skill ID</dt><dd>oxo-statistics-app</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>Statistics 统计应用与报表导出（OXO Connect）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"S1 hold-on threshold value: 10 seconds (default value) S2 hold-on threshold value: 40 seconds (default value)"（p190）
+"Export of statistics files • Binary files • Used only by the Statistics application. ... • CSV files • Useful for clients who want to have customized statistics"（p202）
+"Statistics storage capacity up to 14 months"（p28）</p>
+</blockquote>
+<p>出处：OXOCXTE107EN p185-209。</p>
+<h2>I — 自述</h2>
+<p>统计应用是三件套里的报表端。三个要点：</p>
+<ol>
+<li><strong>先核口径再用</strong>：S1=10 秒、S2=40 秒两个等待阈值（默认值）+ "溢出前等待计时"开关——它们定义"短等待/长等待"的分界</li>
+<li><strong>取数方式</strong>：统计文件存在 OXO 主 CPU 上，应用须建连接检索；查询套路统一——选对象（组/坐席）→ 选日期段 → 选图形或表格 → Synthesis 菜单切指标（来话量/应答量/绝对值/百分比/时长）</li>
+<li><strong>输出三种</strong>：手动打印、按 printing profiles 自动打印、导出 binary（仅本应用可读，取全量离线分析）或 CSV（外部工具定制报表）</li>
+</ol>
+<p>留存上限 14 个月（p28）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>查询与导出实验</strong>（p203-209，厂商实验）</p>
+<ul>
+<li>安装：下载 ACD_X.X\alcatel\call_center\Statistics_manager → setup.exe</li>
+<li>首连：192.168.1.246 + English + Acdc1064 → 点 "ACD"</li>
+<li>组统计：Group Statistics → 勾组 1/2/3 + 日期 → Graphic options 选 Colour + 3D Bar → Synthesis 看 Incoming calls / Answered calls → Number 菜单看 Absolute value / Time</li>
+<li>坐席统计：Agent 选 All + 组 1/2/3 → 日期 → Summary/Number of calls 与 Summary/Average duration</li>
+<li>导出：Export 图标 → 格式 + 路径 + 日期范围 → Export</li>
+</ul>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户要话务量月报；班长要坐席接听明细；对接 BI 需要原始数据；统计口径有争议（S1/S2 分界）。</p>
+<p>语言信号：报表 / 统计 / statistics / 来话量 / 应答率 / CSV 导出 / S1 S2 / 坐席绩效 / 月报。</p>
+<p>与相邻能力区分：坐席实时状态 → Supervisor 监控能力；本能力管历史数据与报表。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：统计维度（组/坐席）、日期范围、输出形式。缺日期范围与口径先询问。</p>
+<ol>
+<li>核口径：确认 S1=10s / S2=40s 与溢出前等待开关，与客户对齐分界定义。完成标准：口径书面确认</li>
+<li>安装：下载 → setup.exe。完成标准：安装完成</li>
+<li>连接：Configuration → "PBX Server" → OXO IP → 语言 → 确认 → ACD Admin 密码 → 点 "ACD"。完成标准：图标全亮</li>
+<li>组统计：Group Statistics → 选组与日期 → 图形选项 → Synthesis 切指标。完成标准：报表可读</li>
+<li>坐席统计：Agent Statistics → 选 All + 组 + 日期 → 看 Number of calls / Average duration。完成标准：明细可读</li>
+<li>打印：手动（Statistics 菜单 → Printing）或自动（Automatic printout 图标 + profiles）。完成标准：按需输出</li>
+<li>导出：Export → 选 binary 或 CSV → 路径与日期 → Export。完成标准：文件落地可打开</li>
+</ol>
+<p>判停点：统计为空 → 先确认日期段内有话务且连接成功（重做第 3 步），不要先怀疑报表功能。</p>
+<p>输出契约：统计报表（截图/打印件）或导出文件 + 口径说明（含 S1/S2）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>留存上限 14 个月；超期数据原书未给恢复手段——重要报表定期导出归档</li>
+<li>binary 仅本应用可读；客户要"自己分析"一律给 CSV</li>
+<li>Line statistics / Calls statistics 两个图标原书未展开实验，仅知存在（p192）</li>
+<li>自动打印依赖 printing profiles，故障排查原书未覆盖</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte107en/skills/oxo-supervisor-app.html">Supervisor 班长台部署与实时监控</a></p><p class="source-page">能力 ID：cap.oxo-cc.statistics-app · 来源：OXOCXTE107EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OXO Connect 呼叫中心 (Participant's Guide, Edition 07) | edition: Edition 07 | pages: 218 页 -->

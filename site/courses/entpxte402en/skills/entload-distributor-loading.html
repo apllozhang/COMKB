@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Easy Installation 分发器模式：无 SOT 环境的本地加载</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 系统装载</h2><p>Edition 12 · 415 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte402en/index.html">课程首页</a><a href="/courses/entpxte402en/digest.html">精华长文</a><a href="/courses/entpxte402en/overview.html">教书理解</a><a href="/courses/entpxte402en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte402en/skills/entload-sot-installation.html">S.O.T. 部署工具的安装、初始化、更新与 Template Factory</a><a href="/courses/entpxte402en/skills/entload-cs-loading.html">OXE 呼叫服务器单版本全加载与加载后初始化</a><a href="/courses/entpxte402en/skills/entload-patch-management.html">OXE 多版本加载、分区切换与静态/动态补丁管理</a><a href="/courses/entpxte402en/skills/entload-oxe-v-deployment.html">OXE-V 虚拟化：平台选型、许可路径与 OXE/OMS 虚机交付</a><a href="/courses/entpxte402en/skills/entload-gas-delivery.html">GAS 通用设备服务器：硬件前置、软件加载与后安装向导</a><a href="/courses/entpxte402en/skills/entload-cloud-connect.html">Cloud Connect 云连接：网络前提、FTR 首次注册与 PIN 恢复</a><a href="/courses/entpxte402en/skills/entload-rtr-licensing.html">RTR 许可开关：资格期状态机、事件监控与 FlexLM 互斥</a><a href="/courses/entpxte402en/skills/entload-pod-licensing.html">OPEX / Purple on Demand：订阅许可、LMS 同步、panic 时间线与 C2P 转换</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte402en/skills/entload-distributor-loading.html">Easy Installation 分发器模式：无 SOT 环境的本地加载</a><a href="/courses/entpxte402en/skills/entload-sot-media.html">SOT 媒体传输与加载项目配置（公共动作）</a><a href="/courses/entpxte402en/skills/entload-gas-ops.html">GAS 日常运维：版本、备份、host 升级与 UPS</a><a href="/courses/entpxte402en/skills/entload-fleet-dashboard.html">Fleet Dashboard 云端机队服务：Inventory、Offer、远程控制台与软件更新</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte402en/index.html">oxe-loading（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte402en/index.html">ENTPXTE402EN</a><span>/</span><span aria-current="page">Easy Installation 分发器模式：无 SOT 环境的本地加载</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Easy Installation 分发器模式：无 SOT 环境的本地加载</h1></div><dl><div><dt>Skill ID</dt><dd>entload-distributor-loading</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>Easy Installation 分发器模式：无 SOT 环境的本地加载</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The BP must transfer, through FTP, the "ISO image" and/or "ZIP files" to the "/tmpd" directory of the Call Server"（p113）
+"In case of full software version or static patch, the installation must be performed on OXE inactive partition • For a dynamic patch, the choice is offered: active or inactive partition"（p113）
+"2.Expert menu/9.Remote download/10. 'Local load as distributor of ISO image/ZIP file and installation'"（p114）
+"REMOVES ONLY THE EXTRACTED FILES (FROM ISO &amp; ZIP) STORED IN "/USR4/FTP/RLOAD" DIRECTORY. THE SOURCES FILES ... ARE AUTOMATICCALY DELETED AT THE END OF INSTALLATION"（p129-130）</p>
+</blockquote>
+<p>出处：ENTPXTE402EN p111-130。</p>
+<h2>I — 自述</h2>
+<p>客户环境不允许临时部署 SOT（外部 BP PC/虚机被拒）时的官方替代路径：OXE 自己当分发器，加载工具从"另一台服务器"变成"被加载的机器本身"。</p>
+<p>前置与流程：</p>
+<ol>
+<li>PC IP 加入 OXE 信任主机（netadmin 的 Security 菜单，Firewall(iptables) 下 Restricted Access 里 Add a trusted host）</li>
+<li>Filezilla 把版本 iso / 补丁 zip 传到 CS 的 /tmpd 目录</li>
+<li>swinst 账号登录，进 2 Expert 菜单的 9 Remote download，选 10 Local load as distributor，输入文件名确认（REMOTE LOAD OPERATION，Client CPU type DISTRI）</li>
+<li>分区规则：全版本与静态补丁强制装 inactive 分区；动态补丁可选（安装器询问 1 ACTIVE / 2 INACTIVE）</li>
+<li>复核：swinst 8-2 按分区查版本与补丁号（0=active、1=inactive）</li>
+<li>收尾：按需复制 Linux 数据与数据库（2-3 菜单）并切换分区（2-3-3）</li>
+</ol>
+<p>文件落点与清理（方向别搞反）：</p>
+<ul>
+<li>解包物落 /usr4/ftp/Rload/{version,patch,dynpatch}，不会自动删除、会累积吃满硬盘，用菜单 9-7 Cleaning operation 清理（只清 Rload）</li>
+<li>手工传进 /tmpd 的 iso/zip 源文件在安装结束时自动删除，无需人工处理</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>分发器加载版本与补丁</strong>（p116-130，How-To）：</p>
+<ol>
+<li>把 PC（192.168.1.9，实验口径）加入 OXE 信任主机并应用</li>
+<li>Filezilla 传版本 iso 到 /tmpd</li>
+<li>swinst 2-9-10 输入文件名，确认本地加载（inactive 分区）</li>
+<li>swinst 8-2 按 1 复核 inactive 分区为新版本</li>
+<li>2-3-2 复制 Linux 数据，再 4 Duplicate database 复制数据库</li>
+<li>2-3-3 Switch on inactive version 切换重启</li>
+<li>静态补丁 zip 传 /tmpd，同 9-10 菜单装入 inactive</li>
+<li>动态补丁装入后按提示 downstat d/i/t 检查需下载对象</li>
+<li>收尾用 9-7 Cleaning operation 清空 Rload 解包物</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户现场不允许架 SOT；只能用 OXE 自身加载版本或补丁；/tmpd 传完文件装不上；磁盘被 Rload 占满。</p>
+<p>语言信号：Easy Installation / Distributor / 分发器 / /tmpd / Rload / swinst 9-10 / Local load / REMOTE LOAD OPERATION / Cleaning operation / downstat。</p>
+<p>与相邻能力区分：有 SOT 的常规加载 → CS 加载卡与补丁卡；补丁顺序律与切换细节 → 补丁与多版本卡（本卡流程与它共用分区语义）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OXE 可登录（mtcl/swinst/root）、PC 与 OXE 网络可达、iso/zip 媒体在手、无重新分区需求。目标机磁盘要重排 → 停，本路径的前提是无重新分区。</p>
+<ol>
+<li>信任主机：PC IP 加入 OXE iptables 白名单并应用。完成标准：FTP 可连</li>
+<li>传输：iso/zip 传到 /tmpd。完成标准：文件就位</li>
+<li>加载：swinst 2-9-10 输文件名确认；全版本/静态补丁进 inactive。完成标准：OPERATION ENDED CORRECTLY</li>
+<li>复核：8-2 查目标分区版本/补丁号。完成标准：版本按预期推进</li>
+<li>数据复制与切换（按需）：2-3-2 复制、2-3-3 切换，首进 swinst 输国家码。完成标准：新版本生效</li>
+<li>清理：9-7 Cleaning operation 清 Rload（选本机 CPU，逐项确认）。完成标准：Rload 目录为空</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>想"直接把新版本怼在 active 上" → 停，分发器路径全版本/静态补丁强制 inactive</li>
+<li>动态补丁装完就交机 → 停，先 downstat d/i/t 跟完终端下载，否则部分话机行为不变</li>
+<li>磁盘满了才想起清理 → 停，每次加载后主动 9-7 清理；/tmpd 源文件会自动删、Rload 不会</li>
+</ul>
+<p>输出契约：无 SOT 环境下加载成功的版本/补丁记录 + Rload 已清理确认。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>本路径是"无需重新分区"前提下的替代方案；迁移类需求走完整加载与迁移指南</li>
+<li>信任主机管理（netadmin Security 菜单）是本路径与许可恢复、gasbackup 共用的前置技能</li>
+<li>动态补丁装完的 downstat 收尾属于补丁管理域，本卡引用其判据</li>
+<li>实验口径：PC 192.168.1.9、文件名 nYYYY.iso 示例——现场以实际媒体命名</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte402en/skills/entload-patch-management.html">OXE 多版本加载、分区切换与静态/动态补丁管理</a>、<a href="/courses/entpxte402en/skills/entload-cs-loading.html">OXE 呼叫服务器单版本全加载与加载后初始化</a></p><p class="source-page">能力 ID：cap.entload.distributor-loading · 来源：ENTPXTE402EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — 系统装载 (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 415 页 -->

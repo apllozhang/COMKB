@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OXE-V 虚拟化：平台选型、许可路径与 OXE/OMS 虚机交付</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 系统装载</h2><p>Edition 12 · 415 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte402en/index.html">课程首页</a><a href="/courses/entpxte402en/digest.html">精华长文</a><a href="/courses/entpxte402en/overview.html">教书理解</a><a href="/courses/entpxte402en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte402en/skills/entload-sot-installation.html">S.O.T. 部署工具的安装、初始化、更新与 Template Factory</a><a href="/courses/entpxte402en/skills/entload-cs-loading.html">OXE 呼叫服务器单版本全加载与加载后初始化</a><a href="/courses/entpxte402en/skills/entload-patch-management.html">OXE 多版本加载、分区切换与静态/动态补丁管理</a><a href="/courses/entpxte402en/skills/entload-oxe-v-deployment.html">OXE-V 虚拟化：平台选型、许可路径与 OXE/OMS 虚机交付</a><a href="/courses/entpxte402en/skills/entload-gas-delivery.html">GAS 通用设备服务器：硬件前置、软件加载与后安装向导</a><a href="/courses/entpxte402en/skills/entload-cloud-connect.html">Cloud Connect 云连接：网络前提、FTR 首次注册与 PIN 恢复</a><a href="/courses/entpxte402en/skills/entload-rtr-licensing.html">RTR 许可开关：资格期状态机、事件监控与 FlexLM 互斥</a><a href="/courses/entpxte402en/skills/entload-pod-licensing.html">OPEX / Purple on Demand：订阅许可、LMS 同步、panic 时间线与 C2P 转换</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte402en/skills/entload-distributor-loading.html">Easy Installation 分发器模式：无 SOT 环境的本地加载</a><a href="/courses/entpxte402en/skills/entload-sot-media.html">SOT 媒体传输与加载项目配置（公共动作）</a><a href="/courses/entpxte402en/skills/entload-gas-ops.html">GAS 日常运维：版本、备份、host 升级与 UPS</a><a href="/courses/entpxte402en/skills/entload-fleet-dashboard.html">Fleet Dashboard 云端机队服务：Inventory、Offer、远程控制台与软件更新</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte402en/index.html">oxe-loading（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte402en/index.html">ENTPXTE402EN</a><span>/</span><span aria-current="page">OXE-V 虚拟化：平台选型、许可路径与 OXE/OMS 虚机交付</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OXE-V 虚拟化：平台选型、许可路径与 OXE/OMS 虚机交付</h1></div><dl><div><dt>Skill ID</dt><dd>entload-oxe-v-deployment</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OXE-V 虚拟化：平台选型、许可路径与 OXE/OMS 虚机交付</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The OmniPCX Enterprise Call Server software package dedicated to virtualized environment is called OXE-V"（p133）
+"VMware ESXi (1) 8.0 7.0 ... Microsoft Hyper-V 2022 2019 2016 (2) ... KVM kernel ≥ 4.12.14 &amp; KVM ≥ 5.2 (3) ... AWS (except OST64)"（p134）
+"Hyper-V, Nutanix and AWS don't provide a native way to redirect an USB dongle ... Cloud Connect is the mandatory license control process in case an OXE is virtualized over Hyper-V, Nutanix or AWS technology"（p136）
+"120 VOIP channels per OMS 240 OMS per OXE"（p138）</p>
+</blockquote>
+<p>出处：ENTPXTE402EN p131-154、p166-188、p204-218。</p>
+<h2>I — 自述</h2>
+<p>虚拟化平台的选择直接锁死许可路径——这是全书代价最高的架构决策，必须在设计阶段定死：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>Ed12 时点版本口径</th>
+<th>许可路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VMware ESXi</td>
+<td>8.0 / 7.0（含该版本 minor 更新）</td>
+<td>FlexLM+加密狗 或 Cloud Connect</td>
+</tr>
+<tr>
+<td>Microsoft Hyper-V</td>
+<td>2022 / 2019 / 2016；CS 用第 1 代虚机，OXE-MS/OST64/EEGW 用第 2 代</td>
+<td>仅 Cloud Connect</td>
+</tr>
+<tr>
+<td>KVM</td>
+<td>内核 ≥4.12.14 且 KVM ≥5.2；RHEL/SLES/Proxmox 等标准 KVM 均可</td>
+<td>FlexLM+加密狗 或 Cloud Connect</td>
+</tr>
+<tr>
+<td>Nutanix AHV</td>
+<td>20230302 / 20220304（OST64 除外）；定制 KVM 需专项认证</td>
+<td>仅 Cloud Connect</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>（OST64 除外）</td>
+<td>仅 Cloud Connect</td>
+</tr>
+</tbody>
+</table></div>
+<p>两条许可铁律：</p>
+<ul>
+<li>FlexLM 与 CCI/RTR 两种许可模式不能同时启用——虚机启 RTR 前必须核对 FlexLM Licensing Enabled=No</li>
+<li>改 RTR 参数需要重启呼叫服务器</li>
+</ul>
+<p>OXE-V 六种拓扑：全虚拟化、呼叫服务器冗余（local/spatial）、原生加密（SRTP）、混合（虚机 CS+硬件媒体网关）、分支机构（总部 CS+WAN+分支 OMS）、组网（ABC link 多节点）。PCS 接管行为：CS→PCS 软复位（释放话音、虚机不重启）；PCS→CS 硬复位（虚机重启）；云服务不跑 PCS。</p>
+<p>OXE VM 交付要点：</p>
+<ul>
+<li>SOT 项目按用户数选规格模板（模板决定硬盘与内存）；"OXE template for AWS" 为单独选项</li>
+<li>目标为 SOT 生成的 .ovf/.ova 虚机时不要求 MAC；KVM 线经 Template Factory 生成模板后 virsh define 定义启动</li>
+</ul>
+<p>OMS 要点：软媒体网关虚机（等价一块 GD4 板卡），每台 120 VoIP 通道、每 OXE 最多 240 台；会议 3/6/14/29 方；许可 Lock 384（台数）+ Lock 385（通道总数），均可不停机安装。</p>
+<p>KVM 线手工建虚机（Rocky 9.4、1GB 内存、1 CPU、16GB 盘）后 IPXE 引导加载，装完 omsconfig 配置并在 OXE 数据库声明；一个 SOT 项目最多声明 4 台 OMS。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>OXE VM 生成与加载（ESXi 线）</strong>（p204-211，How-To）：</p>
+<ol>
+<li>Easy 建 Greenfield 项目，产品 OXE，勾 OVF generation</li>
+<li>选软件版本（无补丁/带静态/带静+动三选一）</li>
+<li>OXE sizing 按用户数选模板；目标设置不填 MAC</li>
+<li>CPU IP 与主机名设好，Verify 后 Deploy</li>
+<li>".ova" 生成后 Download（或复制 URL 稍后下载）</li>
+<li>ESXi 按 OVF/OVA 流程部署 OXE VM</li>
+<li>Power On 后加载自动开始，SOT 显示进度至 completed</li>
+<li>加载后：键盘、四账户密码、信任主机、许可、siteid 核版本</li>
+</ol>
+<p><strong>OMS 加载（KVM 线）</strong>（p177-188）：VMM 建虚机记 MAC；SOT 传 BootDVD 与 OMS 两个 iso；项目填 MAC 与 IP；VM 启动按 ESC 选 IPXE；装完 root 改密、omsconfig 配置、OXE 数据库声明。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户定了虚拟化平台问许可怎么办；OXE 虚机怎么生成部署；OMS 容量与许可怎么算；Hyper-V 上虚机起不来；选 ESXi 还是 KVM。</p>
+<p>语言信号：OXE-V / 虚拟化 / ESXi / Hyper-V / KVM / Nutanix / AHV / AWS / FlexLM / dongle / 加密狗 / Cloud Connect 许可 / gen1 / gen2 / OMS / GD4 / 120 通道 / Lock 384 / 385 / ova / ovf / virsh / IPXE / omsconfig。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>GAS 一体机形态 → GAS 交付卡</li>
+<li>装好后连云 → 云连接卡</li>
+<li>物理 CS3 加载 → CS 加载卡</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户虚拟化平台与版本、用户数（定规格模板）、许可模式倾向（FlexLM 或 Cloud Connect）、Template Factory 或 hosted SOT 就绪。平台为 Hyper-V/Nutanix/AWS → 直接锁定 Cloud Connect 路径。</p>
+<ol>
+<li>平台合规核对：对照平台矩阵核版本与代次（Hyper-V 分 gen1/gen2）。完成标准：平台在矩阵内</li>
+<li>定许可路径：ESXi/KVM 可选 FlexLM+加密狗；其余仅 Cloud Connect。完成标准：许可路径写入设计</li>
+<li>生成虚机：SOT 勾 OVF generation（虚机免 MAC）或 Template Factory 出 KVM 模板。完成标准：.ova/.tgz 到手</li>
+<li>部署：ESXi 走 OVF/OVA 部署；KVM 宿主 virsh define 后启动。完成标准：虚机开机自动加载</li>
+<li>加载后初始化：键盘、四账户密码、信任主机、许可、siteid 核版本。完成标准：登录提示出现</li>
+<li>OMS 交付：建/生成 OMS 虚机，IPXE 或自动加载，omsconfig 配置。完成标准：OXE 数据库声明且 OMS 进入服务</li>
+<li>许可核对：spadmin 查 Lock 384/385 与台数/通道匹配。完成标准：计数与设计一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>平台版本不在矩阵内或平台较新 → 停，以 TBE043 最新版复核，不按教材矩阵硬答</li>
+<li>FlexLM 与 RTR 同时想开 → 停，两者互斥，设计阶段二选一</li>
+<li>Hyper-V 虚机起不来 → 停，先查代次（CS=gen1，OXE-MS/OST64/EEGW=gen2）</li>
+<li>OMS 台数或通道超上限 → 停，每 OXE 240 台 OMS、每台 120 通道为硬口径</li>
+</ul>
+<p>输出契约：平台×许可选型结论 + 运行中的 OXE-V CS 与 OMS（许可计数核对记录）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>教材矩阵为 Ed12 时点快照，平台演进以 TBE043（Virtualization Design Guide）为准；AWS 部署对照 TC3142en-Ed01</li>
+<li>虚拟化拓扑图组为讲义级，详细设计在 TBE043；PCS 与备机的云服务边界见云连接卡（nr-06 双规则）</li>
+<li>OMS 升级由 OXE CS 经 TFTP 自动下发（同 GD4 流程）；GAS 上 OMS 限 1 台的规则属 GAS 交付卡</li>
+<li>实验口径：KVM host 192.168.1.55、OXE VM 192.168.1.201/.203、OMS 192.168.1.213、OMS 规格 1GB/1CPU/16GB</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte402en/skills/entload-sot-installation.html">S.O.T. 部署工具的安装、初始化、更新与 Template Factory</a>、<a href="/courses/entpxte402en/skills/entload-patch-management.html">OXE 多版本加载、分区切换与静态/动态补丁管理</a></p><p class="source-page">能力 ID：cap.entload.oxe-v-deployment · 来源：ENTPXTE402EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — 系统装载 (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 415 页 -->

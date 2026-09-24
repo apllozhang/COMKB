@@ -1,0 +1,732 @@
+schema_version: 1
+bundle_id: bundle.omnivista-billing-performance
+book:
+  title: OmniVista 8770 R5.2 Accounting and Performance Administration (Participant Guide, Edition 45)
+  author: ALE Training Services
+  source_pack: 8770XTE201EN.pdf (650 pages)
+  baseline_tag: OmniVista 8770 R5.2 / OXE R101.1 (lab) / Ed45
+entry:
+  name: omnivista-billing-performance
+  description: 'OmniVista 8770 R5.2 计费与性能管理交付支持：OXE 纳管与票据回收管道、运营商资费建模与成本计算、Code Book 迁移、计费组织树与成本归属、机密控制
+    （掩码/解密/可见域）、成本档案、报表生成与定制、VoIP 性能、流量分析与 Tracking 告警、Web Performance 仪表盘、计费归档恢复。适用于 8770 计费与性能的配置、
+    排障与交付问答；真实运营商价目、数据库运维与安全凭证治理不在原书范围内（见 out_of_scope）。'
+  core_principles:
+  - '单向管道：OXE 内存缓冲（≤500 条，满或 90 分钟无新票落盘）经 TAX 文件与 ACCOUNT.LIS，由 8770 对比索引 FTP 增量取回、加载过滤后入库，断点按目录与日志逐段查'
+  - '成本在票据加载时算好：运营商配置为 Period 下的 Calendar/Region/Tariff/Direction；配置改动涉及存量必须 Compute cost（Force）重算，否则新旧成本混存'
+  - '费率可复算：exact 线性可叠加接通费/免费时长/保底/分段，round 按阶段计，脉冲按票据 Charge units 乘单价；服务费 C+S 须双资费成对绑方向'
+  - '组织树决定钱归谁：成本中心从 OXE 同步（cc=255 落根，无成本中心对象落默认成本中心）；分机改归属只能回 OXE 配置；剪贴无历史、复制留灰色条目'
+  - '机密三道闸：掩码档案按树继承遮显示（grouped 报表只认 Default 档案）、解密须 Mask data access 组口令、可见域按管理员裁剪；OXE 侧已遮号码 8770 无法还原'
+  - '质量与告警有量化口径：VoIP KPI 默认时延大于 150ms、丢包大于 3%、BFI Burst 大于 5%；流量分析仅 OXE 且默认只算三类对象（PtpType ALL 才看被叫与终端）；Tracking 由任务驱动非实时'
+  - '数据寿命：计费票 31 天归档成 archZ、再 94 天清理，最长 125 天且按记录日期清理；书内实验口径数值（税率/汇率/密码）一律不进生产'
+  out_of_scope:
+  - 真实运营商价目数据工程与各国监管费率（书内全用教学数值，法国 SVA 仅示例 ARCEP 口径）
+  - MariaDB 容量规划、备份与恢复演练（书内仅 Maintenance 一句带过）
+  - SNMPv3 与系统口令的生产治理（书内明文密码均为实验口径）
+  - 话务数据法定留存期限与合规结论（125 天是机制上限，GDPR 类合规在书外）
+  - 8770 安装、虚机规格与防火墙端口（属安装文档与 Capacity Planning tool）；OXE 维护命令体系（属 OXE 技术文档）
+  - RLAB 实验平台搭建与报表练习题面的具体业务数值（教学专用，保留模式替换业务值）
+  stop_conditions:
+  - 用户要真实价目/税率/汇率的权威数值 → 指向运营商价目与监管文件（如法国 ARCEP），不以教学值搪塞
+  - 涉及生产口令、SNMP 凭证治理或留存合规 → 声明书内为实验口径，要求客户提供安全基线与合规口径
+  - 多节点组网、PCS 与 OpenTouch 关联同步的生产部署 → 书内只有概念图无实验，声明边界不虚构
+  - 数据库容量、备份与恢复演练需求 → 指向 8770 安装文档与数据库运维规范（书外）
+  - 版本漂移敏感问题（兼容矩阵/界面/预定义报表清单）→ 按 Ed45 与 R5.2 口径回答并提示重核最新文档
+router_entry:
+  name: omnivista-billing-performance-router
+  description: 'OmniVista 8770 计费与性能能力路由入口：按用户意图分发到 13 张能力卡——OXE 纳管、票据管道、资费建模、组织归属、机密控制、报表、报表定制、VoIP
+    性能八个 promoted 能力，以及 Code Book 迁移、成本档案、流量与 Tracking、Web Performance、归档五张 router 能力卡。'
+promotion_budget: 8
+capabilities:
+- capability_id: cap.ovbill.node-onboarding
+  revision: 1
+  status: active
+  slug: ovbill-node-onboarding
+  title: OXE 纳管与 SIP 中继对接
+  importance: critical
+  importance_rationale: 对应 task-01/task-02，管道源头——节点接不上则计费与性能全断；信任主机与冗余双 IP 是最高频漏项
+  one_liner: 先在 OXE 核 siteid/SSH/信任主机，再按 网络号×100+节点号 声明节点并同步验证；SIP 模拟器按 POD 配 pbxN 与 DID 翻译
+  intents:
+  - 把 OXE 接入 8770
+  - 同步失败排查
+  - 信任主机核查
+  - 配置 SIP 运营商模拟器
+  - register OXE node
+  keywords:
+  - OXE
+  - siteid
+  - netadmin
+  - 信任主机
+  - trusted hosts
+  - csa
+  - csm
+  - adfexc
+  - mtcl
+  - synchronization
+  - 同步
+  - '101'
+  - Subnetwork
+  - DID translator
+  - pbxN
+  - ITSP1
+  also_read:
+  - ovbill-ticket-pipeline
+  card: cards/ovbill-node-onboarding.md
+  frontmatter:
+    description: '把 OmniPCX Enterprise 纳管到 OmniVista 8770：OXE 侧信息核查（siteid、SSH、信任主机、冗余双 IP）、8770 侧三级声明（Network/Subnetwork/OXE
+      节点，节点号=网络号×100+节点号）、同步验证与日志；培训环境另含 ITSP1 SIP 模拟器对接（pbxN 与 DID 翻译）。当用户要接新 OXE、查同步失败、核信任主机时使用。不适用于票据回收与计费配置
+      （票据管道能力）。'
+    tags:
+    - procedure
+    - onboarding
+    - oxe
+    - omnivista-8770
+  source_evidence:
+  - source_id: src-8770xte201en
+  - location: p70-84
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-01/02，一切交付的第一步
+- capability_id: cap.ovbill.ticket-pipeline
+  revision: 1
+  status: active
+  slug: ovbill-ticket-pipeline
+  title: 计费票据管道（出票、回收、加载过滤）
+  importance: critical
+  importance_rationale: 对应 task-03/04/05，全书主线管道；8770 收不到话单类工单的排障抓手（FTP 铁律、loader 目录、NMCLD 日志）全部在本卡
+  one_liner: OXE 缓冲 500 条或 90 分钟落盘成 TAX 与 ACCOUNT.LIS，8770 对比索引 FTP 增量取回、过五道加载闸入库；FTP 用户 adfexc 禁改
+  intents:
+  - 8770 收不到话单
+  - 开启 OXE 外部计费
+  - 选择计费方法
+  - 排查票据入库
+  - accounting records retrieval
+  keywords:
+  - TAX
+  - ACCOUNT.LIS
+  - ticket
+  - 话单
+  - account compress
+  - accview
+  - loader
+  - collector
+  - Detailed accounting
+  - 加载过滤
+  - loading filter
+  - NMCLD
+  - PCS
+  - '0 Units'
+  - '500 条'
+  - '90 分钟'
+  - '744'
+  also_read:
+  - ovbill-node-onboarding
+  - ovbill-tariff-costing
+  card: cards/ovbill-ticket-pipeline.md
+  frontmatter:
+    description: '计费票据全链路：OXE 外部计费开启（出票类型、744 文件、0 计费呼出）、维护命令核查（account compress/accview）、五种计费方法选择、8770 票据回收
+      （FTP 铁律、收集器、PCS）、五道加载过滤与入库验证（loader 目录与 NMCLD_1.log）。当用户要开计费、配回收、查没话单时使用。不适用于资费建模与成本计算（资费建模能力）；FTP
+      用户名禁改。'
+    tags:
+    - procedure
+    - accounting
+    - pipeline
+    - omnivista-8770
+  source_evidence:
+  - source_id: src-8770xte201en
+  - location: p59-114, p448
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-03/04/05，计费能不能跑起来的关键
+- capability_id: cap.ovbill.tariff-costing
+  revision: 1
+  status: active
+  slug: ovbill-tariff-costing
+  title: 运营商资费建模与成本计算
+  importance: critical
+  importance_rationale: 对应 task-06~10 五项任务，全书最重的建模实验集；公式族可复算、重算铁律与 No first carrier found 排障自成闭环
+  one_liner: Period 下的 Calendar/Region/Tariff/Direction 五件套建模，exact/round/pulse 公式族算价；改配置必须 Compute cost（Force）重算存量
+  intents:
+  - 建运营商资费模型
+  - 配置费率公式
+  - 成本计算与重算
+  - 特服号服务费计费
+  - carrier tariff configuration
+  keywords:
+  - Carrier
+  - 运营商
+  - Region
+  - Direction
+  - Tariff
+  - 资费
+  - exact duration
+  - round up
+  - 脉冲
+  - pulse
+  - Unit cost
+  - initial cost
+  - minimum cost
+  - segments
+  - Compute cost
+  - No first carrier found
+  - 前缀
+  - prefix
+  - TVA
+  - VAT
+  - 汇率
+  - ARCEP
+  also_read:
+  - ovbill-ticket-pipeline
+  - ovbill-cost-profile
+  card: cards/ovbill-tariff-costing.md
+  frontmatter:
+    description: '运营商资费建模与成本计算：币种/税/国家参数、直连运营商与脉冲型运营商建法、Region 前缀最优匹配、Direction 方向矩阵、exact/round/脉冲费率公式族
+      （接通费/免费时长/保底/分段）、服务费 C+S 双资费、Adjustment、演进（前缀冲突）、Compute cost 重算与两份成本日志排障。当用户要建模价目、算成本、排成本日志错误时使用。不适用于
+      Code Book 搬移（Code Book 迁移能力）与发票价加价（成本档案能力）。'
+    tags:
+    - procedure
+    - tariff
+    - costing
+    - omnivista-8770
+  source_evidence:
+  - source_id: src-8770xte201en
+  - location: p115-225
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-06~10，工作量最大最易返工
+- capability_id: cap.ovbill.codebook-migration
+  revision: 1
+  status: active
+  slug: ovbill-codebook-migration
+  title: Code Book 导出与导入
+  importance: medium
+  importance_rationale: 对应 task-11，跨服务器迁移专项操作；触发频率低于资费建模，.itl 修复与 EFFECT_DATE 语义经路由可达即可
+  one_liner: 十种文本文件 @表头/Tab 分隔/%注释；导出两次才完整；.itl 的 Node 必须等于目标机声明名；改 EFFECT_DATE 导入等于新增周期
+  intents:
+  - 迁移运营商配置
+  - 修复 code book 导入报错
+  - 运营商配置备份
+  - import export code book
+  keywords:
+  - Code Book
+  - codebook
+  - '.inf'
+  - '.itl'
+  - EFFECT_DATE
+  - 导出
+  - 导入
+  - Period
+  - 节点名
+  - 备份
+  card: cards/ovbill-codebook-migration.md
+  frontmatter:
+    description: 'Code Book 导出与导入：运营商配置的十种文本文件（.inf/.rgn/.trf/.dir/.cal/.ccn/.adj/.fct/.itl/.trg）、格式规则、二次导出完整备份、.itl
+      节点名修复（oxe9 不等于 oxe 案例）、EFFECT_DATE 改期导入等于新增 Period。当用户要迁移/存档运营商配置、导入报错方向建不出来时经路由使用。修改只能在 Documents 副本上做。'
+    tags:
+    - procedure
+    - codebook
+    - migration
+    - omnivista-8770
+  source_evidence:
+  - source_id: src-8770xte201en
+  - location: p226-250
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 专项窄操作，路由可达即可
+- capability_id: cap.ovbill.org-costing
+  revision: 1
+  status: active
+  slug: ovbill-org-costing
+  title: 计费组织树与成本归属
+  importance: high
+  importance_rationale: 对应 task-12/13，钱算给谁的结构基础；搬移权限二分与回溯选设备是两个书内全大写级边界，误操作不可逆
+  one_liner: 成本中心从 OXE 同步（cc=255 落根）；分机改归属只能回 OXE 配置；剪贴无历史、复制留灰条目；回溯选设备不选用户
+  intents:
+  - 搭建计费组织树
+  - 搬移成本中心
+  - 历史票据归属修正
+  - ToolsOmniVista 组织更新
+  - organization tree management
+  keywords:
+  - 组织树
+  - organization tree
+  - cost center
+  - 成本中心
+  - 'cc=255'
+  - Default cost center
+  - 默认成本中心
+  - 灰色条目
+  - inactive
+  - cut and paste
+  - copy and paste
+  - Assign earlier creation date
+  - ToolsOmniVista
+  - 回溯
+  also_read:
+  - ovbill-confidentiality
+  card: cards/ovbill-org-costing.md
+  frontmatter:
+    description: '计费组织树与成本归属：组织树对象模型与自动更新来源、默认成本中心、搬移权限矩阵（分机只能经 OXE 配置改、中继组可组织图剪贴）、剪贴/复制语义（灰
+      色历史条目）、Assign earlier creation date 回溯（只能选设备）、ToolsOmniVista 全局组织更新（强制停服务、删除非活动实体）。当用户要搭树、搬部门、修历史归属时使用。不适用
+      于掩码与可见域（机密控制能力）。'
+    tags:
+    - procedure
+    - organization
+    - costing
+    - omnivista-8770
+  source_evidence:
+  - source_id: src-8770xte201en
+  - location: p251-295
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-12/13，组织变更窗口的重活
+- capability_id: cap.ovbill.confidentiality
+  revision: 1
+  status: active
+  slug: ovbill-confidentiality
+  title: 计费机密控制三道闸（掩码、解密、可见域）
+  importance: high
+  importance_rationale: 对应 task-14/16，合规刚需；grouped 报表只认 Default 档案与开域后只见根是两个高频误判点
+  one_liner: 掩码档案按树继承遮显示、解密须 Mask data access 组口令且改组要关 Reports、可见域开启后未配域只见根且群组域无效
+  intents:
+  - 配置号码与成本遮蔽
+  - 开通解密报表权限
+  - 隔离管理员可见范围
+  - mask profile and visibility domain
+  keywords:
+  - 掩码
+  - mask profile
+  - Default
+  - 遮蔽
+  - 解密
+  - unmask
+  - Mask data access
+  - grouped
+  - 可见域
+  - visibility domain
+  - AdminNmc
+  - AdminBrest
+  - 域继承
+  also_read:
+  - ovbill-org-costing
+  - ovbill-reporting
+  card: cards/ovbill-confidentiality.md
+  frontmatter:
+    description: '计费机密控制三道闸：掩码档案（按呼叫类别遮显示、Default 档案不可删、grouped 报表只认 Default 的两个 group 类别）、解密权限（Mask data
+      access 组、生成时索口令、改组须关 Reports 应用）、可见域（开启须重启计费应用、未配域只见根、域按父继承、群组域无效）。当用户要做合规遮蔽、控解密、分管理员视图时使用。OXE
+      侧已遮号码 8770 无法还原。'
+    tags:
+    - procedure
+    - security
+    - compliance
+    - omnivista-8770
+  source_evidence:
+  - source_id: src-8770xte201en
+  - location: p296-357
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-14/16，合规红线
+- capability_id: cap.ovbill.cost-profile
+  revision: 1
+  status: active
+  slug: ovbill-cost-profile
+  title: 成本档案（发票价与订阅费）
+  importance: medium
+  importance_rationale: 对应 task-15，内部再计费/加价场景；常在组织树与资费上下文中被连带触发，订阅次月起计口径是客诉点
+  one_liner: 发票价=总成本线性或百分比调整（+10% 即 A=1.1 或 A=10）；订阅票日/周日/月一，月订阅次月 1 日起计
+  intents:
+  - 配置发票加价或折扣
+  - 配置设备订阅费
+  - 订阅计费口径解释
+  - cost profile configuration
+  keywords:
+  - cost profile
+  - 成本档案
+  - 发票价
+  - invoiced cost
+  - 加价
+  - 折扣
+  - subscription
+  - 订阅费
+  - Fixed Cost
+  - Variable cost
+  - 次月起计
+  - '00:00:00'
+  card: cards/ovbill-cost-profile.md
+  frontmatter:
+    description: '成本档案：Invoiced cost w/o tax 页签对总成本做线性 Ax+B 或百分比调整（换算表 +10% 与 +5%+0.1€）、Services/Station subscription
+      订阅费（日/周/月出票、时间戳 00:00:00、月订阅次月 1 日起计）、Compute cost 的 Variable cost 与 Fixed Cost 更新口径。当用户要加价收订阅、解释订阅计费争议时经路由使用。运
+      营商层调价 Adjustment 属资费建模能力。'
+    tags:
+    - procedure
+    - costing
+    - subscription
+    - omnivista-8770
+  source_evidence:
+  - source_id: src-8770xte201en
+  - location: p322-340
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 单一档案配置，路由可达即可
+- capability_id: cap.ovbill.reporting
+  revision: 1
+  status: active
+  slug: ovbill-reporting
+  title: 报表生成、导出与定时
+  importance: high
+  importance_rationale: 对应 task-17，交付后运营主场景；尺寸上限与累计报表空表是两类高频交付事故
+  one_liner: 预定义报表复制到个人目录才能生成；TXT 400 行/PDF 50 页/库 100000 行上限；累计报表空表先 Total calculation 补算
+  intents:
+  - 生成与导出报表
+  - 报表邮件分发
+  - 配置定时报表
+  - report generation and export
+  keywords:
+  - 报表
+  - report
+  - Generate Report
+  - 导出
+  - export
+  - TXT
+  - PDF
+  - EXCEL
+  - mail server
+  - SMTP
+  - Schedule
+  - 定时
+  - Total calculation
+  - 累计计数器
+  - 截断
+  - '400 行'
+  - '50 页'
+  also_read:
+  - ovbill-report-design
+  card: cards/ovbill-reporting.md
+  frontmatter:
+    description: '报表应用全流程：个人目录与预定义报表复制、Generate Report 三入口、六项尺寸上限（TXT 400 行/HTML 与 PDF 与 EXCEL 各 50 页/X 轴
+      100/库 100000 行）、文件与邮件双通道导出（server:port 无空格、发件人须被认识）、累计报表空表处理（夜间计数器/Total calculation）、Schedule 定时（排除周
+      末）。当用户要出报表、发邮件、配定时、查报表空表时使用。从零造定义属报表定制能力。'
+    tags:
+    - procedure
+    - reports
+    - omnivista-8770
+  source_evidence:
+  - source_id: src-8770xte201en
+  - location: p358-383
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-17，交付可见成果
+- capability_id: cap.ovbill.report-design
+  revision: 1
+  status: active
+  slug: ovbill-report-design
+  title: 报表定制（Querytool 与 Designer）
+  importance: high
+  importance_rationale: 对应 task-18，门槛最高的交付能力；嵌套汇总切 View 与前景空白遮蔽两个版面技巧书内以"唯一办法"级别强调
+  one_liner: Querytool 管字段/Operation/过滤/hit-list，Designer 管版面/公式/图表；图表公式只能取同一视图区域字段，嵌套汇总须切 View
+  intents:
+  - 从零创建报表定义
+  - 配置分组汇总与 hit-list
+  - 报表公式与图表
+  - report customization
+  keywords:
+  - Querytool
+  - Designer
+  - Detailed
+  - Grouped
+  - Operation
+  - Sum
+  - Hit-list
+  - Generation Time Filter
+  - 公式
+  - 图表
+  - 条形图
+  - 饼图
+  - View
+  - 前景色
+  - 嵌套汇总
+  also_read:
+  - ovbill-reporting
+  card: cards/ovbill-report-design.md
+  frontmatter:
+    description: '报表定制：定义四步向导（Source/Item/Type/Template）、Querytool 字段与 Operation（Group by/Count/Total/Average）、表达式公
+      式（双币种列）、Generation Time Filter、Hit-list 限量；Designer 区域与前后缀/小数位、图表六型、三条版面硬规则（同视图区域、中间层前景空白遮蔽、空表头共有字段消除）、五个练
+      习模式（详细/组头/嵌套汇总/双运营商 grouped/前 3 名）。当用户要造自定义报表、做嵌套汇总与图表时使用。'
+    tags:
+    - procedure
+    - reports
+    - customization
+    - omnivista-8770
+  source_evidence:
+  - source_id: src-8770xte201en
+  - location: p384-404, p549-643
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-18，高阶交付能力
+- capability_id: cap.ovbill.voip-monitoring
+  revision: 1
+  status: active
+  slug: ovbill-voip-monitoring
+  title: VoIP 性能监控（IP ticket 与 KPI）
+  importance: high
+  importance_rationale: 对应 task-19，语音质量量化刚需；报告空表的呼叫路径根因与三阈值口径是现场最常问的两组问题
+  one_liner: 每段 IP 通话出 IP ticket；KPI 默认时延大于 150ms、丢包大于 3%、BFI Burst 大于 5%；报告有数的前提是话务走被监控承载段
+  intents:
+  - 配置 VoIP 质量监控
+  - 解读 VoIP 质量报告
+  - 排查 VoIP 报告空表
+  - voip performance monitoring
+  keywords:
+  - VoIP
+  - IP ticket
+  - IP.LIS
+  - SIP.LIS
+  - 时延
+  - '150ms'
+  - 丢包
+  - packet loss
+  - BFI
+  - BFI Burst
+  - MOS
+  - KPI
+  - ipview
+  - VoipParameters
+  - 质量报告
+  - 清理
+  also_read:
+  - ovbill-web-performance
+  card: cards/ovbill-voip-monitoring.md
+  frontmatter:
+    description: 'VoIP 性能监控：IP ticket 分段出票机制与票面字段、三个 KPI 默认阈值（150ms/3%/5% 与 BFI 大于 3% 才统计 burst）、VoipParameters
+      与编解码子目录参数、五项清理周期（小时 45 天到票据 15 天）、ipview 维护、预定义质量报告与空表排障（呼叫路径前提）。当用户要量化语音质量、配 KPI、查 VoIP 报告为空时使用。WBM 实时仪
+      表盘属 Web Performance 能力。'
+    tags:
+    - procedure
+    - voip
+    - monitoring
+    - omnivista-8770
+  source_evidence:
+  - source_id: src-8770xte201en
+  - location: p405-428
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-19，性能四件套之首
+- capability_id: cap.ovbill.traffic-tracking
+  revision: 1
+  status: active
+  slug: ovbill-traffic-tracking
+  title: 流量分析与 Tracking 告警
+  importance: medium
+  importance_rationale: 对应 task-20/21，部署后低频配置；PtpType ALL 出厂差距与 Tracking 覆盖面（Reset Profile）是漏数据的两大根因
+  one_liner: pmm 半小时计数器作流量报表；默认只算话务台/中继组须改 PtpType ALL；Tracking 阈值档案挂实体类型，变化率按移动平均默认 30/3/1 期
+  intents:
+  - 配置话务量报表
+  - 开通被叫号与终端话务统计
+  - 配置阈值告警与邮件
+  - tracking profile and alerts
+  keywords:
+  - traffic analysis
+  - 流量分析
+  - pmm
+  - pmm.lis
+  - 中继组
+  - 话务台
+  - T1
+  - T2
+  - 阈值
+  - PtpType
+  - Tracking
+  - 变化率
+  - moving average
+  - Reset Profile
+  - 告警
+  - 邮件
+  also_read:
+  - ovbill-ticket-pipeline
+  card: cards/ovbill-traffic-tracking.md
+  frontmatter:
+    description: '流量分析与 Tracking：pmm/inf 文件体系与六类观察对象、双阈值组（OXE 话务台阈值与 8770 订户阈值 T1/T2 互不相干）、Scheduler 任务
+      PtpType ALL 改造、计数器保留期（10-1488 个半小时）；Tracking 档案（阈值+动作）、变化率公式与移动平均默认期（日 30/月 3/年 1）、Default Tracking 与
+      Reset Profile 覆盖面。当用户要话务报表、扩容依据、超限告警邮件时经路由使用。仅支持 OXE。'
+    tags:
+    - procedure
+    - traffic
+    - tracking
+    - omnivista-8770
+  source_evidence:
+  - source_id: src-8770xte201en
+  - location: p429-488
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 部署后配置，路由可达即可
+- capability_id: cap.ovbill.web-performance
+  revision: 1
+  status: active
+  slug: ovbill-web-performance
+  title: Web Performance 实时仪表盘
+  importance: medium
+  importance_rationale: 对应 task-22，WBM 专项部署；SNMP 配置不一致即停用监控与双侧变更窗口是独家行为规则
+  one_liner: VoIP CDR 与 OXE SNMP MIB 两条数据腿喂五大主题 widget；R5.0 MD1 起轮询可从 30 分钟缩到 5 分钟；配置不一致即告警停用
+  intents:
+  - 部署 WBM 性能仪表盘
+  - 配置 SNMPv3 采集
+  - 调优轮询与 widget
+  - web performance dashboard
+  keywords:
+  - Web Performance
+  - WBM
+  - dashboard
+  - widget
+  - SNMPv3
+  - agentV3
+  - A4400-RTM-MIB
+  - UC-DAVIS
+  - CDR
+  - RTCP-XR
+  - polling
+  - 轮询
+  - raw data
+  - MOS
+  also_read:
+  - ovbill-voip-monitoring
+  card: cards/ovbill-web-performance.md
+  frontmatter:
+    description: 'Web Performance 实时仪表盘：两条数据腿（VoIP CDR 专有与 RTCP-XR 格式、A4400-RTM-MIB 与 UC-DAVIS 双 MIB）、SNMPv3 双侧配
+      置与 snmpget 验证、R5.0 GA/MD1 轮询分界（30 分钟到 5 分钟）、五大主题与两类仪表盘、原始数据仅最后一天、widget 单参数最多 6 元素、配置不一致即告警停用监控、中继类型支持列
+      表。当用户要搭实时大屏、配 SNMP 采集、查仪表盘没数据时经路由使用。'
+    tags:
+    - procedure
+    - web
+    - snmp
+    - monitoring
+    - omnivista-8770
+  source_evidence:
+  - source_id: src-8770xte201en
+  - location: p489-517
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: WBM 专项，一次性交付动作
+- capability_id: cap.ovbill.archiving
+  revision: 1
+  status: active
+  slug: ovbill-archiving
+  title: 计费归档与恢复
+  importance: medium
+  importance_rationale: 对应 task-23，数据生命周期收尾；两个参数书写规则相反与恢复标签二选一是配错高发点
+  one_liner: 31 天归档成 archZ、再 94 天清理（最长 125 天按记录日期）；恢复选 Loaded 与 Archived 标签决定可否区分与单独清除
+  intents:
+  - 配置计费归档
+  - 恢复历史票据
+  - 定向清除恢复票
+  - accounting archiving and restore
+  keywords:
+  - 归档
+  - archive
+  - archZ
+  - Archive Delay
+  - Clean-up delay
+  - '125 天'
+  - '31 天'
+  - '94 天'
+  - 恢复
+  - restore
+  - Loaded records
+  - Archived records
+  - Record origin
+  - purge
+  - 留存
+  also_read:
+  - ovbill-org-costing
+  card: cards/ovbill-archiving.md
+  frontmatter:
+    description: '计费归档与恢复：archZ 生命周期（Archive Delay 31 不带 D、Clean-up delay 94D 必带 D、合计 125 天按记录日期清理）、归档任务范围
+      与默认路径、恢复双入口与标签二选一（Loaded records 与原始票不可区分、Archived records 打标可过滤可单独清除）、恢复重算的运营商有效期前提、Only restored
+      records 定向清除。当用户要缩库、追溯旧票、合规留存时经路由使用。125 天是机制上限非合规结论。'
+    tags:
+    - procedure
+    - archiving
+    - lifecycle
+    - omnivista-8770
+  source_evidence:
+  - source_id: src-8770xte201en
+  - location: p518-548
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 生命周期运维专项，路由可达即可

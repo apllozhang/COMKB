@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Rainbow 网络就绪核查</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Rainbow OXO Connect 集成</h2><p>Edition 13 · 251 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte001en/index.html">课程首页</a><a href="/courses/rainxte001en/digest.html">精华长文</a><a href="/courses/rainxte001en/overview.html">教书理解</a><a href="/courses/rainxte001en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte001en/skills/rbx-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte001en/skills/rbx-omc-onboarding.html">OMC 安装首次连接与 IP 规划修改</a><a href="/courses/rainxte001en/skills/rbx-pbx-onboarding.html">OXO 接入 Rainbow 与接入排障</a><a href="/courses/rainxte001en/skills/rbx-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte001en/skills/rbx-gateway-planning.html">WebRTC 网关拓扑决策与容量规划</a><a href="/courses/rainxte001en/skills/rbx-gateway-deployment.html">WebRTC 网关部署与虚拟终端配置</a><a href="/courses/rainxte001en/skills/rbx-attendant-supervision.html">Rainbow 话务台与监督组</a><a href="/courses/rainxte001en/skills/rbx-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte001en/skills/rbx-admin-tools.html">Rainbow 管理员工具（权责/企业目录/信息频道）</a><a href="/courses/rainxte001en/skills/rbx-rcc-association.html">OXO 分机关联与 RCC 模式</a><a href="/courses/rainxte001en/skills/rbx-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte001en/skills/rbx-network-readiness.html">Rainbow 网络就绪核查</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte001en/index.html">rainbow-oxo-connect（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte001en/index.html">RAINXTE001EN</a><span>/</span><span aria-current="page">Rainbow 网络就绪核查</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Rainbow 网络就绪核查</h1></div><dl><div><dt>Skill ID</dt><dd>rbx-network-readiness</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>Rainbow 网络就绪核查（网络要求文档、Rainbow Pilot 评估）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"This page contains: ... A summary of port/protocol requirements for: Rainbow collaboration, Rainbow hybrid telephony, Rainbow Hub • 2 PDF files"（p36）
+"This document details: ... Rainbow domains and associated IP addresses • Bandwidth requirements • Configuration of corporate network elements • DNS, Proxy, Firewall..."（p40）
+"RAINBOW PILOT allows you to assess your Rainbow connectivity from your location, and the capacity of a given location to handle a population of Rainbow users"（p42）</p>
+</blockquote>
+<p>出处：RAINXTE001EN p35-45。</p>
+<h2>I — 自述</h2>
+<p>上线前的网络前提核查三步：</p>
+<ol>
+<li><strong>查文档</strong>：help.openrainbow.com 的 "Check Rainbow Network Requirements" 文章——含基础设施更新流程说明、上版变更说明、三类端口/协议摘要（协作/混合话音/Hub），并附两份 PDF（Network Requirements、Health data hosting）</li>
+<li><strong>取数值</strong>：PDF 内含端口与协议清单、运行原理与流量、域名与关联 IP、带宽要求、企业网络设备（DNS/Proxy/防火墙）配置要求——生产数值唯一依据</li>
+<li><strong>跑评估</strong>：pilot.openrainbow.com——从客户现场测连通性；按协作/会议/混合话音/Hub 的用户用法配比评估站点承载规模</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>评估流程</strong>（p41-44，讲义）：书中给工具入口与用途，无分步实验；注意 Ed13 截图中部分测试分区标注 "To come"——分区随平台演进，以工具实际界面为准。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：上 Rainbow 前网络要开什么；端口清单；带宽怎么估；防火墙要放行什么；站点能带多少 Rainbow 用户；连通性测试。</p>
+<p>语言信号：网络要求 / network requirements / 端口 / ports / 防火墙 / firewall / 带宽 / bandwidth / Pilot / 连通性 / connectivity / 勘测。</p>
+<p>与相邻能力区分：接入后的连接排障 → PBX 接入能力（Webdiag 判据）；网关媒体路径配置 → 网关部署能力（TURN 在其边界）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：站点出口网络信息（出口 IP/代理/防火墙管控方）、用户规模与用法画像。拿不到防火墙管控权 → 判停先找客户网络组。</p>
+<ol>
+<li>取文档：支持站文章 + 两份 PDF（必须最新版，注意 Edxx 迭代与变更说明）。完成标准：当期版本文档在手</li>
+<li>核端口与域名：按 PDF 清单核对防火墙/DNS/代理配置。完成标准：放行清单确认或整改项列出</li>
+<li>跑 Pilot：现场测连通性 → 按用户用法配比跑容量评估。完成标准：连通性通过 + 承载结论成文</li>
+<li>留档：端口/带宽/评估结论写入交付基线。完成标准：网络就绪证据链完整</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>PDF 数值与现场设备配置冲突 → 以 PDF 为准提交整改，不要按现场习惯放行</li>
+<li>Pilot 某分区不可用 → 工具演进所致（To come），换等效手段或以 PDF 核查兜底，不虚构结果</li>
+<li>容量评估临界（混合话音占比高）→ 上浮通道规划并与网关规划能力联判</li>
+</ul>
+<p>输出契约：网络就绪核查单（端口/域名/带宽放行状态）+ Pilot 评估结论。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>本卡只有指针与工具，<strong>无端口/带宽具体数值</strong>：一切数值以当期《Rainbow Network Requirements》PDF 为准——这是原书明确的边界，不是本卡偷懒</li>
+<li>Rainbow Hub 仅在文档与 Pilot 口径中出现，本教材无定义（passing mention）</li>
+<li>Pilot 分区随版本演进（n03）：结论引用时注明评估日期与工具版本</li>
+<li>健康数据托管场景有专门 PDF（Health data hosting），医疗类客户必须另核</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.rbx.network-readiness · 来源：RAINXTE001EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Rainbow OXO Connect (Participant's Guide, Edition 13) | edition: Edition 13 | pages: 251 页 -->

@@ -1,0 +1,16 @@
+# 能力索引（完整版）
+
+| capability_id | 标题 | 重要度 | 意图 | 关键词 | 能力卡 |
+|---|---|---|---|---|---|
+| cap.otcad.ism-skill-matching | ISM 技能匹配与排序口径 | critical | 解释坐席分配次序；开启最久空闲优先；手算 ISM 坐席列表；ACR 容量核对；ISM skill matching；longest idle time | ISM、Cman、Copt、子列表、降级、PLTR、LIT、asm_ag_free_duration、parameters.cfg、agent buffers、20-400、21 次、5 分钟 | capabilities/otcad-ism-skill-matching.md |
+| cap.otcad.remote-pg-mutual-aid | Remote PG 分布式互助与 ABC-F 链路 | critical | 部署跨站点互助；排查 Remote PG blocked；判读 ABC-F 链路状态；mutual aid overflow | Remote PG、虚拟队列、Virtual Queue、专用 Pilot、Dedicated Pilot、互助、mutual aid、ABC-F、hybvisu、compvisu、分布门限、拒收、0-9 | capabilities/otcad-remote-pg-mutual-aid.md |
+| cap.otcad.spm-deployment | Soft Panel Manager 部署与基础设置 | critical | 安装 Soft Panel Manager；排查墙板没数据；配置日统计；SPM deployment | Soft Panel Manager、SPM、RTI Connector、FlexLM、LMTOOLS、9060、61618、CCD Filters、afe.properties、日统计、103 号包、WBI | capabilities/otcad-spm-deployment.md |
+| cap.otcad.soft-panel-manager | Soft Panel 可视化配置（视图/挂件/消息/告警） | high | 配置实时看板；配置告警视图与邮件；选择挂件类型；wallboard configuration | wallboard、墙板、视图、view、挂件、widget、Gauge、Chart、AgentWidget、Barometer、告警、alarm、displayPanel.htm、Firefox | capabilities/otcad-soft-panel-manager.md |
+| cap.otcad.ccta-ticket-analysis | CCTA 话务票据分析 | high | 分析话务票据；导出呼叫明细；排查放弃率；ticket analysis | CCTA、Ticket Analyser、票据、.Z、Importation、Ticket Tracer、结束原因、end cause、呼叫类型、ASCII、Long Ticket | capabilities/otcad-ccta-ticket-analysis.md |
+| cap.otcad.special-features | 特殊功能开关（优先转接/忙音/代接/监听/永恒整理/中继预留） | high | 配置优先转接；配置代接前缀；配置监督监听与永恒整理；中继预留计算；special features setup | 优先转接、Transfer with priority、忙音、busy tone、代接、pickup、#013、#014、监听、Supervisor Listening、永恒整理、Eternal Wrap up、Trunk limitation、劝恼 | capabilities/otcad-special-features.md |
+| cap.otcad.excel-report-customization | Excel 报表模板定制 | high | 定制报表模板；报表加图表；排查粒度缺数据；Excel report template | Excel、FormPil、Formats、General、Custom、Paste Link、粒度、granularity、Daily、Keep Excel links、图表 | capabilities/otcad-excel-report-customization.md |
+| cap.otcad.ccs-server | CCS Server 集中接入 | high | 部署 CCS Server；内部转外部切换；排查外部服务拒接；CCS server migration | CCS Server、serv_ccs、serv_ccs_on_dhs、maxCli、maxConnected、-servccs、15 客户端、120 客户端、拒接、Server Status | capabilities/otcad-ccs-server.md |
+| cap.otcad.acr-objects | ACR 对象与技能体系 | medium | 部署 ACR 矩阵对象；配置技能与呼叫档案；排查等待室阻塞；ACR waiting room setup | ACR、等待室、Waiting Room、ACR Pilot、统计 Pilot、Statistic pilot、技能域、Skill Domain、呼叫档案、Call profile、技能矩阵、blocked | capabilities/otcad-acr-objects.md |
+| cap.otcad.asm-script-advanced | ASM 脚本与 LCA 主干 | medium | 安装 ASM Script Editor；激活脚本到 Pilot；调试器抓路由轨迹；清空 ASM 记忆；ASM script debugger | ASM Script Editor、asm-se_setup、.scr、.alb、Activate、调试器、Debugger、Make call、RESELECTION_TIMEOUT、LCA、LAST_CALLED_AGENT、kill alb、option 28 | capabilities/otcad-asm-script-advanced.md |
+| cap.otcad.ccs-onboarding | CCS 安装与实验环境定稿 | medium | 安装 CCsupervision；声明 OXE；坐席软话机登录；配置 DID 翻译；CCS installation | CCsupervision、Monosite、ccs.ini、Navigator、Master PABX、MicroSIP、IPDSP、SIP Ext. Gateway、pbxN、DID 翻译、33210N41000 | capabilities/otcad-ccs-onboarding.md |
+| cap.otcad.acd-maintenance | ACD 维护命令箱 | medium | 查询 ACD 对象清单；判读链路状态；核查 ASM 记忆；核对许可包；ACD maintenance commands | adm_acd、agacd、hybvisu、compvisu、pildstctx、pgctx、acdsup、spadmin、-salb、-servccs、DATA_TRANS、Dump TERMINALS | capabilities/otcad-acd-maintenance.md |

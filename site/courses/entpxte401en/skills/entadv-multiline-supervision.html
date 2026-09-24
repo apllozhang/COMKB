@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>多线监督与经理助理组</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Advanced</h2><p>— · 543 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte401en/index.html">课程首页</a><a href="/courses/entpxte401en/digest.html">精华长文</a><a href="/courses/entpxte401en/overview.html">教书理解</a><a href="/courses/entpxte401en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte401en/skills/entadv-ssh-trust-foundation.html">SSH 免密分发体系</a><a href="/courses/entpxte401en/skills/entadv-cs-redundancy.html">CS 冗余部署与切换维护</a><a href="/courses/entpxte401en/skills/entadv-ip-domain-pcs.html">IP 域与 PCS 域级生存性</a><a href="/courses/entpxte401en/skills/entadv-overflow-rerouting.html">公私网双向溢出与重路由</a><a href="/courses/entpxte401en/skills/entadv-direct-ip-link.html">Direct IP Link 全 IP 组网</a><a href="/courses/entpxte401en/skills/entadv-audit-broadcast.html">Audit 与 Broadcast 数据一致性</a><a href="/courses/entpxte401en/skills/entadv-multiline-supervision.html">多线监督与经理助理组</a><a href="/courses/entpxte401en/skills/entadv-hunting-pickup-speeddial.html">寻线代接组与速拨编号体系</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte401en/skills/entadv-desk-sharing.html">办公桌共享（DSS/DSU）</a><a href="/courses/entpxte401en/skills/entadv-multi-device.html">多设备用户与 Twinset</a><a href="/courses/entpxte401en/skills/entadv-lab-pod-baseline.html">实验/交付前置环境基线</a><a href="/courses/entpxte401en/skills/entadv-cli-toolbox.html">维护命令与事件/许可速查</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte401en/index.html">oxe-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte401en/index.html">ENTPXTE401EN</a><span>/</span><span aria-current="page">多线监督与经理助理组</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>多线监督与经理助理组</h1></div><dl><div><dt>Skill ID</dt><dd>entadv-multiline-supervision</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>多线与监督键、经理/助理组（Multiline、Supervision、Screening）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"By default, all sets are mono-line • Except SIP extensions"（p257）
+"A set can be supervised by 20 sets maximum • The maximum number of supervisors for a same voice mailbox is 100 (20 in a network configuration) … The total number of supervision keys in the system is 15000"（p265）
+"RESTRICTION: AN ATTENDANT OR A HUNTING GROUP CAN'T BE SUPERVISED"（p262）
+"1000 tables usable with screening or unscreening keys • 16 parameters in each table"（p278）
+"It is not possible to activate a screening and an unscreening key at the same time"（p279）</p>
+</blockquote>
+<p>出处：ENTPXTE401EN p255-295。</p>
+<h2>I — 自述</h2>
+<p>话机级业务的公共地基是 Multiline：一切监督类特性（监督键、经理/助理、寻线组多线行为、多设备）都要求 multiline。</p>
+<ol>
+<li><strong>两种形态</strong>：Multi-keys=一号多键（多路并发、一线忙来话落下一空闲键）；Multi-MCDU=多号一机（主号+附加号各占键，附加号须为编号计划空闲号，键数无上限）；出厂全部单线（SIP 扩展除外）</li>
+<li><strong>键属性</strong>：Automatic Incoming/Outgoing Seizure（默认 True，摘机自动接振铃线/选空闲线）；选择性呼转可叠加线选前缀（20 主线/21 副线）按线转发</li>
+<li><strong>监督键</strong>：显示被监督方状态（部分忙/全忙/空闲/振铃/退服）、振铃时按键代接、平时按键直呼；铃型五档（No ring/Short/Long/Short/Long without Overring）；No Call=YES 只监督不直呼；可监督话机/传真/他人语音邮箱（新留言通知+凭密码代查）</li>
+<li><strong>四条硬上限</strong>：每话机至多 20 个监督者；同一邮箱至多 100（组网 20）个监督者；全网 15000 把监督键；一话机上同号只能一把键；话务台与寻线组不可被监督</li>
+<li><strong>经理/助理组</strong>：两台 multiline 话机经 Assistant Call（经理侧）/Manager Call（助理侧自动生成）构成，兼直呼与监督；Screening（仅表内来话转助理）与 Unscreening（仅表内来话留经理）互斥切换；过滤表 1000 张×16 参数（内部号/中继组/缩位号/话务台/T2 可混装）</li>
+<li><strong>四个辅助键</strong>：Screening Supervision（助理远程开关经理过滤、LED 同步）、Assistant Away（助理报离开暂停过滤，每助理仅一键）、Routing Assistant（溢出助理顶班，每经理一名、可服务多经理、不得已是其助理）、Manager Mail（预设短信互发）；Selective Filtering 只转经理主线来话</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>多线与监督键</strong>（p267-273）：</p>
+<ol>
+<li>Multi-keys：310x1 键 1/键 2 均=Multi-Line 310x1；两路来话在线间切换</li>
+<li>Multi-MCDU：310x1 键 3=Multi-Line 31101（附加号取编号计划空闲号）</li>
+<li>监督键：310x2 键 5=Set Supervision → DN=310x1、铃型五选一、No Call=NO</li>
+<li>核验：multitool 菜单 1 查多线与被监督、菜单 5 按号列监督关系（含键号）</li>
+</ol>
+<p><strong>经理/助理组</strong>（p286-295）：</p>
+<ol>
+<li>建组：经理 31002 键 5=Assistant Call → DN=31001；助理侧自动生成 Manager Call</li>
+<li>过滤表：表 1=All Trunk Groups（全部外线来话）；表 2=One Directory No.（内部 310x0）</li>
+<li>Screening 键（经理键 6 挂表 1）：公网呼入转助理；Unscreening 键（键 7 挂表 2）：内线来话留经理</li>
+<li>助理侧：Screening Supervision 远程开关经理过滤；Assistant Away 报离开；Routing Assistant 挂经理 DN 顶班</li>
+<li>核验：multitool 菜单 2 Boss/Secretary 三类清单</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：秘书/老板场景；工作组互看忙闲与代接；高管来话分流（外线转助理、内线留自己）；助理休假顶班；"为什么他看得到我的状态"；监督键承诺前的容量核算。</p>
+<p>语言信号：multiline / multi-line / 多线 / Multi-MCDU / 附加目录号 / supervision key / 监督键 / 代接 / boss / secretary / 经理助理 / screening / unscreening / filtering table / 过滤表 / away / routing assistant。</p>
+<p>与相邻能力区分：寻线组与代接组 → 组业务能力；多设备关联里的监督降级 → multi-device（路由卡）；话机型号支持面见各特性章（n50）。</p>
+<h2>S — 现场症状（工单语言）</h2>
+<p>下列说法命中本能力时优先打开本页；与「A2 未来触发」配套使用。</p>
+<ul><li>监督键摘机无反应或状态错乱</li><li>经理/助理组过滤表配错导致漏接/误拦</li><li>Multi-keys 与 Multi-MCDU 模式混用异常</li></ul>
+
+<h2>E — 可执行步骤</h2>
+<p>输入契约：话机型号与键数、编号计划余量（附加号）、经理-助理-溢出助理矩阵、COS。被监督方是话务台/寻线组 → 判停（不可监督）。</p>
+<ol>
+<li>建 multiline：按形态配 Multi-keys/Multi-MCDU（附加号取空闲号）。完成标准：multitool 显示 Multiline=Yes</li>
+<li>配监督键：选被监督对象、铃型、No Call。完成标准：状态可见、代接与直呼行为符合配置</li>
+<li>建经理/助理组：键对生成 + 过滤表（≤16 参数/表）+ Screening/Unscreening。完成标准：两类来话分流实测通过</li>
+<li>配辅助键：Screening Supervision/Away/Routing Assistant/Manager Mail。完成标准：顶班链路演练通过（away → screening → 溢出助理接起）</li>
+<li>容量复核：对照 20/100（网络 20）/15000 三条上限与一号一键规则。完成标准：方案数字不超限</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>需求要"全员互监" → 停，对照硬上限拆方案</li>
+<li>经理/助理建键失败 → 先核双方至少一把 multiline 键（前置硬性）</li>
+<li>screening 与 unscreening 同时想激活 → 停，机制互斥，改过滤表内容解决</li>
+<li>监督对象是话务台/寻线组 → 不可监督（大写限制），找替代（组内监督/话务台自身视图）</li>
+</ul>
+<p>输出契约：multitool 核验通过的多线/监督/经理助理配置 + 过滤表清单 + 上限核算表。</p>
+<h2>V — 验收与回退</h2>
+<p><strong>验收（DoD，全部满足才收工）</strong></p>
+<ul><li>监督键五档铃型与四条硬上限符合设计</li><li>经理助理组对、screening/unscreening 互斥正确</li><li>过滤表 1000×16 规划未越界</li></ul>
+<p><strong>回退 / 判停</strong></p>
+<ul><li>键位配错：按矩阵表回退对应键配置，分机重启后复测</li><li>过滤表误配：先停用有问题的过滤表，再按清单重建</li></ul>
+
+<h2>B — 边界</h2>
+<ul>
+<li>监督者必须 multiline 且至少一把主号多线键（p262）</li>
+<li>Selective Filtering 只转经理主线，副号来话仍进经理（p280）</li>
+<li>定时器/铃型体验随话机型号差异，混机型按最弱机型承诺（n50）</li>
+<li>multitool 支持 -l 语言选项；查询类命令不影响业务</li>
+<li>寻线组成员的 multiline 行为另受组参数控制（No Multi-line call in PCX，见组业务能力）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte401en/skills/entadv-hunting-pickup-speeddial.html">寻线代接组与速拨编号体系</a></p><p class="source-page">能力 ID：cap.entadv.multiline-supervision · 来源：ENTPXTE401EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Advanced (Participant's Guide, Edition 13) | edition: — | pages: 543 页 -->

@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>整理摘要 · ENTPXTE402EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 系统装载</h2><p>Edition 12 · 415 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte402en/index.html">课程首页</a><a href="/courses/entpxte402en/digest.html">精华长文</a><a href="/courses/entpxte402en/overview.html">教书理解</a><a href="/courses/entpxte402en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte402en/skills/entload-sot-installation.html">S.O.T. 部署工具的安装、初始化、更新与 Template Factory</a><a href="/courses/entpxte402en/skills/entload-cs-loading.html">OXE 呼叫服务器单版本全加载与加载后初始化</a><a href="/courses/entpxte402en/skills/entload-patch-management.html">OXE 多版本加载、分区切换与静态/动态补丁管理</a><a href="/courses/entpxte402en/skills/entload-oxe-v-deployment.html">OXE-V 虚拟化：平台选型、许可路径与 OXE/OMS 虚机交付</a><a href="/courses/entpxte402en/skills/entload-gas-delivery.html">GAS 通用设备服务器：硬件前置、软件加载与后安装向导</a><a href="/courses/entpxte402en/skills/entload-cloud-connect.html">Cloud Connect 云连接：网络前提、FTR 首次注册与 PIN 恢复</a><a href="/courses/entpxte402en/skills/entload-rtr-licensing.html">RTR 许可开关：资格期状态机、事件监控与 FlexLM 互斥</a><a href="/courses/entpxte402en/skills/entload-pod-licensing.html">OPEX / Purple on Demand：订阅许可、LMS 同步、panic 时间线与 C2P 转换</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte402en/skills/entload-distributor-loading.html">Easy Installation 分发器模式：无 SOT 环境的本地加载</a><a href="/courses/entpxte402en/skills/entload-sot-media.html">SOT 媒体传输与加载项目配置（公共动作）</a><a href="/courses/entpxte402en/skills/entload-gas-ops.html">GAS 日常运维：版本、备份、host 升级与 UPS</a><a href="/courses/entpxte402en/skills/entload-fleet-dashboard.html">Fleet Dashboard 云端机队服务：Inventory、Offer、远程控制台与软件更新</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte402en/index.html">oxe-loading（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte402en/index.html">ENTPXTE402EN</a><span>/</span><span aria-current="page">整理摘要</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">DIGEST</p><h1>整理摘要 — 全书精华</h1></div></header><article class="markdown-body"><h1>DIGEST — OmniPCX Enterprise 系统装载 精华长文</h1>
+<blockquote>
+<p>源：ENTPXTE402EN Edition 12（415 页）· 文档整理入库 · 2026-09-23
+定位：10 分钟建立 OXE 软件加载与云许可交付的全局认知；操作细节按需查 12 张能力卡。</p>
+</blockquote>
+<h2>一、这套东西是什么</h2>
+<p>OXE（OmniPCX Enterprise）是 ALE 的企业级呼叫服务器。整本教材解决一件事：<strong>把 OXE 的软件装上去、把云连起来、把许可管起来</strong>。主线工具是 S.O.T.（Software Orchestration Tool）——一台自带 DHCP/FTP 服务的虚机，加载工具与加载对象永远是两台机器。</p>
+<p>三个数字先记住：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>数字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一次一个</td>
+<td>S.O.T. 同一时刻只允许一个部署任务</td>
+</tr>
+<tr>
+<td>30 天</td>
+<td>RTR 资格期：OK 加 0.5 天、NOK 减 1 天，归零系统逐渐锁死</td>
+</tr>
+<tr>
+<td>每 4 小时</td>
+<td>OXE 与云端 LMS 的许可对账周期；lms/oxe 计数不一致即 panic</td>
+</tr>
+</tbody>
+</table></div>
+<h2>二、工具与加载主线</h2>
+<ul>
+<li><strong>S.O.T. 四维定形</strong>：交付形态（ISO 内含 OVA）× 运行模式（Standalone 加物理机 / Hosted 加虚机）× 配置（default / Template Factory 含降级模式）× 工作模式（Easy 向导 / Expert 独立管理）。首连强制改密+口令短语；更新仅限同主版本 zip+MD5。</li>
+<li><strong>单版本全加载</strong>：网络引导（BOOTP/DHCP）取 startup.txt，经 TFTP 下载 Linux RAM，再 FTP 自动安装。空盘才自动装；已装盘必须 grubboot ETHER 或 BIOS 强制。"completed" 只是软件就位——角色寻址、许可、密码、国家码是独立后置清单。</li>
+<li><strong>双分区安全模型</strong>：同一块盘装两个版本，不停话音装好、切换才重启、可回退。同基础版本走复制+补丁；跨 Linux 版本走完整加载+数据复制。</li>
+<li><strong>补丁顺序律</strong>：静态补丁停话音（active 分区装会自动重启）或装 inactive；动态补丁可热装但必须在同版本静态之后；补丁累积包含此前全部修正——装最新即得全部。动态补丁装完要 downstat d/i/t 跟完终端下载。</li>
+<li><strong>无 SOT 替代路径</strong>：客户现场不让架 SOT 时，OXE 自当分发器——媒体传 /tmpd，swinst 9-10 解包安装；全版本/静态补丁强制 inactive；Rload 解包物要手动 9-7 清理，/tmpd 源文件反而自动删。</li>
+</ul>
+<p>版本命名三套互相咬合：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>命名对象</th>
+<th>例子</th>
+<th>读法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>软件发布名</td>
+<td>N420536a</td>
+<td>N=产品线、4=线内选项（R101.1）、205=软件版本、36=静态补丁号、a=动态补丁</td>
+</tr>
+<tr>
+<td>SOT 媒体名</td>
+<td>A.B.XXX.000（ISO）/ A.B.XXX.YYY（zip）</td>
+<td>XXX 为所基于 ISO 序号，YYY 为 zip 序号</td>
+</tr>
+<tr>
+<td>siteid 全串</td>
+<td>R101.1-n4.205-36-a-fr-c83</td>
+<td>业务标识-交付-静态补丁-动态补丁-国家-CPU 类型</td>
+</tr>
+</tbody>
+</table></div>
+<h2>三、两种现代承载形态</h2>
+<p>虚拟化（OXE-V）与一体机（GAS）的平台与许可路径：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>形态</th>
+<th>平台</th>
+<th>许可路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OXE-V</td>
+<td>VMware ESXi 8.0/7.0</td>
+<td>FlexLM+加密狗 或 Cloud Connect</td>
+</tr>
+<tr>
+<td>OXE-V</td>
+<td>KVM（内核 ≥4.12.14 且 KVM ≥5.2）</td>
+<td>FlexLM+加密狗 或 Cloud Connect</td>
+</tr>
+<tr>
+<td>OXE-V</td>
+<td>Hyper-V 2022/2019/2016、Nutanix AHV、AWS</td>
+<td>仅 Cloud Connect（无 USB 重定向、无 FlexLM 虚机）</td>
+</tr>
+<tr>
+<td>GAS</td>
+<td>BP 自备硬件，Rocky+KVM 打包</td>
+<td>服务器 ALU-ID 本地 FlexLM 或 Cloud Connect ID</td>
+</tr>
+</tbody>
+</table></div>
+<p>关键容量数字：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>数字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>500/3000/7000/15000</td>
+<td>OXE VM 规格模板四档（按用户数）</td>
+</tr>
+<tr>
+<td>120 通道 / 240 台</td>
+<td>每 OMS 的 VoIP 通道数 / 每 OXE 最多 OMS 台数（Lock 385/384）</td>
+</tr>
+<tr>
+<td>50 并发 / 7000 用户</td>
+<td>GAS 内嵌 WebRTC 网关上限 / 超过必须外部网关</td>
+</tr>
+<tr>
+<td>4 核 2.8GHz 8GB 360GB</td>
+<td>GAS 满配（OXE+OMS+WebRTC）最低前置；只认硬件 RAID</td>
+</tr>
+</tbody>
+</table></div>
+<p>GAS 后安装向导六段：国家码、OXE 参数（含信任主机 CSV）、冗余形态、可选组件、WebRTC GW 参数（RAINBOW_PBXID 必须用 Rainbow 云正式值）、许可（FlexLM .ice 加 OXE swk）。改 FlexLM 配置后 OXE 必须重启。</p>
+<h2>四、云连接：FTR 与 RTR</h2>
+<ul>
+<li><strong>零改动入云</strong>：OXE 出站主动连 connect2.opentouch.com——443 常驻 XMPP/WSS + 80 按需 SOCKS5 + 53 DNS；TLS 1.2；KeepAlive 默认 90 秒（防火墙掐空闲会话就调它）。</li>
+<li><strong>连通性验证</strong>：checkCloudConfig.sh 依次测 DNS 解析、443 证书链、SOCKS5 80——后两项打印 "Success !!" 为过关。</li>
+<li><strong>FTR 门禁</strong>：swk 许可含 CCSID + 电话应用已启动 + 连通全绿。新装机自动注册（每 4 小时重试、失败发 6214）；备机严禁做 FTR（凭证靠克隆同步）；PCS 不跑云服务。</li>
+<li><strong>panic 唯一出路</strong>：RTR 归零或 Duplicated 时，向 helpdesk 申请 6 位 PIN（5 天有效、不落盘），CCTool 在线重置全部云配置并重注册。</li>
+<li><strong>Duplicated 陷阱</strong>：克隆虚机会把 CC 身份一起复制，两台同 ID 系统同时扣资格期；PIN 生成会移除两侧记录，只有用 PIN 的系统活下来。</li>
+</ul>
+<p>RTR 状态判读：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Fleet Dashboard 状态</th>
+<th>判据</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connected</td>
+<td>24h 内有连接或剩 29-28 天</td>
+<td>正常</td>
+</tr>
+<tr>
+<td>Qualifying</td>
+<td>超 24h 无连接且 27-10 天</td>
+<td>27、20 天各一封邮件</td>
+</tr>
+<tr>
+<td>Soon Blocked</td>
+<td>剩 9-1 天</td>
+<td>每日邮件，立即修网络</td>
+</tr>
+<tr>
+<td>Blocked-Panic</td>
+<td>剩 0 天</td>
+<td>PIN 恢复</td>
+</tr>
+<tr>
+<td>Duplicated</td>
+<td>同 ID 双系统</td>
+<td>两侧同扣，立即 PIN</td>
+</tr>
+</tbody>
+</table></div>
+<h2>五、OPEX / Purple on Demand：许可从文件变成云池</h2>
+<ul>
+<li><strong>开通三件套</strong>：swk 含 CCSID、lock 431=1、装完重启 OXE；spadmin 核 OPEX Flag=1。lock 431 打开后旧 CAPEX 锁全部失效（仅 87/165 版本锁例外）。</li>
+<li><strong>三种消耗类型</strong>：</li>
+</ul>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>消耗类型</th>
+<th>触发点</th>
+<th>适用订阅</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unitary</td>
+<td>创建即耗，无余量拒建</td>
+<td>Softphone、API Telephony、VNA、VNA Broadcast</td>
+</tr>
+<tr>
+<td>On activation</td>
+<td>激活才耗、停用腾挪</td>
+<td>仅 Voice Enterprise 与 Room</td>
+</tr>
+<tr>
+<td>By threshold</td>
+<td>加阈值才要许可</td>
+<td>4059 话务台（0-1000）、ACD（0-2800）、DR-Link（0-15000）、VAA、OPR</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>对账判据</strong>：spadmin 11 四列读法——中间 lms/oxe 两列必须一致，不一致即 panic；每 4 小时自动对账，LMS 失联发 654、连续 30 天进 panic。</li>
+<li><strong>panic 时间线</strong>：超订 15 天后随机停用空闲用户、45 天后全停；LMS 失联超 30 天则 15 天后就执行最狠档。Softphone 超订始终不自动处置。</li>
+<li><strong>许可映射先对再建</strong>：软话机双份（Voice Enterprise+Softphone）；DSU/DSS 办公共享两份；客房按客人管理双份 Room；tandem 副机不占许可。</li>
+<li><strong>C2P 转换</strong>：五步流程下单即定局；C2P 件号 3EYxxxxxMA（PoD 为 3EYxxxxxAA）；排除 OPR、ALE Connect、Selfcare、VNA、API Management。</li>
+<li><strong>下载入口</strong>：MyPortal 的 Asset &amp; service manager——项目状态必须 Active，Pending 是商务侧未激活，别反复重试下载。</li>
+</ul>
+<h2>六、交付红线与速查卡</h2>
+<p>四条红线：</p>
+<ol>
+<li>教材全部密码/账号/网段是实验值（Superuser2580* 一类），上生产必须换；aging=0 触发 CIS 基线警告</li>
+<li>"completed" 不等于交付完成——角色寻址、许可恢复、业务配置（用户/路由）是独立后置清单，业务配置指向 Starter 课程</li>
+<li>FlexLM 与 RTR 二选一要在设计阶段定死；改 RTR/FlexLM 参数都要重启</li>
+<li>版本演进以书外权威文档为准：TBE043（虚拟化）、TC3138（GAS 安装）、TC3104en-Ed08（N3 迁移）、TC2456（SOT 兼容）</li>
+</ol>
+<p>速查卡：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>要做的事</th>
+<th>去哪张能力卡</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>装/更新 SOT、建虚机模板</td>
+<td>entload-sot-installation</td>
+</tr>
+<tr>
+<td>全新装 OXE、加载后初始化</td>
+<td>entload-cs-loading</td>
+</tr>
+<tr>
+<td>升级、打补丁、切分区、回退</td>
+<td>entload-patch-management</td>
+</tr>
+<tr>
+<td>选虚拟化平台、装 OXE/OMS 虚机</td>
+<td>entload-oxe-v-deployment</td>
+</tr>
+<tr>
+<td>装 GAS、后安装向导、FlexLM</td>
+<td>entload-gas-delivery</td>
+</tr>
+<tr>
+<td>连云、FTR、PIN 恢复</td>
+<td>entload-cloud-connect</td>
+</tr>
+<tr>
+<td>RTR 状态、资格期、Duplicated</td>
+<td>entload-rtr-licensing</td>
+</tr>
+<tr>
+<td>OPEX 开通、LMS 对账、C2P</td>
+<td>entload-pod-licensing</td>
+</tr>
+<tr>
+<td>分发器模式/SOT 传媒体/GAS 运维/云端机队服务</td>
+<td>路由入口（oxe-loading-router）</td>
+</tr>
+</tbody>
+</table></div>
+<h2>版权</h2>
+<ul>
+<li>本精华长文为 ALE Training Services《OmniPCX Enterprise — 系统装载》（ENTPXTE402EN Edition 12）的内部学习整理，仅供内部学习使用；教材版权归 ALE Training Services 所有。</li>
+</ul></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — 系统装载 (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 415 页 -->

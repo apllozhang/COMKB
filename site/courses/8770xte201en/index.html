@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OmniVista 8770 · 计费与性能管理</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 计费与性能管理</h2><p>Edition 45 · 650 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte201en/index.html">课程首页</a><a href="/courses/8770xte201en/digest.html">精华长文</a><a href="/courses/8770xte201en/overview.html">教书理解</a><a href="/courses/8770xte201en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte201en/skills/ovbill-node-onboarding.html">OXE 纳管与 SIP 中继对接</a><a href="/courses/8770xte201en/skills/ovbill-ticket-pipeline.html">计费票据管道（出票、回收、加载过滤）</a><a href="/courses/8770xte201en/skills/ovbill-tariff-costing.html">运营商资费建模与成本计算</a><a href="/courses/8770xte201en/skills/ovbill-org-costing.html">计费组织树与成本归属</a><a href="/courses/8770xte201en/skills/ovbill-confidentiality.html">计费机密控制三道闸（掩码、解密、可见域）</a><a href="/courses/8770xte201en/skills/ovbill-reporting.html">报表生成、导出与定时</a><a href="/courses/8770xte201en/skills/ovbill-report-design.html">报表定制（Querytool 与 Designer）</a><a href="/courses/8770xte201en/skills/ovbill-voip-monitoring.html">VoIP 性能监控（IP ticket 与 KPI）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte201en/skills/ovbill-codebook-migration.html">Code Book 导出与导入</a><a href="/courses/8770xte201en/skills/ovbill-cost-profile.html">成本档案（发票价与订阅费）</a><a href="/courses/8770xte201en/skills/ovbill-traffic-tracking.html">流量分析与 Tracking 告警</a><a href="/courses/8770xte201en/skills/ovbill-web-performance.html">Web Performance 实时仪表盘</a><a href="/courses/8770xte201en/skills/ovbill-archiving.html">计费归档与恢复</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte201en/index.html">omnivista-billing-performance（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/communications/index.html">通信产品线</a><span>/</span><span aria-current="page">8770XTE201EN</span></nav>
+
+    <header class="course-intro"><p class="eyebrow">8770XTE201EN</p><h1>OmniVista 8770 · 计费与性能管理</h1>
+    <p>Edition 45 · 650 页 · 文档整理入库（13 个知识单元）</p>
+    <div class="chips"><span>Edition 45</span><span>650 页</span><span>13 个能力单元</span><span>1 个已安装技能</span></div></header>
+    
+    <section><div class="section-heading"><div><p class="eyebrow">EXECUTABLE KNOWLEDGE</p><h2>知识单元</h2></div></div>
+      <div class="skill-groups"><section><h3>核心能力</h3><div><a href="/courses/8770xte201en/skills/ovbill-node-onboarding.html"><b>OXE 纳管与 SIP 中继对接</b><code>ovbill-node-onboarding</code><span>先在 OXE 核 siteid/SSH/信任主机，再按 网络号×100+节点号 声明节点并同步验证；SIP 模拟器按 POD 配 pbxN 与 DID 翻译</span></a><a href="/courses/8770xte201en/skills/ovbill-ticket-pipeline.html"><b>计费票据管道（出票、回收、加载过滤）</b><code>ovbill-ticket-pipeline</code><span>OXE 缓冲 500 条或 90 分钟落盘成 TAX 与 ACCOUNT.LIS，8770 对比索引 FTP 增量取回、过五道加载闸入库；FTP 用户 adfexc 禁改</span></a><a href="/courses/8770xte201en/skills/ovbill-tariff-costing.html"><b>运营商资费建模与成本计算</b><code>ovbill-tariff-costing</code><span>Period 下的 Calendar/Region/Tariff/Direction 五件套建模，exact/round/pulse 公式族算价；改配置必须 Compute cost（Force）重算存量</span></a><a href="/courses/8770xte201en/skills/ovbill-org-costing.html"><b>计费组织树与成本归属</b><code>ovbill-org-costing</code><span>成本中心从 OXE 同步（cc=255 落根）；分机改归属只能回 OXE 配置；剪贴无历史、复制留灰条目；回溯选设备不选用户</span></a><a href="/courses/8770xte201en/skills/ovbill-confidentiality.html"><b>计费机密控制三道闸（掩码、解密、可见域）</b><code>ovbill-confidentiality</code><span>掩码档案按树继承遮显示、解密须 Mask data access 组口令且改组要关 Reports、可见域开启后未配域只见根且群组域无效</span></a><a href="/courses/8770xte201en/skills/ovbill-reporting.html"><b>报表生成、导出与定时</b><code>ovbill-reporting</code><span>预定义报表复制到个人目录才能生成；TXT 400 行/PDF 50 页/库 100000 行上限；累计报表空表先 Total calculation 补算</span></a><a href="/courses/8770xte201en/skills/ovbill-report-design.html"><b>报表定制（Querytool 与 Designer）</b><code>ovbill-report-design</code><span>Querytool 管字段/Operation/过滤/hit-list，Designer 管版面/公式/图表；图表公式只能取同一视图区域字段，嵌套汇总须切 View</span></a><a href="/courses/8770xte201en/skills/ovbill-voip-monitoring.html"><b>VoIP 性能监控（IP ticket 与 KPI）</b><code>ovbill-voip-monitoring</code><span>每段 IP 通话出 IP ticket；KPI 默认时延大于 150ms、丢包大于 3%、BFI Burst 大于 5%；报告有数的前提是话务走被监控承载段</span></a></div></section><section><h3>路由能力</h3><div><a href="/courses/8770xte201en/skills/ovbill-codebook-migration.html"><b>Code Book 导出与导入</b><code>ovbill-codebook-migration</code><span>十种文本文件 @表头/Tab 分隔/%注释；导出两次才完整；.itl 的 Node 必须等于目标机声明名；改 EFFECT_DATE 导入等于新增周期</span></a><a href="/courses/8770xte201en/skills/ovbill-cost-profile.html"><b>成本档案（发票价与订阅费）</b><code>ovbill-cost-profile</code><span>发票价=总成本线性或百分比调整（+10% 即 A=1.1 或 A=10）；订阅票日/周日/月一，月订阅次月 1 日起计</span></a><a href="/courses/8770xte201en/skills/ovbill-traffic-tracking.html"><b>流量分析与 Tracking 告警</b><code>ovbill-traffic-tracking</code><span>pmm 半小时计数器作流量报表；默认只算话务台/中继组须改 PtpType ALL；Tracking 阈值档案挂实体类型，变化率按移动平均默认 30/3/1 期</span></a><a href="/courses/8770xte201en/skills/ovbill-web-performance.html"><b>Web Performance 实时仪表盘</b><code>ovbill-web-performance</code><span>VoIP CDR 与 OXE SNMP MIB 两条数据腿喂五大主题 widget；R5.0 MD1 起轮询可从 30 分钟缩到 5 分钟；配置不一致即告警停用</span></a><a href="/courses/8770xte201en/skills/ovbill-archiving.html"><b>计费归档与恢复</b><code>ovbill-archiving</code><span>31 天归档成 archZ、再 94 天清理（最长 125 天按记录日期）；恢复选 Loaded 与 Archived 标签决定可否区分与单独清除</span></a></div></section></div>
+    </section>
+    <section class="reading-links"><h2>课程全景资料</h2><a href="/courses/8770xte201en/digest.html">精华长文 DIGEST</a><a href="/courses/8770xte201en/overview.html">教书理解 BOOK_OVERVIEW</a><a href="/courses/8770xte201en/glossary.html">术语词典</a></section>
+
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 R5.2 Accounting and Performance Administration (Participant Guide, Edition 45) | edition: Edition 45 | pages: 650 页 -->

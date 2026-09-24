@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OXO 分机关联与 RCC 模式</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Rainbow OXO Connect 集成</h2><p>Edition 13 · 251 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte001en/index.html">课程首页</a><a href="/courses/rainxte001en/digest.html">精华长文</a><a href="/courses/rainxte001en/overview.html">教书理解</a><a href="/courses/rainxte001en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte001en/skills/rbx-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte001en/skills/rbx-omc-onboarding.html">OMC 安装首次连接与 IP 规划修改</a><a href="/courses/rainxte001en/skills/rbx-pbx-onboarding.html">OXO 接入 Rainbow 与接入排障</a><a href="/courses/rainxte001en/skills/rbx-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte001en/skills/rbx-gateway-planning.html">WebRTC 网关拓扑决策与容量规划</a><a href="/courses/rainxte001en/skills/rbx-gateway-deployment.html">WebRTC 网关部署与虚拟终端配置</a><a href="/courses/rainxte001en/skills/rbx-attendant-supervision.html">Rainbow 话务台与监督组</a><a href="/courses/rainxte001en/skills/rbx-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte001en/skills/rbx-admin-tools.html">Rainbow 管理员工具（权责/企业目录/信息频道）</a><a href="/courses/rainxte001en/skills/rbx-rcc-association.html">OXO 分机关联与 RCC 模式</a><a href="/courses/rainxte001en/skills/rbx-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte001en/skills/rbx-network-readiness.html">Rainbow 网络就绪核查</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte001en/index.html">rainbow-oxo-connect（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte001en/index.html">RAINXTE001EN</a><span>/</span><span aria-current="page">OXO 分机关联与 RCC 模式</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OXO 分机关联与 RCC 模式</h1></div><dl><div><dt>Skill ID</dt><dd>rbx-rcc-association</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>OXO 分机关联与 RCC 模式（Telephony 关联、RCC 验证、Rainbow number）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Once associated, members will be able to supervise their phone from Rainbow (unhook, hang up, transfer), this is the RCC (Remote Call Control) mode. Without a WebRTC gateway, the audio will be exclusively managed on the phone."（p112）
+"It will be automatically configured in Remote Extension number by the Rainbow agent (e.g. BBB10070254106463346) when the user selects 'computer' as routing"（p115）</p>
+</blockquote>
+<p>出处：RAINXTE001EN p111-116。</p>
+<h2>I — 自述</h2>
+<p>把 OXO 分机绑定到 Rainbow 账户，四步：</p>
+<ol>
+<li><strong>验连接</strong>：OXO 侧 OMC/Cloud/Rainbow 看状态；Rainbow 侧 My company/Communication → Comm Servers 页签确认 in service</li>
+<li><strong>验话机</strong>：OMC 里核分机 in service（虚拟课堂用 IPDSP/MicroSIP 替代物理话机，需开 auto-provisioning）</li>
+<li><strong>关联</strong>：Rainbow → My company → Members → 选成员 → Telephony 页签 → Equipment 选 OXO Connect → 选分机号 → Apply（分机列表实时同步；关联后出现 Rainbow number 字段）</li>
+<li><strong>RCC 测试三问</strong>（p116）：选 Office phone 呼出通不通；来话能否在 Rainbow 接、有哪些动作；呼纯 Rainbow 用户通不通</li>
+</ol>
+<p><strong>RCC 能力边界</strong>：只能监督话机（接/挂/转），音频全在话机——无网关阶段的正常形态，不是故障。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>分机关联实验</strong>（p111-116）：</p>
+<ol>
+<li>admin 关联 100、user1 关联 101（实验口径；V-Class 用 IPDSP 104）</li>
+<li>观察新增 Rainbow number 字段（例 BBB10070254106463346）</li>
+<li>该号由 Rainbow agent 在用户选 computer 路由时自动写入 Remote Extension number</li>
+<li>执行 p116 三项 RCC 测试</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：把话机分机绑到 Rainbow；RCC 是什么；Rainbow 点接听没声音；Rainbow number 从哪来；无网关时能干什么。</p>
+<p>语言信号：分机关联 / associate extension / RCC / Remote Call Control / Telephony 页签 / Rainbow number / Office phone 路由 / 监督话机。</p>
+<p>与相邻能力区分：部署网关解锁音频见网关部署能力；Teams 场景的关联属 Teams 集成能力（同一路径的应用）；账户与订阅问题归成员生命周期。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：PBX 已接入 Rainbow、成员账户已建、目标分机清单。连接未建立 → 先回 PBX 接入能力。</p>
+<ol>
+<li>双侧验连接：OMC/Cloud/Rainbow 状态 + Rainbow 端 Comm Servers in service。完成标准：两侧均正常</li>
+<li>验话机：OMC 核分机 in service。完成标准：目标分机可用</li>
+<li>关联：Telephony 页签 → 选设备与分机 → Apply。完成标准：出现 Rainbow number 字段</li>
+<li>RCC 验证：按三问测试（呼出/呼入接听/纯 Rainbow 用户对照）。完成标准：接/挂/转可用、音频确认在话机</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>"Rainbow 接听没声音" → 先确认站点是否无网关（RCC 正常形态），不要按故障修</li>
+<li>用户报"没有 computer 路由选项/音频不落电脑" → 无网关，转网关规划/部署能力</li>
+<li>分机列表为空 → 核 PBX 连接与分机在服状态，不手工硬填</li>
+</ul>
+<p>输出契约：成员-分机关联清单 + RCC 验证记录 + Rainbow number 备查（排障用）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>Rainbow number 无手工配置入口：触发条件是用户路由切到 computer，由 Rainbow agent 自动写入（n54）——排障确认该值与路由即可</li>
+<li>"RCC 呼纯 Rainbow 用户不通"为机制推断（书中以测试问题呈现，n16）：表述时注明推断属性</li>
+<li>本卡覆盖无网关形态；网关部署后的完整路由体验属网关部署能力验证段</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.rbx.rcc-association · 来源：RAINXTE001EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Rainbow OXO Connect (Participant's Guide, Edition 13) | edition: Edition 13 | pages: 251 页 -->

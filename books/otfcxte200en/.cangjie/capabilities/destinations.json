@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.ot-fax-center",
+  "generated_at": "2026-09-23",
+  "destinations": {
+    "cap.otfax.installation-ftw": { "promoted_to": "otfax-installation-ftw" },
+    "cap.otfax.sip-channel-integration": { "promoted_to": "otfax-sip-channel-integration" },
+    "cap.otfax.mail-exchange-integration": { "promoted_to": "otfax-mail-exchange-integration" },
+    "cap.otfax.user-administration": { "promoted_to": "otfax-user-administration" },
+    "cap.otfax.profile-policy": { "promoted_to": "otfax-profile-policy" },
+    "cap.otfax.directory-routing": { "promoted_to": "otfax-directory-routing" },
+    "cap.otfax.services-operations": { "promoted_to": "otfax-services-operations" },
+    "cap.otfax.backup-upgrade": { "promoted_to": "otfax-backup-upgrade" },
+    "cap.otfax.client-coversheet": { "served_by": "ot-fax-center-router" },
+    "cap.otfax.solution-planning": { "served_by": "ot-fax-center-router" },
+    "cap.otfax.reports-monitoring": { "served_by": "ot-fax-center-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 }
+}

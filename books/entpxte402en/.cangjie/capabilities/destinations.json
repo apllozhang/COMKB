@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.oxe-loading",
+  "generated_at": "2026-09-23",
+  "entry": { "name": "oxe-loading" },
+  "router_entry": { "name": "oxe-loading-router" },
+  "destinations": {
+    "cap.entload.sot-installation": { "promoted_to": "entload-sot-installation" },
+    "cap.entload.cs-loading": { "promoted_to": "entload-cs-loading" },
+    "cap.entload.patch-management": { "promoted_to": "entload-patch-management" },
+    "cap.entload.oxe-v-deployment": { "promoted_to": "entload-oxe-v-deployment" },
+    "cap.entload.gas-delivery": { "promoted_to": "entload-gas-delivery" },
+    "cap.entload.cloud-connect": { "promoted_to": "entload-cloud-connect" },
+    "cap.entload.rtr-licensing": { "promoted_to": "entload-rtr-licensing" },
+    "cap.entload.pod-licensing": { "promoted_to": "entload-pod-licensing" },
+    "cap.entload.distributor-loading": { "served_by": "oxe-loading-router" },
+    "cap.entload.sot-media": { "served_by": "oxe-loading-router" },
+    "cap.entload.gas-ops": { "served_by": "oxe-loading-router" },
+    "cap.entload.fleet-dashboard": { "served_by": "oxe-loading-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 }
+}

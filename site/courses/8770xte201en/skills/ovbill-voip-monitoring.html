@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>VoIP 性能监控（IP ticket 与 KPI）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 计费与性能管理</h2><p>Edition 45 · 650 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte201en/index.html">课程首页</a><a href="/courses/8770xte201en/digest.html">精华长文</a><a href="/courses/8770xte201en/overview.html">教书理解</a><a href="/courses/8770xte201en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte201en/skills/ovbill-node-onboarding.html">OXE 纳管与 SIP 中继对接</a><a href="/courses/8770xte201en/skills/ovbill-ticket-pipeline.html">计费票据管道（出票、回收、加载过滤）</a><a href="/courses/8770xte201en/skills/ovbill-tariff-costing.html">运营商资费建模与成本计算</a><a href="/courses/8770xte201en/skills/ovbill-org-costing.html">计费组织树与成本归属</a><a href="/courses/8770xte201en/skills/ovbill-confidentiality.html">计费机密控制三道闸（掩码、解密、可见域）</a><a href="/courses/8770xte201en/skills/ovbill-reporting.html">报表生成、导出与定时</a><a href="/courses/8770xte201en/skills/ovbill-report-design.html">报表定制（Querytool 与 Designer）</a><a href="/courses/8770xte201en/skills/ovbill-voip-monitoring.html">VoIP 性能监控（IP ticket 与 KPI）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte201en/skills/ovbill-codebook-migration.html">Code Book 导出与导入</a><a href="/courses/8770xte201en/skills/ovbill-cost-profile.html">成本档案（发票价与订阅费）</a><a href="/courses/8770xte201en/skills/ovbill-traffic-tracking.html">流量分析与 Tracking 告警</a><a href="/courses/8770xte201en/skills/ovbill-web-performance.html">Web Performance 实时仪表盘</a><a href="/courses/8770xte201en/skills/ovbill-archiving.html">计费归档与恢复</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte201en/index.html">omnivista-billing-performance（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte201en/index.html">8770XTE201EN</a><span>/</span><span aria-current="page">VoIP 性能监控（IP ticket 与 KPI）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>VoIP 性能监控（IP ticket 与 KPI）</h1></div><dl><div><dt>Skill ID</dt><dd>ovbill-voip-monitoring</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>VoIP 性能监控（IP ticket、KPI 阈值、清理周期、质量报告与空表排障）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"A call between 2 IP devices is divided into one or more segments • IP tickets are generated at the end of each segment"（p408）
+"VoIP quality thresholds used for predefined reports • Delay &gt; Average Delay (150ms by default) • Packet loss &gt; Loss rate (3% by default) • BFI Burst &gt; Only used for the segment over 3% (5% by default)"（p414）
+"R&amp;D defined that communication is bad when there is more than 3% of BFI during communication. ­ BFI Burst: ... is the rate of segment (10s) during a communication where there is 3% of BFI."（p422）
+"To generate a report with data, all calls must external outgoing call from one pod to another."（p428）</p>
+</blockquote>
+<p>出处：8770XTE201EN p405-428。</p>
+<h2>I — 自述</h2>
+<p>VoIP 性能的量化口径：每段 IP 通话出 IP ticket（按段出票，跨节点即多段、双向各一票），票面含设备类型、源/目的 IP 与分机、压缩算法（G711/G723/G729A）、收/发/丢包数、时延表、BFI 密度。</p>
+<ul>
+<li>三个 KPI 默认阈值：平均时延 &gt;150ms；丢包率 &gt;3%；BFI Burst &gt;5%——BFI（Bad Frame Interpolation）是设备为丢包/长时延补造的帧，通信 BFI&gt;3% 才统计 burst（BFI≥3% 的 10 秒段占比）；预定义报告按这三阈值统计"超限票率"，MOS 以散点图呈现</li>
+<li>文件侧与计费同构：OXE 存 IP<strong><em>*</em>.DAT+IP.LIS 与 SIP</strong>***.DAT+SIP.LIS，同步比对后 FTP 取回为 .DAI 交加载过滤（观察对象/观察日/IP 掩码）入库；夜间汇总为累计计数器，供超阈值告警与邮件</li>
+<li>清理默认值（Preferences &gt; Accounting &gt; Accounting preference）：VoIP 小时计数器 45 天、日计数器 94 天、月计数器 15 个月、年计数器 36 个月、VoIP 票据 15 天；VoIP 报表 94 天（Reports preference）</li>
+<li>参数位置：KPI 阈值与编解码子目录参数在 Nmc &gt; Application Configuration &gt; Application Settings &gt; Accounting &gt; VoipParameters（按 G711 等分子目录：SID 帧 packet size 1，语音包 20ms 帧长 packet size 180，BFI rate 3）</li>
+<li>维护工具：ipview 逐字段查看 IP 票据（与计费 accview 同型）；OXE 侧 /usr4/account 的 IP*.DAT 与清单文件</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>VoIP 性能配置实验</strong>（p417-428，How-To 章节）：</p>
+<ol>
+<li>OXE 侧确认外部计费已开且 IP tickets 出票启用（Validate the external accounting / VoIP tickets）</li>
+<li>配置 IP 票据加载过滤（观察对象/观察日/IP 掩码）并验证取回</li>
+<li>需要立即出计数器时手工触发 IP cumulative counter calculation（平时夜间自动）</li>
+<li>Preferences 核对五项清理周期（小时 45 天/日 94 天/月 15 月/年 36 月/票据 15 天）</li>
+<li>VoipParameters 核对三阈值与编解码子目录参数（150ms/3%/5%，BFI rate 3）</li>
+<li>打一批跨 POD 出局 IP 呼叫（必要时 account compress），SSH 查 /usr4/account 的 IP*.DAT</li>
+<li>用 ipview 查票据字段；生成 Voice over IP 目录预定义报告（过滤器 Date/Hour=This Week、System/Sender IP/Board+Phone number not empty）</li>
+<li>排障认知：同机软话机互打取不回质量数据，报告为空</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：用户抱怨通话质量差；MOS/丢包/时延怎么看；VoIP 报告是空表；IP 票据保留多久；KPI 阈值想按网调整；超限告警与邮件。</p>
+<p>语言信号：VoIP / IP ticket / IP.LIS / SIP.LIS / 时延 / delay 150ms / 丢包 / packet loss / BFI / BFI Burst / MOS / KPI / ipview / VoipParameters / 质量报告 / 超限 / 清理 / purge。</p>
+<p>与相邻能力区分：WBM 实时仪表盘属 Web Performance 能力（本卡是厚客户端报表面）；话务量统计与超限动作配置属流量与 Tracking 能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OXE 已纳管且计费回收链路通；有真实跨节点/出局 IP 话务。话务路径不通 → 判停先解决呼叫路径，再查监控配置。</p>
+<ol>
+<li>OXE 侧确认外部计费与 IP tickets 出票开启。完成标准：/usr4/account 出现 IP*.DAT</li>
+<li>配 IP 票据加载过滤并验证取回（.DAI 入库）。完成标准：日志显示票据读入</li>
+<li>VoipParameters 核对三 KPI 阈值与编解码参数。完成标准：阈值口径与网络组确认</li>
+<li>Preferences 核对五项清理周期。完成标准：与库容量策略一致</li>
+<li>生成跨节点出局话务并触发计数器计算。完成标准：计数器非零</li>
+<li>生成预定义 VoIP 质量报告并查看超限票率与 MOS 散点。完成标准：报告有数据</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>VoIP 报告为空 → 先核对呼叫路径是否走被监控承载段（书内口径：跨 POD 出局；同机软话机互打无效），再查开关与过滤器</li>
+<li>质量差但票里无丢包 → 分段与方向问题（每段双向各一票），按段分析不按呼叫</li>
+<li>想改"超 3% BFI 才算坏"的口径 → 这是 R&amp;D 定义的阈值族（150ms/3%/5%），调整在 VoipParameters 并评估报告口径变化</li>
+<li>票据 15 天清理默认值对投诉追溯不够 → 提前归档属归档能力（计费票据生命周期），本卡清理只覆盖 VoIP 域</li>
+</ul>
+<p>输出契约：KPI 阈值配置表 + 清理周期表 + 报告实例（超限票率）+ 空表排障结论。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>全部阈值与清理周期为 Ed45 默认值（可调）；生产按网络实际调 KPI 并同步修订报告口径</li>
+<li>"跨 POD 出局才有数据"是实验口径，生产类推为"话务须走被监控的 IP 承载段"（生产类推，n32）</li>
+<li>MOS 书中仅作质量分呈现（散点图），未展开算法；MOS 计算方法在书外</li>
+<li>本卡覆盖厚客户端报表面；实时仪表盘（SNMP/CDR 双腿）属 Web Performance 能力</li>
+<li>加载性能参考值 52 tic/sec 为实验口径，非生产容量结论（p114）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte201en/skills/ovbill-web-performance.html">Web Performance 实时仪表盘</a></p><p class="source-page">能力 ID：cap.ovbill.voip-monitoring · 来源：8770XTE201EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 R5.2 Accounting and Performance Administration (Participant Guide, Edition 45) | edition: Edition 45 | pages: 650 页 -->

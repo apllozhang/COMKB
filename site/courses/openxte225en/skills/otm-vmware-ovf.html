@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>VMware 虚机 OVF/OVA 部署</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch · 移动与远程办公</h2><p>Edition 10 · 287 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte225en/index.html">课程首页</a><a href="/courses/openxte225en/digest.html">精华长文</a><a href="/courses/openxte225en/overview.html">教书理解</a><a href="/courses/openxte225en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte225en/skills/otm-dmz-security-channels.html">远程接入架构与 DMZ 双边缘</a><a href="/courses/openxte225en/skills/otm-certificate-pki.html">证书策略与签发（CA、封装、SAN、自建 CA）</a><a href="/courses/openxte225en/skills/otm-ot-server-settings.html">OpenTouch 服务器侧远程访问设置</a><a href="/courses/openxte225en/skills/otm-otsbc-deployment.html">OTSBC 部署与向导配置</a><a href="/courses/openxte225en/skills/otm-reverse-proxy.html">反向代理两路线部署与选型（内嵌 RP、Nginx）</a><a href="/courses/openxte225en/skills/otm-otc-pc-modes.html">OTC PC 远程办公两模式（multi-devices、Nomadic SIP）</a><a href="/courses/openxte225en/skills/otm-smartphone-provisioning.html">OTC 智能手机开通（Connection 用户、自动对象、R2.6 单设备）</a><a href="/courses/openxte225en/skills/otm-iphone-apns.html">iPhone+ APNS 推送专项</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte225en/skills/otm-client-access-profiles.html">客户端远程接入两步法（接入配置与路由档案）</a><a href="/courses/openxte225en/skills/otm-smartphone-modes.html">智能手机连接模式与回落（WiFi/3G4G/DTMF、无 SIM）</a><a href="/courses/openxte225en/skills/otm-vmware-ovf.html">VMware 虚机 OVF/OVA 部署</a><a href="/courses/openxte225en/skills/otm-lab-dialtest.html">实验环境与拨测验证（RLAB、编号计划、模拟器预期表）</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte225en/index.html">ot-mobility-remote-worker（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte225en/index.html">OPENXTE225EN</a><span>/</span><span aria-current="page">VMware 虚机 OVF/OVA 部署</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>VMware 虚机 OVF/OVA 部署</h1></div><dl><div><dt>Skill ID</dt><dd>otm-vmware-ovf</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>VMware 虚机 OVF/OVA 部署（web client 与 vSphere client 两路）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Deploy a virtual machine from OVF or OVA file … Network mappings: Select the network corresponding to the DMZ; Disk provisioning: … 'Thin' for lab"（p271-273）
+"Warning: VSPHERE CLIENT IS ONLY AVAILABLE WITH ESXI VERSION 6.0 OR LOWER."（p274）
+"Following procedure is done using Esxi 6.0 and v-Sphere client. It is exactly the same principle for Esxi 6.5 using Web administration interface."（p221）</p>
+</blockquote>
+<p>出处：OPENXTE225EN p269-277, p221。</p>
+<h2>I — 自述</h2>
+<p>OT SBC 与 Nginx 反代虚机都需要先有承载 VM，本书给了两条部署路线，按 ESXi 版本选：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>路线</th>
+<th>ESXi 版本</th>
+<th>入口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>web client</td>
+<td>6.5 口径（原理同 6.0 web 界面）</td>
+<td>浏览器登 ESXi，新增虚机</td>
+</tr>
+<tr>
+<td>vSphere client</td>
+<td>仅 6.0 及以下（大写 Warning）</td>
+<td>客户端 File，Deploy OVF Template</td>
+</tr>
+</tbody>
+</table></div>
+<p>通用参数口径：Network mappings 选 DMZ 对应网络；Disk provisioning 实验选 Thin；OVA 与 OVF 原理相同（OVA=OVF+VMDK 打包）。Nginx RP 的参考规格：Ubuntu 64 位、1 vCPU、2 GB 内存、20 GB thin、1 网口（实验口径）。</p>
+<h2>A1 — 书中案例</h2>
+<p>web client 路线（p271-273，ESXi 6.5 口径）：</p>
+<ol>
+<li>浏览器打开 ESXi 地址并登录</li>
+<li>点新增虚机，选 Deploy a virtual machine from OVF or OVA file</li>
+<li>命名并选择 ovf+vmdk 文件（ova 直接选包）</li>
+<li>选择存储位置</li>
+<li>Network mappings 选 DMZ 对应网络，Disk provisioning 选 Thin</li>
+<li>勾选 Power on automatically 后核对并 Finish</li>
+</ol>
+<p>vSphere client 路线（p274，仅 ESXi 6.0 及以下）：</p>
+<ol>
+<li>vSphere client 打开 File 菜单选 Deploy OVF Template</li>
+<li>选择 OVF 文件并命名</li>
+<li>选存储，磁盘类型选 Thin</li>
+<li>VM Network 选对应网络（LAN/DMZ）后 Finish</li>
+</ol>
+<p>验证：Finish 后虚机出现在清单并自动上电（勾选时）。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：部署 OTSBC 或 Nginx RP 前的虚机准备；现场 ESXi 版本不明；OVA/OVA 包导入失败排查。</p>
+<p>语言信号：VMware / ESXi / OVF / OVA / vSphere / web client / Thin / DMZ 网络 / 虚机部署 / Deploy OVF。</p>
+<p>与相邻能力区分：虚机装好后的 OTSBC 初始化 → OTSBC 部署能力；Nginx 系统安装 → 反向代理能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OVF/OVA 安装包、ESXi 版本、目标网络（DMZ）、存储空间。</p>
+<ol>
+<li>确认 ESXi 版本：6.5 用 web client，6.0 及以下才可用 vSphere client。完成标准：路线选定（n27）</li>
+<li>按所选路线走 A1 对应步骤。完成标准：虚机出现在清单并上电</li>
+<li>网络映射核对：必须落在 DMZ 网络。完成标准：虚机网卡归属正确</li>
+<li>磁盘与规格：实验 Thin、Nginx 参考 1vCPU/2GB/20GB。完成标准：与部署对象规格匹配</li>
+<li>移交下一棒：OTSBC 走 CLI 初始化，Nginx 走系统安装（转对应能力）</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>只有 vSphere client 而现场是 ESXi 6.5 → 停，客户端不可用，改 web 界面（n27）</li>
+<li>生产 sizing 讨论规格 → 停，书内规格为实验口径，生产按实际 sizing（书外）</li>
+</ul>
+<p>输出契约：可运行的虚机（网络/磁盘归属正确）+ 下一棒部署入口移交。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>vSphere client 仅 ESXi 6.0 及以下可用，原文大写 Warning 强调（n27）</li>
+<li>教材坐标为 ESXi 6.0/6.5；更新版本的行为不在书内</li>
+<li>Thin 磁盘与 1vCPU/2GB 规格均为实验口径，生产 sizing 在书外（nr-07）</li>
+<li>OVA 与 OVF 原理相同，仅打包形态差异（p271-273）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte225en/skills/otm-otsbc-deployment.html">OTSBC 部署与向导配置</a></p><p class="source-page">能力 ID：cap.otm.vmware-ovf · 来源：OPENXTE225EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch — 移动与远程办公 (Participant's Guide) | edition: Edition 10 | pages: 287 页 -->

@@ -1,0 +1,38 @@
+# openxte225en 盲判结果（仅依据能力目录，未读答案）
+
+- should-dmz-01 | otm-dmz-security-channels | 远程接入整体架构要从哪几块准备，属 DMZ 双边缘与三类用户范畴
+- should-dmz-02 | otm-dmz-security-channels | 外部用户通道差异与边缘放什么组件，正是客户端×边缘组件用例矩阵内容
+- should-cert-01 | otm-certificate-pki | 证书自建还是买 CA、通用证书能不能用，是该能力三来源选型与官方反对口径的核心
+- should-cert-02 | otm-certificate-pki | 证书缺名字的核实走 SAN 核验与 CTL 联动
+- should-otset-01 | otm-ot-server-settings | 外网回连地址在系统哪里登记，是 RP 申报四公共 URL 的服务器侧设置
+- should-otset-02 | otm-ot-server-settings | 会议号码变换规则国家相关，德国不能抄法国，属 DAS 规则口径
+- should-sbc-01 | otm-otsbc-deployment | 从导入虚机到客户端注册上来的端到端链条，就是 OTSBC 部署与向导主线
+- should-sbc-02 | otm-otsbc-deployment | 向导跑完后手工补 TCP 5060 正是该能力的收尾动作
+- should-rp-01 | otm-reverse-proxy | 反代塞进边界控制器还是独立 Nginx 的取舍，是该能力两路线选型
+- should-rp-02 | otm-reverse-proxy | 共享桌面失效怀疑漏改配置，对应 Nginx 三份 conf 与 OT 2.2 双 conf 同改
+- should-pc-01 | otm-otc-pc-modes | 电脑接电话且座机照常响铃，即 multi-devices 副设备与 COS 振铃参数
+- should-pc-02 | otm-otc-pc-modes | 十五人并发切电脑话机的资源预留，按 1 并发占 1+1 双许可口径算
+- should-sp-01 | otm-smartphone-provisioning | 绑定后逐项核查自动生成对象是否正确，对应关联一次自动建对象矩阵
+- should-sp-02 | otm-smartphone-provisioning | 只有手机没座机且系统 R2.6，对应 R2.6 单设备开户口径
+- should-iph-01 | otm-iphone-apns | 锁屏只弹通知点开接不起来，是 APNS 推送链路专项排查
+- should-iph-02 | otm-iphone-apns | iPhone 话音对外放行清单，对应防火墙四端口 5223/2195/2196/443
+- should-client-01 | otm-client-access-profiles | 客户端首次打开要填什么，是接入配置公共 URL+凭证那一步
+- should-client-02 | otm-client-access-profiles | 设了座机拨出手机却本机发话，对应"手机发起拨打永远本机发话、dial from 不影响"
+- should-mode-01 | otm-smartphone-modes | 无数据网络时手机能干什么，对应五分场景里的无数据 DTMF 回落
+- should-mode-02 | otm-smartphone-modes | 不带 SIM 卡安卓机会失去什么，对应无 SIM 三项代价
+- should-vm-01 | otm-vmware-ovf | ESXi 6.5 该用 web client 导 OVF
+- should-vm-02 | otm-vmware-ovf | 导入时网络挂 DMZ、磁盘给 Thin，正是该能力的两条选型
+- should-lab-01 | otm-lab-dialtest | 培训环境拨 0044 十三位看落点与主叫显示，对应拨测预期表
+- should-lab-02 | otm-lab-dialtest | 实验里怎么向讲师证明切换成功，属实验口径与验证范畴
+- bait-dmz-01 | none | VPN 加密算法与分流策略设计超出目录，DMZ 能力里 VPN 仅为技术替代、无设计细节
+- bait-cert-01 | none | 企业 PKI 模板权限与自动注册属通用 PKI 规划，目录只管本产品证书策略与签发
+- bait-sbc-01 | none | 两千并发几台、CAC 阈值属容量设计，目录无 sizing 能力
+- bait-pc-01 | otm-otc-pc-modes | 切到电脑模式后座机还响不响，由该能力的模式行为与 COS 振铃参数决定
+- bait-rp-01 | otm-otsbc-deployment | 边界控制器向导里 Application 下拉与模板名是 OTSBC 向导配置，不是反代
+- bait-sp-01 | otm-iphone-apns | iPhone 装好但后台完全收不到来电提醒，先查 APNS 推送链路而非开通参数
+- bait-otset-01 | otm-reverse-proxy | 公共域名与解析地址在哪份 Nginx 配置改，属反代部署文件范畴
+- bait-mode-01 | otm-smartphone-modes | 没流量打不出电话是无数据场景的预期行为，先按连接模式矩阵定性，翻开通参数解决不了
+- edge-version-01 | otm-smartphone-provisioning | 远程分机配成唯一设备是 R2.6 单设备特性，R2.5 能不能做要看该能力的版本前提
+- edge-nomadic-01 | otm-otc-pc-modes | 二十五人同时游牧 Ghost Z 与 SIP 设备建多少，属 Nomadic 池化口径
+- edge-dialfrom-01 | otm-client-access-profiles | 拨出设备改电脑后手机拨号从哪出去，对应 dial from 不影响、本机发话的边界
+- edge-labcred-01 | otm-lab-dialtest | 实验账号网段能否照搬生产，对应"全部实验口径不复用生产"红线

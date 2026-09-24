@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OmniVista 8770 告警管理（接入 + 定制出口 + SNMP Proxy）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 安装与网络管理</h2><p>Edition 47 · 705 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte200en/index.html">课程首页</a><a href="/courses/8770xte200en/digest.html">精华长文</a><a href="/courses/8770xte200en/overview.html">教书理解</a><a href="/courses/8770xte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte200en/skills/ovnms-platform-installation.html">OmniVista 8770 平台安装（服务器 + 客户端 + 补丁 + 首连）</a><a href="/courses/8770xte200en/skills/ovnms-node-onboarding.html">OmniVista 8770 节点接入（OXE 注册同步 + SSH 安全 + OXO Connect 纳管）</a><a href="/courses/8770xte200en/skills/ovnms-user-provisioning.html">OmniVista 8770 用户开通（Profile / Meta profile / 批量 / WBM）</a><a href="/courses/8770xte200en/skills/ovnms-alarm-management.html">OmniVista 8770 告警管理（接入 + 定制出口 + SNMP Proxy）</a><a href="/courses/8770xte200en/skills/ovnms-security-administration.html">OmniVista 8770 安全管理（密码策略 / 管理员与组 / 访问控制 / TLS）</a><a href="/courses/8770xte200en/skills/ovnms-audit-compliance.html">OmniVista 8770 审计合规（Audit 启用 / mao 日志 / 检索导出）</a><a href="/courses/8770xte200en/skills/ovnms-backup-restore.html">OmniVista 8770 备份恢复（8770 数据库 rehosting + OXE swinst 全链）</a><a href="/courses/8770xte200en/skills/ovnms-license-management.html">OmniVista 8770 许可管理（锁结构 / 查询 / 更新 / 受限模式）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte200en/skills/ovnms-reports-scheduling.html">OmniVista 8770 报表与任务编排（Reports / Scheduler / 自动维护）</a><a href="/courses/8770xte200en/skills/ovnms-maintenance-operations.html">OmniVista 8770 维护运营（诊断工具 / NMC 服务与日志）</a><a href="/courses/8770xte200en/skills/ovnms-topology-views.html">OmniVista 8770 Topology 视图（标准视图 / 自定义视图 / 告警重定向）</a><a href="/courses/8770xte200en/skills/ovnms-oxe-ui-efficiency.html">OmniVista 8770 OXE 配置界面高效操作（搜索/冻结/网格/导入导出）</a><a href="/courses/8770xte200en/skills/ovnms-network-drive.html">OmniVista 8770 网络驱动器映射（报表与备份落网络存储）</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte200en/index.html">omnivista-8770-nms（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte200en/index.html">8770XTE200EN</a><span>/</span><span aria-current="page">OmniVista 8770 告警管理（接入 + 定制出口 + SNMP Proxy）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OmniVista 8770 告警管理（接入 + 定制出口 + SNMP Proxy）</h1></div><dl><div><dt>Skill ID</dt><dd>ovnms-alarm-management</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OmniVista 8770 告警管理（接入 + 定制出口 + SNMP Proxy）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Critical Red / Major Orange / Minor Yellow / Warning Blue / Indeterminate Purple / Cleared White"（p274）
+"Only active alarms can be acknowledged. Once acknowledged, alarm still active. ... Only uncorrelated alarms may be cleared."（p278-279）
+"Network severity: None, Topological network: YES ... Reset a coupler (rstcpl <Media Gateway number> <Board number>)"（p285）
+"enter: 10.20.30.11:46 if mail server uses the SMTP port 46 ... By default, the name is: omnivista@&lt;8770 FQDN&gt;"（p301）
+"Windows SNMP service must be installed, even if you have to disable it to activate the one provided by the 8770 server."（p317）</p>
+</blockquote>
+<p>出处：8770XTE200EN p269-324（Alarms 应用 + OXE 接入 + 功能定制 + SNMP proxy）。</p>
+<h2>I — 自述</h2>
+<p>告警能力三段：把告警接进来、按运维流程处置、给告警三个出口再加一条对外通道。</p>
+<p><strong>架构与处置状态机</strong></p>
+<ul>
+<li>采集链：OXE/OXO/OpenTouch 经 CMISE 发告警事件 &gt; 8770 内部 Collector &gt; Fault Manager &gt; MariaDB（查询/操作）+ Notify server（Corba 通知客户端）+ SNMP Proxy（trap 外送）</li>
+<li>六级色标：Critical 红 / Major 橙 / Minor 黄 / Warning 蓝 / Indeterminate 紫 / Cleared 白；客户端常显计数器，框色=当前最高严重级</li>
+<li>相关告警（PCX 能检测问题结束）自动清除，Topology 只显示这类；非相关告警须人工清除</li>
+<li>处置动作：确认（acknowledge，仍活动、记录确认人与变色）、清除（clear，仅非相关，转历史）、删除（从库移除，选中层级连子层全删）、签名（Signature/Action 进告警报告，Remark 不进）</li>
+<li>事件（Event）无严重级：对象创建/删除/修改通知，是实时同步的载体</li>
+</ul>
+<p><strong>OXE 侧接入与验证</strong></p>
+<ul>
+<li>前提：OXE 声明告警接收模式 Permanent IP connectivity（节点声明时已含）</li>
+<li>OXE 配置界面 Applications &gt; 1 &gt; Incident Manager &gt; 1：Network severity=None（全部上送）+ Topological network=YES</li>
+<li>验证：mtcl 会话 rstcpl <MG> &lt;板&gt; 重启 coupler，incvisu -t 3 查最近事件，Alarms 树对应板卡应出 Major #2042（Loss of a GD/GD3 type cpl）</li>
+<li>定向过滤：对特定事件号（如 mtcl 登录 #1125）建 Incident Filter 设 Network incident=Yes，无视 network severity 强制上送；部分数据库中该事件不在默认列表，须先 Create 再设（见 B）</li>
+</ul>
+<p><strong>告警出口三加一</strong></p>
+<ul>
+<li>人工：Signature/Action/Remark 三字段处置留痕（前两项进报告）</li>
+<li>邮件：先在 Administration &gt; OmniVista 8770 &gt; Export parameters 配 Mail server（格式 &lt;地址&gt;:<SMTP 端口>，默认 25 可省略，冒号后不能有空格；发件人默认 omnivista@<FQDN>）；再在 Alarms &gt; Preferences &gt; Alarms Filters 建过滤器（条件 Severity Equal to Major 等 + E-Mail Addresses 页填收件人，多地址逗号分隔）</li>
+<li>脚本：.bat 放 c:\8770\data\alarms\scripts；过滤器 Script 页填脚本名与变量——%1=$managedobject（告警对象）、%2=$notificationtime（通知时间）</li>
+<li>字典定制：Start &gt; OmniVista 8770 &gt; Dictionary customization 改字段译名（如 Action 改 Operation）；生效链=关客户端 &gt; Service Manager 重启 NMC Service Manager &gt; 重开客户端</li>
+<li>对外网管：SNMP Proxy 转 trap（见 E 线二）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>告警接入实验</strong>（p283-289）：</p>
+<ol>
+<li>确认 OXE 声明的告警接收模式为 Permanent IP connectivity</li>
+<li>OXE 侧 Incident Manager 设 Network severity=None、Topological network=YES</li>
+<li>mtcl 会话执行 rstcpl 4 0 重启 coupler</li>
+<li>incvisu -t 3 看到 #2042 事件，Alarms 树中 OMS 虚拟板出现 Major #2042</li>
+<li>为 #1125 建 Incident Filter（Network incident=Yes），新开 mtcl 会话后 Minor #1125 上屏</li>
+</ol>
+<p><strong>功能定制实验</strong>（p290-306）：</p>
+<ol>
+<li>Signature 页加 Jean Dupont/Paul Martin，Action 页加 Software/Hardware Maintenance</li>
+<li>字典把 Action 改译 Operation，重启 NMC Service Manager 后字段名生效</li>
+<li>建过滤器 Severity Equal to Major + 收件地址，rstcpl 触发后 Thunderbird 收到告警邮件</li>
+<li>建 message.bat（msg 命令带 %1 与 %2），触发后服务器屏幕弹窗显示告警对象与时间</li>
+</ol>
+<p><strong>SNMP Proxy 实验</strong>（p307-324）：装 Windows SNMP 功能后经 ToolsOmniVista 启用 8770 代理，日志见 agent started；声明 hypervisor 后勾 Managed by SNMP proxy，TrapReceiver 收到 Add PABX trap 与告警 trap。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：值班告警不上屏；把 Major 告警邮件给网管；告警字段改名；把告警转发客户 NMS；确认/清除按钮行为争议。</p>
+<p>语言信号：Alarms / 严重级 / correlated / acknowledge / clear / rstcpl / incvisu / #2042 / #1125 / incident filter / Network severity / 签名 / 字典 / SNMP Proxy / hypervisor / trap 162 / SNMP Filter。</p>
+<p>与相邻能力区分：告警收不到先查节点声明与 Windows 前置（节点接入/平台安装能力）；拓扑图上的告警显示（Topology 视图能力）；本能力管告警数据流与出口。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：已同步节点、告警运维角色分工（谁处置/谁收邮件）、外部网管参数（IP/协议版本/trap 端口，如需外送）。</p>
+<p>线一：接入与验证</p>
+<ol>
+<li>核对 OXE 声明告警接收模式与 Windows 前置（IE ESC/Defender）。完成标准：两项前提无缺失</li>
+<li>OXE Incident Manager 设 Network severity 与 Topological network。完成标准：None+YES 为全上送口径</li>
+<li>rstcpl 触发测试告警并查 incvisu。完成标准：Alarms 树出对应板卡 Major 告警</li>
+<li>需要定向时建 Incident Filter（必要时先 Create 事件）。完成标准：目标事件无视严重级上屏</li>
+</ol>
+<p>线二：出口定制</p>
+<ol>
+<li>配 Mail server（注意 server:port 语法）。完成标准：测试邮件可达收件箱</li>
+<li>建 Alarms Filters 挂邮件/脚本出口。完成标准：触发后邮件到达或脚本执行</li>
+<li>字典改名走三步生效链。完成标准：重开客户端字段名已换</li>
+<li>SNMP Proxy：装 Windows SNMP 功能 &gt; ToolsOmniVista 启用代理 &gt; 声明 hypervisor &gt; 勾 Managed by SNMP proxy &gt; 配 SNMP Filter。完成标准：NMCSnmpAgent_1.log 见 agent started 与 Add PABX trap，TrapReceiver 收到</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>节点告警完全不上送 → 先查节点声明的告警接收模式与 Windows 两项前置，不要先动 OXE</li>
+<li>incident filter 下拉找不到目标事件号 → 先 Create 事件（产品行为非故障）</li>
+<li>Windows SNMP 功能被卸载 → 代理失去 Netsnmp 地基，重装功能后重新启用</li>
+<li>TLS/防火墙类改造 → 标注"仅供信息"的流程不直接执行，单独立项</li>
+</ul>
+<p>输出契约：告警上送验证记录（#2042/#1125）+ 过滤器与出口清单 + hypervisor 配置表 + 字典变更记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>hypervisor 声明只填 IP 不用 FQDN；V3 声明与卸载流程书中标注"仅供信息、勿执行"</li>
+<li>SNMP Filter 按 Correlation（Equal True）或 Diagnostic（号码列表分号分隔、区间连字符）转发，可 AND/OR 叠加第二条件</li>
+<li>告警邮件依赖已配置的邮件服务器；密码重置邮件同源（安全管理卡），SMTP 端口语法错误是发信失败首因</li>
+<li>OXE R11.2 起 IP 话机状态告警（incident 386）不再是可相关告警，Topology 不能用（Topology 卡边界）</li>
+<li>实验邮件域名/收件人（company.com、Thunderbird）与 TrapReceiver 均为实验口径，见 book/overview</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte200en/skills/ovnms-node-onboarding.html">OmniVista 8770 节点接入（OXE 注册同步 + SSH 安全 + OXO Connect 纳管）</a>、<a href="/courses/8770xte200en/skills/ovnms-topology-views.html">OmniVista 8770 Topology 视图（标准视图 / 自定义视图 / 告警重定向）</a></p><p class="source-page">能力 ID：cap.ovnms.alarm-management · 来源：8770XTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 — Setup & Network Management (Participant's Guide, Edition 47) | edition: Edition 47 | pages: 705 页 -->

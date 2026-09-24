@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>坐席签入签出（free seating）与状态排障</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OXO Connect · 呼叫中心</h2><p>Edition 07 · 218 页 · 文档整理入库（15 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte107en/index.html">课程首页</a><a href="/courses/oxocxte107en/digest.html">精华长文</a><a href="/courses/oxocxte107en/overview.html">教书理解</a><a href="/courses/oxocxte107en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte107en/skills/oxo-acd-basic-setup.html">OXO Connect 基础 ACD 全流程搭建</a><a href="/courses/oxocxte107en/skills/oxo-acd-call-scenarios.html">ACD 呼入六场景排障</a><a href="/courses/oxocxte107en/skills/oxo-acd-routing.html">呼叫特征化与 Smart Call Routing 路由表设计</a><a href="/courses/oxocxte107en/skills/oxo-acd-queue.html">ACD 等待队列管理（容量公式与出口配置）</a><a href="/courses/oxocxte107en/skills/oxo-acd-search-noanswer.html">坐席搜索模式选型与无应答处理</a><a href="/courses/oxocxte107en/skills/oxo-acd-login-status.html">坐席签入签出（free seating）与状态排障</a><a href="/courses/oxocxte107en/skills/oxo-multi-secretary.html">Multi-Secretary 多秘书方案配置</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte107en/skills/oxo-omc-first-connect.html">OMC 安装与首次连接</a><a href="/courses/oxocxte107en/skills/oxo-ip-replan.html">OXO 与客户端 IP 规划修改</a><a href="/courses/oxocxte107en/skills/oxo-acd-schedule-calendar.html">ACD 营业时段与例外日配置</a><a href="/courses/oxocxte107en/skills/oxo-supervisor-app.html">Supervisor 班长台部署与实时监控</a><a href="/courses/oxocxte107en/skills/oxo-agent-app.html">Agent 坐席席面部署（弹屏/打标/客户库）</a><a href="/courses/oxocxte107en/skills/oxo-statistics-app.html">Statistics 统计应用与报表导出</a><a href="/courses/oxocxte107en/skills/oxo-dtmf-client-popup.html">DTMF 客户码识别弹屏</a><a href="/courses/oxocxte107en/skills/oxo-acd-voice-prompts.html">ACD 语音提示定制</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte107en/index.html">oxo-connect-call-center（15 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte107en/index.html">OXOCXTE107EN</a><span>/</span><span aria-current="page">坐席签入签出（free seating）与状态排障</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>坐席签入签出（free seating）与状态排障</h1></div><dl><div><dt>Skill ID</dt><dd>oxo-acd-login-status</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>坐席签入签出与状态排障（OXO Connect）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The entry to the ACD process is effective as soon as a common link is built for the following components: The agent name / The ACD group / The terminal ... ACD prefix with base 0: prefix to logout • ACD prefix with base 1: prefix to login"（p119-120）
+"Value 01: agent is ''on duty'' after login session (Default value) Value 00: agent is ''off duty'' after login session"（p123）
+"• 1:01 = ... 1 calls are in the queue. • 1:01+ = ... the queue is full. • 1-00 = Agent belong to ACD group 1 which is closed"（p122）</p>
+</blockquote>
+<p>出处：OXOCXTE107EN p70（四态前缀）、p119-123（登录机制与状态码）。</p>
+<h2>I — 自述</h2>
+<p>坐席要接 ACD 电话，前提是<strong>四要素建链</strong>：坐席名 + 坐席号 + ACD 组 + 终端，四者关联建立才算进入会话。</p>
+<ol>
+<li><strong>登录（free seating 模式）</strong>：在任意话机拨登录前缀（base 1），或按 ACD 页签 Login 选坐席（IP 话机按姓名，模拟与 DECT 按坐席号）、输密码（若配置），话机即"变成"他的席位</li>
+<li><strong>登出</strong>：拨 base 0 前缀或 Logout 键；Essential/Enterprise 要按 OK 确认，模拟/DECT 不用</li>
+<li><strong>登录后默认状态</strong>由隐藏寻址项 <strong>ACDAutoLog</strong> 决定：01=on duty（默认）、00=off duty——"登录了却不接电话"十有八九是它</li>
+<li><strong>四态切换</strong>：501 在值 / 502 离值 / 503 文书 / 504 暂离</li>
+<li><strong>话机状态码</strong>（ACD 页签，坐席排障第一入口）：</li>
+<li><code>组号:等待数</code>——如 1:01 = 组1 开放、队列 1 通</li>
+<li><code>+</code> 后缀 = 队列已满（1:01+）</li>
+<li><code>-</code> 连接 = 组关闭（1-00）</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>状态码解读 + 四态验证</strong>（p122, p77，厂商讲义与实验）</p>
+<ul>
+<li>状态码：<code>1:01</code>（开放、1 通等待）/ <code>1:01+</code>（队满）/ <code>1-00</code>（组关闭）；"属于/不属于开放组"的变体显示原文疑似缺漏，需实机核对</li>
+<li>ACD 页签导航键下翻还有：On duty / Off duty / Clerical work / Temporary absence / Logout / Password / Groups</li>
+<li>实验：用 501-504 前缀与功能键切换四态，配合实呼确认各状态下来话分配行为</li>
+</ul>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：</p>
+<ol>
+<li>"坐席说登录了但电话不进来"——ACDAutoLog=00 或状态 off duty</li>
+<li>"话机上显示 1:01 是什么意思"——状态码解读</li>
+<li>"新员工怎么在别的座位接热线"——free seating 登录流程</li>
+<li>"怎么临时去开个会不接电话"——504 暂离 / 503 文书</li>
+<li>"换班怎么签出"——登出流程</li>
+</ol>
+<p>语言信号：签入 / 签出 / 登录坐席 / login / logout / free seating / 1:01 / ACD tab / 不接电话 / 501 / on duty / off duty / 坐席状态。</p>
+<p>与相邻能力区分：Supervisor 台的八子态细读 → Supervisor 监控能力；坐席状态正常但无来话 → 六场景排障能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：话机型号（IP/Essential/Enterprise/模拟/DECT/PIMphony）、坐席号与密码、现象描述。缺型号先询问（登出确认与选坐席方式不同）。</p>
+<ol>
+<li><strong>建链检查</strong>：坐席已登录且 On duty？完成标准：四要素关联成立</li>
+<li><strong>状态修正</strong>：拨 501 或页签 On duty；若每次登录都进 off duty → 查 ACDAutoLog=00 改回 01。完成标准：登录后默认 on duty</li>
+<li><strong>登录操作</strong>：拨登录前缀或 Login 键 → 选坐席 → 输密码。完成标准：ACD 页签显示会话</li>
+<li><strong>登出操作</strong>：拨登出前缀或 Logout 键（Essential/Enterprise 需 OK 确认）。完成标准：退出会话</li>
+<li><strong>状态码判读</strong>：读 ACD 页签——正常负载 / 队满（+）/ 组关闭（-）。完成标准：给出判读与下一步</li>
+<li><strong>前缀冲突检查</strong>（规划期）：501-504 与客户拨号计划是否冲突（冲突排查原书未给，转方案层）</li>
+</ol>
+<p>判停点：状态 on duty、建链正常但无来话 → 转六场景排障，不要在坐席侧空转。</p>
+<p>输出契约：判读结论 + 操作指导（或 ACDAutoLog 修改项）+ 验证结果。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>状态码变体符号原文疑似缺漏（nr-02），判读以实机为准</li>
+<li>ACDAutoLog 写入菜单原书未给（nr-03），改它需实机查系统寻址</li>
+<li>登录密码连续错误的行为原书未覆盖</li>
+<li>free seating 一坐席同时只绑一终端——登录新话机，旧话机会话即解除</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte107en/skills/oxo-supervisor-app.html">Supervisor 班长台部署与实时监控</a>、<a href="/courses/oxocxte107en/skills/oxo-acd-call-scenarios.html">ACD 呼入六场景排障</a></p><p class="source-page">能力 ID：cap.oxo-cc.login-status · 来源：OXOCXTE107EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OXO Connect 呼叫中心 (Participant's Guide, Edition 07) | edition: Edition 07 | pages: 218 页 -->

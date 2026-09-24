@@ -1,0 +1,724 @@
+schema_version: 1
+bundle_id: bundle.omniswitch-lan-access
+book:
+  title: OmniSwitch LAN Access Switching (Participant's Guide, Edition 23)
+  author: ALE Training Services
+  source_pack: DT00XTE215EN.pdf (587 pages)
+  baseline_tag: OmniSwitch AOS R8 / 实验镜像 8.10.9.R04 / R-Lab
+entry:
+  name: omniswitch-lan-access
+  description: 'OmniSwitch R8 接入/汇聚交换机的交付与运维支持：AAA 登录与管理面加固、Lightning Config 快速开局、配置保存/认证/回滚生命周期、
+    Virtual Chassis 堆叠、VLAN/802.1Q 与 VLAN 间路由、链路聚合/STP/DHL 冗余、三层服务（DHCP/Loopback0/静态路由）与 VRRP 网关冗余、
+    QoS/ACL 统一策略、Access Guardian 准入、诊断八件套、LLDP-MED 语音与 PoE、软件升级与 Auto-Fabric 零触开局、Fleet/OST 工具面。
+    适用于 OmniSwitch LAN Access R8 的配置、组网、排障与方案落地问答；型号相关规格数值、升级操作步骤、RADIUS 服务器侧配置不在原书范围内（见 out_of_scope）。
+
+    '
+  core_principles:
+  - 配置可靠性模型是三目录：running(RAM) 经 write memory 到启动目录、经 copy running certified / flash-synchro 固化认证基线；重启按内容异同回 certified 或 running，reload all 无条件回 certified
+  - 一切管理入口是 AAA：七类服务各自认证链（本地库或 RADIUS/LDAP，exit-on-fail 语义），管理面收缩靠 ASA 限源、禁服务、会话参数与 SSH 强加密
+  - 组网自下而上：VLAN 三入口（静态/UNP 分类/802.1Q）> 一个 IP 接口即激活路由 > 冗余四件套（LACP/STP/DHL/VRRP）按场景二选一，DHL 与 STP 不能混用于同一链路
+  - QoS/ACL/PBR/镜像共用一个 policy 引擎：condition+action+rule 且 qos apply 才生效；默认 disposition 为 accept（不匹配即放行）
+  - Access Guardian=UNP+RADIUS：Filter-Id 回传档案名决定 VLAN 与策略；服务器不可达走 auth-server-down 降级，无 MAC 登记一律 Block
+  - 堆叠即一台交换机：ISIS-VC 选举（优先级>运行时长>最小 ID>最小 MAC），分裂防护靠 EMP 带外 RCD 与带内 VCSP，升级走 ISSU 滚动
+  - 实验环境口径：教材地址/账号/实验数值仅限实验；型号规格（镜像会话数、PoE 预算、VC 上限全矩阵）以 Specification Guide/datasheet 为准
+  out_of_scope:
+  - 型号相关规格数值（镜像会话数全矩阵、PoE 预算、每型号 VC 上限细节）——原书外置到 Specification Guide/datasheet
+  - 软件升级操作步骤与前置固件顺序——原书 p533 明示按 AOS Release Notes 执行
+  - RADIUS/LDAP 服务器侧部署（用户库、证书、TLS 开启）与 vcboot.cfg 模板设计——书外依赖
+  - 动态路由协议（OSPF/BGP）与组播协议的完整配置——本书仅触及 Auto-Routing 与 Loopback0 通告口径
+  - R-Lab 远程实验环境搭建与产品选型（datasheet 域）
+  stop_conditions:
+  - 需要型号相关规格数值或全量命令参数 → 明确指向 Specification Guide / CLI Reference，不以实验口径或记忆值搪塞
+  - 需要升级操作步骤 → 指向 AOS Release Notes；U-boot/ONIE/FPGA/CPLD 升级提示失败即 RMA 的风险边界
+  - 涉及 RADIUS 服务器侧建设或割接治理流程（变更窗口/审批）→ 声明超出原书范围，不给编造步骤
+  - 版本敏感参数（镜像会话数 2 vs 4、LLDP-MED 标记值、console 速率）→ 按 needs-review nr-01/02/04 双口径如实说明，以规格指南与实测为准
+router_entry:
+  name: omniswitch-lan-access-router
+  description: 'OmniSwitch LAN Access 能力路由入口：按用户意图分发到 13 张能力卡——AAA 加固、Lightning Config、配置生命周期、Virtual Chassis、
+    VLAN 与路由、链路与生成树冗余、三层服务、QoS/ACL 策略八个 promoted 能力，以及 Access Guardian、诊断工具箱、LLDP 与 PoE、升级与 Auto-Fabric、
+    Fleet 与 OST 工具五张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.swl2.aaa-hardening
+  revision: 1
+  status: active
+  slug: swl2-aaa-hardening
+  title: 交换机登录接入与 AAA 管理面加固
+  importance: critical
+  importance_rationale: 对应 task-02/03/04/05，一切配置的前提与安全底线；8.10R04 强制首登改密与默认口令残留是存量升级最高频翻车点（BOOK_OVERVIEW 优先级第 2 位）
+  one_liner: 七类服务各自认证链（本地库或 RADIUS/LDAP）+ 账号密码治理 + ASA 限源/禁服务/会话参数/SSH 强加密四清单
+  intents:
+  - 配置交换机登录认证
+  - 加固交换机管理面
+  - 管理本地用户与密码策略
+  - WebView 或 SSH 登不上
+  - switch management access
+  keywords:
+  - AAA
+  - ASA
+  - 管理面
+  - 登录认证链
+  - SSH 加固
+  - WebView
+  - console
+  - EMP
+  - 密码策略
+  - 'admin/switch'
+  - 限源
+  - session timeout
+  - SNMP
+  also_read:
+  - swl2-lightning-config
+  card: cards/swl2-aaa-hardening.md
+  frontmatter:
+    description: '配置 OmniSwitch 登录接入与 AAA 管理面加固（认证链声明、本地用户与密码策略、console/EMP/WebView 五通道、ASA 限源、禁服务、SSH 强加密）。
+      当用户要"登录交换机/开 SSH/加固管理面/限管理网段/密码策略"时使用。不适用于开局向导（Lightning Config 能力）与配置保存（配置生命周期能力）；禁用 console 有 RMA 风险。
+
+      '
+    tags:
+    - procedure
+    - security
+    - aaa
+    - management
+  source_evidence:
+  - source_id: src-dt00xte215
+  - location: p65-101
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-02/03/04/05，交付第一步与安全底线
+- capability_id: cap.swl2.lightning-config
+  revision: 1
+  status: active
+  slug: swl2-lightning-config
+  title: Lightning Config 快速开局
+  importance: high
+  importance_rationale: 对应 task-06，小网络交付主路径；六条禁令与 Recommended Defaults 不可跳过是开局失败的高频原因
+  one_liner: 笔记本 DHCP 接端口 1、浏览器 https://192.168.0.1、Defaults 必做、admin 密码必改（避开 ! 与 $）、保存固化
+  intents:
+  - 新交换机快速开局
+  - Lightning Config 向导
+  - 导入开局模板
+  - lightning config onboarding
+  keywords:
+  - Lightning Config
+  - 开局
+  - '192.168.0.1'
+  - 端口 1
+  - Recommended Defaults
+  - 出箱交换机
+  - 模板
+  - '.json 模板'
+  - 禁止预接线
+  also_read:
+  - swl2-config-lifecycle
+  card: cards/swl2-lightning-config.md
+  frontmatter:
+    description: '用 OmniSwitch Lightning Config 把单台新交换机从拆箱带到通流量（七步流、禁令清单、.json 模板导入、admin 密码规则）。
+      当用户要"新交换机开局/快速上线/开局模板"时使用。不适用于批量零触开局（升级与 Auto-Fabric 能力）与管理面加固细节（AAA 加固能力）；一次一台、禁止未开局先互联。
+
+      '
+    tags:
+    - procedure
+    - onboarding
+    - lightning-config
+  source_evidence:
+  - source_id: src-dt00xte215
+  - location: p102-126
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-06，小网络交付主路径
+- capability_id: cap.swl2.config-lifecycle
+  revision: 1
+  status: active
+  slug: swl2-config-lifecycle
+  title: 配置生命周期（保存/认证/回滚/备份）
+  importance: critical
+  importance_rationale: 对应 task-07，BOOK_OVERVIEW 优先级第 1 位；不懂 working/certified 一切"重启配置丢失"排障都是猜
+  one_liner: write memory 到启动目录、copy running certified/flash-synchro 固化基线；冷启动按内容异同回滚，reload all 无条件回 certified
+  intents:
+  - 保存交换机配置
+  - 配置回滚
+  - 配置备份恢复
+  - show running-directory 判读
+  - write memory certified
+  keywords:
+  - write memory
+  - flash-synchro
+  - copy running certified
+  - working
+  - certified
+  - 回滚
+  - reload all
+  - CERTIFY NEEDED
+  - NOT SYNCHRONIZED
+  - 备份
+  - usb backup
+  - userTable
+  also_read:
+  - swl2-virtual-chassis
+  card: cards/swl2-config-lifecycle.md
+  frontmatter:
+    description: '管理 OmniSwitch 配置生命周期：闪存三目录模型、write memory/copy running certified/flash-synchro 三命令、启动目录判定、show running-directory 三字段判读、
+      配置备份 .tar 与 USB 备份恢复。当用户要"保存配置/配置丢了/回滚/备份"时使用。不适用于 VC 成员同步细节（Virtual Chassis 能力）与镜像版本升级（升级与 Auto-Fabric 能力）；certified 运行态只读。
+
+      '
+    tags:
+    - procedure
+    - rollback
+    - backup
+    - configuration
+  source_evidence:
+  - source_id: src-dt00xte215
+  - location: p127-149
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-07，可靠性核心
+- capability_id: cap.swl2.virtual-chassis
+  revision: 1
+  status: active
+  slug: swl2-virtual-chassis
+  title: Virtual Chassis 堆叠
+  importance: critical
+  importance_rationale: 对应 task-08，汇聚/核心高可用主流形态；分裂防护选型与 reload 才生效是施工高频坑
+  one_liner: 多台合成一台（ISIS-VC）；选举按优先级>运行时长>最小 ID>最小 MAC；分裂防护 RCD/VCSP 双机制；升级走 ISSU 滚动
+  intents:
+  - 组建 Virtual Chassis 堆叠
+  - 堆叠主备与选举
+  - 堆叠分裂防护
+  - ISSU 滚动升级
+  - virtual chassis vfl
+  keywords:
+  - Virtual Chassis
+  - 堆叠
+  - VFL
+  - ISIS-VC
+  - chassis-id
+  - 选举
+  - master
+  - slave
+  - RCD
+  - VCSP
+  - 分裂
+  - ISSU
+  - ssh-chassis
+  - 一致性
+  also_read:
+  - swl2-config-lifecycle
+  - swl2-upgrade-autofabric
+  card: cards/swl2-virtual-chassis.md
+  frontmatter:
+    description: '规划、组建与维护 OmniSwitch Virtual Chassis：Chassis ID/Group/优先级与 VFL（auto 或静态）、选举与接管（MAC retention）、
+      分裂防护（带外 RCD 与带内 VCSP helper）、write memory flash-synchro 同步、ISSU 滚动升级、ssh-chassis 跨成员访问。
+      当用户要"组堆叠/堆叠分裂/堆叠升级/堆叠排障"时使用。不适用于单机保存命令语义（配置生命周期能力）；优先级与 ID 修改必须 reload 生效。
+
+      '
+    tags:
+    - procedure
+    - virtual-chassis
+    - high-availability
+  source_evidence:
+  - source_id: src-dt00xte215
+  - location: p150-182
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-08，组网高可用基础
+- capability_id: cap.swl2.vlan-routing
+  revision: 1
+  status: active
+  slug: swl2-vlan-routing
+  title: VLAN 与 VLAN 间路由
+  importance: critical
+  importance_rationale: 对应 task-09/task-10，交换基本功与网络基本盘；"接口 DOWN 三连问"是新建网段最高频的困惑
+  one_liner: VLAN 三入口（静态/UNP 分类/802.1Q，VLAN 1 不可删）；一个 IP 接口即激活路由，VLAN 无成员则接口 DOWN
+  intents:
+  - 创建 VLAN 与挂端口
+  - '802.1Q 打标互联'
+  - 配置 VLAN 间路由与网关
+  - UNP 动态 VLAN 分类
+  - vlan trunk tagging
+  keywords:
+  - VLAN
+  - '802.1Q'
+  - untagged
+  - tagged
+  - 默认 VLAN
+  - UNP
+  - 分类规则
+  - 动态 VLAN
+  - ip interface
+  - 网关
+  - VLAN 间路由
+  - 接口 DOWN
+  also_read:
+  - swl2-access-guardian
+  card: cards/swl2-vlan-routing.md
+  frontmatter:
+    description: '配置 OmniSwitch VLAN 与 VLAN 间路由：静态成员、UNP 动态分类（九规则优先级）、802.1Q 打标与默认 VLAN 桥接语义、IP 接口绑定 VLAN 与路由激活条件、
+      接口 DOWN 排查。当用户要"建 VLAN/划端口/打标/配网关/跨 VLAN 不通"时使用。不适用于网关冗余（三层服务能力）与认证驱动准入（Access Guardian 能力）；VLAN 1 只能禁用不能删。
+
+      '
+    tags:
+    - procedure
+    - vlan
+    - routing
+    - l2
+  source_evidence:
+  - source_id: src-dt00xte215
+  - location: p183-214, p291-297, p345-348
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-09/10，网络基本盘
+- capability_id: cap.swl2.link-redundancy
+  revision: 1
+  status: active
+  slug: swl2-link-redundancy
+  title: 链路与生成树冗余（LAG/STP/DHL）
+  importance: critical
+  importance_rationale: 对应 task-13/14/15，BOOK_OVERVIEW 优先级第 4 位冗余三件套；方案互斥（DHL 禁 STP）与 hash 默认逐型号是最常见误配
+  one_liner: 静态聚合仅 ALE 间、接服务器用 LACP；STP 默认 per-VLAN/32768、显式指定根桥；DHL 双活分流（1 会话 2 链路、默认 30 秒抢占）
+  intents:
+  - 配置链路聚合
+  - 聚合负载分担与 hash
+  - 配置 STP 与根桥
+  - '1x1 负载分担'
+  - DHL 双活上行
+  - link aggregation lacp stp
+  keywords:
+  - linkagg
+  - LACP
+  - actor admin-key
+  - hash-control
+  - STP
+  - RSTP
+  - 根桥
+  - per-VLAN
+  - blocking
+  - DHL
+  - vlan-map
+  - 抢占
+  - 双活
+  also_read:
+  - swl2-vlan-routing
+  card: cards/swl2-link-redundancy.md
+  frontmatter:
+    description: '配置 OmniSwitch 链路与生成树冗余：静态与 LACP 聚合、hash 分担（brief/extended 与组播 non-ucast）、STP 模式与协议（flat/1x1、RSTP 收敛）、
+      根桥指定与保护特性、DHL Active-Active 双上行分流（vlan-map、MAC flushing、30 秒抢占）。当用户要"做聚合/防环/双上行/负载分担"时使用。
+      不适用于网关冗余（三层服务能力）；DHL 与 STP 不能混用于同一链路。
+
+      '
+    tags:
+    - procedure
+    - linkagg
+    - stp
+    - redundancy
+  source_evidence:
+  - source_id: src-dt00xte215
+  - location: p270-290, p298-344
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-13/14/15，冗余三件套
+- capability_id: cap.swl2.l3-services
+  revision: 1
+  status: active
+  slug: swl2-l3-services
+  title: 三层服务与网关冗余（DHCP/Loopback0/静态路由/VRRP）
+  importance: high
+  importance_rationale: 对应 task-16/17 与 task-10 后半；VRRP 在 BOOK_OVERVIEW 优先级第 4 位；跨网段取址与网关冗余是用户网段标配
+  one_liner: DHCP Relay 全局/接口互斥、Loopback0 永活作管理源、静态路由默认优于动态；VRRP 虚拟 IP/MAC 冗余、改优先级必须先 disable
+  intents:
+  - 配置 DHCP 中继
+  - 配置 Loopback0 与服务源地址
+  - 静态路由与主备默认路由
+  - 配置 VRRP 网关冗余
+  - dhcp relay vrrp
+  keywords:
+  - DHCP relay
+  - UDP relay
+  - Loopback0
+  - source-ip
+  - 静态路由
+  - metric
+  - 默认路由
+  - VRRP
+  - VRID
+  - 虚拟 IP
+  - 虚拟 MAC
+  - 抢占
+  - track
+  also_read:
+  - swl2-vlan-routing
+  - swl2-link-redundancy
+  card: cards/swl2-l3-services.md
+  frontmatter:
+    description: '配置 OmniSwitch 三层服务与网关冗余：DHCP Client 选项语义、DHCP/UDP Relay（全局与接口互斥）、Loopback0 七类用途与 ip service source-ip、
+      静态路由主备、VRRP 虚拟网关（VRID/VIP/优先级/抢占/跟踪策略）。当用户要"跨网段取地址/管理源地址/默认路由/网关冗余"时使用。
+      不适用于 VLAN 网关接口 DOWN 成因（VLAN 与路由能力）与 DHCP 服务器侧建设（书外）；VRRP 改优先级必须先 disable 实例。
+
+      '
+    tags:
+    - procedure
+    - routing
+    - dhcp
+    - vrrp
+    - l3
+  source_evidence:
+  - source_id: src-dt00xte215
+  - location: p345-390
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-16/17，用户网段标配
+- capability_id: cap.swl2.qos-acl-policy
+  revision: 1
+  status: active
+  slug: swl2-qos-acl-policy
+  title: QoS 与 ACL 策略
+  importance: high
+  importance_rationale: 对应 task-18/19，语音保障与安全边界标配；"qos apply 才生效"与"默认 accept"是最高频排障点
+  one_liner: 统一 policy 引擎（condition+action+rule，qos apply 生效）；默认不匹配即放行；UserPorts/DropServices 保留组做用户口安全
+  intents:
+  - 配置 QoS 策略与限速
+  - auto-QoS 话机优先级
+  - 配置 ACL 过滤
+  - 用户口安全与防欺骗
+  - qos acl policy rule
+  keywords:
+  - QoS
+  - policy
+  - condition
+  - action
+  - rule
+  - precedence
+  - '802.1p'
+  - DSCP
+  - 限速
+  - qos apply
+  - auto-QoS
+  - ACL
+  - UserPorts
+  - DropServices
+  - BPDU shutdown
+  also_read:
+  - swl2-access-guardian
+  card: cards/swl2-qos-acl-policy.md
+  frontmatter:
+    description: '配置 OmniSwitch QoS/ACL/PBR/镜像共用策略引擎：端口队列模型（QSI/QSP）、端口信任语义、策略三件套与 qos apply 生效规则、
+      auto-QoS 话机 MAC 段、ACL 条件分箱与兜底 precedence、UserPorts/DropServices 保留安全组。当用户要"限速/打标/禁端口服务/防欺骗"时使用。
+      不适用于按认证用户下发策略（Access Guardian 能力）与话机 LLDP 标记（LLDP 与 PoE 能力）；默认 disposition 为 accept。
+
+      '
+    tags:
+    - procedure
+    - qos
+    - acl
+    - policy
+    - security
+  source_evidence:
+  - source_id: src-dt00xte215
+  - location: p391-453
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-18/19，策略与安全边界
+- capability_id: cap.swl2.access-guardian
+  revision: 1
+  status: active
+  slug: swl2-access-guardian
+  title: Access Guardian 接入认证
+  importance: high
+  importance_rationale: 对应 task-20，准入+动态策略一体；RADIUS 服务器侧在书外、哑设备 Block 是需求评审必谈边界
+  one_liner: UNP+RADIUS：Filter-Id 回传档案定 VLAN 与策略；pass-alternate 降级、auth-server-down 60 秒重试、无 MAC 登记 Block
+  intents:
+  - 部署 802.1x 接入认证
+  - MAC 认证与哑设备准入
+  - 认证后动态下发 VLAN 策略
+  - RADIUS 降级预案
+  - access guardian unp radius
+  keywords:
+  - Access Guardian
+  - UNP
+  - '802.1x'
+  - MAC 认证
+  - RADIUS
+  - Filter-Id
+  - pass-alternate
+  - auth-server-down
+  - Block
+  - unp profile
+  - 准入
+  card: cards/swl2-access-guardian.md
+  frontmatter:
+    description: '部署 OmniSwitch Access Guardian：UNP 档案（VLAN+策略列表）、802.1x/MAC 双认证、RADIUS 声明与默认参数、pass-alternate 与 auth-server-down 降级、
+      哑设备 Block/放行路径。当用户要"准入认证/认证上不了网/动态下 VLAN 策略"时经路由使用。RADIUS 服务器侧配置在书外；非认证的简单分类入 VLAN 属 VLAN 与路由能力。
+
+      '
+    tags:
+    - procedure
+    - access-guardian
+    - security
+    - radius
+  source_evidence:
+  - source_id: src-dt00xte215
+  - location: p454-485
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 依赖 RADIUS 服务器侧书外前提，路由可达即可
+- capability_id: cap.swl2.diagnostics
+  revision: 1
+  status: active
+  slug: swl2-diagnostics
+  title: 诊断工具箱八件套
+  importance: medium
+  importance_rationale: 对应 task-12，售后日常但偏"查工具"域；镜像会话数双口径（nr-01）需要边界声明
+  one_liner: swlog/事件日志/命令日志/镜像/抓包/RMON/health/sFlow；抓包只存前 64 字节，完整报文用镜像+外部抓包器
+  intents:
+  - 查看交换机日志
+  - 端口镜像与抓包
+  - CPU 内存健康查看
+  - 审计配置变更记录
+  - switch diagnostics troubleshooting
+  keywords:
+  - swlog
+  - show log events
+  - command-log
+  - port-mirroring
+  - port-monitoring
+  - 抓包
+  - RMON
+  - health
+  - sFlow
+  - syslog
+  - 排障
+  card: cards/swl2-diagnostics.md
+  frontmatter:
+    description: '使用 OmniSwitch 诊断八件套排障取证：swlog 与可读事件日志、command.log 审计、端口镜像与抓包（上限与互斥）、RMON/health/sFlow。
+      当用户要"查日志/抓包/镜像/CPU 高/谁改了配置"时经路由使用。升级验证看 show microcode loaded；规格上限随型号查 Specification Guide。
+
+      '
+    tags:
+    - reference
+    - diagnostics
+    - logging
+  source_evidence:
+  - source_id: src-dt00xte215
+  - location: p232-269
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 工具域，路由可达即可
+- capability_id: cap.swl2.lldp-poe
+  revision: 1
+  status: active
+  slug: swl2-lldp-poe
+  title: LLDP/LLDP-MED 与 PoE 管理
+  importance: medium
+  importance_rationale: 对应 task-21/22，IP 电话与无线供电场景刚需但参数面窄；LLDP-MED 两页数值不一致（nr-02）需边界声明
+  one_liner: LLDP 默认双开（30 秒/TTL×4、不支持 linkagg 级）；network-policy 下发语音 VLAN 与标记；PoE 四档供电、优先级与 FPoE/PPoE
+  intents:
+  - 配置 LLDP 与邻居发现
+  - IP 话机自动入语音 VLAN
+  - PoE 预算与优先级管理
+  - Fast PoE 与延迟供电
+  - lldp med voice vlan poe
+  keywords:
+  - LLDP
+  - LLDP-MED
+  - network-policy
+  - 语音 VLAN
+  - mobile tag
+  - TLV
+  - PoE
+  - lanpower
+  - 供电预算
+  - 优先级 critical
+  - Fast PoE
+  - Perpetual PoE
+  - delayed-start
+  card: cards/swl2-lldp-poe.md
+  frontmatter:
+    description: '配置 OmniSwitch LLDP/LLDP-MED 与 PoE：TLV 管理与通知、语音网络策略（VLAN/l2-priority/dscp）与 mobile-tag 动态入网、PoE 等级表/预算/优先级三档、
+      Fast/Perpetual PoE 型号线与 delayed-start 互斥。当用户要"话机自动进语音 VLAN/邻居盘点/供电规划"时经路由使用。
+      交换机侧 auto-QoS 标记属 QoS 与 ACL 策略能力；LLDP-MED 教材两页数值不一致按边界处理。
+
+      '
+    tags:
+    - procedure
+    - lldp
+    - poe
+    - voice
+  source_evidence:
+  - source_id: src-dt00xte215
+  - location: p486-505, p506-521
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 终端接入配套域，路由可达即可
+- capability_id: cap.swl2.upgrade-autofabric
+  revision: 1
+  status: active
+  slug: swl2-upgrade-autofabric
+  title: 软件升级与 Auto-Fabric 零触开局
+  importance: medium
+  importance_rationale: 对应 task-23/24，规模化与合规强制项；升级步骤书外（Release Notes）、首启 Y/N 语义相反是两大风险边界
+  one_liner: 版本取最新 GA/MR（8.10R4 起签名镜像）；三通道升级；Auto-Fabric 七步链（Y=禁用/N=启用）+ LBD 防环
+  intents:
+  - 选择升级版本与通道
+  - U-boot 与底层固件风险
+  - Auto-Fabric 零触开局
+  - 首启提示与 RCL
+  - software upgrade zero touch
+  keywords:
+  - 升级
+  - GA
+  - MR
+  - 签名镜像
+  - U-boot
+  - RMA
+  - Auto-Fabric
+  - 零触
+  - Auto-VC
+  - RCL
+  - Auto-LACP
+  - Auto-SPB
+  - MVRP
+  - LBD
+  - vcboot.cfg
+  card: cards/swl2-upgrade-autofabric.md
+  frontmatter:
+    description: 'OmniSwitch 软件升级版本策略与 Auto-Fabric 零触开局：GA/MR 与合规认证清单、签名镜像版本线、U-boot/底层固件 RMA 风险、
+      七步链（Auto-VC/RCL/Auto-LACP/Auto-Routing/Auto-SPB/画像/Auto-MVRP）与首启 Y/N 反直觉语义、LBD 环路检测。
+      当用户要"升级选版本/批量开局/首启提示怎么答"时经路由使用。升级操作步骤按 Release Notes（书外）；堆叠滚动升级属 Virtual Chassis 能力。
+
+      '
+    tags:
+    - procedure
+    - upgrade
+    - zero-touch
+    - auto-fabric
+  source_evidence:
+  - source_id: src-dt00xte215
+  - location: p529-535, p536-554
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 步骤书外、链路口径域，路由可达即可
+- capability_id: cap.swl2.fleet-tools
+  revision: 1
+  status: active
+  slug: swl2-fleet-tools
+  title: 资产与装机工具（Fleet Supervision/OST）
+  importance: medium
+  importance_rationale: 对应 task-11/25/26，支撑类工具面；合同门槛与"只读"边界决定方案可行性
+  one_liner: Fleet Supervision 免费只读看资产合规（三路声明/模板导入）；OST 2.0 装机排障（Postgres 先装、需支持合同、100 交换机/5 并发）
+  intents:
+  - 资产与维保合规报表
+  - Fleet Supervision 开通
+  - 安装使用 OST 2.0
+  - PoE 设备一键修复
+  - fleet supervision ost tooling
+  keywords:
+  - Fleet Supervision
+  - Services Kiosk
+  - myfleet
+  - 资产
+  - 维保
+  - EoL
+  - OST
+  - Postgres
+  - Server Configuration
+  - PoE 向导
+  - Auto-Ticket
+  - 支持合同
+  card: cards/swl2-fleet-tools.md
+  frontmatter:
+    description: '使用 Fleet Supervision 与 OST 工具面：Fleet 资产/生命周期/维保 KPI 与三路开通（OV 2500/Cirrus/模板导入）、OST 两代边界、
+      OST 2.0 安装链（Postgres 先装、ServerConfig 初始化、Client 纳管）、PoE 向导与流量分析。当用户要"资产报表/维保到期/装 OST/一键修复"时经路由使用。
+      Fleet 只读不管配置；OST 2.0 需有效 OmniSwitch 支持合同。
+
+      '
+    tags:
+    - reference
+    - tools
+    - fleet
+    - ost
+  source_evidence:
+  - source_id: src-dt00xte215
+  - location: p215-231, p555-569, p572-580
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 支撑工具域，路由可达即可

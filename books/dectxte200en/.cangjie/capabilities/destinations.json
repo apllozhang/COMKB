@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.dect-solutions",
+  "generated_at": "2026-09-23",
+  "destinations": {
+    "cap.dect.pari-identifier": { "promoted_to": "dect-pari-identifier" },
+    "cap.dect.product-selection": { "promoted_to": "dect-product-selection" },
+    "cap.dect.ipxbs-deployment": { "promoted_to": "dect-ipxbs-deployment" },
+    "cap.dect.xbs-sync-topology": { "promoted_to": "dect-xbs-sync-topology" },
+    "cap.dect.handset-registration": { "promoted_to": "dect-handset-registration" },
+    "cap.dect.mixed-mode": { "promoted_to": "dect-mixed-mode" },
+    "cap.dect.auto-reregistration": { "promoted_to": "dect-auto-reregistration" },
+    "cap.dect.firmware-management": { "promoted_to": "dect-firmware-management" },
+    "cap.dect.maintenance-troubleshooting": { "served_by": "dect-solutions-router" },
+    "cap.dect.radio-survey": { "served_by": "dect-solutions-router" },
+    "cap.dect.ibs-deployment": { "served_by": "dect-solutions-router" },
+    "cap.dect.sip-dect": { "served_by": "dect-solutions-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 }
+}

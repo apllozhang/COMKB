@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>DECT 手机自动重注册（PARI/PLI 变更零接触迁移）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · DECT 解决方案</h2><p>Edition 12 · 298 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/dectxte200en/index.html">课程首页</a><a href="/courses/dectxte200en/digest.html">精华长文</a><a href="/courses/dectxte200en/overview.html">教书理解</a><a href="/courses/dectxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/dectxte200en/skills/dect-pari-identifier.html">DECT 标识号码体系与 multi-PARI 适配</a><a href="/courses/dectxte200en/skills/dect-product-selection.html">DECT 产品线选型与拓扑决策</a><a href="/courses/dectxte200en/skills/dect-ipxbs-deployment.html">8378 IP-xBS 部署与故障换站</a><a href="/courses/dectxte200en/skills/dect-xbs-sync-topology.html">xBS 空中同步体系与组网域（含外部同步与多站点）</a><a href="/courses/dectxte200en/skills/dect-handset-registration.html">DECT 用户创建与手机注册/注销</a><a href="/courses/dectxte200en/skills/dect-mixed-mode.html">混合 DECT 基础设施部署（TDM + xBS、PLI 统一）</a><a href="/courses/dectxte200en/skills/dect-auto-reregistration.html">DECT 手机自动重注册（PARI/PLI 变更零接触迁移）</a><a href="/courses/dectxte200en/skills/dect-firmware-management.html">DECT 固件双轨升级管理（基站 downstat x / 手机 OTA downstat m）</a><p class="course-nav-group">路由能力</p><a href="/courses/dectxte200en/skills/dect-maintenance-troubleshooting.html">DECT 日常维护与排障（命令族/syslog/WBM）</a><a href="/courses/dectxte200en/skills/dect-radio-survey.html">DECT 无线覆盖勘测（RSSI 门槛/SSK/survey mode）</a><a href="/courses/dectxte200en/skills/dect-ibs-deployment.html">8379 IBS 基础设施部署（UA 板卡/布线/建站）</a><a href="/courses/dectxte200en/skills/dect-sip-dect.html">8328 SIP-DECT 部署（四步注册/双小区）</a><p class="course-nav-group">已安装技能</p><a href="/courses/dectxte200en/index.html">dect-solutions（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/dectxte200en/index.html">DECTXTE200EN</a><span>/</span><span aria-current="page">DECT 手机自动重注册（PARI/PLI 变更零接触迁移）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>DECT 手机自动重注册（PARI/PLI 变更零接触迁移）</h1></div><dl><div><dt>Skill ID</dt><dd>dect-auto-reregistration</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>DECT 手机自动重注册（dectinston -update / -forceUpdate / -f 批量）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"New PARI as close as possible of the existing ones ... PARI and PLI are compatible with the existing system, the handset moves to new PARI immediately after ... Use the option '- update'"（p254）
+"For an installation where PARI needs to be changed, automatic re-registration must be done before changing the system PARI. ... the handsets are no longer able to communicate with the system, as soon as they receive their new configuration"（p255）
+"Total duration of a batch of handsets update is proportional to the duration of one set (2 -3s) ... Paging of the handsets: from 1,3s for a reachable handset to 6,5s for a handset that is out of coverage"（p253）
+"Handset that are not under radio coverage of their installation node cannot be updated • Handsets off when the command is launched • Handsets connected to a visited node in case of OXE DECT networking"（p253）</p>
+</blockquote>
+<p>出处：DECTXTE200EN p249-262。</p>
+<h2>I — 自述</h2>
+<p>PARI/PLI 变更的零接触迁移工具：手机不动手，由系统推新标识。决策规则二选一：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>选项</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新 PARI 与旧 PARI 高位兼容（相近）</td>
+<td>-update</td>
+<td>手机立即迁移、业务不断</td>
+</tr>
+<tr>
+<td>PARI 彻底变化</td>
+<td>-forceUpdate</td>
+<td>顺序铁律：先推手机、后改系统 PARI</td>
+</tr>
+</tbody>
+</table></div>
+<p>命令形态：<code>dectinston -update &lt;dn&gt; -pari &lt;八进制&gt; -pli &lt;十进制&gt;</code>；批量用 <code>-f &lt;文件&gt;</code>（清单传到 /tmpd，每行一个目录号，# 开头为注释行）。</p>
+<p>性能与安全口径（p253）：单机全程 2-3 秒（paging 1,3s 可达 / 6,5s 出覆盖，默认 5 次寻呼重传；过程本体约 800ms），批量时长≈单机×台数；安全级别保持不变、UAK 不重算、密钥永不上空口。</p>
+<p>三类覆盖不了的手机（p253）：关机的、不在安装节点覆盖内的、漫游到访问节点的。机型前提（p252）：82x4 全系支持；8262 需 v5580b0007/v5680b0005、8262 Ex 需 v7381b0009、8214/8234/8244/8254 无最低版本。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>单机与批量重注册实验</strong>（p259-262）：</p>
+<ol>
+<li>前置：系统 PLI 已调 30，xBS 新 PARI=10000410114（实验口径）</li>
+<li>单机：dectinston -update 31015 -pari 10000410114 -pli 30 → 回显核对 → "31015 re-installed successfully!!!"</li>
+<li>批量准备：DECT.txt 写入 31016/31017 → FTP/SFTP 传 /tmpd</li>
+<li>批量执行：cd /tmpd → dectinston -update -f DECT.txt -pari 10000410114 -pli 30 → "Process Completed!!"</li>
+<li>结果核验：more ReinstallSuccessHandsetsList.txt（含命令头注释）与 ReinstallNOKHandsetsList.txt（应为空）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：PARI 变更迁移；混合模式后推新标识；换号段批量迁移；重注册失败清单处理；估算迁移窗口时长。</p>
+<p>语言信号：自动重注册 / re-registration / -update / -forceUpdate / -pari / -pli / DECT.txt / /tmpd / ReinstallSuccess / ReinstallNOK / 批量迁移 / 访问节点 / visited node。</p>
+<p>与相邻能力区分：PARI/PLI 该取什么值见标识号码能力；混合部署的全局配置见混合部署能力；固件版本不达标先升级见固件管理能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：新旧 PARI/PLI 对照、在册手机清单、维护窗口。手机固件不达 p252 版本表 → 先升固件（OTA 或 UST+USB）。</p>
+<ol>
+<li>判路线：新旧 PARI 高位兼容 → -update；彻底变化 → -forceUpdate。完成标准：路线与顺序确定</li>
+<li>拉在线清单：确认手机已注册、在运行、在安装节点覆盖内。完成标准：目标集可达</li>
+<li>单机试跑：dectinston -update <dn> -pari ... -pli ...，核对回显。完成标准：试跑机 re-installed successfully</li>
+<li>批量下发：DECT.txt 传 /tmpd → dectinston -update -f DECT.txt -pari ... -pli ...。完成标准：Process Completed</li>
+<li>核结果：more 两个结果文件，NOK 清单应为空。完成标准：成功清单=预期台数</li>
+<li>（-forceUpdate 时）改系统 PARI：成功清单达标后才动系统配置。完成标准：系统与手机标识一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>想先改系统 PARI 再推送（-forceUpdate 路线）→ 停，顺序不可逆：手机收到新配置即与旧系统断联，推送通道消失，全部沦为手工重装（p255）</li>
+<li>NOK 清单非空且系统已改 → 这些手机只能现场手工注册，排产时预留</li>
+<li>手机在访问节点/关机 → 更新不了（p253），等回安装节点重跑，不要算作失败返工</li>
+<li>8262 老固件报不支持 → 查 p252 版本表，先 OTA 或 USB 升级</li>
+</ul>
+<p>输出契约：迁移执行单（路线/清单/窗口）+ ReinstallSuccess/NOK 双清单存档 + 系统变更记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>2-3s/机是"过程"时长，paging 部分随覆盖状态浮动（1,3s-6,5s）；窗口按单机×台数线性估算并留余量</li>
+<li>-update 失败时手机保留原参数不受影响（p251）；-forceUpdate 失败机在系统改完后无法远程补救</li>
+<li>UAK 不重算、密钥不上空口是安全口径（p253）；生产密钥治理策略在书外</li>
+<li>结果文件生成在输入文件同目录（/tmpd）；文件名以当版为准</li>
+<li>"All 82x4 handsets are supported"不含 82x2 系列（p252 标题口径）</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.dect.auto-reregistration · 来源：DECTXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: DECT Solutions (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 298 页 -->

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>SIP 跟踪采集与维护排障</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · SIP</h2><p>Edition 12 · 465 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte403en/index.html">课程首页</a><a href="/courses/entpxte403en/digest.html">精华长文</a><a href="/courses/entpxte403en/overview.html">教书理解</a><a href="/courses/entpxte403en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte403en/skills/osip-protocol-foundation.html">SIP 协议机理与 OXE SIP 架构</a><a href="/courses/entpxte403en/skills/osip-user-forms.html">SIP 用户形态选型与容量核算</a><a href="/courses/entpxte403en/skills/osip-sip-device-provisioning.html">SIP Device 用户开通与维护</a><a href="/courses/entpxte403en/skills/osip-deskphone-provisioning.html">ALE 话机 SIP 开通与 NOE↔SIP 切换</a><a href="/courses/entpxte403en/skills/osip-ales-provisioning.html">ALES 软终端开通与认证</a><a href="/courses/entpxte403en/skills/osip-certificate-management.html">OXE DM 证书定制与安全级</a><a href="/courses/entpxte403en/skills/osip-otsbc-carrier-interconnect.html">经 SBC 的 SIP 运营商接入与 OTSBC 部署</a><a href="/courses/entpxte403en/skills/osip-remote-workers.html">远程办公方案与落地</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte403en/skills/osip-codec-negotiation.html">编解码协商与验证</a><a href="/courses/entpxte403en/skills/osip-sip-troubleshooting.html">SIP 跟踪采集与维护排障</a><a href="/courses/entpxte403en/skills/osip-dm-management.html">SIP 设备管理选型与 profile 体系</a><a href="/courses/entpxte403en/skills/osip-sip-features.html">ALE SIP 业务特性配置</a><a href="/courses/entpxte403en/skills/osip-lab-environment.html">POD 实验环境与运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte403en/index.html">oxe-sip（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte403en/index.html">ENTPXTE403EN</a><span>/</span><span aria-current="page">SIP 跟踪采集与维护排障</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>SIP 跟踪采集与维护排障</h1></div><dl><div><dt>Skill ID</dt><dd>osip-sip-troubleshooting</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>SIP 跟踪采集与维护排障（motortrace/oxetrace/mtracer/sipdump）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"(1)csa&gt; motortrace 1 ... (1)csa&gt; traced"（p313）
+"Enter the Relevant Question Indexes Separated by Space -&gt; 2 ... Enter the folder name (will be created in /tmpd/) ? trace-1"（p315）
+"Warning IT IS NECESSARY TO HAVE TWO CONNECTIONS ON THE CALL SERVER: ONE FOR NAVIGATING IN THE 'sipdump' MENU AND THE OTHER IN ORDER TO GET THE RESULTS"（p321）
+"IF REQUIRED, USE THE FOLLOWING COMMANDS TO REINITIALIZE THE PROCESSES - dhs3_init –R SIPMOTOR (RECOMMENDED) - killall sipmotor. WARNING: YOU HAVE TO BE LOGGED AS ROOT"（p93）</p>
+</blockquote>
+<p>出处：ENTPXTE403EN p287-327。</p>
+<h2>I — 自述</h2>
+<p>排障四件套分工明确，状态类命令先行、信令采集收尾：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>工具/命令</th>
+<th>用途</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sipregister / sipdict / sipgateway / trkstat</td>
+<td>状态四查</td>
+<td>注册库（AOR+contact+剩余租期）/字典（type 2=Device、3=Extension）/网关全景/中继组 62 路 TS</td>
+</tr>
+<tr>
+<td>motortrace N + traced</td>
+<td>轻量信令流</td>
+<td>级别 0-b 十二档可调：1 基本、2 大流量观察、3 无流量定向深挖、4 +认证、5 +媒体、8 全部+传输+DNS；Ctrl-C 停</td>
+</tr>
+<tr>
+<td>oxetrace</td>
+<td>问题导向采集</td>
+<td>七问菜单（Trunks/Endpoint/Audio/Display/Rainbow/Nomadic/Attendant）+actdbg 过滤；产出 /tmpd/ 三目录并自动打包 zip，sftp 取回进 Wireshark</td>
+</tr>
+<tr>
+<td>mtracer</td>
+<td>应用级跟踪</td>
+<td>tuner km、+cpl +cpu +at、actdbg csip=on、mtracer -a；收尾 actdbg all=off 加 dhs3_init -R MTRACER</td>
+</tr>
+<tr>
+<td>sipdump</td>
+<td>网关资源与呼叫态</td>
+<td>17 项菜单：许可读数（实验 20/20、TLS 30/30）、呼叫清单、转储、强拆（代理发 BYE）、追踪过滤（过滤作用于 motortrace）；需双连接</td>
+</tr>
+<tr>
+<td>恢复口径</td>
+<td>进程/中继</td>
+<td>sipmotor 重启首选 dhs3_init -R SIPMOTOR（killall 需 root 属激进）；中继组不在服时可能要整机重启</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>注册即服务：注销/超时后 IP 置 0.0.0.0、终端 out of service——"话机不通"第一步查 sipregister</li>
+<li>自动隔离记录看 /usr4/tmp/sipalarm.log（f003 告警）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>四工具实操</strong>（p312-327，How-To）：</p>
+<ol>
+<li>motortrace 1 + traced，打 SEPLOS 31034 呼 NOE 31000，读 INVITE/100/180/200 OK 全事务，Ctrl-C 停。</li>
+<li>oxetrace 进 1 Start Trace，按问题选号（例 2=SIP Endpoint），命名 trace-1，复现呼叫后 2 Stop、1 Keep（生成 /tmpd/TRACE-1_&lt;时间戳&gt;.zip）。</li>
+<li>Filezilla sftp 从 /tmpd 取回 zip；pcap 进 Wireshark：SIP 过滤、看 SDP、Telephony/VoIP Calls 流程图。</li>
+<li>mtracer：tuner km、clear-traces、+cpl +cpu +at、actdbg csip=on、mtracer -a 复现 51 立即呼转场景后收尾清理。</li>
+<li>sipdump 双连接：菜单口看许可/呼叫数/呼叫清单，traced 口看结果；试强拆（Release a call）与追踪过滤（Add filter 串 31030@oxe.company.com）。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：给 ALE 支持提工单要附证据；注册时序看不懂；要强拆挂死呼叫；只想要特定用户的信令；许可/资源余量核对。</p>
+<p>语言信号：trace / 抓包 / motortrace / oxetrace / mtracer / sipdump / traced / 级别 / Wireshark / pcap / 强拆 / Release a call / 过滤 / sipregister / trkstat / sipalarm / dhs3_init / zip。</p>
+<p>与相邻能力区分：编解码读数用 compvisu → 编解码卡；各业务域的配置根因（信任主机/DID/注册）→ 对应开通卡先查配置再抓包。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：故障现象与复现路径、时间窗口、涉及分机/中继号。无法复现 → 判停约定复现窗口。</p>
+<ol>
+<li>查状态：sipregister/sipdict/sipgateway/trkstat 四查定位层面（注册/字典/网关/中继）。完成标准：层面判定</li>
+<li>轻量采集：motortrace 级别按流量选（1 少、2 大流量、3 定向），复现并读事务。完成标准：事务可读</li>
+<li>深度采集：oxetrace 按问题选号采集，Keep 生成 zip，sftp 取回进 Wireshark 分析。完成标准：pcap 与流程图在手</li>
+<li>定向深挖：需要应用级视图用 mtracer（记得收尾清理）；要过滤与强拆用 sipdump（双连接）。完成标准：证据齐</li>
+<li>收口：结论 + trace 文件归档；需升级 ALE 支持时附 zip 与复现步骤。完成标准：交付物成文</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>sipmotor 进程异常 → 先 dhs3_init -R SIPMOTOR，killall 留给 root 级激进场景（n52）</li>
+<li>中继组不在服 → 可能要整机重启，先排窗口别硬磨（n44/n52）</li>
+<li>sipdump 只开一个连接 → 停，按 Warning 开双连接再操作</li>
+</ul>
+<p>输出契约：信令级排障交付物（trace 文件 + 结论）+ 状态四查读数记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>Wireshark 报文分析深度、SIP 协议逐字段课程在书外，本卡给 OXE 工具链用法</li>
+<li>sipdump 许可读数（20/20、TLS 30/30）为实验站点配置（p34），生产读数随许可而变</li>
+<li>motortrace 级别表为 p288 原文口径；verbosity 位图示例 1→0003a004</li>
+<li>采集级别过高在大流量站点会放大负载，采完即停</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte403en/skills/osip-codec-negotiation.html">编解码协商与验证</a></p><p class="source-page">能力 ID：cap.osip.sip-troubleshooting · 来源：ENTPXTE403EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - SIP (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 465 页 -->

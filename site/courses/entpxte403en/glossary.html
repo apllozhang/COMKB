@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>术语词典 · ENTPXTE403EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · SIP</h2><p>Edition 12 · 465 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte403en/index.html">课程首页</a><a href="/courses/entpxte403en/digest.html">精华长文</a><a href="/courses/entpxte403en/overview.html">教书理解</a><a href="/courses/entpxte403en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte403en/skills/osip-protocol-foundation.html">SIP 协议机理与 OXE SIP 架构</a><a href="/courses/entpxte403en/skills/osip-user-forms.html">SIP 用户形态选型与容量核算</a><a href="/courses/entpxte403en/skills/osip-sip-device-provisioning.html">SIP Device 用户开通与维护</a><a href="/courses/entpxte403en/skills/osip-deskphone-provisioning.html">ALE 话机 SIP 开通与 NOE↔SIP 切换</a><a href="/courses/entpxte403en/skills/osip-ales-provisioning.html">ALES 软终端开通与认证</a><a href="/courses/entpxte403en/skills/osip-certificate-management.html">OXE DM 证书定制与安全级</a><a href="/courses/entpxte403en/skills/osip-otsbc-carrier-interconnect.html">经 SBC 的 SIP 运营商接入与 OTSBC 部署</a><a href="/courses/entpxte403en/skills/osip-remote-workers.html">远程办公方案与落地</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte403en/skills/osip-codec-negotiation.html">编解码协商与验证</a><a href="/courses/entpxte403en/skills/osip-sip-troubleshooting.html">SIP 跟踪采集与维护排障</a><a href="/courses/entpxte403en/skills/osip-dm-management.html">SIP 设备管理选型与 profile 体系</a><a href="/courses/entpxte403en/skills/osip-sip-features.html">ALE SIP 业务特性配置</a><a href="/courses/entpxte403en/skills/osip-lab-environment.html">POD 实验环境与运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte403en/index.html">oxe-sip（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte403en/index.html">ENTPXTE403EN</a><span>/</span><span aria-current="page">术语词典</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">GLOSSARY</p><h1>术语词典 — 中英对照</h1></div></header><article class="markdown-body"><h1>GLOSSARY — OmniPCX Enterprise SIP 术语表</h1>
+<blockquote>
+<p>阶段 3 产出（源：candidates/glossary.md，56 条，六大域；本表为门户精选版约 32 条）。
+口径：定义只采信本书正文；CTL/OTSBC/ARS/NOE/ABC-F/DPNSS/REX/CSTA 等缩写书中未给全称，如实标注；p358 "EXISITING"、p239 "Cicular" 为原文笔误。</p>
+</blockquote>
+<h1>OmniPCX Enterprise SIP (ENTPXTE403EN Ed12) — 关键术语词典</h1>
+<blockquote>
+<p>文档整理流水线术语提取器产出。取材方法：全量扫描 source_fulltext.txt（465 页全部通读），所有页码均回原文核验。
+用途：下游能力卡的共享中英对照词典。</p>
+</blockquote>
+<h2>一、核心概念域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIP</td>
+<td>会话发起协议（Session Initiation Protocol）</td>
+<td>RFC 3261 应用层信令协议，建立/维持/修改/终止多媒体会话；只协商不承载，媒体走 RTP、特征由 SDP 描述</td>
+<td>p45-48</td>
+</tr>
+<tr>
+<td>SEPLOS (SIP Extension)</td>
+<td>SIP 分机级服务（SIP End Point Level of Services）</td>
+<td>电话应用把这类终端当"内部话机"：前缀/后缀业务、多线、寻线组/代接组、MESSAGE 显示；sipdict 中 type=3</td>
+<td>p66-74</td>
+</tr>
+<tr>
+<td>SIP Device</td>
+<td>SIP 设备（远端子网形态）</td>
+<td>被视为远端子网一部分的终端（会议话机/门禁/视频），须私网+中继组+本地网关；无前缀/后缀、无 CTI、无坐席、不入组；type=2</td>
+<td>p66-78</td>
+</tr>
+<tr>
+<td>SIP Gateway (local)</td>
+<td>本地 SIP 网关</td>
+<td>Call Handling 与 SIP 代理间的接口；端口 5060/TLS 5061/MTLS 6261</td>
+<td>p57, p86, p91</td>
+</tr>
+<tr>
+<td>SIP Dictionary</td>
+<td>SIP 字典</td>
+<td>分机号 ↔ SIP URL 翻译表；重名用户用 alias 区分</td>
+<td>p57, p88, p92</td>
+</tr>
+<tr>
+<td>Proxy / Registrar / Location Server</td>
+<td>OXE SIP 三服务器</td>
+<td>代理（路由/权限/改写）、注册器（收注册、租期 1800/86400s）、位置服务器（URL→IP）；同栖 sipmotor</td>
+<td>p51-57, p87-88</td>
+</tr>
+<tr>
+<td>Spatial redundancy</td>
+<td>空间冗余</td>
+<td>每台 CS 有物理与角色 IP，客户端用节点名接入；内部域名解析器+DNS 委托保证只有 Main 应答</td>
+<td>p58-59</td>
+</tr>
+<tr>
+<td>DM / DM profile</td>
+<td>设备管理 / 设备管理档案</td>
+<td>下发配置文件与二进制的模块（OXE N1 起自带）；profile 按子型适配（默认 0、上限 100）</td>
+<td>p71, p144-153</td>
+</tr>
+<tr>
+<td>CTL</td>
+<td>话机证书信任列表文件（缩写未展开）</td>
+<td>OXE DM 生成下发（/usr3/mao/DM/VHE8082 下 ctl_VHE8082、ict8000ctl.pem），含 RP/SBC 的 CA 证书</td>
+<td>p151, p166, p171</td>
+</tr>
+<tr>
+<td>ALES-DUID</td>
+<td>ALES 设备唯一标识（RFC4122）</td>
+<td>每条 SIP 请求携带；OXE 以分机号↔DUID 实现一号多机互斥（403 + Warning 399）</td>
+<td>p115-117</td>
+</tr>
+<tr>
+<td>Quarantine</td>
+<td>隔离</td>
+<td>3 秒超 50 条消息自动隔离 30 分钟、报文丢弃；记录在 /usr4/tmp/sipalarm.log（f003）</td>
+<td>p87-88, p94</td>
+</tr>
+<tr>
+<td>Dual partition / Force Download</td>
+<td>双分区 / 强制下载</td>
+<td>ALE-x00/ALE-30 双栈机制：YES 后台预载对侧二进制（首下载可达 30 分钟）切换即快切</td>
+<td>p187-194, p200</td>
+</tr>
+<tr>
+<td>auto-discovery</td>
+<td>自动发现</td>
+<td>无配置文件时 401 触发认证：分机号+用户密码码（默认 0000）+MAC+机型；ALES 无此机制</td>
+<td>p157-158, p183-184</td>
+</tr>
+<tr>
+<td>Multi-devices</td>
+<td>多终端</td>
+<td>纯 SIP 1 主+最多 4 副（ALES Windows/Mobile 各一）；混合 NOE+DECT 最多 3 台；RFC3326 Reason 同步</td>
+<td>p134-137</td>
+</tr>
+</tbody>
+</table></div>
+<h2>二、角色与账号域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mtcl / swinst / root</td>
+<td>CS 三个运维账号</td>
+<td>mtcl=维护查询与多数 CLI；swinst=软件与系统管理菜单（认证/nginx）；root=高权限（PKI/SSL 级/killall）；口令实验口径</td>
+<td>p62, p91-94, p169, p225</td>
+</tr>
+<tr>
+<td>UAC / UAS / B2BUA</td>
+<td>SIP 实体角色三件</td>
+<td>UAC 发请求（主叫）、UAS 应答（被叫）、B2BUA 两侧各扮一角且两段会话独立（与 proxy 本质区别）</td>
+<td>p51</td>
+</tr>
+<tr>
+<td>Supervisor / supervisee</td>
+<td>监督员 / 被监督人</td>
+<td>监督员持监督键（≤40）监视/代接/直呼；被监督人状态经 NOTIFY 推送；仅 SIP 设备可被 SIP 设备监督</td>
+<td>p130-133</td>
+</tr>
+</tbody>
+</table></div>
+<h2>三、产品与组件域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OmniPCX Enterprise (OXE)</td>
+<td>ALE 企业级通信服务器</td>
+<td>本书宿主 PBX，版本口径 R101.1 MD4（截图混 R100.0/R101.0/R101.1）</td>
+<td>p1, p56</td>
+</tr>
+<tr>
+<td>ALES (ALE SoftPhone)</td>
+<td>ALE 软终端</td>
+<td>Windows/Android/iOS 软话机，SIP+（Purple 起）；仅 OXE DM 管理；子型 ALES-desktop/ALES-mobile</td>
+<td>p106-121</td>
+</tr>
+<tr>
+<td>ALE-2 / ALE-3</td>
+<td>基础型 SIP 话机</td>
+<td>仅 Business 模式、原生加密、8/12 可编程键、内嵌 OpenVPN（唯一）；DHCP 类 ALE-2X/VCI aledevice</td>
+<td>p99, p172-186, p412</td>
+</tr>
+<tr>
+<td>ALE-30 / ALE-x00</td>
+<td>Essential 与企业档话机</td>
+<td>ALE-30 支持 1 个 EM-200；ALE-300/400/500 双栈双分区、NOE↔SIP 可切、120 可编程键；VCI ictouch.0</td>
+<td>p100-105, p187-216</td>
+</tr>
+<tr>
+<td>8008 / 8008G / 8088</td>
+<td>Essential 特例与 Huddle Room</td>
+<td>8008 走 Business+酒店模式（可 OXE DM 管）；8088 酒店/Huddle Room 仅 8770 DM</td>
+<td>p98, p147</td>
+</tr>
+<tr>
+<td>OTSBC</td>
+<td>ALE 会话边界控制器</td>
+<td>AudioCodes Mediant 平台底座（缩写未展开）；SIP trunking 与远程办公公共底座，内嵌反代 ≤500 用户</td>
+<td>p336-345, p387</td>
+</tr>
+<tr>
+<td>OmniVista 8770</td>
+<td>ALE 管理平台（8770 DM）</td>
+<td>传统 SIP 设备管理方；开关=系统参数 "Device Management in 8770"；关闭即删其配置文件</td>
+<td>p71, p146-150, p174</td>
+</tr>
+<tr>
+<td>Internal PKI</td>
+<td>OXE 内部证书机构</td>
+<td>netadmin 11/9/1 一键生成根 CA+CS 证书（SAN 含 FQDN/通配/IP、密钥默认 4096）并产出 CTL</td>
+<td>p168-171</td>
+</tr>
+<tr>
+<td>EDS (Easy Deployment Server)</td>
+<td>易部署服务器</td>
+<td>ALE 云端零接触部署服务器（AWS 巴黎）；话机硬编码 device.eds.al-enterprise.com</td>
+<td>p401, p404-406</td>
+</tr>
+<tr>
+<td>OXE-MS</td>
+<td>OXE 媒体服务资源</td>
+<td>OPUS/G722 的转码/会议/语音指南必要资源，编解码资源动态列表排最前</td>
+<td>p276, p281</td>
+</tr>
+<tr>
+<td>IPDSP / MicroSIP</td>
+<td>实验软话机两类</td>
+<td>ALE IP 桌面软话机（实验主用）/ 第三方 SIP 客户端（模拟公网用户与 SIP Device 终端）——教学基础设施</td>
+<td>p10, p39-40</td>
+</tr>
+<tr>
+<td>NGINX / NGINX PLUS</td>
+<td>Web 服务与反代</td>
+<td>OXE 内嵌 NGINX 为 DM 下载通道（443/8443）；NGINX PLUS 为 &gt;500 远程用户推荐反代</td>
+<td>p157-160, p387</td>
+</tr>
+</tbody>
+</table></div>
+<h2>四、协议与技术域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SDP</td>
+<td>会话描述协议（Session Description Protocol）</td>
+<td>在 SIP 信令里携带 RTP/RTCP 端口与编解码清单；SDP in 18x 参数决定 180 是否带 SDP</td>
+<td>p48, p86-87</td>
+</tr>
+<tr>
+<td>RTP / RTCP / SRTP</td>
+<td>媒体传输与加密</td>
+<td>RTP 承载音视频；SRTP 为加密媒体流（SEPLOS 原生加密与 SBC 媒体安全的落点）</td>
+<td>p45, p99, p337</td>
+</tr>
+<tr>
+<td>TLS / mTLS / SIPS</td>
+<td>传输安全三件</td>
+<td>TLS 保信令（5061）；mTLS 双向证书（DM 8443、话机↔RP/EDS）；SIPS 为加密 SIP URI 形态</td>
+<td>p48, p159-160</td>
+</tr>
+<tr>
+<td>Reverse Proxy</td>
+<td>反向代理</td>
+<td>把互联网侧请求转发到内网 OXE DM；≤500 用户用 OTSBC 内嵌实现</td>
+<td>p388-395, p421-435</td>
+</tr>
+<tr>
+<td>NOE</td>
+<td>ALE 话机传统 IP 协议栈（缩写未展开）</td>
+<td>SIP 的对照系与共存系：ALE-x00 双栈可互切；NOE 设备 VCI=alcatel.noe.0</td>
+<td>p39-40, p135, p154</td>
+</tr>
+<tr>
+<td>ARS</td>
+<td>自动路由选择（缩写未展开）</td>
+<td>出局选路引擎：前缀→判别器→路由表→时间清单；SIP 中继组配外部网关必须配 ARS</td>
+<td>p355-358</td>
+</tr>
+<tr>
+<td>NPD / DID translation</td>
+<td>号码计划描述 / DID 翻译</td>
+<td>NPD 定主被叫号码计划与默认号（出向），DID 翻译把外线号段映射回内线（进向）；回拨翻译整理显示号码</td>
+<td>p359-361</td>
+</tr>
+<tr>
+<td>DTMF（三法）</td>
+<td>双音多频传递</td>
+<td>RFC4733（RTP 载荷）/SIP INFO（逐位+200 OK）/带内（音频）；方法在 DM profile 配置</td>
+<td>p305</td>
+</tr>
+<tr>
+<td>LDAP / LDAPS</td>
+<td>目录服务双用途</td>
+<td>ALES 登录认证（swinst 配 uid/Bind DN）+ 目录搜索（DM profile 配 URL）；远程时 RP 与 OXE DM 须同源</td>
+<td>p110-111, p225-226, p395</td>
+</tr>
+<tr>
+<td>TFTP / DHCP option 66-67 / VCI</td>
+<td>终端引导三件</td>
+<td>TFTP 字段实为 DM HTTPS URL；option 66 下发 DM URL、option 67 下发 sipconfig.txt；VCI 区分终端族</td>
+<td>p151, p181-182, p204, p214</td>
+</tr>
+<tr>
+<td>CAC</td>
+<td>呼叫准入控制（Call Admission Control）</td>
+<td>注册 IP 决定终端归属 IP 电话域与带宽档；本地网关 CAC SIP-SIP 决定是否校验域权限</td>
+<td>p80, p86-87</td>
+</tr>
+<tr>
+<td>Quarantine Framework</td>
+<td>防隔离框架参数</td>
+<td>SIP Proxy Framework period=3s / Nb Message=50；ALES 必配防误隔离</td>
+<td>p87-88, p227</td>
+</tr>
+</tbody>
+</table></div>
+<h2>五、资源与文档域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RLAB / POD</td>
+<td>培训远程实验室/实验单元</td>
+<td>按 POD 划分同构实验单元（全虚拟化/混合），共享 NAS 与 SIP 模拟器；POD 号嵌入全部号码账号</td>
+<td>p5-19</td>
+</tr>
+<tr>
+<td>ITSP1 / ITSP2</td>
+<td>SIP 运营商模拟器两腿</td>
+<td>ITSP1 直连（gateway1.itsp1.com，pbxP/alcatel）；ITSP2 经 SBC（gateway.itsp2.com，podP/alcatel）</td>
+<td>p21-34</td>
+</tr>
+<tr>
+<td>ITServer</td>
+<td>实验基础设施机</td>
+<td>192.168.1.252，NTP 与 OpenLDAP 合一（实验口径）</td>
+<td>p9, p219</td>
+</tr>
+<tr>
+<td>TC2005 / TC2957</td>
+<td>ALE 技术文档两份</td>
+<td>TC2005=运营商 SIP 网关参数依据；TC2957=ALES Remote Worker 快速部署指南</td>
+<td>p349, p411</td>
+</tr>
+<tr>
+<td>MyPortal</td>
+<td>ALE 客户服务门户</td>
+<td>OTSBC 部署软件（OVF/ISO）下载入口</td>
+<td>p365</td>
+</tr>
+<tr>
+<td>FlexLM Server</td>
+<td>实验许可服务器</td>
+<td>192.168.1.80；证书生成时 CC-suite-ID 取自许可文件</td>
+<td>p9, p38, p169</td>
+</tr>
+</tbody>
+</table></div></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - SIP (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 465 页 -->

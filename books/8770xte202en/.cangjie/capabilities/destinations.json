@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.omnivista-directory",
+  "generated_at": "2026-09-23",
+  "destinations": {
+    "cap.ovdir.oxe-sync-ldap": { "promoted_to": "ovdir-oxe-sync-ldap" },
+    "cap.ovdir.auto-creation": { "promoted_to": "ovdir-auto-creation" },
+    "cap.ovdir.links-rename": { "promoted_to": "ovdir-links-rename" },
+    "cap.ovdir.msad-azure-pipelines": { "promoted_to": "ovdir-msad-azure-pipelines" },
+    "cap.ovdir.click-to-call": { "promoted_to": "ovdir-click-to-call" },
+    "cap.ovdir.confidentiality": { "promoted_to": "ovdir-confidentiality" },
+    "cap.ovdir.replication": { "promoted_to": "ovdir-replication" },
+    "cap.ovdir.domains-delegation": { "promoted_to": "ovdir-domains-delegation" },
+    "cap.ovdir.msad-plugin": { "served_by": "omnivista-directory-router" },
+    "cap.ovdir.ldif-tools": { "served_by": "omnivista-directory-router" },
+    "cap.ovdir.client-dictionary": { "served_by": "omnivista-directory-router" },
+    "cap.ovdir.platform-basics": { "served_by": "omnivista-directory-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 }
+}

@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>术语词典 · OTCCXTE150EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced Call Routing</h2><p>Edition 01 · 470 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte150en/index.html">课程首页</a><a href="/courses/otccxte150en/digest.html">精华长文</a><a href="/courses/otccxte150en/overview.html">教书理解</a><a href="/courses/otccxte150en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte150en/skills/acr-script-editor-fundamentals.html">ACR 脚本编辑器与调试工具链</a><a href="/courses/otccxte150en/skills/acr-ccd-matrix-foundation.html">ACR 基础 CCD 矩阵地基</a><a href="/courses/otccxte150en/skills/acr-redirect-redistribution.html">ACR 重定向与再分发兜底</a><a href="/courses/otccxte150en/skills/acr-direct-call-dica.html">ACR 坐席直拨融合</a><a href="/courses/otccxte150en/skills/acr-internal-database-routing.html">ACR 内部数据库路由</a><a href="/courses/otccxte150en/skills/acr-rule-combination-advanced.html">ACR 综合规则组合与高级构件</a><a href="/courses/otccxte150en/skills/acr-asm-deployment.html">ACR 外部 ASM 部署与双机热备</a><a href="/courses/otccxte150en/skills/acr-database-query-routing.html">ACR 外部数据库查询路由</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte150en/skills/acr-list-rules.html">ACR 授权与非授权名单规则</a><a href="/courses/otccxte150en/skills/acr-call-tag-transfer.html">ACR Call Tag 生成与传递</a><a href="/courses/otccxte150en/skills/acr-multilanguage-voiceguide.html">ACR 多语言语音引导与语言偏好分发</a><a href="/courses/otccxte150en/skills/acr-filter-statistics.html">ACR 过滤器与统计报表</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte150en/index.html">otcc-advanced-call-routing（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte150en/index.html">OTCCXTE150EN</a><span>/</span><span aria-current="page">术语词典</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">GLOSSARY</p><h1>术语词典 — 中英对照</h1></div></header><article class="markdown-body"><h1>GLOSSARY — OTCC Advanced Call Routing 术语表</h1>
+<blockquote>
+<p>阶段 3 产出（源：candidates/glossary.md，55 条，六大域；本文件为门户精选版，全量以 candidates/glossary.md 为准）。
+口径：定义只采信本书正文；ASM 书中写作 "Agent Selection Modul"（原书拼写，照录）；IAA/MAO/MLE/RSI/CSTA/DTMF/csm/GD 等缩写书中未给全称，如实标注；实验编号为实验口径。</p>
+</blockquote>
+<h1>OmniTouch CC Standard · Advanced Call Routing (OTCCXTE150EN Issue 01) — 关键术语词典</h1>
+<blockquote>
+<p>文档整理流水线术语提取器产出。取材方法：全量扫描 source_fulltext.txt（470 页全部通读），所有页码均回原文核验。
+用途：下游能力卡的共享中英对照词典。</p>
+</blockquote>
+<h2>一、核心概念域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACR (Advanced Call Routing)</td>
+<td>高级呼叫路由</td>
+<td>基于脚本的呼叫路由特性：编辑器内嵌 CCS、脚本挂 ACR Pilot、ASM 服务器执行，按规则与呼叫特征返回坐席列表</td>
+<td>p3-18</td>
+</tr>
+<tr>
+<td>ASM (Agent Selection Modul)</td>
+<td>坐席选择模块（"Modul" 为原书拼写）</td>
+<td>解释脚本、查/更数据库、按坐席配置加脚本规则加呼叫档案计算坐席列表的服务器；内部（alb 进程）或外部（Windows 服务）</td>
+<td>p6, p9-11, p320-321</td>
+</tr>
+<tr>
+<td>ACR Pilot</td>
+<td>ACR 引导号</td>
+<td>承载 ACR 脚本的引导号：配等待房间、无资源选择优先级（选人归 ASM）、同一时刻仅 1 个脚本</td>
+<td>p6, p12-13, p113</td>
+</tr>
+<tr>
+<td>Statistic Pilot</td>
+<td>统计引导号</td>
+<td>业务入口，带呼叫档案与可选 Call Tag，汇入 Routing Pilot；容量 1000</td>
+<td>p36, p168</td>
+</tr>
+<tr>
+<td>Waiting Room</td>
+<td>等待房间</td>
+<td>ACR 专用停放区：不按 FIFO，ASM 动态坐席列表附着其上；与等待队列互斥不能同开</td>
+<td>p12-14, p233</td>
+</tr>
+<tr>
+<td>Dynamic Group</td>
+<td>动态组</td>
+<td>ASM 每次呼叫即时算出的坐席列表，非 PBX 静态分组</td>
+<td>p12, p14</td>
+</tr>
+<tr>
+<td>Call Profile</td>
+<td>呼叫档案</td>
+<td>呼叫的技能需求清单：最多 7 技能、级别 1-9、强制/可选，语言偏好 1-7（1 最优先）</td>
+<td>p15, p39</td>
+</tr>
+<tr>
+<td>CHARACTERISTICS_LIST</td>
+<td>特征列表</td>
+<td>呼叫运行时实际携带的技能特征集合，ISM 最常用输入；档案是定义、特征列表是运行时值</td>
+<td>p15, p18, p259</td>
+</tr>
+<tr>
+<td>Call Tag</td>
+<td>呼叫标签</td>
+<td>随呼叫走并受 ACR 分发机制操作的字符串（CSTA Correlator data）；三来源，转移时最后者覆盖前者</td>
+<td>p15, p168-173</td>
+</tr>
+<tr>
+<td>Skill / Domain / Weight</td>
+<td>技能/域/权重</td>
+<td>技能 1-16 字符加缩写 1-4 字符挂域（ID 0-99、权重 1-20 参与ISM 计算）；坐席按技能配级别 1-9</td>
+<td>p37-38, p41</td>
+</tr>
+<tr>
+<td>ISM cost</td>
+<td>ISM 成本</td>
+<td>等待房间中被选中的代价：ISM 按档案算、其他规则 0、等待队列普通 CCD 呼叫无穷；越小越先服务</td>
+<td>p221, p235</td>
+</tr>
+<tr>
+<td>PLTR / LIT</td>
+<td>登录时段话务比/最长空闲</td>
+<td>Idle 规则两语义：PLTR=周期处理时长/登录时长（默认 5 分钟周期）；LIT=登录后最长空闲优先（参数 1 单机/2 组网）</td>
+<td>p239-242</td>
+</tr>
+<tr>
+<td>9 ACR Rules</td>
+<td>九种 ACR 规则</td>
+<td>ISM/LCA/授权/非授权名单/重定向/再分发/Idle/Com/IVR；单用 4 种独占 APPLY、可组合 5 种、Idle 与 Com 互斥</td>
+<td>p7-8, p244</td>
+</tr>
+<tr>
+<td>Direct Call / CALL_TYPE / DICA</td>
+<td>直拨族</td>
+<td>直拨特性把打坐席 DN 的外部呼叫 ACD 化；CALL_TYPE=DIRECT_CALL 供脚本识别；DICA=配私有号自动挂的开关型技能</td>
+<td>p105-115</td>
+</tr>
+<tr>
+<td>Internal Database (ACR Data)</td>
+<td>内部数据库</td>
+<td>主叫号/Call Tag/坐席号三键存名字/档案/名单/优先级，4000 条；脚本以 CALL_PROFILE[键] 等取用</td>
+<td>p130-141</td>
+</tr>
+<tr>
+<td>Reselection / SEQUENCE</td>
+<td>重选机制</td>
+<td>坐席全忙时呼叫在房间停指定秒数后脚本重执行，轮次记在 SEQUENCE；空列表反复重试后走路由管理直至封锁</td>
+<td>p43, p97-98, p115</td>
+</tr>
+<tr>
+<td>Blockage</td>
+<td>封锁模式</td>
+<td>重分发无可用方向或重试耗尽时的最终落点：封锁地址或语音引导</td>
+<td>p50, p89</td>
+</tr>
+<tr>
+<td>IQUEUE / Parking Level</td>
+<td>停放级构件</td>
+<td>脚本内覆写等待房间停放体验：1-6 级每级可配引导/EWT/地址；NEXT 级在重选重跑时接管</td>
+<td>p249-252</td>
+</tr>
+<tr>
+<td>LIST variable</td>
+<td>列表变量</td>
+<td>16 个 LIST[%1..16]，元素定类型：skill 型供 ISM（超 7 技能截断）、agent 型供名单规则（无上限）</td>
+<td>p258-261</td>
+</tr>
+<tr>
+<td>Filter / Super-Filter / Hyper-Filter</td>
+<td>过滤器族</td>
+<td>ACR 呼叫统计分组：200 个每个 7 技能 AND 语义；同节点/跨节点组各 25 对象 OR 语义；不影响分发</td>
+<td>p285-307</td>
+</tr>
+<tr>
+<td>Debugger</td>
+<td>调试器</td>
+<td>CCS 内连接 ASM 跟踪脚本、改既有构件条件、发起呼叫；不能新增构件、整型观察用加 %0 技巧</td>
+<td>p46, p59, p338</td>
+</tr>
+<tr>
+<td>ACR Actual Waiting</td>
+<td>实际等待优先开关</td>
+<td>RSI 参数：False（默认）先最低 ISM 成本再看最长实际等待；True 反之</td>
+<td>p234, p282</td>
+</tr>
+</tbody>
+</table></div>
+<h2>二、角色域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent / Supervisor</td>
+<td>坐席/主管</td>
+<td>ACD Station 类型建户时一次定型不可改；坐席话机限定 8068/8068s/8078s</td>
+<td>p31-32</td>
+</tr>
+<tr>
+<td>Self-assignable agent</td>
+<td>自助登录坐席</td>
+<td>无需管理员介入即可登录任意期望的处理组（配合登录密码）</td>
+<td>p32</td>
+</tr>
+</tbody>
+</table></div>
+<h2>三、订阅/许可域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Software License N°167</td>
+<td>"ACR data base read" 许可</td>
+<td>脚本读/写外部数据库的前提；外部 ASM 与 OXE 间连接本身免许可；adm_acd 选项 61 核可用性</td>
+<td>p320, p376, p394</td>
+</tr>
+</tbody>
+</table></div>
+<h2>四、产品与组件域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OmniTouch CC Standard Edition</td>
+<td>OTCC 标准版</td>
+<td>本书宿主产品：OXE 上的 CCD 软件栈；ACR 替代"每坐席一组加外部应用"传统做法</td>
+<td>p1, p5</td>
+</tr>
+<tr>
+<td>OXE (OmniPCX Enterprise)</td>
+<td>OXE 交换机</td>
+<td>底层 PBX：承载 CCD/AFE/alb 进程、parameters.cfg 与语音引导闪存卡</td>
+<td>p215, p320-322</td>
+</tr>
+<tr>
+<td>CCS / CCsupervisor</td>
+<td>联系中心管理站</td>
+<td>内嵌 ASM 脚本编辑器与 Debugger，承载 ACR 配置树（Skill/ACR Data/Filter/Super Objects 等）与观测窗口</td>
+<td>p6, p37, p59</td>
+</tr>
+<tr>
+<td>AFE / MAIN_AFE</td>
+<td>前端服务器进程</td>
+<td>接收呼叫处理请求并管理 alb；asm_on_dhs=0 让其不再拉起 alb；重启命令 dhs3_init -R MAIN_AFE</td>
+<td>p9, p49, p322</td>
+</tr>
+<tr>
+<td>alb process</td>
+<td>内部 ASM 进程</td>
+<td>OXE 上的内部 ASM 服务器：LCA 等动态数据默认只在其内存，重启即失</td>
+<td>p45, p320-321</td>
+</tr>
+<tr>
+<td>External ASM Server</td>
+<td>外部 ASM 服务器</td>
+<td>Windows 服务形态，角色与 alb 一致外加外部库访问；ASM Manager 建站点链接、ASMServer Tool 装服务</td>
+<td>p320-330</td>
+</tr>
+<tr>
+<td>Voice Guide（三种形态）</td>
+<td>语音引导</td>
+<td>普通/可录（<em>88 录音、</em>66 测音）/多语言（Function=Multi-language message，40 语种映射消息 1000-1039）</td>
+<td>p175-176, p215, p224</td>
+</tr>
+<tr>
+<td>IAA (Automated Attendant)</td>
+<td>自动话务员</td>
+<td>叶-树-接入三层；Code Entry Guide 叶采集 16 位内代码作 Call Tag；只能外部呼入</td>
+<td>p169, p177-180, p211</td>
+</tr>
+<tr>
+<td>CCivr</td>
+<td>IVR 服务器组件</td>
+<td>经 CSTA 交互：资源组挂等待房间分发、TransferCall 携标签、receivephonecall.callprofile 读档案</td>
+<td>p170, p255-256</td>
+</tr>
+<tr>
+<td>ASM Script Editor</td>
+<td>脚本编辑器</td>
+<td>Graphic/Text 双模式；产物 .scr 源与 .alb 编译码；SQL 页签另有外部库六构件</td>
+<td>p44, p65, p376</td>
+</tr>
+<tr>
+<td>adm_acd</td>
+<td>维护命令</td>
+<td>形态 adm_acd <ASM IP> -salb：24 名单/25 内部库/28 呼叫动态数据/11 链路/14 连接类型/60 DB 连接/61 许可锁</td>
+<td>p45, p60, p141, p394</td>
+</tr>
+<tr>
+<td>parameters.cfg</td>
+<td>参数文件</td>
+<td>/usr3/afe 下 vi 手工编辑：asm_ag_free_duration（0=PLTR/1=LIT 单机/2=LIT 组网）、asm_on_dhs（割接置 0）</td>
+<td>p48-49, p241-242, p322</td>
+</tr>
+<tr>
+<td>MS Access / MS SQL Server 2016</td>
+<td>实验数据库</td>
+<td>Access 库 acr.accdb 表 Records（免凭据）；SQL 库 acr_sql 表 Customer（登录 Brest）——均为实验口径</td>
+<td>p396-399, p409-415</td>
+</tr>
+<tr>
+<td>Stored Procedure（updateCalling）</td>
+<td>存储过程</td>
+<td>SQL_REQUEST CALL 调用（库须支持嵌入式过程）；实验过程把主叫号与上次接听坐席写入 Customer 表实现 LCA 持久化</td>
+<td>p382, p421-426, p434</td>
+</tr>
+<tr>
+<td>Formfilter / FormFilterS / FormAgentPerFilter</td>
+<td>Excel 三模板</td>
+<td>明细（时间片粒度）/汇总（每过滤器一行）/坐席乘过滤器交叉，分别对应三个 Excel 菜单出口</td>
+<td>p299-301</td>
+</tr>
+</tbody>
+</table></div>
+<h2>五、协议与技术域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSTA</td>
+<td>计算机电话集成接口（未展开）</td>
+<td>Call Tag 以 Correlator data 形态在 IVR/IAA/CCivr 与 PCX 间传递</td>
+<td>p15, p169-170</td>
+</tr>
+<tr>
+<td>SQL（受限集）</td>
+<td>受限 SQL</td>
+<td>ASM 脚本里仅 SELECT 加 CALL 存储过程两种；WHERE 可用 26 项呼叫上下文变量</td>
+<td>p376, p382-384</td>
+</tr>
+<tr>
+<td>ODBC / System DSN</td>
+<td>数据库接入通道</td>
+<td>ASM 只支持 32 位 ODBC；DSN 名与脚本源名一致（原文语法印作 DNS=）；先建库后建 DSN</td>
+<td>p379-380, p399, p433</td>
+</tr>
+<tr>
+<td><em>.scr / </em>.alb</td>
+<td>脚本文件两形态</td>
+<td>.scr 源文件可跨环境复制后重编译；.alb 编译码不通用；内部存 /usr3/afe、外部存安装目录 Script</td>
+<td>p11, p335</td>
+</tr>
+<tr>
+<td>Hybrid Link (ABC-F)</td>
+<td>混合链路</td>
+<td>本地 CCD 呼叫所需：类型 Hybrid、邻接网络号 0-31 且异于本地、至少 2 access 成对；hybvisu -f all 校验</td>
+<td>p33-35</td>
+</tr>
+<tr>
+<td>DTMF / Correlator data</td>
+<td>按键与关联数据</td>
+<td>菜单叶按键分流与编码叶输入方式；编码与 CCivr 附着值统称 Correlator data（客户号/索引/上下文 Id）</td>
+<td>p169-170, p177</td>
+</tr>
+</tbody>
+</table></div>
+<h2>六、站点与资源域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/usr3/afe</td>
+<td>OXE 上 ACR 家目录</td>
+<td>parameters.cfg 与内部 ASM 的 .scr/.alb 所在；外部化时经 FTP 由此取脚本</td>
+<td>p48, p335, p354</td>
+</tr>
+<tr>
+<td>Program Files...\Agent Selection Module\Script</td>
+<td>外部 ASM 脚本目录</td>
+<td>外部 ASM 脚本默认存放处（双机实验口径为 x86 路径）；主备自动同步，可作核验点</td>
+<td>p335, p373</td>
+</tr>
+<tr>
+<td>D:\CCD_ACR\SQL Call Procedure.txt</td>
+<td>存储过程源文件</td>
+<td>实验环境提供，经 SSMS File/Open 载入执行生成 updateCalling</td>
+<td>p423</td>
+</tr>
+<tr>
+<td>ODBC Data Sources (32-bit)</td>
+<td>32 位数据源管理入口</td>
+<td>建 System DSN 的固定路径（务必 32 位版本），Access 与 SQL Server 两章共用</td>
+<td>p379, p429</td>
+</tr>
+<tr>
+<td>SOFTPANEL / SoftPanel / SoftPanel2</td>
+<td>实验主机名</td>
+<td>SOFTPANEL 为 SQL Server 主机；SoftPanel（Main）与 SoftPanel2（Stand-By）为双机 ASM——实验口径</td>
+<td>p362, p428</td>
+</tr>
+<tr>
+<td>CCD09001-CCD09013</td>
+<td>How-To 底层文档编号</td>
+<td>20 个实验章的原始文档编号体系，同一课程模块跨发布物可追溯</td>
+<td>各 How-To 章页眉</td>
+</tr>
+</tbody>
+</table></div></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Advanced Call Routing (Participant's Guide, Issue 01) | edition: Edition 01 | pages: 470 页 -->

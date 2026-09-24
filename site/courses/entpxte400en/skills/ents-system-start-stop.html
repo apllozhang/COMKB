@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OXE 系统启停与 autostart 管理</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Starter</h2><p>Edition 12 · 821 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte400en/index.html">课程首页</a><a href="/courses/entpxte400en/digest.html">精华长文</a><a href="/courses/entpxte400en/overview.html">教书理解</a><a href="/courses/entpxte400en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte400en/skills/ents-first-login-hardening.html">OXE 首登加固（四账户与密码治理）</a><a href="/courses/entpxte400en/skills/ents-cs-network-firewall.html">Call Server IP 寻址与内部防火墙</a><a href="/courses/entpxte400en/skills/ents-db-license.html">空数据库创建与 OPS 许可管理</a><a href="/courses/entpxte400en/skills/ents-media-gateway-deployment.html">媒体网关上架（GD4/OMS/XL）</a><a href="/courses/entpxte400en/skills/ents-user-terminal-provisioning.html">用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）</a><a href="/courses/entpxte400en/skills/ents-numbering-cos.html">编号计划与 COS 管理</a><a href="/courses/entpxte400en/skills/ents-call-processing.html">呼叫处理业务域（语音指南/话务台/Entity/计时器）</a><a href="/courses/entpxte400en/skills/ents-sip-trunk.html">公共 SIP 中继开通与弹性</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte400en/skills/ents-system-start-stop.html">OXE 系统启停与 autostart 管理</a><a href="/courses/entpxte400en/skills/ents-time-sync.html">OXE 时间同步（NTP/chrony）</a><a href="/courses/entpxte400en/skills/ents-voicemail-4645.html">OmniMessage 4645 语音邮件与邮件通知</a><a href="/courses/entpxte400en/skills/ents-barring-emergency.html">外呼闭锁与紧急呼叫通知</a><a href="/courses/entpxte400en/skills/ents-backup-maintenance.html">数据库备份恢复与维护排障工具箱</a><a href="/courses/entpxte400en/skills/ents-legacy-trunks-umc.html">传统中继（T0/T2）与 UMC 云管理</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte400en/index.html">oxe-starter（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte400en/index.html">ENTPXTE400EN</a><span>/</span><span aria-current="page">OXE 系统启停与 autostart 管理</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OXE 系统启停与 autostart 管理</h1></div><dl><div><dt>Skill ID</dt><dd>ents-system-start-stop</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>OXE 系统启停与 autostart 管理</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"FACILITIES Easy menu … 1 DECT registration 2 Backup database on cpu disk … 7 Stop the telephone 8 Start the telephone 9 Set new internet address 10 Stop the system"（p112）
+"There is no command to stop the telephone application. The whole system must be restarted and a telephone start-up cancelation must be performed"（p122 Notes）
+"WHEN THE TELEPHONE APPLICATION IS STOPPED VIA THE SWINST MENU (1-EASY MENU &gt; 7-STOP THE TELEPHONE), THE AUTOSTART IS AUTOMATICALLY DISABLED"（p124）</p>
+</blockquote>
+<p>出处：ENTPXTE400EN p108-125。</p>
+<h2>I — 自述</h2>
+<p>启停全部经 swinst 账户（root 下进入免密），先选 Easy(1)/Expert(2)：</p>
+<ol>
+<li><strong>起话务</strong>：Easy 菜单 8（Start the telephone）；或 mtcl 下执行 RUNTEL。autostart 默认开启，重启后话务自起</li>
+<li><strong>停话务</strong>：Easy 菜单 7——没有独立的 CLI 停话务命令；且 Easy 7 会自动取消 autostart</li>
+<li><strong>重启</strong>：mtcl 下 shutdown -r now；<strong>停机</strong>：shutdown -h now 或 Easy 10（显示 "Software Watchdog stopped / Power down."）</li>
+<li><strong>一次性取消自启</strong>：重启过程中在 "automatic start of dhs3 is about to begin waiting 5 seconds…" 提示处按回车</li>
+<li><strong>autostart 管理</strong>：Expert 菜单 6（System management）→ 2（Autostart management）Set/Unset</li>
+<li><strong>状态判读</strong>：mtcl 下 role——MAIN/STAND-BY=运行，"erreur mapping on remagen -7"=停止；提示符 (E)=大概率停止、(数字)=运行，但不实时刷新</li>
+</ol>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>入口</th>
+<th>附带效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>起话务</td>
+<td>swinst Easy 8 或 RUNTEL</td>
+<td>恢复 autostart 需另行 Set</td>
+</tr>
+<tr>
+<td>停话务</td>
+<td>swinst Easy 7</td>
+<td>自动取消 autostart，系统重启</td>
+</tr>
+<tr>
+<td>重启系统</td>
+<td>shutdown -r now</td>
+<td>话务按 autostart 状态决定是否自起</td>
+</tr>
+<tr>
+<td>停机</td>
+<td>shutdown -h now 或 Easy 10</td>
+<td>显示 Power down，可断电</td>
+</tr>
+<tr>
+<td>取消本次自启</td>
+<td>重启时 5 秒窗口按回车</td>
+<td>仅对本次生效</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>启停与 autostart 实验</strong>（p121-125，How-To）：</p>
+<ol>
+<li>swinst Easy 8 起话务并确认，Autostart is set</li>
+<li>mtcl 下 role 显示 MAIN，确认运行态</li>
+<li>Expert 菜单系统管理里 Set/Unset autostart 各做一遍</li>
+<li>shutdown -r now 重启，等 "No problem with compatibilities"</li>
+<li>重启中在 5 秒提示处按回车，验证话务未自起</li>
+<li>swinst Easy 7 停话务，观察提示 Autostart is not set</li>
+<li>停机实验 shutdown -h now，确认 Power down 输出</li>
+<li>恢复运行态，为后续实验做准备</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：维护前停话务；重启后话务没自起；想临时不启动话务；分不清系统是停了还是没起完；停机断电流程。</p>
+<p>语言信号：启停 / start / stop / 重启 / reboot / shutdown / RUNTEL / autostart / 自启动 / role / (E) / Easy menu / Expert menu / swinst。</p>
+<p>与相邻能力区分：启停之前的登录与账户 → 首登加固能力；停话务后建库/恢复 → 空库与许可、备份恢复能力（路由卡）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：维护窗口与话务影响评估、要执行的目标动作（起/停/重启/停机/取消自启）。生产系统停话务=全机业务中断，先拿变更窗口。</p>
+<ol>
+<li>确认当前态：mtcl 下执行 role，提示符仅作辅助（不实时刷新）。完成标准：运行/停止判定明确</li>
+<li>起话务：swinst Easy 8 或 RUNTEL；如曾停过，先回 Expert 菜单把 autostart Set 回来。完成标准：role 显示 MAIN 且 autostart 就位</li>
+<li>停话务（维护需要时）：swinst Easy 7 并知晓 autostart 被连带取消。完成标准：role 显示停止</li>
+<li>重启：shutdown -r now；如需本次不起话务，在 5 秒提示处按回车。完成标准：系统按预期回到目标态</li>
+<li>停机：shutdown -h now 或 Easy 10，等 Power down 再动电源。完成标准：安全下电</li>
+<li>收尾：维护完成后恢复话务并核对 autostart。完成标准：role=MAIN，下次重启话务会自起</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>重启后话务没起来 → 先查 autostart 是否被上次 Easy 7 取消（n06），再查启动日志，不要盲目再重启</li>
+<li>提示符仍显示 (E) 但业务正常 → 提示符不实时刷新（n05），以 role 为准或重登录</li>
+<li>"只想停话务不停系统" → 无此命令（p122），走重启+取消自启组合，评估影响后执行</li>
+</ul>
+<p>输出契约：处于目标运行态的系统 + autostart 状态确认。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>本卡为操作短平快域，路由可达即可；与数据库类操作（建库/恢复）的先后依赖在对应能力卡展开</li>
+<li>swinst 菜单版本号随软件版本（书中示例 4.00.94），菜单项命名以现场为准</li>
+<li>Easy 7 连带取消 autostart 是最常见"重启后话务没起"根因（n06）</li>
+<li>虚拟机场景的宿主机重启/迁移（vSphere/Hyper-V 等）属虚拟化平台操作，不在本书范围</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.ents.system-start-stop · 来源：ENTPXTE400EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Starter (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 821 页 -->

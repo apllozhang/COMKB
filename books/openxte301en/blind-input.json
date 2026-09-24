@@ -1,0 +1,220 @@
+{
+ "code": "openxte301en",
+ "capability_catalog": [
+  {
+   "slug": "ota-remote-access",
+   "name": "OpenTouch 远程接入通道与证书",
+   "description": "反向代理四公共 URL（443/8016）、OTSBC 两声明（5261/8061、RTP 7000-7499）、NAT/DNS 规划、ACS 会议 FQDN 与证书全生命周期（rehost/CSR/CA/导入/部署）、DAS 正则串行管线；会议 FQDN 必须进 RP 与 OT 两张证书 SAN"
+  },
+  {
+   "slug": "ota-nomadic-ghost-z",
+   "name": "Nomadic 移动模式与 Ghost Z 资源池",
+   "description": "蜂窝（1 Ghost Z/路）与 VoIP（1 Ghost Z+1 SIP 设备/路）双模式，池规模=最大并发数、占住至关闭；权限成对（Nomadic GSM/SIP+Desktop）；tsa_maintenance 选项 20 核查与手动同步"
+  },
+  {
+   "slug": "ota-smartphone-rex",
+   "name": "OTC 智能手机交付全流程",
+   "description": "OXE 基座（ARS/DISA 31280/Ghost Z/速拨/溢出三参数）、设备档案与用户关联、9 对象自动创建核验、Entity 识别码与 COS 手工两项、iPhone APNS 四端口与年度 hotfix、5265 专用 SBC、R2.6 单设备化"
+  },
+  {
+   "slug": "ota-um-exchange-integration",
+   "name": "统一消息 UM",
+   "description": "四后端能力递减（Exchange/O365/Gmail 500 用户/IMAP4 砍四项）；ICEaccess 特权账号+Impersonation（R2.3 起）+CA 证书；UM 系统/语音邮箱档案/信箱三层；mascd 与 wireald 维护"
+  },
+  {
+   "slug": "ota-conference-collaboration",
+   "name": "协作会议（ACS、角色权限、数据会议）",
+   "description": "桥号两侧成对（每语言一号，实验 31250/31260）、服务器四项设置、三类会议与 7 位双访问码、DTMF 控制码、密码不进邀请邮件、One Touch（Label 以 <*> 开头）、协作限制两级禁用且 scheduled 不受影响、AMS 仅 Active talker"
+  },
+  {
+   "slug": "ota-calendar-sync",
+   "name": "日历在场与日历同步",
+   "description": "presence=旁注文本（不改颜色码、自己看不到自己、FREE 仅名片、OOO>Busy>Tentative>Working Elsewhere>Free）；synchro 双向但 OTC 建的周期会议不回推 Exchange；仅 UM 上下文（本地存储走 TC2558）；版本门槛 OT R2.3.1/Exchange 2010,2013,O365/Outlook 2010,2013；排障三板斧与队列目录"
+  },
+  {
+   "slug": "ota-directory-udas",
+   "name": "目录搜索与 Single Business Card",
+   "description": "UDAS 单向同步进 PostgreSQL、一切搜索查同步库；同步三参数必填且 period≥1、Merge Period≠0；联系人卡 4 默认属性+最多 5 可选属性（photo 不可 searchable）；合并按权重与 Merge keys（至少姓+名）；照片 Avatar>LDAP>本地；OXE LDAP 溢出电话簿索引 1-5"
+  },
+  {
+   "slug": "ota-enterprise-authentication",
+   "name": "企业认证集成（LDAP/RADIUS/Kerberos）",
+   "description": "全局开关双轨：Downstream（LDAP/RADIUS 插件文件+Authentication.xml）与 Upstream（Kerberos 四件套 web.xml/krb5.conf/auth.config/keytab+setspn 两条 SPN）；Web 失败级联 DTA、厚客户端不级联；启用前管理员必须配 External login；Kerberos 一开 8770 进不了 WBM 须预留 wbm_admin；Kerberos 不支持移动端与反向代理"
+  },
+  {
+   "slug": "ota-desksharing",
+   "name": "Desksharing 共享工位",
+   "description": "DSU/DSS 机制：前缀 600/601 加密码登录登出；DSU 虚拟 MAC=aa:bb+号码 hex；四个系统参数（免密登出/定时登出/忙时重置 6004/首登改密）；OTC PC 远程释放要 Desktop+Flex Office；UA 软话机不兼容 WAN（需 VPN）与 OTC Mac；domstat/ippstat/incvisu 维护"
+  },
+  {
+   "slug": "ota-extended-mobility",
+   "name": "Extended Mobility（QR/NFC）",
+   "description": "贴标签触发呼叫切换（单向不可回切、二通呼叫+转移）与路由档案改写（other and mobile()）；QR 固定语法 {\"v\":\"1\",\"DI\":{\"DiD\":{\"User\":\"目录号\"}}}；NFC 仅 Android（ALE 工具写卡、Ref 3BA27856AA、NFC Type 2）；OTC 应用须已启动；一小时周期提醒与 toggle"
+  },
+  {
+   "slug": "ota-dcs-documents",
+   "name": "DCS 文档转换服务器",
+   "description": "Basic 只支持 pdf 与图片（png/gif/jpeg）；Office 六格式演示必须装 DCS；内部 KVM 或外部 VM/物理机两形态（ESXi 须 Hyperthreaded Core Sharing=None）；Windows/Office 许可自备；未激活或未打更新即文档卡 queued；presentation 不可下载、attachment 可"
+  },
+  {
+   "slug": "ota-otc-web-guest",
+   "name": "OTC Web 与访客入会",
+   "description": "浏览器免装、访客匿名凭访问码入会（头像/回呼号/领导者码）；能力：IM/桌面共享/文档批注/静音管理；架构：数据面走 RP、音频走 PSTN 回呼或 WebRTC（Chrome/Firefox，SIPS/SRTP 经 OTSBC）；边界：无白板/投票/录制/视频/联系人/历史/排期"
+  },
+  {
+   "slug": "ota-lab-pod",
+   "name": "RLAB 实验 POD 与 SIP 模拟器",
+   "description": "POD 独立同构、公共区 10.20.30.x；八台虚机设置表（OXE/OMS .13/OT .50/8770 .70/DCS .31/ECO .100/PC .10-.11）；ITSP1 模拟器 pbxN/alcatel、号码段 33xx1PN12345、DDI 33210N41000 对 31000 范围 500；教学专用、实验值不入生产"
+  }
+ ],
+ "cases": [
+  {
+   "id": "should-remote-01",
+   "prompt": "会议邀请邮件里的链接，公司内网能打开、外面同事打不开，可能是什么问题？"
+  },
+  {
+   "id": "should-remote-02",
+   "prompt": "新上一套 OpenTouch，远程员工要从家里连进来，防火墙和入口要规划哪些端口？"
+  },
+  {
+   "id": "should-nomadic-01",
+   "prompt": "出差员工希望来电转到他手机上，办公室话机同时不再响铃，怎么配？"
+  },
+  {
+   "id": "should-nomadic-02",
+   "prompt": "大概 20 个人会同时开着 nomadic，Ghost Z 要建几个？如果走 VoIP 呢？"
+  },
+  {
+   "id": "should-mobile-01",
+   "prompt": "给销售配一台 iPhone 用公司号，从 OXE 参数到手机装 App 的完整步骤是什么？"
+  },
+  {
+   "id": "should-mobile-02",
+   "prompt": "iPhone 装了 OpenTouch，锁屏后来电不弹推送通知，从哪里查起？"
+  },
+  {
+   "id": "should-um-01",
+   "prompt": "客户想统一用 Office 365 存语音留言，可行吗？相比本地 Exchange 会少什么功能？"
+  },
+  {
+   "id": "should-um-02",
+   "prompt": "用户说话机留言灯不亮，而且 My Profile 里找不到他的问候语，怎么处理？"
+  },
+  {
+   "id": "should-conf-01",
+   "prompt": "要给公司搭会议桥，英文法语都要支持，而且邀请邮件里能一键入会，怎么做？"
+  },
+  {
+   "id": "should-conf-02",
+   "prompt": "普通参会人能把别人静音或者下载我共享的文件吗？会议密码要不要写进邀请邮件？"
+  },
+  {
+   "id": "should-cal-01",
+   "prompt": "希望同事开会时我能在 OTC 上看到他忙碌状态，为什么装好了颜色还是绿的？"
+  },
+  {
+   "id": "should-cal-02",
+   "prompt": "销售习惯在 OTC 里建每周例会，结果 Outlook 日历上一直没有，怎么回事？"
+  },
+  {
+   "id": "should-dir-01",
+   "prompt": "AD 目录都声明好了，话机上按名字找人就是搜不到，第一步查什么？"
+  },
+  {
+   "id": "should-dir-02",
+   "prompt": "两个目录里同一个人搜出来两条，能合并成一张名片吗？照片以哪个为准？"
+  },
+  {
+   "id": "should-auth-01",
+   "prompt": "客户要求全员用域账号密码登录 OpenTouch，有哪些方案？上线前要评估什么影响？"
+  },
+  {
+   "id": "should-auth-02",
+   "prompt": "刚启用 Kerberos，8770 客户端就进不了 WBM 了，现在怎么补救？"
+  },
+  {
+   "id": "should-desk-01",
+   "prompt": "开放工位区要实现随便坐、登录自己账号就能用话机，怎么配置？"
+  },
+  {
+   "id": "should-desk-02",
+   "prompt": "共享话机的用户正在打电话，另一个同事要在这台话机上登录，会发生什么？"
+  },
+  {
+   "id": "should-em-01",
+   "prompt": "想在每张办公桌上贴二维码，员工手机通话时一扫就把通话切到桌上话机，怎么做？"
+  },
+  {
+   "id": "should-em-02",
+   "prompt": "NFC 标签 iPhone 能不能用？写标签用什么工具和标签？"
+  },
+  {
+   "id": "should-dcs-01",
+   "prompt": "会议里上传的 PPT 一直显示 queued 转不了，问题出在哪？"
+  },
+  {
+   "id": "should-dcs-02",
+   "prompt": "暂时不装 DCS 的话，会议里能直接演示哪些文档格式？"
+  },
+  {
+   "id": "should-web-01",
+   "prompt": "外部客户不想装任何客户端，能不能发个链接让他直接在浏览器里进会议？"
+  },
+  {
+   "id": "should-web-02",
+   "prompt": "访客从浏览器入会时音频走什么通道？防火墙要放行什么？"
+  },
+  {
+   "id": "should-lab-01",
+   "prompt": "要照着教材搭一套培训环境，POD 里应该有哪些虚机？SIP 运营商模拟器怎么对接？"
+  },
+  {
+   "id": "should-lab-02",
+   "prompt": "书里实验号码 3321PN12345 和账号 pbxN 里的 N、P 是什么意思？"
+  },
+  {
+   "id": "bait-auth-dir-01",
+   "prompt": "目录搜索用的 LDAP 和登录认证用的 LDAP 是一回事吗？要不要一起配？"
+  },
+  {
+   "id": "bait-em-nomadic-01",
+   "prompt": "员工在办公室里用手机接了客户电话，想马上切到桌上的座机继续讲"
+  },
+  {
+   "id": "bait-nomadic-mobile-01",
+   "prompt": "出差员工要把来电转到他家里的固定电话上，是给他配公司手机 App 吗？"
+  },
+  {
+   "id": "bait-web-conf-01",
+   "prompt": "访客说他要在浏览器里把会议录下来，怎么给他开录制权限？"
+  },
+  {
+   "id": "bait-cal-version-01",
+   "prompt": "客户的 Exchange 已升级到 2019，帮我把日历同步按书里的步骤配上"
+  },
+  {
+   "id": "bait-conf-dcs-01",
+   "prompt": "参会人反馈下载不了我上传的演示文档，是不是转换服务器坏了？"
+  },
+  {
+   "id": "bait-auth-remote-01",
+   "prompt": "远程员工在家用 OTC PC 免密登录失败了，Kerberos 是不是被防火墙拦了？"
+  },
+  {
+   "id": "bait-lab-prod-01",
+   "prompt": "客户生产环境号段紧张，能不能就用书里的 3321PN 号码段和 letacla 密码方案？"
+  },
+  {
+   "id": "edge-ldap-01",
+   "prompt": "OXE 的 LDAP 溢出到底支持 20 台还是 5 台服务器？书里两个数字不一样"
+  },
+  {
+   "id": "edge-capacity-01",
+   "prompt": "100 个人同时开着 nomadic 不关，Ghost Z 和 SIP 设备要各建多少？"
+  },
+  {
+   "id": "edge-version-01",
+   "prompt": "我们的 OpenTouch 是 R2.2，没有物理话机的员工能不能直接把手机当主设备？"
+  }
+ ]
+}

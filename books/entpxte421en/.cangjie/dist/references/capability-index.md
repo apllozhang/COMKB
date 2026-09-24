@@ -1,0 +1,16 @@
+# 能力索引（完整版）
+
+| capability_id | 标题 | 重要度 | 意图 | 关键词 | 能力卡 |
+|---|---|---|---|---|---|
+| cap.enc.certificate-trust-chain | 证书与信任链全生命周期 | critical | 选择 PKI 模式与证书格式；生成 CSR 并导入签发证书；规划 CTL 分发与 TOFU；证书备份与 CA 更新；generate CSR import certificate OXE | CA、CSR、PKCS#7、PKCS#12、CTL、TOFU、SAN、Common Name、证书链、证书备份、7300、netadmin | capabilities/enc-certificate-trust-chain.md |
+| cap.enc.native-encryption-bringup | 加密解决方案开通与 lanpbx.cfg | critical | 启用加密解决方案系统参数；按用户开启加密；生成维护 lanpbx.cfg；选择 SRTP cipher suite；enable native encryption OXE | Enable Native encryption、lanpbx.cfg、lanpbxbuild、DTLS_SRV、32643、Authentication for SRTP、AES-256、压缩器、部分加密、copy to twin | capabilities/enc-native-encryption-bringup.md |
+| cap.enc.dtls-verification-maintenance | DTLS 验证、排障与维护闭环 | high | 验证加密是否生效；处置加密解决方案事件；备份证书；抓包证明媒体加密；cryptview ippstat troubleshooting | cryptview、ippstat、twin、incvisu、5992、5993、5995、Wireshark、mirror set lan、证书备份、加密图标 | capabilities/enc-dtls-verification-maintenance.md |
+| cap.enc.sip-tls-endpoints | SIP TLS 扩展加密 | high | 启用 SIP 扩展 TLS 加密；排查 SIP TLS 注册失败；验证 SIP 媒体加密；sipmotor TLS 5061 SEPLOS | sipmotor、SEPLOS、ALES、TLS signaling、5061、SRTP offer answer、motortrace、X-ALE-CALL-ENCRYPTED、488、sipregister、csipsets | capabilities/enc-sip-tls-endpoints.md |
+| cap.enc.sip-trunk-tls | SIP trunk 的 TLS 与 SRTP | critical | 配置加密 SIP 中继；配置 OTSBC TLS context；验证中继 SRTP；安全停用加密解决方案；OTSBC SIP TLS SRTP trunk | OTSBC、TLS contexts、Proxy Set、Media Security、AES-CM-128-HMAC-SHA1-80、RTP or SRTP、5061、6261、SIPMOTOR、停用、0.0.0.0 | capabilities/enc-sip-trunk-tls.md |
+| cap.enc.eegw-deployment | EEGW/NSP 大容量部署 | critical | 部署外部加密网关 EEGW；声明 SIP Translator NSP；用 S.O.T. 生成 EEGW VM；迁移内嵌 EGW 到 EEGW；EEGW NSP deployment capacity | EEGW、OST、ostconfig、SIP Translator、NSP、nsp.oxe.company.com、S.O.T.、Greenfield、1500、15000、Download Certificates | capabilities/enc-eegw-deployment.md |
+| cap.enc.abcf-network-encryption | ABC-F 网络加密 | high | 启用节点间链路加密；部署内部 PKI 双节点；规划 hybrid/direct 拓扑；验证跨节点加密；ABC-F IPsec link encryption | ABC-F、ABC-IP、hybrid link、direct link、transit node、IPSec、OpenSwan、500、2579、hybvisu、内部 PKI | capabilities/enc-abcf-network-encryption.md |
+| cap.enc.mtls-endpoint-authentication | mTLS 双向认证与版本限制 | high | 启用双向认证 mTLS；部署端点证书；处置 1024 位证书设备；调整 SSL security level；mutual TLS authentication endpoint certificate | mTLS、Mutual TLS Authentication、6261、SSL security level、OpenSSL 3.0、2048、GW.pfx、DTLSPkeyPassphrase、Endpoint CTL、SCEP | capabilities/enc-mtls-endpoint-authentication.md |
+| cap.enc.pcs-failover | PCS 加密接管 | medium | 部署 PCS 加密救援；做 PCS 断网演练；PCS certificate pcscopy | PCS、救援、rescue、pcscopy、pcsview、断网演练、tar | capabilities/enc-pcs-failover.md |
+| cap.enc.pki-workshop-xca | XCA 外部 CA 工坊 | medium | 用 XCA 制作根 CA；签发 CSR 与端点实体；转换证书格式；XCA sign CSR root CA | XCA、根 CA、End Entity、GW.pfx、softphone_cert.pem、PKCS#12、crl2pkcs7、conv-proper-p7-format | capabilities/enc-pki-workshop-xca.md |
+| cap.enc.application-encryption | 应用生态加密与安全下载 | medium | 加密语音信箱与录音；评估 VAA/DC 加密代价；启用 HTTPS 安全下载；4645 VAA recording encryption | 4645、voice mail、OmniPCX Record、VAA、Dispatch Console、Rainbow WebRTC Gateway、HTTPS、TFTP、DHCP option 66 | capabilities/enc-application-encryption.md |
+| cap.enc.lab-environment | 实验环境底座（RLAB） | medium | 搭建加密实验 POD；切换网络实验室拓扑；RLAB pod ITSP2 setup | RLAB、POD、NTP、ca-certgen、DID、NPD、ITSP2、hybvisu | capabilities/enc-lab-environment.md |

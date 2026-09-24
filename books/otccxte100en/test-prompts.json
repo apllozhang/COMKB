@@ -1,0 +1,76 @@
+{
+  "skill": "otcc-standard-starter",
+  "version": "0.1.0",
+  "bundle": "bundle.otcc-standard-starter",
+  "capability_catalog": [
+    {"slug": "otcc-ccd-matrix-foundation", "name": "CCD 基础矩阵创建与验证", "description": "ACD 前缀（实验 \"12\"）+ Agent/Forwarding/Voice guide 三类处理组 + Normal/Int-Overflow/Redirection 三类队列 + pilot，OXE Web Admin 建齐后 acdsup 判读（A/F/V/CLO/OPN）；Voice Guide PG 只接 Redirection 队列"},
+    {"slug": "otcc-ccs-installation", "name": "CCS 班长台安装、OXE 声明与 ccs.ini", "description": "CCS.msi 决策链（Full/Monosite/Excel=Yes/Windows standalone）、node1 直连后必须重启、首登强制改密；ccs.ini 每次启动读取、id_terminal 0..127 唯一、ShowStatisticWithData 须手改"},
+    {"slug": "otcc-routing-distribution-rules", "name": "路由规则与分配规则全生命周期", "description": "路由规则连 pilot 与队列（30 条/pilot、全局 1200）、分配规则连队列与 PG（全局 10、每队列 50 方向）；优先级 0-9 平局规则三类各异；分配规则默认停用须 OXE 激活、所有方向默认关闭"},
+    {"slug": "otcc-agent-supervisor-onboarding", "name": "ACD 话机、座席与班长创建登录", "description": "三种座席形态（固定免认证/移动需认证/自指派选组）、班长恒自指派无优选组、ACD 前缀动作表（+1/+2/+3/+5/+6/+91/+92）、COS 放行、Rainbow 座席三不限制"},
+    {"slug": "otcc-object-tuning", "name": "CCD 对象参数调优", "description": "wrap-up/pause 1-3276 秒（自动挂 pilot、手动挂 PG 600 秒口径）、服务水平 85%/15s 与 smiley 三色（0.8 阈值分界、SOP 刷新）、PG 八选项逐项行为测试、队列 Maximum waiting time 与 Queuing overflow"},
+    {"slug": "otcc-supervisor-features", "name": "座席班长特性配置", "description": "退出类型（每 PG 最多 9 种）、监听三态（Listen/Restrictive/Intrusion）与 Permanent 永久监控、通用转发四种激活（话机键/CCS/日历/按规则）、PG 关闭键、多线座席、事务码（1-15 位）与业务码（1-3 位进统计）"},
+    {"slug": "otcc-voice-guides", "name": "语音指南三路径", "description": "编号法（3 位指南号放矩阵、4 位消息号首位语言索引）；话机录音（\"401\" 录/\"580\" 试听/COS 放行）、.wav 导入（A-Law/8000Hz 转换+SFTP 强制）、\"538\" 欢迎指南（\"4500\" 消息池/每座席 5 条/三处激活）；vgstat 验证"},
+    {"slug": "otcc-monitoring-statistics", "name": "实时监控告警与 Excel 统计", "description": "Navigator 3 秒快照与计数器定制、中继组 CSTA-Monitored 前提、三级告警（Alarms/Alerts/Indications 各存 \"100\" 条）与四处阈值入口；Excel 报表（对象数上限 \"50\"、第二对象 \"132\" 行偏移、预编译日报、只有 Business 码进统计）"},
+    {"slug": "otcc-multilanguage-calendar", "name": "多语言语音指南与双日历", "description": "Multi-language 指南一个号挂多语言消息、pilot 语言决定播哪条（语言槽按目标库核对）；pilot 日历 \"10\" 切换/日、分配日历 \"20\" 切换/日、\"50\" 特殊日覆盖周历、活动时间片修改到切换点才生效"},
+    {"slug": "otcc-queue-experience", "name": "EWT 表与排队位置播报（518）", "description": "EWT=平均等待×(队内呼叫数+1) 按队列 TSP 滚动；EWT 表 6 阈值挂 parking level（IAA/CCIVR 地址二选一、5 层 4 选项 8 树）；\"518\" 位次 1-50 逐个、51-100 步进 5、Max position 上限 \"100\"、语言回退链"},
+    {"slug": "otcc-direct-calls-emergency", "name": "CCD 直接呼叫与紧急关闭", "description": "direct call pilot（\"31603\"）+私人号自动前转+Outgoing ACD Call，呼叫性质按座席状态逐格判定、本地 ABC-F 链路不可用、默认阻塞指南 \"75\"；紧急关闭 50 列×600 pilot、转移须配地址、需 CCS ADMINISTRATOR、测完 Deactivate"},
+    {"slug": "otcc-statistic-pilot", "name": "统计型 pilot 与 Call Tag", "description": "对外业务号先问候再转唯一路由 pilot（\"3000\" 个上限、不可兼 direct call pilot）；Call Tag ≤32 字符振铃期显示（GOLD）；问候只在路由 pilot\"按规则\"关闭/阻塞且规则有效时播放"},
+    {"slug": "otcc-lab-connectivity", "name": "实验环境与链路打通（POD/ITSP1/ABC-F）", "description": "RLAB POD 五实例与 ITSP1 参数化（SIP 网关 pbxN、DID 翻译 33210N41000→31000、RDP 音频）打通公网来话；ABC-F 同节点不同网络、双 access UP、hybvisu/rsthyb；全部实验口径"}
+  ],
+  "test_cases": [
+    {"id": "should-matrix-01", "type": "should_trigger", "prompt": "我们要在 OXE 上从零搭一个呼叫中心，pilot、队列、处理组这些对象怎么建、按什么顺序？", "expected_behavior": "激活 otcc-ccd-matrix-foundation，给建矩阵顺序与类型选型"},
+    {"id": "should-matrix-02", "type": "should_trigger", "prompt": "acdsup 输出里的 A、F、V、CLO、OPN 这些字母分别是什么意思？我的 pilot 显示 CLO 正常吗？", "expected_behavior": "激活 otcc-ccd-matrix-foundation，判读字母含义并解释 CLO 是无座席无规则时的预期态"},
+
+    {"id": "should-ccs-01", "type": "should_trigger", "prompt": "新到的班长台软件怎么装？装完在 CCS 里填了 OXE 的地址为什么还是连不上？", "expected_behavior": "激活 otcc-ccs-installation，安装决策链 + node1 声明 + 必须重启"},
+    {"id": "should-ccs-02", "type": "should_trigger", "prompt": "两台 CCS 管理机在同一网络里互相打架，听说跟 Station ID 有关？", "expected_behavior": "激活 otcc-ccs-installation，id_terminal 0..127 全网唯一冲突排查"},
+
+    {"id": "should-rules-01", "type": "should_trigger", "prompt": "pilot 到队列、队列到处理组的线都连好了，客户打电话进来还是不通，到底哪里没开？", "expected_behavior": "激活 otcc-routing-distribution-rules，双默认关（规则 OXE 激活、方向勾选）排查"},
+    {"id": "should-rules-02", "type": "should_trigger", "prompt": "常态走座席组、饱和了要走语音提示，路由方向和优先级应该怎么配？", "expected_behavior": "激活 otcc-routing-distribution-rules，方向配置 + 优先级 0-9 设定"},
+
+    {"id": "should-agent-01", "type": "should_trigger", "prompt": "呼叫中心的座席和班长账号怎么建？有人要固定坐席有人要到处登录，怎么区分？", "expected_behavior": "激活 otcc-agent-supervisor-onboarding，三种座席形态与班长配置"},
+    {"id": "should-agent-02", "type": "should_trigger", "prompt": "座席在话机上按前缀登出没反应，是什么问题？", "expected_behavior": "激活 otcc-agent-supervisor-onboarding，COS 放行 ACD Prefixes 与前缀动作表"},
+
+    {"id": "should-tune-01", "type": "should_trigger", "prompt": "座席挂机后要留出整理客户记录的时间，通话结束后自动的休息时间在哪设？", "expected_behavior": "激活 otcc-object-tuning，pilot wrap-up 计时器（1-3276 秒）与归属口径"},
+    {"id": "should-tune-02", "type": "should_trigger", "prompt": "监控面板上 pilot 的笑脸全红了，服务水平是怎么算的、颜色怎么判？", "expected_behavior": "激活 otcc-object-tuning，服务水平目标两参数 + smiley 三色 0.8 分界"},
+
+    {"id": "should-sup-01", "type": "should_trigger", "prompt": "质检要求班长能旁听座席和客户的通话，必要时三方介入，怎么配？", "expected_behavior": "激活 otcc-supervisor-features，ACD Listening 三态（旁听/受限强插/强插）"},
+    {"id": "should-sup-02", "type": "should_trigger", "prompt": "下班时段想把某个业务号整体切到值班手机上，除了每天手动切还有别的激活方式吗？", "expected_behavior": "激活 otcc-supervisor-features，通用转发四种激活（话机键/CCS/日历/按规则）"},
+
+    {"id": "should-vg-01", "type": "should_trigger", "prompt": "客户提供了专业录音棚录的 wav 文件，怎么弄到呼叫中心里当排队提示音？", "expected_behavior": "激活 otcc-voice-guides，.wav 属性核对 + 转换 + SFTP 传输 + 选中装板"},
+    {"id": "should-vg-02", "type": "should_trigger", "prompt": "座席想让客户接通时听到自己的问候语，早上晚上还要不一样，能做到吗？", "expected_behavior": "激活 otcc-voice-guides，\"538\" 欢迎指南 + 每座席 5 条文件 + 版本切换"},
+
+    {"id": "should-mon-01", "type": "should_trigger", "prompt": "运营想要一块大屏实时看到每个业务号排队多少、座席都在什么状态，怎么搭？", "expected_behavior": "激活 otcc-monitoring-statistics，Navigator 页签与计数器定制"},
+    {"id": "should-mon-02", "type": "should_trigger", "prompt": "月底要给管理层出局报表：接了多少电话、弃呼多少、按业务分账，怎么做？", "expected_behavior": "激活 otcc-monitoring-statistics，Excel 报表模板 + 弃呼 + 业务码口径"},
+
+    {"id": "should-mlcal-01", "type": "should_trigger", "prompt": "客户是双语公司，拨不同的号码要听不同语言的提示语，怎么部署？", "expected_behavior": "激活 otcc-multilanguage-calendar，多语言 pilot + Multi-language 指南"},
+    {"id": "should-mlcal-02", "type": "should_trigger", "prompt": "周末和法定节假日呼叫中心不开门，来话要自动听到闭门提示，怎么配自动切换？", "expected_behavior": "激活 otcc-multilanguage-calendar，双日历时间片 + 特殊日 + Closed_rule"},
+
+    {"id": "should-queue-01", "type": "should_trigger", "prompt": "想让排队的客户先听到\"您前面还有 N 位\"这样的播报，系统支持吗？位次怎么算？", "expected_behavior": "激活 otcc-queue-experience，\"518\" 结构与 1-50 逐个/51-100 步进 5 规则"},
+    {"id": "should-queue-02", "type": "should_trigger", "prompt": "能不能按预计等待时间播不同的话术，比如等 10 秒内一个说法、超过一分钟另一个说法？", "expected_behavior": "激活 otcc-queue-experience，EWT 表 6 阈值挂 parking level"},
+
+    {"id": "should-dc-01", "type": "should_trigger", "prompt": "客户直接打座席工号的电话也要纳入呼叫中心统计和话后处理，怎么实现？", "expected_behavior": "激活 otcc-direct-calls-emergency，direct call pilot + Outgoing ACD Call + 判定表"},
+    {"id": "should-dc-02", "type": "should_trigger", "prompt": "系统出重大故障，需要一键把所有业务号码关停并播抱歉提示，有这个功能吗？", "expected_behavior": "激活 otcc-direct-calls-emergency，紧急关闭列表 + 关闭指南/地址 + 权限与复位"},
+
+    {"id": "should-sp-01", "type": "should_trigger", "prompt": "我们有金卡客户专线，想让 VIP 打进来时座席话机上直接显示 GOLD 标签，怎么配？", "expected_behavior": "激活 otcc-statistic-pilot，统计 pilot + Call Tag + 显示选项"},
+    {"id": "should-sp-02", "type": "should_trigger", "prompt": "多条业务线都想有自己的欢迎语和各自的来电统计，但只维护一套座席，怎么做？", "expected_behavior": "激活 otcc-statistic-pilot，统计 pilot 关联唯一路由 pilot + 分业务统计"},
+
+    {"id": "should-lab-01", "type": "should_trigger", "prompt": "实验环境里 MicroSIP 打 pilot 的公网号码打不通，SIP 网关注册和 DID 翻译要怎么核对？", "expected_behavior": "激活 otcc-lab-connectivity，POD 收尾三件套（pbxN/DID/软话机 profile）"},
+    {"id": "should-lab-02", "type": "should_trigger", "prompt": "内部分机拨 pilot 不通，ABC-F 链路的 access 怎么建、用什么命令验证是 UP 的？", "expected_behavior": "激活 otcc-lab-connectivity，同节点不同网络 + access 创建 + hybvisu"},
+
+    {"id": "bait-rules-01", "type": "should_not_trigger", "prompt": "队列饱和以后想让来话改道到前台分机，改哪个参数？", "expected_behavior": "应激活 otcc-object-tuning（队列 Queuing overflow 参数），不应停留在 otcc-routing-distribution-rules 当作路由方向问题"},
+    {"id": "bait-tune-01", "type": "should_not_trigger", "prompt": "座席说他按登出键没反应，是不是计时器参数设错了？", "expected_behavior": "应激活 otcc-agent-supervisor-onboarding（前缀与 COS/PG 退出约束），不应激活 otcc-object-tuning"},
+    {"id": "bait-vg-01", "type": "should_not_trigger", "prompt": "排队位置报数的那段\"您排在第几位\"怎么改声音？", "expected_behavior": "应激活 otcc-queue-experience（\"518\" 变量段消息录制），不应只激活 otcc-voice-guides 泛泛而谈"},
+    {"id": "bait-mon-01", "type": "should_not_trigger", "prompt": "监控里 pilot 的笑脸是红的，服务水平阈值本身应该设多少合适？", "expected_behavior": "应激活 otcc-object-tuning（服务水平目标与 smiley 判定），不应停留在 otcc-monitoring-statistics"},
+    {"id": "bait-dc-01", "type": "should_not_trigger", "prompt": "班长想把某个业务号临时切到自己的手机上，用哪个功能？", "expected_behavior": "应激活 otcc-supervisor-features（通用转发），不应激活 otcc-direct-calls-emergency"},
+    {"id": "bait-sp-01", "type": "should_not_trigger", "prompt": "对外直线打进来直接到座席、还要计时统计，和那个转接的业务号是一回事吗？", "expected_behavior": "应激活 otcc-direct-calls-emergency（direct call），不应激活 otcc-statistic-pilot（业务号转路由 pilot 是两层）"},
+    {"id": "bait-matrix-01", "type": "should_not_trigger", "prompt": "IVR 菜单树想要六层、每层五个选项，队列里的 IAA 做得到吗？", "expected_behavior": "应激活 otcc-queue-experience 并按边界声明 IAA 三重上限（5 层 4 选项 8 树），超出判停转 CCIVR 书外域，不应激活 otcc-ccd-matrix-foundation 承诺可做"},
+    {"id": "bait-out-01", "type": "should_not_trigger", "prompt": "ACR 里按客户语言技能把法语来电路由给法语座席，怎么配技能档？", "expected_behavior": "超范围（ACR 细节在 OTCC901 书外），应声明边界不应激活任何一张卡硬答"},
+    {"id": "bait-out-02", "type": "should_not_trigger", "prompt": "按 200 个座席的话务量帮我算需要开几个队列、招多少坐席。", "expected_behavior": "超范围（话务建模书外），应给 EWT/TSP 公式口径并声明规划方法不在原书范围"},
+    {"id": "bait-out-03", "type": "should_not_trigger", "prompt": "两个站点共用一套 CCS 班长台集中管理，多站点模式怎么部署？", "expected_behavior": "超范围（Multisite CCS 本书不教），应声明边界指向进阶内容，不应激活 otcc-ccs-installation 承诺可做"},
+
+    {"id": "edge-lang-01", "type": "edge_case", "prompt": "书里英文有时是语言 1 有时是语言 2，我录英文消息到底放哪个槽？", "expected_behavior": "按 nr-07 如实回答：语言槽与语种取决于目标库配置而非固定映射，录制前先核目标库语言编号表；引用书中两处口径并存"},
+    {"id": "edge-pwd-01", "type": "edge_case", "prompt": "教材收尾章 WebAdmin 密码写的是 mtcl，但我用 Superuser2580* 才登进去，以哪个为准？", "expected_behavior": "按 nr-01 双口径如实回答：全书主体口径 Superuser2580*，p153 写 mtcl 属原书矛盾；实验按能登录的为准，生产必须改密"},
+    {"id": "edge-cmd-01", "type": "edge_case", "prompt": "验证矩阵用 acdsup 还是 acdsetup？两个名字书上都有。", "expected_behavior": "按 nr-03 回答：章节标题与 p120 用 acdsup、正文一处写 acdsetup，推断 acdsup 为准；现场以命令实际存在为准，不硬猜"},
+    {"id": "edge-abc-01", "type": "edge_case", "prompt": "ABC-F 链路默认存在的版本基线到底是 R100 还是 N1？我这是老版本要不要自己建链路？", "expected_behavior": "按 nr-04 双口径如实回答：p163 写 R100、p165 写 N1，行为口径一致（链路默认存在、access 必建）；老版本以 hybvisu 实测为准，链路缺失就创建"}
+  ]
+}

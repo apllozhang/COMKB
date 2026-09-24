@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>RTR 许可开关：资格期状态机、事件监控与 FlexLM 互斥</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 系统装载</h2><p>Edition 12 · 415 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte402en/index.html">课程首页</a><a href="/courses/entpxte402en/digest.html">精华长文</a><a href="/courses/entpxte402en/overview.html">教书理解</a><a href="/courses/entpxte402en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte402en/skills/entload-sot-installation.html">S.O.T. 部署工具的安装、初始化、更新与 Template Factory</a><a href="/courses/entpxte402en/skills/entload-cs-loading.html">OXE 呼叫服务器单版本全加载与加载后初始化</a><a href="/courses/entpxte402en/skills/entload-patch-management.html">OXE 多版本加载、分区切换与静态/动态补丁管理</a><a href="/courses/entpxte402en/skills/entload-oxe-v-deployment.html">OXE-V 虚拟化：平台选型、许可路径与 OXE/OMS 虚机交付</a><a href="/courses/entpxte402en/skills/entload-gas-delivery.html">GAS 通用设备服务器：硬件前置、软件加载与后安装向导</a><a href="/courses/entpxte402en/skills/entload-cloud-connect.html">Cloud Connect 云连接：网络前提、FTR 首次注册与 PIN 恢复</a><a href="/courses/entpxte402en/skills/entload-rtr-licensing.html">RTR 许可开关：资格期状态机、事件监控与 FlexLM 互斥</a><a href="/courses/entpxte402en/skills/entload-pod-licensing.html">OPEX / Purple on Demand：订阅许可、LMS 同步、panic 时间线与 C2P 转换</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte402en/skills/entload-distributor-loading.html">Easy Installation 分发器模式：无 SOT 环境的本地加载</a><a href="/courses/entpxte402en/skills/entload-sot-media.html">SOT 媒体传输与加载项目配置（公共动作）</a><a href="/courses/entpxte402en/skills/entload-gas-ops.html">GAS 日常运维：版本、备份、host 升级与 UPS</a><a href="/courses/entpxte402en/skills/entload-fleet-dashboard.html">Fleet Dashboard 云端机队服务：Inventory、Offer、远程控制台与软件更新</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte402en/index.html">oxe-loading（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte402en/index.html">ENTPXTE402EN</a><span>/</span><span aria-current="page">RTR 许可开关：资格期状态机、事件监控与 FlexLM 互斥</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>RTR 许可开关：资格期状态机、事件监控与 FlexLM 互斥</h1></div><dl><div><dt>Skill ID</dt><dd>entload-rtr-licensing</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>RTR 许可开关：资格期状态机、事件监控与 FlexLM 互斥</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"A grace period of 30 days is initiated by default ... OK: the remaining Qualifying Period is increased of 0,5 day to the limit of 30 days • NOK: the remaining Qualifying Period is decreased of 1 day to the limit of 0 day"（p304）
+"FOR COMMUNICATION SERVERS RUNNING ON VIRTUAL MACHINES, VERIFY THAT LICENSING VIA FLEXLM SERVER IS NOT ACTIVATED. THE TWO LICENSING MODES (FLEXLM SERVER AND CCI/RTR) CANNOT RUN AT THE SAME TIME"（p331）
+"Both OXE Systems with the same CC Product ID will decrease their remaning Qualifying Period simultaneously ... Pin code generation will remove both recording on RTR server"（p307）
+"647 RTR state, with additional information such as cause and remaining qualifying period 648 Raised when the PBX switches into panic after 30 days"（p334）</p>
+</blockquote>
+<p>出处：ENTPXTE402EN p302-308、p331-337。</p>
+<h2>I — 自述</h2>
+<p>RTR（Right To Run）是 dongle-less 许可总开关：不用硬件标识/加密狗，每日经 XMPP 向 RTR 服务器应答——OK 加 0.5 天（上限 30）、NOK 减 1 天（下限 0）；它不替代产品级 swk 许可，只是总开关。</p>
+<p>资格期归零触发 Panic Flag：系统进 deprecated 模式，话机建立通话时显示 "Call your administrator"，数据库与电话服务拒绝一切配置变更。</p>
+<p>Fleet Dashboard 状态判读（由"最后连接日期+剩余资格期"计算，数据库每晚更新）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>状态</th>
+<th>判据</th>
+<th>通知/后果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connected</td>
+<td>24h 内有连接，或剩余 29-28 天</td>
+<td>正常</td>
+</tr>
+<tr>
+<td>Qualifying</td>
+<td>超 24h 无连接且 27-10 天</td>
+<td>27 天、20 天各发一封状态邮件</td>
+</tr>
+<tr>
+<td>Soon Blocked</td>
+<td>9-1 天</td>
+<td>每日邮件；事件计数增加</td>
+</tr>
+<tr>
+<td>Blocked-Panic</td>
+<td>0 天</td>
+<td>Panic Flag 已挂起，须 PIN 恢复</td>
+</tr>
+<tr>
+<td>Not connected</td>
+<td>未注册 RTR</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Duplicated</td>
+<td>CC Product ID 被另一系统占用</td>
+<td>两侧同时扣减，须 PIN 恢复</td>
+</tr>
+</tbody>
+</table></div>
+<p>关键事件码（incvisu 查看）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>事件</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6207 / 6208</td>
+<td>XMPP 链路登入 / 登出</td>
+</tr>
+<tr>
+<td>6205 / 6209</td>
+<td>WebSocket 连不上 / SOCKS5 建立失败</td>
+</tr>
+<tr>
+<td>6214</td>
+<td>自动 FTR 未成功（由 6207 清除）</td>
+</tr>
+<tr>
+<td>647</td>
+<td>RTR 状态（含原因与剩余资格期）</td>
+</tr>
+<tr>
+<td>648</td>
+<td>30 天后进 panic</td>
+</tr>
+<tr>
+<td>649</td>
+<td>PIN FTR 已执行、退出 panic</td>
+</tr>
+<tr>
+<td>650 / 651</td>
+<td>欺诈检测立即 panic / 清除 650</td>
+</tr>
+</tbody>
+</table></div>
+<p>操作抓手：</p>
+<ul>
+<li>CCTool 2 读状态：Service state=RTR_RUNNING、CCI mode、Remaining Qualifying Period、Response Code、Cause Message、Next Request Date；选 1 Force RTR 可立即请求</li>
+<li>启用路径在 WBM System/Licenses：FlexLM Enabled=No + Cloud Connect RTR Enabled=Yes，改后重启一次</li>
+<li>持久性：Save/Restore 保留资格期值跨重启；值自动同步 twin CS</li>
+<li>Duplicated 场景（克隆虚机/复制磁盘把 CC 身份带走）：PIN 生成会移除 RTR 服务器上两侧记录，只有用 PIN 完成重注册的系统恢复 30 天资格期</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>RTR 启用与监控</strong>（p331-332，How-To）：</p>
+<ol>
+<li>WBM System/Licenses 核对 FlexLM Licensing Enabled=No</li>
+<li>Cloud Connect RTR Enabled=Yes，按 Tips 重启 OXE</li>
+<li>CCTool 2 读 Service state=RTR_RUNNING、CCI mode=CCI_NORMAL</li>
+<li>Remaining Qualifying Period=30.0、Response Code=201 为健康态</li>
+<li>需要立即对账时选 1 Force RTR</li>
+<li>日常用 incvisu 跟 647/648/649 事件，CCTool 4 按特性调日志级别</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：话机显示 "Call your administrator"；资格期一直在掉；虚机上能不能 FlexLM 和 RTR 并用；Fleet Dashboard 显示 Duplicated；想立即刷新 RTR 状态。</p>
+<p>语言信号：RTR / Right To Run / Qualifying Period / 资格期 / dongle-less / Panic Flag / Call your administrator / Soon Blocked / Duplicated / Force RTR / 647 / 648 / 649 / FlexLM 互斥 / deprecated mode。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>FTR 注册与连通性前提 → 云连接卡</li>
+<li>云端 Dashboard 操作（Inventory/Offer/远程控制台） → 机队服务卡（路由）</li>
+<li>LMS 订阅消耗与 panic → 订阅许可卡</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：FTR 已 Registered（前提）、FlexLM 使用状态、RTR Enabled 目标值、管理邮箱（收分级通知）。资格期已归零 → 判停直接走 PIN 恢复，别再等自动恢复。</p>
+<ol>
+<li>互斥核对：WBM 确认 FlexLM Licensing Enabled=No（虚机必须）。完成标准：单一路径确认</li>
+<li>启用 RTR：Cloud Connect RTR Enabled=Yes，按提示重启 OXE。完成标准：重启完成</li>
+<li>状态判读：CCTool 2 核 RTR_RUNNING、CCI_NORMAL、Qualifying Period=30.0。完成标准：健康态确认</li>
+<li>监控布防：incvisu 订 647/648/650；管理邮箱收 27/20 天分级邮件。完成标准：告警链路就位</li>
+<li>异常处置：断连查 6205/6209 与网络前提；Duplicated 立即走 helpdesk PIN。完成标准：处置路径明确</li>
+<li>例行对账：需要时 Force RTR 立即刷新状态。完成标准：资格期回升（+0.5）确认</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>虚机上 FlexLM 还开着 → 停，两种模式互斥，先关 FlexLM 再启 RTR</li>
+<li>RTR 请求失败想连续重试 → 停，按保守口径当日即可能扣 1 天（重试双口径见 nr-01），先修网络</li>
+<li>Fleet Dashboard 出现 Duplicated → 停，两侧同时在扣天数，立即申请 PIN，别等归零</li>
+<li>想用 RTR 替代 swk 产品许可 → 停，RTR 只是总开关，产品许可照旧</li>
+</ul>
+<p>输出契约：RTR 运行状态基线（资格期/状态/事件订阅）+ FlexLM 互斥核对记录 + Duplicated 应急预案。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>RTR 重试行为教材两处口径不一（p308 与 p332，nr-01）：监控按"当日即可能扣减"设计，最终以 ALE 最新 TC 为准</li>
+<li>VAD 可把子机队委托给 IR 管理（Fleet Dashboard 委托关系，p305，书中仅此一处）</li>
+<li>日志抓手：/tmpd/CCAlarm.log 含 647 逐日条目；ccagent.log 看 STATE_CONNECTED/DISCONNECTED</li>
+<li>事件码表为 Ed12 口径；LMS 侧事件 652/653/654 属订阅许可卡</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte402en/skills/entload-cloud-connect.html">Cloud Connect 云连接：网络前提、FTR 首次注册与 PIN 恢复</a>、<a href="/courses/entpxte402en/skills/entload-fleet-dashboard.html">Fleet Dashboard 云端机队服务：Inventory、Offer、远程控制台与软件更新</a></p><p class="source-page">能力 ID：cap.entload.rtr-licensing · 来源：ENTPXTE402EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — 系统装载 (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 415 页 -->

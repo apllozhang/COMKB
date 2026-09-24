@@ -1,0 +1,42 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\hub-analytics.md": "af463867cbd028b2cc04f20f27ade0b8dd3c6ef5a9f5858d09ad32bbb5e96b65",
+    "references\\capabilities\\hub-attendant-supervision.md": "1772ab1adcb482df99426fece134a8a004df7e19f67a5c3e902628edbc3a1927",
+    "references\\capabilities\\hub-cloud-pbx-provisioning.md": "dd1cd96f727f62a00a648554ebf0a57db726e2e857a519718ef57b8a0583b479",
+    "references\\capabilities\\hub-company-voice-subscription.md": "844ee05a9ec3b65d059d6fa0c09c2525b6ecd0d086d54fdea1ffafc7f52faa21",
+    "references\\capabilities\\hub-device-maintenance.md": "ef4788d772e294641fb23ace8795665fc6d6d81d2a7b912c49871670fd96493e",
+    "references\\capabilities\\hub-hunt-groups.md": "18fc8b8503b0638dd8b32765985ed814319245f386435e55df568d86bc42d996",
+    "references\\capabilities\\hub-maintenance-support.md": "be7ad7bf55f6dd61f9f792e756fd7177783ac994c3a2b6efe1dd4c359bcaa1f9",
+    "references\\capabilities\\hub-member-telephony.md": "dc0b45517a2d1d012b3cb8aea63632e1b17bcc03515f4ddba6910bfb485ab69b",
+    "references\\capabilities\\hub-multisite.md": "6289b08d1c8076220b4830167701a33b8442570ac01c173cc6337528a3e1d272",
+    "references\\capabilities\\hub-network-readiness.md": "e21fdb601e075269c7000012316d7e9f8b17fe381537f64120e218d721e7a14c",
+    "references\\capabilities\\hub-welcome-service-ivr.md": "5504a7984b5ed2703545f7d10849c85a09b866c255e3ddf4084371a02ee24914",
+    "references\\capabilities\\hub-zero-touch-provisioning.md": "0be1865b1c41dd4c89f2f2403ab1aabf609431e8b787e6321ca80f9da6f3e077",
+    "references\\capability-index.md": "6351d3a622db3f7babaa5afdad95c0d200253d93ec9853d140beae23950d7e73",
+    "references\\cheatsheet.md": "856eb6c0c25f866a1c58b4dcf38b0384b2dc435119e6633bae87e066edd1827f",
+    "references\\glossary.md": "83c10d27b6bc4304c35359d1934f8fb8e094993191ac577dfe0bf59fe0cfabc3",
+    "references\\overview.md": "16f1a39bc3c7ce06380fcdf8171bd0dcd84a92e99981130766126c90970a3c69",
+    "SKILL.md": "abb27d89912b78f7e0834c2b512f8b8020b0660955797421102e9967361e05e6"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.rainbow-hub",
+  "bundle_sha256": "85206561b4ffd7eb21008edbfc9b6ddb7c5ca3fbfa3ea44f8527e6a8f073b604",
+  "variant": "single",
+  "run_id": "run-20260924-200021-5ff353",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 12,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

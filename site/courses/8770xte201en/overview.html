@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>教书理解 · 8770XTE201EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 计费与性能管理</h2><p>Edition 45 · 650 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte201en/index.html">课程首页</a><a href="/courses/8770xte201en/digest.html">精华长文</a><a href="/courses/8770xte201en/overview.html">教书理解</a><a href="/courses/8770xte201en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte201en/skills/ovbill-node-onboarding.html">OXE 纳管与 SIP 中继对接</a><a href="/courses/8770xte201en/skills/ovbill-ticket-pipeline.html">计费票据管道（出票、回收、加载过滤）</a><a href="/courses/8770xte201en/skills/ovbill-tariff-costing.html">运营商资费建模与成本计算</a><a href="/courses/8770xte201en/skills/ovbill-org-costing.html">计费组织树与成本归属</a><a href="/courses/8770xte201en/skills/ovbill-confidentiality.html">计费机密控制三道闸（掩码、解密、可见域）</a><a href="/courses/8770xte201en/skills/ovbill-reporting.html">报表生成、导出与定时</a><a href="/courses/8770xte201en/skills/ovbill-report-design.html">报表定制（Querytool 与 Designer）</a><a href="/courses/8770xte201en/skills/ovbill-voip-monitoring.html">VoIP 性能监控（IP ticket 与 KPI）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte201en/skills/ovbill-codebook-migration.html">Code Book 导出与导入</a><a href="/courses/8770xte201en/skills/ovbill-cost-profile.html">成本档案（发票价与订阅费）</a><a href="/courses/8770xte201en/skills/ovbill-traffic-tracking.html">流量分析与 Tracking 告警</a><a href="/courses/8770xte201en/skills/ovbill-web-performance.html">Web Performance 实时仪表盘</a><a href="/courses/8770xte201en/skills/ovbill-archiving.html">计费归档与恢复</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte201en/index.html">omnivista-billing-performance（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte201en/index.html">8770XTE201EN</a><span>/</span><span aria-current="page">教书理解</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">BOOK OVERVIEW</p><h1>教书理解 — 整书骨架与任务清单</h1></div></header><article class="markdown-body"><h1>OmniVista 8770 计费与性能管理 (8770XTE201EN Ed45) — 整书理解 (阶段 0 产出)</h1>
+<blockquote>
+<p>本文档为文档整理的阶段 0 产出，后续所有整理与知识条目都以此为全局上下文。</p>
+</blockquote>
+<h2>基本信息</h2>
+<ul>
+<li><strong>标题</strong>: OmniVista 8770 R5.2 — Accounting and Performance Administration（计费与性能管理，Participant's Guide）</li>
+<li><strong>作者</strong>: ALE Training Services</li>
+<li><strong>出版/发布时间</strong>: Edition 45（OmniVista 8770 R5.2 时代；实验环境 OXE 为 R101.1-n4）</li>
+<li><strong>内容类型</strong>: 课程（官方售后培训讲义 + 分步实验 How-To，讲义约占 45%、实验约占 55%）</li>
+<li><strong>版本来源</strong>: 8770XTE201EN（650 页，全文 <code>F:\AIwork\ZCode\books\8770xte201en\source_fulltext.txt</code>，带 ===== PAGE N ===== 标记）</li>
+<li><strong>处理时间</strong>: 2026-09-23</li>
+</ul>
+<hr />
+<h2>1. 结构 (Structural)</h2>
+<h3>类型</h3>
+<p>实操手册（厂商培训教材：概念讲义幻灯片 + 分步实验 How-To。与 RAINXTE001 相比实验比重更高——17 个 How-To 实验章覆盖约 350 页，每个操作都有菜单路径 + 字段表 + 截图说明）。</p>
+<h3>一句话主旨</h3>
+<p>把 OmniPCX Enterprise 的话务数据变成钱和性能结论：OXE 侧开计费出票 → 8770 增量回收票据入库 → 配运营商资费算成本 → 用组织树/掩码/域管住"谁能看多少钱" → 用报表引擎出账 → 用 VoIP 性能/流量分析/Tracking/Web Performance 四件套监控质量 → 归档延长数据寿命。</p>
+<h3>骨架 (主要论点及其关系)</h3>
+<ol>
+<li><strong>解决方案概览</strong>（p3-40：8770 定位集中网管、架构协议矩阵、虚拟化与容量规划工具、跨版本兼容矩阵、thick client 五套件 + WBM 四应用）</li>
+<li><strong>培训实验平台</strong>（p41-58：RLAB POD 实例表 + ITSP1 SIP 运营商模拟器号码规则）</li>
+<li><strong>计费票据原理</strong>（p59-69：内存缓冲 500 条 → TAX<strong>*</strong>.DAT → ACCOUNT.LIS；出票规则）</li>
+<li><strong>OXE 侧接入</strong>（p70-84 两个 How-To：节点注册/同步 + SIP 模拟器对接）</li>
+<li><strong>票据全链路</strong>（p85-114：外部计费配置、维护命令、五种计费方法、票据回收与加载过滤、PCS 被动回收）</li>
+<li><strong>运营商资费体系</strong>（p115-225：Region/Direction/Tariff 对象模型与费率公式 → 币种/税/国家 → Telecom 1（含巴黎演进）、Telecom 2、Service 脉冲三个运营商实验）</li>
+<li><strong>Code Book</strong>（p226-250：10 种文本文件格式、导出导入、.itl 节点匹配坑）</li>
+<li><strong>计费组织与安全</strong>（p251-357：组织树与成本中心、剪贴/复制/回溯语义、掩码档案与解密权限、成本档案（发票价+订阅费）、可见域）</li>
+<li><strong>报表体系</strong>（p358-404 + p549-643：预定义报表、Querytool/Designer 定制、报表练习 #1-#5 全流程）</li>
+<li><strong>性能监控四件套</strong>（p405-517：VoIP 性能（IP ticket/KPI）→ 流量分析（pmm 计数器）→ Tracking（阈值+变化率）→ Web Performance（SNMPv3+CDR 仪表盘））</li>
+<li><strong>归档</strong>（p518-548：archZ 文件、31+94=125 天生命周期、恢复标签与定向清除）</li>
+</ol>
+<p><strong>论点之间的关系</strong>: 层层递进为主——1 是产品底座，2 是实验地基，3-5 是"数据从哪来到哪去"的管道，6-8 是"管道上叠加的钱、组织、安全三层治理"，9 是输出面，10 是与计费并列的另一只脚（性能），11 是数据生命周期收尾。6 的"成本计算发生在加载时、改动须重算"是贯穿 6/8/9 的隐性主线。</p>
+<h3>作者要解决的核心问题</h3>
+<p>让售后/交付工程师独立完成 OmniVista 8770 的计费与性能交付：把 OXE 接入 8770、打通票据回收、按客户真实资费建运营商模型、按组织结构分摊成本、按合规要求做机密控制、按管理诉求出报表、并部署 VoIP/话务质量监控与告警，最后让数据可归档可追溯。</p>
+<hr />
+<h2>2. 解释 (Interpretive)</h2>
+<h3>关键术语 (作者本人的用法)</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>术语</th>
+<th>作者的定义</th>
+<th>和常识用法的差异</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accounting record / ticket</td>
+<td>OXE 在呼叫结束时生成的话务票据，最多 47 个字段（ED5.2 格式），先存内存缓冲（≤500 条）再压缩进 TAX<strong>*</strong>.DAT</td>
+<td>不是"发票"，是逐呼叫的原始话单；缓冲满或 90 分钟无新记录才落盘</td>
+</tr>
+<tr>
+<td>ACCOUNT.LIS</td>
+<td>记录 OXE 上已建计费文件清单的索引文件；8770 靠与自己的副本对比决定增量取回哪些文件</td>
+<td>它是增量同步的"游标"，不是日志</td>
+</tr>
+<tr>
+<td>Detailed accounting</td>
+<td>五种计费方法之一：更新组织树 + 从 PCX 取回票据并按分机归位</td>
+<td>书中默认推荐法；与"只更新组织树不取票""按节点聚合"等方法并列，每台 PCX 可各选一种</td>
+</tr>
+<tr>
+<td>Carrier（运营商）</td>
+<td>资费容器：Period &gt; Calendar/Region/Tariff/Direction 四件套；分 Outgoing 直连运营商与 pulse 型（Service）</td>
+<td>不代表真实运营商合同，只是 8770 里的一套算钱规则；名字/符号（≤5 字母）全局唯一</td>
+</tr>
+<tr>
+<td>Calling/Called region</td>
+<td>主叫区域=PCX 或 PCX-中继组所在计费区；被叫区域=同资费的被叫号码前缀集合；一个区域可兼两者</td>
+<td>前缀按"最长最优匹配"归属；同一前缀不能出现在不同区域</td>
+</tr>
+<tr>
+<td>Direction</td>
+<td>主叫区域→被叫区域的配对，唯一绑定一个通信资费（可选服务资费/调整/时延）</td>
+<td>是算钱的最终落点；未定义的呼叫落"unspecified"方向兜底</td>
+</tr>
+<tr>
+<td>Tariff（资费）</td>
+<td>计算 mode：exact duration（线性，可带 initial cost/duration、minimum cost、segments）、round up/down、based on unit（脉冲）、PCX 给定成本</td>
+<td>与"话费套餐"不同：它是一台服务器内可复算的确定性公式</td>
+</tr>
+<tr>
+<td>Cost center（成本中心）</td>
+<td>OXE 侧为用户/话务台/数据终端指定的记账单位（默认 255 个槽位，255=未指定）；trunk group 等无成本中心对象落"默认成本中心"</td>
+<td>组织树的叶子主要是成本中心；在组织图上移动用户会被拒绝，必须回 OXE 配置改</td>
+</tr>
+<tr>
+<td>Organization tree</td>
+<td>财务组织的图形化树（level/cost center/用户），保留历史（灰色条目），随同步与事件自动更新</td>
+<td>它存"过去"而不只是现状——同一分机的改 名/换成本中心都留痕</td>
+</tr>
+<tr>
+<td>Mask profile</td>
+<td>按呼叫类别（个人/项目/职业/访客）控制被叫号、主叫号、PIN、成本、地名、时长、日期的遮蔽位数；随组织树继承</td>
+<td>遮的是"报告与记录查看"的显示，不是删数据；grouped report 只认 Default 档案</td>
+</tr>
+<tr>
+<td>Accounting domain（可见域）</td>
+<td>挂在组织树节点上的域名，分配给管理员后只看到域内数据；AdminNmc 看全部</td>
+<td>群组上配域无效，只认用户级；启用后未配域时整树只剩根</td>
+</tr>
+<tr>
+<td>Cost profile（成本档案）</td>
+<td>对总成本做线性/百分比调整得到"发票价"；另含按呼叫类型、设备类型、月/周/日的订阅费</td>
+<td>两套配置：Invoiced cost（每通话调价）与 Subscription（按期计费，每月 1 日出票）</td>
+</tr>
+<tr>
+<td>Code book</td>
+<td>运营商配置的文本文件集（.inf/.rgn/.trf/.dir/.cal/.ccn/.adj/.fct/.itl/.trg），@表头、Tab 分隔、%注释</td>
+<td>跨服务器迁移/存档运营商配置的载体；.itl 的 Node 必须与目标机声明名一致</td>
+</tr>
+<tr>
+<td>Report definition / Generated report</td>
+<td>报表定义（Querytool 选数据 + Designer 排版）与其实例；Detailed 不汇总、Grouped 汇总；Hit-list 限量</td>
+<td>预定义报表必须复制到个人目录才能生成； cumulative report 依赖夜间算好的累计计数器</td>
+</tr>
+<tr>
+<td>Tracking profile</td>
+<td>阈值集合档案，可挂组织条目或运营商；超阈值出告警和/或发邮件；支持变化率（移动平均）</td>
+<td>阈值不是实时流式监控——靠每天的任务与夜间计数器驱动</td>
+</tr>
+<tr>
+<td>IP ticket / VoIP KPI</td>
+<td>OXE 对每段 IP 通话出 SIP/IP 票据，含时延表、丢包、BFI 密度；KPI 阈值默认时延&gt;150ms、丢包&gt;3%、BFI burst&gt;5%</td>
+<td>质量是按 10 秒段统计的，MOS 图要用散点图才可读</td>
+</tr>
+<tr>
+<td>pmm 文件</td>
+<td>OXE 每半小时生成的话务观察计数器文件（C&lt;周&gt;&lt;日&gt;&lt;半小时&gt;&lt;序号&gt;.pmm），存在 /usr4/pmm</td>
+<td>流量分析专属（仅 OXE 支持）；与 TAX 票据同走一次同步回收</td>
+</tr>
+<tr>
+<td>archZ</td>
+<td>计费票据归档文件（zip 格式），每天每节点一个；Archive delay 31 天 + Clean-up delay 94 天，最长保留 125 天</td>
+<td>按记录日期而非文件创建日期清理；恢复可打 Archived 标签与原数据区分</td>
+</tr>
+</tbody>
+</table></div>
+<h3>核心命题 (用自己的话)</h3>
+<ol>
+<li>计费数据链是一条单向管道：OXE 内存缓冲（≤500 条，满或 90 分钟无新票落盘）→ TAX<strong>*</strong>.DAT + ACCOUNT.LIS → 8770 对比索引经 FTP 增量取回到 loader 目录 → 加载过滤（时长/成本/呼叫类型/节点）→ MariaDB → 报表。哪个环节断了，按目录和日志（NMCLD_1.log 等）逐段查。</li>
+<li>8770 是"集中管理面"：IP 连通即可纳管 OXE（csa/csm 双地址）、OXO Connect（经 OMC）与 OpenTouch；thick client 五套件 + WBM 四应用 + Manage My Phone 分工明确，审计与流量分析仅支持 OXE。</li>
+<li>资费模型 = Region（主叫/被叫）× Direction（配对）→ Tariff；成本在票据加载时就算好，运营商配置改动后必须跑 Compute cost（Force）重算存量，否则新旧成本混存。</li>
+<li>费率公式可精确复算：exact 模式 Cost = 单元数×单价（按秒折算），可叠加接通费（initial cost）、免费时长（initial duration）、保底（minimum cost）、分段（segments）；round up/down 按阶段计；pulse 模式直接用票据里的 Charge units 乘单价。</li>
+<li>服务费独立建模：SVA 特服号（法国 08xx/短号）的通信费 C 与服务费 S 分开配资费，在 Direction 上叠加；总票价 = C + S。</li>
+<li>组织树决定"钱归谁"：成本中心从 OXE 同步（未设 cc=255 落根，中继组等落默认成本中心）；组织图上"剪贴=丢历史移动、复制=带历史另立（原条目转灰）"，用户只能在 OXE 配置/目录应用里改成本中心；误迁历史可用"设备级回溯创建日期"救回，level/成本中心/人不能回溯。</li>
+<li>机密性三道闸：mask profile 按组织树继承遮显示 → 解密需要"Mask data access"组成员口令 → accounting domain 按管理员裁剪可见范围；OXE 侧已遮蔽的号码（如 029845----）8770 无法还原。</li>
+<li>报表引擎两个页签分工：Querytool 管字段/排序/过滤/公式/hit-list（可设生成期过滤器），Designer 管版面/前缀后缀/小数位/图表；不同区域的表头不能混用出图；grouped 报表必须会嵌套 Sum 才能做出"按分机汇总再按成本中心汇总"。</li>
+<li>VoIP 质量有量化口径：每段通话出 IP ticket（压缩算法、收发包、时延表、BFI 密度），默认阈值时延&gt;150ms、丢包&gt;3%、BFI burst&gt;5%（且 BFI&gt;3% 才算 burst）；清库周期小时/天/月/年计数器与票据各有一套。</li>
+<li>流量分析靠 OXE 半小时计数器（pmm/inf + pmm.lis），与计费票据同走同步；默认只算话务台/中继组，要看被叫号与终端必须把每日/每周任务的 -PtpType 参数改成 ALL。</li>
+<li>Tracking 把阈值变成档案复用：变化率 = 100×(当前值−x 期均值)/x 期均值（日 30/月 3/年 1 期默认，可改），超限动作出告警、发邮件或两者；一封邮件可携带多个超限，附件按 profile 分类。</li>
+<li>Web Performance 是 WBM 侧的实时仪表盘：VoIP CDR（SSH/FTP 取回）+ OXE SNMP MIB（A4400-RTM-MIB + UC-DAVIS，SNMPv3）两条数据腿，五大主题 widget，轮询 30 分钟可缩到 5 分钟；SNMP 配置不一致时 8770 出告警并停用监控。</li>
+<li>归档是数据生命周期的延长线：31 天后归档成 archZ（每天每节点一档），再 94 天后删，最长 125 天；恢复时可打 Loaded/Archived 标签，Archived 标签的票在组织树不可见但可出报告，并可"只清除恢复票"。</li>
+</ol>
+<h3>论证链</h3>
+<p>教材以"原理讲义（图+字段表）→ How-To 实验（菜单路径+字段值+验收截图说明）→ 行为验证问题（如'记录消失了吗？错误和什么有关？'）"推进：计费链讲义与实验成对出现（p59-69↔p85-114、p115-140↔p141-225、p226-237↔p238-250、p251-267↔p268-295……），用可复算的公式和可观察的文件/日志代替理论论证；资费部分用 5 个递进例子（单区→双主叫区→远端中继组→多中继组→按运营商分中继组）撑起选型判断。</p>
+<hr />
+<h2>3. 批判 (Critical) ★</h2>
+<h3>作者的时代局限</h3>
+<ul>
+<li>基于 R5.2 / Ed45 界面与 R101.1 实验机；8770 界面、预定义报表清单、WBM widget 随版本漂移。</li>
+<li>虚拟化清单（ESXi 6.x/7.0/8.0、Hyper-V 2016/2019/2022、Nutanix AHV 20220304、AWS）与容量规划工具 V3.0 是 Ed45 时点口径，落地质询需重新核对支持矩阵。</li>
+<li>费率示例停留在"分钟单价+固定税"的简化世界，未涉及融合套餐、流量计费、云话费分摊等现代形态。</li>
+</ul>
+<h3>作者的立场盲点</h3>
+<ul>
+<li>全书明文密码贯穿（Superuser2580<em>、superuser、Superuser01</em>、letacla1、pwdagentV3）；生产侧的密钥/口令治理只有一句"改成与 OXE 一致"，SNMPv3 认证/加密口令管理无展开。</li>
+<li>运营商资费数据从哪来（真实价目表、监管费率文件）全书不谈——只教"怎么把资费敲进系统"，不教"资费数据工程"。</li>
+<li>书内存在多处未修订的笔误：p402 与 p550 的同一练习汇率一个写 1€=1.21$ 一个写 1.3$；p607 练习写 "Telecom 1 or Telecom 7"、"Telecom 0/Telecom 7" 而 p613 过滤器实为 Telecom 1+Telecom 2；p89 表格把 31011 的姓/名写反（Adams Alice vs Alice Adams）。照抄实验值会踩坑。</li>
+<li>数据库运维（MariaDB 容量、性能、备份策略）只在 Maintenance 应用一句带过，计费高峰的加载速度（实验口径 52 tic/sec）无生产容量结论。</li>
+</ul>
+<h3>未被证明的假设</h3>
+<ul>
+<li>假设读者已具备 OXE 维护基础：siteid、netadmin -m、account compress、accview、ipview、rstcpl 等命令只演示语法不解释体系。</li>
+<li>假设单节点 OXE + 单 8770 即可代表生产：多节点（13101/13102 例）、PCS、OpenTouch 关联同步只有概念图，无实验。</li>
+<li>假设币种/税率按国家安装时一次定死即可接受；跨国多币种场景只有"附加币种+汇率有效期"的机制，无实践指引。</li>
+</ul>
+<h3>最强反对意见</h3>
+<p>"这本教材教的是单节点实验闭环，不是生产计费系统实施"——真实运营商价目接入、多 PCX 组网、数据库容量与备份、安全基线（口令/SNMP 密钥/域控）、以及话费合规（GDPR 类留存期限）都只是指针或缺失。因此每条能力的 Boundary 必须标注"实验口径"，生产化须补：资费数据源管理、OXE 安全加固文档、8770 安装与容量规划指南三块外部输入。</p>
+<blockquote>
+<p><strong>以上批判会直接成为下游 skill 的 Boundary (B) 字段来源</strong></p>
+</blockquote>
+<hr />
+<h2>4. 应用潜力 (Applicability)</h2>
+<h3>可 skill 化的内容</h3>
+<ul>
+<li>[x] 8770 纳管 OXE 节点（SSH/信任主机核查、网络/子网/OXE 声明、同步与验证）</li>
+<li>[x] OXE 对接 SIP 运营商（注册账号、DID 翻译、外呼验证）</li>
+<li>[x] OXE 外部计费开启（出票类型、存储天数、成本中心、记账 COS、掩码设置）</li>
+<li>[x] 计费票据维护命令（account compress / accview / ACCOUNT.LIS 排查）</li>
+<li>[x] 票据回收链路配置（计费方法选择、FTP 凭证、ticket collection、加载过滤、PCS）</li>
+<li>[x] 运营商基础参数（币种/汇率有效期、税、国家、记录导入）</li>
+<li>[x] 直连运营商建模（Period/Calendar/Region/Tariff/Direction 全流程）</li>
+<li>[x] 费率公式选型与参数（exact/round/pulse、initial/minimum/segments）</li>
+<li>[x] 成本计算与重算（Compute cost 任务、日志排障）</li>
+<li>[x] 运营商演进（新增主叫区、前缀冲突处理、方向矩阵重建）</li>
+<li>[x] Code Book 导出导入（.itl 节点匹配、EFFECT_DATE 新周期）</li>
+<li>[x] 计费组织树搭建（默认成本中心、层级、剪贴/复制语义）</li>
+<li>[x] 历史数据迁移与回溯（Assign earlier creation date、ToolsOmniVista 组织更新）</li>
+<li>[x] 掩码档案与解密权限（Mask data access 组、生成期过滤）</li>
+<li>[x] 成本档案（发票价调整公式、订阅费出票机制）</li>
+<li>[x] 计费可见域（启用顺序、域继承、组域无效）</li>
+<li>[x] 报表生成/导出/定时（尺寸上限、邮件服务器、累计计数器）</li>
+<li>[x] 报表定制（Querytool 字段/过滤/hit-list + Designer 版面/公式/图表，5 个练习模式）</li>
+<li>[x] VoIP 性能配置（IP ticket、加载过滤、清理周期、BFI 参数）</li>
+<li>[x] 流量分析配置（话务阈值、PtpType ALL、pmm 文件、总计算）</li>
+<li>[x] Tracking 阈值与变化率（三档案实例、监控参数、告警邮件）</li>
+<li>[x] Web Performance 部署（SNMPv3 双侧配置、WBM 仪表盘、轮询调优）</li>
+<li>[x] 计费归档与恢复（归档参数、标签语义、定向清除）</li>
+</ul>
+<h3>不适合 skill 化的内容</h3>
+<ul>
+<li>RLAB 实验平台与 SIP 模拟器细节（p41-58，教学专用基础设施，仅作 Boundary 背景）</li>
+<li>报表练习 #1-#5 的具体数值规格（教学练习题面，可保留模式、替换业务值）</li>
+<li>Thunderbird/邮件客户端课堂配置（p374-375、p484 的教学专用步骤）</li>
+<li>培训评估/证书流程（p644-650）</li>
+</ul>
+<h3>预估 skill 数量</h3>
+<p><strong>约 10-12 个能力单元</strong>（计费链路、资费建模、运营商演进、组织与成本归属、机密控制、报表、VoIP 性能、流量分析、Tracking、Web Performance、归档；阶段 1.5 决定保留，阶段 1.6 与输出模式决定独立入口数量）</p>
+<h3>原书关键任务清单（覆盖审计基准，不从旧 verified 反推）</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>task_id</th>
+<th>读者任务</th>
+<th>原文位置/图表</th>
+<th>预期交付物</th>
+<th>重要性及依据</th>
+<th>尚缺条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>task-01</td>
+<td>将 OXE 纳管到 8770（信息核查、SSH/信任主机、网络/子网/OXE 声明、同步验证）</td>
+<td>p70-80</td>
+<td>Configuration 树中可同步的 oxe 节点</td>
+<td>一切计费/性能的前提；双侧核对最易漏</td>
+<td>生产需替换实验 IP/凭证</td>
+</tr>
+<tr>
+<td>task-02</td>
+<td>配置 OXE 使用 SIP 运营商模拟器（注册 ID、DID 翻译、外呼验证）</td>
+<td>p81-84</td>
+<td>可打外线的 SIP 中继</td>
+<td>出市话票据的产生源</td>
+<td>模拟器为教学设施</td>
+</tr>
+<tr>
+<td>task-03</td>
+<td>在 OXE 上开启外部计费并管理成本中心</td>
+<td>p85-95</td>
+<td>按类型出票 + 成本中心分配</td>
+<td>票据源头配置，漏选 0 计费呼出是高频坑</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-04</td>
+<td>用维护命令核查票据文件</td>
+<td>p93-95</td>
+<td>account compress/accview 操作能力</td>
+<td>现场排障第一抓手</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-05</td>
+<td>配置 8770 票据回收（方法、凭证、collection、加载过滤、PCS）</td>
+<td>p96-114</td>
+<td>记录入库且过滤生效</td>
+<td>管道核心；FTP 用户不可改</td>
+<td>生产需核对许可与多节点</td>
+</tr>
+<tr>
+<td>task-06</td>
+<td>配置币种/税率/国家并灌入测试票据</td>
+<td>p141-148</td>
+<td>参考币种 + 附加币种 + 税率</td>
+<td>资费建模的前置字典</td>
+<td>真实税率待客户口径</td>
+</tr>
+<tr>
+<td>task-07</td>
+<td>建直连运营商 Telecom 1 并计算成本</td>
+<td>p149-180</td>
+<td>带方向矩阵的运营商 + 重算后的成本</td>
+<td>全书最重的建模实验</td>
+<td>真实价目表在书外</td>
+</tr>
+<tr>
+<td>task-08</td>
+<td>演进运营商（新增巴黎主叫区、前缀冲突、方向重建）</td>
+<td>p181-194</td>
+<td>更新后配置与重算</td>
+<td>现网扩容的真实形态</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-09</td>
+<td>建运营商 Telecom 2（第二运营商并存）</td>
+<td>p195-215</td>
+<td>双运营商并存配置</td>
+<td>多运营商计费基础</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-10</td>
+<td>建 pulse 型运营商 Service（特服号）</td>
+<td>p216-225</td>
+<td>脉冲计费 + Special 区域</td>
+<td>服务费/特服号场景</td>
+<td>SVA 费率依各国监管</td>
+</tr>
+<tr>
+<td>task-11</td>
+<td>导出与导入 Code Book（存档、迁移、修 .itl）</td>
+<td>p238-250</td>
+<td>可迁移的运营商配置包</td>
+<td>跨服务器交付利器</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-12</td>
+<td>搭建计费组织树（默认成本中心、层级、搬移）</td>
+<td>p268-288</td>
+<td>Alcatel/Brest/Colombes 树 + 记录分布</td>
+<td>成本分摊的结构基础</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-13</td>
+<td>管理历史数据（回溯创建日期、ToolsOmniVista 组织更新）</td>
+<td>p289-295</td>
+<td>历史记录正确归位</td>
+<td>人员变动后的数据正确性</td>
+<td>服务中断窗口需约定</td>
+</tr>
+<tr>
+<td>task-14</td>
+<td>配置掩码档案与解密账号</td>
+<td>p304-320</td>
+<td>分级遮蔽 + 受控解密</td>
+<td>合规刚需</td>
+<td>遮蔽策略需客户确认</td>
+</tr>
+<tr>
+<td>task-15</td>
+<td>配置成本档案（发票价与订阅费）</td>
+<td>p331-340</td>
+<td>+50%/+20%+0.5€ 档案生效</td>
+<td>内部再计费/加价场景</td>
+<td>订阅口径需商务确认</td>
+</tr>
+<tr>
+<td>task-16</td>
+<td>配置计费可见域</td>
+<td>p348-357</td>
+<td>按域隔离的多管理员视图</td>
+<td>多租户/多公司共享 PCX</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-17</td>
+<td>生成/导出/定时报表（含邮件分发与累计计数器）</td>
+<td>p366-383</td>
+<td>自动化报表链</td>
+<td>交付后运营主场景</td>
+<td>邮件服务器需客户提供</td>
+</tr>
+<tr>
+<td>task-18</td>
+<td>定制报表定义（Querytool+Designer；练习 #1-#5 模式）</td>
+<td>p384-404, p549-643</td>
+<td>五类定制报表</td>
+<td>高阶交付能力，门槛最高</td>
+<td>图表需求需逐案确认</td>
+</tr>
+<tr>
+<td>task-19</td>
+<td>配置 VoIP 性能监控（IP ticket、过滤、清理、BFI 参数、报告）</td>
+<td>p405-428</td>
+<td>VoIP 质量报告可用</td>
+<td>语音质量量化</td>
+<td>KPI 阈值需按网调整</td>
+</tr>
+<tr>
+<td>task-20</td>
+<td>配置流量分析（阈值、PtpType ALL、pmm 回收、总计算、报告）</td>
+<td>p429-454</td>
+<td>中继/话务台话务报告</td>
+<td>中继扩容与话务台考核</td>
+<td>仅支持 OXE</td>
+</tr>
+<tr>
+<td>task-21</td>
+<td>配置 Tracking（三档案、移动平均、告警邮件）</td>
+<td>p455-488</td>
+<td>超阈值告警/邮件生效</td>
+<td>滥用与异常发现</td>
+<td>邮件服务器前置</td>
+</tr>
+<tr>
+<td>task-22</td>
+<td>部署 Web Performance（SNMPv3 双侧、WBM 仪表盘、轮询调优）</td>
+<td>p489-517</td>
+<td>实时性能仪表盘</td>
+<td>管理层可视化</td>
+<td>SNMP 凭证治理在书外</td>
+</tr>
+<tr>
+<td>task-23</td>
+<td>归档与恢复计费票据（参数、标签、定向清除）</td>
+<td>p518-548</td>
+<td>归档/恢复/清理闭环</td>
+<td>数据寿命与库性能</td>
+<td>留存期限需合规确认</td>
+</tr>
+</tbody>
+</table></div>
+<h3>优先级排序 (按"最能赋能售后工程师"的角度)</h3>
+<ol>
+<li>task-01 OXE 纳管（管道源头，错一步全断）</li>
+<li>task-05 票据回收链路（计费能不能跑起来的关键）</li>
+<li>task-07/08 运营商建模与演进（工作量最大、最易返工）</li>
+<li>task-03 OXE 外部计费开启（票据源头，漏选即少数据）</li>
+<li>task-12/13 组织树与历史数据（钱算给谁的问题）</li>
+<li>task-14/16 掩码与可见域（合规红线）</li>
+<li>task-17/18 报表链（交付可见成果）</li>
+<li>task-19/20/21/22 性能四件套（另一只脚）</li>
+<li>task-23 归档（生命周期收尾）</li>
+<li>task-02/04/06/09/10/11/15（支撑与专项）</li>
+</ol>
+<hr />
+<h2>✅ 质量门检查</h2>
+<ul>
+<li>[x] 主旨能用一句话说清</li>
+<li>[x] 骨架列出 11 个一级部分（底座 1 + 地基 1 + 管道 3 + 治理 3 + 输出 1 + 性能 1 + 生命周期 1；收尾评估未计入）</li>
+<li>[x] 术语按实际内容列出（17 个）</li>
+<li>[x] 已检查作者局限/假设（实验口径密码、书内笔误清单、资费数据源缺位、数据库运维缺位）</li>
+<li>[x] 原书关键任务 23 项，全部有来源页码、交付物与重要性依据</li>
+<li>[x] 全流程连续执行授权沿用流水线上游设定（2026-09-23），骨架要点随产出可纠偏</li>
+</ul>
+<p><strong>处理时间</strong>: 2026-09-23</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 R5.2 Accounting and Performance Administration (Participant Guide, Edition 45) | edition: Edition 45 | pages: 650 页 -->

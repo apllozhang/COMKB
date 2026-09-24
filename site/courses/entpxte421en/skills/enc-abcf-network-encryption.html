@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>ABC-F 网络加密</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 加密解决方案</h2><p>Edition 05 · 410 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte421en/index.html">课程首页</a><a href="/courses/entpxte421en/digest.html">精华长文</a><a href="/courses/entpxte421en/overview.html">教书理解</a><a href="/courses/entpxte421en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte421en/skills/enc-certificate-trust-chain.html">证书与信任链全生命周期</a><a href="/courses/entpxte421en/skills/enc-native-encryption-bringup.html">加密解决方案开通与 lanpbx.cfg</a><a href="/courses/entpxte421en/skills/enc-dtls-verification-maintenance.html">DTLS 验证、排障与维护闭环</a><a href="/courses/entpxte421en/skills/enc-sip-tls-endpoints.html">SIP TLS 扩展加密</a><a href="/courses/entpxte421en/skills/enc-sip-trunk-tls.html">SIP trunk 的 TLS 与 SRTP</a><a href="/courses/entpxte421en/skills/enc-eegw-deployment.html">EEGW/NSP 大容量部署</a><a href="/courses/entpxte421en/skills/enc-abcf-network-encryption.html">ABC-F 网络加密</a><a href="/courses/entpxte421en/skills/enc-mtls-endpoint-authentication.html">mTLS 双向认证与版本限制</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte421en/skills/enc-pcs-failover.html">PCS 加密接管</a><a href="/courses/entpxte421en/skills/enc-pki-workshop-xca.html">XCA 外部 CA 工坊</a><a href="/courses/entpxte421en/skills/enc-application-encryption.html">应用生态加密与安全下载</a><a href="/courses/entpxte421en/skills/enc-lab-environment.html">实验环境底座（RLAB）</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte421en/index.html">oxe-native-encryption（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte421en/index.html">ENTPXTE421EN</a><span>/</span><span aria-current="page">ABC-F 网络加密</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>ABC-F 网络加密</h1></div><dl><div><dt>Skill ID</dt><dd>enc-abcf-network-encryption</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>ABC-F 网络加密（IPSec 链路、内部 PKI 双节点、端到端一致性）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Signaling between the network nodes is encrypted using IPsec • … Media encryption … is done using SRTP keys sent over the encrypted ABCF network"（p293）
+"The ABC-IP logical link cannot be established in case only one of the two involved nodes has the IP logical link parameter 'Encryption' set to 'Yes'"（p303）
+"THE COMMON NAME IN THE NODE CERTIFICATE IS ALWAYS THE NODE FQDN."（p322）
+"'Transit node' concerns only 'IP Hybrid Link' based network • No transit node in a 'Direct IP Link' based network"（p297）</p>
+</blockquote>
+<p>出处：ENTPXTE421EN p283-332, p303。</p>
+<h2>I — 自述</h2>
+<p>多节点组网的端到端加密：信令靠 IPSec、媒体靠 SRTP，任何一环缺失即明文：</p>
+<ol>
+<li><strong>总原则</strong>（p293-294）：</li>
+<li>节点间信令（ABC-F/审计/广播）用 IPSec：IPSec Manager（OpenSwan 基）建隧道，端口=协商 500 / TCP 2579</li>
+<li>IPSec 隧道用证书认证：全网一个 CA、每节点一张专属证书（节点证书 CN 恒为节点 FQDN）</li>
+<li>SRTP 密钥经加密的 ABC-IP 逻辑链路下发对端——信令链不加密则媒体密钥无从安全分发</li>
+<li><strong>链路参数规则</strong>（p330）：</li>
+<li>参数位置：Inter-Nodes links/Logical links (ABC-F)/Hybrid or Direct Link Access 的 "other" 页</li>
+<li>链路必须 DOWN 才能改（先禁用接入→开 Encryption→重新启用）</li>
+<li>两端取值必须相同；仅一侧 Yes 时链路建不起来（即使两侧系统级 NE 都开了）</li>
+<li><strong>端到端短木桶</strong>（p295-300/p303）：</li>
+</ol>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>缺失环节</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transit 链路未加密</td>
+<td>跨该段媒体明文（信令仍可能加密）</td>
+</tr>
+<tr>
+<td>对端节点未启 NE</td>
+<td>媒体明文</td>
+</tr>
+<tr>
+<td>任一端点未开加密</td>
+<td>媒体明文</td>
+</tr>
+<tr>
+<td>两侧 SRTP 位数不一致（128 vs 256）</td>
+<td>节点间媒体明文，直连链路信令仍加密</td>
+</tr>
+</tbody>
+</table></div>
+<ol>
+<li><strong>拓扑禁区</strong>（p297-298/p301）：transit 节点行为仅存在于 hybrid link 网络；direct link 网络无 transit（直连即端到端）；与 IP Premium Security 不互通；IPv6 设备呼叫明文；AES-256 要求单系统带 'Direct Link' 标签（拓扑与标签分属两个维度）</li>
+<li><strong>内部 PKI 双节点变体</strong>（p309-328）：</li>
+<li>Node1 作签发节点：11.9.1.1 输 CC-suite-ID 一键自签（CA/证书/私钥 7300 天）</li>
+<li>Node2 一键网络签发：11.9.1.3 生成 CSR→送 Node1 签名→自动回传导入；CN=oxe2.company.com、SAN 含两角色 IP</li>
+<li>duplication 场景所有条目须用 netadmin/swinst 的 CLONING 选项送 standby</li>
+<li><strong>验证抓手</strong>（p290/p332）：hybvisu -f all 看链路 UP 与 Encryption 翻转；跨节点网络呼叫确认加密</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>Node1 作 CA</strong>（p309-318，c14 步骤 1-6）：</p>
+<ol>
+<li>Node1 上 netadmin 11.9.1.1，输 CC-suite-ID（实验口径 11111-11111-11111-11111）</li>
+<li>通配符 SAN=y、IP SAN=y、4096 位、填 DN</li>
+<li>系统生成 Root CA + CS 私钥 + CSR 并签名</li>
+<li>dhs3_init -R NGINX 后 11.9.1.8 核验（CA CN=CC-suite-ID、7300 天）</li>
+<li>NE 参数三件套 + 用户 31000 开加密 + lanpbxbuild 配 DTLS</li>
+<li>IPDSP 弹窗接受自签 CA 证书后出现加密图标</li>
+</ol>
+<p><strong>Node2 网络签发与链路加密</strong>（p319-332，c15/c16）：</p>
+<ol>
+<li>Node2 上 11.9.1.3 输签发节点 IP=192.168.1.1，一键生成→签名→导入</li>
+<li>View 核对 CN=oxe2.company.com、SAN 含 192.168.1.103/.101</li>
+<li>参数与用户配置同 Node1，lanpbxbuild 配 DTLS 后重启</li>
+<li>两侧 WBM 的链路接入先禁用（链路 DOWN）</li>
+<li>"other" 页激活 Encryption，两端同值后重新启用</li>
+<li>Authentication for SRTP=Authenticated（网络呼叫必开）</li>
+<li>31000 与 31500 跨节点互打确认加密，hybvisu 看 Encryption 翻转</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：两个 OXE 节点之间信令媒体都要加密；hybrid 和 direct link 怎么选；节点证书 CN 用什么；链路参数改不了；跨节点通话有一段是明文；第二节点怎么拿到 CA 签发。</p>
+<p>语言信号：ABC-F / ABC-IP / hybrid link / direct link / transit node / IPSec / OpenSwan / 500 / 2579 / Logical Link Access / Encryption 参数 / hybvisu / 内部 PKI / CC-suite-ID / 11.9.1.3。</p>
+<p>与相邻能力区分：单节点证书体系与外部 CA 归证书与信任链能力；mTLS（OXE 对端点反验）归 mTLS 能力，本卡只管节点间与端到端链路；PCS 分支救援归 PCS 路由卡。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：各节点 NE 参数已启用、链路类型（hybrid/direct）已定、全网单一 CA 策略已确认。混用 IP Premium Security → 判停（不互通）。</p>
+<ol>
+<li>定拓扑：hybrid（有 transit，可多级组网）或 direct（无 transit，直连端到端）。完成标准：拓扑决策成文</li>
+<li>定 CA：内部 PKI（Node1 自签+Node2 网络签发）或外部 CA 统一签发；节点证书 CN=节点 FQDN。完成标准：证书就位</li>
+<li>配端点加密：各节点 NE 参数三件套 + 用户级加密 + lanpbx（DTLS 指向本节点）。完成标准：节点内加密通话正常</li>
+<li>开链路加密：选定链路禁用（DOWN）→ "other" 页 Encryption 两端同值 → 重新启用。完成标准：hybvisu 显示 Encryption 翻转</li>
+<li>配 SRTP 一致性：Authentication for SRTP=Authenticated 且所有参与网络呼叫的节点同值；AES 位数两侧一致。完成标准：参数矩阵核对通过</li>
+<li>验收：跨节点网络呼叫逐一验证；hybvisu 全链路 UP+Encryption。完成标准：全程加密证明</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>链路参数改不了 → 链路必须先 DOWN（禁用接入）才能改（p330），别在 UP 状态反复试</li>
+<li>只有一侧开了 Encryption → 链路直接建不起来，两端同值后重查（p303）</li>
+<li>客户网络里有 IPv6 设备或老 IP Premium Security 节点 → 明文/不互通预期管理，提前写进方案（p301）</li>
+<li>AES-128 与 AES-256 节点混置 direct link 网络 → 节点间媒体明文（信令仍加密），统一位数或接受明文段（p303）</li>
+</ul>
+<p>输出契约：全网链路 Encryption 状态表 + 跨节点加密验收记录 + 节点证书台账。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>与 IP Premium Security 互通不可能（书中自注）；IPv6 设备呼叫明文</li>
+<li>AES-256 要求 OXE 数据库带 'Direct Link' 标签（单系统维度），与"仅 hybrid 有 transit"（拓扑维度）分属两事，勿混</li>
+<li>OMS 等 VM 换节点前必须清信任库旧证书（Erase saved certificates），否则在服务异常（p288，实验亲踩）</li>
+<li>网络加密不需新许可，但跨站点组网的 IP 传输质量与防火墙放行在书外</li>
+<li>CC-suite-ID、节点 IP 等为实验口径，生产按客户许可文件与网段替换</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte421en/skills/enc-certificate-trust-chain.html">证书与信任链全生命周期</a></p><p class="source-page">能力 ID：cap.enc.abcf-network-encryption · 来源：ENTPXTE421EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — Native Encryption (Participant's Guide, Edition 05) | edition: Edition 05 | pages: 410 页 -->

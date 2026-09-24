@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.omnivista-billing-performance",
+  "generated_at": "2026-09-24",
+  "gate_criteria": ["independent_intent", "independent_contract", "independent_run", "independent_reuse", "independent_eval"],
+  "gate_decisions": {
+    "cap.ovbill.node-onboarding": "promoted: 纳管 OXE 是一切计费/性能交付的第一步，意图独立（接新节点）、契约独立（核查清单+声明字段+同步验证）、可独立复用与评测",
+    "cap.ovbill.ticket-pipeline": "promoted: 票据从 OXE 出票到入库的管道是全书主线（task-03/04/05），排障入口（loader/日志/FTP 铁律）自成闭环，触发频率最高",
+    "cap.ovbill.tariff-costing": "promoted: 运营商建模与成本计算是全书最重任务集（task-06~10），公式族+对象模型+重算日志可独立交付与评测",
+    "cap.ovbill.org-costing": "promoted: 组织树与历史归属（task-12/13）是独立治理面，剪贴/复制/回溯/工具四象限可独立成约",
+    "cap.ovbill.confidentiality": "promoted: 机密三道闸（掩码/解密/可见域，task-14/16）是合规刚需问句，意图与契约独立",
+    "cap.ovbill.reporting": "promoted: 报表生成/导出/定时（task-17）是交付后运营主场景，独立触发且步骤契约完整",
+    "cap.ovbill.report-design": "promoted: 报表定制（task-18）门槛最高、题面独立，Querytool+Designer 双页签契约与五练习模式可独立评测",
+    "cap.ovbill.voip-monitoring": "promoted: VoIP 质量量化（task-19）意图独立（KPI 阈值/IP ticket/报告空表排障），与计费面解耦",
+    "cap.ovbill.codebook-migration": "router: 专项窄操作（导出/导入/.itl 修复），触发频率低于资费建模，路由可达即可",
+    "cap.ovbill.cost-profile": "router: 单一档案配置（发票价+订阅费），常在组织树/资费上下文中被连带触发",
+    "cap.ovbill.traffic-tracking": "router: 流量分析与 Tracking 属部署后低频配置，计数器管道与 ticket-pipeline 共享，路由可达",
+    "cap.ovbill.web-performance": "router: WBM 仪表盘部署专项（SNMPv3 双侧），一次性交付动作，路由可达",
+    "cap.ovbill.archiving": "router: 归档恢复为生命周期运维专项，低频且与库维护绑定，路由可达"
+  },
+  "destinations": {
+    "cap.ovbill.node-onboarding": { "promoted_to": "ovbill-node-onboarding" },
+    "cap.ovbill.ticket-pipeline": { "promoted_to": "ovbill-ticket-pipeline" },
+    "cap.ovbill.tariff-costing": { "promoted_to": "ovbill-tariff-costing" },
+    "cap.ovbill.org-costing": { "promoted_to": "ovbill-org-costing" },
+    "cap.ovbill.confidentiality": { "promoted_to": "ovbill-confidentiality" },
+    "cap.ovbill.reporting": { "promoted_to": "ovbill-reporting" },
+    "cap.ovbill.report-design": { "promoted_to": "ovbill-report-design" },
+    "cap.ovbill.voip-monitoring": { "promoted_to": "ovbill-voip-monitoring" },
+    "cap.ovbill.codebook-migration": { "served_by": "omnivista-billing-performance-router" },
+    "cap.ovbill.cost-profile": { "served_by": "omnivista-billing-performance-router" },
+    "cap.ovbill.traffic-tracking": { "served_by": "omnivista-billing-performance-router" },
+    "cap.ovbill.web-performance": { "served_by": "omnivista-billing-performance-router" },
+    "cap.ovbill.archiving": { "served_by": "omnivista-billing-performance-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 }
+}

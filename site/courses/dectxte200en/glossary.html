@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>术语词典 · DECTXTE200EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · DECT 解决方案</h2><p>Edition 12 · 298 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/dectxte200en/index.html">课程首页</a><a href="/courses/dectxte200en/digest.html">精华长文</a><a href="/courses/dectxte200en/overview.html">教书理解</a><a href="/courses/dectxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/dectxte200en/skills/dect-pari-identifier.html">DECT 标识号码体系与 multi-PARI 适配</a><a href="/courses/dectxte200en/skills/dect-product-selection.html">DECT 产品线选型与拓扑决策</a><a href="/courses/dectxte200en/skills/dect-ipxbs-deployment.html">8378 IP-xBS 部署与故障换站</a><a href="/courses/dectxte200en/skills/dect-xbs-sync-topology.html">xBS 空中同步体系与组网域（含外部同步与多站点）</a><a href="/courses/dectxte200en/skills/dect-handset-registration.html">DECT 用户创建与手机注册/注销</a><a href="/courses/dectxte200en/skills/dect-mixed-mode.html">混合 DECT 基础设施部署（TDM + xBS、PLI 统一）</a><a href="/courses/dectxte200en/skills/dect-auto-reregistration.html">DECT 手机自动重注册（PARI/PLI 变更零接触迁移）</a><a href="/courses/dectxte200en/skills/dect-firmware-management.html">DECT 固件双轨升级管理（基站 downstat x / 手机 OTA downstat m）</a><p class="course-nav-group">路由能力</p><a href="/courses/dectxte200en/skills/dect-maintenance-troubleshooting.html">DECT 日常维护与排障（命令族/syslog/WBM）</a><a href="/courses/dectxte200en/skills/dect-radio-survey.html">DECT 无线覆盖勘测（RSSI 门槛/SSK/survey mode）</a><a href="/courses/dectxte200en/skills/dect-ibs-deployment.html">8379 IBS 基础设施部署（UA 板卡/布线/建站）</a><a href="/courses/dectxte200en/skills/dect-sip-dect.html">8328 SIP-DECT 部署（四步注册/双小区）</a><p class="course-nav-group">已安装技能</p><a href="/courses/dectxte200en/index.html">dect-solutions（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/dectxte200en/index.html">DECTXTE200EN</a><span>/</span><span aria-current="page">术语词典</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">GLOSSARY</p><h1>术语词典 — 中英对照</h1></div></header><article class="markdown-body"><h1>GLOSSARY — OmniPCX Enterprise DECT Solutions 术语表</h1>
+<blockquote>
+<p>阶段 3 产出（源：candidates/glossary.md，56 条，六大域）。
+口径：定义只采信本书正文；UA/RTP/SIP/NTP/TFTP/DHCP/Syslog/LLDP-MED/FWU/IPEI/VAD/CLIP 等缩写书中未给全称，如实标注；实验环境值（IP/密码/AC/PARI）一律标"实验口径"。</p>
+</blockquote>
+<h1>OmniPCX Enterprise DECT Solutions (DECTXTE200EN Ed12) — 关键术语词典</h1>
+<blockquote>
+<p>文档整理流水线术语提取器产出。取材方法：全量扫描 source_fulltext.txt（298 页全部通读），所有页码均回原文核验。
+用途：下游能力卡的共享中英对照词典。</p>
+</blockquote>
+<h2>一、核心概念域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DECT</td>
+<td>数字增强无绳通信</td>
+<td>ETSI 发布的标准（p4 写 European Telecommunication Standard Institute，原文如此），1993 年起欧洲标准、110+ 国家采用；蜂窝技术、宏密度 10000 E/Km²</td>
+<td>p4-6</td>
+</tr>
+<tr>
+<td>Cell</td>
+<td>小区</td>
+<td>一个基站的无线电覆盖范围；功率恒定 250mW、大小由环境决定，可重叠提升话务密度</td>
+<td>p6, p13</td>
+</tr>
+<tr>
+<td>Roaming</td>
+<td>漫游</td>
+<td>覆盖区内任意位置收发呼叫；空闲态靠定位阶段互相识别；跨 Site 仍可 roaming</td>
+<td>p23-24, p88</td>
+</tr>
+<tr>
+<td>Handover</td>
+<td>切换</td>
+<td>通话中在基站间透明切换；要求全部基站 DECT 帧精确同步；仅同 Site 内可用</td>
+<td>p25-26, p87</td>
+</tr>
+<tr>
+<td>Location phase</td>
+<td>定位阶段</td>
+<td>手机扫描测 RSSI→选最强站→上报 IPUI+PARK→比对 PARI/PARK→锁定系统</td>
+<td>p23-24</td>
+</tr>
+<tr>
+<td>Location area</td>
+<td>位置区</td>
+<td>按 RPN 区间划分的寻呼优化分区，每 PARI 最多 64 个</td>
+<td>p84-85</td>
+</tr>
+<tr>
+<td>Site</td>
+<td>站点/切换域</td>
+<td>同地理位置可 handover 的 xBS 组；默认全在 Site 0；一个 PARI 可拆多 Site、一个 Site 可跨多 PARI</td>
+<td>p86-92</td>
+</tr>
+<tr>
+<td>Internal synchronization</td>
+<td>内部同步</td>
+<td>同 Site 同 PARI 内 xBS 空中时间对齐；同步树按 RSSI+跳数自动构建（最深 24 级）、默认零配置</td>
+<td>p100, p113-114</td>
+</tr>
+<tr>
+<td>External synchronization</td>
+<td>外部同步</td>
+<td>两个同步树之间的对齐（xBS 树↔xBS 树或↔TDM 树）；Master Sync 与 External Sync RPN 手工指定、Backup 强制</td>
+<td>p105-109</td>
+</tr>
+<tr>
+<td>Synchronization highway</td>
+<td>同步高速通道</td>
+<td>&gt;2 个 PARI 做外部同步时所需的附加同步配置</td>
+<td>p111-112, p141</td>
+</tr>
+<tr>
+<td>Mixed mode</td>
+<td>混合模式</td>
+<td>同一台 OXE 同时跑 IBS 与 xBS：Radio base type=Mixed、多 PARI、PLI 必须适配</td>
+<td>p63, p144, p242-248</td>
+</tr>
+<tr>
+<td>Dual cell</td>
+<td>双小区（8328）</td>
+<td>两台 8328 主/从小区：副站自动发现主站拉配置；区内有 handover/roaming；链路建立约 5 分钟</td>
+<td>p272, p288-291</td>
+</tr>
+<tr>
+<td>Bi-cellular deployment</td>
+<td>双基站小区（xBS 语境）</td>
+<td>多台 8328 各自成区时区间无切换；唯独两站一区部署有 handover/roaming</td>
+<td>p275</td>
+</tr>
+<tr>
+<td>Survey mode</td>
+<td>勘测模式</td>
+<td>手机 <em>7378423</em>（<em>service</em>）激活的调试模式：显示 RSSI/基站列表/RFPI；耗电、干扰正常功能</td>
+<td>p214-216</td>
+</tr>
+<tr>
+<td>SUOTA / FWU</td>
+<td>空中软件升级 / FWU 协议（FWU 书中未展开）</td>
+<td>手机固件空中升级：语音优先、回充电座生效；手机固件须支持 FWU 协议否则 USB 手动</td>
+<td>p58, p179-181</td>
+</tr>
+<tr>
+<td>Multi-PARI</td>
+<td>多 PARI</td>
+<td>一台 OXE 并存多 PARI：驱动是混合硬件或超 254 台扩容；配套 PLI 适配与外部同步</td>
+<td>p18-20, p106, p244</td>
+</tr>
+<tr>
+<td>Connection handover</td>
+<td>连接切换（IP 中继切换）</td>
+<td>IP-xBS 体系内切换：Call Server 只连初始基站，新旧基站间建 IP 中继转发媒体</td>
+<td>p74, p95-97</td>
+</tr>
+<tr>
+<td>Visited node</td>
+<td>访问节点</td>
+<td>多节点网络中手机漫游到达的非安装节点；固件下载与自动重注册对其不生效</td>
+<td>p181, p253</td>
+</tr>
+<tr>
+<td>安全三级</td>
+<td>Identity/Authentication/Encryption</td>
+<td>身份核对（默认）→AC 派生 UAK 挑战（四个时机）→每呼叫派生 DCK 加密；IBS 无加密</td>
+<td>p35-37</td>
+</tr>
+</tbody>
+</table></div>
+<h2>二、角色域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sync Master</td>
+<td>同步主站</td>
+<td>同步树的根基站：内部同步自动选举可漂移；外部同步手工指定且禁止承载任何通信</td>
+<td>p101, p106</td>
+</tr>
+<tr>
+<td>Backup Sync Master</td>
+<td>备份同步主站</td>
+<td>外部同步强制冗余：须邻近主站且看得见同一外部同步源；可补承话务、主备切换后该话务即失</td>
+<td>p106, p109</td>
+</tr>
+<tr>
+<td>Data Sync Primary</td>
+<td>数据同步主站</td>
+<td>每 Site/PARI 对自动选出的数据汇集站；handover 只发生在同一 Data Sync Primary 之下（dectview 的 P 标志）</td>
+<td>p93-94, p116</td>
+</tr>
+<tr>
+<td>Primary / Secondary station</td>
+<td>主站/副站（8328）</td>
+<td>主站=先声明 Extension 的那台（数据源）；副站自动发现并拉取配置</td>
+<td>p288-291</td>
+</tr>
+</tbody>
+</table></div>
+<h2>三、订阅域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIP user license</td>
+<td>SIP 用户许可</td>
+<td>本书为本地部署教材、无订阅体系；仅 8328 场景提及每台 DECT 终端需 1 个 SIP 用户许可</td>
+<td>p277-278</td>
+</tr>
+</tbody>
+</table></div>
+<h2>四、产品与组件域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8378 DECT IP-xBS</td>
+<td>全 IP DECT 基站</td>
+<td>本书主线：UA/UDP 信令、RTP 直达、空中互同步、PoE Class 2、每站 11 通话+11 IP 中继、8 PARI/2032 台；三硬件型号</td>
+<td>p55-65</td>
+</tr>
+<tr>
+<td>8379 DECT IBS</td>
+<td>TDM DECT 基站</td>
+<td>接 UA 板卡、1/2 条 UA 链路=3/6 B 信道、全网单 PARI/256 台、无加密；三型号+ATEX 变体</td>
+<td>p218-225</td>
+</tr>
+<tr>
+<td>8328 SIP-DECT</td>
+<td>低成本单站 DECT</td>
+<td>基站以 SIP 语义接入、仅 8214 手机、仅欧洲频段、每站 20 手机（G.711 10 路/G.729 4 路）、HTTPS WBM</td>
+<td>p271-278</td>
+</tr>
+<tr>
+<td>82xx DECT 手机家族</td>
+<td>手机谱系</td>
+<td>8214（仅 GAP）、8234/8244/8254/8262/8262EX（GAP+A-GAP）；遗留 8212/8232/8242</td>
+<td>p28-30, p181, p252</td>
+</tr>
+<tr>
+<td>Site Survey Kit（SSK）</td>
+<td>勘测套件</td>
+<td>专用 8378 xBS 两台、8dBi 天线、充电宝、2×8242 勘测手机、拉杆三脚架 3BN67191AA 等</td>
+<td>p211</td>
+</tr>
+<tr>
+<td>8379 IBS ATEX</td>
+<td>防爆变体基站</td>
+<td>订货号 3BN77020EA，用于危险环境场景的选型项</td>
+<td>p222</td>
+</tr>
+<tr>
+<td>IP-xBS 天线系列</td>
+<td>天线与附件</td>
+<td>8.0dB 定向（圆极化）、8dBi 双极化、7dBi 全向及配套安装件（p65-69 订货号目录）</td>
+<td>p65-69</td>
+</tr>
+<tr>
+<td>OmniPCX Enterprise（OXE）</td>
+<td>宿主 PBX</td>
+<td>CSA/OMS/GD4/UA 板卡构成；IP-xBS 要求 OXE R12.2 起；实验环境 CSA 192.168.1.1/1.3（实验口径）</td>
+<td>p1, p42, p60</td>
+</tr>
+</tbody>
+</table></div>
+<h2>五、协议与技术域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FDMA / TDMA / TDD</td>
+<td>频分/时分/时分双工复用</td>
+<td>10 载波分频 × 每帧 24 时隙分时 × 上下行同频时分；合计 120 个复用无线信道</td>
+<td>p9-12</td>
+</tr>
+<tr>
+<td>DECT frame</td>
+<td>DECT 帧结构</td>
+<td>10ms 一帧 480 bits、24 时隙；Field A 信令 6.4Kbit/s、Field B 语音 32Kbit/s；IBS 用 6+6 时隙、xBS 用 12+12</td>
+<td>p8-12</td>
+</tr>
+<tr>
+<td>GAP</td>
+<td>通用接入协议（Generic Access Profile）</td>
+<td>国际多厂商无绳接入标准：基础服务、可注册 5 个 GAP 系统；8214 仅支持 GAP</td>
+<td>p28</td>
+</tr>
+<tr>
+<td>GAP+ (A-GAP)</td>
+<td>高级 Alcatel GAP 协议</td>
+<td>多线扩展、监督键、经理/秘书键等高级功能；需 8234/8244/8254/8262/8262EX</td>
+<td>p29-30</td>
+</tr>
+<tr>
+<td>UA protocol</td>
+<td>UA 信令协议（书中未展开全称）</td>
+<td>OXE 与基站间私有信令：IP-xBS 像 NOE 话机一样经 UA/UDP 单播注册；DECT 消息封装在 UA 内</td>
+<td>p5, p71-72</td>
+</tr>
+<tr>
+<td>SIP</td>
+<td>SIP（书中未展开）</td>
+<td>8328 接入语义：基站代手机发 SIP register（contact=号码@基站 IP）；每终端 1 个 SIP 许可</td>
+<td>p271-278</td>
+</tr>
+<tr>
+<td>RTP 与编解码</td>
+<td>媒体流（RTP 书中未展开）</td>
+<td>RTP 在话机/中继与基站间直达；编解码 G711（A-µ law）/G729A/B（VAD）；8328 按编解码限容量</td>
+<td>p58-59, p73, p272</td>
+</tr>
+<tr>
+<td>LLDP-MED</td>
+<td>邻居发现协议（书中未展开）</td>
+<td>IP-xBS 支持的网络拓扑自动发现特性项</td>
+<td>p59</td>
+</tr>
+<tr>
+<td>NTP</td>
+<td>网络时间协议（书中未展开）</td>
+<td>OXE NTP 给 UTC、Call Server 给夏令时规则，经 UA 信令下发；8328 双小区 NTP 强制</td>
+<td>p76, p148, p272</td>
+</tr>
+<tr>
+<td>TFTP</td>
+<td>简单文件传输协议（书中未展开）</td>
+<td>基站固件自动升级下载通道：DHCP 下发 TFTP 地址，基站后台加载</td>
+<td>p59, p125, p129</td>
+</tr>
+<tr>
+<td>DHCP</td>
+<td>动态主机配置协议（书中未展开）</td>
+<td>基站 IP 动态配置通道；xBS 走 vendor class alcatel.ipxbs.0；8328 需放开"非 ALE 设备"</td>
+<td>p59, p126-128, p280</td>
+</tr>
+<tr>
+<td>Syslog</td>
+<td>系统日志协议（书中未展开）</td>
+<td>基站日志集中：地址+端口 514 在 OXE 配置，级别按基站四档；建议全站落同一文件</td>
+<td>p153, p160-161</td>
+</tr>
+</tbody>
+</table></div>
+<h2>六、资源与标识域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PARI</td>
+<td>主访问权标识</td>
+<td>PBX 侧系统标识：31 位（8 个十六进制位/11 个八进制位）；每类硬件一个、每节点最多 8 个</td>
+<td>p14-15, p82</td>
+</tr>
+<tr>
+<td>RPN</td>
+<td>无线部分号</td>
+<td>系统分配给基站的空中标识（2 个十六进制位）：地理定位与同步识别依据；换站手动注册可保持</td>
+<td>p14, p16, p83</td>
+</tr>
+<tr>
+<td>RFPI</td>
+<td>无线固定部分标识</td>
+<td>基站空中广播的标识=PARI+RPN；定位阶段回给手机供比对</td>
+<td>p14, p22</td>
+</tr>
+<tr>
+<td>PARK</td>
+<td>手持访问权密钥</td>
+<td>注册时写入手机的 13 位识别号=PLI（2 位十进制）+PARI（11 位八进制）；算例 3110000400100</td>
+<td>p14, p17-18</td>
+</tr>
+<tr>
+<td>PLI</td>
+<td>Park 长度指示器</td>
+<td>PARI 比对位数旋钮（最大 31）：单 PARI 用 31、multi-PARI 降位（30/29）使相近 PARI 等效</td>
+<td>p14, p18-20</td>
+</tr>
+<tr>
+<td>IPUI</td>
+<td>国际手持用户标识</td>
+<td>固化在手机 EPROM 的 14 位八进制标识；webadmin IPUI N/O 字段回填即注册成功</td>
+<td>p14, p21, p169</td>
+</tr>
+<tr>
+<td>IPEI</td>
+<td>手机身份标识（书中未展开）</td>
+<td>dectrm/8328 WBM 输出的呈现形式；8328 未注册时显示通用值 FFFFFFFFFF</td>
+<td>p176, p286</td>
+</tr>
+<tr>
+<td>AC</td>
+<td>鉴权码（Authentication Code）</td>
+<td>注册时双侧比对，不一致则无法注册；系统侧 AC System 字段（实验 1111）；UAK 的派生种子</td>
+<td>p36, p144, p227</td>
+</tr>
+<tr>
+<td>UAK</td>
+<td>用户鉴权密钥（128 位）</td>
+<td>由 AC 派生、存于手机与系统库、从不上空口；自动重注册不重算</td>
+<td>p36, p253</td>
+</tr>
+<tr>
+<td>DCK</td>
+<td>派生加密密钥（64 位）</td>
+<td>每次呼叫开始由 UAK 派生、全程（含切换）保持、不广播不传输</td>
+<td>p36</td>
+</tr>
+<tr>
+<td>维护命令族</td>
+<td>mtcl 命令集</td>
+<td>dectview/dectinston/dectrm/dectinfo/dectarea/downstat x</td>
+<td>m/xbssynchro/incvisu/listerm/listibs/outserv/inserv/tcdump</td>
+</tr>
+<tr>
+<td>vendor class alcatel.ipxbs.0</td>
+<td>xBS 厂商类标识</td>
+<td>OXE 内部 DHCP 为 xBS 新增：识别 xBS 请求并下发 IP/掩码/网关/TFTP/DNS</td>
+<td>p127, p146</td>
+</tr>
+<tr>
+<td>/usr2/downbin 与 /tmpd</td>
+<td>两个关键路径</td>
+<td>/usr2/downbin 存手机固件二进制（bin8212…bin8262EX）；/tmpd 存批量重注册清单与结果文件</td>
+<td>p181, p257-261</td>
+</tr>
+</tbody>
+</table></div></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: DECT Solutions (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 298 页 -->

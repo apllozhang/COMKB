@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>计费机密控制三道闸（掩码、解密、可见域）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 计费与性能管理</h2><p>Edition 45 · 650 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte201en/index.html">课程首页</a><a href="/courses/8770xte201en/digest.html">精华长文</a><a href="/courses/8770xte201en/overview.html">教书理解</a><a href="/courses/8770xte201en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte201en/skills/ovbill-node-onboarding.html">OXE 纳管与 SIP 中继对接</a><a href="/courses/8770xte201en/skills/ovbill-ticket-pipeline.html">计费票据管道（出票、回收、加载过滤）</a><a href="/courses/8770xte201en/skills/ovbill-tariff-costing.html">运营商资费建模与成本计算</a><a href="/courses/8770xte201en/skills/ovbill-org-costing.html">计费组织树与成本归属</a><a href="/courses/8770xte201en/skills/ovbill-confidentiality.html">计费机密控制三道闸（掩码、解密、可见域）</a><a href="/courses/8770xte201en/skills/ovbill-reporting.html">报表生成、导出与定时</a><a href="/courses/8770xte201en/skills/ovbill-report-design.html">报表定制（Querytool 与 Designer）</a><a href="/courses/8770xte201en/skills/ovbill-voip-monitoring.html">VoIP 性能监控（IP ticket 与 KPI）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte201en/skills/ovbill-codebook-migration.html">Code Book 导出与导入</a><a href="/courses/8770xte201en/skills/ovbill-cost-profile.html">成本档案（发票价与订阅费）</a><a href="/courses/8770xte201en/skills/ovbill-traffic-tracking.html">流量分析与 Tracking 告警</a><a href="/courses/8770xte201en/skills/ovbill-web-performance.html">Web Performance 实时仪表盘</a><a href="/courses/8770xte201en/skills/ovbill-archiving.html">计费归档与恢复</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte201en/index.html">omnivista-billing-performance（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte201en/index.html">8770XTE201EN</a><span>/</span><span aria-current="page">计费机密控制三道闸（掩码、解密、可见域）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>计费机密控制三道闸（掩码、解密、可见域）</h1></div><dl><div><dt>Skill ID</dt><dd>ovbill-confidentiality</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>计费机密控制三道闸（掩码档案、解密权限、可见域）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Default profile cannot be renamed or deleted • However, you can reset masked digit to 0 to render it inactive • Two additional call categories: masked and unmasked group used systematically for grouped reports"（p300）
+"BY DEFAULT, THE GENERATION OF A REPORT WITHOUT MASK IS NOT ALLOWED. TO USE UNMASKING OPERATION, IT IS NECESSARY TO CREATE AN 8770 LOGIN WHICH IS MEMBER OF THE GROUP 'MASK DATA ACCESS'."（p314）
+"In case of grouped report, the server ignores the mask profiles applied to the organization: it only takes into account the profile named Default"（p310）
+"Visibility domain — Yes. To interrupt accounting access control and restrictions, deselect this option. — You must restart the Accounting/traffic/VoIP application"（p351）</p>
+</blockquote>
+<p>出处：8770XTE201EN p296-357。</p>
+<h2>I — 自述</h2>
+<p>机密性三道闸按"遮显示 → 管解密 → 裁可见"分层，全部只作用于 8770 侧显示与报表，不删数据：</p>
+<ul>
+<li>掩码档案（Mask profile）：按呼叫类别（Personal/Project/Professional/Guest）定义"显示前 n 位、遮蔽后 n 位"与 PIN/成本/地名/时长/日期开关；Default 档案挂组织根、不可改名删除（遮蔽位数清 0 即等效停用）；档案随组织树继承（Inherited Masks），按条目可取消继承单独指定</li>
+<li>显示位数优先于遮蔽位数："显示 4 位"的语义是至少显示前 4 位，号码不足 4 位全显</li>
+<li>grouped 报表例外：无视组织树上的一切档案，只认 Default 档案的 Masked group/Unmasked group 两个类别——合规验收两型报表都要测</li>
+<li>解密权限：默认禁止无掩码报表；须建 8770 账号加入 "Mask data access" 组，任何人生成 w/o mask 时索要该组成员口令；解密程度仍受各档案 Unmasked 类别限制；组成员变更必须关闭并重开 Reports 应用才生效</li>
+<li>可见域（Accounting domain）：功能开关开启后，管理员未配域只见光杆根节点；域挂组织树节点、按父继承（不必逐级配）；管理员在 Security &gt; Individual 配域（可 Add a value 多域）；群组上的域配置不被采纳，只认用户级；AdminNmc 配根域即全域可见</li>
+<li>OXE 侧已遮蔽的号码（如 029845----）8770 任何手段无法还原——遮蔽职责分工在票据源头</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>掩码档案与解密</strong>（p304-320）：</p>
+<ol>
+<li>Organization 页签 Masks 图标：复制 Default 为 "Copy of Default"——masking 遮后 4 位+时长+成本+日期，unmasking 遮后 1 位+时长+日期</li>
+<li>新建空档案 "TSS Profile"：masking 遮后 5 位、unmasking 完整显示被叫号</li>
+<li>根 Alcatel 的 Properties 挂 Copy of Default（全树继承）；查 Training 确认显示 Inherited Masks</li>
+<li>TSS 成本中心取消继承，单独挂 TSS Profile</li>
+<li>Reports 里复制预定义 Duration by station 到个人目录，分别生成 Training/TSS 掩码报告对比遮蔽差异</li>
+<li>Security 建账号 unmasking（口令实验口径 superuser）并加入 Mask data access 组；先关闭 Reports 应用</li>
+<li>右键报告定义 &gt; Generate report w/o mask，输入组成员口令生成解密版，对比差异</li>
+<li>认知点：TSS 记录里 029845---- 形态号码是 OXE 侧遮蔽，8770 无法还原</li>
+</ol>
+<p><strong>可见域</strong>（p348-357）：</p>
+<ol>
+<li>Security 建管理员 AdminBrest、AdminCostCenter 并入 Accounting experts 组（口令均实验口径）</li>
+<li>AccountingParameters 的 Visibility domain=Yes，重启计费应用——出现"未配域，仅根可见"警告</li>
+<li>根 Properties 配域 Alcatel；AdminNmc 在 Individual 配根域后重启，全域可见</li>
+<li>Brest level 配域 Brest；MKT/Training 成本中心各配同名域（子节点无域则继承父域）</li>
+<li>AdminBrest 配域 Brest；AdminCostCenter 配 Training 后右键 Add a value 再加 MKT</li>
+<li>分别登录验证：两账号组织树按域裁剪</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：合规要求对普通管理员遮蔽成本/号码；谁有权看完整号码；汇总报表为什么没按子树遮蔽；多公司共享一台 PCX 怎么隔离视图；开了可见域后"数据全丢了"；解密账号怎么建。</p>
+<p>语言信号：掩码 / mask profile / Default 档案 / 遮蔽 / 解密 / unmask / Mask data access / grouped 报表 / 机密 / 可见域 / visibility domain / Accounting domain / AdminBrest / AdminNmc / 域继承。</p>
+<p>与相邻能力区分：组织树结构本身属组织成本归属能力；报告生成动作属报表能力；OXE 侧出票遮蔽参数属票据管道能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：组织树已搭好；遮蔽策略与合规口径已与客户确认。策略未定 → 判停先拿合规要求。</p>
+<ol>
+<li>建掩码档案（复制 Default 起步），按类别定显示/遮蔽位数与字段开关。完成标准：预览校验通过</li>
+<li>根挂默认档案，按条目取消继承做差异化覆盖。完成标准：Records 页签遮蔽形态符合策略</li>
+<li>建解密账号入 Mask data access 组，关闭并重开 Reports 应用。完成标准：w/o mask 生成时弹口令框</li>
+<li>开 Visibility domain 并重启计费应用。完成标准：接受"仅根可见"警告</li>
+<li>根域 + AdminNmc 根域 + 子节点域按继承配。完成标准：各节点域名正确</li>
+<li>给各管理员 Individual 配域（多域用 Add a value）。完成标准：分账号登录视图按域裁剪</li>
+<li>合规验收：详细与 grouped 两型报表分别验证遮蔽口径。完成标准：两种报表均符合策略</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>grouped 报表遮蔽与子树档案不符 → 设计行为（只认 Default 的两个 group 类别），调整 Default 档案而非反复改子树</li>
+<li>开域后整树只剩根 → 先配根域与 AdminNmc 域再重启应用，不是数据丢失</li>
+<li>改了组成员解密不生效 → 必须关闭 Reports 应用后重开</li>
+<li>号码在 OXE 侧已遮蔽（横杠形态）→ 8770 无法还原，回 OXE 检查出票参数</li>
+</ul>
+<p>输出契约：掩码档案配置表 + 解密账号与组清单 + 域分配矩阵（管理员到域名）+ 双型报表验收记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>口令治理（谁持有 Mask data access 口令、是否轮换）书内不论，交付须自行约定；书内口令均为实验口径</li>
+<li>解密后的显示仍受各档案 Unmasked 类别限制（如 Default 档案解密后仍遮 2 位，p306/p318）</li>
+<li>"开启可见域必须重启计费应用"与"群组域无效"是两条硬规则（p351/p355）</li>
+<li>书内成本中心名 MKT 在部分章节写作 Marketing（见 needs-review nr-05），机制不受影响</li>
+<li>掩码只影响显示；导出文件与数据库内仍是全量数据，合规评审要覆盖导出链路（原书未展开，属边界声明）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte201en/skills/ovbill-org-costing.html">计费组织树与成本归属</a>、<a href="/courses/8770xte201en/skills/ovbill-reporting.html">报表生成、导出与定时</a></p><p class="source-page">能力 ID：cap.ovbill.confidentiality · 来源：8770XTE201EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 R5.2 Accounting and Performance Administration (Participant Guide, Edition 45) | edition: Edition 45 | pages: 650 页 -->

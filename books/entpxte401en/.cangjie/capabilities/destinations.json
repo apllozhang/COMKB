@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.oxe-advanced",
+  "generated_at": "2026-09-24",
+  "destinations": {
+    "cap.entadv.ssh-trust-foundation": { "promoted_to": "entadv-ssh-trust-foundation" },
+    "cap.entadv.cs-redundancy": { "promoted_to": "entadv-cs-redundancy" },
+    "cap.entadv.ip-domain-pcs": { "promoted_to": "entadv-ip-domain-pcs" },
+    "cap.entadv.overflow-rerouting": { "promoted_to": "entadv-overflow-rerouting" },
+    "cap.entadv.direct-ip-link": { "promoted_to": "entadv-direct-ip-link" },
+    "cap.entadv.audit-broadcast": { "promoted_to": "entadv-audit-broadcast" },
+    "cap.entadv.multiline-supervision": { "promoted_to": "entadv-multiline-supervision" },
+    "cap.entadv.hunting-pickup-speeddial": { "promoted_to": "entadv-hunting-pickup-speeddial" },
+    "cap.entadv.desk-sharing": { "served_by": "oxe-advanced-router" },
+    "cap.entadv.multi-device": { "served_by": "oxe-advanced-router" },
+    "cap.entadv.lab-pod-baseline": { "served_by": "oxe-advanced-router" },
+    "cap.entadv.cli-toolbox": { "served_by": "oxe-advanced-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 }
+}

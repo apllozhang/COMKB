@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OmniVista 8770 网络驱动器映射（报表与备份落网络存储）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 安装与网络管理</h2><p>Edition 47 · 705 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte200en/index.html">课程首页</a><a href="/courses/8770xte200en/digest.html">精华长文</a><a href="/courses/8770xte200en/overview.html">教书理解</a><a href="/courses/8770xte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte200en/skills/ovnms-platform-installation.html">OmniVista 8770 平台安装（服务器 + 客户端 + 补丁 + 首连）</a><a href="/courses/8770xte200en/skills/ovnms-node-onboarding.html">OmniVista 8770 节点接入（OXE 注册同步 + SSH 安全 + OXO Connect 纳管）</a><a href="/courses/8770xte200en/skills/ovnms-user-provisioning.html">OmniVista 8770 用户开通（Profile / Meta profile / 批量 / WBM）</a><a href="/courses/8770xte200en/skills/ovnms-alarm-management.html">OmniVista 8770 告警管理（接入 + 定制出口 + SNMP Proxy）</a><a href="/courses/8770xte200en/skills/ovnms-security-administration.html">OmniVista 8770 安全管理（密码策略 / 管理员与组 / 访问控制 / TLS）</a><a href="/courses/8770xte200en/skills/ovnms-audit-compliance.html">OmniVista 8770 审计合规（Audit 启用 / mao 日志 / 检索导出）</a><a href="/courses/8770xte200en/skills/ovnms-backup-restore.html">OmniVista 8770 备份恢复（8770 数据库 rehosting + OXE swinst 全链）</a><a href="/courses/8770xte200en/skills/ovnms-license-management.html">OmniVista 8770 许可管理（锁结构 / 查询 / 更新 / 受限模式）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte200en/skills/ovnms-reports-scheduling.html">OmniVista 8770 报表与任务编排（Reports / Scheduler / 自动维护）</a><a href="/courses/8770xte200en/skills/ovnms-maintenance-operations.html">OmniVista 8770 维护运营（诊断工具 / NMC 服务与日志）</a><a href="/courses/8770xte200en/skills/ovnms-topology-views.html">OmniVista 8770 Topology 视图（标准视图 / 自定义视图 / 告警重定向）</a><a href="/courses/8770xte200en/skills/ovnms-oxe-ui-efficiency.html">OmniVista 8770 OXE 配置界面高效操作（搜索/冻结/网格/导入导出）</a><a href="/courses/8770xte200en/skills/ovnms-network-drive.html">OmniVista 8770 网络驱动器映射（报表与备份落网络存储）</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte200en/index.html">omnivista-8770-nms（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte200en/index.html">8770XTE200EN</a><span>/</span><span aria-current="page">OmniVista 8770 网络驱动器映射（报表与备份落网络存储）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OmniVista 8770 网络驱动器映射（报表与备份落网络存储）</h1></div><dl><div><dt>Skill ID</dt><dd>ovnms-network-drive</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>OmniVista 8770 网络驱动器映射（报表与备份落网络存储）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Creation of the REPORTS_ECO et BACKUP_ECO folders on the ecosystem server ... Creation of a user account named ADM8770 with access rights on folders previously created"（p669）
+"ExecdEx service is linked to report generation facility. SaveRestore service is linked to backup &amp; restore facility."（p669）
+"ADM8770 account must be member of Administrators group. ADM8770 account must be removed from Users group"（p680）
+"Assign the following rights to ADM8770 account: Access this computer from the network / Log on as a service / Act as part of the operating system / Adjust memory quotas for a process / Replace a process level token"（p684）
+"Username Enter account in uppercase preceded with the following characters .\ (i.e. .\ADM8770)"（p696）</p>
+</blockquote>
+<p>出处：8770XTE200EN p668-698（Map network drive How-To）。</p>
+<h2>I — 自述</h2>
+<p>让报表导出（ExecdEx）与备份恢复（SaveRestore）两个服务能写网络存储——核心是"同名同密账号 + 服务账号注入"。</p>
+<p><strong>远程存储服务器侧（三步）</strong></p>
+<ol>
+<li>建 AD 账号 ADM8770（密码策略设为不可更改、永不过期——服务账号口径）</li>
+<li>建两个共享文件夹：报表导出用（如 REPORTS_ECO）与备份用（如 BACKUP_ECO）</li>
+<li>共享授权：ADM8770 读写；Advanced Sharing 限制并发用户数、移除 Everyone</li>
+</ol>
+<p><strong>8770 服务器侧（四步）</strong></p>
+<ol>
+<li>建本地同名同密账号 ADM8770（服务访问凭据比对依赖同名同密）</li>
+<li>组调整：加入 Administrators 组、移出 Users 组</li>
+<li>Local Security Policy &gt; User Rights Assignment 赋五项权利：从网络访问此计算机 / 作为服务登录 / 作为操作系统一部分 / 调整进程内存配额 / 替换进程级令牌</li>
+<li>注销 Administrator、以 ADM8770 登录后映射网络驱动器（盘符自定，实验用 Y:/Z: 两共享）</li>
+</ol>
+<p><strong>服务账号注入与验收</strong></p>
+<ul>
+<li>Administration 应用 nmc &gt; OmniVista 8770 &gt; nms &gt; Service：给 ExecdEx（报表导出）与 SaveRestore（备份恢复）配 Nt account——用户名 .\ADM8770（大写、带 .\ 前缀）+ 密码</li>
+<li>验收：8770 Maintenance 立即备份对话框 &gt; 取消默认目录 &gt; Search，列表出现网络共享位置即为通</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>网络盘实验</strong>（p668-698）：</p>
+<ol>
+<li>ecosystem 服务器建 ADM8770（实验密码见 book/overview；勾不可改密/永不过期）</li>
+<li>C 盘根建 REPORTS_ECO 与 BACKUP_ECO 并共享授权（限并发、移 Everyone）</li>
+<li>8770 服务器建本地 ADM8770：入 Administrators、移出 Users</li>
+<li>逐项赋五项用户权利</li>
+<li>以 ADM8770 登录映射 Y:（REPORTS_ECO）与 Z:（BACKUP_ECO）</li>
+<li>ExecdEx 与 SaveRestore 配 .\ADM8770 + 密码</li>
+<li>立即备份对话框 Search 见 BACKUP_ECO/REPORTS_ECO 网络位置，验收通过</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：生产部署把备份与报表落到客户 NAS/存储服务器；备份对话框看不到网络位置；服务账号密码轮换后备份失败。</p>
+<p>语言信号：网络驱动器 / Map network drive / ADM8770 / REPORTS_ECO / BACKUP_ECO / ExecdEx / SaveRestore / Nt account / .\ADM8770 / 用户权利 / Log on as a service / 同名同密。</p>
+<p>与相邻能力区分：备份恢复执行（备份恢复卡）；报表生成（报表任务卡）；本能力管"存储通路"，是两者的生产化前置。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户存储服务器地址与共享规划、服务账号命名与密码策略口径、8770 服务器本地管理员权限。</p>
+<ol>
+<li>存储侧建账号与共享：ADM8770 + 两个文件夹读写授权。完成标准：并发受限且无 Everyone</li>
+<li>8770 侧建同名同密本地账号。完成标准：两台机器凭据一致</li>
+<li>组与权利：入 Administrators、移出 Users、赋五项权利。完成标准：逐项可在 Local Security Policy 复查</li>
+<li>映射驱动器：以 ADM8770 登录后映射共享。完成标准：资源管理器可见网络盘</li>
+<li>服务账号注入：ExecdEx 与 SaveRestore 配 .\ADM8770 + 密码。完成标准：保存无报错</li>
+<li>验收：立即备份对话框 Search 见网络位置。完成标准：备份可选网络目录</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>立即备份对话框看不到网络位置 → 按序查映射（是否以 ADM8770 登录时映射）、服务账号、五项权利，不要改用本地盘凑合</li>
+<li>密码被改导致备份失败 → 两台机器同步改并更新服务账号；密码策略（不可改/不过期）为服务账号口径，需客户安全侧确认</li>
+<li>客户安全策略不接受五项权利全量 → 与客户裁剪组合并记录（原书 Notes 允许按策略裁剪）</li>
+</ul>
+<p>输出契约：共享与授权清单 + 账号/权利配置记录 + 服务账号注入记录 + 备份网络位置验收截图。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>环境值（共享地址 151.1.1.100、盘符 Y:/Z:、账号密码 superuser 等）为实验口径，见 book/overview；生产按客户存储与命名规范替换</li>
+<li>ADM8770 是服务账号：密码不可改/不过期与客户密码策略可能冲突，须事前对齐</li>
+<li>ExecdEx/SaveRestore 服务身份变化后，旧任务（计划备份/报告分发）应重跑验证一次</li>
+<li>该 How-To 为 Windows 环境专用；NAS 协议级备份（NFS/S3 等）在书外</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.ovnms.network-drive · 来源：8770XTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 — Setup & Network Management (Participant's Guide, Edition 47) | edition: Edition 47 | pages: 705 页 -->

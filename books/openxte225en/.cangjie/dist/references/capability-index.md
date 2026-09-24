@@ -1,0 +1,16 @@
+# 能力索引（完整版）
+
+| capability_id | 标题 | 重要度 | 意图 | 关键词 | 能力卡 |
+|---|---|---|---|---|---|
+| cap.otm.dmz-security-channels | 远程接入架构与 DMZ 双边缘 | critical | 规划远程接入拓扑；远程用户要哪些边缘组件；反向代理和 SBC 怎么分工；DNS 内外怎么解析；plan remote access topology | DMZ、双边缘、反向代理、Reverse Proxy、OTSBC、VPN、用例矩阵、拓扑隐藏、SSL 卸载、N.U.、N.A.、DNS、桌面共享、CAC | capabilities/otm-dmz-security-channels.md |
+| cap.otm.certificate-pki | 证书策略与签发（CA、封装、SAN、自建 CA） | critical | 远程访问证书怎么选；签发服务器证书；自建 CA；证书导入与部署；generate certificate CA | CA、自签、通用证书、PKCS7、PKCS12、CSR、SAN、通配符、wildcard、CTL、WebAdmin、OpenSSL、证书链、passphrase | capabilities/otm-certificate-pki.md |
+| cap.otm.ot-server-settings | OpenTouch 服务器侧远程访问设置 | critical | 申报反向代理；申报 OTSBC；配置 DAS 规则；会议服务 FQDN 与 rehost；declare reverse proxy OpenTouch | RP 申报、公共 URL、EVS、8016、DAS、ACS、会议、rehost、ot-config.sh、IT server、5261、8061、France | capabilities/otm-ot-server-settings.md |
+| cap.otm.otsbc-deployment | OTSBC 部署与向导配置 | critical | 部署 OTSBC；配置 OTSBC 向导；OTSBC 许可与证书；SIP 接口 TLS 上下文；deploy OTSBC | OTSBC、Mediant、OVF、向导、wizard、Remote Users、IPG、Media Realm、TLS Context、许可、license、5261、8061、5263、TCP 5060 | capabilities/otm-otsbc-deployment.md |
+| cap.otm.reverse-proxy | 反向代理两路线部署与选型（内嵌 RP、Nginx） | critical | 部署内嵌反向代理；部署 Nginx 反向代理；反代路线选型；反代 LDAP 认证；nginx reverse proxy OpenTouch | 内嵌 RP、HTTP proxy、Nginx、Ubuntu、remoteworker.conf、conference.conf、snippets、resolver、LDAP、nginx-ldap-auth、模板、TC2639、nginx -t | capabilities/otm-reverse-proxy.md |
+| cap.otm.otc-pc-modes | OTC PC 远程办公两模式（multi-devices、Nomadic SIP） | high | 配置 multi-devices 副设备；配置 Nomadic SIP；游牧池规划；OTC PC 远程办公；OTC PC secondary device | multi-devices、副设备、secondary、Nomadic、游牧、Ghost Z、SIP 设备、池、Twinset get call、No ringing、COS、213100x、Desktop 许可 | capabilities/otm-otc-pc-modes.md |
+| cap.otm.smartphone-provisioning | OTC 智能手机开通（Connection 用户、自动对象、R2.6 单设备） | critical | 配置 OTC 智能手机；关联手机到用户；自动对象核验；远程分机 RE 配置；smartphone dual mode | Connection 用户、OTC Smartphone、远程分机、remote extension、tandem、twinset、DISA、DDI、ARS、判别器、barring、R2.6、单设备、Off-site mobility | capabilities/otm-smartphone-provisioning.md |
+| cap.otm.iphone-apns | iPhone+ APNS 推送专项 | high | iPhone 收不到来话；APNS 防火墙端口；kamailio-wasp 维护；iPhone+ SBC 端口；iPhone push notification | APNS、推送、push、5223、2195、2196、5265、kamailio-wasp、wspcfg、invite、hotfix、Geotrust、iPhone+ | capabilities/otm-iphone-apns.md |
+| cap.otm.client-access-profiles | 客户端远程接入两步法（接入配置与路由档案） | medium | 客户端怎么接入；路由档案配置；OTC Web 怎么进会议；dial from 不生效；remote access profile | 公共 URL、接入配置、路由档案、routing profile、dial from、OTC Web、会议 URL、Settings、Connections、首次启动 | capabilities/otm-client-access-profiles.md |
+| cap.otm.smartphone-modes | 智能手机连接模式与回落（WiFi/3G4G/DTMF、无 SIM） | medium | 手机没流量怎么办；WiFi 和 4G 下什么功能可用；Android 无 SIM；回落模式；smartphone connectivity modes | WiFi、3G、4G、GSM、cellular、回落、fallback、DTMF、无 SIM、纯 VoIP、短信、私人呼叫、单号码 | capabilities/otm-smartphone-modes.md |
+| cap.otm.vmware-ovf | VMware 虚机 OVF/OVA 部署 | low | 部署 OVF 虚机；vSphere 还是 web client；ESXi 导入 OVA；deploy OVF VMware | VMware、ESXi、OVF、OVA、vSphere、web client、Thin、DMZ 网络、虚机部署 | capabilities/otm-vmware-ovf.md |
+| cap.otm.lab-dialtest | 实验环境与拨测验证（RLAB、编号计划、模拟器预期表） | medium | 实验环境是什么；拨测号码怎么变换；主叫显示是什么；SIP 模拟器；dial test numbering | RLAB、POD、编号计划、31000、213100x、模拟器、simulator、拨测、主叫显示、caller identity、0abcd31xxx、DHCP 池 | capabilities/otm-lab-dialtest.md |

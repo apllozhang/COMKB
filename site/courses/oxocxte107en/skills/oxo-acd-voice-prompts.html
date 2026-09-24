@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>ACD 语音提示定制</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OXO Connect · 呼叫中心</h2><p>Edition 07 · 218 页 · 文档整理入库（15 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte107en/index.html">课程首页</a><a href="/courses/oxocxte107en/digest.html">精华长文</a><a href="/courses/oxocxte107en/overview.html">教书理解</a><a href="/courses/oxocxte107en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte107en/skills/oxo-acd-basic-setup.html">OXO Connect 基础 ACD 全流程搭建</a><a href="/courses/oxocxte107en/skills/oxo-acd-call-scenarios.html">ACD 呼入六场景排障</a><a href="/courses/oxocxte107en/skills/oxo-acd-routing.html">呼叫特征化与 Smart Call Routing 路由表设计</a><a href="/courses/oxocxte107en/skills/oxo-acd-queue.html">ACD 等待队列管理（容量公式与出口配置）</a><a href="/courses/oxocxte107en/skills/oxo-acd-search-noanswer.html">坐席搜索模式选型与无应答处理</a><a href="/courses/oxocxte107en/skills/oxo-acd-login-status.html">坐席签入签出（free seating）与状态排障</a><a href="/courses/oxocxte107en/skills/oxo-multi-secretary.html">Multi-Secretary 多秘书方案配置</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte107en/skills/oxo-omc-first-connect.html">OMC 安装与首次连接</a><a href="/courses/oxocxte107en/skills/oxo-ip-replan.html">OXO 与客户端 IP 规划修改</a><a href="/courses/oxocxte107en/skills/oxo-acd-schedule-calendar.html">ACD 营业时段与例外日配置</a><a href="/courses/oxocxte107en/skills/oxo-supervisor-app.html">Supervisor 班长台部署与实时监控</a><a href="/courses/oxocxte107en/skills/oxo-agent-app.html">Agent 坐席席面部署（弹屏/打标/客户库）</a><a href="/courses/oxocxte107en/skills/oxo-statistics-app.html">Statistics 统计应用与报表导出</a><a href="/courses/oxocxte107en/skills/oxo-dtmf-client-popup.html">DTMF 客户码识别弹屏</a><a href="/courses/oxocxte107en/skills/oxo-acd-voice-prompts.html">ACD 语音提示定制</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte107en/index.html">oxo-connect-call-center（15 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte107en/index.html">OXOCXTE107EN</a><span>/</span><span aria-current="page">ACD 语音提示定制</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>ACD 语音提示定制</h1></div><dl><div><dt>Skill ID</dt><dd>oxo-acd-voice-prompts</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>ACD 语音提示定制（OXO Connect）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Respect the assignments 101.wav = welcome message, 102.wav = waiting message, etc."（p136）
+"Customer code announce 107.wav 207.wav 307.wav 407.wav 507.wav 607.wav 707.wav 807.wav"（p104）
+"Switch the Mode option to Transfer (1) • Select the prompts you want to download (2) • Define the directory path (3) • Load the new prompts (4)"（p105）</p>
+</blockquote>
+<p>出处：OXOCXTE107EN p104-105（上传与编号）、p135-136（多秘书话术示例）、p76（全组下载陷阱）。</p>
+<h2>I — 自述</h2>
+<p>ACD 每组最多 6 条语音提示，按<strong>固定 wav 编号</strong>管理：</p>
+<ol>
+<li><strong>编号对照</strong>：101=欢迎语、102=等待语，以此类推；客户码提示为 x07 系列（组 1-8 → 107-807.wav）</li>
+<li><strong>制作两条路</strong>：</li>
+<li>路径 A：话机 MMC 会话直接录（8/9 系列：Attendant session/Expert/Voice/ACD）</li>
+<li>路径 B：PC 制作 wav，再走 OMC 四步上传（Mode 切 Transfer、勾选 prompts、指定目录、Load）</li>
+<li><strong>著名陷阱</strong>：点 "Default messages" 会向<strong>所有组</strong>下载默认语音——只需部分组的要点列号排除</li>
+</ol>
+<p>医生场景的逐条话术（"Doctor 1 is busy please wait"…）是标准定制样例（p135）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>多秘书语音定制</strong>（p135-136，厂商实验）：组 1-3 定制医生场景——欢迎语 "Welcome to Doctor's 1 Office"、等待语 "Doctor 1 is busy please wait"、繁忙语、无法接听语、关闭语 "Doctor 1's office is currently closed"、长等待提示。</p>
+<p>按编号命名 wav，OMC 四步上传或话机 MMC 逐条录制。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：换欢迎语/等待语；本地语言话术；客户码提示音更换；"提示音怎么还是旧的"。</p>
+<p>语言信号：欢迎语 / 提示音 / 录音 / voice prompt / 101.wav / 换语音 / 定制播报。</p>
+<p>与相邻能力区分：提示音的<strong>播放时机与逻辑</strong>（何时播欢迎/等待）→ 六场景与队列能力；本能力只管"音频文件的制作与上传"。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：各组话术文本（逐条对应提示类型）、录好的 wav 文件（编号命名）。缺话术先与客户确认文案。</p>
+<ol>
+<li>对照编号：101=欢迎、102=等待……客户码=x07.wav。完成标准：每条音频命名正确</li>
+<li>制作：路径 A 话机 MMC 逐组录；路径 B PC 制作 wav 备妥目录。完成标准：音频文件齐</li>
+<li>OMC 上传四步：Transfer → 勾选 → 目录 → Load。完成标准：上传成功</li>
+<li>陷阱规避：Default messages 会广播全组——点列号排除不需要的组。完成标准：未误覆盖</li>
+<li>实呼验证：逐组触发各提示类型。完成标准：全部听到新版语音</li>
+</ol>
+<p>输出契约：编号-话术对照表 + 上传记录 + 实呼验证结果。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>wav 采样率/编码参数原书为截图未提取（nr-05/nr-07）——格式不符上传失败或无声时，对照 PDF 原图核格式，不要试错</li>
+<li>提示音播放时机由场景逻辑决定（六场景/队列能力），改编号对应前先理解时机</li>
+<li>"Default messages 全组广播"反着用：新组上线恰好一次配齐默认音</li>
+<li>组容量 6 条/组（p28）；话术超长截断行为原书未说明，录制后实呼试听为准</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte107en/skills/oxo-acd-call-scenarios.html">ACD 呼入六场景排障</a>、<a href="/courses/oxocxte107en/skills/oxo-acd-queue.html">ACD 等待队列管理（容量公式与出口配置）</a>、<a href="/courses/oxocxte107en/skills/oxo-dtmf-client-popup.html">DTMF 客户码识别弹屏</a></p><p class="source-page">能力 ID：cap.oxo-cc.voice-prompts · 来源：OXOCXTE107EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OXO Connect 呼叫中心 (Participant's Guide, Edition 07) | edition: Edition 07 | pages: 218 页 -->

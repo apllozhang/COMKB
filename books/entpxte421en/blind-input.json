@@ -1,0 +1,223 @@
+{
+ "code": "entpxte421en",
+ "capability_catalog": [
+  {
+   "slug": "enc-certificate-trust-chain",
+   "name": "证书与信任链全生命周期",
+   "description": "PKI 三模式（内嵌/PKCS#12/PKCS#7 主线）、CSR 五步闭环（11.9.1.2→签发→11.9.1.4→11.9.1.8→twin）、CTL/TOFU 分发、CN=MAC/FQDN 命名、CA 更新连锁义务与备份"
+  },
+  {
+   "slug": "enc-native-encryption-bringup",
+   "name": "原生加密开通与 lanpbx.cfg",
+   "description": "NE 参数块、用户级部分加密、lanpbxbuild 签名规则（duplication 在 main、-auto 重置）、DTLS 端口 32643、SRTP cipher suite 与 AES-256 硬件代价"
+  },
+  {
+   "slug": "enc-dtls-verification-maintenance",
+   "name": "DTLS 验证、排障与维护闭环",
+   "description": "cryptview/ippstat/twin 命令族、事件 5991/5992/5993/5995 处置、证书备份（8 位四类口令）、Wireshark 抓包（加密=噪音）"
+  },
+  {
+   "slug": "enc-sip-tls-endpoints",
+   "name": "SIP TLS 扩展加密",
+   "description": "sipmotor 承载 TLS 1.2 端口 5061、SEPLOS 设备限制（无 CCD/仅 IPv4）、参数三件套、motortrace 验证 X-ALE-CALL-ENCRYPTED"
+  },
+  {
+   "slug": "enc-sip-trunk-tls",
+   "name": "SIP trunk 的 TLS 与 SRTP",
+   "description": "OTSBC 侧（TLS context/证书/Proxy Set/Media Security）与 OXE 侧成对配置、信令/媒体决定表、端口 5061/6261 四组合与 0 覆盖陷阱、四步安全停用"
+  },
+  {
+   "slug": "enc-eegw-deployment",
+   "name": "EEGW/NSP 大容量部署",
+   "description": "1500/15000 容量分界与许可公式、EEGW 五条硬规则（CS 连带重启）、CS 侧六步、S.O.T. 生成 VM、NSP FQDN 与内部 DNS、内嵌到外部迁移"
+  },
+  {
+   "slug": "enc-abcf-network-encryption",
+   "name": "ABC-F 网络加密",
+   "description": "节点间 IPSec（500/2579）+SRTP 经加密链路、链路 Encryption 参数两端同值且须 DOWN、内部 PKI 双节点、端到端短木桶与拓扑禁区"
+  },
+  {
+   "slug": "enc-mtls-endpoint-authentication",
+   "name": "mTLS 双向认证与版本限制",
+   "description": "范围规则（DTLS/SIP 全局、trunk 按网关）、全员证书义务、OpenSSL 3.0 对 1024 位证书的断裂、SSL level 2/1/0、端点证书三线部署"
+  },
+  {
+   "slug": "enc-pcs-failover",
+   "name": "PCS 加密接管",
+   "description": "救援前提（端点须连过 CS）、PCS 证书打 tar 导入、pcscopy 下发、共用主 CS lanpbx、断网演练与恢复"
+  },
+  {
+   "slug": "enc-pki-workshop-xca",
+   "name": "XCA 外部 CA 工坊",
+   "description": "XCA 建库与根 CA、CSR 导入签发（PKCS#7 推荐）、端点实体 PKCS#12（GW.pfx/softphone_cert.pem 命名严格）、根证书格式转换"
+  },
+  {
+   "slug": "enc-application-encryption",
+   "name": "应用生态加密与安全下载",
+   "description": "4645 自动受保护、录音换钥、VAA 加密 120→60 端口、DC 不受影响、Rainbow WG 信令恒加密、HTTPS 替代 TFTP 的前提（NE+DHCP option 66）"
+  },
+  {
+   "slug": "enc-lab-environment",
+   "name": "实验环境底座（RLAB）",
+   "description": "两套拓扑（stand-alone 双 CS / ABC-F 双节点）、Pod 初始配置五步（NTP/根证书/板卡/用户/公网接入）、VM 同 IP 禁忌；全部实验口径"
+  }
+ ],
+ "cases": [
+  {
+   "id": "should-cert-01",
+   "prompt": "客户站点要上 OXE 原生加密，证书用内嵌 CA 还是客户企业 CA？证书格式怎么定？"
+  },
+  {
+   "id": "should-cert-02",
+   "prompt": "CA 管理员把签好的证书发给我了，OXE 上怎么导入、怎么让备机也生效？"
+  },
+  {
+   "id": "should-bringup-01",
+   "prompt": "证书已经装好，怎么把原生加密打开？只有部分敏感用户要先用加密。"
+  },
+  {
+   "id": "should-bringup-02",
+   "prompt": "客户要求话音用 AES-256 加密，站点里有几块 GD3 板卡，能直接上吗？"
+  },
+  {
+   "id": "should-verify-01",
+   "prompt": "加密配置完了，怎么向客户证明媒体真的加密了？"
+  },
+  {
+   "id": "should-verify-02",
+   "prompt": "incvisu 里冒出来一个 5992 事件，P1 显示还剩 3 天，要紧吗？"
+  },
+  {
+   "id": "should-sipext-01",
+   "prompt": "客户的 ALES 软话机要加密注册到 OXE，SIP 这边要配哪些参数？"
+  },
+  {
+   "id": "should-sipext-02",
+   "prompt": "SIP 话机加密配置后发起呼叫直接被 488 拒绝，是哪里配错了？"
+  },
+  {
+   "id": "should-trunk-01",
+   "prompt": "运营商给的 SIP 中继要求 TLS 和 SRTP，OTSBC 侧和 OXE 侧分别要配什么？"
+  },
+  {
+   "id": "should-trunk-02",
+   "prompt": "中继信令已经走 TLS 了，客户问通话语音是不是也加密了？"
+  },
+  {
+   "id": "should-eegw-01",
+   "prompt": "站点加密会话测算超过 2000 路，现在的 OXE 扛得住吗？要怎么扩容？"
+  },
+  {
+   "id": "should-eegw-02",
+   "prompt": "在 EEGW 虚拟机上下载证书的时候，为什么整个 Call Server 也重启了？"
+  },
+  {
+   "id": "should-abcf-01",
+   "prompt": "两个 OXE 节点之间的直连链路要开加密，链路参数怎么改？要注意什么？"
+  },
+  {
+   "id": "should-abcf-02",
+   "prompt": "三节点网络里跨节点通话有一段是明文，其他段都是加密的，怎么排查？"
+  },
+  {
+   "id": "should-mtls-01",
+   "prompt": "客户要开双向认证 mTLS，系统里还有些明文用户的话机，会有影响吗？"
+  },
+  {
+   "id": "should-mtls-02",
+   "prompt": "OXE 升级到 R101 之后，一批老款 NOE 话机注册不上了，和证书有关系吗？"
+  },
+  {
+   "id": "should-pcs-01",
+   "prompt": "分支站点担心主 CS 失联后电话瘫痪，加密环境下 PCS 救援怎么部署？"
+  },
+  {
+   "id": "should-xca-01",
+   "prompt": "客户没有企业 CA，我需要自己搭一个 CA 给 OXE 和话机签证书，用什么工具怎么做？"
+  },
+  {
+   "id": "should-app-01",
+   "prompt": "留言信箱和录音在原生加密站点里怎么处理？需要单独配证书吗？"
+  },
+  {
+   "id": "should-app-02",
+   "prompt": "VAA 开了加密之后端口数为什么变少了？调度台也会这样吗？"
+  },
+  {
+   "id": "should-lab-01",
+   "prompt": "我要按教材搭一套 RLAB 实验环境练手，Pod 初始配置要做哪些事？"
+  },
+  {
+   "id": "should-bringup-03",
+   "prompt": "lanpbx.cfg 里的 DTLS 服务器地址应该填 Call Server 的 IP 还是别的？端口呢？"
+  },
+  {
+   "id": "bait-cert-01",
+   "prompt": "证书都导入成功了，为什么话机还是明文通话？接下来该做什么？"
+  },
+  {
+   "id": "bait-bringup-01",
+   "prompt": "加密参数都开了，帮我确认话机注册和通话到底有没有走加密。"
+  },
+  {
+   "id": "bait-verify-01",
+   "prompt": "我改了 SRTP 认证参数但是一直没生效，是不是配置顺序有问题？"
+  },
+  {
+   "id": "bait-sipext-01",
+   "prompt": "运营商方向的中继要在 SBC 上建 TLS context，步骤是什么？"
+  },
+  {
+   "id": "bait-eegw-01",
+   "prompt": "我们站点大概 500 个加密会话，需要现在就规划 EEGW 虚拟机吗？"
+  },
+  {
+   "id": "bait-abcf-01",
+   "prompt": "OXE 通过 SIP trunk 对接运营商网关，对接侧的加密怎么配？"
+  },
+  {
+   "id": "bait-mtls-01",
+   "prompt": "帮我把 OM S 板卡的端点证书用 XCA 做出来，导出成 GW.pfx。"
+  },
+  {
+   "id": "bait-pcs-01",
+   "prompt": "事件 5993 报主备 CS 之间明文，是不是 PCS 救援出问题了？"
+  },
+  {
+   "id": "bait-xca-01",
+   "prompt": "客户有自己的企业 CA，证书签发这边应该怎么走？"
+  },
+  {
+   "id": "bait-app-01",
+   "prompt": "没开原生加密的 OXE 能不能把话机固件下载改成 HTTPS？"
+  },
+  {
+   "id": "bait-lab-01",
+   "prompt": "生产站点就按教材里的 192.168.1.x 网段和 Superuser2580* 口令来部署吧。"
+  },
+  {
+   "id": "bait-trunk-01",
+   "prompt": "ALES 话机想用电脑耳机接听加密通话，音频怎么走？"
+  },
+  {
+   "id": "edge-san-01",
+   "prompt": "生成 CSR 时 SAN 不带 IP 地址，站点里有 IP-xBS 基站，有影响吗？"
+  },
+  {
+   "id": "edge-acme-01",
+   "prompt": "能不能用 Let's Encrypt 给 OXE 的 WBM 证书做自动续期？"
+  },
+  {
+   "id": "edge-port-01",
+   "prompt": "本地网关的 SIP TLS 互认证端口填了 0，但 MAO 里 SIP TLS Mutual Authentication 还是 True，到底生没生效？"
+  },
+  {
+   "id": "edge-aes-01",
+   "prompt": "direct link 网络里一个节点配 AES-128 另一个配 AES-256，跨节点通话和链路信令分别是什么状态？"
+  },
+  {
+   "id": "edge-version-01",
+   "prompt": "客户的 OXE 还在 R101.0（N3）上，能不能把 SSL security level 降到 1 来兼容老话机？"
+  }
+ ]
+}

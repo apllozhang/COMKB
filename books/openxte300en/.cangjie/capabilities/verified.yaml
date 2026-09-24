@@ -1,0 +1,675 @@
+schema_version: 1
+bundle_id: bundle.opentouch-starter
+book:
+  title: OpenTouch — OpenTouch Suite for MLE — Solution Overview / Starter (Participant's Guide)
+  author: ALE Training Services
+  source_pack: OPENXTE300EN.pdf (603 pages)
+  baseline_tag: OpenTouch R2.6.1 / Starter Edition 10 / RLAB
+entry:
+  name: opentouch-starter
+  description: 'OpenTouch Suite for MLE（OTMS/OTMS-v，含 OXE + OpenTouch + OmniVista 8770）的全流程交付与运维支持：SOT 自动化装机、Post-installation wizard 初始化、FlexLM 许可落地与核查、
+    8770 双向节点声明与 OXE SIP 打通、prior management 号码路由、档案与用户供给（含 WPC 批量）、本地存储语音邮箱与 IMAP/通知/公告、证书部署、OTC PC 客户端与多终端、监督组，以及维护、备份与 rehosting（TC2149 矩阵）。
+    适用于 OpenTouch Starter 站点的安装、配置、集成、排障与交付问答；容量与话务设计、OXE spatial redundancy 操作、SBC 安装、UM/Nomadic/OTBE 不在原书范围内（见 out_of_scope）。
+
+    '
+  core_principles:
+  - '交付主线层层递进：装机 → 向导初始化 → 许可闸门 → 双向集成声明 → 号码路由 → 业务供给 → 安全与客户端 → 运维闭环（p50-51 主步骤链）'
+  - '许可自成一体：FlexLM 校验锚定物（物理机 ALUID、虚拟机加密狗）；OXE 容量仍以本地 .swk 为准；向导许可页 OK 只代表文件在，不代表内容有效（p130-132, p159, p101）'
+  - '三台服务器靠互挂成网：先 OXE 前置，再 8770 建树，然后声明 OT（bics.conf 三账号），最后 OT 侧挂 OXE；DNS 正反向解析是硬前提（p186-203, p93）'
+  - '客户端是许可驱动形态：OTC PC 与 OTC PC One 同一二进制，Desktop 许可决定模式；软电话路线 Desktop 勾、Nomadic SIP 不勾（p433, p474）'
+  - '实验环境口径：教材密码、账号、IP 与号码仅限实验（公开教学值）；rehosting 配错即死锁无回退，一切以 TC2149 矩阵为准（p16, p565-567, p579-602）'
+  out_of_scope:
+  - '容量与话务建模、虚机规格 sizing（原书外置到 Delivery note / Features list / Product limits）'
+  - 'OXE spatial redundancy 的 SIP 与外部语音邮件网关操作（TC1652）'
+  - 'SBC 与反向代理安装（TC2257/TC2639）与 UM 语音邮件、Nomadic、OTBE、VPN-less 会议地址（另见专项培训/另一手册）'
+  - 'Teams/Skype for Business 深度集成与 OTC Mobile 移动端（原书仅一笔带过）'
+  stop_conditions:
+  - '需容量与话务设计或虚机规格 → 明确指向 Delivery note / Features list / Product limits，不以 5000 用户一条数字搪塞'
+  - 'OXE 为 spatial redundancy 站点 → SIP 字段与外部语音邮件网关转 TC1652，不照抄单机实验步骤'
+  - 'rehosting 前置不满足（参数未全对齐或无备份）→ 判停拒绝执行：配错即死锁且无回退（p565）'
+  - '涉及 RLAB/ITSP1 实验环境搭建 → 参考 book/overview 实验环境区背景，实验值不虚构为生产配置'
+  - 'UM 语音邮件、Nomadic、OTBE、Teams 深度集成 → 声明属书外专项培训/手册，不硬答'
+router_entry:
+  name: opentouch-starter-router
+  description: 'OpenTouch Starter 能力路由入口：按用户意图分发到 12 张能力卡——初始化向导、许可 FlexLM、节点声明与 SIP、prior management、用户供给、语音邮箱、客户端多终端、维护 rehosting 八个 promoted 能力，
+    以及 SOT 装机、证书、监督组、实验环境与连接四张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.ots.post-installation-wizard
+  revision: 1
+  status: active
+  slug: ots-post-installation-wizard
+  title: OTMS 初始化向导（两模式十节）
+  importance: critical
+  importance_rationale: 对应 task-04，初始化总闸，配置错一步后面全卡；口令静默陷阱与 HA 禁用是最高频现场坑
+  one_liner: 首次开机自动启动的站点安装向导——from scratch 十节或 restore from archive；口令至少 8 字符且无报错弹窗、DNS 正反向五类 FQDN、HA 保持 Disable、许可 OK 只代表文件在
+  intents:
+  - 完成 OTMS 初始化向导
+  - 从备份恢复重装 OTMS
+  - 向导口令与 DNS 有什么要求
+  - post-installation wizard
+  keywords:
+  - post-installation
+  - wizard
+  - 站点安装
+  - from scratch
+  - restore
+  - archive
+  - HA
+  - DNS 正反向
+  - otAdmin
+  - otProfile
+  - otuser
+  - security off
+  also_read:
+  - ots-license-flexlm
+  - ots-node-declaration-sip
+  card: cards/ots-post-installation-wizard.md
+  frontmatter:
+    description: '完成 OTMS 的 Post-installation wizard 初始化（from scratch 十节顺序与硬规则、restore from archive 恢复路径、口令与 DNS 前提、HA 与证书档位决策）。
+      当用户要"初始化 OTMS/走向导/备份恢复重装/问 HA 或口令规则"时使用。不适用于软件安装（SOT 装机）、许可装后核查（许可能力）；口令短于 8 字符不报错但事后必出问题。
+
+      '
+    tags:
+    - procedure
+    - opentouch
+    - post-installation
+    - wizard
+  source_evidence:
+  - source_id: src-openxte300
+  - location: p88-108
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-04，初始化总闸
+- capability_id: cap.ots.license-flexlm
+  revision: 1
+  status: active
+  slug: ots-license-flexlm
+  title: 许可体系与 FlexLM（安装、核查、外部切换）
+  importance: critical
+  importance_rationale: 对应 task-06/07/08，无正确许可系统不正常工作；spadmin 判据与 R-Lab 锚 MAC 特例是核查与迁移的高频坑
+  one_liner: 三族文件（.ice/.swk/.sw8770）、两种锚定物（物理机 ALUID、虚拟机加密狗）、FlexLM 内嵌或外部；spadmin 三计数全 0 才健康，外部化一条命令约 5 分钟
+  intents:
+  - 安装许可文件
+  - 许可核查与排障
+  - 部署外部 FlexLM
+  - 内部切外部 FlexLM
+  keywords:
+  - FlexLM
+  - '.ice'
+  - '.swk'
+  - sw8770
+  - nmc.license
+  - ALUID
+  - 加密狗
+  - dongle
+  - spadmin
+  - lmutil
+  - checkLicensing
+  - final_licenses
+  - PANIC
+  - '27000'
+  also_read:
+  - ots-post-installation-wizard
+  - ots-maintenance-rehosting
+  card: cards/ots-license-flexlm.md
+  frontmatter:
+    description: 'OpenTouch 许可体系全流程：三族文件对号（OT .ice、OXE .swk、8770 .sw8770 改名 nmc.license）、锚定物与 FlexLM 形态、final_licenses 目录流转、spadmin/lmutil/checkLicensing 核查、
+      外部 FlexLM 部署与内部到外部切换。当用户要"装许可/查许可/PANIC 不为 0/外部许可服务器/换 FlexLM"时使用。不适用于容量扩容（容量在 OXE 本地 .swk，FlexLM 上没有改容量的操作）。
+
+      '
+    tags:
+    - procedure
+    - licensing
+    - flexlm
+    - opentouch
+    - troubleshooting
+  source_evidence:
+  - source_id: src-openxte300
+  - location: p128-185
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-06/07/08，许可闸门
+- capability_id: cap.ots.node-declaration-sip
+  revision: 1
+  status: active
+  slug: ots-node-declaration-sip
+  title: 双向节点声明与 SIP 打通（含告警对接）
+  importance: critical
+  importance_rationale: 对应 task-09/10/11/13，三件套成网的核心；DNS 反向解析与 APPLY 遗漏是最高频失败根因
+  one_liner: bics.conf 取凭证 → 8770 建 OXE/OT 节点 → OT 侧挂 OXE（2570/Codec 一致）；OXE 侧 trunk 10 加两条外部网关（5260/5040）与 trusted；SNMP v3 Inform 告警进 8770
+  intents:
+  - 在 8770 声明 OXE
+  - 在 8770 声明 OpenTouch
+  - 配置 OXE SIP 打通
+  - OT 告警对接 8770
+  keywords:
+  - bics.conf
+  - 节点声明
+  - declaration
+  - Topology
+  - PRS
+  - '2570'
+  - trunk group
+  - 外部网关
+  - '5260'
+  - '5040'
+  - trusted
+  - G729
+  - SNMP
+  - Inform
+  - MIB
+  - synchronization
+  also_read:
+  - ots-prior-management
+  - ots-post-installation-wizard
+  card: cards/ots-node-declaration-sip.md
+  frontmatter:
+    description: '三台服务器双向集成：OXE 前置（netadmin/角色地址/APPLY）、8770 三级建树声明 OXE、8770 声明 OT（bics.conf 三账号、同子网、自由节点号）、OT 侧 Topology 挂 OXE，
+      以及 OXE SIP 五段（trunk/本地网关/外部网关 10 与 11/trusted/压缩参数）和 SNMP v3 告警对接与 MIB 重载。当用户要"声明节点/互挂拓扑/配 SIP/告警进 8770/同步类型"时使用。
+      不适用于号码段与前缀（prior management 能力）；spatial redundancy 站点转 TC1652。
+
+      '
+    tags:
+    - procedure
+    - integration
+    - sip
+    - snmp
+    - opentouch
+  source_evidence:
+  - source_id: src-openxte300
+  - location: p186-234, p204-212
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-09/10/11/13，系统集成核心
+- capability_id: cap.ots.prior-management
+  revision: 1
+  status: active
+  slug: ots-prior-management
+  title: Prior management（号码段、前缀、拨号规则、UDAS、会议桥）
+  importance: critical
+  importance_rationale: 对应 task-12，拨打行为正确性总闸；法国制式默认值与 UDAS 周期 0 是两大现场坑
+  one_liner: 号段在 OT 侧声明归属 OXE、前缀两侧同值且话务台前缀必配、按名呼打全客户端自动加前缀、UDAS 周期至少 1 禁 0、DAS 规则强制按国家保序
+  intents:
+  - 配置号码段与归属
+  - 配置前缀与拨号规则
+  - 修复目录检索陈旧
+  - 配置会议桥与 DAS 规则
+  keywords:
+  - 号码段
+  - Ranges
+  - 前缀
+  - prefix
+  - 拨号规则
+  - dialing rule
+  - UDAS
+  - 同步周期
+  - '31000-31499'
+  - '31200'
+  - '31250'
+  - DAS rules
+  - 会议桥
+  - wireald
+  also_read:
+  - ots-node-declaration-sip
+  card: cards/ots-prior-management.md
+  frontmatter:
+    description: 'prior management 六块：号码段（OT 侧 Ranges 归属 OXE）、前缀服务（两侧同值、话务台前缀 R2.1 起必配并重启 wireald）、语音邮件与会议号成对配置、拨号规则（按名/按号行为分层）、
+      UDAS 目录同步（周期至少 1 禁 0、检索只打同步库）、会议桥与 DAS 规则（强制按国家、顺序敏感）与号码格式化正则。当用户要"配号码/配前缀/外呼加 0/目录是旧数据/进不去会议桥"时使用。
+      不适用于承载层 trunk 与网关（节点声明与 SIP 能力）；UM 语音邮件在书外。
+
+      '
+    tags:
+    - procedure
+    - numbering
+    - routing
+    - udas
+    - opentouch
+  source_evidence:
+  - source_id: src-openxte300
+  - location: p213-254
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-12，拨打正确性总闸
+- capability_id: cap.ots.users-profiles
+  revision: 1
+  status: active
+  slug: ots-users-profiles
+  title: 档案与用户供给（三类用户、WPC 批量）
+  importance: critical
+  importance_rationale: 对应 task-14，日常最高频供给动作；OT 档案要手动同步与 Users 应用只能改档案是权责边界核心
+  one_liner: 档案三件套（OXE profile 占号 + OT profile ACU-OXE 勾权 + 邮箱档案）合成 Connection user；Users 应用只能改档案；WPC 批量限 Chrome 且不建 Conversation 用户
+  intents:
+  - 创建 Connection 用户
+  - 创建 OXE/OT 档案
+  - 批量供给用户（WPC）
+  - 用户口令策略
+  keywords:
+  - 档案
+  - profile
+  - ACU-OXE
+  - Connection 用户
+  - ACU
+  - Set function
+  - 占号
+  - Directory user
+  - WPC
+  - Web Provisioning
+  - Chrome
+  - TUI 口令
+  - MACD
+  also_read:
+  - ots-voice-mail
+  - ots-node-declaration-sip
+  card: cards/ots-users-profiles.md
+  frontmatter:
+    description: '用户与档案供给全流程：OXE 档案（Set function=Profile、A0000 式占号）、OT 档案（Category=ACU-OXE、Licenses 勾权、建完要完整同步）、三类用户逐个建、存量加 OT、
+      Web Provisioning Client 批量（前置四查加三页签）与口令策略（GUI 字母数字、TUI 6 位纯数字拒顺序数列）。当用户要"建用户/建档案/批量开户/口令要求"时使用。
+      不适用于邮箱档案参数细节（语音邮箱能力）；Users 应用只能改档案，建删必须回配置工具。
+
+      '
+    tags:
+    - procedure
+    - users
+    - profiles
+    - provisioning
+    - opentouch
+  source_evidence:
+  - source_id: src-openxte300
+  - location: p255-301
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-14，日常供给主战场
+- capability_id: cap.ots.voice-mail
+  revision: 1
+  status: active
+  slug: ots-voice-mail
+  title: 语音邮箱、IMAP 收取与通知公告（Local Storage）
+  importance: critical
+  importance_rationale: 对应 task-15，语音业务核心体验且坑最密集：邮箱必选档案、OT 不做 SMTP、公告一条覆盖式
+  one_liner: defaultVmsLS 默认就绪、建箱必选档案、留言 IMAP 直收（内嵌 1000 并发封顶）、通知走无认证无 TLS 的外部 SMTP 与唯一 SMS 网关、公告一条 5 分钟覆盖式
+  intents:
+  - 创建语音邮箱
+  - 配置语音邮箱档案
+  - 配置 IMAP 收取语音留言
+  - 配置 SMTP/SMS 通知与公告
+  keywords:
+  - 语音邮箱
+  - voice mail
+  - defaultVmsLS
+  - Local Storage
+  - IMAP
+  - Outlook
+  - imap4fed
+  - SMTP
+  - SMS
+  - notification
+  - 公告
+  - announcement
+  - greeting
+  - 配额
+  also_read:
+  - ots-users-profiles
+  card: cards/ots-voice-mail.md
+  frontmatter:
+    description: 'Local Storage 语音邮箱全链：默认系统核验、建箱挂人（Configuration 页必选档案）、邮箱档案四页签（配额/保留/口令管理/IMAP 开关）、Outlook IMAP 收取（默认 IMAPS+TLS、测试邮件失败属预期）、
+      SMTP/SMS 通知三层配置（全局参数、VPIM 路由、用户页签）、通用公告（一条、覆盖式、5 分钟、固定名 wav）。当用户要"建邮箱/收留言/通知邮件短信/录公告"时使用。
+      不适用于 UM 统一消息（书外专项）；业务号 31200 的路由在 prior management 能力。
+
+      '
+    tags:
+    - procedure
+    - voice-mail
+    - imap
+    - notification
+    - opentouch
+  source_evidence:
+  - source_id: src-openxte300
+  - location: p302-396
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-15，语音业务核心
+- capability_id: cap.ots.clients-multi-devices
+  revision: 1
+  status: active
+  slug: ots-clients-multi-devices
+  title: OTC PC 客户端交付与多终端
+  importance: high
+  importance_rationale: 对应 task-17 主体，最终用户体验；Desktop 许可决定模式是"客户端坏了"类工单的第一排查项
+  one_liner: 同一安装包、Desktop 许可决定 OTC PC 全量或 One 免费模式；软电话走 Multi-devices（Desktop 勾、Nomadic SIP 不勾）；多终端最多 5 设备且 REX/DECT 各 1
+  intents:
+  - 安装交付 OTC PC
+  - 排查 OTC PC One 免费模式
+  - 配置电脑软电话
+  - 配置多终端副站
+  keywords:
+  - OTC PC
+  - OTC PC One
+  - Desktop 许可
+  - freemium
+  - RCC
+  - VoIP
+  - 软电话
+  - softphone
+  - SIP 分机
+  - Multi-devices
+  - 多终端
+  - 副站
+  - Twinset
+  - Outlook 加载项
+  also_read:
+  - ots-users-profiles
+  - ots-supervision-groups
+  card: cards/ots-clients-multi-devices.md
+  frontmatter:
+    description: 'OTC PC 客户端交付：安装前置（.NET 4.5 与 VS C++ 2010 Tools for Office）、Desktop 许可驱动的两模式（全量与 One 免费模式能力边界）、软电话 Multi-devices 路线（SIP 分机副站、
+      DM 下发、许可互斥组合）、多终端 5 设备规则与 Twinset/No ringing 前缀、Outlook 集成验证。当用户要"装客户端/客户端功能不全/电脑接听/加副站"时使用。
+      不适用于监督组建组与代接（监督组路由卡）；Nomadic 模式在书外培训。
+
+      '
+    tags:
+    - procedure
+    - client
+    - otc-pc
+    - multi-devices
+    - opentouch
+  source_evidence:
+  - source_id: src-openxte300
+  - location: p430-493
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-17 主体，最终用户体验
+- capability_id: cap.ots.maintenance-rehosting
+  revision: 1
+  status: active
+  slug: ots-maintenance-rehosting
+  title: 维护、备份恢复与 rehosting（TC2149 矩阵）
+  importance: critical
+  importance_rationale: 对应 task-18，售后日常与搬迁改名；rehosting 配错即死锁无回退，是全书风险最高的操作
+  one_liner: 维护三通道（命令/otconsole/Portal 4448）、自动备份每日 00:01 周日全量、OT-V 必挂 NFS；rehosting 只改 OT 自己且 inactive 分区被清，OXE/8770/生态按 TC2149 收尾
+  intents:
+  - 收集日志与系统核查
+  - 配置备份与恢复
+  - 执行 rehosting 改 IP 主机名
+  - rehosting 后收尾三件套
+  keywords:
+  - maintenance
+  - otconsole
+  - Maintenance Portal
+  - '4448'
+  - checkdns
+  - dla
+  - backup
+  - otbr
+  - NFS
+  - '00:01'
+  - rehosting
+  - TC2149
+  - 死锁
+  - inactive 分区
+  also_read:
+  - ots-license-flexlm
+  card: cards/ots-maintenance-rehosting.md
+  frontmatter:
+    description: '运维闭环：维护三通道（原始命令、otconsole 菜单、Maintenance Portal 4448，含 dla 日志收集与权限门槛）、备份体系（ot-config.sh --storage 介质选择、otbr.sh 手动备份恢复、
+      OT-V 必须 NFS）、rehosting 全流程（前置判停、ot-config.sh --rehost、三条铁律、TC2149 矩阵收尾、换 FlexLM 形态的许可联动）。当用户要"查日志/做备份/改 IP 主机名/rehost 后三件套怎么办"时使用。
+      不限于 OT 单机：OXE 与 8770 的备份命令细节在卡内给指针；OTBE 在书外手册。
+
+      '
+    tags:
+    - procedure
+    - maintenance
+    - backup
+    - rehosting
+    - opentouch
+  source_evidence:
+  - source_id: src-openxte300
+  - location: p514-602
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-18，风险最高闭环
+- capability_id: cap.ots.sot-installation
+  revision: 1
+  status: active
+  slug: ots-sot-installation
+  title: SOT 自动化装机与虚机手动导入
+  importance: medium
+  importance_rationale: 对应 task-02/03，标准装机路径但属线性一次性流程，路由可达即可；R-Lab 特例与现场相反是关键边界
+  one_liner: 三路线（手动 DVD/手动 ISO/SOT 自动化）生产首选 SOT：standalone 或 hosted、媒体先于项目、PXE 静默装机；OVF 手动导入走 web client
+  intents:
+  - 用 SOT 部署 OTMS
+  - SOT 媒体与项目管理
+  - 手动安装 OTMS
+  - OVF/OVA 导入 ESXi
+  keywords:
+  - SOT
+  - Software Orchestration Tool
+  - 静默安装
+  - PXE
+  - media
+  - project
+  - OVF
+  - OVA
+  - ESXi
+  - bootdvd
+  - hotfix
+  - BPWS
+  card: cards/ots-sot-installation.md
+  frontmatter:
+    description: '软件安装三路线决策与 SOT 自动化装机：介质四类备料、SOT 两模式两配置两工作模式、媒体声明与项目创建、PXE 静默部署，以及 OVF/OVA 手动导入 ESXi 的 web client 主流程。
+      当用户要"装 OTMS/用 SOT/导虚机"时经路由使用。装完必接初始化向导能力；Template Factory 对 OpenTouch 不可用；R-Lab 特例不可带现场。
+
+      '
+    tags:
+    - procedure
+    - sot
+    - deployment
+    - virtualization
+  source_evidence:
+  - source_id: src-openxte300
+  - location: p40-87
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 线性一次性流程，路由可达即可
+- capability_id: cap.ots.certificates
+  revision: 1
+  status: active
+  slug: ots-certificates
+  title: 证书部署三路线
+  importance: medium
+  importance_rationale: 对应 task-16，一次性安全配置域；Deploy 两步与 CTL 重签是两大固定坑，路由可达即可
+  one_liner: security OFF 全球同款不推荐、自签 Internal SHA256 换证后必须重签 CTL、外部 CA 按 CSR 来源导 PKCS7 或 PKCS12；导入与 Deploy 是两步
+  intents:
+  - 切换自签证书
+  - 用 Windows CA 签发证书
+  - 评估 security off 风险
+  - 排查证书不生效
+  keywords:
+  - certificate
+  - 自签
+  - self-signed
+  - CA
+  - CSR
+  - PKCS7
+  - PKCS12
+  - CTL
+  - SHA256
+  - security off
+  - Deploy
+  - CertSrv
+  card: cards/ots-certificates.md
+  frontmatter:
+    description: '证书三路线：security OFF（全球同款、官方不推荐、盗打风险）、自签 Internal（SHA256、Local PKI 补信息、808x 话机重签 CTL）、外部 CA（根证书入 Server CTL、CSR 两来源、PKCS7/PKCS12 导入、
+      Windows CA CertSrv 全流程）。当用户要"换证书/证书不受信任/远程接入安全/证书导入没生效"时经路由使用。导入后必须 Deploy，Deploy 后断会话属正常。
+
+      '
+    tags:
+    - procedure
+    - certificates
+    - security
+    - pki
+  source_evidence:
+  - source_id: src-openxte300
+  - location: p397-429
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 一次性安全域，路由可达即可
+- capability_id: cap.ots.supervision-groups
+  revision: 1
+  status: active
+  slug: ots-supervision-groups
+  title: 监督组（话务监督、进出组与代接）
+  importance: medium
+  importance_rationale: 对应 task-17 子域，场景窄但边界密集（与 OXE 话机监督无联动、前转可脱离监督），路由可达即可
+  one_liner: 同类型成员 2-40 人、一人一组、同 OT 节点、系统 500 组；Regular 与 Collaboration 两模式；代接走 OXE Direct call pick-up，前转与溢出会让呼叫脱离监督
+  intents:
+  - 创建监督组
+  - 配置进出组前缀
+  - 配置监督代接
+  - 评估监督覆盖边界
+  keywords:
+  - 监督组
+  - supervision
+  - Supervisor
+  - 代接
+  - pickup
+  - Direct call pick-up
+  - Join or leave group
+  - Regular
+  - Collaboration
+  - '40 人'
+  - '500 组'
+  card: cards/ots-supervision-groups.md
+  frontmatter:
+    description: 'OT 监督组配置与边界：建组派角色（Supervisor/Supervised/双职）、进出组前缀两侧成对（OT 前缀加 OXE External Voice Mail）、代接前缀与类目启用、
+      Regular 与 Collaboration 模式差异、与 OXE 话机监督键无联动、前转/溢出/副号码的脱离监督场景。当用户要"主管看组员状态/代接/临时进出组"时经路由使用。
+      OTC PC One 无监督功能；OXE ACD 呼叫中心不在本书。
+
+      '
+    tags:
+    - procedure
+    - supervision
+    - pickup
+    - opentouch
+  source_evidence:
+  - source_id: src-openxte300
+  - location: p494-513
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 窄场景域，路由可达即可
+- capability_id: cap.ots.lab-connections
+  revision: 1
+  status: active
+  slug: ots-lab-connections
+  title: 实验 POD 与系统连接通道
+  importance: medium
+  importance_rationale: 对应 task-01/05，支撑背景域；实验值全部为公开教学值，独立触发价值低但它是其他一切实验的入口
+  one_liner: RLAB 两形态 POD 与公共资源区；OT 走 SSH（Telnet 不授权）、OXE 实验用 Telnet（启安全须 SSH）、8770 走远程桌面；ITSP1 模拟器验证外呼
+  intents:
+  - 搭建实验 POD
+  - 连接 OT/OXE/8770
+  - SUSE 图形界面操作
+  - 验证模拟外呼
+  keywords:
+  - RLAB
+  - POD
+  - ITSP1
+  - 外呼
+  - SSH
+  - Telnet
+  - Putty
+  - mstsc
+  - SUSE
+  - startx
+  - YaST
+  card: cards/ots-lab-connections.md
+  frontmatter:
+    description: '培训实验环境与系统连接：RLAB 与 Hybrid 两形态、POD 公共资源区、四台系统的连接通道与账号口径（OT SSH、OXE Telnet、8770 RDP、vSphere 控制台）、SUSE 图形界面基本操作、
+      ITSP1 模拟器的外呼验证。当用户要"搭实验环境/连不上某台机器/做外呼验证"时经路由使用。全部实验值为公开教学值，严禁带入生产；实例参数表集中在 book/overview。
+
+      '
+    tags:
+    - reference
+    - lab
+    - connections
+    - rlab
+  source_evidence:
+  - source_id: src-openxte300
+  - location: p10-37, p109-127
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 支撑背景域，路由可达即可

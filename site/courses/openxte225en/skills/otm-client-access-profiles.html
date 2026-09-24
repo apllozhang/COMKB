@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>客户端远程接入两步法（接入配置与路由档案）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch · 移动与远程办公</h2><p>Edition 10 · 287 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte225en/index.html">课程首页</a><a href="/courses/openxte225en/digest.html">精华长文</a><a href="/courses/openxte225en/overview.html">教书理解</a><a href="/courses/openxte225en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte225en/skills/otm-dmz-security-channels.html">远程接入架构与 DMZ 双边缘</a><a href="/courses/openxte225en/skills/otm-certificate-pki.html">证书策略与签发（CA、封装、SAN、自建 CA）</a><a href="/courses/openxte225en/skills/otm-ot-server-settings.html">OpenTouch 服务器侧远程访问设置</a><a href="/courses/openxte225en/skills/otm-otsbc-deployment.html">OTSBC 部署与向导配置</a><a href="/courses/openxte225en/skills/otm-reverse-proxy.html">反向代理两路线部署与选型（内嵌 RP、Nginx）</a><a href="/courses/openxte225en/skills/otm-otc-pc-modes.html">OTC PC 远程办公两模式（multi-devices、Nomadic SIP）</a><a href="/courses/openxte225en/skills/otm-smartphone-provisioning.html">OTC 智能手机开通（Connection 用户、自动对象、R2.6 单设备）</a><a href="/courses/openxte225en/skills/otm-iphone-apns.html">iPhone+ APNS 推送专项</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte225en/skills/otm-client-access-profiles.html">客户端远程接入两步法（接入配置与路由档案）</a><a href="/courses/openxte225en/skills/otm-smartphone-modes.html">智能手机连接模式与回落（WiFi/3G4G/DTMF、无 SIM）</a><a href="/courses/openxte225en/skills/otm-vmware-ovf.html">VMware 虚机 OVF/OVA 部署</a><a href="/courses/openxte225en/skills/otm-lab-dialtest.html">实验环境与拨测验证（RLAB、编号计划、模拟器预期表）</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte225en/index.html">ot-mobility-remote-worker（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte225en/index.html">OPENXTE225EN</a><span>/</span><span aria-current="page">客户端远程接入两步法（接入配置与路由档案）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>客户端远程接入两步法（接入配置与路由档案）</h1></div><dl><div><dt>Skill ID</dt><dd>otm-client-access-profiles</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>客户端远程接入两步法（接入配置与路由档案）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Step 1: configuration of remote access: Public OpenTouch URL, Login and password; Step 2: routing configuration: Activation of required profile (Call from PC/Route to PC, …)"（p147）
+"When a smart phone is used to dial (dial by number, directory search, from history, from contacts, …), it is always used to make the call whatever the 'dial from' specified in the active profile"（p147）
+"PC: OTC Web: Conference public URL received by mail"（p149）</p>
+</blockquote>
+<p>出处：OPENXTE225EN p145-150。</p>
+<h2>I — 自述</h2>
+<p>任何客户端远程接入都是两步：</p>
+<ol>
+<li><strong>接入配置</strong>：填公共 OpenTouch URL（反代公共地址）+ 登录凭证</li>
+<li><strong>路由档案</strong>：激活"从哪拨/路由到哪"组合（PC/手机/家庭电话/其他号码的呼出与落地路由）</li>
+</ol>
+<p>各客户端入口：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>客户端</th>
+<th>接入配置入口</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OTC PC</td>
+<td>启动时或 Settings/Preferences 填反代 FQDN</td>
+<td>也可直接填 OTSBC 公共 FQDN 走 SIP</td>
+</tr>
+<tr>
+<td>OTC 智能手机</td>
+<td>首次启动填，后续 Settings/Connections 改</td>
+<td>Public hostname 填反代地址而非内网地址</td>
+</tr>
+<tr>
+<td>OTC Web</td>
+<td>用邮件收到的会议公共 URL 直接进</td>
+<td>无需装客户端</td>
+</tr>
+<tr>
+<td>OTC PC One</td>
+<td>同 OTC PC</td>
+<td>无 VoIP，仅协作功能</td>
+</tr>
+</tbody>
+</table></div>
+<p>手机拨打特例（p147/p150 两处强调）：只要是用智能手机发起拨打（按键、目录、历史、联系人），发话设备永远是手机本机，与档案里的 "dial from" 无关——该设置只对从 PC 等其他端发起的呼叫生效。</p>
+<h2>A1 — 书中案例</h2>
+<p>客户端接入动作（散布于各 How-To，p148/p156/p214-216）：</p>
+<ol>
+<li>OTC PC：Settings/Preferences 里填反代 FQDN，凭证用 OpenTouch 账号</li>
+<li>OTC PC（软话机形态）：Security 页配 SBC——OTSBC 公共 FQDN、端口 5261、TLS、Encrypted only</li>
+<li>Android：商店装 OpenTouch Conversation，首启填 Public hostname/URL 与 Private hostname/URL</li>
+<li>iPhone：App Store 装 OpenTouch Conversation Plus，首启填 Public/Private Server Name 与凭证</li>
+<li>OTC Web/来宾：点邮件里的会议公共 URL 进浏览器协作</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：远程员工第一次配客户端；"手机上打电话为什么走的手机"类疑问；来宾问怎么进会议；换反代地址后客户端批量改配置。</p>
+<p>语言信号：接入配置 / 公共 URL / public URL / 路由档案 / routing profile / dial from / Call from PC / Route to PC / OTC Web / 会议链接 / Settings / Connections / 首次启动。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>手机的开通过程 → 智能手机配置能力</li>
+<li>PC 两模式选型 → OTC PC 两模式能力</li>
+<li>URL 与端口规划 → DMZ 双边缘能力</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：反代公共 URL、用户凭证、路由档案需求（呼出/落地方向）、客户端类型清单。</p>
+<ol>
+<li>分发接入信息：公共 URL + 凭证 + 客户端下载渠道。完成标准：用户拿到可登录的接入包</li>
+<li>按客户端类型指引入口填 URL 与凭证（首启或 Settings）。完成标准：登录成功</li>
+<li>配路由档案：按用户场景选"从哪拨/路由到哪"组合并激活。完成标准：激活档案与需求一致</li>
+<li>讲清手机拨打特例：手机发起的呼叫永远本机发话。完成标准：用户知情（减少误报障）</li>
+<li>行为验证：从 PC 与手机各发起一通呼叫，核对发话设备与落地。完成标准：与档案预期一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>用户报"路由档案没生效"但触发方式是手机上直接拨号 → 停，这是设计行为不是故障（n11）</li>
+<li>手机首启填了内网地址 → 停，Public URL 必须填反代公网地址（n32）</li>
+<li>OTC Web 进不去 → 停，先核会议 FQDN 公共解析与证书 SAN（转 DMZ 双边缘与证书能力）</li>
+</ul>
+<p>输出契约：可登录的远程客户端 + 已激活的路由档案 + 行为验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>手机拨打特例是排障高频误解点：dial from 不改变手机发话（p147/p150/n11）</li>
+<li>EVS 通知必须带 8016 端口，客户端 URL 细节错配的表现是"通知时好时坏"（n32）</li>
+<li>客户端 VoIP 能力差异见 DMZ 双边缘能力的用例矩阵；OTC Web 仅协作、WebRTC 才有浏览器音视频</li>
+<li>实验口径的示例 URL（原书 p214 缺冒号笔误）见 needs-review nr-04；本卡不含环境值</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte225en/skills/otm-otc-pc-modes.html">OTC PC 远程办公两模式（multi-devices、Nomadic SIP）</a></p><p class="source-page">能力 ID：cap.otm.client-access-profiles · 来源：OPENXTE225EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch — 移动与远程办公 (Participant's Guide) | edition: Edition 10 | pages: 287 页 -->

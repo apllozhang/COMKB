@@ -1,0 +1,100 @@
+{
+  "skill": "opentouch-starter",
+  "version": "0.1.0",
+  "bundle": "bundle.opentouch-starter",
+  "capability_catalog": [
+    {"slug": "ots-post-installation-wizard", "name": "OTMS 初始化向导（两模式十节）", "description": "首次开机自动启动的站点安装向导：from scratch 十节或 restore from archive；口令至少 8 字符且无报错弹窗、DNS 正反向五类 FQDN、HA 保持 Disable、许可 OK 只代表文件在"},
+    {"slug": "ots-license-flexlm", "name": "许可体系与 FlexLM", "description": "三族文件（.ice/.swk/.sw8770）、两种锚定物（物理机 ALUID、虚拟机加密狗）、FlexLM 内嵌或外部；spadmin 三计数全 0 才健康；外部化 ot-config.sh --external_flex 约 5 分钟"},
+    {"slug": "ots-node-declaration-sip", "name": "双向节点声明与 SIP 打通", "description": "bics.conf 取凭证、8770 建 OXE/OT 节点互挂拓扑（2570/Codec 一致）；OXE 侧 trunk 10 加两条外部网关（5260/5040）与 trusted；SNMP v3 Inform 告警进 8770 与 MIB 重载"},
+    {"slug": "ots-prior-management", "name": "Prior management 号码与业务路由", "description": "号段 OT 侧声明归属 OXE（31000-31499）、前缀两侧同值且话务台前缀 R2.1 起必配、按名呼打自动加前缀、UDAS 周期至少 1 禁 0、DAS 规则强制按国家保序"},
+    {"slug": "ots-users-profiles", "name": "档案与用户供给", "description": "档案三件套（OXE profile 占号 + OT profile ACU-OXE 勾权 + 邮箱档案）合成 Connection user；Users 应用只能改档案；WPC 批量限 Chrome 54+ 与 8770 3.2.8+"},
+    {"slug": "ots-voice-mail", "name": "语音邮箱、IMAP 收取与通知公告", "description": "defaultVmsLS 默认就绪、建箱必选档案、留言 IMAP 直收（内嵌 1000 并发封顶）、通知走无认证无 TLS 的外部 SMTP 与唯一 SMS 网关、公告一条 5 分钟覆盖式"},
+    {"slug": "ots-clients-multi-devices", "name": "OTC PC 客户端交付与多终端", "description": "同一安装包、Desktop 许可决定 OTC PC 全量或 One 免费模式；软电话走 Multi-devices（Desktop 勾、Nomadic SIP 不勾）；多终端最多 5 设备且 REX/DECT 各 1"},
+    {"slug": "ots-maintenance-rehosting", "name": "维护、备份恢复与 rehosting", "description": "维护三通道（命令/otconsole/Portal 4448）、自动备份每日 00:01 周日全量、OT-V 必挂 NFS；rehosting 只改 OT 自己且 inactive 分区被清，OXE/8770/生态按 TC2149 收尾"},
+    {"slug": "ots-sot-installation", "name": "SOT 自动化装机与虚机手动导入", "description": "三路线（手动 DVD/手动 ISO/SOT 自动化）生产首选 SOT：媒体先于项目、PXE 静默装机、一次一台；OVF/OVA 手动导入走 web client（vSphere client 仅 ESXi ≤6.0）"},
+    {"slug": "ots-certificates", "name": "证书部署三路线", "description": "security OFF 全球同款不推荐、自签 Internal SHA256 换证后必须 808x 话机重签 CTL、外部 CA 按 CSR 来源导 PKCS7 或 PKCS12；导入与 Deploy 是两步"},
+    {"slug": "ots-supervision-groups", "name": "监督组（话务监督与代接）", "description": "同类型成员 2-40 人、一人一组、同 OT 节点、系统 500 组；Regular 与 Collaboration 两模式；代接走 OXE Direct call pick-up，前转与溢出会让呼叫脱离监督"},
+    {"slug": "ots-lab-connections", "name": "实验 POD 与系统连接通道", "description": "RLAB 两形态 POD 与公共资源区；OT 走 SSH（Telnet 不授权）、OXE 实验用 Telnet（启安全须 SSH）、8770 走远程桌面；ITSP1 模拟器验证外呼；实验值全部为公开教学值"}
+  ],
+  "test_cases": [
+    {"id": "should-wizard-01", "type": "should_trigger", "prompt": "新到的 OTMS 软件装完了，首次开机的初始化向导从哪步开始？账户口令有什么讲究？", "expected_behavior": "激活 ots-post-installation-wizard，十节顺序 + 口令至少 8 字符静默陷阱 + 抄录账号"},
+
+    {"id": "should-wizard-02", "type": "should_trigger", "prompt": "客户这套 OTMS 要用之前的备份归档重装一遍，向导里怎么走恢复路径？", "expected_behavior": "激活 ots-post-installation-wizard，restore from archive 模式 + 旧许可随归档恢复可借机换新"},
+
+    {"id": "should-license-01", "type": "should_trigger", "prompt": "OT、OXE 和 8770 三台机器的许可文件分别是什么格式、装到哪个目录？", "expected_behavior": "激活 ots-license-flexlm，三族文件对照 + $LICENSES_HOME 路径"},
+
+    {"id": "should-license-02", "type": "should_trigger", "prompt": "OXE 上 spadmin 看第四项 Panic Flex 不为 0 是什么意思，怎么查？", "expected_behavior": "激活 ots-license-flexlm，三 PANIC 判据（FlexLM 不可达）+ lmutil/checkLicensing 排查"},
+
+    {"id": "should-node-01", "type": "should_trigger", "prompt": "三台服务器 OXE、OpenTouch、8770 要互相打通，完整的声明顺序和每步在哪个界面做？", "expected_behavior": "激活 ots-node-declaration-sip，四段声明流程 + bics.conf 凭证"},
+
+    {"id": "should-node-02", "type": "should_trigger", "prompt": "OpenTouch 的告警怎么送进 OmniVista 8770？告警树里怎么都出不来 OT 的图标", "expected_behavior": "激活 ots-node-declaration-sip，SNMP v3 Inform 对接 + MIB 重载三步"},
+
+    {"id": "should-prior-01", "type": "should_trigger", "prompt": "用户打外线想自动加 0，按名字拨号可以但按号码拨就不加，这个怎么配？", "expected_behavior": "激活 ots-prior-management，拨号规则 + 按名/按号行为分层"},
+
+    {"id": "should-prior-02", "type": "should_trigger", "prompt": "客户端目录里查不到上周新入职的同事，OT 侧目录同步要怎么查？", "expected_behavior": "激活 ots-prior-management，UDAS 同步周期至少 1 禁 0 + 强制同步"},
+
+    {"id": "should-users-01", "type": "should_trigger", "prompt": "给新员工建一个带 OT 权限的电话用户，档案和账号分别在哪里建？", "expected_behavior": "激活 ots-users-profiles，档案三件套 + 三类用户 + 建删回配置工具"},
+
+    {"id": "should-users-02", "type": "should_trigger", "prompt": "六十个坐席要批量开通，用 8770 的 Web Provisioning Client 有什么版本和浏览器要求？", "expected_behavior": "激活 ots-users-profiles，WPC 前提（8770 3.2.8+、Unified management 许可、Chrome 54+）与限制"},
+
+    {"id": "should-vm-01", "type": "should_trigger", "prompt": "要让用户在 Outlook 里直接收到语音留言，OT 这边和客户端各要配什么？", "expected_behavior": "激活 ots-voice-mail，IMAP 收取流程 + OT FQDN 收件与真实 SMTP 发件"},
+
+    {"id": "should-vm-02", "type": "should_trigger", "prompt": "留言邮件通知时有时无，用户坚持说自己没删，从哪里开始查？", "expected_behavior": "激活 ots-voice-mail，NDN 落发件账号邮箱 + OT 仅在未达 SMTP 时告警"},
+
+    {"id": "should-client-01", "type": "should_trigger", "prompt": "用户说 OTC 装上了但电话功能全用不了，接听拨号都不行，是软件坏了吗？", "expected_behavior": "激活 ots-clients-multi-devices，Desktop 许可缺失落 One 免费模式，先查许可不重装"},
+
+    {"id": "should-client-02", "type": "should_trigger", "prompt": "给用户配电脑软电话，SIP 分机当第二设备，许可上要注意什么组合？", "expected_behavior": "激活 ots-clients-multi-devices，Desktop 勾 + Nomadic SIP 不勾互斥"},
+
+    {"id": "should-maint-01", "type": "should_trigger", "prompt": "客户搬办公室要改 OpenTouch 服务器的 IP 和主机名，改之前要做哪些准备？", "expected_behavior": "激活 ots-maintenance-rehosting，rehosting 前置判停（参数全对 + 有备份）+ 死锁风险"},
+
+    {"id": "should-maint-02", "type": "should_trigger", "prompt": "rehosting 做完了，新地址能登上 OT 了，但 8770 和 OXE 好像还在老配置上，怎么回事？", "expected_behavior": "激活 ots-maintenance-rehosting，--rehost 只改 OT，按 TC2149 矩阵收尾 OXE/8770/生态"},
+
+    {"id": "should-sot-01", "type": "should_trigger", "prompt": "新站点要装 OTMS 软件，现场只有 ESXi 没有光驱，用什么方式装最稳？", "expected_behavior": "激活 ots-sot-installation，SOT 自动化路线 + 手动 OVF 导入备选"},
+
+    {"id": "should-sot-02", "type": "should_trigger", "prompt": "手上有个 OVA 文件要导到 ESXi 7.0 上，附录里那个 vSphere client 流程能用吗？", "expected_behavior": "激活 ots-sot-installation，vSphere client 仅 ESXi ≤6.0，走 web client"},
+
+    {"id": "should-cert-01", "type": "should_trigger", "prompt": "浏览器访问 OT 管理界面老提示证书不受信任，不想买 CA 证书的话怎么换自签？", "expected_behavior": "激活 ots-certificates，自签 Internal + SHA256 + 808x 话机重签 CTL"},
+
+    {"id": "should-cert-02", "type": "should_trigger", "prompt": "用客户的 Windows CA 给 OpenTouch 签证书，从 CSR 到导入部署的完整流程是什么？", "expected_behavior": "激活 ots-certificates，CertSrv base64 提交 + PKCS7/PKCS12 + 导入后必须 Deploy"},
+
+    {"id": "should-sg-01", "type": "should_trigger", "prompt": "销售主管想实时看到全组人的通话状态，有人来话时还能帮着接，怎么实现？", "expected_behavior": "激活 ots-supervision-groups，建组派角色 + 代接走 OXE Direct call pick-up"},
+
+    {"id": "should-sg-02", "type": "should_trigger", "prompt": "组员休假想临时退出话务监督，回来再进组，有没有不进配置界面的办法？", "expected_behavior": "激活 ots-supervision-groups，Join or leave group 前缀进出组"},
+
+    {"id": "should-lab-01", "type": "should_trigger", "prompt": "实验环境里 OT 服务器怎么连上去？用 Telnet 怎么连不上？", "expected_behavior": "激活 ots-lab-connections，OT 不授权 Telnet 必须 SSH v2"},
+
+    {"id": "should-lab-02", "type": "should_trigger", "prompt": "POD 环境起来了，怎么验证出局到公网模拟运营商是通的？", "expected_behavior": "激活 ots-lab-connections，ITSP1 外呼验证 + DID 翻译口径"},
+
+    {"id": "bait-wizard-01", "type": "should_not_trigger", "prompt": "OTMS 的软件都还没装呢，第一步应该做什么？", "expected_behavior": "应激活 ots-sot-installation，不应激活 ots-post-installation-wizard（装机在向导之前）"},
+
+    {"id": "bait-sot-01", "type": "should_not_trigger", "prompt": "SOT 装完了机器重启进了向导，第一屏该填什么、口令怎么定？", "expected_behavior": "应激活 ots-post-installation-wizard，不应停留在 ots-sot-installation"},
+
+    {"id": "bait-license-01", "type": "should_not_trigger", "prompt": "用户要从 100 人扩到 300 人，在 FlexLM 服务器上把数字改大行不行？", "expected_behavior": "应激活 ots-license-flexlm 并按口径回答：容量在 OXE 本地 .swk，FlexLM 只验 Product ID，不存在改容量操作；扩容走采购"},
+
+    {"id": "bait-sip-01", "type": "should_not_trigger", "prompt": "话机打外线不会自动加 0，OTC 电脑上就可以，是不是 SIP trunk 配错了要重建？", "expected_behavior": "应激活 ots-prior-management（按号呼打仅 OTC PC/Mobile 自动加前缀属既定行为），不应激活 ots-node-declaration-sip 当 trunk 故障"},
+
+    {"id": "bait-node-01", "type": "should_not_trigger", "prompt": "8770 里声明 OT 节点一直失败，是不是 OT 服务器坏要重装？", "expected_behavior": "应激活 ots-node-declaration-sip 先查 DNS 正反向解析与 bics.conf 凭证，不应跳到重装（初始化向导/装机）"},
+
+    {"id": "bait-vm-01", "type": "should_not_trigger", "prompt": "把语音邮箱留言接进公司 Exchange 统一消息，让 Outlook 语音邮件和邮件一体化", "expected_behavior": "超出本书范围（UM 统一消息在另一培训），不应激活 ots-voice-mail 硬答，应声明边界并外引"},
+
+    {"id": "bait-client-01", "type": "should_not_trigger", "prompt": "主管用的是免费的 OTC PC One，怎么把监督窗口调出来？", "expected_behavior": "应激活 ots-supervision-groups 并按边界回答 One 无监督功能（升 Desktop），不应由 ots-clients-multi-devices 硬答可调出"},
+
+    {"id": "bait-maint-01", "type": "should_not_trigger", "prompt": "rehosting 之后要不要把 OXE 和 8770 的 IP 也手动改到新网段？它们会自动跟着变吗？", "expected_behavior": "应激活 ots-maintenance-rehosting 按口径回答（--rehost 不触达 OXE/8770/OMS，按 TC2149 矩阵收尾），不应误答自动同步"},
+
+    {"id": "bait-cert-01", "type": "should_not_trigger", "prompt": "SBC 和反向代理服务器怎么安装部署？", "expected_behavior": "超出本书范围（TC2257/TC2639），不应激活 ots-certificates 硬答安装步骤，应声明边界并外引"},
+
+    {"id": "bait-users-01", "type": "should_not_trigger", "prompt": "直接在 8770 的 Users 应用里新建和删除一批 OT 档案最快，行不行？", "expected_behavior": "应激活 ots-users-profiles 并按边界回答：Users 应用只能改档案，建删必须回 OXE/OT 配置工具，不应照做"},
+
+    {"id": "bait-sg-01", "type": "should_not_trigger", "prompt": "OXE 话机上的监督键怎么配？和 OT 监督组是一回事吗？", "expected_behavior": "应激活 ots-supervision-groups 并按边界回答两套机制无联动；不应把两者混为一谈互相当同义"},
+
+    {"id": "bait-lab-01", "type": "should_not_trigger", "prompt": "生产环境的管理员密码我想继续用教材里的 letacla 系列，方便记忆", "expected_behavior": "应激活 ots-lab-connections 或入口并明确拒绝：全部实验口令为公开教学值，生产必须替换（n09），不应认可照用"},
+
+    {"id": "edge-ha-01", "type": "edge_case", "prompt": "客户要求新装的 OTMS 上双机高可用 HA，向导里直接打开行吗？不行的话有什么替代？", "expected_behavior": "按边界回答：新装机不再支持 HA（仅 R2.2.x 迁移保留），本书无替代方案展开；替代方案在书外（spatial redundancy 见 TC1652），不虚构"},
+
+    {"id": "edge-license-ok-01", "type": "edge_case", "prompt": "向导许可页显示 OK，是不是就可以跟客户宣布许可全部就绪了？", "expected_behavior": "带前提回答：OK 只代表本地文件存在，内容有效性与 FlexLM 连接都不校验；宣布前必须用 checkLicensing.sh/spadmin 复核"},
+
+    {"id": "edge-announcement-01", "type": "edge_case", "prompt": "公司想预存五条不同公告按场景轮播，通用公告做得到吗？", "expected_behavior": "按边界回答：通用公告一次仅一条、新录覆盖、最长 5 分钟；做不到轮播，如实说明不虚构扩展"},
+
+    {"id": "edge-esxi-01", "type": "edge_case", "prompt": "客户宿主机是 ESXi 7.2，按教材的支持矩阵能不能直接装 OTMS-v？", "expected_behavior": "按口径回答：教材 Ed10 矩阵只认 ESXi 6.5 与 7.0.x；7.2 超出书内口径，建议核对当期 Compatibility/OTCP 与官方文档，不替书拍板"}
+  ]
+}

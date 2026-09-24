@@ -1,0 +1,43 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\otcc-agent-supervisor-onboarding.md": "baf97177ad2f3701689e1a8801f89852333839cbaf1989afed86421334a0e479",
+    "references\\capabilities\\otcc-ccd-matrix-foundation.md": "6c3d410d515daf09bcaf56b60c405c05f860dde4f04c46733b23e072fd3afc60",
+    "references\\capabilities\\otcc-ccs-installation.md": "d7f13c0c2f2b158c69e8647498dd94c1b3ab2d25a0ba2b05718af94451532981",
+    "references\\capabilities\\otcc-direct-calls-emergency.md": "b807a2e29a563c3f8c5d58721eeef8030b1f6f46312e8c2951e39791ffad3da1",
+    "references\\capabilities\\otcc-lab-connectivity.md": "bce298e5570fa2f06fa0ac0f610ab7210c5ea532533374185e8d1512e91c7c15",
+    "references\\capabilities\\otcc-monitoring-statistics.md": "dc7615a9691e469450dc2475d0f2bb67eac0181bf3871802054508a7b6ddf89a",
+    "references\\capabilities\\otcc-multilanguage-calendar.md": "41f75ff25719bdba5b1bd3aeb5b023d49bec58591b95cb366eb4b550ff7ffaa1",
+    "references\\capabilities\\otcc-object-tuning.md": "584243d0cbf4a5ef4490f63bd6a589995975dd2ccbae48f85fa212a908b1f012",
+    "references\\capabilities\\otcc-queue-experience.md": "54889c17af562f09925021e50c228edcc774db7a87c1dfb9354443f88b85bc70",
+    "references\\capabilities\\otcc-routing-distribution-rules.md": "7be948d28c9ae09c4d66cbf484f03119b8d2aed6c7749501e145fd77426ac497",
+    "references\\capabilities\\otcc-statistic-pilot.md": "56bc976e15dff987af402abb328a1bf07e7a6160baf7fdca89c2da076ebaaf3f",
+    "references\\capabilities\\otcc-supervisor-features.md": "4fcb77ac05b768183f98bbd7a7382c801147013f6911f50789029ecfe7a3f081",
+    "references\\capabilities\\otcc-voice-guides.md": "954fd9024c2ea2bf072187c9a378dc0c3159a441d3518f4c67173e6634714390",
+    "references\\capability-index.md": "563c81693a97fc1c28be34628a6a39eca674a1e5fabfbfe6af9b01c69cef2271",
+    "references\\cheatsheet.md": "868f53e04d14b5910a9033907fee99e8989324a0f40b3c2fd194da8abc58d4e5",
+    "references\\glossary.md": "b6682ec7a4f1e25b94f4d722c5cec1c87712ff177d96febfbfbcd3ca91ae1cc1",
+    "references\\overview.md": "4677d2d9e56e87ae73b60328bfcc224ad18a79437186d690b1704a6ed66bb8f8",
+    "SKILL.md": "0ffd8c80ecbee7e955ec07fe61310988b7eaad61c3968a6e72aefd7bb669e2c3"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.otcc-standard-starter",
+  "bundle_sha256": "1761805083a8f2345ab907eb39981a6d6ffbbb188a689d826e33b7fce692332e",
+  "variant": "single",
+  "run_id": "run-20260924-200010-8b6177",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 13,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

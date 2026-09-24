@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>VLAN 与 VLAN 间路由</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniSwitch LAN Access Switching</h2><p>Edition 23 · 587 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/dt00xte215en/index.html">课程首页</a><a href="/courses/dt00xte215en/digest.html">精华长文</a><a href="/courses/dt00xte215en/overview.html">教书理解</a><a href="/courses/dt00xte215en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/dt00xte215en/skills/swl2-aaa-hardening.html">交换机登录接入与 AAA 管理面加固</a><a href="/courses/dt00xte215en/skills/swl2-lightning-config.html">Lightning Config 快速开局</a><a href="/courses/dt00xte215en/skills/swl2-config-lifecycle.html">配置生命周期（保存/认证/回滚/备份）</a><a href="/courses/dt00xte215en/skills/swl2-virtual-chassis.html">Virtual Chassis 堆叠</a><a href="/courses/dt00xte215en/skills/swl2-vlan-routing.html">VLAN 与 VLAN 间路由</a><a href="/courses/dt00xte215en/skills/swl2-link-redundancy.html">链路与生成树冗余（LAG/STP/DHL）</a><a href="/courses/dt00xte215en/skills/swl2-l3-services.html">三层服务与网关冗余（DHCP/Loopback0/静态路由/VRRP）</a><a href="/courses/dt00xte215en/skills/swl2-qos-acl-policy.html">QoS 与 ACL 策略</a><p class="course-nav-group">路由能力</p><a href="/courses/dt00xte215en/skills/swl2-access-guardian.html">Access Guardian 接入认证</a><a href="/courses/dt00xte215en/skills/swl2-diagnostics.html">诊断工具箱八件套</a><a href="/courses/dt00xte215en/skills/swl2-lldp-poe.html">LLDP/LLDP-MED 与 PoE 管理</a><a href="/courses/dt00xte215en/skills/swl2-upgrade-autofabric.html">软件升级与 Auto-Fabric 零触开局</a><a href="/courses/dt00xte215en/skills/swl2-fleet-tools.html">资产与装机工具（Fleet Supervision/OST）</a><p class="course-nav-group">已安装技能</p><a href="/courses/dt00xte215en/index.html">omniswitch-lan-access（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/dt00xte215en/index.html">DT00XTE215EN</a><span>/</span><span aria-current="page">VLAN 与 VLAN 间路由</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>VLAN 与 VLAN 间路由</h1></div><dl><div><dt>Skill ID</dt><dd>swl2-vlan-routing</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>VLAN 与 VLAN 间路由（三入口、UNP 分类、802.1Q、IP 接口）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Ports become members of VLANs by • Static Configuration • Mobility/with or without Authentication • 802.1q"（p185）
+"UNP Port classification rules 1. Port/Linkagg 2. Domain 3. MAC address 4. MAC-OUI 5. MAC address range 6. LLDP 7. Auth-type 8. IP address 9. VLAN tag"（p189）
+"IP interfaces are associated with VLANs • IP routing is active as soon as at least one IP interface is associated with a VLAN"（p195）
+"The first interface bound to a VLAN becomes the primary interface for that VLAN."（p348）</p>
+</blockquote>
+<p>出处：DT00XTE215EN p183-214, p291-297, p345-348。</p>
+<h2>I — 自述</h2>
+<p>端口进 VLAN 有三条通道，路由由 IP 接口绑定 VLAN 触发：</p>
+<ol>
+<li><strong>静态</strong>：vlan <id> 建、members port untagged/tagged 挂口、支持批量（vlan 10-15 100-105）；VLAN 1 不可删只可禁（p187/p205/p213）</li>
+<li><strong>动态 UNP</strong>：按流量特征把移动口分入 VLAN；九条简单规则按编号即优先级，绑定规则=多条件 AND，扩展规则=命名列表+precedence；生效序 Extended &gt; Binding &gt; Simple；UNP 口启用而认证关闭/失败时应用分类规则（p189-192）</li>
+<li><strong>802.1Q</strong>：一条链路承载多 VLAN——端口默认 VLAN 未打标桥接，其余 VLAN 打标共链；4096 个 tag、802.1p 三位 8 级优先级、硬件实现（p199/p292/p295）</li>
+<li><strong>IP 接口与路由</strong>：ip interface <name> address <ip/mask> vlan <id> 充当网段网关；≥1 个 IP 接口即激活 IP 路由；第一个绑定该 VLAN 的接口为主接口；VLAN 无活动成员则其 IP 接口 DOWN、不回 PING、不进路由通告（二层广播域不受影响）</li>
+<li><strong>监控</strong>：show vlan / show vlan members / show vlan members port；show ip interface / show ip routes（LOCAL 路由自动生成）</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>VLAN 与路由实验</strong>（p204-214，How-To）：</p>
+<ol>
+<li>查默认态：show vlan 仅 VLAN 1，show vlan members 全部口 inactive</li>
+<li>建 IP 接口：ip interface int_1 address 192.168.10.5/24，show 显示 Device=unbound</li>
+<li>绑定 VLAN：ip interface int_1 vlan 1（可与建址一步合并）</li>
+<li>激活端口：interfaces 1/1/1 admin-state enable，端口变 forwarding、int_1 变 UP</li>
+<li>Client 5 设 192.168.10.105/24 网关 192.168.10.5，ping 网关验证</li>
+<li>建 VLAN 50 并绑 int_50：未挂成员时接口 DOWN（实验思考题），挂口 enable 后 UP</li>
+<li>Client 9 ping Client 5 验证跨 VLAN 路由，show ip routes 出现两条 LOCAL 路由</li>
+<li>动态 VLAN：vlan 40 + unp profile employee map vlan 40 + unp classification mac-address <Client6 MAC> + unp port 2/1/1 port-type bridge</li>
+<li>unp user flush 后 show unp user 显示 VLAN 40/employee/Active，端口出现 40 unpUntag forwarding</li>
+<li>清理：逐条 no 掉 UNP 分类/端口/档案与 VLAN/IP 接口，复查 snapshot 为空、端口回 VLAN 1</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：按部门隔离二层；交换机间单链跑多 VLAN；新建网关接口 DOWN；按 MAC/位置把终端动态分 VLAN；跨 VLAN 不通；弃用 VLAN 1。</p>
+<p>语言信号：VLAN / vlan members / untagged / tagged / 802.1Q / trunk / 默认 VLAN / UNP / 动态 VLAN / 分类规则 / mac-address 分类 / ip interface / 网关 / VLAN 间路由 / LOCAL 路由 / int DOWN。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>网关冗余与 DHCP 取址：三层服务能力卡</li>
+<li>端口收 BPDU 关闭等用户口安全：QoS 与 ACL 策略能力卡</li>
+<li>认证驱动的动态入网：Access Guardian 能力卡</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：VLAN 规划表（编号/命名/成员口）、IP 编址（每 VLAN 网段与网关地址）、动态分类的匹配特征（MAC/IP/端口）。802.1Q 链路两端规划必须一致。</p>
+<ol>
+<li>建 VLAN：vlan <id>（可批量）+ name；规划弃用 VLAN 1 时改用业务 VLAN 作链路默认 VLAN。完成标准：show vlan 列表正确</li>
+<li>挂成员：静态口 members port untagged/tagged；互联口把业务 VLAN 置 tagged、默认 VLAN 保持桥接。完成标准：show vlan members 与规划一致</li>
+<li>绑网关：ip interface address vlan 一步完成；确认至少一个成员口 enable。完成标准：接口 UP 且 show ip routes 出现 LOCAL</li>
+<li>连通验证：终端 ping 网关，再跨 VLAN ping 验证路由。完成标准：三层可达</li>
+<li>动态入网（按需）：unp profile map vlan + unp classification 规则 + unp port port-type bridge，flush 后验证。完成标准：show unp user 命中档案</li>
+<li>固化：write memory（VC 用 flash-synchro）。完成标准：配置已保存</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>新建 VLAN 网关接口 DOWN → 首查 VLAN 无活动成员口，enable 成员或确认对端连接后再排路由</li>
+<li>想删除 VLAN 1 → 不可能，只能禁用；改用业务 VLAN 承载并调整链路默认 VLAN</li>
+<li>互联口状态显示 tagged blocking → 端口状态取决于 STP 根桥选举，"每 POD 不同"属预期，先查生成树而非 VLAN 配置</li>
+<li>认证场景要按 RADIUS 下发 VLAN → 转 Access Guardian 能力卡（Filter-Id 机制），不要用简单分类规则硬凑</li>
+</ul>
+<p>输出契约：按规划生效的 VLAN 与网关（接口 UP、路由可达）+ 动态分类规则清单（如适用）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>物理端口永远保留一个默认 VLAN 做二层桥接，不存在"全部打标"模式；防默认 VLAN 过 trunk 就换业务 VLAN（p295）</li>
+<li>UNP 简单规则九条的编号即优先级；扩展规则列表内设备须匹配全部规则（p189-192）</li>
+<li>UNP 的认证分支（Filter-Id 下发）在 Access Guardian 能力卡；本卡只覆盖非认证分类</li>
+<li>802.1p 与 DSCP 的标记改写语义（信任口/非信任口）在 QoS 与 ACL 策略能力卡</li>
+<li>实验 VLAN 编号与客户端 IP 规则（192.168.x.10N）为实验口径，生产按客户编址</li>
+<li>VLAN 数量上限 4096 为 802.1Q 标准口径；型号相关规格差异查 Specification Guide</li>
+</ul><h2>相关能力</h2><p><a href="/courses/dt00xte215en/skills/swl2-access-guardian.html">Access Guardian 接入认证</a></p><p class="source-page">能力 ID：cap.swl2.vlan-routing · 来源：DT00XTE215EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniSwitch LAN Access Switching (Participant's Guide, Edition 23) | edition: Edition 23 | pages: 587 页 -->

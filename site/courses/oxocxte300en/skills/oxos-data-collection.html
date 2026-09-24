@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>交付前数据采集</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OXO Connect · Starter</h2><p>Edition 16 · 472 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte300en/index.html">课程首页</a><a href="/courses/oxocxte300en/digest.html">精华长文</a><a href="/courses/oxocxte300en/overview.html">教书理解</a><a href="/courses/oxocxte300en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte300en/skills/oxos-data-collection.html">交付前数据采集</a><a href="/courses/oxocxte300en/skills/oxos-commissioning.html">系统开通双路线与首次连接</a><a href="/courses/oxocxte300en/skills/oxos-terminals.html">终端开通（IP 话机与 DECT）</a><a href="/courses/oxocxte300en/skills/oxos-numbering-groups.html">编号计划与四种组</a><a href="/courses/oxocxte300en/skills/oxos-user-features.html">用户功能与语音信箱</a><a href="/courses/oxocxte300en/skills/oxos-sip-trunk.html">公共 SIP 中继</a><a href="/courses/oxocxte300en/skills/oxos-incoming-barring.html">呼入分发与呼出闭锁</a><a href="/courses/oxocxte300en/skills/oxos-maintenance.html">备份恢复、软件升级与复位</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte300en/skills/oxos-hardware-platform.html">硬件平台与容量</a><a href="/courses/oxocxte300en/skills/oxos-audio-messages.html">消息与彩铃</a><a href="/courses/oxocxte300en/skills/oxos-security.html">安全基线与防盗打</a><a href="/courses/oxocxte300en/skills/oxos-rainbow-integration.html">Rainbow 混合云接入速览</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte300en/index.html">oxo-connect-starter（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte300en/index.html">OXOCXTE300EN</a><span>/</span><span aria-current="page">交付前数据采集</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>交付前数据采集</h1></div><dl><div><dt>Skill ID</dt><dd>oxos-data-collection</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>交付前数据采集（安装输入清单）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Data collection gathers customer needs, information on its ecosystem and the functionalities to be implemented."（p43）
+"Ecosystem • OXO Connect Evolution: • Eth0: 192.168.1.246 • Eth1: 192.168.94.246 • PC: 192.168.1.10 • DNS: 192.168.1.250 • DHCP phones/xBS: 192.168.1.10 to 69 • Default router address: 192.168.1.254"（p44）
+"Outgoing calls • Users can dial 9 to exit • 1 user will not be authorized • International calls and special numbers will not be allowed"（p49）</p>
+</blockquote>
+<p>出处：OXOCXTE300EN p43-49（采集讲义七页，全部为实验口径样例值）。</p>
+<h2>I — 自述</h2>
+<p>交付从数据采集开始：先把客户输入定死，再动配置。清单七块：</p>
+<ul>
+<li><strong>生态 IP 规划</strong>：OXO Eth0/Eth1、管理 PC、DNS、话机与基站 DHCP 池、默认网关</li>
+<li><strong>FTR 三参考值与终端清单</strong>：Partner fleet / Sub-fleet / Installation reference；IP 话机、DECT 基站与手柄数量</li>
+<li><strong>七个系统账户密码表</strong>：Attendant / Administrator / Installer / Download / NMC / ACD / Users，逐客户必不同</li>
+<li><strong>编号计划</strong>：内部分机段、话务台号、主中继组号、hunt group 段、DDI 段与 Base 映射</li>
+<li><strong>语音信箱要求</strong>：信箱模式（Standard/Guest/Answer-only）、是否录音监听、建删需求</li>
+<li><strong>组与可编程键</strong>：hunt/代接/广播/经理-秘书组的成员与权限、每话机按键需求</li>
+<li><strong>呼入呼出与运维前提</strong>：话务台组与时段、欢迎/预公告、SIP 参数、出局限制（谁可外呼/国际与特服）、Rainbow 前提（公司与管理员已定）、备份周期与升级计划</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>采集样例（p43-49，实验口径）</strong>：</p>
+<ol>
+<li>生态：Eth0 192.168.1.246、Eth1 192.168.94.246、PC 192.168.1.10、网关 .254、DNS .250、DHCP 池 .10-.69</li>
+<li>终端：4 台 IP 话机、1 台 xBS 基站、1 支 DECT 手柄（实验口径）</li>
+<li>密码表：七账户逐一定义（如 Installer=Alcatel1、Attendant=Letacla1，实验口径）</li>
+<li>编号：三位计划——分机 100-199、话务台 0、主中继组 0、hunt 500-525、DDI 41100-41199</li>
+<li>信箱：1 个 answer-only、1 个可录音带实时监听、按需建删</li>
+<li>组：hunt 501 含 3 话机、代接组 3 话机、广播组 1 发 2 收、经理-秘书组一对</li>
+<li>呼入：2 个话务台组+默认组 8，时段 8-19 组 1、19-8 组 2，欢迎预公告</li>
+<li>呼出：拨 9 出局、1 用户无外呼权、国际与特服禁、部分用户须经话务台</li>
+<li>Rainbow：将接 Rainbow 含网关，公司已建、管理员已定</li>
+<li>维护：1 个自动周期备份、版本升级计划</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新项目开工前的输入表；客户需求调研纪要转安装数据；投标澄清编号与权限口径；换经销商接手存量系统补档案。</p>
+<p>语言信号：数据采集 / data collection / 安装前准备 / IP 规划 / 编号计划 / 密码表 / 需求清单 / 呼入呼出需求。</p>
+<p>与相邻能力区分：清单定稿后的系统开通 → 开通能力；编号段的具体落库 → 编号计划与组能力。本能力到"客户安装数据表成文"为止。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户需求调研纪要、现有网段与号码资源、运营商参数（生产）。客户需求未澄清 → 判停先补调研（调研方法论在书外）。</p>
+<ol>
+<li>填生态 IP 表：OXO 两口/PC/DNS/DHCP 池/网关。完成标准：无地址冲突且与客户网段协调</li>
+<li>填三参考值与终端清单。完成标准：FTR/向导可直接照抄</li>
+<li>定七账户密码：每客户唯一、管理密码 8 位含大小写与数字。完成标准：密码表成文且不入明文流转</li>
+<li>定编号计划：分机段/话务台/主中继组/hunt 段/DDI 与 Base。完成标准：无段冲突、预留扩展空间</li>
+<li>定组与按键：四类组成员、权限、话机键位。完成标准：与客户业务对得上</li>
+<li>定呼入呼出：话务台组与时段、预公告、出局权限矩阵。完成标准：业务口径书面确认</li>
+<li>登记运维与云前提：备份周期、升级计划、Rainbow 公司与订阅状态。完成标准：交付检查表闭环</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户对编号/权限口径未确认 → 不进入配置，避免整库返工</li>
+<li>运营商 SIP 参数未到手 → SIP 网关章不排期</li>
+<li>Rainbow 公司未由 BP 建 → 接入章挂起（权责在 BP 侧）</li>
+</ul>
+<p>输出契约：客户安装数据表（七块齐备）+ 密码管理口径（脱敏流转）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>本卡全部样例值（IP/密码/号码）为实验口径，生产按客户真实数据整体替换</li>
+<li>真实客户需求调研方法论在书外；书内只给"采什么"不给"怎么谈"</li>
+<li>安装号与话务员 DDI 的实验值在书内存在两处口径（见 needs-review nr-02），引用时按所在章节并标注实验口径</li>
+<li>密码表属敏感信息：交付文档中只留占位与负责人，不留明文（原书样例明文印刷，不得照搬）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte300en/skills/oxos-commissioning.html">系统开通双路线与首次连接</a>、<a href="/courses/oxocxte300en/skills/oxos-numbering-groups.html">编号计划与四种组</a></p><p class="source-page">能力 ID：cap.oxos.data-collection · 来源：OXOCXTE300EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OXO Connect Starter (Participant's Guide, Edition 16) | edition: Edition 16 | pages: 472 页 -->

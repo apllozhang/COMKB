@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>许可体系与 FlexLM（安装、核查、外部切换）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch · Starter</h2><p>Edition 10 · 603 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte300en/index.html">课程首页</a><a href="/courses/openxte300en/digest.html">精华长文</a><a href="/courses/openxte300en/overview.html">教书理解</a><a href="/courses/openxte300en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte300en/skills/ots-post-installation-wizard.html">OTMS 初始化向导（两模式十节）</a><a href="/courses/openxte300en/skills/ots-license-flexlm.html">许可体系与 FlexLM（安装、核查、外部切换）</a><a href="/courses/openxte300en/skills/ots-node-declaration-sip.html">双向节点声明与 SIP 打通（含告警对接）</a><a href="/courses/openxte300en/skills/ots-prior-management.html">Prior management（号码段、前缀、拨号规则、UDAS、会议桥）</a><a href="/courses/openxte300en/skills/ots-users-profiles.html">档案与用户供给（三类用户、WPC 批量）</a><a href="/courses/openxte300en/skills/ots-voice-mail.html">语音邮箱、IMAP 收取与通知公告（Local Storage）</a><a href="/courses/openxte300en/skills/ots-clients-multi-devices.html">OTC PC 客户端交付与多终端</a><a href="/courses/openxte300en/skills/ots-maintenance-rehosting.html">维护、备份恢复与 rehosting（TC2149 矩阵）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte300en/skills/ots-sot-installation.html">SOT 自动化装机与虚机手动导入</a><a href="/courses/openxte300en/skills/ots-certificates.html">证书部署三路线</a><a href="/courses/openxte300en/skills/ots-supervision-groups.html">监督组（话务监督、进出组与代接）</a><a href="/courses/openxte300en/skills/ots-lab-connections.html">实验 POD 与系统连接通道</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte300en/index.html">opentouch-starter（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte300en/index.html">OPENXTE300EN</a><span>/</span><span aria-current="page">许可体系与 FlexLM（安装、核查、外部切换）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>许可体系与 FlexLM（安装、核查、外部切换）</h1></div><dl><div><dt>Skill ID</dt><dd>ots-license-flexlm</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>许可体系与 FlexLM（三族文件、锚定物、核查与外部切换）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"OpenTouch license file: <OT license>.ice • OmniPCX Enterprise license file: software.swk ... <OXE license>.ice if OXE-v (Flexlm control) • OmniVista 8770 license file: xxx.sw8770"（p130）
+"IN OPENTOUCH, ALUID IS THE ELEMENT USED IN CASE OF PHYSICAL SERVER DEPLOYMENT (OTMS, OTMC) TO CONTROL THE LICENSE. USB DONGLE IS USED ONLY IN CASE OF VIRTUALIZATION."（p162）
+""PANIC flag" value must be "0" otherwise it means that the licenses are locked "Panic Flex" value must be "0" otherwise it means that the FlexLM server is unreachable"（p159）
+"For security reasons, the standard FTP protocol cannot be used for the license server. Copy the license file with SFTP (Secure FTP), or SCP"（p177）
+"Enter the command: ot-config.sh --external_flex ... The operation takes about 5 minutes."（p184-185）</p>
+</blockquote>
+<p>出处：OPENXTE300EN p128-185。</p>
+<h2>I — 自述</h2>
+<p>许可自成一体，四层结构：文件族、锚定物、FlexLM 形态、目录流转。三族文件对照：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>文件族</th>
+<th>文件</th>
+<th>适用产品</th>
+<th>校验方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.ice</td>
+<td><OT license>.ice</td>
+<td>OTMS / OTMS-v</td>
+<td>FlexLM：物理机锚 ALUID，虚拟机锚加密狗</td>
+</tr>
+<tr>
+<td>.ice</td>
+<td><OXE license>.ice</td>
+<td>OXE-v</td>
+<td>FlexLM 只验 Product ID（容量仍看本地 .swk）</td>
+</tr>
+<tr>
+<td>.swk</td>
+<td><offer ID>.swk</td>
+<td>OXE</td>
+<td>专有加密；物理机 CPUID 验证；容量口径的真正载体</td>
+</tr>
+<tr>
+<td>.sw8770</td>
+<td>改名 nmc.license</td>
+<td>OmniVista 8770</td>
+<td>8770 自查 handle，与 OXE .swk 内 Handle 4760 对应</td>
+</tr>
+</tbody>
+</table></div>
+<p>目录流转与生效条件：</p>
+<ul>
+<li>向导或手动把 .ice 放入 $LICENSES_HOME（内嵌 /var/data/licenses，外部 /opt/Alcatel-Lucent/data/licenses）</li>
+<li>Flexlm 服务启动时复制改名进 final_licenses，文件名含锚定物（ALUID_xxx、FLEXID_x-xxx、SERVERMACADDRESS_&lt;接口&gt; 或 ANY）</li>
+<li>OXE 的 .ice 另进 final_licenses/oxes；手动换文件后必须 service flexlmd stop/start 才生效</li>
+</ul>
+<p>核查三件套：</p>
+<ul>
+<li><strong>spadmin</strong>（OXE 控制台 mtcl）：选 1 看三个 PANIC 计数，全 0 才健康；选 2 读 Product-Id 与 Handle 4760。</li>
+<li><strong>lmutil</strong>（$FLEXLM_HOME 下）：lmstat 看服务 UP、lmstat -a 看各 FEATURE 已发与在用量、lmhostid -flexid 读加密狗 ID。</li>
+<li><strong>checkLicensing.sh</strong>：OT 与 FlexLM 两侧各跑一遍，输出主机信息、许可清单、活动测试与问题计数，并打包日志 zip。</li>
+</ul>
+<p>外部 FlexLM 三条规则：许可文件必须含 Dongle ID、OT ID、OXE 产品 ID 三要素；传输只许 SFTP/SCP（标准 FTP 被禁）；SFTP 落地在 /root，必须再移动进许可目录并重启 flexlmd。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>许可核查实验</strong>（p155-166）：</p>
+<ol>
+<li>向导装入 .ice 后核许可目录与 final_licenses 生成。</li>
+<li>OXE 也用 FlexLM 时，经 SFTP 把 OXE.ice 传到 OT 并复制进许可目录。</li>
+<li>root 执行 service flexlmd restart 并确认 oxes 子目录出现。</li>
+<li>OXE Webadmin 或 mgr 的 System/Licenses 配 FlexLM 字段。</li>
+<li>字段口径：Enabled=Yes、端口 27000、ProductID discovery=Yes、Use Flex License=No。</li>
+<li>改完 FlexLM 字段必须重启 OXE 才生效。</li>
+<li>mtcl 登录 OXE 跑 spadmin 选 1，三个 PANIC 计数应全为 0。</li>
+<li>spadmin 选 2 抄 Product-Id 与 Handle 4760，对应 .ice 的 FEATURE 行。</li>
+<li>物理机 getaluid 抄 ALUID；虚拟化用 lmhostid -flexid 读加密狗。</li>
+<li>OT 与 FlexLM 两侧各跑 checkLicensing.sh，问题计数应为 0。</li>
+</ol>
+<p><strong>外部 FlexLM 与切换</strong>（p167-185）：</p>
+<ol>
+<li>部署 FlexLM 虚机并配网络（OVF 从 My Portal 下载）。</li>
+<li>现场给 FlexLM 虚机挂 USB Device；内嵌 FlexLM 还需先挂 USB Controller。</li>
+<li>SFTP 传许可文件后从 /root 移入许可目录并重启 flexlmd。</li>
+<li>两侧跑 checkLicensing.sh 核验后，OT 上以 root 执行 ot-config.sh --external_flex。</li>
+<li>向导填外部 FlexLM 参数，Finish 后约 5 分钟完成。</li>
+<li>验证 checkAll.sh 全绿，必要时 service opentouchd restart。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：向导宣布"许可 OK"但不放心；spadmin 的 PANIC 计数不为 0；多台 OXE 共用一台 FlexLM；要外置许可服务器；rehosting 涉及换 FlexLM 形态。</p>
+<p>语言信号：FlexLM / .ice / .swk / sw8770 / nmc.license / ALUID / 加密狗 / dongle / spadmin / lmutil / checkLicensing / final_licenses / PANIC / 27000 / getaluid / 外部许可服务器。</p>
+<p>与相邻能力区分：向导内许可步骤 → 初始化向导能力；rehosting 里的许可联动 → 维护与 rehosting 能力；OXE 用户数扩容走 .swk 采购，FlexLM 上没有"改容量"的操作。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：许可文件与采购清单（.ice/.swk/.sw8770）；部署形态（物理/虚拟化）；FlexLM 形态（内嵌/外部）；OT root 与 OXE mtcl 访问权。</p>
+<ol>
+<li>对单：OT 用 .ice、OXE 用 .swk（OXE-v 另有 .ice）、8770 用 .sw8770 改名 nmc.license</li>
+<li>落位：内嵌放 /var/data/licenses；外部放 /opt/Alcatel-Lucent/data/licenses。完成标准：路径与形态匹配</li>
+<li>重启 flexlmd 并核 final_licenses 命名。完成标准：文件名含 ALUID/FLEXID/MAC 之一且与锚定物匹配</li>
+<li>OXE 配 FlexLM 字段并重启；spadmin 三计数全 0。完成标准：PANIC/Panic Flex/Panic SWK 均为 0</li>
+<li>深查：lmstat -a 看 FEATURE 用量；checkLicensing.sh 两侧跑并留 zip。完成标准：问题计数 0</li>
+<li>外部化切换：先装外部 FlexLM 并绑加密狗，再 ot-config.sh --external_flex。完成标准：checkAll.sh 全绿</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>许可 OK 但功能异常 → OK 只代表文件在，跑 checkLicensing.sh 与 spadmin 深查</li>
+<li>SFTP 后文件还在 /root → 没移进许可目录等于白传，补移动再重启 flexlmd</li>
+<li>第二台 OXE 想共用同一份许可 → 不行，checkout 即独占，按台数采购</li>
+<li>改了 OXE 的 FlexLM 字段"没生效" → 必须重启 OXE（p159）</li>
+<li>FlexLM 虚机想改系统语言 → 保持 CentOS 默认，勿改（p172）</li>
+</ul>
+<p>输出契约：许可健康结论（三计数、FEATURE 用量、锚定物匹配）+ final_licenses 清单 + 外部切换记录（如执行）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>实验口径（生产必须替换）：内嵌 FlexLM 即 OT 服务器 192.168.1.50；外部 FlexLM 虚机 192.168.1.80（flex.company.com），首登 root/letacla 强制改密。</li>
+<li>R-Lab 特例：许可锚 MAC 而非加密狗，跳过 USB 挂接；现场虚拟化必须加密狗（n10，见 needs-review nr-04）。</li>
+<li>容量口径（用户数、中继组）在 OXE 本地 .swk，FlexLM 只验 Product ID；OXE 亦可用 Cloud Connect 控制许可（p130/132，本书不展开）。</li>
+<li>License_release 值：10 对应 R2.4、11 对应 R2.5；R2.6.1 时代装新许可需核对文件内版本值（p154）。</li>
+<li>alchostid.cfg 为 OT-v 外部 FlexLM 场景的 OTID 节流文件，随 Flexlm 服务启动生成（p142-153）。</li>
+<li>rehosting 换 FlexLM 形态的许可适配走 eBP（Siebel 工单），有商务周期——详见维护与 rehosting 能力卡。</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte300en/skills/ots-post-installation-wizard.html">OTMS 初始化向导（两模式十节）</a>、<a href="/courses/openxte300en/skills/ots-maintenance-rehosting.html">维护、备份恢复与 rehosting（TC2149 矩阵）</a></p><p class="source-page">能力 ID：cap.ots.license-flexlm · 来源：OPENXTE300EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch — OpenTouch Suite for MLE — Solution Overview / Starter (Participant's Guide) | edition: Edition 10 | pages: 603 页 -->

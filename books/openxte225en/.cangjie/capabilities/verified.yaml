@@ -1,0 +1,675 @@
+schema_version: 1
+bundle_id: bundle.ot-mobility-remote-worker
+book:
+  title: OpenTouch — 移动与远程办公 (Participant's Guide)
+  author: ALE Training Services
+  source_pack: OPENXTE225EN.pdf (287 pages)
+  baseline_tag: OpenTouch Suite R2.6 / OTSBC 7.2 / RLAB
+entry:
+  name: ot-mobility-remote-worker
+  description: 'OpenTouch MLE 移动化与远程工作者交付支持：DMZ 双边缘架构（反代+OTSBC）与 DNS/端口规划、证书策略与自建 CA 签发、OpenTouch 服务器侧远程访问申报（RP/OTSBC/DAS/ACS）、
+    OTSBC 部署与向导配置、反向代理两路线（内嵌 RP 与 Nginx）、OTC PC 两模式（multi-devices 与 Nomadic SIP）、OTC 智能手机开通（自动对象与 DISA/ARS 联动）、iPhone+ APNS 推送专项。
+    适用于把 OpenTouch 通信服务安全开放到互联网的部署、选型与排障问答；生产容量数值、iPhone 完整手工配置与正式 PKI 流程不在原书范围内（见 out_of_scope）。
+
+    '
+  core_principles:
+  - 远程接入骨架是 DMZ 双边缘：反代管 HTTPS/Web 服务通道，OTSBC 管 SIP 信令与 RTP/SRTP 媒体；VPN 只是官方标注的技术替代方案
+  - 证书是硬前提：远程访问必须 CA 签发，预载"通用证书"（security off）被官方明确反对；会议服务 FQDN 必须进反代与 OT 服务器证书的 SAN
+  - DNS 内外分离：同一批 FQDN 内部解析到私网、公共 DNS 解析到反代/SBC 公网 IP；EVS 通知 URL 必须带 8016 端口
+  - 客户端侧两步法：接入配置（公共 URL+凭证）加路由档案（从哪拨/路由到哪）；手机发起拨打永远本机发话，dial from 不影响
+  - 版本分界：OTSBC 7.2 起可内嵌反代；OT 2.2 起 Nginx 必须 remoteworker.conf 与 conference.conf 同改；R2.6 起远程分机可做用户唯一设备
+  - 实验环境口径：教材域名/公网/口令/号码仅限实验，生产全量替换；容量数值（CAC/并发/带宽）全书缺位
+  out_of_scope:
+  - 容量与体验数值（CAC 阈值、并发用户规模、带宽、游牧池算例）——指向 TC2639、8AL90065USAG 或 ALE sizing 工具
+  - iPhone 完整手工配置（书内两处明示 not part of this lab，查 TC2639）与 APNS 证书 2022 后的续期机制
+  - 正式 PKI 流程、通配符证书合规性、生产安全基线（口令台账/SBC 加固/防火墙整站策略）
+  - 非 OpenTouch 平台与 OTES 旧代方案（OTES 自 OT 2.2 起不再是方案一部分）
+  stop_conditions:
+  - 需要生产容量数值或 sizing 结论 → 明确指向 TC2639/8AL90065USAG/sizing 工具，不以实验口径搪塞
+  - 需要 iPhone 手工配置清单 → 指向 TC2639（TC2341en 辅助），不虚构书内步骤
+  - 涉及 VPN 隧道/加密算法等替代方案细节 → 声明书内仅标"技术替代"，转客户网络规范
+  - 版本分界判定（OTSBC 7.2、OT 2.2、R2.6）→ 按系统实际版本区分配法，不把新配法套到老系统
+router_entry:
+  name: ot-mobility-remote-worker-router
+  description: 'OpenTouch 移动与远程办公 能力路由入口：按用户意图分发到 12 张能力卡——DMZ 双边缘架构、证书与 PKI、OT 服务器侧设置、OTSBC 部署、反向代理、
+    OTC PC 两模式、智能手机开通、iPhone APNS 八个 promoted 能力，以及客户端接入两步法、智能手机连接模式、VMware 虚机部署、实验环境与拨测四张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.otm.dmz-security-channels
+  revision: 1
+  status: active
+  slug: otm-dmz-security-channels
+  title: 远程接入架构与 DMZ 双边缘
+  importance: critical
+  importance_rationale: 对应 task-02，全书的架构决策入口；拓扑/组件/矩阵/DNS 是后面一切部署的输入
+  one_liner: 三类需求定方案边界，DMZ 双边缘（反代管 Web 服务、OTSBC 管 SIP/媒体），客户端×组件查矩阵，DNS 内外两套解析
+  intents:
+  - 规划远程接入拓扑
+  - 远程用户要哪些边缘组件
+  - 反向代理和 SBC 怎么分工
+  - DNS 内外怎么解析
+  - plan remote access topology
+  keywords:
+  - DMZ
+  - 双边缘
+  - 反向代理
+  - Reverse Proxy
+  - OTSBC
+  - VPN
+  - 用例矩阵
+  - 拓扑隐藏
+  - SSL 卸载
+  - N.U.
+  - N.A.
+  - DNS
+  - 桌面共享
+  - CAC
+  also_read:
+  - otm-certificate-pki
+  card: cards/otm-dmz-security-channels.md
+  frontmatter:
+    description: '远程接入的架构决策：三类用户需求、DMZ 双边缘（反向代理与 OTSBC 职责分工）、客户端×边缘组件用例矩阵（含 N.U./N.A. 语义）、DNS 内外分离与端口/NAT 规划口径。
+      当用户要"规划远程接入/选边缘组件/分 DNS 解析/评估 VPN 方案"时使用。不包含部署施工（反代与 OTSBC 部署能力）与证书签发（证书能力）；容量数值书内缺位。
+
+      '
+    tags:
+    - decision
+    - architecture
+    - dmz
+    - opentouch
+  source_evidence:
+  - source_id: src-openxte225
+  - location: p33-46, p81-85, p121-127
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-02，架构决策入口
+- capability_id: cap.otm.certificate-pki
+  revision: 1
+  status: active
+  slug: otm-certificate-pki
+  title: 证书策略与签发（CA、封装、SAN、自建 CA）
+  importance: critical
+  importance_rationale: 对应 task-03，一切远程访问的闸门；p61 安全红线（通用证书被官方反对）所在
+  one_liner: 远程访问必须 CA 签发；封装由私钥生成位置决定（PKCS7/PKCS12）；会议 FQDN 必须进反代与 OT 证书 SAN
+  intents:
+  - 远程访问证书怎么选
+  - 签发服务器证书
+  - 自建 CA
+  - 证书导入与部署
+  - generate certificate CA
+  keywords:
+  - CA
+  - 自签
+  - 通用证书
+  - PKCS7
+  - PKCS12
+  - CSR
+  - SAN
+  - 通配符
+  - wildcard
+  - CTL
+  - WebAdmin
+  - OpenSSL
+  - 证书链
+  - passphrase
+  also_read:
+  - otm-ot-server-settings
+  card: cards/otm-certificate-pki.md
+  frontmatter:
+    description: '证书三来源选型（CA/自签/通用证书红线）、PKCS7 与 PKCS12 封装规则、通配符与每服务器专用两种布局、部署五步清单、OpenSSL 与 Windows CA 签发流程、SAN 核验与 CTL 联动。
+      当用户要"定证书方案/签证书/导证书/查 SAN"时使用。正式 PKI 流程与通配符合规性在书外；CTL 重签在另一培训规程。
+
+      '
+    tags:
+    - procedure
+    - certificates
+    - pki
+    - security
+  source_evidence:
+  - source_id: src-openxte225
+  - location: p44-61, p68-69, p76-77, p260-268
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-03，远程访问闸门与安全红线
+- capability_id: cap.otm.ot-server-settings
+  revision: 1
+  status: active
+  slug: otm-ot-server-settings
+  title: OpenTouch 服务器侧远程访问设置
+  importance: critical
+  importance_rationale: 对应 task-04，客户端能连进来的服务器侧闭环；DAS 顺序与 SAN 双强制是高频错误源
+  one_liner: RP 申报四 URL（EVS 带 8016）、OTSBC 申报 5261/8061、DAS 规则按序且国家相关、ACS 会议 FQDN 加 rehost 加证书重签
+  intents:
+  - 申报反向代理
+  - 申报 OTSBC
+  - 配置 DAS 规则
+  - 会议服务 FQDN 与 rehost
+  - declare reverse proxy OpenTouch
+  keywords:
+  - RP 申报
+  - 公共 URL
+  - EVS
+  - '8016'
+  - DAS
+  - ACS
+  - 会议
+  - rehost
+  - ot-config.sh
+  - IT server
+  - '5261'
+  - '8061'
+  - France
+  also_read:
+  - otm-certificate-pki
+  - otm-reverse-proxy
+  card: cards/otm-ot-server-settings.md
+  frontmatter:
+    description: 'OpenTouch 服务器侧三段流程：申报反向代理（API/EVS/ACS/DMS 四公共 URL）、申报 OTSBC（5261/8061）、会议访问管理（DAS 规则顺序与国家口径、ACS 专用 FQDN、
+      rehost 与证书 SAN 联动）。当用户要"配服务器侧远程访问/申报反代或 SBC/改 DAS/配会议接入"时使用。不含反代与 SBC 本体安装。
+
+      '
+    tags:
+    - procedure
+    - opentouch
+    - remote-access
+    - conference
+  source_evidence:
+  - source_id: src-openxte225
+  - location: p62-77
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-04，服务器侧闭环
+- capability_id: cap.otm.otsbc-deployment
+  revision: 1
+  status: active
+  slug: otm-otsbc-deployment
+  title: OTSBC 部署与向导配置
+  importance: critical
+  importance_rationale: 对应 task-05，远程话音/媒体的核心边缘；向导边界（iPhone 手工、UDP-only）是现场高频卡点
+  one_liner: OVF 上电、CLI 初始化（write 后 reload）、许可与证书、Alcatel-Lucent Remote Users 向导模板、SIP 接口换证书、补 TCP 5060
+  intents:
+  - 部署 OTSBC
+  - 配置 OTSBC 向导
+  - OTSBC 许可与证书
+  - SIP 接口 TLS 上下文
+  - deploy OTSBC
+  keywords:
+  - OTSBC
+  - Mediant
+  - OVF
+  - 向导
+  - wizard
+  - Remote Users
+  - IPG
+  - Media Realm
+  - TLS Context
+  - 许可
+  - license
+  - '5261'
+  - '8061'
+  - '5263'
+  - TCP 5060
+  also_read:
+  - otm-certificate-pki
+  - otm-reverse-proxy
+  card: cards/otm-otsbc-deployment.md
+  frontmatter:
+    description: 'OTSBC（AudioCodes Mediant 平台）部署全链：OVF 上电、CLI 初始化网口、许可更新、TLS 上下文与证书、Configuration Wizard 七组参数（Remote Users 模板、
+      OTCV/OTCT/OTCV Web）、SIP 接口证书替换与手工补配（OXE 侧 TCP 5060、iPhone 场景 5265 声明）。当用户要"装 SBC/跑向导/换 SIP 证书/排注册"时使用。
+      iPhone 完整手工配置书外查 TC2639；容量数值书内缺位。
+
+      '
+    tags:
+    - procedure
+    - otsbc
+    - sbc
+    - deployment
+    - opentouch
+  source_evidence:
+  - source_id: src-openxte225
+  - location: p78-117
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-05，话音媒体核心边缘
+- capability_id: cap.otm.reverse-proxy
+  revision: 1
+  status: active
+  slug: otm-reverse-proxy
+  title: 反向代理两路线部署与选型（内嵌 RP、Nginx）
+  importance: critical
+  importance_rationale: 对应 task-06/task-07，Web 服务通道的唯一入口；路线选型与认证组件资源是方案必答题
+  one_liner: OTSBC 7.2+ 内嵌 RP（许可+三模板 ini）与独立 Nginx（三 conf+snippets）功能同向；OT 2.2 起两 conf 必须同改；LDAP daemon 需专用机器
+  intents:
+  - 部署内嵌反向代理
+  - 部署 Nginx 反向代理
+  - 反代路线选型
+  - 反代 LDAP 认证
+  - nginx reverse proxy OpenTouch
+  keywords:
+  - 内嵌 RP
+  - HTTP proxy
+  - Nginx
+  - Ubuntu
+  - remoteworker.conf
+  - conference.conf
+  - snippets
+  - resolver
+  - LDAP
+  - nginx-ldap-auth
+  - 模板
+  - TC2639
+  - nginx -t
+  also_read:
+  - otm-otsbc-deployment
+  card: cards/otm-reverse-proxy.md
+  frontmatter:
+    description: '反向代理两条部署路线：OTSBC 7.2+ 内嵌 RP（HTTP proxy 许可、RP 专用证书、template_rp_ed02.ini 十二处映射）与独立 Nginx VM（Ubuntu、三份 conf、
+      snippets 十一个变量、LDAP 认证模块）。当用户要"装反代/选内嵌还是独立/改 nginx 配置/配反代认证"时使用。模板链接以 TC2639 最新版为准；LDAP 模块仅支持 Python 2。
+
+      '
+    tags:
+    - procedure
+    - reverse-proxy
+    - nginx
+    - deployment
+  source_evidence:
+  - source_id: src-openxte225
+  - location: p118-144, p218-259
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-06/07，Web 服务通道
+- capability_id: cap.otm.otc-pc-modes
+  revision: 1
+  status: active
+  slug: otm-otc-pc-modes
+  title: OTC PC 远程办公两模式（multi-devices、Nomadic SIP）
+  importance: high
+  importance_rationale: 对应 task-10/task-11，PC 远程形态选型；COS 授权与池容量是"建了不工作"的高频根因
+  one_liner: multi-devices 绑 SIP 分机做副设备（主话机保留），Nomadic SIP 用 Ghost Z 池+SIP 设备池顶替主话机（1 并发占 1+1）
+  intents:
+  - 配置 multi-devices 副设备
+  - 配置 Nomadic SIP
+  - 游牧池规划
+  - OTC PC 远程办公
+  - OTC PC secondary device
+  keywords:
+  - multi-devices
+  - 副设备
+  - secondary
+  - Nomadic
+  - 游牧
+  - Ghost Z
+  - SIP 设备
+  - 池
+  - Twinset get call
+  - No ringing
+  - COS
+  - 213100x
+  - Desktop 许可
+  also_read:
+  - otm-client-access-profiles
+  - otm-lab-dialtest
+  card: cards/otm-otc-pc-modes.md
+  frontmatter:
+    description: 'OTC PC 远程办公两模式并存：multi-devices（COS 振铃参数、506/507 前提、DM 申报、副设备创建与 OTC PC 关联）与 Nomadic SIP（Ghost Z 池+SIP 设备池声明、
+      游牧双许可、切换测试）。当用户要"配 PC 软话机远程/建副设备/开游牧/算游牧池"时使用。池容量按并发规划但书内无算例；环境值见 book/overview。
+
+      '
+    tags:
+    - procedure
+    - otc-pc
+    - multi-devices
+    - nomadic
+  source_evidence:
+  - source_id: src-openxte225
+  - location: p151-161, p204
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-10/11，PC 远程形态
+- capability_id: cap.otm.smartphone-provisioning
+  revision: 1
+  status: active
+  slug: otm-smartphone-provisioning
+  title: OTC 智能手机开通（Connection 用户、自动对象、R2.6 单设备）
+  importance: critical
+  importance_rationale: 对应 task-12，移动化的主体交付、步数最多；自动对象矩阵与两处手工 Warning 决定开通成败
+  one_liner: 关联一次自动建 OXE 对象（RE/tandem/速拨号/SIP 设备/判别器/ARS，按模式增减），再手工核判别器关联与 COS 区域授权；R2.6 起 RE 可做唯一设备
+  intents:
+  - 配置 OTC 智能手机
+  - 关联手机到用户
+  - 自动对象核验
+  - 远程分机 RE 配置
+  - smartphone dual mode
+  keywords:
+  - Connection 用户
+  - OTC Smartphone
+  - 远程分机
+  - remote extension
+  - tandem
+  - twinset
+  - DISA
+  - DDI
+  - ARS
+  - 判别器
+  - barring
+  - R2.6
+  - 单设备
+  - Off-site mobility
+  also_read:
+  - otm-iphone-apns
+  - otm-smartphone-modes
+  card: cards/otm-smartphone-provisioning.md
+  frontmatter:
+    description: 'OTC 智能手机开通全链：OXE 通用参数九项（RE DISA 前缀/DDI 翻译表、自动替代、Ghost Z 池、速拨号范围、溢出定时器）、OT 侧系统参数与 SBC 5265、
+      设备档案、关联一次自动建对象与逐项核验、两处手工（Entity 判别器关联、公网接入 COS 区域授权）、R2.6 单设备与 App 安装。当用户要"配工作手机/开远程分机/排双模式倒换"时使用。
+
+      '
+    tags:
+    - procedure
+    - smartphone
+    - mobility
+    - opentouch
+  source_evidence:
+  - source_id: src-openxte225
+  - location: p178-217
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-12，移动化主体交付
+- capability_id: cap.otm.iphone-apns
+  revision: 1
+  status: active
+  slug: otm-iphone-apns
+  title: iPhone+ APNS 推送专项
+  importance: high
+  importance_rationale: 对应 task-13，iPhone 场景必答题（书内明示手工强制）；证书年更与四端口是运维抓手
+  one_liner: 后台来话走 APNS 推送唤醒（多 SIP invite 设计行为）；防火墙四端口 5223/2195/2196/443；SBC 5265 声明；kamailio-wasp/wspcfg 缓冲与维护
+  intents:
+  - iPhone 收不到来话
+  - APNS 防火墙端口
+  - kamailio-wasp 维护
+  - iPhone+ SBC 端口
+  - iPhone push notification
+  keywords:
+  - APNS
+  - 推送
+  - push
+  - '5223'
+  - '2195'
+  - '2196'
+  - '5265'
+  - kamailio-wasp
+  - wspcfg
+  - invite
+  - hotfix
+  - Geotrust
+  - iPhone+
+  also_read:
+  - otm-smartphone-provisioning
+  card: cards/otm-iphone-apns.md
+  frontmatter:
+    description: 'iPhone 推送来话机制链（APNS 推送唤醒、多次 SIP invite、UDP 强制、场外 TCP 由 kamailio-wasp 代理缓冲）、防火墙四端口、iPhone+ 专用 SBC 5265 声明与接口、
+      APNS 证书年更 hotfix 与组件维护命令。当用户要"查 iPhone 来话/配推送端口/维护 kamailio"时使用。完整手工配置书外查 TC2639；Geotrust 根证书 2022 后机制在书外。
+
+      '
+    tags:
+    - procedure
+    - iphone
+    - apns
+    - troubleshooting
+  source_evidence:
+  - source_id: src-openxte225
+  - location: p183-188, p197, p217
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-13，iPhone 场景必答题
+- capability_id: cap.otm.client-access-profiles
+  revision: 1
+  status: active
+  slug: otm-client-access-profiles
+  title: 客户端远程接入两步法（接入配置与路由档案）
+  importance: medium
+  importance_rationale: 对应 task-09，讲义级两步法；dial from 特例是排障高频误解点，动作散布在 PC/手机 How-To 中
+  one_liner: 第一步填公共 URL 与凭证，第二步激活路由档案；手机发起拨打永远本机发话，dial from 不影响
+  intents:
+  - 客户端怎么接入
+  - 路由档案配置
+  - OTC Web 怎么进会议
+  - dial from 不生效
+  - remote access profile
+  keywords:
+  - 公共 URL
+  - 接入配置
+  - 路由档案
+  - routing profile
+  - dial from
+  - OTC Web
+  - 会议 URL
+  - Settings
+  - Connections
+  - 首次启动
+  also_read:
+  - otm-otc-pc-modes
+  card: cards/otm-client-access-profiles.md
+  frontmatter:
+    description: '各客户端远程接入的两步法：接入配置（OTC PC 的 Settings/Preferences、手机首启与 Settings/Connections、OTC Web 的会议公共 URL）与路由档案激活，
+      含"手机拨打永远本机发话"特例。当用户要"配客户端远程登录/设路由档案/排 dial from 疑问"时经路由使用。客户端能力差异见 DMZ 双边缘矩阵。
+
+      '
+    tags:
+    - procedure
+    - clients
+    - remote-access
+  source_evidence:
+  - source_id: src-openxte225
+  - location: p145-150
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 讲义级两步法，路由可达即可
+- capability_id: cap.otm.smartphone-modes
+  revision: 1
+  status: active
+  slug: otm-smartphone-modes
+  title: 智能手机连接模式与回落（WiFi/3G4G/DTMF、无 SIM）
+  importance: medium
+  importance_rationale: 讲义级功能形态域，售前沟通与功能承诺边界；配置动作在智能手机开通能力
+  one_liner: 按数据连接五分场景定功能面；无数据仅 DTMF 回落（打/挂/留言/有限路由）；Android 无 SIM 纯 VoIP 但失回落/私人呼叫/短信
+  intents:
+  - 手机没流量怎么办
+  - WiFi 和 4G 下什么功能可用
+  - Android 无 SIM
+  - 回落模式
+  - smartphone connectivity modes
+  keywords:
+  - WiFi
+  - 3G
+  - 4G
+  - GSM
+  - cellular
+  - 回落
+  - fallback
+  - DTMF
+  - 无 SIM
+  - 纯 VoIP
+  - 短信
+  - 私人呼叫
+  - 单号码
+  also_read:
+  - otm-smartphone-provisioning
+  card: cards/otm-smartphone-modes.md
+  frontmatter:
+    description: 'OTC 智能手机按连接形态的功能矩阵：公司内 WiFi、场外 WiFi、3G/4G、无数据 DTMF 回落、Android 无 SIM 纯 VoIP（三项功能代价），以及有数据通道时的高级服务清单。
+      当用户要"评估移动方案功能/承诺无 SIM 方案/解释回落行为"时经路由使用。iPhone 汇总矩阵部分格以原书表格为准。
+
+      '
+    tags:
+    - reference
+    - smartphone
+    - mobility
+    - presales
+  source_evidence:
+  - source_id: src-openxte225
+  - location: p162-177
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 功能形态域，路由可达即可
+- capability_id: cap.otm.vmware-ovf
+  revision: 1
+  status: active
+  slug: otm-vmware-ovf
+  title: VMware 虚机 OVF/OVA 部署
+  importance: low
+  importance_rationale: 对应 task-08，通用承载技能（web client/vSphere 两路）；独立触发价值低，是 OTSBC 与 Nginx 部署的前置引用
+  one_liner: 按 ESXi 版本选路线（6.5 用 web client、6.0 及以下才可用 vSphere client），网络映射选 DMZ，实验磁盘 Thin
+  intents:
+  - 部署 OVF 虚机
+  - vSphere 还是 web client
+  - ESXi 导入 OVA
+  - deploy OVF VMware
+  keywords:
+  - VMware
+  - ESXi
+  - OVF
+  - OVA
+  - vSphere
+  - web client
+  - Thin
+  - DMZ 网络
+  - 虚机部署
+  also_read:
+  - otm-otsbc-deployment
+  card: cards/otm-vmware-ovf.md
+  frontmatter:
+    description: 'VMware 虚机部署两路线：web client（ESXi 6.5 口径）与 vSphere client（仅 ESXi 6.0 及以下），OVF/OVA 导入、网络映射选 DMZ、磁盘 Thin。
+      当用户要"导虚机/装 OVF/选部署客户端"时经路由使用。生产 sizing 在书外；装完移交 OTSBC 或 Nginx 部署能力。
+
+      '
+    tags:
+    - procedure
+    - vmware
+    - deployment
+  source_evidence:
+  - source_id: src-openxte225
+  - location: p221, p269-277
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 通用承载技能，路由可达即可
+- capability_id: cap.otm.lab-dialtest
+  revision: 1
+  status: active
+  slug: otm-lab-dialtest
+  title: 实验环境与拨测验证（RLAB、编号计划、模拟器预期表）
+  importance: medium
+  importance_rationale: 对应 task-01/task-14，一切实验的对照基准与行为闭环出口；纯实验口径不复用生产
+  one_liner: 编号三层（DHCP 池/用户编号/模拟器变换）；拨测按三格式预期表核对落点与主叫显示两个维度
+  intents:
+  - 实验环境是什么
+  - 拨测号码怎么变换
+  - 主叫显示是什么
+  - SIP 模拟器
+  - dial test numbering
+  keywords:
+  - RLAB
+  - POD
+  - 编号计划
+  - '31000'
+  - 213100x
+  - 模拟器
+  - simulator
+  - 拨测
+  - 主叫显示
+  - caller identity
+  - 0abcd31xxx
+  - DHCP 池
+  also_read:
+  - otm-otc-pc-modes
+  card: cards/otm-lab-dialtest.md
+  frontmatter:
+    description: 'RLAB 实验环境认知基准（POD 结构、虚机清单、编号计划）与 SIP 模拟器拨测预期表（国内 10 位/规范 11 位/国际 13 位，落点与主叫显示两个维度）。
+      当用户要"跟书做实验/验证呼叫行为/查号码变换"时经路由使用。全部数值为实验口径，生产不复用；完整地址与口令表见 book/overview 环境区。
+
+      '
+    tags:
+    - reference
+    - lab
+    - testing
+    - numbering
+  source_evidence:
+  - source_id: src-openxte225
+  - location: p4-30, p26-29
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 实验背景与验证域，路由可达即可

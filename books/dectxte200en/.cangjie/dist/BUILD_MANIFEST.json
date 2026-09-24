@@ -1,0 +1,42 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\dect-auto-reregistration.md": "18a03e23b57729a2127750e775528e2c03d9a531a8fa8f53b349cafb51538bdd",
+    "references\\capabilities\\dect-firmware-management.md": "a7f0cf630536b8dcccdebbb4c136acde3d62335df725a7c5f419931ab36523cc",
+    "references\\capabilities\\dect-handset-registration.md": "34b09a4d1dafba249ec0e809a102175863b95766f71cdcf951caf5945b840278",
+    "references\\capabilities\\dect-ibs-deployment.md": "56f1551d923c2fe70f49a4c24fa15638c76346a31cf53b05dec877cf92e4b7eb",
+    "references\\capabilities\\dect-ipxbs-deployment.md": "bf5f3ae393985c4ecdbea8a5b1dd625e58fbc619aa836301ae6b9cad67c576ad",
+    "references\\capabilities\\dect-maintenance-troubleshooting.md": "22521be7c9554408b03d49c0f9f8bafa9ae93ed3884ff1dc834fc4c21bd5cea4",
+    "references\\capabilities\\dect-mixed-mode.md": "163d0df9a796e4918d24d9bedcebfbd4aa663f4f82c58eb9d7a2413791f46055",
+    "references\\capabilities\\dect-pari-identifier.md": "263e1d0c20a4eec0c33234176744310723a1d8269e4397757ee15ff21ac904dc",
+    "references\\capabilities\\dect-product-selection.md": "257dae71acc3bee2562051275bb11d97d171903a9c5c71461673ffec7c064030",
+    "references\\capabilities\\dect-radio-survey.md": "2a7290016aad3edb416d54ff7cb526aed9c9f5302556317fefe4ff9b625e3d53",
+    "references\\capabilities\\dect-sip-dect.md": "ce1400607893a2f19aa2e3accd69e414d9516e2f8004e3942468cec5f8e31db0",
+    "references\\capabilities\\dect-xbs-sync-topology.md": "a23187250776fe80750b86d969c161ed8f9e5b17a6ec08596136eb7722abe23c",
+    "references\\capability-index.md": "e1acabebe7d9a96c29425362998bbc1bb1fd8bb8f27e7831cd272fb46954a92a",
+    "references\\cheatsheet.md": "7ec648da0c3065e549da97bea5c98ca746b83342e167a25a14cee0c028049b71",
+    "references\\glossary.md": "11d422b8a5f4502180e645bc4eb09d55d35942154e47f4c6895af9d9bfa3b4a3",
+    "references\\overview.md": "914a304c798576c69f7c9c8774c84e96e62bf9c88a78f3f77dfb06f798099981",
+    "SKILL.md": "3ab74fc9beac21712d9f622ab700f6bc865213fcad5946ebdf72a42df37a0303"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.dect-solutions",
+  "bundle_sha256": "919b4e8acf31f29ac83ac3f8053e89a71d64bfd147710d8edb3d619e406bd561",
+  "variant": "single",
+  "run_id": "run-20260924-200000-579195",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 12,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "skill": "rainbow-oxe-integration",
+  "version": "0.1.0",
+  "bundle": "bundle.rainbow-oxe-integration",
+  "capability_catalog": [
+    {"slug": "rxe-company-subscription", "name": "Rainbow 公司体系与订阅开通", "description": "BP 建司开订阅（月付/预付）、EC 管成员分订阅；可见性四级默认 CLOSED；SSO/TOTP 认证；BP 专属建 PBX 与开付费订阅；企业目录与信息频道"},
+    {"slug": "rxe-agent-onboarding", "name": "OXE 接入 Rainbow 与接入排障", "description": "netadmin 配 DNS/代理（仅 agent 使用，URL ping 与 curl 证书错误两类误判）；PBXID+激活码启用 Rainbow Agent；incvisu 五链路（4503/4505/4509/4507/4511）判据与维护四抓手"},
+    {"slug": "rxe-member-lifecycle", "name": "Rainbow 成员全生命周期管理", "description": "手动/邀请开户（SPAM 与 JOIN 按钮两坑）、CSV/Azure AD 批量口径；密码 12+3 类字符；删除 10 天宽限期（恢复回落 Essential、邮箱占用）；改密踢在线"},
+    {"slug": "rxe-routing-rex", "name": "OXE 用户形态决策与远程延伸路由", "description": "四形态矩阵（RCC/tandem 路由/纯 REX/DECT 特例）；Ghost Z 池=REX 并发上限；tandem 两端 multi-line、配置只做主站；路由四案例；溢出两级；路由不等于转发"},
+    {"slug": "rxe-webrtc-gateway-deployment", "name": "WebRTC 网关部署与升级", "description": "三重前提（Business/Enterprise 订阅、OXE 12.1 MD4/12.2+、接入与关联顺序）；OVF 部署（mpnetwork/mpconfig）、mpshow/mpcheck 核验、BP 激活；远程升级（BP 账户）与手动 mpupgrade 两法"},
+    {"slug": "rxe-oxe-gateway-config", "name": "OXE 侧 WebRTC 网关配置九件套", "description": "SIP TG（T2/SIP）、可信 IP、Rainbow type 网关（5060/UDP、G711）、无压缩 IP 域（GD/OMS）、CDT、ARS、BBB 前缀与 17 位判别器、回调三件套；lookars/remotesets 验证与四项 VoIP 测试"},
+    {"slug": "rxe-gateway-pool-sizing", "name": "共享 WebRTC 网关池与容量规划", "description": "三配置对比（复制/共享池/OXE 网络）；SIP 406 溢出机制与参数留空兜底；TBE067 四输入估通道数；单网关 400 并发流上限"},
+    {"slug": "rxe-teams-integration", "name": "Microsoft Teams 集成全流程", "description": "工作站级双件套（Teams App+Rainbow Desktop 硬依赖）；四条呼叫流；应用上架与权限同意（两法+Azure 核验）；Telephony 权限收敛；Business/Enterprise 订阅；在场同步激活 O365 共享"},
+    {"slug": "rxe-rcc-association", "name": "OXE 分机关联与 RCC 模式", "description": "Telephony 页签绑定分机；RCC 只能接/挂/转且音频在话机（无网关正常形态）；Rainbow number（BBB 17 位）由 agent 在选 computer 路由时自动写入；五项测试"},
+    {"slug": "rxe-attendant-consoles", "name": "两套话务台（4059EE 与 Rainbow Attendant Console）", "description": "4059EE 传统话务（关联话机禁 multi-line、不用 Attendant 订阅、CDT/BLF）；Rainbow 话务台（Attendant 订阅、队列 OXE 10/OXO 8、仅 PC）；监督组 5 组/30 人；互助组 4 路监督；代接仅限同 PBX 电话呼叫"},
+    {"slug": "rxe-maintenance-support", "name": "Rainbow 维护与支持体系", "description": "Help Desk 指南、用户日志与问题上报（Web 端不采日期）、status 状态页与告警订阅、操作历史审计、MyPortal 开 SR（仅 Rainbow 认证伙伴建 ESR）"},
+    {"slug": "rxe-network-readiness", "name": "Rainbow 网络就绪核查", "description": "Network Requirements 文章+两份 PDF（端口/域名/带宽/防火墙，书内无数值）；Rainbow Pilot 连通性与按用法配比的承载评估"},
+    {"slug": "rxe-lab-pod-setup", "name": "RLAB 实验环境与 Pod 配置", "description": "6 台虚机基线核对、IPDSP/MicroSIP 与机架板卡确认、SIP 注册与 DID 翻译按 POD 号对齐、外呼验证；全部 IP/账号/号码为实验口径"}
+  ],
+  "test_cases": [
+    {"id": "should-company-01", "type": "should_trigger", "prompt": "我要给客户开一个 Rainbow 租户，200 个用户要用电话和 Rainbow 话务台，买什么订阅、公司可见性怎么设？", "expected_behavior": "激活 rxe-company-subscription，给出订阅组合与 CLOSED 建议及 BP 专属提醒"},
+
+    {"id": "should-company-02", "type": "should_trigger", "prompt": "客户管理员说他在 Rainbow 里找不到创建 PBX 和开付费订阅的按钮，是不是坏了？", "expected_behavior": "激活 rxe-company-subscription，解释 BP 专属权限两项是渠道设计非故障"},
+
+    {"id": "should-agent-01", "type": "should_trigger", "prompt": "OXE 呼叫服务器要连 Rainbow，DNS 和代理在哪个菜单配？配完怎么验证解析真的生效？", "expected_behavior": "激活 rxe-agent-onboarding，netadmin 菜单 14/15 + nslookup/dig 验证（URL ping 不算）"},
+
+    {"id": "should-agent-02", "type": "should_trigger", "prompt": "PBXID 和激活码拿到了，OXE 侧在哪填？接完怎么确认五条链路都正常？", "expected_behavior": "激活 rxe-agent-onboarding，webadmin Rainbow 菜单启用 + incvisu 五链路判据"},
+
+    {"id": "should-member-01", "type": "should_trigger", "prompt": "要给客户批量开 80 个 Rainbow 账号，用什么方式？密码有什么要求？", "expected_behavior": "激活 rxe-member-lifecycle，CSV/AAD 批量口径（AAD 需 Voice Enterprise）+ 密码 12+3 类字符"},
+
+    {"id": "should-member-02", "type": "should_trigger", "prompt": "上个月删了一个 Rainbow 用户，现在用他的邮箱建新账号报错说被占用，怎么办？", "expected_behavior": "激活 rxe-member-lifecycle，10 天宽限期内邮箱不可复用；恢复用户会回落 Essential"},
+
+    {"id": "should-routing-01", "type": "should_trigger", "prompt": "用户抱怨在 Rainbow 上改了路由，来话振铃的终端和预期不一样，怎么排查？", "expected_behavior": "激活 rxe-routing-rex，路由四案例矩阵 + 查用户档案手机号与 REX 实际内容（remotesets）"},
+
+    {"id": "should-routing-02", "type": "should_trigger", "prompt": "给 OXE 用户配远程延伸，Ghost Z 要建多少个？tandem 配置为什么改副站不生效？", "expected_behavior": "激活 rxe-routing-rex，Ghost Z 每并发一个 + tandem 配置只做主站自动同步"},
+
+    {"id": "should-deploy-01", "type": "should_trigger", "prompt": "WebRTC 网关 OVF 装好了，PBX 域名和 PBXID 用什么命令配？配完怎么核验？", "expected_behavior": "激活 rxe-webrtc-gateway-deployment，mpconfig + mpshow/mpcheck 核验 + BP 激活"},
+
+    {"id": "should-deploy-02", "type": "should_trigger", "prompt": "网关要升级新版本，远程升级和手动升级各有什么门槛？NUC 上那台能不能走远程？", "expected_behavior": "激活 rxe-webrtc-gateway-deployment，远程法 BP 账户/1.73.x+/35 国，独立 PC 排除走手动 mpupgrade"},
+
+    {"id": "should-oxecfg-01", "type": "should_trigger", "prompt": "网关部署完了，OXE 这边 SIP、ARS、判别器这一堆要怎么配才能让 computer 路由的呼叫走网关？", "expected_behavior": "激活 rxe-oxe-gateway-config，九件套清单 + BBB 前缀与 17 位判别器五元组"},
+
+    {"id": "should-oxecfg-02", "type": "should_trigger", "prompt": "话机想用通话记录直接回拨 Rainbow 分机，PBX 侧要配什么？", "expected_behavior": "激活 rxe-oxe-gateway-config，回调三件套：CSTA 开关 + 翻译表 DEF 变 BBB + 专用实体"},
+
+    {"id": "should-pool-01", "type": "should_trigger", "prompt": "客户有 6 台 OXE 想共用两个 Rainbow 网关，架构怎么摆？满了之后流量怎么分流？", "expected_behavior": "激活 rxe-gateway-pool-sizing，共享池按集群推进 + SIP 406 溢出与 ARS 顺序"},
+
+    {"id": "should-pool-02", "type": "should_trigger", "prompt": "800 个 Rainbow 话音用户的站点，网关通道数怎么估？需要几台网关？", "expected_behavior": "激活 rxe-gateway-pool-sizing，TBE067 四输入 + 单网关 400 并发流上限定台数"},
+
+    {"id": "should-teams-01", "type": "should_trigger", "prompt": "客户想在 Teams 里直接打公司座机和外线，方案怎么做？要装哪些东西？", "expected_behavior": "激活 rxe-teams-integration，工作站级双件套 + 上架/同意/用户配置/终端装配"},
+
+    {"id": "should-teams-02", "type": "should_trigger", "prompt": "Teams 里装了 Rainbow 应用，改了 Teams 的状态 Rainbow 那边不跟着变，为什么？", "expected_behavior": "激活 rxe-teams-integration，在场同步须激活 O365 信息共享；激活前不同步属预期"},
+
+    {"id": "should-rcc-01", "type": "should_trigger", "prompt": "把话机分机 3101 绑定到用户的 Rainbow 账号上，绑完怎么验证能不能用？", "expected_behavior": "激活 rxe-rcc-association，Telephony 关联 + RCC 五项测试"},
+
+    {"id": "should-att-01", "type": "should_trigger", "prompt": "前台要一个能看全组人状态、能代接电话的工作台，4059EE 和 Rainbow 话务台怎么选？", "expected_behavior": "激活 rxe-attendant-consoles，两套话务台对比表 + 订阅差异"},
+
+    {"id": "should-att-02", "type": "should_trigger", "prompt": "两个部门想互相帮忙接电话，但不想固定绑在一个组里，有临时加入退出的方式吗？", "expected_behavior": "激活 rxe-attendant-consoles，互助监督组一键进出/临时纳排/4 路监督/代接边界"},
+
+    {"id": "should-maint-01", "type": "should_trigger", "prompt": "好几个用户反馈 Rainbow 登录不上，怎么判断是不是 ALE 云那边的问题？", "expected_behavior": "激活 rxe-maintenance-support，status.openrainbow.com 分流 + 计划维护预告"},
+
+    {"id": "should-maint-02", "type": "should_trigger", "prompt": "这个问题我们自己搞不定了，要给 ALE 开正式工单，流程和前提是什么？", "expected_behavior": "激活 rxe-maintenance-support，MyPortal SR 字段清单 + 仅认证伙伴建 ESR"},
+
+    {"id": "should-net-01", "type": "should_trigger", "prompt": "客户站点要上 Rainbow，网络这边上线前要准备和核查什么？", "expected_behavior": "激活 rxe-network-readiness，Network Requirements PDF 指针 + Pilot 评估"},
+
+    {"id": "should-net-02", "type": "should_trigger", "prompt": "售前要评估客户这个办公点能不能承载一批混合用法的 Rainbow 用户，用什么工具怎么评？", "expected_behavior": "激活 rxe-network-readiness，Rainbow Pilot 按协作/会议/混合话音/Hub 配比评估"},
+
+    {"id": "should-lab-01", "type": "should_trigger", "prompt": "下周要排 RLAB 实验，POD 里 OXE 的机架板卡、软话机和外线 DID 都要核对哪些？", "expected_behavior": "激活 rxe-lab-pod-setup，六步基线核对法 + 按 POD 号对齐注册与 DID 翻译"},
+
+    {"id": "should-lab-02", "type": "should_trigger", "prompt": "实验环境里外线打不通，分机的外部号码也对不上，先查什么？", "expected_behavior": "激活 rxe-lab-pod-setup，SIP 注册账号与 DID 翻译是否带对 POD 号 + 外呼验证"},
+
+    {"id": "should-agent-03", "type": "should_trigger", "prompt": "curl 测试 agent.openrainbow.com 报证书错误，是不是我们连不上 Rainbow？", "expected_behavior": "激活 rxe-agent-onboarding，ALE 专有证书报错属预期（请求 OK），OXE 侧 HTTPS 测试只能用 IP"},
+
+    {"id": "bait-company-01", "type": "should_not_trigger", "prompt": "新员工入职，要给他开 Rainbow 账号、绑定电话分机并验证能接听", "expected_behavior": "这是成员生命周期+分机关联的组合，不应激活 rxe-company-subscription"},
+
+    {"id": "bait-agent-01", "type": "should_not_trigger", "prompt": "网关装好了，OXE 侧的 SIP 中继组和 ARS 判别器怎么配？", "expected_behavior": "应激活 rxe-oxe-gateway-config，不应激活 rxe-agent-onboarding（接入与网关配套是两段）"},
+
+    {"id": "bait-deploy-01", "type": "should_not_trigger", "prompt": "两个站点想共用网关，每 OXE 网关复制和共享池该怎么选？通道数配多少？", "expected_behavior": "应激活 rxe-gateway-pool-sizing，不应激活 rxe-webrtc-gateway-deployment（选型与施工分开）"},
+
+    {"id": "bait-pool-01", "type": "should_not_trigger", "prompt": "拓扑定了用共享池，现在要把网关 OVF 在 ESXi 上装起来并激活", "expected_behavior": "应激活 rxe-webrtc-gateway-deployment，不应停留在 rxe-gateway-pool-sizing"},
+
+    {"id": "bait-routing-01", "type": "should_not_trigger", "prompt": "4059EE 话务台关联的话机要不要配 multi-line？tandem 那套做法能照搬吗？", "expected_behavior": "应激活 rxe-attendant-consoles（要求相反：禁 multi-line），不应照搬 rxe-routing-rex 的 tandem 做法"},
+
+    {"id": "bait-teams-01", "type": "should_not_trigger", "prompt": "Teams 租户的应用权限策略和紧急呼叫地址怎么统一配置？", "expected_behavior": "超出原书范围（Teams 租户策略），不应激活 rxe-teams-integration，应声明边界"},
+
+    {"id": "bait-rcc-01", "type": "should_not_trigger", "prompt": "分机关联好了，怎么让通话音频走到电脑耳机里？", "expected_behavior": "应转网关规划/部署（RCC 音频本就在话机），不应停留在 rxe-rcc-association 当作可解决"},
+
+    {"id": "bait-maint-01", "type": "should_not_trigger", "prompt": "OXE 侧 Rainbow 代理链路不对劲，incvisu 里 CSTA link 不是 in service，怎么查？", "expected_behavior": "应激活 rxe-agent-onboarding（incvisu 是接入排障抓手），不应激活 rxe-maintenance-support"},
+
+    {"id": "bait-net-01", "type": "should_not_trigger", "prompt": "防火墙端口都放行了，OXE 还是连不上 Rainbow，incvisu 五链路起不来", "expected_behavior": "应激活 rxe-agent-onboarding 排障，不应停留在 rxe-network-readiness"},
+
+    {"id": "edge-oxecfg-01", "type": "edge_case", "prompt": "生产站点想把网关编解码改成 G729 省带宽，书里为什么只写 G711？能直接改吗？", "expected_behavior": "按边界回答：仅 G711 为实验口径取值（p181），生产改编解码须先与网关侧能力核对，不替客户拍板"},
+
+    {"id": "edge-pool-01", "type": "edge_case", "prompt": "400 并发流是不是说一个网关最多带 400 个用户？", "expected_behavior": "带口径回答：400 是并发流上限，用户数与并发数是两个量纲，通道数按 TBE067 四输入估算"},
+
+    {"id": "edge-att-01", "type": "edge_case", "prompt": "话务员想在家用自己的手机打开话务台值班代接，可以吗？", "expected_behavior": "按边界回答：Rainbow 话务台仅 Web/Desktop 无移动端；代接仅限同 PBX 电话呼叫；4059EE 还需 PC 应用；给替代排班建议"},
+
+    {"id": "edge-routing-01", "type": "edge_case", "prompt": "只有 DECT 话机的用户要上 Rainbow 路由，直接建 REX tandem 行不行？", "expected_behavior": "按边界回答：DECT 不能与 REX 直接 tandem（OXE 管理限制），须 Virtual UA 做 multi-devices，且 Virtual UA 不可 RCC、通常要重建 DECT"},
+
+    {"id": "edge-lab-01", "type": "edge_case", "prompt": "把实验环境里的网段、账号和号码规则直接搬到客户生产环境可以吗？", "expected_behavior": "按边界回答：全部为实验口径禁止照搬；生产按现场重规划并对照 Network Requirements PDF 与 TC2462"}
+  ]
+}

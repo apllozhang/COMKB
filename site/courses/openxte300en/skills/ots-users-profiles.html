@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>档案与用户供给（三类用户、WPC 批量）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch · Starter</h2><p>Edition 10 · 603 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte300en/index.html">课程首页</a><a href="/courses/openxte300en/digest.html">精华长文</a><a href="/courses/openxte300en/overview.html">教书理解</a><a href="/courses/openxte300en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte300en/skills/ots-post-installation-wizard.html">OTMS 初始化向导（两模式十节）</a><a href="/courses/openxte300en/skills/ots-license-flexlm.html">许可体系与 FlexLM（安装、核查、外部切换）</a><a href="/courses/openxte300en/skills/ots-node-declaration-sip.html">双向节点声明与 SIP 打通（含告警对接）</a><a href="/courses/openxte300en/skills/ots-prior-management.html">Prior management（号码段、前缀、拨号规则、UDAS、会议桥）</a><a href="/courses/openxte300en/skills/ots-users-profiles.html">档案与用户供给（三类用户、WPC 批量）</a><a href="/courses/openxte300en/skills/ots-voice-mail.html">语音邮箱、IMAP 收取与通知公告（Local Storage）</a><a href="/courses/openxte300en/skills/ots-clients-multi-devices.html">OTC PC 客户端交付与多终端</a><a href="/courses/openxte300en/skills/ots-maintenance-rehosting.html">维护、备份恢复与 rehosting（TC2149 矩阵）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte300en/skills/ots-sot-installation.html">SOT 自动化装机与虚机手动导入</a><a href="/courses/openxte300en/skills/ots-certificates.html">证书部署三路线</a><a href="/courses/openxte300en/skills/ots-supervision-groups.html">监督组（话务监督、进出组与代接）</a><a href="/courses/openxte300en/skills/ots-lab-connections.html">实验 POD 与系统连接通道</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte300en/index.html">opentouch-starter（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte300en/index.html">OPENXTE300EN</a><span>/</span><span aria-current="page">档案与用户供给（三类用户、WPC 批量）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>档案与用户供给（三类用户、WPC 批量）</h1></div><dl><div><dt>Skill ID</dt><dd>ots-users-profiles</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>档案与用户供给（三类用户、双侧档案、WPC 批量）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"This is a directory user - Without any node properties (no device and no applications) ... User has one or more OXE devices - Can have access to OpenTouch applications"（p258）
+"Only profile modification is allowed via Users application. Creation and deletion must be done via OXE or OpenTouch configuration application"（p278）
+"If some OXE profiles need to be created, they will be automatically displayed on Users application. After OpenTouch profiles creation, a complete synchronization is required to make them displayed"（p297）
+"Available from OmniVista 8770 3.2.8 with Unified management license ... Only support of Chrome versions from 54"（p290, p292）
+"TUI password ... Available characters are digits (6 digits minimum). Passwords composed of a logical series of digits (for example: 12345, 65432 or 13579) are refused by default."（p286）</p>
+</blockquote>
+<p>出处：OPENXTE300EN p255-301。</p>
+<h2>I — 自述</h2>
+<p>用户供给三件套：OXE 档案、OT 档案、语音邮箱档案，三者合成一个 Connection user（ACU，Advanced Communication User）。三类用户对照：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>用户类型</th>
+<th>界面取值</th>
+<th>设备与应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Directory user</td>
+<td>type=None</td>
+<td>无设备无应用，仅进公司目录</td>
+</tr>
+<tr>
+<td>OXE 用户（无 OT 权）</td>
+<td>type=OXE，Applications=None</td>
+<td>有话机，无 OT 应用</td>
+</tr>
+<tr>
+<td>Connection user</td>
+<td>type=OXE，Applications=OT</td>
+<td>话机 + OT 应用 + 可有邮箱（ACU）</td>
+</tr>
+</tbody>
+</table></div>
+<p>双侧档案与同步不对称：</p>
+<ul>
+<li><strong>OXE 档案</strong>：OXE 配置工具建，Set function=Profile，目录号用 A0000 式字母占号省号段，Profile Name 必须大写；建完经实时事件直达 8770，无需同步。</li>
+<li><strong>OT 档案</strong>：OT 配置工具 Users and devices/User/Profile 建，Category 必须选 ACU-OXE，Licenses 页勾 Desktop/Voice mail/Conferencing 等权；建完必须做一次完整同步才在 Users 应用可见。</li>
+<li><strong>权限边界</strong>：Users 应用只能修改档案；新建与删除必须回 OXE/OT 配置工具。</li>
+</ul>
+<p>Web Provisioning Client（WPC）：版本门槛 OmniVista 8770 3.2.8 且须 Unified management 许可；浏览器仅 Chrome 54 及以上；三条限制——档案的建删仍回配置工具、不能新建 OpenTouch Conversation 用户、每用户只关联一台设备。</p>
+<p>口令策略：GUI 口令字母数字；TUI 口令至少 6 位纯数字且默认拒绝顺序数列；SIP 口令仅 SIP 分机设备需要。实验放宽（最小长度 5、允许 trivial）仅限 LAB，现场绝不建议。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>档案与用户实验</strong>（p272-288）：</p>
+<ol>
+<li>前置：OXE 开 Use profile with auto. recognition。</li>
+<li>建 OXE 档案：Set function=Profile、A0000 式占号、名称全大写。</li>
+<li>建 OT 档案：Category=ACU-OXE，Licenses 页勾所需权项。</li>
+<li>OT 档案建完对 OT 发起一次完整同步。</li>
+<li>Directory 应用建部门树，把目标层级建出来。</li>
+<li>Users 应用右键 Create user 逐个建三类用户。</li>
+<li>Connection 用户填登录名、GUI/TUI 口令、OT 模板与站点。</li>
+<li>Connection 用户再填语音邮箱服务器与邮箱档案。</li>
+<li>存量用户加 OT：补邮箱地址、Applications=OT、模板与站点。</li>
+<li>收尾三侧核验：目录有其人、OXE 有分机、OT 有用户与邮箱档案。</li>
+</ol>
+<p><strong>WPC 批量实验</strong>（p295-301）：</p>
+<ol>
+<li>前置四查：OXE 档案在机、空闲号段、OT 档案、Users 应用档案齐全。</li>
+<li>Chrome 打开 8770 的 WPC 地址并用 nmc 管理员登录。</li>
+<li>左树选部门后新建用户，Users 页签填类型与姓名邮箱。</li>
+<li>OXE Rights 页签选 OXE、分机、话机型号与 OXE 档案。</li>
+<li>Application 页签填 OT 登录、口令、站点、OT 档案与邮箱。</li>
+<li>Devices 页签核对话机，启用手机权时另配移动四参。</li>
+<li>Save 后在部门树核验新用户。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：建了用户登不上 OT；档案在 Users 应用里看不到；几十上百人批量开户；用户改不了自己的 TUI 密码；WPC 打不开或选项缺失。</p>
+<p>语言信号：档案 / profile / ACU-OXE / Connection 用户 / ACU / Set function / 占号 / Directory user / WPC / Web Provisioning / Chrome / TUI 口令 / GUI 口令 / 批量 / MACD / 移动加删改。</p>
+<p>与相邻能力区分：邮箱档案参数与留言行为归语音邮箱能力；Desktop 许可与客户端形态归客户端能力；8770 声明与同步机制见节点声明与 SIP 能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：拨号计划内空闲号；OXE/OT 档案设计（权限矩阵）；口令策略决策；WPC 版本前提（8770 3.2.8+ 与 Unified management 许可）。</p>
+<ol>
+<li>建档案三件套并完成 OT 侧完整同步。完成标准：Users 应用可见全部档案</li>
+<li>目录树规划并落地到 Directory 应用。完成标准：目标层级存在</li>
+<li>逐个建用户，三类分清（Directory/无 OT 权/Connection）。完成标准：三侧可查且符号正确</li>
+<li>存量加 OT 或用 WPC 批量（按量级与版本前提选择）。完成标准：登录测试通过</li>
+<li>交付核对：OT 模板、邮箱服务器、Licenses 勾权与设计单一致。完成标准：逐项核对无偏差</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>用户建了但登不上 OT → 查 Applications 是否=OT、模板与站点是否填全</li>
+<li>OT 档案不在 Users 应用 → 没做完整同步（OXE 档案才走实时事件）</li>
+<li>想在 Users 应用新建或删除档案 → 设计不允许，回 OXE/OT 配置工具</li>
+<li>TUI 口令被拒 → 6 位纯数字且拒绝顺序数列；实验放宽不可带生产</li>
+<li>一台用户要绑多台设备 → WPC 只支持一台，多终端走客户端能力</li>
+</ul>
+<p>输出契约：可登录用户清单（档案/权限/终端/邮箱挂钩）+ 口令交付记录 + WPC 批量结果报告。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>实验口径（生产必须替换）：用户口令 12345/54321、登录名 adams/barkley/backman、档案名 BASIC/EXECUTIVE 与 Basic-Connection/Executive-Connection、占号 A0000/A0001、目录层级 France\Brest\Training。</li>
+<li>口令放宽（最小长度 5、允许 trivial）原书两处强调仅限 LAB（p281/p284）。</li>
+<li>WPC 不能建 OpenTouch Conversation 用户；OT 用户的称呼字段（Salutation）强制（p292）。</li>
+<li>Conversation user 在本书无正式定义，仅零星提及，按备查处理（术语落位见 references）。</li>
+<li>档案可继承的默认属性清单见 p274（Cost Center、各类 COS、话机特性等），改属性前先核继承面。</li>
+<li>建用户时 OT 密码策略放宽属实验动作，生产按口令基线（n09）。</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte300en/skills/ots-voice-mail.html">语音邮箱、IMAP 收取与通知公告（Local Storage）</a>、<a href="/courses/openxte300en/skills/ots-node-declaration-sip.html">双向节点声明与 SIP 打通（含告警对接）</a></p><p class="source-page">能力 ID：cap.ots.users-profiles · 来源：OPENXTE300EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch — OpenTouch Suite for MLE — Solution Overview / Starter (Participant's Guide) | edition: Edition 10 | pages: 603 页 -->

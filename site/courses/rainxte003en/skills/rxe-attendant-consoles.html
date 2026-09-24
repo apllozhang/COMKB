@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>两套话务台（4059EE 与 Rainbow Attendant Console）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Rainbow for OmniPCX Enterprise</h2><p>Edition 12 · 314 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte003en/index.html">课程首页</a><a href="/courses/rainxte003en/digest.html">精华长文</a><a href="/courses/rainxte003en/overview.html">教书理解</a><a href="/courses/rainxte003en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte003en/skills/rxe-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte003en/skills/rxe-agent-onboarding.html">OXE 接入 Rainbow 与接入排障</a><a href="/courses/rainxte003en/skills/rxe-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte003en/skills/rxe-routing-rex.html">OXE 用户形态决策与远程延伸路由</a><a href="/courses/rainxte003en/skills/rxe-webrtc-gateway-deployment.html">WebRTC 网关部署与升级</a><a href="/courses/rainxte003en/skills/rxe-oxe-gateway-config.html">OXE 侧 WebRTC 网关配置九件套</a><a href="/courses/rainxte003en/skills/rxe-gateway-pool-sizing.html">共享 WebRTC 网关池与容量规划</a><a href="/courses/rainxte003en/skills/rxe-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte003en/skills/rxe-rcc-association.html">OXE 分机关联与 RCC 模式</a><a href="/courses/rainxte003en/skills/rxe-attendant-consoles.html">两套话务台（4059EE 与 Rainbow Attendant Console）</a><a href="/courses/rainxte003en/skills/rxe-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte003en/skills/rxe-network-readiness.html">Rainbow 网络就绪核查</a><a href="/courses/rainxte003en/skills/rxe-lab-pod-setup.html">RLAB 实验环境与 Pod 配置</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte003en/index.html">rainbow-oxe-integration（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte003en/index.html">RAINXTE003EN</a><span>/</span><span aria-current="page">两套话务台（4059EE 与 Rainbow Attendant Console）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>两套话务台（4059EE 与 Rainbow Attendant Console）</h1></div><dl><div><dt>Skill ID</dt><dd>rxe-attendant-consoles</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>两套话务台（4059EE 与 Rainbow Attendant Console）与监督组/互助组</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Warning - Rainbow and phone status are two distinct things and can be different"（p204）
+"WARNING: This extension must not be multi-line, as it will be associated to the 4059 IP attendant (multiline set is incompatible with 4059 IP attendant)"（p209）
+"Call queue management - Manage up to 10 calls for OXE - And up to 8 calls for OXO Connect"（p227）
+"Maximum number of supervision groups for a supervisor / Maximum number of users in a group (supervisors + supervised): 5 / 30"（p230）</p>
+</blockquote>
+<p>出处：RAINXTE003EN p198-244。</p>
+<h2>I — 自述</h2>
+<p>两套话务台先分清（p200/p227）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>4059EE（OXE 传统）</th>
+<th>Rainbow Attendant Console（云）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订阅</td>
+<td>不需要 Attendant 订阅（只用普通 Rainbow 账户取在场）</td>
+<td>每人必须 Attendant 订阅</td>
+</tr>
+<tr>
+<td>话音</td>
+<td>只管话务不管话音，必须关联物理话机或 IPDSP</td>
+<td>呼叫全部由 PBX 处理，话务员须有电话线与软终端</td>
+</tr>
+<tr>
+<td>队列</td>
+<td>话务组溢出门限（Max. No. of Calls Bef. Overfl.）</td>
+<td>OXE 10 路 / OXO 8 路</td>
+</tr>
+<tr>
+<td>终端</td>
+<td>PC 应用 + 关联话机（禁 multi-line）</td>
+<td>仅 Web/Desktop，无移动端</td>
+</tr>
+</tbody>
+</table></div>
+<p>4059EE 交付四层结构（p198-215）：</p>
+<ul>
+<li>话务组（Attendant group）：建组即自动生成 CDT，溢出门限按 Day/Night/Mode1/Mode2 状态</li>
+<li>话务台（4059 IP 类型）：关联话机绝对禁 multi-line——与 tandem 场景要求正好相反（n20）</li>
+<li>呼叫分配：实体 CDT 日间路由指向话务组、Attendant Call 前缀按国家默认、个人话务呼叫前缀配电话簿显示话务员名</li>
+<li>Rainbow 集成：专用账户、被监督成员须在其联系人列表、Enable Busy Lamp Field 后有 BLF</li>
+</ul>
+<p>Rainbow 话务台与监督（p225-237）：界面五区（监督组页签/BLF 区/呼叫队列/呼叫控制/三种显示格式）；监督组规格——监督员最多 5 组、每组（监督员+被监督）最多 30 人；挂起呼叫数取决于软电话线 multi-line 资源（OXE 用 REX 最多 10、OXO 用 Anydevice 最低 R6 最多 8）。</p>
+<p>互助监督组（p233-236）：一键 Join/Leave；监督员可临时纳入/排除被监督用户；同时最多监督 4 路；可锁定最后一名成员；代接仅对同 PBX 的电话呼叫有效——Rainbow 软终端（computer 路由）来的呼叫不可代接（n23）。</p>
+<p>两条认知纠偏：Rainbow 在场与电话状态是两个独立信息，BLF 上两边可不同（p204/p221，书中专门设计双测试）；4059EE 的 Attendant group 与 Rainbow 监督组是两回事，别混。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>4059EE 交付实验</strong>（p206-224）：</p>
+<ol>
+<li>建话务组：物理号 A0000、组名 GROP1、溢出门限 5（实验口径取值）</li>
+<li>建话务台：Set Type 选 4059 IP、关联话机 31002，Warning 该分机禁 multi-line</li>
+<li>建个人话务呼叫前缀 31401 并配电话簿条目显示话务员名</li>
+<li>系统参数两项：Close auto sign off 与 PC unregistered at logoff 按 navCtrl 语义勾选</li>
+<li>先启动关联的 IPDSP 使其 in service，再从 4059EE 连接（顺序硬约束）</li>
+<li>装应用：Custom 勾 Rainbow agent、不装 ALCATEL USB 键盘（RLAB 口径）、防火墙放行应用与 abcacom.exe</li>
+<li>配 PCX 连接：设备地址格式为话务员号加主机名（冗余时最多 3 个主机名）</li>
+<li>签入后配实体 CDT 日间路由指向话务组</li>
+<li>建话务员 Rainbow 成员并配 4059 Rainbow 集成（输账户、勾 Search in Rainbow）</li>
+<li>给该账户邀请全员联系人（被监督成员必须在列表内）</li>
+<li>启用 BLF 并添加监督项；做两条状态差异测试（Rainbow 状态与话机状态两边不同）</li>
+</ol>
+<p><strong>Rainbow 话务台实验</strong>（p238-244）：</p>
+<ol>
+<li>订购 Attendant Monthly（培训禁预付，实验口径）并分配给话务员</li>
+<li>建监督组：选监督员与被监督成员后创建</li>
+<li>话务员登录打开 Attendant console 核验页签/BLF/队列</li>
+<li>建互助监督组：Type 选 Mutual aid group、按需锁定最后一名成员、定义双方 In/Out 权限</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：前台工作台选型；建监督组代接电话；互助值班；话务台显示"忙"但用户没打电话；4059 注册不上。</p>
+<p>语言信号：4059EE / 话务台 / attendant / 话务组 / CDT / BLF / Busy Lamp / 监督组 / supervision / 互助组 / mutual aid / 代接 / pickup / 在场 / presence / Attendant 订阅。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>话务员订阅怎么买 → 公司体系与订阅能力</li>
+<li>tandem 成员的 multi-line（要求相反）→ 远程延伸路由能力</li>
+<li>Rainbow 在场数据源问题 → 维护支持能力（路由卡）</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：话务场景（OXE 传统线或云线）、话务员与被监督名单、话机/软终端资源、订阅预算。两套话务台未定 → 先按对比表选型。</p>
+<ol>
+<li>选型：按"两套话务台对比表"定线。完成标准：选型与订阅方案成文</li>
+<li>4059 线施工：话务组、话务台（关联话机禁 multi-line）、CDT、安装连接、Rainbow 集成与 BLF。完成标准：注册在册且 BLF 显示</li>
+<li>Rainbow 线施工：订购并分配 Attendant 订阅、建监督组/互助组、打开控制台核验。完成标准：页签/队列/BLF 正常</li>
+<li>在场双测试：分别改 Rainbow 状态与话机状态各验一次。完成标准：两列信息独立呈现（可不同属预期）</li>
+<li>代接边界确认：核同 PBX 与电话呼叫两个条件。完成标准：需求边界与客户对齐</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>4059 注册失败 → 查关联话机是否 multi-line、IPDSP 是否先 in service、防火墙是否放行 abcacom.exe（n22）</li>
+<li>"帮我接一下"跨 PBX 或软终端呼叫 → 停，代接边界不覆盖，提前向客户泼冷水（n23）</li>
+<li>一个组要装 40 人 → 停，每组上限 30 人，拆组</li>
+<li>把 Attendant 订阅安到 4059EE 头上 → 停，订阅与 4059EE 无关（n24），退订阅</li>
+</ul>
+<p>输出契约：话务台交付记录（选型依据）+ 监督/互助组清单 + 在场差异测试结论。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>4059EE 系统参数语义（自动签退/登出抹除 PC 身份）为讲义口径（p210-211）</li>
+<li>书内 user2 姓名跨章不一致（p64 Rains Robby vs p216 Betty Carol，nr-01）：实验复现勿把姓名当考核点</li>
+<li>实验取值（A0000/B0000/31002/31401/门限 5）为实验口径，现场按站点规划</li>
+<li>深入配置在 TC2462（OXE）/TC2479（OXO）（p232 指针）；4059 与 Rainbow 话务台的功能全集以应用版本为准</li>
+<li>互助组代接依赖被监督成员有物理分机或已关联的 PBX 软终端（p244）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte003en/skills/rxe-company-subscription.html">Rainbow 公司体系与订阅开通</a></p><p class="source-page">能力 ID：cap.rxe.attendant-consoles · 来源：RAINXTE003EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Rainbow / OmniPCX Enterprise (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 314 页 -->

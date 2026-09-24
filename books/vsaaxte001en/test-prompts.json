@@ -1,0 +1,74 @@
+{
+  "skill": "visual-automated-attendant",
+  "version": "0.1.0",
+  "bundle": "bundle.visual-automated-attendant",
+  "capability_catalog": [
+    {"slug": "vaa-install-sip-integration", "name": "VAA 安装与 OXE SIP 对接接通", "description": "手工安装（install.sh 参数契约：incoming username 双侧一致、G729 与 ASR 互斥、禁拨前缀）+ HTTPS 证书 + OXE 五段链（trunk group ABC-F/外部网关/信任 IP/路由/前缀计划）+ 测试树拨通与四层排障；4.8.006 只支持全新安装 + 数据库恢复且强制 Release 11"},
+    {"slug": "vaa-multitenant-tree-design", "name": "VAA 多租户与树设计", "description": "公司四要素（时区/DID 段/留言前缀/分机位长）；日历/营业时间/过滤器/提示音依赖物先行；12 种原生节点与三级用例（UC1 简单转接、UC2 日历+VIP 过滤、UC3 多语言菜单）；一号一树绑定激活；节点命名进统计"},
+    {"slug": "vaa-prompt-tts-asr", "name": "VAA 提示音与 TTS/ASR 引擎", "description": "提示音三来源（WAV 8KHz PCM 16-bit 单声道名称无空格/电话录音需 ID+PIN/TTS 生成）；Pico 免费不建议生产、Google Cloud TTS 收费生产推荐；ASR 需 Google API key；语音一致性把存量 WAV 转 TTS"},
+    {"slug": "vaa-ivr-option-nodes", "name": "VAA IVR 选项节点与动态脚本", "description": "九节点（变量/条件/收号/显示名/识别/相关数据/SQL/HTTP/邮件）全部需 IVR 许可；变量三类（Local/Global/Contextual 只读）；收号行为（min=max 判失败、* 合法、# 不可改）；显示名仅监督转接振铃期且需 COS；HTTP JSON 点语法取值"},
+    {"slug": "vaa-master-slave-ha", "name": "VAA Master/Slave 高可用与 OXE ARS 切换", "description": "slave 独立安装 + master vaa ha addslave（清空 slave 配置）+ 双侧验证；OXE 侧第二中继/网关/识别符/NPD/ARS 双路由/时间路由；行为口径：Slave 只读无统计、任何切换丢进行中呼叫、Master 恢复后必须手工 resync、首呼短延迟"},
+    {"slug": "vaa-maintenance-backup", "name": "VAA 日常维护与版本升级", "description": "vaa 命令族（stop 保留 postgresql 与 nginx）；许可核查（FEATURE 项与 vaa services 三项）；密码策略（12 位四类字符、92 天有效期、5 次锁定）；三级备份 db/cert/full；自动备份启用后关不掉（6 个月 20GB）；升级七步（备份先行、vaa.conf 逐值比对、HA resync）"},
+    {"slug": "vaa-db-integration", "name": "VAA 外部数据库集成", "description": "JDBC 驱动手装（默认仅 PostgreSQL/MariaDB；MS SQL/Oracle 传 /home/admin 再 mv 到 /opt/ale/aa-webapp/lib、HA 双机都装、重启 aa-webapp）；External Databases 建连接；SQL 节点单字段/首条/空结果不算错；MS SQL 三默认值陷阱；Oracle 两种连接串不等价"},
+    {"slug": "vaa-statistics-reporting", "name": "VAA 统计与报告", "description": "报表四指标（收到/已处理/主叫挂断/许可不足丢失）+ 饼图；呼叫日志逐节点时长排障与 CSV 导出；xlsx 邮件周报（vaa.conf 双开关默认 true、需权限与邮箱、选周一收到周一数据）；统计依赖节点命名纪律"},
+    {"slug": "vaa-webadmin-administration", "name": "VAA WebAdmin 管理面", "description": "首连 admin/admin 强制改密；建第二管理员（新账号默认密码=用户名，必须立即改）与角色分派；SMTP 告警配置（保存后必须重启服务）；Administrator menu 四页（Server info/Supervision/Logs/License）；Supervision 按钮无支持指示不要用"},
+    {"slug": "vaa-pcs-opex-licensing", "name": "VAA PCS 同步与 OPEX/许可体系", "description": "PCS 远端站点（vaa conf pcs/vaa db sendBackup、cron 01:00 起每台 +1 分钟、应急配置恢复即丢）；OPEX（Purple On Demand）三前提与每晚午夜校验、与空间冗余互斥；FlexLM 许可绑定 MAC/FQDN（换网卡/改主机名失效）"},
+    {"slug": "vaa-server-sizing-virtualization", "name": "VAA 服务器选型与虚拟化", "description": "规格三档（8/50/120 端口：双核 8GB/四核 16GB/八核 32GB，示例口径）；120 端口上限超限找售前；虚拟化三前提（ESXi 8.0 需 VMXNet3+Tools、Hyper-V 2022 推荐 Gen2、Proxmox 8.2 自 4.6.1 起）；root 禁止 SSH 远程走 admin+sudo"},
+    {"slug": "vaa-architecture-redundancy", "name": "VAA 架构与冗余全景", "description": "组件族七件（aa-license-server/aa-media-server/aa-cli/aa-webapp/PostgreSQL 16/Nginx/tts-hub）；四步呼叫流（OXE 呼控、VAA 执行脚本、经 OXE 转接落地）；multi-company 媒体服务器共享不能预留端口；N+1 reference 结构（故障期配置冻结）；OXE 冗余三用例"}
+  ],
+  "test_cases": [
+    {"id": "should-install-01", "type": "should_trigger", "prompt": "新到一台服务器要装 VAA 并挂到 OXE 上，安装脚本那些参数应该怎么填，装完怎么确认是通的？", "expected_behavior": "激活 vaa-install-sip-integration，install.sh 参数清单 + vaa status 验收 + 31400 拨测"},
+    {"id": "should-install-02", "type": "should_trigger", "prompt": "VAA 装好了，从外面拨测试号没声音也不挂断，中继和网关状态要怎么一层层查？", "expected_behavior": "激活 vaa-install-sip-integration，四层排障（trkstat/sipextgw/motortrace/softcmp 日志）+ incoming username 双侧核对"},
+
+    {"id": "should-tree-01", "type": "should_trigger", "prompt": "客户要一个话务台入口：非工作时间播闭馆提示，VIP 客户来电直接转专属坐席，其他人转前台，怎么配？", "expected_behavior": "激活 vaa-multitenant-tree-design，UC2 模板（日历/营业时间/过滤器先行 + Filter 分支）"},
+    {"id": "should-tree-02", "type": "should_trigger", "prompt": "要做法语英语双语的自助菜单， caller 选语言后再按 1-4 走不同服务，语言选择前的语音怎么处理？", "expected_behavior": "激活 vaa-multitenant-tree-design，UC3 模板 + 双语同文件约束"},
+
+    {"id": "should-prompt-01", "type": "should_trigger", "prompt": "客户给了一批发音棚录的 WAV，上传到 VAA 提示音里要么失败要么声音不对，怎么办？", "expected_behavior": "激活 vaa-prompt-tts-asr，WAV 三硬约束（8KHz/PCM 16-bit/单声道）转格式"},
+    {"id": "should-prompt-02", "type": "should_trigger", "prompt": "生产环境 TTS 引擎用内置免费的 Pico 行不行？有什么更好的选择？", "expected_behavior": "激活 vaa-prompt-tts-asr，Pico 不建议生产、Google Cloud TTS 收费推荐的选型口径"},
+
+    {"id": "should-ivr-01", "type": "should_trigger", "prompt": "来电者要在电话里输入工号查报修进度，输入位数不对、超时不按这些异常情况怎么兜底？", "expected_behavior": "激活 vaa-ivr-option-nodes，Collect digit 参数与异常路径（min=max、*、#、超时）"},
+    {"id": "should-ivr-02", "type": "should_trigger", "prompt": "通话中想实时取外部天气接口的数据播报给 caller，变量怎么取 JSON 里的字段？", "expected_behavior": "激活 vaa-ivr-option-nodes，HTTP request 节点 + VAR 点语法取值"},
+
+    {"id": "should-ha-01", "type": "should_trigger", "prompt": "客户要求 IVR 不能单点故障，怎么部署 VAA 双机，OXE 侧还要配什么才能自动切换？", "expected_behavior": "激活 vaa-master-slave-ha，五步部署 + OXE 侧识别符/NPD/ARS 双路由"},
+    {"id": "should-ha-02", "type": "should_trigger", "prompt": "主 VAA 修好上线后，后台看两台配置好像不一样了，Web 界面也连的是旧地址，怎么回事？", "expected_behavior": "激活 vaa-master-slave-ha，恢复后不自动回同步要 vaa ha resync + Web 重连到 Slave 的行为口径"},
+
+    {"id": "should-maint-01", "type": "should_trigger", "prompt": "VAA 要做备份策略，有哪些级别的备份命令？自动备份能设每周日跑吗？", "expected_behavior": "激活 vaa-maintenance-backup，三级备份（db/cert/full）+ 自动备份频率（Weekly 周日）与不可关闭规则"},
+    {"id": "should-maint-02", "type": "should_trigger", "prompt": "VAA 要从 4.7 升到 4.8.006，直接跑一遍新版的 install.sh 覆盖安装行不行？", "expected_behavior": "激活 vaa-maintenance-backup，4.8.006 只有全新安装 + 数据库恢复路径 + vaa.conf 逐值比对 + HA resync"},
+
+    {"id": "should-db-01", "type": "should_trigger", "prompt": "客户要求：来电号码在会员库里查到就转他的专属顾问，查不到走普通菜单，树和数据库怎么打通？", "expected_behavior": "激活 vaa-db-integration，JDBC 驱动 + External Databases + SQL 节点树（Condition 判空）"},
+    {"id": "should-db-02", "type": "should_trigger", "prompt": "新装的 MS SQL Express，VAA 死活连不上，TCP 也通了 1433，还可能卡在哪？", "expected_behavior": "激活 vaa-db-integration，MS SQL 三默认值陷阱（TCP/IP 禁用、1433 未分配静态端口、首登仅 Windows 认证）"},
+
+    {"id": "should-stats-01", "type": "should_trigger", "prompt": "客户要每周一早上收到上周的话务量报告邮件，VAA 上怎么开？什么时候能收到、收到的是哪天的数据？", "expected_behavior": "激活 vaa-statistics-reporting，周报双开关/权限/邮箱 + 选周一收到周一数据的偏移口径"},
+    {"id": "should-stats-02", "type": "should_trigger", "prompt": "有客户投诉 IVR 听着听着卡了好几秒，怎么定位是哪个环节慢？", "expected_behavior": "激活 vaa-statistics-reporting，呼叫日志逐节点时长诊断"},
+
+    {"id": "should-webadmin-01", "type": "should_trigger", "prompt": "交付收尾要给客户加一个管理员账号，建完有什么必须马上做的事？", "expected_behavior": "激活 vaa-webadmin-administration，新账号默认密码=用户名必须立即改密"},
+    {"id": "should-webadmin-02", "type": "should_trigger", "prompt": "VAA 的告警邮件一封都收不到，SMTP 参数明明填了，还有什么没做？", "expected_behavior": "激活 vaa-webadmin-administration，SMTP 配置保存后必须重启服务"},
+
+    {"id": "should-pcs-01", "type": "should_trigger", "prompt": "客户工厂有一条独立的远端链路，断网时希望本地还能接电话，VAA 有没有办法让远端站点接管？", "expected_behavior": "激活 vaa-pcs-opex-licensing，PCS 架构与同步命令 + 应急配置恢复即丢"},
+    {"id": "should-pcs-02", "type": "should_trigger", "prompt": "客户想从买许可改成按用量付费的 OPEX 模式，VAA 这边要满足什么条件？", "expected_behavior": "激活 vaa-pcs-opex-licensing，OPEX 三前提（云化 OXE/单订阅/端口分摊）+ 每晚午夜校验"},
+
+    {"id": "should-sizing-01", "type": "should_trigger", "prompt": "客户预计并发 40 路 IVR，服务器大概要什么配置？最高能支持到多少路？", "expected_behavior": "激活 vaa-server-sizing-virtualization，规格三档查表 + 120 端口上限 + 示例口径免责"},
+    {"id": "should-sizing-02", "type": "should_trigger", "prompt": "客户机房是 Proxmox 虚拟化平台，能不能在上面跑 VAA？虚机要注意什么？", "expected_behavior": "激活 vaa-server-sizing-virtualization，Proxmox 8.2 自 4.6.1 起支持 + 网卡 VMXNet3"},
+
+    {"id": "should-arch-01", "type": "should_trigger", "prompt": "给客户讲方案时，OXE 和 VAA 各自负责什么？一通电话进来是怎么走完的？", "expected_behavior": "激活 vaa-architecture-redundancy，四步呼叫流 + OXE 呼控/VAA 执行脚本分工"},
+    {"id": "should-arch-02", "type": "should_trigger", "prompt": "客户有多个公司共用一套 OXE，想给每个公司保底预留几路 IVR 端口，做得到吗？", "expected_behavior": "激活 vaa-architecture-redundancy，媒体服务器共享不能按公司预留端口"},
+
+    {"id": "bait-install-01", "type": "should_not_trigger", "prompt": "把 VAA 装到客户的 CentOS 服务器上可以吗？他们不想用 SUSE。", "expected_behavior": "超出书内范围（原书仅 SUSE + ALE BootDVD 口径），应声明边界，不应按 vaa-install-sip-integration 流程编造步骤"},
+    {"id": "bait-tree-01", "type": "should_not_trigger", "prompt": "在 OXE 上建一个 ACD 呼叫中心队列，设置坐席组和排队策略。", "expected_behavior": "OXE/OXO ACD 属另一产品域，不应激活 vaa-multitenant-tree-design（VAA 树与 ACD 是两回事）"},
+    {"id": "bait-prompt-01", "type": "should_not_trigger", "prompt": "怎么把 TTS 音色调得像真人播音员一样自然？", "expected_behavior": "引擎音质调优超出原书范围，应声明边界；不应以 vaa-prompt-tts-asr 给出虚构参数"},
+    {"id": "bait-ivr-01", "type": "should_not_trigger", "prompt": "树里要按来电号码查客户表然后转到专属坐席，数据库驱动怎么装？", "expected_behavior": "应激活 vaa-db-integration（驱动与库连接），不应停留在 vaa-ivr-option-nodes 只讲节点参数"},
+    {"id": "bait-ha-01", "type": "should_not_trigger", "prompt": "OXE 呼叫服务器做主备切换的时候，SIP 中继在新主机上重建的原理是什么？", "expected_behavior": "OXE 冗余原理书外（原书只有行为用例），应按 vaa-architecture-redundancy 讲行为口径并声明原理边界，不应激活 vaa-master-slave-ha 给实施步骤"},
+    {"id": "bait-maint-01", "type": "should_not_trigger", "prompt": "WebAdmin 的 Supervision 页面里有重启服务的按钮，日常重启用它方便吗？", "expected_behavior": "应激活 vaa-webadmin-administration（Supervision 按钮无支持指示不要用），不应激活 vaa-maintenance-backup"},
+    {"id": "bait-db-01", "type": "should_not_trigger", "prompt": "客户的业务数据在 MongoDB 里，VAA 的 SQL 节点能不能直接查？", "expected_behavior": "书内仅 JDBC 关系库口径（NoSQL 无 JDBC 驱动口径），应声明边界，不应激活 vaa-db-integration 编造方案"},
+    {"id": "bait-stats-01", "type": "should_not_trigger", "prompt": "OXE 自带的话务统计报告在哪里看、怎么导出？", "expected_behavior": "OXE 侧统计属 OXE 文档域，不应激活 vaa-statistics-reporting（该卡只管 VAA 统计）"},
+    {"id": "bait-webadmin-02", "type": "should_not_trigger", "prompt": "管理员密码过期被锁了，两条解锁的路分别是什么？", "expected_behavior": "应激活 vaa-maintenance-backup（锁定 2 小时/unlockAdmin/resetAccount），不应停留在 vaa-webadmin-administration"},
+    {"id": "bait-pcs-02", "type": "should_not_trigger", "prompt": "OXE 站点之间的 CPS 冗余工程怎么设计实施？", "expected_behavior": "OXE 冗余工程实施书外，应声明边界；不应激活 vaa-pcs-opex-licensing 当作可实施手册（PCS 是 VAA 外围站点机制）"},
+    {"id": "bait-sizing-02", "type": "should_not_trigger", "prompt": "VMware Workstation 工作站版虚拟机里能不能装 VAA 做生产？", "expected_behavior": "书内仅 ESXi/Hyper-V/Proxmox 三种 Hypervisor 口径，应按 vaa-server-sizing-virtualization 声明边界并指向官方兼容表，不应给变通方案"},
+    {"id": "bait-arch-02", "type": "should_not_trigger", "prompt": "VAA 服务器想做双网卡绑定提高带宽，怎么配？", "expected_behavior": "操作系统网络工程书外，不应激活 vaa-architecture-redundancy 编造配置步骤"},
+
+    {"id": "edge-install-01", "type": "edge_case", "prompt": "我们的 VAA 现在是 4.7 版本，能不能原地升级到 4.8.006，保住现有配置？", "expected_behavior": "按书口径回答：4.8.006 唯一支持路径是全新安装 + 数据库恢复 + Release 11 新许可，无原地升级；按升级七步保数据"},
+    {"id": "edge-ha-01", "type": "edge_case", "prompt": "主 VAA 宕机那两个小时的话务统计报表里缺了一块，能不能等 resync 之后补回来？", "expected_behavior": "按边界回答：故障期间 Slave 只读不记统计，resync 只同步配置不回补历史统计；缺口属设计行为，答复口径带推断标注"},
+    {"id": "edge-ivr-01", "type": "edge_case", "prompt": "收号节点让用户输工号，有人只按了一个星号，系统会怎么处理？", "expected_behavior": "按行为细则回答：单独输入 * 被视为一次正确输入（不是错误），依赖 * 做返回键需自行加 Condition 判断"},
+    {"id": "edge-stats-01", "type": "edge_case", "prompt": "周报选了 Monday，为什么客户周二才收到，而且内容是周一的数据？能不能改成周一上班就看上周五的？", "expected_behavior": "按口径回答：星期参数语义是次日报前一天（选 Monday = 周二收周一报）；要看上周五需另行安排，原书无直接配置"}
+  ]
+}

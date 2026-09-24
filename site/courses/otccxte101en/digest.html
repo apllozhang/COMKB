@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>整理摘要 · OTCCXTE101EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced</h2><p>Edition  · 597 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte101en/index.html">课程首页</a><a href="/courses/otccxte101en/digest.html">精华长文</a><a href="/courses/otccxte101en/overview.html">教书理解</a><a href="/courses/otccxte101en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte101en/skills/otcad-ism-skill-matching.html">ISM 技能匹配与排序口径</a><a href="/courses/otccxte101en/skills/otcad-remote-pg-mutual-aid.html">Remote PG 分布式互助与 ABC-F 链路</a><a href="/courses/otccxte101en/skills/otcad-spm-deployment.html">Soft Panel Manager 部署与基础设置</a><a href="/courses/otccxte101en/skills/otcad-soft-panel-manager.html">Soft Panel 可视化配置（视图/挂件/消息/告警）</a><a href="/courses/otccxte101en/skills/otcad-ccta-ticket-analysis.html">CCTA 话务票据分析</a><a href="/courses/otccxte101en/skills/otcad-special-features.html">特殊功能开关（优先转接/忙音/代接/监听/永恒整理/中继预留）</a><a href="/courses/otccxte101en/skills/otcad-excel-report-customization.html">Excel 报表模板定制</a><a href="/courses/otccxte101en/skills/otcad-ccs-server.html">CCS Server 集中接入</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte101en/skills/otcad-acr-objects.html">ACR 对象与技能体系</a><a href="/courses/otccxte101en/skills/otcad-asm-script-advanced.html">ASM 脚本与 LCA 主干</a><a href="/courses/otccxte101en/skills/otcad-ccs-onboarding.html">CCS 安装与实验环境定稿</a><a href="/courses/otccxte101en/skills/otcad-acd-maintenance.html">ACD 维护命令箱</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte101en/index.html">otcc-standard-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte101en/index.html">OTCCXTE101EN</a><span>/</span><span aria-current="page">整理摘要</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">DIGEST</p><h1>整理摘要 — 全书精华</h1></div></header><article class="markdown-body"><h1>DIGEST — OmniTouch Contact Center Standard · Advanced 精华长文</h1>
+<blockquote>
+<p>源：OTCCXTE101EN Edition 07（597 页，OTCC Standard R10.15 / OXE 11.1）· 文档整理入库 · 2026-09-23
+定位：10 分钟建立 OTCC 高级能力的全局认知；操作细节按需查 12 张能力卡。</p>
+</blockquote>
+<h2>一、这本书讲什么</h2>
+<p>OmniTouch Contact Center Standard（OTCC Standard）的基础版把呼叫中心跑起来；这本 Advanced 教材在这个底座上叠加六类高级能力：
+<strong>技能路由的算法口径（ISM）、跨站点互助（Remote PG）、实时墙板（Soft Panel Manager）、话务票据分析（CCTA）、特殊功能开关、报表与集中接入（Excel 定制 + CCS Server）</strong>。
+全书是"讲义给模型与数值边界，How-To 给菜单路径，呼叫测试给验收"的行为闭环。</p>
+<p>一个前置认知：ACR（高级呼叫路由）的一切建立在"等待室"上。呼叫先被特征化（主叫号码、被叫号码、呼叫标签、呼叫档案），路由到 ACR Pilot，ASM 按脚本算出坐席列表（动态组），呼叫带着这份列表进等待室等坐席。等待室与普通等待队列在同一规则里互斥，且不做 FIFO。</p>
+<p>先记三组数字：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>数字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7 / 50 / 20</td>
+<td>呼叫档案最多 7 个技能属性；坐席最多 50 个技能；域最多 20 个（技能 1000 个）</td>
+</tr>
+<tr>
+<td>15 / 120</td>
+<td>CCS 直连 AFE 上限 15 连接；外部 CCS Server 120 客户端（连接数超过 9 必须上 Server）</td>
+</tr>
+<tr>
+<td>500 / 150 / 200</td>
+<td>SPM 订阅统计、并发连接、面板+墙板三限</td>
+</tr>
+</tbody>
+</table></div>
+<h2>二、技能路由是怎么想的（ISM）</h2>
+<p>ISM 匹配是三级漏斗：坐席必须具备呼叫档案<strong>全部强制属性</strong>（坐席等级大于等于呼叫等级）才进第 1 子列表；重选定时不中就逐级降级（N-1 项满足+1 项不满足，直到全不满足）；同一子列表内按成本排序——Cman（强制属性差值乘域权重的总和）最小者胜，同分比 Copt（可选属性，缺技能按 9 代入），再同分按 PLTR 或 LIT。</p>
+<p>一个手算例子（书中完整算例）：两个坐席 Cman 同为 14，Copt 分出胜负——Agent1 无 Client 技能按 9 代入得 31，Agent4 得 3，Agent4 排第一。</p>
+<p>三个常被误解的口径：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th>事实</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最久空闲优先（LIT）</td>
+<td>用 asm_ag_free_duration=1 开启（需 IDLE 积木块+重启 MAIN_AFE）；但坐席统计默认 5 分钟刷新，低话务时形同"同一坐席每 5 分钟被叫一次"</td>
+</tr>
+<tr>
+<td>重选 21 次</td>
+<td>脚本重选上限 21 次（另一处表述为 21 次请求=20 次执行）；RESELECTION_TIMEOUT 是重跑节拍，不是最长等待</td>
+</tr>
+<tr>
+<td>直拨路由 Pilot</td>
+<td>没有呼叫档案就是空列表，跑满 21 次走闭锁——业务号码要引导客户拨统计 Pilot</td>
+</tr>
+</tbody>
+</table></div>
+<h2>三、跨站点互助（盲/智能 + Remote PG）</h2>
+<p>互助两种形态：<strong>盲互助</strong>没有 ABC-F 链路，远端把呼叫当新呼叫处理；<strong>智能互助</strong>经 ABC-F 交换 Pilot 状态、已听引导、真实等待时间，按远端状态路由，远端可拒收（按五类地址回退本地处理）。</p>
+<p>分布式互助三对象：本地建 <strong>Remote PG</strong>（Type=Remote，有分布门限+资源选择优先级，没有呼叫选择优先级），指向远端的<strong>虚拟队列</strong>（只映射本地队列队头呼叫特征）和<strong>专用 Pilot</strong>（一个虚拟队列专属）。</p>
+<p>三级水位控制别搞混：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>控制层</th>
+<th>参数</th>
+<th>语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>方向选择</td>
+<td>资源选择优先级 0-9</td>
+<td>0 最高 9 最低；同级处理组比 LIT</td>
+</tr>
+<tr>
+<td>溢出节奏</td>
+<td>分布门限（秒，实验 15）</td>
+<td>呼叫在本地队列等满 N 秒才许流向远端</td>
+</tr>
+<tr>
+<td>队列饱和</td>
+<td>最大等待时间 0-3276 秒</td>
+<td>达阈值队列降为最低优先级；0=零等待队列（立即改道）</td>
+</tr>
+</tbody>
+</table></div>
+<p>排障入口两条命令：compvisu sys（Direct Link 状态、H323、RTP Direct）与 hybvisu -f all（四态 IDLE/SYN_REQ/SYN_ACK/DATA_TRANS，健康=DATA_TRANS；
+High=全编解码、Low=G729）。断链或远端闭锁时，本地饱和的溢出呼叫会落到语音引导 PG 播完引导后释放——这是兜底设计，但意味着断链期间溢出话务直接流失，
+生产要有告警与回拨策略。</p>
+<h2>四、实时墙板（Soft Panel Manager）</h2>
+<p>SPM 是独立于 CCS 的数据链：OXE CCD &gt; CCS &gt; RTI Connector（Windows 服务）&gt; SPM 服务器（Tomcat，默认端口 9060）&gt; 墙板/液晶/电视 + 邮件告警。
+部署三件套：SPM 服务器、RTI Connector、FlexLM 许可（103 号包是 OXE 侧前提）。
+显示端是背景、视图、软面板、挂件四层模型，告警四步（阈值条件+邮件+告警视图替换）。</p>
+<p>四条最容易踩的口径：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>坑</th>
+<th>事实</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>同机共存</td>
+<td>CCS 与 RTI Connector 同机时 CCS 必须专用于 RTI，RTI 运行期禁止手工再启 CCS</td>
+</tr>
+<tr>
+<td>统计不动</td>
+<td>统计按需订阅：只有被视图/告警引用的统计才更新，新选用最多 1 分钟生效</td>
+</tr>
+<tr>
+<td>许可失效</td>
+<td>界面常驻告警横幅+统计更新冻结，先查 LMTOOLS 别重启 RTI</td>
+</tr>
+<tr>
+<td>日统计</td>
+<td>每 15 分钟取一次（不可更快），取数在每刻后 2 分钟，0 点清零</td>
+</tr>
+</tbody>
+</table></div>
+<p>细节限制：视图定制仅限 Firefox；HTML 挂件只认 http://；历史曲线最多 2000 值或 24 小时；已被引用的统计过滤器撤不掉（先删引用对象）。</p>
+<h2>五、特殊功能与数据交付</h2>
+<p><strong>特殊功能</strong>全是"对象参数开关+行为验证"：优先转接（双队列）、DID 忙音（注意默认饱和听的是 2 号间隔引导音，不是忙音）、</p>
+<h1>013 组内代接与 #014 直接代接（前缀+COS 放行）、监督监听、永恒整理（整理期办电话事务不打断计时）、</h1>
+<p>中继预留两级数学（62 条 SIP 接入，业务预留 20% 后 CCd 约 50 条，单 Pilot 限额 30% 约 15 条）。
+监听与录音只有操作没有合规边界，上线前必须补法律评审。</p>
+<p><strong>CCTA 票据分析</strong>：离线工具，Importation 自动导入 .Z 票据（通信+事件两类），Ticket Tracer 过滤出报表并导 ASCII。结束原因共 40 种（样例：0=主叫挂机、1=系统挂机、26=坐席挂机），呼叫类型共 10 种（0=非 ACR、1=ACR）。</p>
+<p><strong>Excel 报表定制</strong>：Formats 目录 11 种模板，在模板里加 Custom 工作表——结构区直接拷贝、值区用"粘贴链接"引用 General，数据仍由 General 承载。两大纪律：改前把原件改名 *_old 留底；改完必须关并重开 CCSupervision。粒度陷阱：General 表约 24 行，½ 小时粒度单张表只覆盖 0:00-16:00，全天要建第二张链表。</p>
+<p><strong>CCS Server 集中接入</strong>：直连 AFE 物理上限 15 连接；内部 serv_ccs 15 客户端；外部 Windows 服务 120 客户端（Windows Server 2019/2022）。CCd R3.1+CCs 4.3.46.1 起连接数超过 9 必须上 Server；一个 AFE 只接一个 Server——外部服务被拒接，第一刀切内部进程是否真停。</p>
+<h2>六、交付红线与排障命令箱</h2>
+<p>四条红线：</p>
+<ol>
+<li>教材全部密码/账号/号码/网段是实验值（mtcl、admin/admin、123456……），上生产必须整体替换并按安全基线加固</li>
+<li>技能体系"怎么设计"（划域、定权重、评等级）全书不教，只教"怎么配"——照实验建域上生产大概率失真</li>
+<li>话务建模与 sizing（Erlang、坐席/中继估算）在书外，容量表只是合规红线；超限查当期 Feature List</li>
+<li>数值口径：21 次重选、5 分钟统计刷新、15 秒门限均为实验观察口径，不是调优建议</li>
+</ol>
+<p>排障命令箱（mtcl 会话）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>adm_acd</td>
+<td>对象清单（Pilot/队列/统计 Pilot/处理组/人员/ACR 数据/许可）</td>
+</tr>
+<tr>
+<td>adm_acd <ASM IP> -salb</td>
+<td>坐席统计（21）、ASM 记忆（28，清记忆后复核用）</td>
+</tr>
+<tr>
+<td>adm_acd <Server IP> -servccs</td>
+<td>经 CCS Server 接入的客户端清单（10）</td>
+</tr>
+<tr>
+<td>hybvisu / compvisu sys</td>
+<td>ABC-F 直连链路状态与话音参数</td>
+</tr>
+<tr>
+<td>pildstctx / pgctx / acdsup</td>
+<td>专用 Pilot / Remote PG 上下文与开闭状态</td>
+</tr>
+<tr>
+<td>spadmin</td>
+<td>RTI 103 号包等许可核对</td>
+</tr>
+</tbody>
+</table></div>
+<h2>七、速查卡</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>要做的事</th>
+<th>去哪张能力卡</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>解释分配次序/开 LIT/算容量</td>
+<td>otcad-ism-skill-matching</td>
+</tr>
+<tr>
+<td>跨站点互助/链路判读</td>
+<td>otcad-remote-pg-mutual-aid</td>
+</tr>
+<tr>
+<td>装 SPM/墙板没数据/日统计</td>
+<td>otcad-spm-deployment</td>
+</tr>
+<tr>
+<td>摆挂件/配告警上墙</td>
+<td>otcad-soft-panel-manager</td>
+</tr>
+<tr>
+<td>话务票据复盘/导明细</td>
+<td>otcad-ccta-ticket-analysis</td>
+</tr>
+<tr>
+<td>优先转接/代接/监听/中继预留</td>
+<td>otcad-special-features</td>
+</tr>
+<tr>
+<td>日报自定义图表</td>
+<td>otcad-excel-report-customization</td>
+</tr>
+<tr>
+<td>多监督员集中接入</td>
+<td>otcad-ccs-server</td>
+</tr>
+<tr>
+<td>建 ACR 对象/技能档案</td>
+<td>路由入口（otcc-standard-advanced-router）</td>
+</tr>
+<tr>
+<td>装脚本编辑器/抓轨迹/清记忆</td>
+<td>路由入口（深度开发转姊妹技能 otcc-standard-advanced-call-routing）</td>
+</tr>
+<tr>
+<td>装 CCS/环境定稿/维护命令</td>
+<td>路由入口（otcc-standard-advanced-router）</td>
+</tr>
+</tbody>
+</table></div>
+<h2>版权</h2>
+<ul>
+<li>本精华长文为 ALE Training Services《OmniTouch Contact Center Standard Edition - Advanced》（OTCCXTE101EN Edition 07）的内部学习整理，仅供内部学习使用；教材版权归 ALE Training Services 所有。</li>
+</ul></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition - Advanced (Participant's Guide, Edition 07) | edition: Edition  | pages: 597 页 -->

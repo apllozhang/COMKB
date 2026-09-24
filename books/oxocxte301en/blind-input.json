@@ -1,0 +1,237 @@
+{
+ "code": "oxocxte301en",
+ "capability_catalog": [
+  {
+   "slug": "oxoa-sip-networking",
+   "name": "SIP 组网：公网网关与私网互联",
+   "description": "公网 SIP 网关九 tab 固定顺序（DNS 先于 Domain Proxy、网关索引后回填）；Media 带宽最少 5 通话放行外呼；History Table 注册判定与 Webdiag/Wireshark 抓包；两台 OXO 私网互联与 ARS 双向溢出（P/T 字符）"
+  },
+  {
+   "slug": "oxoa-numbering-ars-suite",
+   "name": "ARS 路由套件",
+   "description": "三表协作（编号计划触发/ARS 表匹配变换/中继组列表选路）；多运营商分流（GSM/VoIP/ISDN 共享子线溢出、传真走流量分担矩阵）；Internal ARS 虚拟 Provider+Local+日组时段把一个 DDI 分流到多目的地"
+  },
+  {
+   "slug": "oxoa-hotel-billing-vertical",
+   "name": "酒店与计费垂直方案",
+   "description": "Hotel 双路线（OHL/PMS 或前台话机功能键，进 hotel 模式须冷复位）；计费三通道（Hotel Metering、Call Accounting Time based 与 AOC 互斥、OLD 的 TicketCollector.xml）；账号码 250 条与 66 前缀内部替代"
+  },
+  {
+   "slug": "oxoa-security-hardening",
+   "name": "系统安全加固",
+   "description": "强制改默认密码+AutoPwdChk 自动检查（4 周默认）；Network IP Services 三开关与 ETH1 限制；VMU 锁定翻倍封顶 1440 分钟；端口关闭清单/紧急号码 100 条/LDAPS；Console 重置开关"
+  },
+  {
+   "slug": "oxoa-certificate-suite",
+   "name": "证书与加密传输",
+   "description": "证书四类端口矩阵（WebDIAG 主接口、自签/外部 PKI）；2K↔4K 迁移与回滚铁律（先切回 2K）；DTLS 只保信令（300 连接、仅 OCE、TrustList 三法）；SIP 中继 TLS/SRTP（OCE 原生、OCE-FE 代理各 20 通话）"
+  },
+  {
+   "slug": "oxoa-attendant-suite",
+   "name": "语音导航套件（AA/MLAA/SCR）",
+   "description": "AA 两树两级 100 节点与免费拨号开关；MLAA 按 DID/CLI 最多 5 棵 3 级树（消息总量 12000 秒、改动生效靠引擎复位或 10 分钟、line parameters 不随存档）；SCR 客户码+开闭时间 10000 条规则"
+  },
+  {
+   "slug": "oxoa-voicemail-mobility",
+   "name": "语音邮箱与移动办公",
+   "description": "VM 远程接入三要素与 ACC 两级控制；锁定翻倍与五途解锁；个人助理（PerAssAlwd）；游牧模式 VMU 选项 6 与 CLI 三选一；远程替代 DDI+接入码+密码、内部号 # 前缀走内部 ARS"
+  },
+  {
+   "slug": "oxoa-cloud-connect-fleet",
+   "name": "Cloud Connect 舰队与远程维护",
+   "description": "注册自动免 license（Connected with final credentials、Fleet 24h 延迟）；软件更新指示灯与 advanced 权限；远程维护四路径（互联网入站目标端口永远 50443、管理 VPN）；Rainbow 业务目录同步先擦空再写入"
+  },
+  {
+   "slug": "oxoa-foundation-ip",
+   "name": "交付地基：OMC 首连与 IP 规划",
+   "description": "Expert 模式首连（pbxk1064 仅首连）+证书入受信任根+逐客户改密；IP 四页签改完重启；IPDSP 安装前 NTP 时间同步（否则 lanpbx 报错）"
+  },
+  {
+   "slug": "oxoa-terminal-ecosystem",
+   "name": "终端生态：PIMphony 与 SIP 话机",
+   "description": "SIP 注册基线（5059/≥120 秒/UDP 优先）与 Basic/Open SIP 声明；媒体三处理（DSP/RTP proxy/Direct RTP）与透传开关两侧独立；PIMphony 四 profile 与两级更新策略；SIP 话机不支持游牧"
+  },
+  {
+   "slug": "oxoa-shared-devices",
+   "name": "共享终端：监督、Hot Desking、Multiset",
+   "description": "站群监督 50 键/每键 8 号（通知三路、键须在话机激活）；Hot Desking 200/200、前 2 免费、683/682、抢占自动注销；Multiset 1 主 2 副共享主号、MLTSETRING 三值"
+  },
+  {
+   "slug": "oxoa-multi-entity",
+   "name": "多实体与伪多公司",
+   "description": "4 实体上限、独立 MoH 每段 10 分钟、禁实体间呼叫的连带影响、话务员组公共；伪多公司四步法（链路类别配对+矩阵直线+ARS 透明线+Char 1/2 验证）"
+  },
+  {
+   "slug": "oxoa-dect-deployment",
+   "name": "DECT 无线移动",
+   "description": "双轨容量（80 xBS/11 并发、60 IBS/6 并发、200 手柄）；标识五件套（PARI 唯一、eBuy 获取）；集群内切换站间不切换；勘测 -72 dBm 边界；SUOTA 并发 50、swap 须充电座"
+  },
+  {
+   "slug": "oxoa-maintenance-toolkit",
+   "name": "维护工具箱：Webdiag、Noteworthy、LoLa",
+   "description": "Webdiag 三会话七块信息树与五连查；noteworthy 四类内存地址（TC1398 为准、写错致恶化、cold reset 回默认、铃音基址随版本变化）；LoLa 三类加载迁移（话机配置 OMC 先存）"
+  }
+ ],
+ "cases": [
+  {
+   "id": "should-sipnet-01",
+   "prompt": "客户要接一家新的 SIP 运营商，给我一套 OXO 上配公网网关的完整顺序和验收标准"
+  },
+  {
+   "id": "should-sipnet-02",
+   "prompt": "两个仓库各有一台 OXO，想内部互拨，私网占满时自动走公网，怎么配？"
+  },
+  {
+   "id": "should-ars-01",
+   "prompt": "移动号码走 GSM 网关、其它呼叫走低价 VoIP，ISDN 留作备份，OXO 上怎么实现？"
+  },
+  {
+   "id": "should-ars-02",
+   "prompt": "公司一个对外号码，工作日白天转前台、午休转秘书、下班后播营业时间语音，能做吗？"
+  },
+  {
+   "id": "should-hotel-01",
+   "prompt": "一家 60 间房的宾馆要上电话系统，前台要能办入住退房、客房电话要计费，没有 PMS"
+  },
+  {
+   "id": "should-hotel-02",
+   "prompt": "客户要求外呼小票上把被叫号码后几位遮掉，还要把话费记到不同项目上"
+  },
+  {
+   "id": "should-sec-01",
+   "prompt": "OXO 马上要上线了，安全基线要检查哪些项？默认密码和不用的端口怎么处理？"
+  },
+  {
+   "id": "should-sec-02",
+   "prompt": "有人连续试语音邮箱密码把账户试锁了，锁多久、怎么解？"
+  },
+  {
+   "id": "should-cert-01",
+   "prompt": "运营商要求中继走 TLS/SRTP，我们的 OXO 是 OCE，配置要点有哪些？"
+  },
+  {
+   "id": "should-cert-02",
+   "prompt": "上个月把证书升到 4096 了，现在版本要回滚到 R6.1，有什么要注意的？"
+  },
+  {
+   "id": "should-att-01",
+   "prompt": "公司总机要做语音导航：按 1 转销售、按 2 转售后、按 0 转人工，夜间换一套菜单"
+  },
+  {
+   "id": "should-att-02",
+   "prompt": "客服让客户来电后输客户编码，编码对了按客户类型转到不同组，这个怎么建？"
+  },
+  {
+   "id": "should-vm-01",
+   "prompt": "销售常年在外，想让分机电话转到手机上接，回拨公司同事时还能显出自己的分机"
+  },
+  {
+   "id": "should-vm-02",
+   "prompt": "出差要用酒店话机查公司留言，怎么开远程接入？怕被人乱试密码怎么防？"
+  },
+  {
+   "id": "should-cloud-01",
+   "prompt": "我们代理了四十多台 OXO，想在一个面板里看全部设备版本并批量推软件更新"
+  },
+  {
+   "id": "should-cloud-02",
+   "prompt": "客户站点没有 ISDN 了，我们售后远程进它的 OXO 用什么方案？防火墙要开什么？"
+  },
+  {
+   "id": "should-foun-01",
+   "prompt": "新到的 OXO 用 OMC 第一次连接就弹证书告警，而且听说首次密码只能用一次？"
+  },
+  {
+   "id": "should-foun-02",
+   "prompt": "装 IPDSP 软话机一直报 lanpbx 加载错误，安装包换了一份还是一样"
+  },
+  {
+   "id": "should-term-01",
+   "prompt": "客户自购了一批第三方 SIP 话机要注册到 OXO，注册端口和超时这些参数怎么填？"
+  },
+  {
+   "id": "should-term-02",
+   "prompt": "PIMphony 有哪几个版本档位？在线更新是默认开着的吗？"
+  },
+  {
+   "id": "should-shar-01",
+   "prompt": "开放工位办公室，员工坐哪个工位都要用自己的分机和语音邮箱，怎么实现？"
+  },
+  {
+   "id": "should-shar-02",
+   "prompt": "助理要同时盯着老板和一个客服号码的来电，来电话时电脑弹窗加蜂鸣提醒"
+  },
+  {
+   "id": "should-enti-01",
+   "prompt": "两家人多的小公司想合用一台 OXO 省钱，但要求保持音乐不同、外呼话费各记各的"
+  },
+  {
+   "id": "should-dect-01",
+   "prompt": "厂区要覆盖 DECT，大概 30 台话机，基站配几台、怎么验收覆盖质量？"
+  },
+  {
+   "id": "should-dect-02",
+   "prompt": "DECT 手机能批量刷固件吗？升级的时候会不会影响打电话？"
+  },
+  {
+   "id": "should-maint-01",
+   "prompt": "给 ALE 报障前要收集哪些系统信息？版本、序列号这些从哪里一次性取全？"
+  },
+  {
+   "id": "should-maint-02",
+   "prompt": "想改 OXO 的默认振铃节奏和每周定时重启，直接在系统里能调吗？"
+  },
+  {
+   "id": "should-ars-03",
+   "prompt": "传真机必须走 ISDN 线路，其它呼叫正常选路，ARS 里怎么强制？"
+  },
+  {
+   "id": "bait-sipnet-01",
+   "prompt": "中继已经注册成功了，现在要给不同前缀的号码指定不同的运营商线路"
+  },
+  {
+   "id": "bait-cert-01",
+   "prompt": "SIP 中继 TLS 配好了但注册一直握手失败，对端说他们只支持 TLS client 模式"
+  },
+  {
+   "id": "bait-hotel-01",
+   "prompt": "酒店前台想要一个能看全楼电话状态并代接的软件话务台，像呼叫中心那样排队列"
+  },
+  {
+   "id": "bait-sec-01",
+   "prompt": "话机信令已经 DTLS 加密了，通话录音文件是不是也自动加密了？"
+  },
+  {
+   "id": "bait-att-01",
+   "prompt": "怎么给 AA 语音导航里加一个查话费余额的动态菜单？"
+  },
+  {
+   "id": "bait-vm-01",
+   "prompt": "客户的 ZyXEL 话机想配置游牧模式漫游到手机上"
+  },
+  {
+   "id": "bait-cloud-01",
+   "prompt": "Rainbow 上怎么创建公司、开订阅和批量邀请成员？"
+  },
+  {
+   "id": "bait-maint-01",
+   "prompt": "书里那个铃音地址 0242D978 我抄到客户系统里了怎么没效果？"
+  },
+  {
+   "id": "bait-dect-01",
+   "prompt": "办公室 WiFi 话机 8168s 想配成 SIP 模式注册到 OXO"
+  },
+  {
+   "id": "edge-time-01",
+   "prompt": "Internal ARS 分时段，书上一会儿写 12-13 一会儿写 12-14，到底以哪个为准？"
+  },
+  {
+   "id": "edge-dhcp-01",
+   "prompt": "照书上配 DHCP 池，一章写 30-39 一章写 10-39，用哪个？"
+  },
+  {
+   "id": "edge-cloud-01",
+   "prompt": "OXO 注册完 Cloud Connect 半小时了 Fleet 面板还看不到设备，是不是注册失败？"
+  }
+ ]
+}

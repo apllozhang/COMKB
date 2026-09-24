@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>目录搜索与 Single Business Card（UDAS）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch · Advanced</h2><p>Edition 08 · 468 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte301en/index.html">课程首页</a><a href="/courses/openxte301en/digest.html">精华长文</a><a href="/courses/openxte301en/overview.html">教书理解</a><a href="/courses/openxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte301en/skills/ota-remote-access.html">OpenTouch 远程接入通道与证书</a><a href="/courses/openxte301en/skills/ota-nomadic-ghost-z.html">Nomadic 移动模式与 Ghost Z 资源池</a><a href="/courses/openxte301en/skills/ota-smartphone-rex.html">OTC 智能手机交付全流程（REX/DISA/APNS）</a><a href="/courses/openxte301en/skills/ota-um-exchange-integration.html">统一消息 UM（Exchange/O365/Gmail/IMAP）</a><a href="/courses/openxte301en/skills/ota-conference-collaboration.html">协作会议（ACS 配置、角色权限、数据会议）</a><a href="/courses/openxte301en/skills/ota-calendar-sync.html">日历在场与日历同步（Calendar presence/synchro）</a><a href="/courses/openxte301en/skills/ota-directory-udas.html">目录搜索与 Single Business Card（UDAS）</a><a href="/courses/openxte301en/skills/ota-enterprise-authentication.html">企业认证集成（LDAP/RADIUS/Kerberos SSO）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte301en/skills/ota-desksharing.html">Desksharing 共享工位（DSU/DSS）</a><a href="/courses/openxte301en/skills/ota-extended-mobility.html">Extended Mobility（QR/NFC 切换与路由修改）</a><a href="/courses/openxte301en/skills/ota-dcs-documents.html">DCS 文档转换服务器（Office 会议演示）</a><a href="/courses/openxte301en/skills/ota-otc-web-guest.html">OTC Web 与访客入会</a><a href="/courses/openxte301en/skills/ota-lab-pod.html">RLAB 实验 POD 与 SIP 运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte301en/index.html">opentouch-advanced（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte301en/index.html">OPENXTE301EN</a><span>/</span><span aria-current="page">目录搜索与 Single Business Card（UDAS）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>目录搜索与 Single Business Card（UDAS）</h1></div><dl><div><dt>Skill ID</dt><dd>ota-directory-udas</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>目录搜索与 Single Business Card（UDAS 同步、合并、照片同化）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Directories synchronization is a one way directory synchronization ... all the searches are made in the synchronized database (synchronized directories) and not directly in the declared directories storages"（p222）
+"A contact card = 4 default attributes + [1 .. 5] dynamic attributes"（p224）
+"'Merge keys' are composed by several contact attributes (two minimum: firstname &amp; lastname)"（p252）
+"Tips Synchronization Date, Time and period MUST BE SET. Synchronization period &gt;= 1 (NEVER SET period to 0)"（p244）</p>
+</blockquote>
+<p>出处：OPENXTE301EN p218-263。</p>
+<h2>I — 自述</h2>
+<p>目录搜索永远查"同步库"，不查源目录——同步参数不设就是空库：</p>
+<ol>
+<li><strong>数据流</strong>：OXE 电话簿（phonebookdir）、OT 内部目录（internaldir）、外部 LDAP（ldapdir）单向同步进 PostgreSQL 同步库；客户端经 Chameleon Web Service 查询</li>
+<li><strong>联系人卡</strong>：4 个默认属性（sn/givenName/mail/telephoneNumber）恒可搜 + 最多 5 个可选属性参与搜索（预置 20+ 可选）；photo 只能 Displayable 不能 Searchable，且可选属性搜索非所有客户端支持</li>
+<li><strong>Single Business Card 合并</strong>：按 Synchronization Order 定权重（高覆盖低），Merge keys（至少姓+名，可加电话）识别同一人；每个键可配预处理（去前缀/去后缀/取前 n 字符，实验例 3 键各取 12 字符、first name 去 "_DECT" 后缀）</li>
+<li><strong>照片同化三级</strong>：Avatar（存 internaldir）&gt; LDAP 照片 &gt; 本地照片；删除 Avatar 后 LDAP 照片回显；机制仅在合并开启时有意义</li>
+<li><strong>话机侧</strong>：PRS 选 "Presentation server - opentouch" 后，80x8 话机经 Communicate by name（IP Touch 应用声明）走 UDAS 找人；OXE 用户还可配 LDAP 溢出（电话簿声明+Entity 挂索引+系统参数放行）</li>
+<li><strong>高级搜索语法</strong>：最多 5 个关键字、% 前缀通配、- 排除</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>目录域全流程实验</strong>（p243-263）：</p>
+<ol>
+<li>内部目录与电话簿：勾激活并设同步 date/time/period（period≥1）</li>
+<li>声明 LDAP 服务器（eco.company.com:389，实验口径）</li>
+<li>新建 AD 目录：Root=cn=users,dc=company,dc=com、Access 账号 directory（实验口径）、Field names 四映射、Force synchronization</li>
+<li>可选属性：Photo 设 Displayable 并映射 LDAP 属性（searchable 不可用）</li>
+<li>SBC 合并：勾 Merge activation、定 Merge Period（非 0）、browse 定 Synchronization Order（AD 最高）</li>
+<li>各目录配 Merge keys（姓+名必选，配预处理规则）</li>
+<li>维护：chameleond/udas 日志核查，照片在 /var/data/slides/d.DEFAULT/ 检查</li>
+<li>话机：PRS 选 opentouch、建 Communicate by name 应用（Registration URL 指向 /eccnoe/myphone）</li>
+<li>LDAP 溢出：电话簿索引 1-5 声明、Entity 挂索引、系统参数勾选</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：来电识别与按名找人多目录方案；搜不到联系人排障；同名联系人合并成一张名片；联系人照片从哪来；话机键盘找人；OXE 用户溢出查 LDAP。</p>
+<p>语言信号：目录 / directory / UDAS / 搜索 / search / 同步 / synchronization / Single Business Card / SBC 合并 / merge keys / 联系人卡 / contact card / 照片 / photo / Avatar / LDAP Phone Book / Communicate by name / PRS。</p>
+<p>与相邻能力区分：LDAP 认证（登录验证）→ 外部认证能力（同为 LDAP 但机制不同，勿混）；实验环境 LDAP 服务器 → 实验 POD 能力（路由卡）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：目录清单（内部/电话簿/AD/LDAP）、账号与属性名、合并需求（权重与识别键）、话机型号。</p>
+<ol>
+<li>声明源目录并逐个设同步三参数（period≥1）。完成标准：Force synchronization 后同步库有数据</li>
+<li>属性映射：4 默认属性 + 按需选可选属性（≤5 参与搜索）。完成标准：搜索结果字段正确</li>
+<li>合并配置：Merge activation、权重排序、每目录 Merge keys 与预处理。完成标准：同名联系人合为一张名片</li>
+<li>照片同化核验：Avatar&gt;LDAP&gt;本地，缺图查照片目录并手动同步。完成标准：名片照片显示</li>
+<li>话机侧：PRS 绑定、Communicate by name 声明。完成标准：80x8 键盘可按名拨人</li>
+<li>（按需）LDAP 溢出：电话簿 1-5、Entity 挂索引、系统参数放行。完成标准：OXE 用户可溢出查询</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>"搜不到人"第一排查项 → 同步参数三处（内部/电话簿/LDAP 目录）是否设置且 period≥1、Merge Period≠0</li>
+<li>可选属性搜不到 → 三重边界逐项核：是否在 5 个限额内、该属性是否有 searchable 开关、客户端是否支持</li>
+<li>LDAP 溢出容量引用 → 按实验页 5 个做 OXE 上限；讲义 20 的语境存疑（nr-01），引用注明出处</li>
+<li>合并后数据不对 → 查权重（高覆盖低）与 Merge keys 预处理（12 字符/去后缀规则）</li>
+</ul>
+<p>输出契约：目录清单与同步参数记录 + 合并/照片核验结论 + 话机找人验证 + 溢出配置（如启用）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>同步是单向快照：源目录变更要等下个周期或手动 Force synchronization</li>
+<li>照片目录路径与同步库为服务端内部口径，排障用（/var/data/slides/d.DEFAULT/）</li>
+<li>merge keys 每个参与合并的目录都要单独配置，漏一个目录即合并不全</li>
+<li>LDAP 服务器声明（eco.company.com:389、directory 账号）为实验口径</li>
+<li>UDAS 不做目录写入/回写，一切以同步库为查询面（单向机制）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte301en/skills/ota-enterprise-authentication.html">企业认证集成（LDAP/RADIUS/Kerberos SSO）</a></p><p class="source-page">能力 ID：cap.ota.directory-udas · 来源：OPENXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch - Advanced (Participant's Guide, Edition 08) | edition: Edition 08 | pages: 468 页 -->

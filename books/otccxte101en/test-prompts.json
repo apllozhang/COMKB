@@ -1,0 +1,96 @@
+{
+  "skill": "otcc-standard-advanced",
+  "version": "0.1.0",
+  "bundle": "bundle.otcc-standard-advanced",
+  "capability_catalog": [
+    {"slug": "otcad-ism-skill-matching", "name": "ISM 技能匹配与排序口径", "description": "三级漏斗（强制门槛/子列表降级/成本排序）；Cman/Copt 公式与缺技能按 9 代入；PLTR/LIT 切换（asm_ag_free_duration+IDLE 积木块+重启 MAIN_AFE）；列表缓冲 20-400、默认返回 200；坐席统计 5 分钟刷新；ACR 容量上限表"},
+    {"slug": "otcad-remote-pg-mutual-aid", "name": "Remote PG 分布式互助与 ABC-F 链路", "description": "盲/智能互助对比；三对象（Remote PG/虚拟队列/专用 Pilot）；三级水位（优先级 0-9/分布门限秒数/MWT 0-3276 秒）；hybvisu 四态与带宽档；拒收回退五类；故障注入验证"},
+    {"slug": "otcad-spm-deployment", "name": "Soft Panel Manager 部署与基础设置", "description": "SPM 服务器+RTI Connector+FlexLM 三件套；同机时 CCS 必须专用于 RTI；独享门槛 500 统计/5 用户/10 面板；CCD Filters 总开关；日统计 15 分钟节拍与每刻后 2 分钟取数"},
+    {"slug": "otcad-soft-panel-manager", "name": "Soft Panel 可视化配置", "description": "背景/视图/面板/挂件四层模型；挂件 13 族（Gauge/Chart/Table/HTML/Barometer/AgentWidget 等）；消息区与显示时段；告警四步（阈值+Validity timer+邮件+告警视图）；displayPanel.htm 显示 URL；视图定制仅 Firefox"},
+    {"slug": "otcad-ccta-ticket-analysis", "name": "CCTA 话务票据分析", "description": "Importation 站点声明与 .Z 票据导入；Ticket Tracer 过滤（Long Ticket/对象/ID Mao/Column）与 ASCII 导出；结束原因 40 种（样例 0/1/26）、呼叫类型 10 种（0/1）；离线分析不占 CCS 连接"},
+    {"slug": "otcad-special-features", "name": "特殊功能开关", "description": "优先转接、DID 忙音（默认 2 号间隔引导音）、#013 组内代接/#014 直接代接+ COS 放行、监督监听（Show Supervisor Listening）、永恒整理（Auto return to wrap up）、中继预留两级数学（62 条>80% 约 50 条>30% 约 15 条）、劝恼转接两态提示语"},
+    {"slug": "otcad-excel-report-customization", "name": "Excel 报表模板定制", "description": "Formats 目录 11 种模板（FormPil 等）；Custom 工作表=结构拷贝+值区 Paste Link；½ 小时粒度单表只覆盖 0:00-16:00 须建第二张链表；改前备份 *_old、改完重开 CCS 生效；Excel Display+Keep Excel links 出表"},
+    {"slug": "otcad-ccs-server", "name": "CCS Server 集中接入", "description": "直连 AFE 15 连接、内部 serv_ccs 15 客户端、外部 Windows 服务 120 客户端；CCd R3.1+CCs 4.3.46.1 起连接数 >9 强制上 Server；一 AFE 一 Server（内部未停则外部被拒接）；adm_acd -servccs option 10 验证"},
+    {"slug": "otcad-acr-objects", "name": "ACR 对象与技能体系", "description": "处理组/等待室/ACR Pilot/统计 Pilot/技能体系双侧配置路径；域 0-19 权重 1-20、技能 0-999、等级 1-9、档案 7 属性、坐席 50 技能；阻塞传导链（无技能坐席>等待室阻塞>ACR Pilot 阻塞）；Navigator 定制视图"},
+    {"slug": "otcad-asm-script-advanced", "name": "ASM 脚本与 LCA 主干", "description": "专用 asm-se_setup.msi 安装+JRE；脚本名 8 字符、.scr+.alb 产物、一 Pilot 一脚本须重新激活；调试器三窗格与四种过滤器（Make call 发起分机须普通用户）；LCA 记忆 7 状态码与 kill alb 清理（MAIN_AFE 重启不清）；深度开发转姊妹技能"},
+    {"slug": "otcad-ccs-onboarding", "name": "CCS 安装与实验环境定稿", "description": "CCS 八步安装（Full/Monosite/Windows standalone）与首登强制改密；ccs.ini 声明后必须重启 CCS；POD 定稿四件套（MicroSIP/IPDSP 坐席登录/SIP 网关 pbxN/DID 翻译 33210N41000）；嵌套 RDP 音频设置"},
+    {"slug": "otcad-acd-maintenance", "name": "ACD 维护命令箱", "description": "adm_acd 命令树（option 2/3/4/5/11/15）与 -salb（21 坐席统计/28 ASM 记忆）、-servccs（10 客户端清单）；agacd 单坐席；hybvisu/compvisu 链路判读；pildstctx/pgctx/acdsup 互助对象；spadmin 许可核对"}
+  ],
+  "test_cases": [
+    {"id": "should-ism-01", "type": "should_trigger", "prompt": "客户问为什么呼叫打进来总是同一个坐席先响，坐席列表到底是怎么算出来的？", "expected_behavior": "激活 otcad-ism-skill-matching，讲三级漏斗与成本排序"},
+
+    {"id": "should-ism-02", "type": "should_trigger", "prompt": "我们要求坐席按最久空闲轮流接电话，OTCC 里怎么开？有什么限制要先讲清楚？", "expected_behavior": "激活 otcad-ism-skill-matching，asm_ag_free_duration 切换+5 分钟统计刷新边界"},
+
+    {"id": "should-remote-01", "type": "should_trigger", "prompt": "两个站点要互相备份坐席，主站点忙不过来时呼叫自动溢到兄弟站点，这个怎么落地？", "expected_behavior": "激活 otcad-remote-pg-mutual-aid，Remote PG 三对象部署"},
+
+    {"id": "should-remote-02", "type": "should_trigger", "prompt": "Remote_PG 在 Navigator 里一直是 blocked，hybvisu 链路显示也不是 DATA_TRANS，怎么排查？", "expected_behavior": "激活 otcad-remote-pg-mutual-aid，链路判读+闭锁三条件"},
+
+    {"id": "should-spmd-01", "type": "should_trigger", "prompt": "SPM 装好了、RTI Connector 服务也在跑，但墙板统计一直不动，可能是什么原因？", "expected_behavior": "激活 otcad-spm-deployment，统计按需订阅/CCD Filters/许可冻结三个方向"},
+
+    {"id": "should-spmd-02", "type": "should_trigger", "prompt": "客户机房要部署 Soft Panel Manager，防火墙要开哪些端口？什么时候建议独享一台服务器？", "expected_behavior": "激活 otcad-spm-deployment，端口 9060/61618+独享门槛 500/5/10"},
+
+    {"id": "should-panel-01", "type": "should_trigger", "prompt": "大厅要挂一块实时看板，显示排队人数、 longest waiting 和坐席状态，挂件怎么配？", "expected_behavior": "激活 otcad-soft-panel-manager，挂件选型与视图配置"},
+
+    {"id": "should-panel-02", "type": "should_trigger", "prompt": "等待人数超过 10 的时候，想让看板自动切成红色告警画面并给班长发邮件，能实现吗？", "expected_behavior": "激活 otcad-soft-panel-manager，告警四步配置"},
+
+    {"id": "should-ccta-01", "type": "should_trigger", "prompt": "客户要复盘昨天的呼叫明细：谁接的、通话多久、为什么结束，用什么工具怎么导出？", "expected_behavior": "激活 otcad-ccta-ticket-analysis，CCTA 导入过滤导出链路"},
+
+    {"id": "should-ccta-02", "type": "should_trigger", "prompt": "票据报表里结束原因 26 代表什么？这个字段一共有多少种取值？", "expected_behavior": "激活 otcad-ccta-ticket-analysis，26=坐席挂机、共 40 种（样例码口径）"},
+
+    {"id": "should-special-01", "type": "should_trigger", "prompt": "坐席整理时间想处理一下私事外呼，但整理计时不能被打断，有这个功能吗？", "expected_behavior": "激活 otcad-special-features，永恒整理 Auto return to wrap up"},
+
+    {"id": "should-special-02", "type": "should_trigger", "prompt": "坐席 A 的电话在响但他离开了，旁边同组的坐席 B 怎么把这条来电接过来？", "expected_behavior": "激活 otcad-special-features，#013 组内代接"},
+
+    {"id": "should-excel-01", "type": "should_trigger", "prompt": "客户的日报要在统计报表里加一张自定义柱状图，展示已接和放弃的对比，怎么改模板？", "expected_behavior": "激活 otcad-excel-report-customization，Custom 工作表+Paste Link+图表"},
+
+    {"id": "should-excel-02", "type": "should_trigger", "prompt": "报表选了半小时粒度，下午 16 点之后的数据全没了，怎么回事？", "expected_behavior": "激活 otcad-excel-report-customization，½ 小时粒度单表只到 16:00 的陷阱"},
+
+    {"id": "should-ccss-01", "type": "should_trigger", "prompt": "客户有 20 个监督员要同时开 CCsupervision，直连总有人连不上，怎么解决？", "expected_behavior": "激活 otcad-ccs-server，>9 强制上 CCS Server+外部 120 客户端"},
+
+    {"id": "should-ccss-02", "type": "should_trigger", "prompt": "外部 CCS Server 装好了服务也起了，但就是连不上 AFE，第一刀切哪里？", "expected_behavior": "激活 otcad-ccs-server，内部 serv_ccs 未停导致拒接（一 AFE 一 Server）"},
+
+    {"id": "should-acro-01", "type": "should_trigger", "prompt": "要给客户新上一条业务线，ACR 的等待室、Pilot、呼叫档案这一套对象从哪里开始建？", "expected_behavior": "激活 otcad-acr-objects，对象创建序列与双侧路径"},
+
+    {"id": "should-acro-02", "type": "should_trigger", "prompt": "等待室里有人排队，坐席却是空闲的，就是不被分配，先查什么？", "expected_behavior": "激活 otcad-acr-objects，坐席技能缺失/未激活导致 WR 阻塞的排查链"},
+
+    {"id": "should-asms-01", "type": "should_trigger", "prompt": "ASM Script Editor 装完双击打不开，是什么问题？", "expected_behavior": "激活 otcad-asm-script-advanced，补装 JRE（书示 Azul Zulu，版本可不同）"},
+
+    {"id": "should-asms-02", "type": "should_trigger", "prompt": "我在脚本编辑器里改了 ACR 脚本，保存了但呼叫行为没变化，怎么回事？", "expected_behavior": "激活 otcad-asm-script-advanced，一 Pilot 一脚本须重新 Activate"},
+
+    {"id": "should-ccso-01", "type": "should_trigger", "prompt": "新装好的 CCsupervision 连不上 OXE，把 Call Server IP 改了还是不行，还差哪一步？", "expected_behavior": "激活 otcad-ccs-onboarding，ccs.ini 改完必须重启 CCS"},
+
+    {"id": "should-ccso-02", "type": "should_trigger", "prompt": "实验环境里坐席软话机怎么登录？外部 SIP 网关注册和 DID 翻译要配哪些参数？", "expected_behavior": "激活 otcad-ccs-onboarding，POD 定稿四件套"},
+
+    {"id": "should-maint-01", "type": "should_trigger", "prompt": "想看 OXE 上现在配了哪些 Pilot、等待队列和处理组，用什么命令查？", "expected_behavior": "激活 otcad-acd-maintenance，adm_acd option 2/3 命令树"},
+
+    {"id": "should-maint-02", "type": "should_trigger", "prompt": "做 LCA 测试之前想清掉 ASM 里的历史记忆，怎么操作怎么确认？", "expected_behavior": "激活 otcad-acd-maintenance，kill alb+option 28 复核（MAIN_AFE 重启不清）"},
+
+    {"id": "bait-ism-01", "type": "should_not_trigger", "prompt": "帮我在脚本里写一个带 SEQUENCE 判断的 LCA 脚本，条件是当天有应答记录就走记忆路由", "expected_behavior": "脚本编写应转 otcad-asm-script-advanced 或姊妹技能，不应停留在 otcad-ism-skill-matching"},
+
+    {"id": "bait-acro-01", "type": "should_not_trigger", "prompt": "ISM 规则积木块的 CHARACTERISTICS_LIST 属性在编辑器里怎么设？", "expected_behavior": "脚本编辑器操作应转 otcad-asm-script-advanced/姊妹技能，不应激活 otcad-acr-objects"},
+
+    {"id": "bait-asms-01", "type": "should_not_trigger", "prompt": "两个坐席 Cman 同分的时候到底谁排前面，算法规则讲一下", "expected_behavior": "算法口径应激活 otcad-ism-skill-matching，不应激活 otcad-asm-script-advanced"},
+
+    {"id": "bait-spmd-01", "type": "should_not_trigger", "prompt": "看板上仪表盘挂件的黄红阈值颜色怎么调？", "expected_behavior": "应激活 otcad-soft-panel-manager（挂件配置），不应激活 otcad-spm-deployment"},
+
+    {"id": "bait-panel-01", "type": "should_not_trigger", "prompt": "SPM 的 FlexLM 许可服务器怎么装、许可文件放哪？", "expected_behavior": "应激活 otcad-spm-deployment，不应停留在 otcad-soft-panel-manager"},
+
+    {"id": "bait-ccta-01", "type": "should_not_trigger", "prompt": "现在队列里有多少人等待，能不能实时投到大屏上？", "expected_behavior": "实时需求应转 otcad-soft-panel-manager，不应激活 otcad-ccta-ticket-analysis（离线票据）"},
+
+    {"id": "bait-excel-01", "type": "should_not_trigger", "prompt": "把昨天一整天的原始话务票据导出成文本文件逐条分析", "expected_behavior": "应激活 otcad-ccta-ticket-analysis，不应激活 otcad-excel-report-customization（Excel 报表来自 CCS 统计）"},
+
+    {"id": "bait-ccss-01", "type": "should_not_trigger", "prompt": "CCS 客户端第一次装完，怎么把 OXE 声明进去？", "expected_behavior": "应激活 otcad-ccs-onboarding，不应激活 otcad-ccs-server（集中接入是另一段）"},
+
+    {"id": "bait-ccso-01", "type": "should_not_trigger", "prompt": "怎么把 OXE 上的内部 serv_ccs 进程停掉，切到外部 CCS Server？", "expected_behavior": "应激活 otcad-ccs-server，不应停留在 otcad-ccs-onboarding"},
+
+    {"id": "bait-special-01", "type": "should_not_trigger", "prompt": "坐席的技能等级和呼叫档案在哪里配置？", "expected_behavior": "应激活 otcad-acr-objects（技能体系），不应激活 otcad-special-features"},
+
+    {"id": "bait-remote-01", "type": "should_not_trigger", "prompt": "两个 OXE 节点之间的 Direct IP Link 从零怎么新建、两端 IP 怎么规划？", "expected_behavior": "超出本书范围（书内只有状态诊断与互助行为），应声明边界指向 OXE 组网文档，不应虚构步骤"},
+
+    {"id": "edge-ism-01", "type": "edge_case", "prompt": "能不能把坐席统计刷新从 5 分钟调到 30 秒，让 LIT 真正做到逐呼叫公平？", "expected_behavior": "按边界回答：5 分钟为默认口径，StatPeriod 调整属书外操作；如实声明不虚构参数改法"},
+
+    {"id": "edge-ccss-01", "type": "edge_case", "prompt": "CCS 连接数正好 9 个要不要上 CCS Server？10 个呢？p558 的 29 又是什么意思？", "expected_behavior": "按 nr-01/nr-05 口径回答：>9 强制上 Server（p567）；29 系原文与图示 15/120 矛盾的笔误，规划按 15/120"},
+
+    {"id": "edge-remote-01", "type": "edge_case", "prompt": "队列的最大等待时间设成 0，是不是就等于不限时等待？", "expected_behavior": "反向语义澄清：MWT=0 是零等待队列（无资源立即改道），不是不限等待（n36）"}
+  ]
+}

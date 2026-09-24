@@ -1,0 +1,2480 @@
+[
+{
+"t": "Rainbow OXO Connect 集成",
+"s": "rainbow",
+"u": "courses/rainxte001en/index.html",
+"k": "rainxte001en RAINXTE001EN.pdf"
+},
+{
+"t": "Rainbow OXO Connect 集成 精华长文",
+"s": "rainbow",
+"u": "courses/rainxte001en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "Rainbow OXO Connect 集成 整书理解",
+"s": "rainbow",
+"u": "courses/rainxte001en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "Rainbow OXO Connect 集成 术语词典",
+"s": "rainbow",
+"u": "courses/rainxte001en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "Rainbow 公司体系与订阅开通",
+"s": "Rainbow OXO Connect 集成",
+"u": "courses/rainxte001en/skills/rbx-company-subscription.html",
+"k": "rbx-company-subscription Company BP EC 可见性 CLOSED ISOLATED SSO TOTP Essential Business Enterprise Attendant 预付 创建 Rainbow 公司 开通 Rainbow 订阅 选择公司可见性 配置 SSO/TOTP 认证 create Rainbow company Rainbow subscription plans"
+},
+{
+"t": "OMC 安装首次连接与 IP 规划修改",
+"s": "Rainbow OXO Connect 集成",
+"u": "courses/rainxte001en/skills/rbx-omc-onboarding.html",
+"k": "rbx-omc-onboarding OMC pbxk1064 Expert mode Server authentication 证书 Trusted Root Lan/IP configuration DHCP 池 重启 安装 OMC OMC 连不上 OXO 修改 OXO IP 规划 install OMC first connection"
+},
+{
+"t": "OXO 接入 Rainbow 与接入排障",
+"s": "Rainbow OXO Connect 集成",
+"u": "courses/rainxte001en/skills/rbx-pbx-onboarding.html",
+"k": "rbx-pbx-onboarding PBXID Activation code 激活码 openrainbow.com Webdiag Rainbow Status connected with final password ccrbagent.log OXO 接入 Rainbow PBXID 在哪找 Rainbow 连接状态异常 connect OXO to Rainbow"
+},
+{
+"t": "Rainbow 成员全生命周期管理",
+"s": "Rainbow OXO Connect 集成",
+"u": "courses/rainxte001en/skills/rbx-member-lifecycle.html",
+"k": "rbx-member-lifecycle members 邀请 invitation CSV Azure AD 批量导入 grace period 宽限期 改密踢下线 密码策略 批量创建 Rainbow 用户 删除恢复用户 成员设置 Rainbow user management"
+},
+{
+"t": "WebRTC 网关拓扑决策与容量规划",
+"s": "Rainbow OXO Connect 集成",
+"u": "courses/rainxte001en/skills/rbx-gateway-planning.html",
+"k": "rbx-gateway-planning 拓扑 集成网关 OCE Front End NUC ESXi 容量 channels 20 通话 50 通话 150 用户 UTL Twinset Anydevice 选择 WebRTC 网关拓扑 网关容量规划 网关通道数 WebRTC gateway dimensioning"
+},
+{
+"t": "WebRTC 网关部署与虚拟终端配置",
+"s": "Rainbow OXO Connect 集成",
+"u": "courses/rainxte001en/skills/rbx-gateway-deployment.html",
+"k": "rbx-gateway-deployment Activate WebRTC Gateway 自动配置 Reseller 管理员 FTR Frontend WebRTC warm reset FleetRef-Installref 端口 5059 Subscribers list secondary set UTL Bypass 部署 WebRTC 网关 自动配置网关 配置 Twinset/Anydevice 终端 deploy WebRTC gateway"
+},
+{
+"t": "Rainbow 话务台与监督组",
+"s": "Rainbow OXO Connect 集成",
+"u": "courses/rainxte001en/skills/rbx-attendant-supervision.html",
+"k": "rbx-attendant-supervision attendant console 话务台 监督组 supervision group 互助组 mutual aid 代接 pickup BLF 队列 8 路 部署 Rainbow 话务台 建监督组 互助值班方案 attendant console setup"
+},
+{
+"t": "Microsoft Teams 集成全流程",
+"s": "Rainbow OXO Connect 集成",
+"u": "courses/rainxte001en/skills/rbx-teams-integration.html",
+"k": "rbx-teams-integration Teams Rainbow App Rainbow Desktop consent 权限同意 Telephony 权限 click-to-call F6 presence 在场同步 Office 365 Rainbow 集成 Teams Teams 应用上架与权限同意 Teams 在场同步 Rainbow for Teams integration"
+},
+{
+"t": "Rainbow 管理员工具（权责/企业目录/信息频道）",
+"s": "Rainbow OXO Connect 集成",
+"u": "courses/rainxte001en/skills/rbx-admin-tools.html",
+"k": "rbx-admin-tools roles 管理员 business directory 企业目录 information channel 信息频道 委托 分配管理员权限 企业目录导入 信息频道创建"
+},
+{
+"t": "OXO 分机关联与 RCC 模式",
+"s": "Rainbow OXO Connect 集成",
+"u": "courses/rainxte001en/skills/rbx-rcc-association.html",
+"k": "rbx-rcc-association RCC Remote Call Control associate extension Telephony 页签 Rainbow number Office phone 关联 OXO 分机到 Rainbow RCC 模式验证 Rainbow number"
+},
+{
+"t": "Rainbow 维护与支持体系",
+"s": "Rainbow OXO Connect 集成",
+"u": "courses/rainxte001en/skills/rbx-maintenance-support.html",
+"k": "rbx-maintenance-support logs report a problem status.openrainbow.com 告警 操作历史 Service Request SR ESR MyPortal 查 Rainbow 日志 开 Rainbow 服务请求 云状态与维护预告"
+},
+{
+"t": "Rainbow 网络就绪核查",
+"s": "Rainbow OXO Connect 集成",
+"u": "courses/rainxte001en/skills/rbx-network-readiness.html",
+"k": "rbx-network-readiness network requirements 端口 带宽 防火墙 Rainbow Pilot 连通性 勘测 Rainbow 网络要求 连通性评估 端口放行"
+},
+{
+"t": "Rainbow for OmniPCX Enterprise",
+"s": "rainbow",
+"u": "courses/rainxte003en/index.html",
+"k": "rainxte003en RAINXTE003EN.pdf"
+},
+{
+"t": "Rainbow for OmniPCX Enterprise 精华长文",
+"s": "rainbow",
+"u": "courses/rainxte003en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "Rainbow for OmniPCX Enterprise 整书理解",
+"s": "rainbow",
+"u": "courses/rainxte003en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "Rainbow for OmniPCX Enterprise 术语词典",
+"s": "rainbow",
+"u": "courses/rainxte003en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "Rainbow 公司体系与订阅开通",
+"s": "Rainbow for OmniPCX Enterprise",
+"u": "courses/rainxte003en/skills/rxe-company-subscription.html",
+"k": "rxe-company-subscription Company BP EC DR IR VAD 可见性 CLOSED ISOLATED SSO TOTP Essential Business Enterprise Attendant 预付 企业目录 信息频道 创建 Rainbow 公司 开通 Rainbow 订阅 选择公司可见性与认证方式 管理员权责划分 create Rainbow company Rainbow subscription plans"
+},
+{
+"t": "OXE 接入 Rainbow 与接入排障",
+"s": "Rainbow for OmniPCX Enterprise",
+"u": "courses/rainxte003en/skills/rxe-agent-onboarding.html",
+"k": "rxe-agent-onboarding netadmin DNS Proxy PBXID Activation code 激活码 Rainbow Agent incvisu 4503 4505 4509 4507 4511 checkCloudConfig.sh rainbowagent.log 配置 OXE DNS 与代理 OXE 接入 Rainbow PBXID 在哪找 Rainbow 连接状态异常 connect OXE to Rainbow rainbowagent troubleshooting"
+},
+{
+"t": "Rainbow 成员全生命周期管理",
+"s": "Rainbow for OmniPCX Enterprise",
+"u": "courses/rainxte003en/skills/rxe-member-lifecycle.html",
+"k": "rxe-member-lifecycle members 邀请 invitation CSV Azure AD 批量导入 grace period 宽限期 密码策略 改密踢下线 TOTP 10 天 创建 Rainbow 成员 邀请用户加入公司 删除恢复用户 批量导入成员 Rainbow user management"
+},
+{
+"t": "OXE 用户形态决策与远程延伸路由",
+"s": "Rainbow for OmniPCX Enterprise",
+"u": "courses/rainxte003en/skills/rxe-routing-rex.html",
+"k": "rxe-routing-rex REX Ghost Z tandem multi-line RCC DECT Virtual UA overflow 溢出 nomadic 路由四案例 remotesets TC2462 选择 OXE 用户接入形态 配置远程延伸与 tandem 规划 Ghost Z 容量 排查路由振铃问题 remote extension configuration"
+},
+{
+"t": "WebRTC 网关部署与升级",
+"s": "Rainbow for OmniPCX Enterprise",
+"u": "courses/rainxte003en/skills/rxe-webrtc-gateway-deployment.html",
+"k": "rxe-webrtc-gateway-deployment WebRTC Gateway OVF mpnetwork mpconfig mpshow mpcheck mpssh mpupgrade WinSCP GEOIP kamailio 5060 部署 WebRTC 网关 网关 VM 网络与 PBX 参数配置 网关配置核验与排障 升级 WebRTC 网关 deploy WebRTC gateway mpcheck troubleshooting"
+},
+{
+"t": "OXE 侧 WebRTC 网关配置九件套",
+"s": "Rainbow for OmniPCX Enterprise",
+"u": "courses/rainxte003en/skills/rxe-oxe-gateway-config.html",
+"k": "rxe-oxe-gateway-config SIP trunk group Trusted IP Rainbow type G711 CDT ARS BBB 前缀 判别器 callback CSTA 17 位 406 lookars sipextgw 配置 OXE 侧网关配套 ARS 与判别器配置 回呼 Rainbow 分机 网关 VoIP 测试 OXE SIP configuration for WebRTC gateway"
+},
+{
+"t": "共享 WebRTC 网关池与容量规划",
+"s": "Rainbow for OmniPCX Enterprise",
+"u": "courses/rainxte003en/skills/rxe-gateway-pool-sizing.html",
+"k": "rxe-gateway-pool-sizing shared gateway pool 共享池 WebRTC duplication OXE cluster 406 overflow 溢出 TBE067 sizing 400 并发 SIP trunk 限制 选择网关池化架构 配置 ARS 溢出 估算网关容量与通道数 WebRTC gateway dimensioning"
+},
+{
+"t": "Microsoft Teams 集成全流程",
+"s": "Rainbow for OmniPCX Enterprise",
+"u": "courses/rainxte003en/skills/rxe-teams-integration.html",
+"k": "rxe-teams-integration Teams Rainbow App Rainbow Desktop consent 权限同意 Telephony 权限 MakeCall click-to-call presence 在场同步 Office 365 Business Enterprise Rainbow 集成 Teams Teams 应用上架与权限同意 Teams 用户电话配置 Teams 在场同步 Rainbow for Teams integration"
+},
+{
+"t": "OXE 分机关联与 RCC 模式",
+"s": "Rainbow for OmniPCX Enterprise",
+"u": "courses/rainxte003en/skills/rxe-rcc-association.html",
+"k": "rxe-rcc-association RCC Remote Call Control associate extension Telephony 页签 Rainbow number BBB Office phone 关联 OXE 分机到 Rainbow RCC 模式验证 Rainbow number"
+},
+{
+"t": "两套话务台（4059EE 与 Rainbow Attendant Console）",
+"s": "Rainbow for OmniPCX Enterprise",
+"u": "courses/rainxte003en/skills/rxe-attendant-consoles.html",
+"k": "rxe-attendant-consoles 4059EE attendant group CDT BLF attendant console 话务台 监督组 互助组 mutual aid 代接 pickup Attendant 订阅 交付 4059EE 话务台 部署 Rainbow 话务台 建监督组与互助组 attendant console setup"
+},
+{
+"t": "Rainbow 维护与支持体系",
+"s": "Rainbow for OmniPCX Enterprise",
+"u": "courses/rainxte003en/skills/rxe-maintenance-support.html",
+"k": "rxe-maintenance-support logs report a problem status.openrainbow.com 告警 操作历史 Service Request SR ESR MyPortal 认证伙伴 查 Rainbow 日志 开 Rainbow 服务请求 云状态与维护预告"
+},
+{
+"t": "Rainbow 网络就绪核查",
+"s": "Rainbow for OmniPCX Enterprise",
+"u": "courses/rainxte003en/skills/rxe-network-readiness.html",
+"k": "rxe-network-readiness network requirements 端口 带宽 防火墙 Rainbow Pilot 连通性 勘测 Rainbow 网络要求 连通性评估 端口放行"
+},
+{
+"t": "RLAB 实验环境与 Pod 配置",
+"s": "Rainbow for OmniPCX Enterprise",
+"u": "courses/rainxte003en/skills/rxe-lab-pod-setup.html",
+"k": "rxe-lab-pod-setup RLAB POD IPDSP MicroSIP ITSP1 SIP 模拟器 DID 实验口径 配置培训实验环境 核对 OXE Pod 基线 配置实验 DID 翻译"
+},
+{
+"t": "Rainbow Hub",
+"s": "rainbow",
+"u": "courses/rainxte101en/index.html",
+"k": "rainxte101en RAINXTE101EN.pdf"
+},
+{
+"t": "Rainbow Hub 精华长文",
+"s": "rainbow",
+"u": "courses/rainxte101en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "Rainbow Hub 整书理解",
+"s": "rainbow",
+"u": "courses/rainxte101en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "Rainbow Hub 术语词典",
+"s": "rainbow",
+"u": "courses/rainxte101en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "Rainbow 公司体系与 Voice 订阅开通",
+"s": "Rainbow Hub",
+"u": "courses/rainxte101en/skills/hub-company-voice-subscription.html",
+"k": "hub-company-voice-subscription Company BP EC Reseller 可见性 CLOSED ISOLATED SSO TOTP Voice Phone Voice Business Voice Enterprise Voice Attendant 预付 时区 创建 Rainbow Hub 公司 开通 Voice 订阅 选择公司可见性 配置 SSO/TOTP 认证 create Rainbow Hub company Voice subscription plans"
+},
+{
+"t": "Cloud PBX 声明与话务配置",
+"s": "Rainbow Hub",
+"u": "courses/rainxte101en/skills/hub-cloud-pbx-provisioning.html",
+"k": "hub-cloud-pbx-provisioning Cloud PBX 编号计划 numbering plan 出局前缀 DDI 公网号码 主号 闭锁 barring 白名单 blacklist trunk bundled separated 声明 Cloud PBX 设计编号计划参数 分配公网号码与主号 配置呼叫闭锁 declare Cloud PBX public numbers DDI"
+},
+{
+"t": "成员管理与话务配置",
+"s": "Rainbow Hub",
+"u": "courses/rainxte101en/skills/hub-member-telephony.html",
+"k": "hub-member-telephony members 成员 邀请 invitation CSV Azure AD LDAP 批量导入 例行程序 routines 标签 profiles grace period 宽限期 Essential 改密踢下线 批量创建成员 配置成员电话号码 管理个人例行程序 删除恢复成员 Rainbow user management"
+},
+{
+"t": "ALE 设备 zero-touch 部署与 DECT 移动",
+"s": "Rainbow Hub",
+"u": "courses/rainxte101en/skills/hub-zero-touch-provisioning.html",
+"k": "hub-zero-touch-provisioning zero-touch 零接触 MAC 地址 IPEI Myriad 8328 8368 8214 8262 DECT Config Failed rdd.openrainbow.com 绿点 EM200 部署 Myriad 话机 批量导入设备 部署 DECT 基站与手持机 zero-touch provisioning"
+},
+{
+"t": "设备维护日志与 Generic SIP 接入",
+"s": "Rainbow Hub",
+"u": "courses/rainxte101en/skills/hub-device-maintenance.html",
+"k": "hub-device-maintenance 设备日志 debug pcap tcpdump webadmin 2.14.22 TOTP Generic SIP 证书链 TLS SRTP G711 互操作 采集话机日志 远程排障设备 评估接入第三方 SIP 话机 Generic SIP device onboarding"
+},
+{
+"t": "呼叫组与话务分配",
+"s": "Rainbow Hub",
+"u": "courses/rainxte101en/skills/hub-hunt-groups.html",
+"k": "hub-hunt-groups hunt group 呼叫组 等待队列 waiting queue 溢出 overflow Parallel Serial Circular 经理助理 紧急组 emergency group 0112 PSAP 录音 Rainbow Exporter 创建呼叫组与等待队列 配置经理助理组 配置紧急号码与紧急组 管理通话录音 hunt group waiting queue"
+},
+{
+"t": "话务台与监督组",
+"s": "Rainbow Hub",
+"u": "courses/rainxte101en/skills/hub-attendant-supervision.html",
+"k": "hub-attendant-supervision attendant console 话务台 监督组 supervision group supervisor 代接 pickup Voice Attendant attendant group 10 路 预通告 部署话务台 创建监督组 建 attendant group attendant console setup"
+},
+{
+"t": "欢迎服务与 IVR",
+"s": "Rainbow Hub",
+"u": "courses/rainxte101en/skills/hub-welcome-service-ivr.html",
+"k": "hub-welcome-service-ivr 欢迎服务 welcome service 日历 calendar 语音提示 voice prompt IVR automated attendant DTMF 菜单 MoH music on hold forced 特殊日 配置欢迎服务与营业时间路由 管理日历与语音提示 配置自动话务员菜单 custom music on hold"
+},
+{
+"t": "Rainbow Hub 网络就绪核查",
+"s": "Rainbow Hub",
+"u": "courses/rainxte101en/skills/hub-network-readiness.html",
+"k": "hub-network-readiness network requirements 网络要求 端口 带宽 防火墙 Rainbow Pilot 连通性 30000-44999 Opus G711 勘测 核查网络端口与防火墙 评估站点承载容量 估算话音带宽 Rainbow Pilot assessment"
+},
+{
+"t": "多站点配置",
+"s": "Rainbow Hub",
+"u": "courses/rainxte101en/skills/hub-multisite.html",
+"k": "hub-multisite multi-site 多站点 站点 site 站点主号 site phone number MoH 号码池 创建站点并分布用户 配置站点主号 配置站点音乐保持 multi-site configuration"
+},
+{
+"t": "分析体系",
+"s": "Rainbow Hub",
+"u": "courses/rainxte101en/skills/hub-analytics.html",
+"k": "hub-analytics CDR 话单 计费 仪表盘 dashboard 采纳率 MOS 质量票 抖动 RTT 丢包 隐私 获取月度话单 CDR 解读分析仪表盘 排查话音质量问题 CDR billing data"
+},
+{
+"t": "Hub 维护与支持体系",
+"s": "Rainbow Hub",
+"u": "courses/rainxte101en/skills/hub-maintenance-support.html",
+"k": "hub-maintenance-support logs report a problem status.openrainbow.com 维护预告 Get updates Service Request SR ESR MyPortal Emily BOT Global Welcome Center 认证 查平台状态与维护预告 收集用户日志与上报 开 Rainbow Hub 服务请求 Rainbow support SR"
+},
+{
+"t": "OmniPCX Enterprise · DECT 解决方案",
+"s": "omnipcx",
+"u": "courses/dectxte200en/index.html",
+"k": "dectxte200en DECTXTE200EN.pdf"
+},
+{
+"t": "OmniPCX Enterprise · DECT 解决方案 精华长文",
+"s": "omnipcx",
+"u": "courses/dectxte200en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OmniPCX Enterprise · DECT 解决方案 整书理解",
+"s": "omnipcx",
+"u": "courses/dectxte200en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OmniPCX Enterprise · DECT 解决方案 术语词典",
+"s": "omnipcx",
+"u": "courses/dectxte200en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "DECT 标识号码体系与 multi-PARI 适配",
+"s": "OmniPCX Enterprise · DECT 解决方案",
+"u": "courses/dectxte200en/skills/dect-pari-identifier.html",
+"k": "dect-pari-identifier PARI RPN RFPI PARK PLI IPUI IPEI multi-PARI 逻辑 AND 缩位匹配 降位 31 位 规划 DECT PARI 和 PLI 算 PARK 号码 混合模式 PLI 怎么取值 手机锁定不上哪个系统 PARI PLI PARK 规划 multi PARI configuration"
+},
+{
+"t": "DECT 产品线选型与拓扑决策",
+"s": "OmniPCX Enterprise · DECT 解决方案",
+"u": "courses/dectxte200en/skills/dect-product-selection.html",
+"k": "dect-product-selection IBS IP-xBS 8378 8379 8328 SIP-DECT 选型 拓扑 分支办公 加密 encryption 欧洲频段 选择 DECT 产品线 对比 IBS 和 IP-xBS SIP-DECT 适不适合 DECT 拓扑怎么选 DECT product selection DECT topology"
+},
+{
+"t": "8378 IP-xBS 部署与故障换站",
+"s": "OmniPCX Enterprise · DECT 解决方案",
+"u": "courses/dectxte200en/skills/dect-ipxbs-deployment.html",
+"k": "dect-ipxbs-deployment IP-xBS 8378 部署 DHCP vendor class alcatel.ipxbs.0 MAC 地址 registration 注册开关 RPN 换基站 PoE 部署 IP-xBS 基站 基站注册不上 更换故障基站 IP-xBS DHCP 配置 deploy 8378 IP-xBS replace base station"
+},
+{
+"t": "xBS 空中同步体系与组网域（含外部同步与多站点）",
+"s": "OmniPCX Enterprise · DECT 解决方案",
+"u": "courses/dectxte200en/skills/dect-xbs-sync-topology.html",
+"k": "dect-xbs-sync-topology 同步 Sync Master Backup Sync Cluster Sync Highway 外部同步 External Synchronization Data Sync Primary handover Site 多站点 roaming 配置空中同步 配置外部同步链路 Sync Master 坏了怎么办 多站点 Site 划分 DECT synchronization external handover"
+},
+{
+"t": "DECT 用户创建与手机注册/注销",
+"s": "OmniPCX Enterprise · DECT 解决方案",
+"u": "courses/dectxte200en/skills/dect-handset-registration.html",
+"k": "dect-handset-registration 注册 dectinston dectrm DECT Register IPUI GAP GAP+ A-GAP Set type AC 码 PIN Security level 创建 DECT 用户 注册 DECT 手机 注销更换手机 GAP 和 GAP+ 区别 register DECT handset dectinston"
+},
+{
+"t": "混合 DECT 基础设施部署（TDM + xBS、PLI 统一）",
+"s": "OmniPCX Enterprise · DECT 解决方案",
+"u": "courses/dectxte200en/skills/dect-mixed-mode.html",
+"k": "dect-mixed-mode 混合模式 Mixed 多 PARI PLI=30 TDM 存量演进 漫游 外部同步 Radio base type IBS xBS 部署混合 DECT IBS 加 xBS 同站 混合模式手机漫游失败 Mixed 模式配置 mixed DECT infrastructure"
+},
+{
+"t": "DECT 手机自动重注册（PARI/PLI 变更零接触迁移）",
+"s": "OmniPCX Enterprise · DECT 解决方案",
+"u": "courses/dectxte200en/skills/dect-auto-reregistration.html",
+"k": "dect-auto-reregistration 自动重注册 re-registration -update -forceUpdate -pari -pli DECT.txt /tmpd ReinstallSuccess ReinstallNOK 批量迁移 访问节点 批量迁移 DECT 手机 PARI 变更手机怎么办 dectinston -update 用法 重注册失败清单 automatic re-registration forceUpdate"
+},
+{
+"t": "DECT 固件双轨升级管理（基站 downstat x / 手机 OTA downstat m）",
+"s": "OmniPCX Enterprise · DECT 解决方案",
+"u": "courses/dectxte200en/skills/dect-firmware-management.html",
+"k": "dect-firmware-management downstat x downstat m 固件 firmware FWU SUOTA READY_TO_FLASH Flash and Reset 充电座 cradle /usr2/downbin v73b0003 升级基站固件 手机固件空中升级 downstat 命令用法 固件升级窗口规划 firmware upgrade downstat m"
+},
+{
+"t": "DECT 日常维护与排障（命令族/syslog/WBM）",
+"s": "OmniPCX Enterprise · DECT 解决方案",
+"u": "courses/dectxte200en/skills/dect-maintenance-troubleshooting.html",
+"k": "dect-maintenance-troubleshooting dectview dectinfo xbssynchro incvisu tcdump listerm listibs outserv inserv syslog Debug 514 P 标志 查看基站状态 收集基站日志 DECT 排障初判 抓包取证 DECT troubleshooting dectview"
+},
+{
+"t": "DECT 无线覆盖勘测（RSSI 门槛/SSK/survey mode）",
+"s": "OmniPCX Enterprise · DECT 解决方案",
+"u": "courses/dectxte200en/skills/dect-radio-survey.html",
+"k": "dect-radio-survey 勘测 survey mode RSSI -70dBm -60dBm -80dBm SSK Site Survey Kit 8242 RFPI 覆盖边界 做覆盖勘测 RSSI 门槛是多少 开手机勘测模式 覆盖验收标准 site survey RSSI"
+},
+{
+"t": "8379 IBS 基础设施部署（UA 板卡/布线/建站）",
+"s": "OmniPCX Enterprise · DECT 解决方案",
+"u": "courses/dectxte200en/skills/dect-ibs-deployment.html",
+"k": "dect-ibs-deployment IBS 8379 UA 板卡 UAI MIX B 信道 Line delay SYT LY278 ATEX dectview ibs listibs 部署 IBS 基站 UA 板卡怎么选 IBS 布线距离 IBS 状态判读 deploy 8379 IBS"
+},
+{
+"t": "8328 SIP-DECT 部署（四步注册/双小区）",
+"s": "OmniPCX Enterprise · DECT 解决方案",
+"u": "courses/dectxte200en/skills/dect-sip-dect.html",
+"k": "dect-sip-dect 8328 SIP-DECT 8214 SIP Extension SIP register dual cell 双小区 主站 副站 reset the chain FFFFFFFFFF Alcatel-Lucent terminals only 部署 8328 SIP-DECT 8328 拿不到 IP 双小区谁是主站 8328 手机注册 SIP-DECT deployment dual cell"
+},
+{
+"t": "OmniPCX Enterprise · Starter",
+"s": "omnipcx",
+"u": "courses/entpxte400en/index.html",
+"k": "entpxte400en ENTPXTE400EN.pdf"
+},
+{
+"t": "OmniPCX Enterprise · Starter 精华长文",
+"s": "omnipcx",
+"u": "courses/entpxte400en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OmniPCX Enterprise · Starter 整书理解",
+"s": "omnipcx",
+"u": "courses/entpxte400en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OmniPCX Enterprise · Starter 术语词典",
+"s": "omnipcx",
+"u": "courses/entpxte400en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "OXE 首登加固（四账户与密码治理）",
+"s": "OmniPCX Enterprise · Starter",
+"u": "courses/entpxte400en/skills/ents-first-login-hardening.html",
+"k": "ents-first-login-hardening mtcl swinst root client V24 SSHv2 密码策略 锁定 老化 RADIUS 900 秒 登录 OXE 修改系统账户密码 配置密码策略与账户锁定 启用 client 账户 OXE SSH login"
+},
+{
+"t": "OXE 系统启停与 autostart 管理",
+"s": "OmniPCX Enterprise · Starter",
+"u": "courses/entpxte400en/skills/ents-system-start-stop.html",
+"k": "ents-system-start-stop swinst Easy menu RUNTEL autostart shutdown role 停话务 重启 Absent 提示符 启动或停止话务应用 重启或停机 管理 autostart 查系统运行状态"
+},
+{
+"t": "Call Server IP 寻址与内部防火墙",
+"s": "OmniPCX Enterprise · Starter",
+"u": "courses/entpxte400en/skills/ents-cs-network-firewall.html",
+"k": "ents-cs-network-firewall netadmin Role 地址 物理地址 iptables 可信主机 trusted host SSH for all oxedomain CSV 导入 重启生效 配置 Call Server IP 地址 配置 Role 地址 配置内部防火墙与可信主机 OXE 连不上排查 netadmin firewall"
+},
+{
+"t": "OXE 时间同步（NTP/chrony）",
+"s": "OmniPCX Enterprise · Starter",
+"u": "courses/entpxte400en/skills/ents-time-sync.html",
+"k": "ents-time-sync NTP chrony chronyd 瞬时同步 渐进同步 时区 UDP 123 iburst stratum 部署 NTP 时间同步 瞬时校时 配置时区 chrony 巡检"
+},
+{
+"t": "空数据库创建与 OPS 许可管理",
+"s": "OmniPCX Enterprise · Starter",
+"u": "courses/entpxte400en/skills/ents-db-license.html",
+"k": "ents-db-license MAO OPS swk 许可 license spadmin PANIC 降级模式 FlexLM CPU-ID CC-SUITE-ID 空库 创建空数据库 恢复或备份 OPS 许可 对接 FlexLM 处理降级模式告警 spadmin 巡检"
+},
+{
+"t": "媒体网关上架（GD4/OMS/XL）",
+"s": "OmniPCX Enterprise · Starter",
+"u": "courses/entpxte400en/skills/ents-media-gateway-deployment.html",
+"k": "ents-media-gateway-deployment GD4 OMS XL GDXL FXS32 shelf mgconfig omsconfig crystal number MAC rstcpl 压缩器 ARMADA 上架 GD4 硬件网关 部署 OMS 虚拟媒体网关 上架 XL 机架 配置压缩器与子板 板卡不入服排查"
+},
+{
+"t": "用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）",
+"s": "OmniPCX Enterprise · Starter",
+"u": "courses/entpxte400en/skills/ents-user-terminal-provisioning.html",
+"k": "ents-user-terminal-provisioning 建户 commissioning MAC IPDSP ALE-300 TDM ANALOG User Profile DHCP dhcpd termstat 0000 getlogs 创建用户与开通话机 IP 话机静态或动态开通 部署 IPDSP 软话机 User Profile 批量建户 配置 CS 内部 DHCP 话机换机与日志收集"
+},
+{
+"t": "编号计划与 COS 管理",
+"s": "OmniPCX Enterprise · Starter",
+"u": "courses/entpxte400en/skills/ents-numbering-cos.html",
+"k": "ents-numbering-cos 编号计划 prefix suffix Timer 23 COS 呼转前缀 摘机路由 Connection COS Transfer COS 矩阵 缩位拨号 规划或维护编号计划 创建前缀与后缀 管理 Phone Features COS 配置 Connection/Transfer 矩阵"
+},
+{
+"t": "呼叫处理业务域（语音指南/话务台/Entity/计时器）",
+"s": "OmniPCX Enterprise · Starter",
+"u": "courses/entpxte400en/skills/ents-call-processing.html",
+"k": "ents-call-processing 语音指南 voice guide MOH 音乐保持 话务台 attendant 4059 BLF Entity CDT 夜转 溢出 Timer 76 部署静态语音指南与 MOH 部署话务台与 4059EE 管理 Entity 与 CDT 调优呼叫分配计时器"
+},
+{
+"t": "OmniMessage 4645 语音邮件与邮件通知",
+"s": "OmniPCX Enterprise · Starter",
+"u": "courses/entpxte400en/skills/ents-voicemail-4645.html",
+"k": "ents-voicemail-4645 4645 OmniMessage 语音邮件 信箱 voicemail VPIM IMAP 邮件通知 SMTP Eva_tool 部署 4645 语音邮件 分配与管理信箱 配置邮件通知 声明 SMTP 服务器"
+},
+{
+"t": "公共 SIP 中继开通与弹性",
+"s": "OmniPCX Enterprise · Starter",
+"u": "courses/entpxte400en/skills/ents-sip-trunk.html",
+"k": "ents-sip-trunk SIP 中继 trunk group 外部网关 SIP Ext Gateway ARS 鉴别符 discriminator NPD DID 回叫 Pool Number Supervision timer G722 开通公共 SIP 中继 配置 ARS 与鉴别符 配置 NPD 与 DID 翻译器 配置回叫翻译器 SIP 网关备份与负载均衡"
+},
+{
+"t": "外呼闭锁与紧急呼叫通知",
+"s": "OmniPCX Enterprise · Starter",
+"u": "courses/entpxte400en/skills/ents-barring-emergency.html",
+"k": "ents-barring-emergency 闭锁 barring Public COS Area 鉴别符 实体状态 Night 紧急呼叫 emergency P-ANI Location ID Tone 34 配置外呼闭锁 管理 Area 与 Public COS 配置紧急呼叫通知 配置 Location ID 与 P-ANI"
+},
+{
+"t": "数据库备份恢复与维护排障工具箱",
+"s": "OmniPCX Enterprise · Starter",
+"u": "courses/entpxte400en/skills/ents-backup-maintenance.html",
+"k": "ents-backup-maintenance 备份 backup 恢复 restore IMMED oxetrace tcpdump infocollect incvisu incinfo syslog securitystatustool 备份数据库 恢复数据库 抓包与日志排障 事件查询与释义 生成支持材料"
+},
+{
+"t": "传统中继（T0/T2）与 UMC 云管理",
+"s": "OmniPCX Enterprise · Starter",
+"u": "courses/entpxte400en/skills/ents-legacy-trunks-umc.html",
+"k": "ents-legacy-trunks-umc T0 T2 ISDN BRA PRA 中继组 同步优先级 NOS UMC Easy users Easy SIP trunk Fleet Dashboard 开通 T0 中继组 开通 T2 中继组 评估或使用 UMC 云管理 UMC 向导建 SIP 中继"
+},
+{
+"t": "OmniPCX Enterprise · Advanced",
+"s": "omnipcx",
+"u": "courses/entpxte401en/index.html",
+"k": "entpxte401en ENTPXTE401EN.pdf"
+},
+{
+"t": "OmniPCX Enterprise · Advanced 精华长文",
+"s": "omnipcx",
+"u": "courses/entpxte401en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OmniPCX Enterprise · Advanced 整书理解",
+"s": "omnipcx",
+"u": "courses/entpxte401en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OmniPCX Enterprise · Advanced 术语词典",
+"s": "omnipcx",
+"u": "courses/entpxte401en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "SSH 免密分发体系",
+"s": "OmniPCX Enterprise · Advanced",
+"u": "courses/entpxte401en/skills/entadv-ssh-trust-foundation.html",
+"k": "entadv-ssh-trust-foundation oxe-ssh-auth oxe-nw-sshkey-sync ssh_multi.csv authorized_keys SSHv2 公钥 免密 CIS mtcl swinst root 440 分发 SSH 免密密钥 mastercopy 或 pcscopy 认证失败 oxe-ssh-auth 用法 oxe-nw-sshkey-sync CSV 格式 ssh passwordless between OXE"
+},
+{
+"t": "CS 冗余部署与切换维护",
+"s": "OmniPCX Enterprise · Advanced",
+"u": "courses/entpxte401en/skills/entadv-cs-redundancy.html",
+"k": "entadv-cs-redundancy mastercopy bascul twin Reference Media Gateway 参考媒体网关 double main pseudo main spatial redundancy 空间冗余 440 preferred CS Copy to Twin swinst 部署本地/空间冗余 CS 对 执行冗余切换或不停机升级 处理 double main 或 440 事件 mastercopy 克隆数据库 CS duplication bascul switchover"
+},
+{
+"t": "IP 域与 PCS 域级生存性",
+"s": "OmniPCX Enterprise · Advanced",
+"u": "courses/entpxte401en/skills/entadv-ip-domain-pcs.html",
+"k": "entadv-ip-domain-pcs IP domain domain 0 CAC Domain Max Voice Connection OPUS G722 PCS pcsview pcscopy TFTP Backup 332 431 432 30 天 规划配置 IP 域与 CAC 部署 PCS 断链救援与回切演练 处理设备不落域或跨域拒呼 PCS survivability pcsview"
+},
+{
+"t": "公私网双向溢出与重路由",
+"s": "OmniPCX Enterprise · Advanced",
+"u": "courses/entpxte401en/skills/entadv-overflow-rerouting.html",
+"k": "entadv-overflow-rerouting overflow 溢出 Node Access Prefix thin sector DID ARS rerouting discriminator -1 OoS overflow 话务台 CAC 饱和 配置私到公溢出（本地/组网） 配置公到私重路由 规划 thin sector 或 DID 翻译 处理来电显示变成外部号类问题 overflow rerouting ARS"
+},
+{
+"t": "Direct IP Link 全 IP 组网",
+"s": "OmniPCX Enterprise · Advanced",
+"u": "courses/entpxte401en/skills/entadv-direct-ip-link.html",
+"k": "entadv-direct-ip-link Direct IP Link ABC-F2 Link_xx Migrating Enabled 不可逆 2879 1488 hybvisu trkvisu rsthyb IPSec SRTP 建立或迁移 Direct IP Link 组网 处理 2879 或链路建不起来 加删组网节点 评估直链容量与监控方式 direct ip link ABC-F2"
+},
+{
+"t": "Audit 与 Broadcast 数据一致性",
+"s": "OmniPCX Enterprise · Advanced",
+"u": "courses/entpxte401en/skills/entadv-audit-broadcast.html",
+"k": "entadv-audit-broadcast audit broadcast reference node specific shared 模拟 cleanbroad lupd.dat RLOG prog_diff maohist Immediate Broadcast 执行全网 Audit 对账 启用或巡检 Broadcast 新节点并入全网导数据 处理 RLOG 或数据分叉 audit broadcast OXE database"
+},
+{
+"t": "多线监督与经理助理组",
+"s": "OmniPCX Enterprise · Advanced",
+"u": "courses/entpxte401en/skills/entadv-multiline-supervision.html",
+"k": "entadv-multiline-supervision multiline Multi-MCDU supervision key 监督键 manager assistant screening unscreening filtering table 过滤表 multitool Selective Filtering Routing Assistant 配置多线与监督键 建经理/助理组与过滤表 设计助理顶班（away/溢出助理） 核算监督容量上限 multiline supervision manager assistant"
+},
+{
+"t": "寻线代接组与速拨编号体系",
+"s": "OmniPCX Enterprise · Advanced",
+"u": "courses/entpxte401en/skills/entadv-hunting-pickup-speeddial.html",
+"k": "entadv-hunting-pickup-speeddial hunting group 寻线组 cyclical sequential parallel camp-on pickup 代接 speed dial 缩位拨号 edabv cfgUpdate 32500 建寻线组与溢出策略 配代接组 管理速拨编号体系 处理缩位号闭锁合规 hunting group pickup speed dial"
+},
+{
+"t": "办公桌共享（DSS/DSU）",
+"s": "OmniPCX Enterprise · Advanced",
+"u": "courses/entpxte401en/skills/entadv-desk-sharing.html",
+"k": "entadv-desk-sharing desk sharing 办公桌共享 DSS DSU 虚拟 MAC 6004 dsstat ippstat LogOn LogOff free seating 配置办公桌共享 解释 DSU 忙时被顶或 6004 规划共享工位机型 desk sharing DSS DSU"
+},
+{
+"t": "多设备用户与 Twinset",
+"s": "OmniPCX Enterprise · Advanced",
+"u": "courses/entpxte401en/skills/entadv-multi-device.html",
+"k": "entadv-multi-device multi device twinset tandem 主站 副站 Twinset Get Call 652 REX 651 partial busy specific supervision zdpost 配置多设备用户或 Twinset 执行快速移机 规划主站退服兜底 multi device twinset tandem"
+},
+{
+"t": "实验/交付前置环境基线",
+"s": "OmniPCX Enterprise · Advanced",
+"u": "courses/entpxte401en/skills/entadv-lab-pod-baseline.html",
+"k": "entadv-lab-pod-baseline RLAB POD ITSP1 SIP 模拟器 IPDSP pbxN remoteN 3321 41000 Remove Interface IP 冲突 搭建教材同构实验环境 换算 POD 号码规则 处理实验 IP 冲突或 ping 不通 RLAB pod ITSP1 numbering"
+},
+{
+"t": "维护命令与事件/许可速查",
+"s": "OmniPCX Enterprise · Advanced",
+"u": "courses/entpxte401en/skills/entadv-cli-toolbox.html",
+"k": "entadv-cli-toolbox incvisu incinfo spadmin role bascul domstat cnx dom compvisu multitool hybvisu trkstat prog_diff 440 2879 6005 186 332 查状态该用什么命令 解释事件号含义 核验许可锁 maintenance commands incident codes"
+},
+{
+"t": "OmniPCX Enterprise · 系统装载",
+"s": "omnipcx",
+"u": "courses/entpxte402en/index.html",
+"k": "entpxte402en ENTPXTE402EN.pdf"
+},
+{
+"t": "OmniPCX Enterprise · 系统装载 精华长文",
+"s": "omnipcx",
+"u": "courses/entpxte402en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OmniPCX Enterprise · 系统装载 整书理解",
+"s": "omnipcx",
+"u": "courses/entpxte402en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OmniPCX Enterprise · 系统装载 术语词典",
+"s": "omnipcx",
+"u": "courses/entpxte402en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "S.O.T. 部署工具的安装、初始化、更新与 Template Factory",
+"s": "OmniPCX Enterprise · 系统装载",
+"u": "courses/entpxte402en/skills/entload-sot-installation.html",
+"k": "entload-sot-installation SOT Standalone Hosted Template Factory 降级模式 ova setIp setKb SOT update 子网 口令短语 TC2456 部署 SOT 虚拟机 更新 SOT 版本 启用 Template Factory SOT 首连初始化 deploy SOT virtual machine"
+},
+{
+"t": "OXE 呼叫服务器单版本全加载与加载后初始化",
+"s": "OmniPCX Enterprise · 系统装载",
+"u": "courses/entpxte402en/skills/entload-cs-loading.html",
+"k": "entload-cs-loading grubboot ETHER BOOTP startup.txt 单版本 Standard Installation RUNTEL autostart siteid 角色寻址 密码规则 aging V24 全新安装 OXE 呼叫服务器 加载卡在等待目标机 加载后初始化清单 设 OXE 账户密码 load full release on OXE"
+},
+{
+"t": "OXE 多版本加载、分区切换与静态/动态补丁管理",
+"s": "OmniPCX Enterprise · 系统装载",
+"u": "courses/entpxte402en/skills/entload-patch-management.html",
+"k": "entload-patch-management inactive partition 静态补丁 动态补丁 N420536 siteid Duplicate all Switch partition Switch time Switch back downstat 回退 ver2cho 多版本加载与分区切换 安装静态/动态补丁 升级回退预案 补丁维护窗口评估 install patch on OXE"
+},
+{
+"t": "OXE-V 虚拟化：平台选型、许可路径与 OXE/OMS 虚机交付",
+"s": "OmniPCX Enterprise · 系统装载",
+"u": "courses/entpxte402en/skills/entload-oxe-v-deployment.html",
+"k": "entload-oxe-v-deployment OXE-V ESXi Hyper-V KVM Nutanix AWS FlexLM dongle OMS Lock 384 Lock 385 OVF generation virsh IPXE omsconfig 选择虚拟化平台与许可路径 生成并加载 OXE 虚机 加载 OMS 媒体网关虚机 OMS 容量与许可计算 deploy OXE-V virtual machine"
+},
+{
+"t": "GAS 通用设备服务器：硬件前置、软件加载与后安装向导",
+"s": "OmniPCX Enterprise · 系统装载",
+"u": "courses/entpxte402en/skills/entload-gas-delivery.html",
+"k": "entload-gas-delivery GAS Rocky BootDVD oxeswspostinst.bin 后安装 FlexLM ALU-ID .ice 27000 PBXID TURN PXE 硬件 RAID 加载 GAS 服务器 执行 GAS 后安装向导 配置 FlexLM 许可 配置 WebRTC 网关参数 install Generic Appliance Server"
+},
+{
+"t": "Cloud Connect 云连接：网络前提、FTR 首次注册与 PIN 恢复",
+"s": "OmniPCX Enterprise · 系统装载",
+"u": "courses/entpxte402en/skills/entload-cloud-connect.html",
+"k": "entload-cloud-connect Cloud Connect FTR CC-SUITE-ID CCSID checkCloudConfig XMPP SOCKS5 connect2.opentouch.com PIN code panic helpdesk XMPP_CONNECTED 6214 6207 配置 DNS 代理并验证云连通性 执行 FTR 首次注册 FTR 失败排障 PIN 恢复 panic perform First Time Registration"
+},
+{
+"t": "RTR 许可开关：资格期状态机、事件监控与 FlexLM 互斥",
+"s": "OmniPCX Enterprise · 系统装载",
+"u": "courses/entpxte402en/skills/entload-rtr-licensing.html",
+"k": "entload-rtr-licensing RTR Qualifying Period 资格期 dongle-less Panic Flag Soon Blocked Duplicated Force RTR 647 648 650 FlexLM 互斥 启用 RTR 许可 解读资格期与 Dashboard 状态 处置 Duplicated 告警 RTR 事件排障 monitor Right To Run status"
+},
+{
+"t": "OPEX / Purple on Demand：订阅许可、LMS 同步、panic 时间线与 C2P 转换",
+"s": "OmniPCX Enterprise · 系统装载",
+"u": "courses/entpxte402en/skills/entload-pod-licensing.html",
+"k": "entload-pod-licensing OPEX PoD LMS lmsagent lock 431 OPEX activation spadmin Voice Enterprise Room C2P MyPortal panic mode 4059 652 654 下载并安装 PoD 许可 核查 OXE 与 LMS 许可同步 配置订阅消耗与阈值 评估 C2P 转换 configure Purple on Demand licensing"
+},
+{
+"t": "Easy Installation 分发器模式：无 SOT 环境的本地加载",
+"s": "OmniPCX Enterprise · 系统装载",
+"u": "courses/entpxte402en/skills/entload-distributor-loading.html",
+"k": "entload-distributor-loading Distributor 分发器 tmpd Rload swinst Local load Cleaning operation downstat 无 SOT 环境加载版本 分发器模式装补丁 清理 Rload 目录 local load as distributor"
+},
+{
+"t": "SOT 媒体传输与加载项目配置（公共动作）",
+"s": "OmniPCX Enterprise · 系统装载",
+"u": "courses/entpxte402en/skills/entload-sot-media.html",
+"k": "entload-sot-media Declare media upload SFTP Greenfield Expert mode Easy mode OVF generation MAC OPS 向 SOT 传输软件媒体 声明媒体与许可文件 创建加载项目 declare media in SOT"
+},
+{
+"t": "GAS 日常运维：版本、备份、host 升级与 UPS",
+"s": "OmniPCX Enterprise · 系统装载",
+"u": "courses/entpxte402en/skills/entload-gas-ops.html",
+"k": "entload-gas-ops gasversion gasbackup uhwconf gas-rocky-update.sh NUT UPS 备份 静默恢复 查 GAS 组件版本 备份恢复 GAS 升级 GAS 宿主系统 配置 UPS 监控 backup and upgrade GAS"
+},
+{
+"t": "Fleet Dashboard 云端机队服务：Inventory、Offer、远程控制台与软件更新",
+"s": "OmniPCX Enterprise · 系统装载",
+"u": "courses/entpxte402en/skills/entload-fleet-dashboard.html",
+"k": "entload-fleet-dashboard Fleet Dashboard Inventory offer remote console shell.log Software update cdn-oxe-sw-update SPS 合同 technical advanced 云端盘点 OXE 资产 推取许可与 offer 文件 使用远程控制台 云端下发软件更新 Fleet Dashboard services"
+},
+{
+"t": "OmniPCX Enterprise · SIP",
+"s": "omnipcx",
+"u": "courses/entpxte403en/index.html",
+"k": "entpxte403en ENTPXTE403EN.pdf"
+},
+{
+"t": "OmniPCX Enterprise · SIP 精华长文",
+"s": "omnipcx",
+"u": "courses/entpxte403en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OmniPCX Enterprise · SIP 整书理解",
+"s": "omnipcx",
+"u": "courses/entpxte403en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OmniPCX Enterprise · SIP 术语词典",
+"s": "omnipcx",
+"u": "courses/entpxte403en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "SIP 协议机理与 OXE SIP 架构",
+"s": "OmniPCX Enterprise · SIP",
+"u": "courses/entpxte403en/skills/osip-protocol-foundation.html",
+"k": "osip-protocol-foundation RFC 3261 INVITE REGISTER 403 488 六组件 sipmotor SIP 字典 位置服务器 空间冗余 节点名 FQDN oxedomain.com netadmin 内部域名解析器 理解 SIP 协议机理 OXE SIP 架构组件 修改 OXE 域名 空间冗余终端怎么接入 SIP response codes meaning"
+},
+{
+"t": "SIP 用户形态选型与容量核算",
+"s": "OmniPCX Enterprise · SIP",
+"u": "courses/entpxte403en/skills/osip-user-forms.html",
+"k": "osip-user-forms SEPLOS SIP Extension SIP device 软件锁 177 345 430 15000 20000 ALE-2 ALE-300 8008 ALES 功能矩阵 会议话机 门禁 选 SEPLOS 还是 SIP Device SIP 软件锁与容量 ALE 话机怎么选型 会议话机门禁接入方案 SIP user capacity limits"
+},
+{
+"t": "SIP Device 用户开通与维护",
+"s": "OmniPCX Enterprise · SIP",
+"u": "courses/entpxte403en/skills/osip-sip-device-provisioning.html",
+"k": "osip-sip-device-provisioning SIP device 私网 private SIP trunk group 虚拟接入 62 通道 992 TS 本地 SIP 网关 5060 信任主机 sipregister trkstat sipdict 隔离 MicroSIP 开通 SIP Device 用户 会议话机接入 OXE SIP 中继组虚拟接入扩容 SIP device registration troubleshooting"
+},
+{
+"t": "ALE 话机 SIP 开通与 NOE↔SIP 切换",
+"s": "OmniPCX Enterprise · SIP",
+"u": "courses/entpxte403en/skills/osip-deskphone-provisioning.html",
+"k": "osip-deskphone-provisioning ALE-2 ALE-3 ALE-300 ALE-30 双分区 Force Download Change NOE to SIP sipconfig.txt aledevice ictouch.0 auto-discovery dmictouch Apply Modifications 0000 开通 ALE-2 ALE-3 话机 NOE 话机切换到 SIP 双分区 Force Download auto-discovery 注册 DHCP class TFTP URL"
+},
+{
+"t": "ALES 软终端开通与认证",
+"s": "OmniPCX Enterprise · SIP",
+"u": "courses/entpxte403en/skills/osip-ales-provisioning.html",
+"k": "osip-ales-provisioning ALES ALE SoftPhone LDAP uid swinst 本地认证 密码策略 Keep Alive 推送 21600 Framework 隔离 DUID Multiple Logins ALES-desktop ALES-mobile 开通 ALES 软终端 配置 LDAP 认证 ALES 推送不工作 一号多机 403 switch to local authentication"
+},
+{
+"t": "OXE DM 证书定制与安全级",
+"s": "OmniPCX Enterprise · SIP",
+"u": "courses/entpxte403en/skills/osip-certificate-management.html",
+"k": "osip-certificate-management 证书 内部 PKI 根 CA CSR SAN CTL ctl_VHE8082 OpenSSL security level RSA 2048 SHA-1 mTLS 8443 X-Real-Mac certificate info OXE 证书报错 生成 CS 证书与 CTL 老话机证书被拒 OpenSSL 安全级别 mTLS DM authentication"
+},
+{
+"t": "经 SBC 的 SIP 运营商接入与 OTSBC 部署",
+"s": "OmniPCX Enterprise · SIP",
+"u": "courses/entpxte403en/skills/osip-otsbc-carrier-interconnect.html",
+"k": "osip-otsbc-carrier-interconnect SIP trunk 中继组 外部 SIP 网关 ARS 判别器 DID NPD 回拨翻译 OTSBC SBC wizard Contact User message manipulation TC2005 sipextgw 接入 SIP 运营商 配置 ARS 和 DID 翻译 部署 OTSBC 外线打不通 SBC registration Contact User"
+},
+{
+"t": "远程办公方案与落地",
+"s": "OmniPCX Enterprise · SIP",
+"u": "courses/entpxte403en/skills/osip-remote-workers.html",
+"k": "osip-remote-workers remote worker 远程办公 reverse proxy NGINX PLUS 500 用户 EDS zero touch OpenVPN ALE-2 原生加密 Via 头 5261 rpsbcX DM profile sipregister 员工居家办公打电话 远程办公方案选型 EDS 零touch 部署 OTSBC 反向代理配置 ALES Remote Worker"
+},
+{
+"t": "编解码协商与验证",
+"s": "OmniPCX Enterprise · SIP",
+"u": "courses/entpxte403en/skills/osip-codec-negotiation.html",
+"k": "osip-codec-negotiation 编解码 codec OPUS G.722 G.711 G.729 488 法线 A 律 μ 律 IP 域 带宽 compvisu OXE-MS 音质差单通排查 编解码协商规则 488 法线不匹配 compvisu 看编解码"
+},
+{
+"t": "SIP 跟踪采集与维护排障",
+"s": "OmniPCX Enterprise · SIP",
+"u": "courses/entpxte403en/skills/osip-sip-troubleshooting.html",
+"k": "osip-sip-troubleshooting trace motortrace oxetrace mtracer sipdump traced Wireshark pcap 强拆 过滤 sipregister trkstat sipalarm dhs3_init 抓 SIP 信令 oxetrace 打包取证 sipdump 强拆呼叫 SIP 进程重启"
+},
+{
+"t": "SIP 设备管理选型与 profile 体系",
+"s": "OmniPCX Enterprise · SIP",
+"u": "courses/entpxte403en/skills/osip-dm-management.html",
+"k": "osip-dm-management Device Management DM 8770 DM profile profile 0 dmictouch dmsoftphone config.<mac>.xml downbin 二进制 generate all configuration files OXE DM 与 8770 怎么选 DM profile 规划 8770 迁移 OXE DM 数据库恢复后终端拿不到配置"
+},
+{
+"t": "ALE SIP 业务特性配置",
+"s": "OmniPCX Enterprise · SIP",
+"u": "courses/entpxte403en/skills/osip-sip-features.html",
+"k": "osip-sip-features 监督 supervision 代接 pickup 寻线组 hunting group parallel 480 481 多终端 multi-devices 可编程键 SIP Key RCC 按名呼叫 Alert-Info 配置话机监督代接 建寻线组 多终端同振 配可编程键 前缀激活业务"
+},
+{
+"t": "POD 实验环境与运营商模拟器",
+"s": "OmniPCX Enterprise · SIP",
+"u": "courses/entpxte403en/skills/osip-lab-environment.html",
+"k": "osip-lab-environment RLAB POD ITSP1 ITSP2 模拟器 pbxN podP IPDSP 预配置 33210N41000 33920x31000 准备实验环境 POD 预配置核对 运营商模拟器号码规则 实验外线打通"
+},
+{
+"t": "OmniPCX Enterprise · 加密解决方案",
+"s": "omnipcx",
+"u": "courses/entpxte421en/index.html",
+"k": "entpxte421en ENTPXTE421EN.pdf"
+},
+{
+"t": "OmniPCX Enterprise · 加密解决方案 精华长文",
+"s": "omnipcx",
+"u": "courses/entpxte421en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OmniPCX Enterprise · 加密解决方案 整书理解",
+"s": "omnipcx",
+"u": "courses/entpxte421en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OmniPCX Enterprise · 加密解决方案 术语词典",
+"s": "omnipcx",
+"u": "courses/entpxte421en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "证书与信任链全生命周期",
+"s": "OmniPCX Enterprise · 加密解决方案",
+"u": "courses/entpxte421en/skills/enc-certificate-trust-chain.html",
+"k": "enc-certificate-trust-chain CA CSR PKCS#7 PKCS#12 CTL TOFU SAN Common Name 证书链 证书备份 7300 netadmin 选择 PKI 模式与证书格式 生成 CSR 并导入签发证书 规划 CTL 分发与 TOFU 证书备份与 CA 更新 generate CSR import certificate OXE"
+},
+{
+"t": "加密解决方案开通与 lanpbx.cfg",
+"s": "OmniPCX Enterprise · 加密解决方案",
+"u": "courses/entpxte421en/skills/enc-native-encryption-bringup.html",
+"k": "enc-native-encryption-bringup Enable Native encryption lanpbx.cfg lanpbxbuild DTLS_SRV 32643 Authentication for SRTP AES-256 压缩器 部分加密 copy to twin 启用加密解决方案系统参数 按用户开启加密 生成维护 lanpbx.cfg 选择 SRTP cipher suite enable native encryption OXE"
+},
+{
+"t": "DTLS 验证、排障与维护闭环",
+"s": "OmniPCX Enterprise · 加密解决方案",
+"u": "courses/entpxte421en/skills/enc-dtls-verification-maintenance.html",
+"k": "enc-dtls-verification-maintenance cryptview ippstat twin incvisu 5992 5993 5995 Wireshark mirror set lan 证书备份 加密图标 验证加密是否生效 处置加密解决方案事件 备份证书 抓包证明媒体加密 cryptview ippstat troubleshooting"
+},
+{
+"t": "SIP TLS 扩展加密",
+"s": "OmniPCX Enterprise · 加密解决方案",
+"u": "courses/entpxte421en/skills/enc-sip-tls-endpoints.html",
+"k": "enc-sip-tls-endpoints sipmotor SEPLOS ALES TLS signaling 5061 SRTP offer answer motortrace X-ALE-CALL-ENCRYPTED 488 sipregister csipsets 启用 SIP 扩展 TLS 加密 排查 SIP TLS 注册失败 验证 SIP 媒体加密 sipmotor TLS 5061 SEPLOS"
+},
+{
+"t": "SIP trunk 的 TLS 与 SRTP",
+"s": "OmniPCX Enterprise · 加密解决方案",
+"u": "courses/entpxte421en/skills/enc-sip-trunk-tls.html",
+"k": "enc-sip-trunk-tls OTSBC TLS contexts Proxy Set Media Security AES-CM-128-HMAC-SHA1-80 RTP or SRTP 5061 6261 SIPMOTOR 停用 0.0.0.0 配置加密 SIP 中继 配置 OTSBC TLS context 验证中继 SRTP 安全停用加密解决方案 OTSBC SIP TLS SRTP trunk"
+},
+{
+"t": "EEGW/NSP 大容量部署",
+"s": "OmniPCX Enterprise · 加密解决方案",
+"u": "courses/entpxte421en/skills/enc-eegw-deployment.html",
+"k": "enc-eegw-deployment EEGW OST ostconfig SIP Translator NSP nsp.oxe.company.com S.O.T. Greenfield 1500 15000 Download Certificates 部署外部加密网关 EEGW 声明 SIP Translator NSP 用 S.O.T. 生成 EEGW VM 迁移内嵌 EGW 到 EEGW EEGW NSP deployment capacity"
+},
+{
+"t": "ABC-F 网络加密",
+"s": "OmniPCX Enterprise · 加密解决方案",
+"u": "courses/entpxte421en/skills/enc-abcf-network-encryption.html",
+"k": "enc-abcf-network-encryption ABC-F ABC-IP hybrid link direct link transit node IPSec OpenSwan 500 2579 hybvisu 内部 PKI 启用节点间链路加密 部署内部 PKI 双节点 规划 hybrid/direct 拓扑 验证跨节点加密 ABC-F IPsec link encryption"
+},
+{
+"t": "mTLS 双向认证与版本限制",
+"s": "OmniPCX Enterprise · 加密解决方案",
+"u": "courses/entpxte421en/skills/enc-mtls-endpoint-authentication.html",
+"k": "enc-mtls-endpoint-authentication mTLS Mutual TLS Authentication 6261 SSL security level OpenSSL 3.0 2048 GW.pfx DTLSPkeyPassphrase Endpoint CTL SCEP 启用双向认证 mTLS 部署端点证书 处置 1024 位证书设备 调整 SSL security level mutual TLS authentication endpoint certificate"
+},
+{
+"t": "PCS 加密接管",
+"s": "OmniPCX Enterprise · 加密解决方案",
+"u": "courses/entpxte421en/skills/enc-pcs-failover.html",
+"k": "enc-pcs-failover PCS 救援 rescue pcscopy pcsview 断网演练 tar 部署 PCS 加密救援 做 PCS 断网演练 PCS certificate pcscopy"
+},
+{
+"t": "XCA 外部 CA 工坊",
+"s": "OmniPCX Enterprise · 加密解决方案",
+"u": "courses/entpxte421en/skills/enc-pki-workshop-xca.html",
+"k": "enc-pki-workshop-xca XCA 根 CA End Entity GW.pfx softphone_cert.pem PKCS#12 crl2pkcs7 conv-proper-p7-format 用 XCA 制作根 CA 签发 CSR 与端点实体 转换证书格式 XCA sign CSR root CA"
+},
+{
+"t": "应用生态加密与安全下载",
+"s": "OmniPCX Enterprise · 加密解决方案",
+"u": "courses/entpxte421en/skills/enc-application-encryption.html",
+"k": "enc-application-encryption 4645 voice mail OmniPCX Record VAA Dispatch Console Rainbow WebRTC Gateway HTTPS TFTP DHCP option 66 加密语音信箱与录音 评估 VAA/DC 加密代价 启用 HTTPS 安全下载 4645 VAA recording encryption"
+},
+{
+"t": "实验环境底座（RLAB）",
+"s": "OmniPCX Enterprise · 加密解决方案",
+"u": "courses/entpxte421en/skills/enc-lab-environment.html",
+"k": "enc-lab-environment RLAB POD NTP ca-certgen DID NPD ITSP2 hybvisu 搭建加密实验 POD 切换网络实验室拓扑 RLAB pod ITSP2 setup"
+},
+{
+"t": "OXO Connect · 呼叫中心",
+"s": "oxo",
+"u": "courses/oxocxte107en/index.html",
+"k": "oxocxte107en OXOCXTE107EN.pdf"
+},
+{
+"t": "OXO Connect · 呼叫中心 精华长文",
+"s": "oxo",
+"u": "courses/oxocxte107en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OXO Connect · 呼叫中心 整书理解",
+"s": "oxo",
+"u": "courses/oxocxte107en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OXO Connect · 呼叫中心 术语词典",
+"s": "oxo",
+"u": "courses/oxocxte107en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "OXO Connect 基础 ACD 全流程搭建",
+"s": "OXO Connect · 呼叫中心",
+"u": "courses/oxocxte107en/skills/oxo-acd-basic-setup.html",
+"k": "oxo-acd-basic-setup ACD Setup 向导 DDI 状态前缀 501-504 hunting group voice mailbox ACD 引擎重启 Line parameters rank 从零搭建 OXO ACD 新建呼叫中心组 ACD 初始配置 configure ACD on OXO Connect"
+},
+{
+"t": "ACD 呼入六场景排障",
+"s": "OXO Connect · 呼叫中心",
+"u": "courses/oxocxte107en/skills/oxo-acd-call-scenarios.html",
+"k": "oxo-acd-call-scenarios 六场景 Opening hours queue full dissuasion 劝漏 端口全忙 全员登出 transfer number closed welcoming message 来电被挂断/排队/没铃声 ACD 呼入行为异常 caller behavior troubleshooting 为什么电话直接被劝退"
+},
+{
+"t": "呼叫特征化与 Smart Call Routing 路由表设计",
+"s": "OXO Connect · 呼叫中心",
+"u": "courses/oxocxte107en/skills/oxo-acd-routing.html",
+"k": "oxo-acd-routing call characterization Line parameters Smart Call Routing CLI DDI 路由表 分流 优先级 按客户/国家分流来电 配置 Smart Call Routing 大客户专线分组 call routing by CLI DDI"
+},
+{
+"t": "ACD 等待队列管理（容量公式与出口配置）",
+"s": "OXO Connect · 呼叫中心",
+"u": "courses/oxocxte107en/skills/oxo-acd-queue.html",
+"k": "oxo-acd-queue queue N×K traffic factor 话务因子 等待时间 星号退出 Call management 劝漏出口 队列长度怎么设 排队等待时间播报 queue length estimated waiting time 队满了还来电"
+},
+{
+"t": "坐席搜索模式选型与无应答处理",
+"s": "OXO Connect · 呼叫中心",
+"u": "courses/oxocxte107en/skills/oxo-acd-search-noanswer.html",
+"k": "oxo-acd-search-noanswer search mode Fixed Rotating Longest idle rank priority order maximum ringing duration automatically removed off duty 话务怎么在坐席间分配 坐席被自动签出 ringing duration 无应答自动移除 search mode 选哪种"
+},
+{
+"t": "坐席签入签出（free seating）与状态排障",
+"s": "OXO Connect · 呼叫中心",
+"u": "courses/oxocxte107en/skills/oxo-acd-login-status.html",
+"k": "oxo-acd-login-status login logout ACD prefix base0 base1 free seating ACDAutoLog 状态码 501 502 503 504 On duty Off duty 坐席怎么登录/签出 登录了却不接电话 话机显示 1:01 ACD tab free seating agent login logout"
+},
+{
+"t": "Multi-Secretary 多秘书方案配置",
+"s": "OXO Connect · 呼叫中心",
+"u": "courses/oxocxte107en/skills/oxo-multi-secretary.html",
+"k": "oxo-multi-secretary Multi-Secretary multi-secretary mode collective speed dialing 医生/经理 DDI Secretary rank 1 programming order 多经理共享秘书 秘书台显示老板名字 multi secretary 领导秘书分机方案"
+},
+{
+"t": "OMC 安装与首次连接",
+"s": "OXO Connect · 呼叫中心",
+"u": "courses/oxocxte107en/skills/oxo-omc-first-connect.html",
+"k": "oxo-omc-first-connect OMC Expert mode Server authentication certificate pbxk1064 192.168.92.246 装 OMC 连不上 OXO 安全告警反复弹 OMC installation pbxk1064"
+},
+{
+"t": "OXO 与客户端 IP 规划修改",
+"s": "OXO Connect · 呼叫中心",
+"u": "courses/oxocxte107en/skills/oxo-ip-replan.html",
+"k": "oxo-ip-replan IP configuration Main CPU DHCP range 192.168.1.246 网关 DNS 改 OXO IP 换网段 DHCP 地址池 change IP settings"
+},
+{
+"t": "ACD 营业时段与例外日配置",
+"s": "OXO Connect · 呼叫中心",
+"u": "courses/oxocxte107en/skills/oxo-acd-schedule-calendar.html",
+"k": "oxo-acd-schedule-calendar Opening criteria Exceptional days 时段 节假日 40/10/2 上限 设置营业时间 节假日关闭 exceptional days opening hours"
+},
+{
+"t": "Supervisor 班长台部署与实时监控",
+"s": "OXO Connect · 呼叫中心",
+"u": "courses/oxocxte107en/skills/oxo-supervisor-app.html",
+"k": "oxo-supervisor-app Supervisor application ACD Admin Acdc1064 activity rate 八子态 On hold Being routed 装班长监控台 实时看坐席状态 坐席显示忙却不接 supervisor application activity rate"
+},
+{
+"t": "Agent 坐席席面部署（弹屏/打标/客户库）",
+"s": "OXO Connect · 呼叫中心",
+"u": "courses/oxocxte107en/skills/oxo-agent-app.html",
+"k": "oxo-agent-app Agent application PC/terminal association Types call qualification screen popup contact database PIMphony 装坐席软件 来电弹屏 通话分类打标 agent application screen popup"
+},
+{
+"t": "Statistics 统计应用与报表导出",
+"s": "OXO Connect · 呼叫中心",
+"u": "courses/oxocxte107en/skills/oxo-statistics-app.html",
+"k": "oxo-statistics-app Statistics Manager S1/S2 Group statistics Agent statistics CSV binary export automatic printout 看来话量报表 坐席统计 导出统计 statistics application S1 S2 threshold"
+},
+{
+"t": "DTMF 客户码识别弹屏",
+"s": "OXO Connect · 呼叫中心",
+"u": "courses/oxocxte107en/skills/oxo-dtmf-client-popup.html",
+"k": "oxo-dtmf-client-popup DTMF customer code 107.wav automatic screen pop up line parameters 客户来电弹资料 输码识别客户 DTMF client code customer code popup"
+},
+{
+"t": "ACD 语音提示定制",
+"s": "OXO Connect · 呼叫中心",
+"u": "courses/oxocxte107en/skills/oxo-acd-voice-prompts.html",
+"k": "oxo-acd-voice-prompts voice guide wav 101.wav 102.wav 107.wav MMC session Transfer mode ACD Voice messages 定制欢迎语 换提示音 voice prompts 101.wav 录音上传"
+},
+{
+"t": "OXO Connect · Starter",
+"s": "oxo",
+"u": "courses/oxocxte300en/index.html",
+"k": "oxocxte300en OXOCXTE300EN.pdf"
+},
+{
+"t": "OXO Connect · Starter 精华长文",
+"s": "oxo",
+"u": "courses/oxocxte300en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OXO Connect · Starter 整书理解",
+"s": "oxo",
+"u": "courses/oxocxte300en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OXO Connect · Starter 术语词典",
+"s": "oxo",
+"u": "courses/oxocxte300en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "交付前数据采集",
+"s": "OXO Connect · Starter",
+"u": "courses/oxocxte300en/skills/oxos-data-collection.html",
+"k": "oxos-data-collection 数据采集 data collection IP 规划 编号计划 密码表 需求清单 Partner fleet 三参考值 呼入呼出需求 做 OXO 交付前数据采集 定编号计划与 IP 规划 准备安装密码表 data collection checklist"
+},
+{
+"t": "系统开通双路线与首次连接",
+"s": "OXO Connect · Starter",
+"u": "courses/oxocxte300en/skills/oxos-commissioning.html",
+"k": "oxos-commissioning FTR Cloud Connect Standard OMC pbxk1064 Server authentication 证书 软件钥匙 .msl .csl 初始安装向导 Hotel 模式 warm reset OCE FTR 注册 Cloud Connect 安装 OMC 并首次连接 修改 OXO IP 规划 冷复位后重建基础配置 FTR first time registration"
+},
+{
+"t": "终端开通（IP 话机与 DECT）",
+"s": "OXO Connect · Starter",
+"u": "courses/oxocxte300en/skills/oxos-terminals.html",
+"k": "oxos-terminals Auto-Provision DHCP 池 TFTP Dynamic Alcatel xBS ARI GAP IPUI 8328 8214 *47* FXS Open SIP 开通 IP 话机 话机拿不到地址 部署 IP-DECT 基站 注册 8328/8214 话机 put in service IP phone"
+},
+{
+"t": "编号计划与四种组",
+"s": "OXO Connect · Starter",
+"u": "courses/oxocxte300en/skills/oxos-numbering-groups.html",
+"k": "oxos-numbering-groups 编号计划 numbering Base 安装号 前缀 缩位拨号 hunt group Sequential Parallel 代接 pickup 广播 broadcast 经理秘书 multiline 配置编号计划 建新前缀段报冲突 建 hunt/代接/广播组 建经理秘书组 numbering plan configuration"
+},
+{
+"t": "用户功能与语音信箱",
+"s": "OXO Connect · Starter",
+"u": "courses/oxocxte300en/skills/oxos-user-features.html",
+"k": "oxos-user-features 可编程键 功能键 资源键 RSL 动态路由 3276 apply diversion 前转 插入 热线 语音信箱 mailbox answer only screening 远程访问 配用户可编程键 配动态路由与前转 前转不生效排障 管理语音信箱 configure dynamic routing"
+},
+{
+"t": "公共 SIP 中继",
+"s": "OXO Connect · Starter",
+"u": "courses/oxocxte300en/skills/oxos-sip-trunk.html",
+"k": "oxos-sip-trunk SIP 网关 SIP Gateway Outbound Proxy Registrar RTP Direct 带宽 SIP registration Profile Easy Connect ARS 紧急号码 安装号 DDI 配置公共 SIP 网关 SIP 注册失败排障 导入运营商 Profile 补短号与紧急号码路由 configure SIP trunk"
+},
+{
+"t": "呼入分发与呼出闭锁",
+"s": "OXO Connect · Starter",
+"u": "courses/oxocxte300en/skills/oxos-incoming-barring.html",
+"k": "oxos-incoming-barring 话务台组 attendant group 时段表 time ranges Normal Restricted 预公告 闭锁 barring Link Category 矩阵 0053 DDIonPRI 配置呼入日夜分发 配置时段表与预公告 控制用户出局权限 配置国际闭锁 call barring management"
+},
+{
+"t": "备份恢复、软件升级与复位",
+"s": "OXO Connect · Starter",
+"u": "courses/oxocxte300en/skills/oxos-maintenance.html",
+"k": "oxos-maintenance 备份 backup 恢复 restore SD 卡 EXT2 DBAdapter 软件下载 Swap switchover warm reset cold reset factory reset 复位 建立备份制度 恢复数据库 执行软件升级与回退 选择复位方式 backup restore software download"
+},
+{
+"t": "硬件平台与容量",
+"s": "OXO Connect · Starter",
+"u": "courses/oxocxte300en/skills/oxos-hardware-platform.html",
+"k": "oxos-hardware-platform IPBox OCE PowerCPU EE Armada DSP 通道 HSL PowerMEX ETH1 eMMC MSDB 300 用户 启动八步 选硬件平台形态 估算话音并发容量 评估机柜扩展条件 OXO hardware family"
+},
+{
+"t": "消息与彩铃",
+"s": "OXO Connect · Starter",
+"u": "courses/oxocxte300en/skills/oxos-audio-messages.html",
+"k": "oxos-audio-messages 欢迎消息 MSG 彩铃 Music on hold MoH .wav 8kHz Entity 320 秒 上传欢迎与预公告消息 配置保持音乐 音频格式转换核查 music on hold download"
+},
+{
+"t": "安全基线与防盗打",
+"s": "OXO Connect · Starter",
+"u": "courses/oxocxte300en/skills/oxos-security.html",
+"k": "oxos-security 密码策略 默认密码 pbxk1064 盗打 phreaking 弱密码 000000 TC1143 安全基线 制定密码策略 清理默认口令 处置疑似盗打 phreaking security baseline"
+},
+{
+"t": "Rainbow 混合云接入速览",
+"s": "OXO Connect · Starter",
+"u": "courses/oxocxte300en/skills/oxos-rainbow-integration.html",
+"k": "oxos-rainbow-integration Rainbow PBXID Activation code 激活码 Webdiag connected with final password ccrbagent.log RCC WebRTC 网关 Twinset Anydevice UTL 把 OXO 接入 Rainbow Rainbow 连接排障 网关拓扑与容量速查 connect OXO to Rainbow"
+},
+{
+"t": "OXO Connect · Advanced",
+"s": "oxo",
+"u": "courses/oxocxte301en/index.html",
+"k": "oxocxte301en OXOCXTE301EN.pdf"
+},
+{
+"t": "OXO Connect · Advanced 精华长文",
+"s": "oxo",
+"u": "courses/oxocxte301en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OXO Connect · Advanced 整书理解",
+"s": "oxo",
+"u": "courses/oxocxte301en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OXO Connect · Advanced 术语词典",
+"s": "oxo",
+"u": "courses/oxocxte301en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "SIP 组网：公网网关与私网互联",
+"s": "OXO Connect · Advanced",
+"u": "courses/oxocxte301en/skills/oxoa-sip-networking.html",
+"k": "oxoa-sip-networking SIP 网关 ITSP Domain Proxy Outbound Proxy 注册 5059 中继组 溢出 overflow 私网 站点互联 RTP Direct 配置公网 SIP 网关 SIP 注册失败排查 两台 OXO 私网互联 私网饱和溢出公网 configure SIP gateway SIP trunk registration"
+},
+{
+"t": "ARS 路由套件：三表协作与 Internal ARS",
+"s": "OXO Connect · Advanced",
+"u": "courses/oxocxte301en/skills/oxoa-numbering-ars-suite.html",
+"k": "oxoa-numbering-ars-suite ARS 选路 中继组列表 前缀 替换 substitute 溢出 Internal ARS Day Groups Hours 虚拟 Provider Local 传真 规划 ARS 选路 多运营商分流与溢出 一个 DDI 分时段路由 非营业时间播欢迎消息 ARS routing configuration"
+},
+{
+"t": "酒店与计费垂直方案",
+"s": "OXO Connect · Advanced",
+"u": "courses/oxocxte301en/skills/oxoa-hotel-billing-vertical.html",
+"k": "oxoa-hotel-billing-vertical 酒店 hotel PMS OHL check-in 房态 预付 metering TicketCollector 账号码 account code 内部替代 66 部署酒店模式 客房计费与预付切断 生成 XML 计费小票 账号码与内部替代 hotel solution setup"
+},
+{
+"t": "系统安全加固",
+"s": "OXO Connect · Advanced",
+"u": "courses/oxocxte301en/skills/oxoa-security-hardening.html",
+"k": "oxoa-security-hardening 安全 密码 AutoPwdChk 弱密码 Network IP Services ETH1 锁定 VMUMaxTry 1440 加固 TC1143 紧急号码 LDAPS 执行安全基线核查 密码策略与弱密码审计 收敛管理面与话务面 远程访问锁定处理 system security hardening"
+},
+{
+"t": "证书与加密传输（证书/DTLS/TLS-SRTP）",
+"s": "OXO Connect · Advanced",
+"u": "courses/oxocxte301en/skills/oxoa-certificate-suite.html",
+"k": "oxoa-certificate-suite 证书 certificate PKI CSR 4096 2048 回滚 DTLS TrustList TLS SRTP 5061 OCE-FE 管理数字证书与 PKI 签发 部署 DTLS 话机信令加密 配置 SIP 中继 TLS/SRTP 4K 证书升级与回滚 certificate and TLS SRTP setup"
+},
+{
+"t": "语音导航套件（AA/MLAA/SCR）",
+"s": "OXO Connect · Advanced",
+"u": "courses/oxocxte301en/skills/oxoa-attendant-suite.html",
+"k": "oxoa-attendant-suite AA 自动话务员 MLAA 语音导航 语音指南 SCR 客户码 client code DID 路由 CLI 路由 press star 免费拨号 12000 配置自动话务员 多语言多树导航 按客户码分流来话 语音导航排障 auto attendant MLAA SCR"
+},
+{
+"t": "语音邮箱与移动办公",
+"s": "OXO Connect · Advanced",
+"u": "courses/oxocxte301en/skills/oxoa-voicemail-mobility.html",
+"k": "oxoa-voicemail-mobility 语音邮箱 voice mail 远程接入 ACC 锁定 VMUMaxTry 个人助理 游牧 nomadic 远程替代 remote substitution 远程接入码 # 前缀 配置语音邮箱远程接入 处理邮箱锁定与解锁 激活游牧模式 配置远程替代回环 voicemail nomadic remote substitution"
+},
+{
+"t": "Cloud Connect 舰队与远程维护",
+"s": "OXO Connect · Advanced",
+"u": "courses/oxocxte301en/skills/oxoa-cloud-connect-fleet.html",
+"k": "oxoa-cloud-connect-fleet Cloud Connect Fleet Dashboard OXO Connectivity Inventory 软件更新 advanced 远程维护 50443 端口转发 管理 VPN Rainbow 目录 Business Directory 注册系统到 Cloud Connect 舰队软件更新 选型远程维护通道 同步 Rainbow 业务目录 cloud connect fleet management"
+},
+{
+"t": "交付地基：OMC 首连与 IP 规划",
+"s": "OXO Connect · Advanced",
+"u": "courses/oxocxte301en/skills/oxoa-foundation-ip.html",
+"k": "oxoa-foundation-ip OMC 首连 pbxk1064 证书 Trusted Root IP 规划 DHCP 池 重启 IPDSP NTP OMC 首次连接 修改 OXO IP 规划 IPDSP 安装报错处理"
+},
+{
+"t": "终端生态：PIMphony 与 SIP 话机接入",
+"s": "OXO Connect · Advanced",
+"u": "courses/oxocxte301en/skills/oxoa-terminal-ecosystem.html",
+"k": "oxoa-terminal-ecosystem SIP 话机 Open SIP Zoiper 软话机 5059 编解码 透传 RTP proxy Direct RTP PIMphony profile 8088 接入 SIP 话机或软话机 选择媒体处理路径 部署 PIMphony SIP 话机排障"
+},
+{
+"t": "共享终端：站群监督、Hot Desking 与 Multiset",
+"s": "OXO Connect · Advanced",
+"u": "courses/oxocxte301en/skills/oxoa-shared-devices.html",
+"k": "oxoa-shared-devices 监督 supervision Groupware 代接 Hot Desking HDU HDP 683 Multiset Twinset 副站 MLTSETRING 配置站群监督 部署 Hot Desking 配置 Multiset/Twinset"
+},
+{
+"t": "多实体与伪多公司",
+"s": "OXO Connect · Advanced",
+"u": "courses/oxocxte301en/skills/oxoa-multi-entity.html",
+"k": "oxoa-multi-entity 多实体 entity 多租户 伪多公司 MoH 流量分担 链路类别 矩阵 Char 分账 多实体隔离配置 两家公司共享系统分账"
+},
+{
+"t": "DECT 无线移动",
+"s": "OXO Connect · Advanced",
+"u": "courses/oxocxte301en/skills/oxoa-dect-deployment.html",
+"k": "oxoa-dect-deployment DECT IP-DECT xBS IBS PARI IPUI 集群 切换 handover 勘测 -72 dBm SUOTA 8378 选型与部署 DECT 注册 DECT 话机 勘测验收覆盖 SUOTA 批量升级"
+},
+{
+"t": "维护工具箱：Webdiag、Noteworthy 与 LoLa",
+"s": "OXO Connect · Advanced",
+"u": "courses/oxocxte301en/skills/oxoa-maintenance-toolkit.html",
+"k": "oxoa-maintenance-toolkit Webdiag installer Dump 抓包 noteworthy TC1398 Memory Read Auto_Reset 铃音 LoLa 迁移 cold reset warm reset Webdiag 排障与信息收集 noteworthy 地址修改 LoLa 系统加载与迁移 退役设备净化"
+},
+{
+"t": "OpenTouch · 移动与远程办公",
+"s": "opentouch",
+"u": "courses/openxte225en/index.html",
+"k": "openxte225en OPENXTE225EN.pdf"
+},
+{
+"t": "OpenTouch · 移动与远程办公 精华长文",
+"s": "opentouch",
+"u": "courses/openxte225en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OpenTouch · 移动与远程办公 整书理解",
+"s": "opentouch",
+"u": "courses/openxte225en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OpenTouch · 移动与远程办公 术语词典",
+"s": "opentouch",
+"u": "courses/openxte225en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "远程接入架构与 DMZ 双边缘",
+"s": "OpenTouch · 移动与远程办公",
+"u": "courses/openxte225en/skills/otm-dmz-security-channels.html",
+"k": "otm-dmz-security-channels DMZ 双边缘 反向代理 Reverse Proxy OTSBC VPN 用例矩阵 拓扑隐藏 SSL 卸载 N.U. N.A. DNS 桌面共享 CAC 规划远程接入拓扑 远程用户要哪些边缘组件 反向代理和 SBC 怎么分工 DNS 内外怎么解析 plan remote access topology"
+},
+{
+"t": "证书策略与签发（CA、封装、SAN、自建 CA）",
+"s": "OpenTouch · 移动与远程办公",
+"u": "courses/openxte225en/skills/otm-certificate-pki.html",
+"k": "otm-certificate-pki CA 自签 通用证书 PKCS7 PKCS12 CSR SAN 通配符 wildcard CTL WebAdmin OpenSSL 证书链 passphrase 远程访问证书怎么选 签发服务器证书 自建 CA 证书导入与部署 generate certificate CA"
+},
+{
+"t": "OpenTouch 服务器侧远程访问设置",
+"s": "OpenTouch · 移动与远程办公",
+"u": "courses/openxte225en/skills/otm-ot-server-settings.html",
+"k": "otm-ot-server-settings RP 申报 公共 URL EVS 8016 DAS ACS 会议 rehost ot-config.sh IT server 5261 8061 France 申报反向代理 申报 OTSBC 配置 DAS 规则 会议服务 FQDN 与 rehost declare reverse proxy OpenTouch"
+},
+{
+"t": "OTSBC 部署与向导配置",
+"s": "OpenTouch · 移动与远程办公",
+"u": "courses/openxte225en/skills/otm-otsbc-deployment.html",
+"k": "otm-otsbc-deployment OTSBC Mediant OVF 向导 wizard Remote Users IPG Media Realm TLS Context 许可 license 5261 8061 5263 TCP 5060 部署 OTSBC 配置 OTSBC 向导 OTSBC 许可与证书 SIP 接口 TLS 上下文 deploy OTSBC"
+},
+{
+"t": "反向代理两路线部署与选型（内嵌 RP、Nginx）",
+"s": "OpenTouch · 移动与远程办公",
+"u": "courses/openxte225en/skills/otm-reverse-proxy.html",
+"k": "otm-reverse-proxy 内嵌 RP HTTP proxy Nginx Ubuntu remoteworker.conf conference.conf snippets resolver LDAP nginx-ldap-auth 模板 TC2639 nginx -t 部署内嵌反向代理 部署 Nginx 反向代理 反代路线选型 反代 LDAP 认证 nginx reverse proxy OpenTouch"
+},
+{
+"t": "OTC PC 远程办公两模式（multi-devices、Nomadic SIP）",
+"s": "OpenTouch · 移动与远程办公",
+"u": "courses/openxte225en/skills/otm-otc-pc-modes.html",
+"k": "otm-otc-pc-modes multi-devices 副设备 secondary Nomadic 游牧 Ghost Z SIP 设备 池 Twinset get call No ringing COS 213100x Desktop 许可 配置 multi-devices 副设备 配置 Nomadic SIP 游牧池规划 OTC PC 远程办公 OTC PC secondary device"
+},
+{
+"t": "OTC 智能手机开通（Connection 用户、自动对象、R2.6 单设备）",
+"s": "OpenTouch · 移动与远程办公",
+"u": "courses/openxte225en/skills/otm-smartphone-provisioning.html",
+"k": "otm-smartphone-provisioning Connection 用户 OTC Smartphone 远程分机 remote extension tandem twinset DISA DDI ARS 判别器 barring R2.6 单设备 Off-site mobility 配置 OTC 智能手机 关联手机到用户 自动对象核验 远程分机 RE 配置 smartphone dual mode"
+},
+{
+"t": "iPhone+ APNS 推送专项",
+"s": "OpenTouch · 移动与远程办公",
+"u": "courses/openxte225en/skills/otm-iphone-apns.html",
+"k": "otm-iphone-apns APNS 推送 push 5223 2195 2196 5265 kamailio-wasp wspcfg invite hotfix Geotrust iPhone+ iPhone 收不到来话 APNS 防火墙端口 kamailio-wasp 维护 iPhone+ SBC 端口 iPhone push notification"
+},
+{
+"t": "客户端远程接入两步法（接入配置与路由档案）",
+"s": "OpenTouch · 移动与远程办公",
+"u": "courses/openxte225en/skills/otm-client-access-profiles.html",
+"k": "otm-client-access-profiles 公共 URL 接入配置 路由档案 routing profile dial from OTC Web 会议 URL Settings Connections 首次启动 客户端怎么接入 路由档案配置 OTC Web 怎么进会议 dial from 不生效 remote access profile"
+},
+{
+"t": "智能手机连接模式与回落（WiFi/3G4G/DTMF、无 SIM）",
+"s": "OpenTouch · 移动与远程办公",
+"u": "courses/openxte225en/skills/otm-smartphone-modes.html",
+"k": "otm-smartphone-modes WiFi 3G 4G GSM cellular 回落 fallback DTMF 无 SIM 纯 VoIP 短信 私人呼叫 单号码 手机没流量怎么办 WiFi 和 4G 下什么功能可用 Android 无 SIM 回落模式 smartphone connectivity modes"
+},
+{
+"t": "VMware 虚机 OVF/OVA 部署",
+"s": "OpenTouch · 移动与远程办公",
+"u": "courses/openxte225en/skills/otm-vmware-ovf.html",
+"k": "otm-vmware-ovf VMware ESXi OVF OVA vSphere web client Thin DMZ 网络 虚机部署 部署 OVF 虚机 vSphere 还是 web client ESXi 导入 OVA deploy OVF VMware"
+},
+{
+"t": "实验环境与拨测验证（RLAB、编号计划、模拟器预期表）",
+"s": "OpenTouch · 移动与远程办公",
+"u": "courses/openxte225en/skills/otm-lab-dialtest.html",
+"k": "otm-lab-dialtest RLAB POD 编号计划 31000 213100x 模拟器 simulator 拨测 主叫显示 caller identity 0abcd31xxx DHCP 池 实验环境是什么 拨测号码怎么变换 主叫显示是什么 SIP 模拟器 dial test numbering"
+},
+{
+"t": "OpenTouch · Starter",
+"s": "opentouch",
+"u": "courses/openxte300en/index.html",
+"k": "openxte300en OPENXTE300EN.pdf"
+},
+{
+"t": "OpenTouch · Starter 精华长文",
+"s": "opentouch",
+"u": "courses/openxte300en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OpenTouch · Starter 整书理解",
+"s": "opentouch",
+"u": "courses/openxte300en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OpenTouch · Starter 术语词典",
+"s": "opentouch",
+"u": "courses/openxte300en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "OTMS 初始化向导（两模式十节）",
+"s": "OpenTouch · Starter",
+"u": "courses/openxte300en/skills/ots-post-installation-wizard.html",
+"k": "ots-post-installation-wizard post-installation wizard 站点安装 from scratch restore archive HA DNS 正反向 otAdmin otProfile otuser security off 完成 OTMS 初始化向导 从备份恢复重装 OTMS 向导口令与 DNS 有什么要求 post-installation wizard"
+},
+{
+"t": "许可体系与 FlexLM（安装、核查、外部切换）",
+"s": "OpenTouch · Starter",
+"u": "courses/openxte300en/skills/ots-license-flexlm.html",
+"k": "ots-license-flexlm FlexLM .ice .swk sw8770 nmc.license ALUID 加密狗 dongle spadmin lmutil checkLicensing final_licenses PANIC 27000 安装许可文件 许可核查与排障 部署外部 FlexLM 内部切外部 FlexLM"
+},
+{
+"t": "双向节点声明与 SIP 打通（含告警对接）",
+"s": "OpenTouch · Starter",
+"u": "courses/openxte300en/skills/ots-node-declaration-sip.html",
+"k": "ots-node-declaration-sip bics.conf 节点声明 declaration Topology PRS 2570 trunk group 外部网关 5260 5040 trusted G729 SNMP Inform MIB synchronization 在 8770 声明 OXE 在 8770 声明 OpenTouch 配置 OXE SIP 打通 OT 告警对接 8770"
+},
+{
+"t": "Prior management（号码段、前缀、拨号规则、UDAS、会议桥）",
+"s": "OpenTouch · Starter",
+"u": "courses/openxte300en/skills/ots-prior-management.html",
+"k": "ots-prior-management 号码段 Ranges 前缀 prefix 拨号规则 dialing rule UDAS 同步周期 31000-31499 31200 31250 DAS rules 会议桥 wireald 配置号码段与归属 配置前缀与拨号规则 修复目录检索陈旧 配置会议桥与 DAS 规则"
+},
+{
+"t": "档案与用户供给（三类用户、WPC 批量）",
+"s": "OpenTouch · Starter",
+"u": "courses/openxte300en/skills/ots-users-profiles.html",
+"k": "ots-users-profiles 档案 profile ACU-OXE Connection 用户 ACU Set function 占号 Directory user WPC Web Provisioning Chrome TUI 口令 MACD 创建 Connection 用户 创建 OXE/OT 档案 批量供给用户（WPC） 用户口令策略"
+},
+{
+"t": "语音邮箱、IMAP 收取与通知公告（Local Storage）",
+"s": "OpenTouch · Starter",
+"u": "courses/openxte300en/skills/ots-voice-mail.html",
+"k": "ots-voice-mail 语音邮箱 voice mail defaultVmsLS Local Storage IMAP Outlook imap4fed SMTP SMS notification 公告 announcement greeting 配额 创建语音邮箱 配置语音邮箱档案 配置 IMAP 收取语音留言 配置 SMTP/SMS 通知与公告"
+},
+{
+"t": "OTC PC 客户端交付与多终端",
+"s": "OpenTouch · Starter",
+"u": "courses/openxte300en/skills/ots-clients-multi-devices.html",
+"k": "ots-clients-multi-devices OTC PC OTC PC One Desktop 许可 freemium RCC VoIP 软电话 softphone SIP 分机 Multi-devices 多终端 副站 Twinset Outlook 加载项 安装交付 OTC PC 排查 OTC PC One 免费模式 配置电脑软电话 配置多终端副站"
+},
+{
+"t": "维护、备份恢复与 rehosting（TC2149 矩阵）",
+"s": "OpenTouch · Starter",
+"u": "courses/openxte300en/skills/ots-maintenance-rehosting.html",
+"k": "ots-maintenance-rehosting maintenance otconsole Maintenance Portal 4448 checkdns dla backup otbr NFS 00:01 rehosting TC2149 死锁 inactive 分区 收集日志与系统核查 配置备份与恢复 执行 rehosting 改 IP 主机名 rehosting 后收尾三件套"
+},
+{
+"t": "SOT 自动化装机与虚机手动导入",
+"s": "OpenTouch · Starter",
+"u": "courses/openxte300en/skills/ots-sot-installation.html",
+"k": "ots-sot-installation SOT Software Orchestration Tool 静默安装 PXE media project OVF OVA ESXi bootdvd hotfix BPWS 用 SOT 部署 OTMS SOT 媒体与项目管理 手动安装 OTMS OVF/OVA 导入 ESXi"
+},
+{
+"t": "证书部署三路线",
+"s": "OpenTouch · Starter",
+"u": "courses/openxte300en/skills/ots-certificates.html",
+"k": "ots-certificates certificate 自签 self-signed CA CSR PKCS7 PKCS12 CTL SHA256 security off Deploy CertSrv 切换自签证书 用 Windows CA 签发证书 评估 security off 风险 排查证书不生效"
+},
+{
+"t": "监督组（话务监督、进出组与代接）",
+"s": "OpenTouch · Starter",
+"u": "courses/openxte300en/skills/ots-supervision-groups.html",
+"k": "ots-supervision-groups 监督组 supervision Supervisor 代接 pickup Direct call pick-up Join or leave group Regular Collaboration 40 人 500 组 创建监督组 配置进出组前缀 配置监督代接 评估监督覆盖边界"
+},
+{
+"t": "实验 POD 与系统连接通道",
+"s": "OpenTouch · Starter",
+"u": "courses/openxte300en/skills/ots-lab-connections.html",
+"k": "ots-lab-connections RLAB POD ITSP1 外呼 SSH Telnet Putty mstsc SUSE startx YaST 搭建实验 POD 连接 OT/OXE/8770 SUSE 图形界面操作 验证模拟外呼"
+},
+{
+"t": "OpenTouch · Advanced",
+"s": "opentouch",
+"u": "courses/openxte301en/index.html",
+"k": "openxte301en OPENXTE301EN.pdf"
+},
+{
+"t": "OpenTouch · Advanced 精华长文",
+"s": "opentouch",
+"u": "courses/openxte301en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OpenTouch · Advanced 整书理解",
+"s": "opentouch",
+"u": "courses/openxte301en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OpenTouch · Advanced 术语词典",
+"s": "opentouch",
+"u": "courses/openxte301en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "OpenTouch 远程接入通道与证书",
+"s": "OpenTouch · Advanced",
+"u": "courses/openxte301en/skills/ota-remote-access.html",
+"k": "ota-remote-access 反向代理 reverse proxy OTSBC SBC 5261 8061 7000-7499 证书 SAN rehost CSR conf-pod DAS 正则 配置 OpenTouch 远程接入 声明反向代理与 OTSBC 会议邀请链接打不开 证书签发与部署 DAS 规则配置 reverse proxy declaration"
+},
+{
+"t": "Nomadic 移动模式与 Ghost Z 资源池",
+"s": "OpenTouch · Advanced",
+"u": "courses/openxte301en/skills/ota-nomadic-ghost-z.html",
+"k": "ota-nomadic-ghost-z nomadic 蜂窝 cellular Ghost Z 资源池 冻结 Nomadic GSM Nomadic SIP tsa_maintenance 2998 routing 窗口 配置 Nomadic 蜂窝模式 配置 Nomadic VoIP 模式 Ghost Z 资源池规划 nomadic 资源核查维护 activate nomadic mode"
+},
+{
+"t": "OTC 智能手机交付全流程（REX/DISA/APNS）",
+"s": "OpenTouch · Advanced",
+"u": "courses/openxte301en/skills/ota-smartphone-rex.html",
+"k": "ota-smartphone-rex OTC Smartphone 远程扩展 REX DISA 31280 速拨 ARS 识别码 Tandem APNS kamailio-wasp 5265 Off site mobility 双模 交付 OTC 智能手机 配置远程扩展与 DISA 核验自动创建对象 iPhone 推送排障 smartphone deployment"
+},
+{
+"t": "统一消息 UM（Exchange/O365/Gmail/IMAP）",
+"s": "OpenTouch · Advanced",
+"u": "courses/openxte301en/skills/ota-um-exchange-integration.html",
+"k": "ota-um-exchange-integration UM 统一消息 语音邮箱 voice mail Exchange O365 Office 365 Gmail IMAP4 EWS ICEaccess impersonation delegation MWI voicemail box Wireal MASC 部署统一消息 选择 UM 邮件后端 配置 Exchange Impersonation 语音邮箱档案与信箱 unified messaging setup"
+},
+{
+"t": "协作会议（ACS 配置、角色权限、数据会议）",
+"s": "OpenTouch · Advanced",
+"u": "courses/openxte301en/skills/ota-conference-collaboration.html",
+"k": "ota-conference-collaboration 会议 conference ACS 会议服务器 桥号 TUI 访问码 领导者 DTMF One Touch 协作限制 Enable collaboration Dial by URI SIP URI AMS 配置会议服务器 建会议桥号 会议角色与密码管理 协作能力限制 conference server setup"
+},
+{
+"t": "日历在场与日历同步（Calendar presence/synchro）",
+"s": "OpenTouch · Advanced",
+"u": "courses/openxte301en/skills/ota-calendar-sync.html",
+"k": "ota-calendar-sync 日历 calendar presence 在场 Free/Busy synchro 同步 Outlook Wireal wireald exchange-connector TC2258 OOO 实施 Calendar presence 实施 Calendar synchronization 日历在场排障 会议双向同步验证 calendar synchronization"
+},
+{
+"t": "目录搜索与 Single Business Card（UDAS）",
+"s": "OpenTouch · Advanced",
+"u": "courses/openxte301en/skills/ota-directory-udas.html",
+"k": "ota-directory-udas 目录 directory UDAS 同步 synchronization Single Business Card merge keys 联系人卡 contact card 照片 Avatar LDAP Phone Book Communicate by name PRS 部署目录搜索 配置目录同步 启用 Single Business Card 合并 联系人照片与可选属性 UDAS directory search"
+},
+{
+"t": "企业认证集成（LDAP/RADIUS/Kerberos SSO）",
+"s": "OpenTouch · Advanced",
+"u": "courses/openxte301en/skills/ota-enterprise-authentication.html",
+"k": "ota-enterprise-authentication 外部认证 LDAP LDAPS RADIUS Kerberos SSO 单点登录 DTA External login sAMAccountName keytab setspn SPN krb5.conf web.xml wbm_admin 配置 LDAP/RADIUS 外部认证 启用 Kerberos 单点登录 外部认证排障与级联 WBM 管理员保护 external authentication setup"
+},
+{
+"t": "Desksharing 共享工位（DSU/DSS）",
+"s": "OpenTouch · Advanced",
+"u": "courses/openxte301en/skills/ota-desksharing.html",
+"k": "ota-desksharing 共享工位 desksharing DSU DSS 600 601 虚拟 MAC aa:bb Flex Office 远程释放 domstat ippstat incvisu 6004 配置共享工位 DSU 登录登出管理 OTC PC 远程释放 desksharing maintenance"
+},
+{
+"t": "Extended Mobility（QR/NFC 切换与路由修改）",
+"s": "OpenTouch · Advanced",
+"u": "courses/openxte301en/skills/ota-extended-mobility.html",
+"k": "ota-extended-mobility Extended Mobility QR 码 NFC 标签 切换 路由档案 other and mobile() 周期提醒 3BA27856AA NFC Type 2 部署 Extended Mobility 标签 QR 码与 NFC 标签制作 呼叫切换测试 extended mobility deployment"
+},
+{
+"t": "DCS 文档转换服务器（Office 会议演示）",
+"s": "OpenTouch · Advanced",
+"u": "courses/openxte301en/skills/ota-dcs-documents.html",
+"k": "ota-dcs-documents DCS Document Conversion Server 文档转换 presentation queued KVM ESXi Hyperthreaded dcs_install Remote DC 安装 DCS 文档转换服务器 Office 文档会议演示 DCS 排障 document conversion setup"
+},
+{
+"t": "OTC Web 与访客入会",
+"s": "OpenTouch · Advanced",
+"u": "courses/openxte301en/skills/ota-otc-web-guest.html",
+"k": "ota-otc-web-guest OTC Web 访客 guest 匿名 anonymous WebRTC 浏览器 Chrome Firefox 回呼 callback 头像 访客浏览器入会 OTC Web 能力边界确认 WebRTC 音频接入 guest browser join"
+},
+{
+"t": "RLAB 实验 POD 与 SIP 运营商模拟器",
+"s": "OpenTouch · Advanced",
+"u": "courses/openxte301en/skills/ota-lab-pod.html",
+"k": "ota-lab-pod RLAB POD 实验环境 ITSP1 模拟器 pbxN 3321PN DID 翻译 MicroSIP IPDSP letacla superuser 搭建核对实验 POD 解读书中实验环境值 ITSP1 模拟器联调 rlab pod configuration"
+},
+{
+"t": "OpenTouch Fax Center · Starter",
+"s": "otfax",
+"u": "courses/otfcxte200en/index.html",
+"k": "otfcxte200en OTFCXTE200EN.pdf"
+},
+{
+"t": "OpenTouch Fax Center · Starter 精华长文",
+"s": "otfax",
+"u": "courses/otfcxte200en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OpenTouch Fax Center · Starter 整书理解",
+"s": "otfax",
+"u": "courses/otfcxte200en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OpenTouch Fax Center · Starter 术语词典",
+"s": "otfax",
+"u": "courses/otfcxte200en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "OTFC 首次交付（宿主准备、安装、FTW、许可）",
+"s": "OpenTouch Fax Center · Starter",
+"u": "courses/otfcxte200en/skills/otfax-installation-ftw.html",
+"k": "otfax-installation-ftw FTW FirstTimeSetup.exe IIS 角色服务 服务账号 DNS 反向解析 Microsoft SMTP 25 端口 QOS 0/0/240 评估许可 watermark 水印 MAC 地址 第三方软件 安装 OpenTouch Fax Center 跑 First Time Setup Wizard 准备传真服务器宿主 处理 OTFC 许可与水印 install OTFC fax server First Time Setup Wizard steps"
+},
+{
+"t": "OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）",
+"s": "OpenTouch Fax Center · Starter",
+"u": "courses/otfcxte200en/skills/otfax-sip-channel-integration.html",
+"k": "otfax-sip-channel-integration SIP T.38 G.711 5360 trunk 中继组 MGR mtcl Trusted IP Prefix plan 前缀计划 Peer List 空间冗余 抓包 CHtrace tcpdump TC3048 配置 OTFC 与 OXE 的 SIP 对接 OXE 侧配传真 SIP 网关 传真话路不通排障 OXE 空间冗余配置 configure SIP between OTFC and OXE"
+},
+{
+"t": "OTFC 邮件与 Exchange 集成（SMTP 网关、FAX 连接器、通知排障）",
+"s": "OpenTouch Fax Center · Starter",
+"u": "courses/otfcxte200en/skills/otfax-mail-exchange-integration.html",
+"k": "otfax-mail-exchange-integration SMTP Gateway XMSMTPGateway feedback address NDR 邮件中继 Send Connector FAX address space fax:* 智能主机 smart host Receive Connector Outlook 模式 许可特性 集成邮件系统发传真 Exchange 建 FAX 地址空间连接器 传真通知邮件收不到 传真邮件寻址格式 configure Exchange send connector for fax"
+},
+{
+"t": "OTFC 用户与管理员管理（双用户源、CSV、两级管理员）",
+"s": "OpenTouch Fax Center · Starter",
+"u": "courses/otfcxte200en/skills/otfax-user-administration.html",
+"k": "otfax-user-administration Internal Users Active Directory NT Account CSV 批量导入 SMTP 地址 时区 管理员 backupadmin 备份管理员 SAML SSO 创建管理 OTFC 用户 批量导入用户 CSV 建 System/Site 管理员 配置管理员认证方式 manage OTFC users and administrators"
+},
+{
+"t": "OTFC Profile 策略与电话簿（限制组、呼号限制、通知 Profile、LDAP 电话簿）",
+"s": "OpenTouch Fax Center · Starter",
+"u": "courses/otfcxte200en/skills/otfax-profile-policy.html",
+"k": "otfax-profile-policy Profile Basic No Faxing Rights Restriction group 限制组 barring 仅国内 Calling Number Restriction 呼号限制 billing codes 计费码 Mail Notification Profile 电话簿 phone book LDAP Attribute Mapping 设计 OTFC 用户 Profile 禁发国际传真号码 配置传真邮件通知格式 管理企业电话簿与 LDAP 访问 configure OTFC profile policy"
+},
+{
+"t": "OTFC 高级目录集成与来传真路由（LDAP、Lookup、NT 免密、路由表、DTMF、Modification）",
+"s": "OpenTouch Fax Center · Starter",
+"u": "courses/otfcxte200en/skills/otfax-directory-routing.html",
+"k": "otfax-directory-routing LDAP Search base 389 属性映射 Site Lookup Profile Lookup samAccountName NT Account Lookup 免密登录 IIS Incoming Routing Table $did:?????$ DTMF 补拨 Modification Table ARS accounting 8770 集成 AD/LDAP 目录 配置 Site/Profile Lookup 自动归类 配置来传真路由表与 DTMF 规整外发传真号码 configure OTFC LDAP and inbound routing"
+},
+{
+"t": "OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）",
+"s": "OpenTouch Fax Center · Starter",
+"u": "courses/otfcxte200en/skills/otfax-services-operations.html",
+"k": "otfax-services-operations Services Status XMFaxManager FaxDriver Rasterizer 有状态 stateful 无状态 stateless xmsc Trace ConfigManager.log Smtp.log 20MB SIP 日志 查 OTFC 服务状态与重启 读 OTFC 组件日志排障 激活 SIP 日志 理解服务架构分类 OTFC service management"
+},
+{
+"t": "OTFC 备份、恢复、升级与删除策略（三数据域、五步升级法、零保留）",
+"s": "OpenTouch Fax Center · Starter",
+"u": "courses/otfcxte200en/skills/otfax-backup-upgrade.html",
+"k": "otfax-backup-upgrade 备份 backup restore MediaStore mysql5 Interstar Technologies 注册表键 冷备 维护窗口 upgrade xmedius.war CompanyConfig XmediusArchive 删除策略 零保留 zero retention 备份恢复 OTFC 系统 升级 OTFC 版本 配置传真删除策略零保留 迁移传真服务器 backup restore upgrade OTFC"
+},
+{
+"t": "OTFC 客户端部署与封页定制（四件套、Web Client、GPO、封页五步）",
+"s": "OpenTouch Fax Center · Starter",
+"u": "courses/otfcxte200en/skills/otfax-client-coversheet.html",
+"k": "otfax-client-coversheet SendFAX Web Client Web Fax Composer Print to Mail 虚拟打印机 GPO 静默安装 ClientRedistribution coversheet 封页 .cse Cover Sheet Editor 队列状态 redact 部署 OTFC 客户端 批量安装传真客户端 定制企业封页 查询传真队列状态 deploy OTFC client coversheet"
+},
+{
+"t": "OTFC 方案评估与部署规划（容量协议合规、架构拓扑、支持矩阵）",
+"s": "OpenTouch Fax Center · Starter",
+"u": "courses/otfcxte200en/skills/otfax-solution-planning.html",
+"k": "otfax-solution-planning 容量 15000 用户 30 端口 T.38 G.711 FoIP GDPR HIPAA 零保留 多网关 多站点 SIP trunk OTFC-V 支持矩阵 Features List 评估 OTFC 方案容量与协议 规划传真服务器部署架构 核对支持软件矩阵 应答传真合规要求 OTFC capacity planning"
+},
+{
+"t": "OTFC 报表与监控（31 报表、BIRT、SNMP V2 陷阱）",
+"s": "OpenTouch Fax Center · Starter",
+"u": "courses/otfcxte200en/skills/otfax-reports-monitoring.html",
+"k": "otfax-reports-monitoring 报表 31 reports BIRT 模板 SNMP trap 告警 队列满 配额 光栅化失败 Routing failure 心跳 性能计数器 出 OTFC 传真量报表 自定义报表模板 接入 SNMP 监控告警 查询站点传真统计 OTFC reports SNMP monitoring"
+},
+{
+"t": "OpenTouch Message Center · Starter",
+"s": "otmsg",
+"u": "courses/otmcxte200en/index.html",
+"k": "otmcxte200en OTMCXTE200EN.pdf"
+},
+{
+"t": "OpenTouch Message Center · Starter 精华长文",
+"s": "otmsg",
+"u": "courses/otmcxte200en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OpenTouch Message Center · Starter 整书理解",
+"s": "otmsg",
+"u": "courses/otmcxte200en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OpenTouch Message Center · Starter 术语词典",
+"s": "otmsg",
+"u": "courses/otmcxte200en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "OTMC 服务器安装与站点配置",
+"s": "OpenTouch Message Center · Starter",
+"u": "courses/otmcxte200en/skills/otmsg-install-site-setup.html",
+"k": "otmsg-install-site-setup 安装 SUSE CheckSystemLinux.sh setup.bin post-installation wizard 向导 bics.conf DNS 主机名小写 Network security OFF 备份存储 NFS 安装 OTMC 服务器 post-installation wizard 配置 站点 DNS 与账户规则 OTMC 虚机创建 install OTMC server OTMC site installation wizard"
+},
+{
+"t": "FlexLM 许可证体系部署与更换",
+"s": "OpenTouch Message Center · Starter",
+"u": "courses/otmcxte200en/skills/otmsg-license-management.html",
+"k": "otmsg-license-management 许可 license .ice FlexLM flexlmd lmstat getaluid ALUID dongle LICENSES_HOME Skip 扩容 安装或更换 OTMC 许可 FlexLM 服务器部署 许可核验 dongle 绑定 install OTMC license file verify flexlm license"
+},
+{
+"t": "OXE/OTMC 双向声明进 8770 与同步",
+"s": "OpenTouch Message Center · Starter",
+"u": "courses/otmcxte200en/skills/otmsg-declaration-sync.html",
+"k": "otmsg-declaration-sync 声明 declaration 8770 Nmc 节点号 node number bics.conf otAdmin otProfile otuser 同步 synchronization 4400 Synchro APPLY MODIFICATION Global 声明 OXE 进 OmniVista 8770 声明 OTMC 节点 OTMC 拓扑声明 OXE 执行配置同步 declare OTMC in 8770 OTMC synchronization"
+},
+{
+"t": "OXE 侧 SIP 对接 OTMC",
+"s": "OpenTouch Message Center · Starter",
+"u": "courses/otmcxte200en/skills/otmsg-sip-trunk-provisioning.html",
+"k": "otmsg-sip-trunk-provisioning SIP trunk group T2 ABC-F external gateway 5040 trusted IP G.729 DPNSS Routing Optimisation ICE type 5060 2570 配置 OXE 与 OTMC 的 SIP 对接 建 SIP trunk group 声明 SIP external gateway 信箱呼叫通道排障 configure SIP trunk to OTMC"
+},
+{
+"t": "Connection 用户与语音邮箱交付",
+"s": "OpenTouch Message Center · Starter",
+"u": "courses/otmcxte200en/skills/otmsg-user-mailbox-provisioning.html",
+"k": "otmsg-user-mailbox-provisioning Connection 用户 resurrection 空闲地址 IP 话机 secret code spadmin OTMC 账户 信箱 mailbox defaultVmsLS Voice mail 权 Mailboxes 页签 许可 174 许可 317 创建 Connection 用户并开通话机 话机许可核查 创建 OTMC 账户与语音邮箱 信箱业务验证 create voice mailbox provision OTMC user"
+},
+{
+"t": "语音邮箱 profile 定制与问候语管理",
+"s": "OpenTouch Message Center · Starter",
+"u": "courses/otmcxte200en/skills/otmsg-mailbox-profiles.html",
+"k": "otmsg-mailbox-profiles profile 批控 Answer only zero-out Check quota 配额 保留天数 aging TUI 密码策略 问候语 greeting Greeting Managers alternative 定制语音邮箱 profile 信箱容量与保留期批控 管理用户问候语 zero-out 与 Answer only 配置 create voice mail profile greetings management"
+},
+{
+"t": "SMTP/SMS 通知部署与排障",
+"s": "OpenTouch Message Center · Starter",
+"u": "courses/otmcxte200en/skills/otmsg-notification-smtp-sms.html",
+"k": "otmsg-notification-smtp-sms SMTP 通知 notification SMS 短信网关 VPIM Scorpio chameleon 模板 NotifTemplate MWI 满箱 wav 附件 80% 配置 SMTP 邮件通知 配置 SMS 短信通知 通知排障 定制通知模板 configure voicemail notification SMTP notification troubleshooting"
+},
+{
+"t": "OpenTouch 备份恢复与语音信箱统计",
+"s": "OpenTouch Message Center · Starter",
+"u": "courses/otmcxte200en/skills/otmsg-backup-statistics.html",
+"k": "otmsg-backup-statistics 备份 backup 恢复 restore opentouchd iced SFTP Record Life Force 统计 statistics.properties mascd XML CSV NFS 执行 OpenTouch 备份 执行恢复演练 启用语音信箱统计 统计文件排障 backup restore OTMC voicemail statistics"
+},
+{
+"t": "OTMC 产品定位与部署形态",
+"s": "OpenTouch Message Center · Starter",
+"u": "courses/otmcxte200en/skills/otmsg-product-positioning.html",
+"k": "otmsg-product-positioning OTMC OTMC-V 部署形态 集中式语音邮件 VPIM ABC Supra PRS 15000 5000 Capacity Planning 46xx 8440 OTMC 产品定位咨询 部署形态选型 组网边界评估 规模口径解释 OTMC deployment options"
+},
+{
+"t": "用户自助门户 My Profile 与 MyMessaging",
+"s": "OpenTouch Message Center · Starter",
+"u": "courses/otmcxte200en/skills/otmsg-web-portal.html",
+"k": "otmsg-web-portal My Profile MyMessaging 自助门户 网页听留言 personal assistant 改问候语 改密码 通知设置 GUI 账号 指导用户使用自助门户 网页收听语音留言 用户自助改设置 My Profile portal MyMessaging playback"
+},
+{
+"t": "IMAP 客户端访问语音邮箱",
+"s": "OpenTouch Message Center · Starter",
+"u": "courses/otmcxte200en/skills/otmsg-imap-access.html",
+"k": "otmsg-imap-access IMAP IMAPS POP3 Outlook imap4fed TLS 收件服务器 incoming mail server 留言附件 VPN 配置 IMAP 客户端收语音留言 IMAP4 Front End 安全匹配 IMAP 连接排障 configure IMAP voicemail access"
+},
+{
+"t": "企业广播 General Announcement",
+"s": "OpenTouch Message Center · Starter",
+"u": "courses/otmcxte200en/skills/otmsg-general-announcement.html",
+"k": "otmsg-general-announcement general announcement 企业广播 公告 general_announcement.wav TUI 菜单 播报场景 CCITT A-law VAA 落箱 部署企业广播 录制或更换公告 公告需求边界评估 general announcement setup"
+},
+{
+"t": "OmniTouch Contact Center Standard · Starter",
+"s": "otcc",
+"u": "courses/otccxte100en/index.html",
+"k": "otccxte100en OTCCXTE100EN.pdf"
+},
+{
+"t": "OmniTouch Contact Center Standard · Starter 精华长文",
+"s": "otcc",
+"u": "courses/otccxte100en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OmniTouch Contact Center Standard · Starter 整书理解",
+"s": "otcc",
+"u": "courses/otccxte100en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OmniTouch Contact Center Standard · Starter 术语词典",
+"s": "otcc",
+"u": "courses/otccxte100en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "CCD 基础矩阵创建与验证",
+"s": "OmniTouch Contact Center Standard · Starter",
+"u": "courses/otccxte100en/skills/otcc-ccd-matrix-foundation.html",
+"k": "otcc-ccd-matrix-foundation CCD pilot waiting queue processing group ACD prefix 12 Normal_WQ Overflow_WQ Redirection_WQ acdsup CLO OPN FIFO 兼容表 创建 CCD 矩阵 建 pilot/队列/处理组 acdsup 输出判读 队列与处理组类型选型 create CCD matrix pilot queue"
+},
+{
+"t": "CCS 班长台安装、OXE 声明与 ccs.ini",
+"s": "OmniTouch Contact Center Standard · Starter",
+"u": "courses/otccxte100en/skills/otcc-ccs-installation.html",
+"k": "otcc-ccs-installation CCS CCsupervision CCS.msi Monosite Multisite CCSLight node1 ccs.ini id_terminal ShowStatisticWithData 重启 安装 CCS 声明 OXE 呼叫服务器 ccs.ini 参数核对 CCS 连不上 OXE install CCsupervision"
+},
+{
+"t": "路由规则与分配规则全生命周期",
+"s": "OmniTouch Contact Center Standard · Starter",
+"u": "courses/otccxte100en/skills/otcc-routing-distribution-rules.html",
+"k": "otcc-routing-distribution-rules routing rule distribution rule Rule_0 优先级 Active Rule Direction Resource selection parking level EWT LIT Navigator 连接点 默认关闭 创建路由规则 创建激活分配规则 设置方向优先级 呼叫不通排查 activate distribution rule"
+},
+{
+"t": "ACD 话机、座席与班长创建登录",
+"s": "OmniTouch Contact Center Standard · Starter",
+"u": "courses/otccxte100en/skills/otcc-agent-supervisor-onboarding.html",
+"k": "otcc-agent-supervisor-onboarding ACD station agent supervisor LogOn LogOff self-assigning 优选组 Preferred Processing Group ACD prefix IPDSP personal code withdrawal Rainbow 座席 创建 ACD 话机与座席 创建班长 座席登录登出 座席形态选型 ACD agent logon"
+},
+{
+"t": "CCD 对象参数调优（pilot/PG/队列）",
+"s": "OmniTouch Contact Center Standard · Starter",
+"u": "courses/otccxte100en/skills/otcc-object-tuning.html",
+"k": "otcc-object-tuning wrap-up pause union break service level smiley SOP Ring rotation Last agent withdrawal Eternal Wrap-Up Type of search Cyclic Maximum waiting time Queuing overflow 1-3276 饱和 调 wrap-up 与 pause 配服务水平目标 PG 选项行为测试 队列饱和溢出参数 wrap-up timer service level"
+},
+{
+"t": "座席班长特性配置（监听强插/通用转发/多线/事务码）",
+"s": "OmniTouch Contact Center Standard · Starter",
+"u": "courses/otccxte100en/skills/otcc-supervisor-features.html",
+"k": "otcc-supervisor-features 监听 listening intrusion 强插 restrictive permanent 通用转发 general forwarding Set to FWD Closing PG multi-line transaction code business code 100ms Show Supervisor Listening 配置班长监听强插 pilot 通用转发 关闭处理组 配置事务码业务码 supervisor listening barge-in"
+},
+{
+"t": "语音指南三路径（话机录音/.wav 导入/欢迎指南）",
+"s": "OmniTouch Contact Center Standard · Starter",
+"u": "courses/otccxte100en/skills/otcc-voice-guides.html",
+"k": "otcc-voice-guides voice guide 语音指南 消息号 401 580 vgstat Audio File Conversion Audio File Update SFTP A-Law 8000Hz 538 4500 welcome guide 备份音 话机录制语音指南 导入 .wav 录音 配置座席欢迎指南 指南编号与装板 voice guide recording wav"
+},
+{
+"t": "实时监控告警与 Excel 统计",
+"s": "OmniTouch Contact Center Standard · Starter",
+"u": "courses/otccxte100en/skills/otcc-monitoring-statistics.html",
+"k": "otcc-monitoring-statistics Navigator Real Time Info CSTA-Monitored busy rate Alarms Alerts Indications MSP Pilots S.L. Excel 132 96 Precompiled 弃呼 TEMP.xls 搭建实时监控视图 配置告警阈值 生成 Excel 报表 配置预编译日报 navigator alarms excel report"
+},
+{
+"t": "多语言语音指南与双日历",
+"s": "OmniTouch Contact Center Standard · Starter",
+"u": "courses/otccxte100en/skills/otcc-multilanguage-calendar.html",
+"k": "otcc-multilanguage-calendar Multi-language 多语言 Language Number French English 1702 2702 calendar 时间片 Closed_rule 特殊日 special day Activate Time Slices 切换点 部署多语言语音指南 按语言分流来话 配置 pilot 日历 配置分配日历与特殊日 multi-language calendar time slot"
+},
+{
+"t": "EWT 表与排队位置播报（518）",
+"s": "OmniTouch Contact Center Standard · Starter",
+"u": "courses/otccxte100en/skills/otcc-queue-experience.html",
+"k": "otcc-queue-experience EWT TSP EWT table parking level cut auth IAA CCIVR 518 position Max position 3226 4217 排队位置 阈值播报 按等待时长播报 配置 EWT 表 部署排队位置播报 排队听感设计 EWT queue position announcement"
+},
+{
+"t": "CCD 直接呼叫与紧急关闭",
+"s": "OmniTouch Contact Center Standard · Starter",
+"u": "courses/otccxte100en/skills/otcc-direct-calls-emergency.html",
+"k": "otcc-direct-calls-emergency direct call 直接呼叫 31603 private number 私人号 Pilot Direct Call Outgoing ACD Call emergency closure 紧急关闭 Emergency0 关闭地址 75 History Deactivate 部署 CCD 直接呼叫 配置私人号码 判定 CCD 与私人呼叫 实施紧急关闭 direct call emergency closure"
+},
+{
+"t": "统计型 pilot 与 Call Tag",
+"s": "OmniTouch Contact Center Standard · Starter",
+"u": "courses/otccxte100en/skills/otcc-statistic-pilot.html",
+"k": "otcc-statistic-pilot statistic pilot 统计 pilot 31650 routing pilot Call Tag GOLD 问候指南 presentation guide Display on agent screen 3000 分业务统计 创建统计型 pilot 配置 Call Tag 分业务统计与问候 统计 pilot 排障 statistic pilot call tag"
+},
+{
+"t": "实验环境与链路打通（POD/ITSP1/ABC-F）",
+"s": "OmniTouch Contact Center Standard · Starter",
+"u": "courses/otccxte100en/skills/otcc-lab-connectivity.html",
+"k": "otcc-lab-connectivity RLAB POD ITSP1 pbxN MicroSIP IPDSP DID 翻译 33210N41000 ABC-F Loop-Hybrid hybvisu rsthyb 同节点不同网络 收尾实验 POD 配置 打通公网外呼 开通 ABC-F 内呼链路 RLAB 环境排障 lab pod abc-f hybrid link"
+},
+{
+"t": "OmniTouch Contact Center Standard · Advanced",
+"s": "otcc",
+"u": "courses/otccxte101en/index.html",
+"k": "otccxte101en OTCCXTE101EN.pdf"
+},
+{
+"t": "OmniTouch Contact Center Standard · Advanced 精华长文",
+"s": "otcc",
+"u": "courses/otccxte101en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OmniTouch Contact Center Standard · Advanced 整书理解",
+"s": "otcc",
+"u": "courses/otccxte101en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OmniTouch Contact Center Standard · Advanced 术语词典",
+"s": "otcc",
+"u": "courses/otccxte101en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "ISM 技能匹配与排序口径",
+"s": "OmniTouch Contact Center Standard · Advanced",
+"u": "courses/otccxte101en/skills/otcad-ism-skill-matching.html",
+"k": "otcad-ism-skill-matching ISM Cman Copt 子列表 降级 PLTR LIT asm_ag_free_duration parameters.cfg agent buffers 20-400 21 次 5 分钟 解释坐席分配次序 开启最久空闲优先 手算 ISM 坐席列表 ACR 容量核对 ISM skill matching longest idle time"
+},
+{
+"t": "Remote PG 分布式互助与 ABC-F 链路",
+"s": "OmniTouch Contact Center Standard · Advanced",
+"u": "courses/otccxte101en/skills/otcad-remote-pg-mutual-aid.html",
+"k": "otcad-remote-pg-mutual-aid Remote PG 虚拟队列 Virtual Queue 专用 Pilot Dedicated Pilot 互助 mutual aid ABC-F hybvisu compvisu 分布门限 拒收 0-9 部署跨站点互助 排查 Remote PG blocked 判读 ABC-F 链路状态 mutual aid overflow"
+},
+{
+"t": "Soft Panel Manager 部署与基础设置",
+"s": "OmniTouch Contact Center Standard · Advanced",
+"u": "courses/otccxte101en/skills/otcad-spm-deployment.html",
+"k": "otcad-spm-deployment Soft Panel Manager SPM RTI Connector FlexLM LMTOOLS 9060 61618 CCD Filters afe.properties 日统计 103 号包 WBI 安装 Soft Panel Manager 排查墙板没数据 配置日统计 SPM deployment"
+},
+{
+"t": "Soft Panel 可视化配置（视图/挂件/消息/告警）",
+"s": "OmniTouch Contact Center Standard · Advanced",
+"u": "courses/otccxte101en/skills/otcad-soft-panel-manager.html",
+"k": "otcad-soft-panel-manager wallboard 墙板 视图 view 挂件 widget Gauge Chart AgentWidget Barometer 告警 alarm displayPanel.htm Firefox 配置实时看板 配置告警视图与邮件 选择挂件类型 wallboard configuration"
+},
+{
+"t": "CCTA 话务票据分析",
+"s": "OmniTouch Contact Center Standard · Advanced",
+"u": "courses/otccxte101en/skills/otcad-ccta-ticket-analysis.html",
+"k": "otcad-ccta-ticket-analysis CCTA Ticket Analyser 票据 .Z Importation Ticket Tracer 结束原因 end cause 呼叫类型 ASCII Long Ticket 分析话务票据 导出呼叫明细 排查放弃率 ticket analysis"
+},
+{
+"t": "特殊功能开关（优先转接/忙音/代接/监听/永恒整理/中继预留）",
+"s": "OmniTouch Contact Center Standard · Advanced",
+"u": "courses/otccxte101en/skills/otcad-special-features.html",
+"k": "otcad-special-features 优先转接 Transfer with priority 忙音 busy tone 代接 pickup #013 #014 监听 Supervisor Listening 永恒整理 Eternal Wrap up Trunk limitation 劝恼 配置优先转接 配置代接前缀 配置监督监听与永恒整理 中继预留计算 special features setup"
+},
+{
+"t": "Excel 报表模板定制",
+"s": "OmniTouch Contact Center Standard · Advanced",
+"u": "courses/otccxte101en/skills/otcad-excel-report-customization.html",
+"k": "otcad-excel-report-customization Excel FormPil Formats General Custom Paste Link 粒度 granularity Daily Keep Excel links 图表 定制报表模板 报表加图表 排查粒度缺数据 Excel report template"
+},
+{
+"t": "CCS Server 集中接入",
+"s": "OmniTouch Contact Center Standard · Advanced",
+"u": "courses/otccxte101en/skills/otcad-ccs-server.html",
+"k": "otcad-ccs-server CCS Server serv_ccs serv_ccs_on_dhs maxCli maxConnected -servccs 15 客户端 120 客户端 拒接 Server Status 部署 CCS Server 内部转外部切换 排查外部服务拒接 CCS server migration"
+},
+{
+"t": "ACR 对象与技能体系",
+"s": "OmniTouch Contact Center Standard · Advanced",
+"u": "courses/otccxte101en/skills/otcad-acr-objects.html",
+"k": "otcad-acr-objects ACR 等待室 Waiting Room ACR Pilot 统计 Pilot Statistic pilot 技能域 Skill Domain 呼叫档案 Call profile 技能矩阵 blocked 部署 ACR 矩阵对象 配置技能与呼叫档案 排查等待室阻塞 ACR waiting room setup"
+},
+{
+"t": "ASM 脚本与 LCA 主干",
+"s": "OmniTouch Contact Center Standard · Advanced",
+"u": "courses/otccxte101en/skills/otcad-asm-script-advanced.html",
+"k": "otcad-asm-script-advanced ASM Script Editor asm-se_setup .scr .alb Activate 调试器 Debugger Make call RESELECTION_TIMEOUT LCA LAST_CALLED_AGENT kill alb option 28 安装 ASM Script Editor 激活脚本到 Pilot 调试器抓路由轨迹 清空 ASM 记忆 ASM script debugger"
+},
+{
+"t": "CCS 安装与实验环境定稿",
+"s": "OmniTouch Contact Center Standard · Advanced",
+"u": "courses/otccxte101en/skills/otcad-ccs-onboarding.html",
+"k": "otcad-ccs-onboarding CCsupervision Monosite ccs.ini Navigator Master PABX MicroSIP IPDSP SIP Ext. Gateway pbxN DID 翻译 33210N41000 安装 CCsupervision 声明 OXE 坐席软话机登录 配置 DID 翻译 CCS installation"
+},
+{
+"t": "ACD 维护命令箱",
+"s": "OmniTouch Contact Center Standard · Advanced",
+"u": "courses/otccxte101en/skills/otcad-acd-maintenance.html",
+"k": "otcad-acd-maintenance adm_acd agacd hybvisu compvisu pildstctx pgctx acdsup spadmin -salb -servccs DATA_TRANS Dump TERMINALS 查询 ACD 对象清单 判读链路状态 核查 ASM 记忆 核对许可包 ACD maintenance commands"
+},
+{
+"t": "OmniTouch Contact Center Standard · Advanced Call Routing",
+"s": "otcc",
+"u": "courses/otccxte150en/index.html",
+"k": "otccxte150en OTCCXTE150EN.pdf"
+},
+{
+"t": "OmniTouch Contact Center Standard · Advanced Call Routing 精华长文",
+"s": "otcc",
+"u": "courses/otccxte150en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OmniTouch Contact Center Standard · Advanced Call Routing 整书理解",
+"s": "otcc",
+"u": "courses/otccxte150en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OmniTouch Contact Center Standard · Advanced Call Routing 术语词典",
+"s": "otcc",
+"u": "courses/otccxte150en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "ACR 脚本编辑器与调试工具链",
+"s": "OmniTouch Contact Center Standard · Advanced Call Routing",
+"u": "courses/otccxte150en/skills/acr-script-editor-fundamentals.html",
+"k": "acr-script-editor-fundamentals ASM Script Editor Debugger 激活脚本 Building Block asm_ag_free_duration LIT PLTR SEARCH_STRING EXTRACT_STRING STRING_LENGHT 屏显 重启 MAIN_AFE 编写并激活 ACR 脚本 用 Debugger 调试脚本 配置 LIT/PLTR 坐席排序 脚本里处理字符串与屏显 write and debug ACR script"
+},
+{
+"t": "ACR 基础 CCD 矩阵地基",
+"s": "OmniTouch Contact Center Standard · Advanced Call Routing",
+"u": "courses/otccxte150en/skills/acr-ccd-matrix-foundation.html",
+"k": "acr-ccd-matrix-foundation ACD 前缀 Processing Group Waiting Queue Waiting Room ACR Pilot Statistic Pilot Pilot Rule Guide Distribution Rule 呼叫档案 技能域 Weight 混合链路 hybvisu 搭建 CCD/ACR 基础矩阵 配置 Pilot 路由与分发规则 建技能域与呼叫档案 配置混合链路 build CCD matrix for ACR"
+},
+{
+"t": "ACR 重定向与再分发兜底",
+"s": "OmniTouch Contact Center Standard · Advanced Call Routing",
+"u": "courses/otccxte150en/skills/acr-redirect-redistribution.html",
+"k": "acr-redirect-redistribution Redirection Redistribution Blockage 封锁 兜底 Voice Guide 队列 重定向队列 路由方向 空列表 配置空坐席列表兜底 呼叫转接外部号码 再分发到语音引导队列 排查呼叫进封锁 redirection and redistribution rule"
+},
+{
+"t": "ACR 坐席直拨融合",
+"s": "OmniTouch Contact Center Standard · Advanced Call Routing",
+"u": "courses/otccxte150en/skills/acr-direct-call-dica.html",
+"k": "acr-direct-call-dica Direct Call Pilot Direct Call Private Agent Number 私有号 DICA DirectCall CALL_TYPE DIRECT_CALL 直拨 溢出 实现直拨等原坐席 配置私有号与直拨 Pilot 停用/启用坐席直拨 编写 CALL_TYPE 分支脚本 direct call with ACR"
+},
+{
+"t": "ACR 内部数据库路由",
+"s": "OmniTouch Contact Center Standard · Advanced Call Routing",
+"u": "courses/otccxte150en/skills/acr-internal-database-routing.html",
+"k": "acr-internal-database-routing Internal Database ACR Data CALL_PROFILE CALL_PRIORITY 主叫号键 Call Tag 键 坐席号键 4000 条 VIP 路由 区段 按主叫号定制路由 按 Call Tag 区段配名单 直拨场景按坐席号查档案 配置内部数据库条目 internal database routing"
+},
+{
+"t": "ACR 综合规则组合与高级构件",
+"s": "OmniTouch Contact Center Standard · Advanced Call Routing",
+"u": "courses/otccxte150en/skills/acr-rule-combination-advanced.html",
+"k": "acr-rule-combination-advanced APPLY 单用规则 可组合规则 IDLE COM IQUEUE 停放级 LIST 变量 CLEAR AGENT LIST IVR 规则 ISM 成本 ACR Actual Waiting 混合选呼 组合多个 ACR 规则 编程等待停放体验（IQUEUE） 动态拼装坐席/技能列表 调优 CCD 与 ACR 混合呼叫选择 combine ACR rules and APPLY"
+},
+{
+"t": "ACR 外部 ASM 部署与双机热备",
+"s": "OmniTouch Contact Center Standard · Advanced Call Routing",
+"u": "courses/otccxte150en/skills/acr-asm-deployment.html",
+"k": "acr-asm-deployment External ASM asm_on_dhs alb 进程 Site Router 角色 Default 角色 Duplicated ASM Stand-By 脚本迁移 防火墙 割接 部署外部 ASM 服务器 从内部 ASM 割接 迁移脚本到外部 ASM 部署 Main/Stand-By 双机 external ASM deployment"
+},
+{
+"t": "ACR 外部数据库查询路由",
+"s": "OmniTouch Contact Center Standard · Advanced Call Routing",
+"u": "courses/otccxte150en/skills/acr-database-query-routing.html",
+"k": "acr-database-query-routing External Database ODBC 32 位 DSN SQL_REQUEST USE_DATABASE SQL_RESULT SQL_START_FETCH SQL_ROW_COUNT 存储过程 updateCalling LCA 持久化 167 许可 脚本查询外部数据库 配置 ODBC 数据源 调用存储过程读写 实现 LCA 持久化 external database SQL routing"
+},
+{
+"t": "ACR 授权与非授权名单规则",
+"s": "OmniTouch Contact Center Standard · Advanced Call Routing",
+"u": "courses/otccxte150en/skills/acr-list-rules.html",
+"k": "acr-list-rules Authorized List Unauthorized List WList BList 名单索引 CALLING 索引 大小写敏感 显式列表 建授权/非授权名单 名单按主叫号或标签索引 动态名单传入规则 authorized and unauthorized list"
+},
+{
+"t": "ACR Call Tag 生成与传递",
+"s": "OmniTouch Contact Center Standard · Advanced Call Routing",
+"u": "courses/otccxte150en/skills/acr-call-tag-transfer.html",
+"k": "acr-call-tag-transfer Call Tag Correlator data IAA Code Entry Guide CCivr TransferCall GetPilotInfo 覆盖 GFW 统计 Pilot 打标 用 IAA 采集客户号作标签 统计 Pilot 打标 排查转发链标签覆盖 call tag generation and transfer"
+},
+{
+"t": "ACR 多语言语音引导与语言偏好分发",
+"s": "OmniTouch Contact Center Standard · Advanced Call Routing",
+"u": "courses/otccxte150en/skills/acr-multilanguage-voiceguide.html",
+"k": "acr-multilanguage-voiceguide 多语言 Multi-language Voice Guide preference 语言偏好 呈现引导 Backup Tone 40 语种 配置多语言引导 按客户语言选坐席 排查播报语言错误 multi-language voice guide"
+},
+{
+"t": "ACR 过滤器与统计报表",
+"s": "OmniTouch Contact Center Standard · Advanced Call Routing",
+"u": "courses/otccxte150en/skills/acr-filter-statistics.html",
+"k": "acr-filter-statistics Filter Super-Filter Hyper-Filter AND OR 服务水准 实时监控 Formfilter Excel 报表 临时过滤器 建过滤器与超组 出实时监控与 Excel 报表 排查报表口径不符 filter and statistics reporting"
+},
+{
+"t": "OmniVista 8770 · 安装与网络管理",
+"s": "ov8770",
+"u": "courses/8770xte200en/index.html",
+"k": "8770xte200en 8770XTE200EN.pdf"
+},
+{
+"t": "OmniVista 8770 · 安装与网络管理 精华长文",
+"s": "ov8770",
+"u": "courses/8770xte200en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OmniVista 8770 · 安装与网络管理 整书理解",
+"s": "ov8770",
+"u": "courses/8770xte200en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OmniVista 8770 · 安装与网络管理 术语词典",
+"s": "ov8770",
+"u": "courses/8770xte200en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "OmniVista 8770 平台安装（服务器 + 客户端 + 补丁 + 首连）",
+"s": "OmniVista 8770 · 安装与网络管理",
+"u": "courses/8770xte200en/skills/ovnms-platform-installation.html",
+"k": "ovnms-platform-installation ServerSetup dedicated server IE ESC Defender PatchInstaller Patch_history RestoreContext.ini WMIC Zulu 独占 补丁 首连 30 85% 安装 OmniVista 8770 服务器 安装 8770 客户端 安装补丁 首次连接 8770 install OmniVista 8770 server"
+},
+{
+"t": "OmniVista 8770 节点接入（OXE 注册同步 + SSH 安全 + OXO Connect 纳管）",
+"s": "OmniVista 8770 · 安装与网络管理",
+"u": "courses/8770xte200en/skills/ovnms-node-onboarding.html",
+"k": "ovnms-node-onboarding siteid Subnetwork 101 adfexc mtcl Complete Partial Separate Global 实时同步 NMCSyncLdapPbx trusted hosts MindTerm OMC OmniPCX Office 180 注册 OXE 节点 同步 OXE 数据 配置 OXE SSH 纳管 OXO Connect OXE node registration synchronization"
+},
+{
+"t": "OmniVista 8770 用户开通（Profile / Meta profile / 批量 / WBM）",
+"s": "OmniVista 8770 · 安装与网络管理",
+"u": "courses/8770xte200en/skills/ovnms-user-provisioning.html",
+"k": "ovnms-user-provisioning Profile BASIC auto. recognition Meta profile 空闲号段 自动取号 XXXX NULL Import user data Action secretCode WBM Activity report 1234 创建 OXE 用户 配置 Meta profile 自动取号 批量开通用户 WBM 用户管理 mass provisioning OmniVista"
+},
+{
+"t": "OmniVista 8770 告警管理（接入 + 定制出口 + SNMP Proxy）",
+"s": "OmniVista 8770 · 安装与网络管理",
+"u": "courses/8770xte200en/skills/ovnms-alarm-management.html",
+"k": "ovnms-alarm-management Alarms correlated acknowledge rstcpl incvisu #2042 #1125 Incident Filter Network severity SNMP Proxy hypervisor 162 Alarms Filters 字典 配置 OXE 告警上送 定制告警通知 部署 SNMP Proxy 处置告警 OmniVista alarm management"
+},
+{
+"t": "OmniVista 8770 安全管理（密码策略 / 管理员与组 / 访问控制 / TLS）",
+"s": "OmniVista 8770 · 安装与网络管理",
+"u": "courses/8770xte200en/skills/ovnms-security-administration.html",
+"k": "ovnms-security-administration Password Policy 单登录 AdminNmc ToolsOmniVista 锁定 解锁 Access Profile Profile 9 本地 MIB Object Model Save User Access Control Secure access POODLE TLS 1.3 配置密码策略 管理管理员与组 解锁锁定账户 配置 OXE 访问控制 OmniVista security administration"
+},
+{
+"t": "OmniVista 8770 审计合规（Audit 启用 / mao 日志 / 检索导出）",
+"s": "OmniVista 8770 · 安装与网络管理",
+"u": "courses/8770xte200en/skills/ovnms-audit-compliance.html",
+"k": "ovnms-audit-compliance AuditServer Process audit mao_hist list_fhdet PbxName Not Empty 8770 log History Detail 审计同步 Detailed Reports 13 启用 Audit 审计 检索管理操作记录 导出审计数据 生成审计报告 OmniVista audit"
+},
+{
+"t": "OmniVista 8770 备份恢复（8770 数据库 rehosting + OXE swinst 全链）",
+"s": "OmniVista 8770 · 安装与网络管理",
+"u": "courses/8770xte200en/skills/ovnms-backup-restore.html",
+"k": "ovnms-backup-restore Immediate backup Restore - databases rehosting RestoreContext.ini nmcVersion svNMCName PCX - Backup bck /usr4/BACKUP swinst 停电话 role address Autostart 备份恢复 8770 数据库 rehosting 换机改址 备份恢复 OXE 数据 swinst 恢复 OmniVista backup restore rehosting"
+},
+{
+"t": "OmniVista 8770 许可管理（锁结构 / 查询 / 更新 / 受限模式）",
+"s": "OmniVista 8770 · 安装与网络管理",
+"u": "courses/8770xte200en/skills/ovnms-license-management.html",
+"k": "ovnms-license-management nmc.license sw8770 ACTIS 8770Handle spadmin Modules 8770Clients Security 键 受限模式 restricted mode Start Pack Full Pack NMCLicServer 查询 8770 许可 更新许可文件 处理许可超限 规划许可包型 OmniVista license nmc.license"
+},
+{
+"t": "OmniVista 8770 报表与任务编排（Reports / Scheduler / 自动维护）",
+"s": "OmniVista 8770 · 安装与网络管理",
+"u": "courses/8770xte200en/skills/ovnms-reports-scheduling.html",
+"k": "ovnms-reports-scheduling Reports 4000 100000 截断 Export E-MAIL SMTP Simple job Synchronized task jobset Maximum start delay Purge DailyJob.ldif WeeklyJob.ldif 生成与分发报告 计划报告任务 编排 Scheduler 任务 配置自动维护清除"
+},
+{
+"t": "OmniVista 8770 维护运营（诊断工具 / NMC 服务与日志）",
+"s": "OmniVista 8770 · 安装与网络管理",
+"u": "courses/8770xte200en/skills/ovnms-maintenance-operations.html",
+"k": "ovnms-maintenance-operations 8770 Diagnostic DirManag HeidiSQL nmc5 Service Manager Automatic Manual TraceType nmclog 2x5MB 采集诊断信息 直查 LDAP 与 SQL 数据 管理 NMC 服务 查看与跟踪日志"
+},
+{
+"t": "OmniVista 8770 Topology 视图（标准视图 / 自定义视图 / 告警重定向）",
+"s": "OmniVista 8770 · 安装与网络管理",
+"u": "courses/8770xte200en/skills/ovnms-topology-views.html",
+"k": "ovnms-topology-views Topology Standard Custom Edit mode 1100x793 topology\\maps Virtual equipment Redirecting alarms Source Object hierarchy 386 配置 Topology 标准视图 构建自定义视图 告警重定向"
+},
+{
+"t": "OmniVista 8770 OXE 配置界面高效操作（搜索/冻结/网格/导入导出）",
+"s": "OmniVista 8770 · 安装与网络管理",
+"u": "courses/8770xte200en/skills/ovnms-oxe-ui-efficiency.html",
+"k": "ovnms-oxe-ui-efficiency Configure Freeze 冻结列 Grid Attributes Selection Graphical View Mnemo Export Grid .prg OXE 配置界面检索与视图操作 配置导出导入"
+},
+{
+"t": "OmniVista 8770 网络驱动器映射（报表与备份落网络存储）",
+"s": "OmniVista 8770 · 安装与网络管理",
+"u": "courses/8770xte200en/skills/ovnms-network-drive.html",
+"k": "ovnms-network-drive Map network drive ADM8770 REPORTS_ECO BACKUP_ECO ExecdEx SaveRestore Nt account 用户权利 同名同密 映射网络驱动器 配置服务账号写网络盘"
+},
+{
+"t": "OmniVista 8770 · 计费与性能管理",
+"s": "ov8770",
+"u": "courses/8770xte201en/index.html",
+"k": "8770xte201en 8770XTE201EN.pdf"
+},
+{
+"t": "OmniVista 8770 · 计费与性能管理 精华长文",
+"s": "ov8770",
+"u": "courses/8770xte201en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OmniVista 8770 · 计费与性能管理 整书理解",
+"s": "ov8770",
+"u": "courses/8770xte201en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OmniVista 8770 · 计费与性能管理 术语词典",
+"s": "ov8770",
+"u": "courses/8770xte201en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "OXE 纳管与 SIP 中继对接",
+"s": "OmniVista 8770 · 计费与性能管理",
+"u": "courses/8770xte201en/skills/ovbill-node-onboarding.html",
+"k": "ovbill-node-onboarding OXE siteid netadmin 信任主机 trusted hosts csa csm adfexc mtcl synchronization 同步 101 Subnetwork DID translator pbxN ITSP1 把 OXE 接入 8770 同步失败排查 信任主机核查 配置 SIP 运营商模拟器 register OXE node"
+},
+{
+"t": "计费票据管道（出票、回收、加载过滤）",
+"s": "OmniVista 8770 · 计费与性能管理",
+"u": "courses/8770xte201en/skills/ovbill-ticket-pipeline.html",
+"k": "ovbill-ticket-pipeline TAX ACCOUNT.LIS ticket 话单 account compress accview loader collector Detailed accounting 加载过滤 loading filter NMCLD PCS 0 Units 500 条 90 分钟 744 8770 收不到话单 开启 OXE 外部计费 选择计费方法 排查票据入库 accounting records retrieval"
+},
+{
+"t": "运营商资费建模与成本计算",
+"s": "OmniVista 8770 · 计费与性能管理",
+"u": "courses/8770xte201en/skills/ovbill-tariff-costing.html",
+"k": "ovbill-tariff-costing Carrier 运营商 Region Direction Tariff 资费 exact duration round up 脉冲 pulse Unit cost initial cost minimum cost segments Compute cost No first carrier found 前缀 prefix TVA VAT 汇率 ARCEP 建运营商资费模型 配置费率公式 成本计算与重算 特服号服务费计费 carrier tariff configuration"
+},
+{
+"t": "Code Book 导出与导入",
+"s": "OmniVista 8770 · 计费与性能管理",
+"u": "courses/8770xte201en/skills/ovbill-codebook-migration.html",
+"k": "ovbill-codebook-migration Code Book codebook .inf .itl EFFECT_DATE 导出 导入 Period 节点名 备份 迁移运营商配置 修复 code book 导入报错 运营商配置备份 import export code book"
+},
+{
+"t": "计费组织树与成本归属",
+"s": "OmniVista 8770 · 计费与性能管理",
+"u": "courses/8770xte201en/skills/ovbill-org-costing.html",
+"k": "ovbill-org-costing 组织树 organization tree cost center 成本中心 cc=255 Default cost center 默认成本中心 灰色条目 inactive cut and paste copy and paste Assign earlier creation date ToolsOmniVista 回溯 搭建计费组织树 搬移成本中心 历史票据归属修正 ToolsOmniVista 组织更新 organization tree management"
+},
+{
+"t": "计费机密控制三道闸（掩码、解密、可见域）",
+"s": "OmniVista 8770 · 计费与性能管理",
+"u": "courses/8770xte201en/skills/ovbill-confidentiality.html",
+"k": "ovbill-confidentiality 掩码 mask profile Default 遮蔽 解密 unmask Mask data access grouped 可见域 visibility domain AdminNmc AdminBrest 域继承 配置号码与成本遮蔽 开通解密报表权限 隔离管理员可见范围 mask profile and visibility domain"
+},
+{
+"t": "成本档案（发票价与订阅费）",
+"s": "OmniVista 8770 · 计费与性能管理",
+"u": "courses/8770xte201en/skills/ovbill-cost-profile.html",
+"k": "ovbill-cost-profile cost profile 成本档案 发票价 invoiced cost 加价 折扣 subscription 订阅费 Fixed Cost Variable cost 次月起计 00:00:00 配置发票加价或折扣 配置设备订阅费 订阅计费口径解释 cost profile configuration"
+},
+{
+"t": "报表生成、导出与定时",
+"s": "OmniVista 8770 · 计费与性能管理",
+"u": "courses/8770xte201en/skills/ovbill-reporting.html",
+"k": "ovbill-reporting 报表 report Generate Report 导出 export TXT PDF EXCEL mail server SMTP Schedule 定时 Total calculation 累计计数器 截断 400 行 50 页 生成与导出报表 报表邮件分发 配置定时报表 report generation and export"
+},
+{
+"t": "报表定制（Querytool 与 Designer）",
+"s": "OmniVista 8770 · 计费与性能管理",
+"u": "courses/8770xte201en/skills/ovbill-report-design.html",
+"k": "ovbill-report-design Querytool Designer Detailed Grouped Operation Sum Hit-list Generation Time Filter 公式 图表 条形图 饼图 View 前景色 嵌套汇总 从零创建报表定义 配置分组汇总与 hit-list 报表公式与图表 report customization"
+},
+{
+"t": "VoIP 性能监控（IP ticket 与 KPI）",
+"s": "OmniVista 8770 · 计费与性能管理",
+"u": "courses/8770xte201en/skills/ovbill-voip-monitoring.html",
+"k": "ovbill-voip-monitoring VoIP IP ticket IP.LIS SIP.LIS 时延 150ms 丢包 packet loss BFI BFI Burst MOS KPI ipview VoipParameters 质量报告 清理 配置 VoIP 质量监控 解读 VoIP 质量报告 排查 VoIP 报告空表 voip performance monitoring"
+},
+{
+"t": "流量分析与 Tracking 告警",
+"s": "OmniVista 8770 · 计费与性能管理",
+"u": "courses/8770xte201en/skills/ovbill-traffic-tracking.html",
+"k": "ovbill-traffic-tracking traffic analysis 流量分析 pmm pmm.lis 中继组 话务台 T1 T2 阈值 PtpType Tracking 变化率 moving average Reset Profile 告警 邮件 配置话务量报表 开通被叫号与终端话务统计 配置阈值告警与邮件 tracking profile and alerts"
+},
+{
+"t": "Web Performance 实时仪表盘",
+"s": "OmniVista 8770 · 计费与性能管理",
+"u": "courses/8770xte201en/skills/ovbill-web-performance.html",
+"k": "ovbill-web-performance Web Performance WBM dashboard widget SNMPv3 agentV3 A4400-RTM-MIB UC-DAVIS CDR RTCP-XR polling 轮询 raw data MOS 部署 WBM 性能仪表盘 配置 SNMPv3 采集 调优轮询与 widget web performance dashboard"
+},
+{
+"t": "计费归档与恢复",
+"s": "OmniVista 8770 · 计费与性能管理",
+"u": "courses/8770xte201en/skills/ovbill-archiving.html",
+"k": "ovbill-archiving 归档 archive archZ Archive Delay Clean-up delay 125 天 31 天 94 天 恢复 restore Loaded records Archived records Record origin purge 留存 配置计费归档 恢复历史票据 定向清除恢复票 accounting archiving and restore"
+},
+{
+"t": "OmniVista 8770 · 目录管理",
+"s": "ov8770",
+"u": "courses/8770xte202en/index.html",
+"k": "8770xte202en 8770XTE202EN.pdf"
+},
+{
+"t": "OmniVista 8770 · 目录管理 精华长文",
+"s": "ov8770",
+"u": "courses/8770xte202en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OmniVista 8770 · 目录管理 整书理解",
+"s": "ov8770",
+"u": "courses/8770xte202en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OmniVista 8770 · 目录管理 术语词典",
+"s": "ov8770",
+"u": "courses/8770xte202en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "OXE 节点注册与同步",
+"s": "OmniVista 8770 · 目录管理",
+"u": "courses/8770xte202en/skills/ovdir-oxe-sync-ldap.html",
+"k": "ovdir-oxe-sync-ldap OXE siteid netadmin 节点号 Subnetwork adfexc mtcl SSH 信任列表 101 Permanent IP connectivity Complete Separate NMCSyncLdapPbx 注册 OmniPCX Enterprise 节点 OXE 同步失败排查 节点声明字段怎么填 register OXE node to 8770"
+},
+{
+"t": "目录树搭建与 PCX 自动创建",
+"s": "OmniVista 8770 · 目录管理",
+"u": "courses/8770xte202en/skills/ovdir-auto-creation.html",
+"k": "ovdir-auto-creation 自动创建 AutomaticCreation 目录树 UID construction 同名 homonym Extension Location Process directory Cut Paste Visio Room user alias 搭建公司目录树 配置 PCX 自动创建 同名员工 UID 冲突 automatic creation troubleshooting"
+},
+{
+"t": "六类链接与改名语义",
+"s": "OmniVista 8770 · 目录管理",
+"u": "courses/8770xte202en/skills/ovdir-links-rename.html",
+"k": "ovdir-links-rename 主链接 primary link 副链 secondary link 传真链 fax multi-device 多设备 成本中心 cost center 改名 rename 断链 修复 Settings links 4760 管理人员与话机链接 成本中心修改被拒绝 改名后链接断裂修复 4760 多主链迁移"
+},
+{
+"t": "MSAD 与 Azure AD 同步管道",
+"s": "OmniVista 8770 · 目录管理",
+"u": "courses/8770xte202en/skills/ovdir-msad-azure-pipelines.html",
+"k": "ovdir-msad-azure-pipelines MSAD Active Directory LDAPS 636 attribute mapping objectGUID synchronization rule Flat Tree Complete 同步 Automatic deletion Azure AD Entra ID Graph API 对接 Active Directory 同步 属性映射与同步规则 AD 删人后 8770 行为 Azure AD Entra ID sync"
+},
+{
+"t": "Click to Call 交付",
+"s": "OmniVista 8770 · 目录管理",
+"u": "courses/8770xte202en/skills/ovdir-click-to-call.html",
+"k": "ovdir-click-to-call Click to Call STAP DDI 翻译器 ISDN 号 前缀规则 prefix rule 关联话机 粗体号码 Misc Off hook Authorized 交付网页目录点击外呼 ISDN 号没生成排查 配置拨号前缀规则 STAP associated station setup"
+},
+{
+"t": "目录保密级别与访问级别",
+"s": "OmniVista 8770 · 目录管理",
+"u": "courses/8770xte202en/skills/ovdir-confidentiality.html",
+"k": "ovdir-confidentiality 保密 confidentiality Green Orange Red Administration 8770 personal data 个人数据 匿名 anonymous 访问级别 access level Security 地址簿 配置目录保密级别 授予目录访问级别 匿名与认证可见性 web directory authentication"
+},
+{
+"t": "目录复制主从部署",
+"s": "OmniVista 8770 · 目录管理",
+"u": "courses/8770xte202en/skills/ovdir-replication.html",
+"k": "ovdir-replication 复制 replication Master replica Consumer referral Replication agreement Attribute set Initialize 65535 7 天 调度 Schedule 断联 部署目录复制主从 复制不一致恢复 副本移除与属性集变更 directory replication setup"
+},
+{
+"t": "管理域与委派",
+"s": "OmniVista 8770 · 目录管理",
+"u": "courses/8770xte202en/skills/ovdir-domains-delegation.html",
+"k": "ovdir-domains-delegation 管理域 domain Domain Management 本地管理员 local administrator Delegation 委派 strict view 定制视图 customized view 预定义组 可见性 搭建多站点分域管理 本地管理员权限分组 配置委派与定制视图 management domain delegation"
+},
+{
+"t": "MSAD 插件开户（AD 右键一键开通）",
+"s": "OmniVista 8770 · 目录管理",
+"u": "courses/8770xte202en/skills/ovdir-msad-plugin.html",
+"k": "ovdir-msad-plugin MSAD 插件 MSAD plug-in Unified User Management Meta profile ADPlugin 空闲号段 MSAD8770Admin 信任站点 8770MSADPlugin.properties NMC Java Service 部署 MSAD 插件 AD 右键开户 OXE 用户 Meta profile 前置配置 MSAD plug-in provisioning"
+},
+{
+"t": "LDIF 导入导出与管理工具管道",
+"s": "OmniVista 8770 · 目录管理",
+"u": "courses/8770xte202en/skills/ovdir-ldif-tools.html",
+"k": "ovdir-ldif-tools LDIF 导入 导出 Branch Csv2Ldif ConvertLdif ImportLdap PurgeLdap LinkDn go.bat purge.bat misc10 p.conf dirmanag 目录数据备份与恢复 批量导入外部目录数据 外部删除跟随清理 LDIF batch pipeline"
+},
+{
+"t": "目录词典与 Web 客户端定制",
+"s": "OmniVista 8770 · 目录管理",
+"u": "courses/8770xte202en/skills/ovdir-client-dictionary.html",
+"k": "ovdir-client-dictionary 词典 dictionary CustomDict dict_user.zip Context information 客户端定制 GlobalParameters Grid Detail theme 主题 cookie 回退 目录属性显示名定制 Web 目录客户端界面定制 定制回退与恢复 dictionary customization"
+},
+{
+"t": "8770 平台基础（套件/拓扑/兼容/虚拟化）",
+"s": "OmniVista 8770 · 目录管理",
+"u": "courses/8770xte202en/skills/ovdir-platform-basics.html",
+"k": "ovdir-platform-basics 8770 套件 suite WBM 厚客户端 拓扑 兼容 compatibility R5.2 Purple ESXi Hyper-V RLAB Capacity Planning 8770 套件与应用全景 版本兼容核对 虚拟化部署形态 8770 architecture overview"
+},
+{
+"t": "Visual Automated Attendant · 安装、配置与维护",
+"s": "vaa",
+"u": "courses/vsaaxte001en/index.html",
+"k": "vsaaxte001en VSAAXTE001EN.pdf"
+},
+{
+"t": "Visual Automated Attendant · 安装、配置与维护 精华长文",
+"s": "vaa",
+"u": "courses/vsaaxte001en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "Visual Automated Attendant · 安装、配置与维护 整书理解",
+"s": "vaa",
+"u": "courses/vsaaxte001en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "Visual Automated Attendant · 安装、配置与维护 术语词典",
+"s": "vaa",
+"u": "courses/vsaaxte001en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "VAA 安装与 OXE SIP 对接接通",
+"s": "Visual Automated Attendant · 安装、配置与维护",
+"u": "courses/vsaaxte001en/skills/vaa-install-sip-integration.html",
+"k": "vaa-install-sip-integration install.sh incoming username G711 G729 ABC-F trunk group SIPMOTOR trkstat motortrace 自签证书 Release 11 接通 安装 VAA 服务器 OXE 对接 VAA 拨测试树不通 install.sh parameters VAA SIP trunk"
+},
+{
+"t": "VAA 多租户与树设计（公司/日历/UC1-UC3）",
+"s": "Visual Automated Attendant · 安装、配置与维护",
+"u": "courses/vsaaxte001en/skills/vaa-multitenant-tree-design.html",
+"k": "vaa-multitenant-tree-design tree 树 Menu Transfer Filter Calendar business hours 营业时间 多语言 路由号码 DID VIP 节点命名 创建 VAA 公司租户 设计 IVR 树 多语言菜单 business hours routing VIP 过滤分流"
+},
+{
+"t": "VAA 提示音与 TTS/ASR 引擎",
+"s": "Visual Automated Attendant · 安装、配置与维护",
+"u": "courses/vsaaxte001en/skills/vaa-prompt-tts-asr.html",
+"k": "vaa-prompt-tts-asr prompt 提示音 WAV 8KHz PCM Pico Google Cloud TTS ASR 语音识别 录音 导入提示音 选 TTS 引擎 开语音识别 prompt management TTS generation"
+},
+{
+"t": "VAA IVR 选项节点与动态脚本",
+"s": "Visual Automated Attendant · 安装、配置与维护",
+"u": "courses/vsaaxte001en/skills/vaa-ivr-option-nodes.html",
+"k": "vaa-ivr-option-nodes variable Condition Collect digit 收号 display name HTTP Mail JSON correlator IVR 许可 配置 IVR 变量与条件 收号采集 HTTP 节点集成 display name node collect digits"
+},
+{
+"t": "VAA Master/Slave 高可用与 OXE ARS 切换",
+"s": "Visual Automated Attendant · 安装、配置与维护",
+"u": "courses/vsaaxte001en/skills/vaa-master-slave-ha.html",
+"k": "vaa-master-slave-ha HA Master Slave addslave resync vaa ha role whoismaster ARS 切换 只读 NPD 识别符 部署 VAA 双机 主备切换测试 OXE ARS 双路由 vaa ha addslave 高可用行为"
+},
+{
+"t": "VAA 日常维护与版本升级",
+"s": "Visual Automated Attendant · 安装、配置与维护",
+"u": "courses/vsaaxte001en/skills/vaa-maintenance-backup.html",
+"k": "vaa-maintenance-backup vaa status vaa.conf backup restore 92 天 密码过期 SNMP 日志 升级 NFS 自动备份 VAA 日常巡检 备份恢复 升级 VAA 版本 vaa commands 密码策略"
+},
+{
+"t": "VAA 外部数据库集成（JDBC/SQL 节点）",
+"s": "Visual Automated Attendant · 安装、配置与维护",
+"u": "courses/vsaaxte001en/skills/vaa-db-integration.html",
+"k": "vaa-db-integration JDBC SQL mssql-jdbc Oracle 1433 External Databases ODBC MS SQL 空结果 单字段 VAA 连接外部数据库 SQL 节点查库转接 安装 JDBC 驱动 MS SQL connectivity Oracle JDBC URL"
+},
+{
+"t": "VAA 统计与报告",
+"s": "Visual Automated Attendant · 安装、配置与维护",
+"u": "courses/vsaaxte001en/skills/vaa-statistics-reporting.html",
+"k": "vaa-statistics-reporting statistics 报表 call logs CSV xlsx 周报 逐节点 许可不足 配置话务周报 逐节点排障 导出呼叫日志 VAA statistics 报表口径"
+},
+{
+"t": "VAA WebAdmin 管理面",
+"s": "Visual Automated Attendant · 安装、配置与维护",
+"u": "courses/vsaaxte001en/skills/vaa-webadmin-administration.html",
+"k": "vaa-webadmin-administration WebAdmin 管理员 SMTP Supervision logs License 受限档案 添加 VAA 管理员 配置 SMTP 告警 查看 VAA 日志 webadmin setup 受限用户档案"
+},
+{
+"t": "VAA PCS 同步与 OPEX/许可体系",
+"s": "Visual Automated Attendant · 安装、配置与维护",
+"u": "courses/vsaaxte001en/skills/vaa-pcs-opex-licensing.html",
+"k": "vaa-pcs-opex-licensing PCS OPEX CAPEX Purple On Demand FlexLM FEATURE AAIVR AAPORTS VAA_RELEASE Backup4PCS 配置 PCS 同步 OPEX 模式评估 核查 VAA 许可 Purple On Demand 许可失效排查"
+},
+{
+"t": "VAA 服务器选型与虚拟化",
+"s": "Visual Automated Attendant · 安装、配置与维护",
+"u": "courses/vsaaxte001en/skills/vaa-server-sizing-virtualization.html",
+"k": "vaa-server-sizing-virtualization sizing ESXi VMXNet3 Hyper-V Proxmox 端口上限 root SSH SUSE 选 VAA 服务器规格 核对虚拟化兼容 端口数上限 VAA hypervisor sizing"
+},
+{
+"t": "VAA 架构与冗余全景",
+"s": "Visual Automated Attendant · 安装、配置与维护",
+"u": "courses/vsaaxte001en/skills/vaa-architecture-redundancy.html",
+"k": "vaa-architecture-redundancy architecture 呼叫流 CMIP multi-company N+1 reference VAA 冗余 空间冗余 解释 VAA 架构 multi-company 集成 N+1 冗余 VAA call flow 冗余选型"
+},
+{
+"t": "OmniSwitch LAN Access Switching",
+"s": "tbd",
+"u": "courses/dt00xte215en/index.html",
+"k": "dt00xte215en DT00XTE215EN.pdf"
+},
+{
+"t": "OmniSwitch LAN Access Switching 精华长文",
+"s": "tbd",
+"u": "courses/dt00xte215en/digest.html",
+"k": "精华长文"
+},
+{
+"t": "OmniSwitch LAN Access Switching 整书理解",
+"s": "tbd",
+"u": "courses/dt00xte215en/overview.html",
+"k": "整书理解"
+},
+{
+"t": "OmniSwitch LAN Access Switching 术语词典",
+"s": "tbd",
+"u": "courses/dt00xte215en/glossary.html",
+"k": "术语词典"
+},
+{
+"t": "交换机登录接入与 AAA 管理面加固",
+"s": "OmniSwitch LAN Access Switching",
+"u": "courses/dt00xte215en/skills/swl2-aaa-hardening.html",
+"k": "swl2-aaa-hardening AAA ASA 管理面 登录认证链 SSH 加固 WebView console EMP 密码策略 admin/switch 限源 session timeout SNMP 配置交换机登录认证 加固交换机管理面 管理本地用户与密码策略 WebView 或 SSH 登不上 switch management access"
+},
+{
+"t": "Lightning Config 快速开局",
+"s": "OmniSwitch LAN Access Switching",
+"u": "courses/dt00xte215en/skills/swl2-lightning-config.html",
+"k": "swl2-lightning-config Lightning Config 开局 192.168.0.1 端口 1 Recommended Defaults 出箱交换机 模板 .json 模板 禁止预接线 新交换机快速开局 Lightning Config 向导 导入开局模板 lightning config onboarding"
+},
+{
+"t": "配置生命周期（保存/认证/回滚/备份）",
+"s": "OmniSwitch LAN Access Switching",
+"u": "courses/dt00xte215en/skills/swl2-config-lifecycle.html",
+"k": "swl2-config-lifecycle write memory flash-synchro copy running certified working certified 回滚 reload all CERTIFY NEEDED NOT SYNCHRONIZED 备份 usb backup userTable 保存交换机配置 配置回滚 配置备份恢复 show running-directory 判读 write memory certified"
+},
+{
+"t": "Virtual Chassis 堆叠",
+"s": "OmniSwitch LAN Access Switching",
+"u": "courses/dt00xte215en/skills/swl2-virtual-chassis.html",
+"k": "swl2-virtual-chassis Virtual Chassis 堆叠 VFL ISIS-VC chassis-id 选举 master slave RCD VCSP 分裂 ISSU ssh-chassis 一致性 组建 Virtual Chassis 堆叠 堆叠主备与选举 堆叠分裂防护 ISSU 滚动升级 virtual chassis vfl"
+},
+{
+"t": "VLAN 与 VLAN 间路由",
+"s": "OmniSwitch LAN Access Switching",
+"u": "courses/dt00xte215en/skills/swl2-vlan-routing.html",
+"k": "swl2-vlan-routing VLAN 802.1Q untagged tagged 默认 VLAN UNP 分类规则 动态 VLAN ip interface 网关 VLAN 间路由 接口 DOWN 创建 VLAN 与挂端口 802.1Q 打标互联 配置 VLAN 间路由与网关 UNP 动态 VLAN 分类 vlan trunk tagging"
+},
+{
+"t": "链路与生成树冗余（LAG/STP/DHL）",
+"s": "OmniSwitch LAN Access Switching",
+"u": "courses/dt00xte215en/skills/swl2-link-redundancy.html",
+"k": "swl2-link-redundancy linkagg LACP actor admin-key hash-control STP RSTP 根桥 per-VLAN blocking DHL vlan-map 抢占 双活 配置链路聚合 聚合负载分担与 hash 配置 STP 与根桥 1x1 负载分担 DHL 双活上行 link aggregation lacp stp"
+},
+{
+"t": "三层服务与网关冗余（DHCP/Loopback0/静态路由/VRRP）",
+"s": "OmniSwitch LAN Access Switching",
+"u": "courses/dt00xte215en/skills/swl2-l3-services.html",
+"k": "swl2-l3-services DHCP relay UDP relay Loopback0 source-ip 静态路由 metric 默认路由 VRRP VRID 虚拟 IP 虚拟 MAC 抢占 track 配置 DHCP 中继 配置 Loopback0 与服务源地址 静态路由与主备默认路由 配置 VRRP 网关冗余 dhcp relay vrrp"
+},
+{
+"t": "QoS 与 ACL 策略",
+"s": "OmniSwitch LAN Access Switching",
+"u": "courses/dt00xte215en/skills/swl2-qos-acl-policy.html",
+"k": "swl2-qos-acl-policy QoS policy condition action rule precedence 802.1p DSCP 限速 qos apply auto-QoS ACL UserPorts DropServices BPDU shutdown 配置 QoS 策略与限速 auto-QoS 话机优先级 配置 ACL 过滤 用户口安全与防欺骗 qos acl policy rule"
+},
+{
+"t": "Access Guardian 接入认证",
+"s": "OmniSwitch LAN Access Switching",
+"u": "courses/dt00xte215en/skills/swl2-access-guardian.html",
+"k": "swl2-access-guardian Access Guardian UNP 802.1x MAC 认证 RADIUS Filter-Id pass-alternate auth-server-down Block unp profile 准入 部署 802.1x 接入认证 MAC 认证与哑设备准入 认证后动态下发 VLAN 策略 RADIUS 降级预案 access guardian unp radius"
+},
+{
+"t": "诊断工具箱八件套",
+"s": "OmniSwitch LAN Access Switching",
+"u": "courses/dt00xte215en/skills/swl2-diagnostics.html",
+"k": "swl2-diagnostics swlog show log events command-log port-mirroring port-monitoring 抓包 RMON health sFlow syslog 排障 查看交换机日志 端口镜像与抓包 CPU 内存健康查看 审计配置变更记录 switch diagnostics troubleshooting"
+},
+{
+"t": "LLDP/LLDP-MED 与 PoE 管理",
+"s": "OmniSwitch LAN Access Switching",
+"u": "courses/dt00xte215en/skills/swl2-lldp-poe.html",
+"k": "swl2-lldp-poe LLDP LLDP-MED network-policy 语音 VLAN mobile tag TLV PoE lanpower 供电预算 优先级 critical Fast PoE Perpetual PoE delayed-start 配置 LLDP 与邻居发现 IP 话机自动入语音 VLAN PoE 预算与优先级管理 Fast PoE 与延迟供电 lldp med voice vlan poe"
+},
+{
+"t": "软件升级与 Auto-Fabric 零触开局",
+"s": "OmniSwitch LAN Access Switching",
+"u": "courses/dt00xte215en/skills/swl2-upgrade-autofabric.html",
+"k": "swl2-upgrade-autofabric 升级 GA MR 签名镜像 U-boot RMA Auto-Fabric 零触 Auto-VC RCL Auto-LACP Auto-SPB MVRP LBD vcboot.cfg 选择升级版本与通道 U-boot 与底层固件风险 Auto-Fabric 零触开局 首启提示与 RCL software upgrade zero touch"
+},
+{
+"t": "资产与装机工具（Fleet Supervision/OST）",
+"s": "OmniSwitch LAN Access Switching",
+"u": "courses/dt00xte215en/skills/swl2-fleet-tools.html",
+"k": "swl2-fleet-tools Fleet Supervision Services Kiosk myfleet 资产 维保 EoL OST Postgres Server Configuration PoE 向导 Auto-Ticket 支持合同 资产与维保合规报表 Fleet Supervision 开通 安装使用 OST 2.0 PoE 设备一键修复 fleet supervision ost tooling"
+}
+]

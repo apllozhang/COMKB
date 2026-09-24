@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>SIP 组网：公网网关与私网互联</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OXO Connect · Advanced</h2><p>Edition 18 · 601 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte301en/index.html">课程首页</a><a href="/courses/oxocxte301en/digest.html">精华长文</a><a href="/courses/oxocxte301en/overview.html">教书理解</a><a href="/courses/oxocxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte301en/skills/oxoa-sip-networking.html">SIP 组网：公网网关与私网互联</a><a href="/courses/oxocxte301en/skills/oxoa-numbering-ars-suite.html">ARS 路由套件：三表协作与 Internal ARS</a><a href="/courses/oxocxte301en/skills/oxoa-hotel-billing-vertical.html">酒店与计费垂直方案</a><a href="/courses/oxocxte301en/skills/oxoa-security-hardening.html">系统安全加固</a><a href="/courses/oxocxte301en/skills/oxoa-certificate-suite.html">证书与加密传输（证书/DTLS/TLS-SRTP）</a><a href="/courses/oxocxte301en/skills/oxoa-attendant-suite.html">语音导航套件（AA/MLAA/SCR）</a><a href="/courses/oxocxte301en/skills/oxoa-voicemail-mobility.html">语音邮箱与移动办公</a><a href="/courses/oxocxte301en/skills/oxoa-cloud-connect-fleet.html">Cloud Connect 舰队与远程维护</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte301en/skills/oxoa-foundation-ip.html">交付地基：OMC 首连与 IP 规划</a><a href="/courses/oxocxte301en/skills/oxoa-terminal-ecosystem.html">终端生态：PIMphony 与 SIP 话机接入</a><a href="/courses/oxocxte301en/skills/oxoa-shared-devices.html">共享终端：站群监督、Hot Desking 与 Multiset</a><a href="/courses/oxocxte301en/skills/oxoa-multi-entity.html">多实体与伪多公司</a><a href="/courses/oxocxte301en/skills/oxoa-dect-deployment.html">DECT 无线移动</a><a href="/courses/oxocxte301en/skills/oxoa-maintenance-toolkit.html">维护工具箱：Webdiag、Noteworthy 与 LoLa</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte301en/index.html">oxo-connect-advanced（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte301en/index.html">OXOCXTE301EN</a><span>/</span><span aria-current="page">SIP 组网：公网网关与私网互联</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>SIP 组网：公网网关与私网互联</h1></div><dl><div><dt>Skill ID</dt><dd>oxoa-sip-networking</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>SIP 组网：公网 SIP 网关与私网互联（九 tab、注册验证、双向溢出）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Don't forget to now configure the Outbound Proxy: gateway1.itsp1.com in the Domain Proxy tab … The following setting can only be configured after filling in the DNS tab!"（p46-47）
+"The Gateway index must be filled in later when the SIP Gateway is created"（p44）
+"Put the bandwidth at 5 minimum calls in order to allow external calls"（p48）
+"OMC/History and Anomalies/History Table … Message displayed: SIP registration success"（p54）
+"Calls may overflow on the public network in the event of saturation of the private network … Public calls between the 2 sites will be redirected to the private network as a priority"（p208）
+"Set the bandwidth to a minimum of 5 calls in order to make calls to the outside … Validate direct RTP"（p215）</p>
+</blockquote>
+<p>出处：OXOCXTE301EN p37-56, p206-224。</p>
+<h2>I — 自述</h2>
+<p>公网与私网 SIP 网关共用同一套配置面（SIP 网关九 tab + 编号计划 + VoIP 接入 + 中继组），差异只在编号计划与路由目的。固定顺序九步：</p>
+<ol>
+<li><strong>LAN IP/DNS 核查</strong>：改后复位 OXO</li>
+<li><strong>编号计划</strong>：公网填 DDI/安装号（私网填 Private Numbering Plan）</li>
+<li><strong>VoIP 接入</strong>：定通道数与网络类型，网关索引暂空</li>
+<li><strong>中继组</strong>：接入入组，调 Link-Cat 放行</li>
+<li><strong>SIP 网关九 tab</strong>：General（索引/标签/canonical）、DNS、Domain Proxy、Registration、Media、Identity、Protocol、Topology、Security</li>
+<li><strong>SIP 账号</strong>：Login/Password 并指向网关</li>
+<li><strong>回填网关索引</strong>到 VoIP 外线</li>
+<li><strong>验证注册</strong>：History Table 看 "SIP registration success"</li>
+<li><strong>抓包</strong>：Webdiag TCP Dump 选 SIP，Wireshark 分析</li>
+</ol>
+<p>两条硬顺序（跳序必卡）：DNS tab 先于 Domain Proxy tab（配 DNS 后 IP 类型才变 dynamic）；网关索引回填在网关建好之后。</p>
+<p><strong>Media 隐藏闸门</strong>：带宽最少 5 通话 + RTP Direct 打勾，公网（p48）与私网（p215）同规则——带宽语义是"该网关允许的并发通话资源"，不设就外呼不通。</p>
+<p><strong>私网组网四步</strong>（在公网九步之上叠加）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>内容</th>
+<th>关键参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>私网编号计划</td>
+<td>Private Numbering Plan 加站点号段</td>
+<td>N100-N199 base 100（实验口径）</td>
+</tr>
+<tr>
+<td>私网网关</td>
+<td>Domain Proxy 填对端 IP；Protocol 选 SIP Option 监督</td>
+<td>Media 带宽 ≥5 + RTP Direct</td>
+</tr>
+<tr>
+<td>私→公溢出</td>
+<td>ARS 表私网行加溢出子线，列表 index 2 指向公网主组</td>
+<td>私网满后自动走公网，显示字符 T</td>
+</tr>
+<tr>
+<td>公→私优先强制</td>
+<td>主中继行 base 改 ARS，加公转私行 + 透明行</td>
+<td>DID 呼叫强制走私网，显示字符 P</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>公网 SIP 网关实验</strong>（p37-56，厂商实验）：</p>
+<ol>
+<li>核对 LAN IP 与 DNS（192.168.1.246 / DNS1 .250 / DNS2 10.20.30.250，实验口径），改后复位。</li>
+<li>公网编号计划填 DDI 段 41100-41199、话务台 41000；必要时复制到 Restricted 计划。</li>
+<li>安装号填 210P41000（实验口径）。</li>
+<li>建 VoIP 接入 8 通道放主中继组 0，网关索引暂空；中继组加入接入并调 Link-Cat。</li>
+<li>建网关 ITSP1G1：按九 tab 顺序填（DNS tab 先于 Domain Proxy tab）。</li>
+<li>Media tab 验证 RTP Direct 并把带宽设为最少 5 通话。</li>
+<li>SIP 账号 pbxP/alcatel（实验口径），Gateway Parameters Index 指到 ITSP1G1。</li>
+<li>回 VoIP 外线回填网关索引。</li>
+<li>History Table 出现 "SIP registration success" 即注册成功（p54）。</li>
+<li>Webdiag（installer/Alcatel1，实验口径）TCP Dump 选 SIP 抓包，Wireshark 分析。</li>
+</ol>
+<p><strong>私网组网实验</strong>（p206-224，两台 OXO）：</p>
+<ol>
+<li>拓扑按 POD 号取 N（192.168.N.246），勿与其它 lab 产生 IP 冲突（p208 Attention）。</li>
+<li>私网编号计划加 N100-N199 base 100；私网 VoIP 接入按带宽定通道数入副中继组。</li>
+<li>私网网关 Domain Proxy 填对端 IP，Media 带宽最少 5 通话，Protocol 选 SIP Option。</li>
+<li>无 ARS 测试：经中继组前缀 400 呼对端私网号（OXO1 打 (400) 21xx）。</li>
+<li>配 ARS：内部编号计划 Secondary Trunk Group 行 base=ARS、NMT=Keep、Private=Yes。</li>
+<li>ARS 表加对端前缀行，中继组列表指向含 VoIP 接入的副中继组；直拨 21xx 测试。</li>
+<li>私→公溢出：私网行加子线，列表 index 2 指向公网主组 0；占满 2 通道后呼叫显示 T。</li>
+<li>公→私强制：主中继行 base 改 ARS 加公转私行；DID 呼叫被强制走私网显示 P（p224）。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：对接 SIP 运营商；注册不上怎么排；Domain Proxy 找不到参数位；外呼不通查哪里；两站点用 SIP 互联；私网饱和怎么溢出到公网；DID 呼叫强制走专线。</p>
+<p>语言信号：SIP 网关 / SIP gateway / ITSP / 运营商中继 / Domain Proxy / Outbound Proxy / 注册 / registration success / 中继组 / trunk group / 私网 / 组网 / 溢出 / overflow / 双向 / 站点互联 / 5059。</p>
+<p>与相邻能力区分：路由选路与号码变换规则归 ARS 套件能力；中继加密（TLS/SRTP）归证书套件能力；本能力到"注册成功 + 双向溢出行为验证"为止。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：运营商对接参数（或对端站点 IP/号段）、本站 IP 规划、并发话务量、中继组与链路类别规划。运营商参数不全 → 判停先收集，不要用实验值顶替。</p>
+<ol>
+<li>核查 LAN IP/DNS 并复位；确认 DHCP 池规划（p34 口径，注意 nr-02 两处不一致）。完成标准：网络可达</li>
+<li>编号计划：公网填 DDI 段与安装号（私网加 Private Numbering Plan 段）。完成标准：号码落表</li>
+<li>建 VoIP 接入（通道数按带宽勘测）入中继组，调 Link-Cat 放行。完成标准：接入入组</li>
+<li>按九 tab 建网关：DNS tab 先填，再配 Domain Proxy；Media 设带宽最少 5 通话 + RTP Direct。完成标准：九 tab 全填</li>
+<li>建 SIP 账号指向网关索引；回 VoIP 外线回填网关索引。完成标准：账号与外线关联</li>
+<li>验证：History Table 出现 "SIP registration success"；试呼本站 DDI 与外呼。完成标准：注册与呼叫双通</li>
+<li>（私网）加 ARS 双向四步：私网行、溢出子线、公转私强制行、透明行。完成标准：P/T 字符验证通过</li>
+<li>排障分层：注册层查 History Table，信令层 Webdiag 抓包，分析层 Wireshark。完成标准：问题定位或升级支持</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>运营商要求 TLS/SRTP 或 SIPS URI → 转证书套件能力（SIPS 在 OCE-FE 不支持要提前声明）</li>
+<li>站点带宽未知 → 不承诺通道数，先勘测（通道数按"该网关允许的并发通话资源"定）</li>
+<li>注册失败且账号/参数核对无误 → 查拓扑（ETH0）与安全 tab 明文默认，再抓包比对 SIP 消息</li>
+<li>短号与紧急号码需求 → ADL 表管理在书外（n63），生产割接前必须补测紧急呼叫</li>
+</ul>
+<p>输出契约：注册成功的 SIP 中继（公网或私网）+ 编号计划落表记录 + 抓包存档 + 溢出行为验证结论（P/T 字符）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>全部实验参数（ITSP1、pbxP/alcatel、号段、N 值）为 RLAB 口径，生产按运营商与客户网段整体替换（n64）</li>
+<li>默认 Security tab 为明文 SIP（n07）：生产要加密走 TLS/SRTP 章，不能默认当作已加密</li>
+<li>公网编号计划配置必要时复制到 Restricted 计划（n04），漏配时受限时段 DDI 映射落空</li>
+<li>生产运营商的注册超时、鉴权方式、号码变换规则在书外，需按运营商合同勘测</li>
+<li>短号/紧急号码 ADL 管理书内未覆盖（n63）；Webdiag 登录 installer 密码为客户环境值（实验 Alcatel1 仅教室口径）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte301en/skills/oxoa-numbering-ars-suite.html">ARS 路由套件：三表协作与 Internal ARS</a>、<a href="/courses/oxocxte301en/skills/oxoa-certificate-suite.html">证书与加密传输（证书/DTLS/TLS-SRTP）</a></p><p class="source-page">能力 ID：cap.oxoa.sip-networking · 来源：OXOCXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OXO Connect - Advanced (Participant's Guide, Edition 18) | edition: Edition 18 | pages: 601 页 -->

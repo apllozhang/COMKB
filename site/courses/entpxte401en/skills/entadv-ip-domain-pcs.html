@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>IP 域与 PCS 域级生存性</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Advanced</h2><p>— · 543 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte401en/index.html">课程首页</a><a href="/courses/entpxte401en/digest.html">精华长文</a><a href="/courses/entpxte401en/overview.html">教书理解</a><a href="/courses/entpxte401en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte401en/skills/entadv-ssh-trust-foundation.html">SSH 免密分发体系</a><a href="/courses/entpxte401en/skills/entadv-cs-redundancy.html">CS 冗余部署与切换维护</a><a href="/courses/entpxte401en/skills/entadv-ip-domain-pcs.html">IP 域与 PCS 域级生存性</a><a href="/courses/entpxte401en/skills/entadv-overflow-rerouting.html">公私网双向溢出与重路由</a><a href="/courses/entpxte401en/skills/entadv-direct-ip-link.html">Direct IP Link 全 IP 组网</a><a href="/courses/entpxte401en/skills/entadv-audit-broadcast.html">Audit 与 Broadcast 数据一致性</a><a href="/courses/entpxte401en/skills/entadv-multiline-supervision.html">多线监督与经理助理组</a><a href="/courses/entpxte401en/skills/entadv-hunting-pickup-speeddial.html">寻线代接组与速拨编号体系</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte401en/skills/entadv-desk-sharing.html">办公桌共享（DSS/DSU）</a><a href="/courses/entpxte401en/skills/entadv-multi-device.html">多设备用户与 Twinset</a><a href="/courses/entpxte401en/skills/entadv-lab-pod-baseline.html">实验/交付前置环境基线</a><a href="/courses/entpxte401en/skills/entadv-cli-toolbox.html">维护命令与事件/许可速查</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte401en/index.html">oxe-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte401en/index.html">ENTPXTE401EN</a><span>/</span><span aria-current="page">IP 域与 PCS 域级生存性</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>IP 域与 PCS 域级生存性</h1></div><dl><div><dt>Skill ID</dt><dd>entadv-ip-domain-pcs</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>IP 域与 PCS 域级生存性（CAC、编解码、PCS 部署、救援与回切）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"THE CALL SERVER(S) MUST BELONG TO DOMAIN 0 • THIS ENTAILS THAT THE IP ADDRESS RANGES CONFIGURED FOR THE OTHER DOMAINS MUST NOT ENCOMPASS THE PHYSICAL AND ROLE IP ADDRESSES OF THE COM SERVER(S)"（p152）
+"'Domain Max Voice Connection' parameter in the IP domain ('-1' means unlimited)"（p144）
+"High bandwidth: OPUS SWB &gt; OPUS WB &gt; G722 &gt; G711 &gt; OPUS NB &gt; G729 ; Low bandwidth: OPUS NB &gt; G729 … The lowest capability (of the 2 domains) is selected"（p147）
+"BE AWARE THAT 'DATABASE SYNCHRONIZATION' IS UNIDIRECTIONAL: ONLY FROM CS TOWARD PCS"（p179）
+"The PCS can be active for 30 days max • After 30 days, it switches in 'Software protection violation' position"（p182）</p>
+</blockquote>
+<p>出处：ENTPXTE401EN p139-233。</p>
+<h2>I — 自述</h2>
+<p>高可用第二层：IP 域划分设备归属，PCS 在断链时接管远程域——域是底座，PCS 是域级生存性，两者都不是热备 CS。</p>
+<ol>
+<li><strong>IP 域五条硬规则</strong>：按设备 IP 在初始化时落域（未匹配进默认域 0）；每系统 1000 域；CS/PCS 必须域 0 且其他域地址段不得覆盖 CS 物理/角色地址；域条目掩码须与设备一致；设备复位后才落新域</li>
+<li><strong>CAC 只闸跨域</strong>：Domain Max Voice Connection 限"从/到该域"通话数（-1 不限），域内不控；超限退路靠溢出特性</li>
+<li><strong>编解码选择链</strong>：按设备能力+域带宽档取交集，跨域取两域较低档；G722/OPUS 的转码/会议等媒体服务须 OMS；OPUS 动态 payload 默认 125（p159）</li>
+<li><strong>PCS 三前提</strong>：许可锁 332&gt;0、版本≥CS、RAM≥CS；容量 240 台/系统、一域一 PCS、一 PCS 可救多域（至多 1000）但每台至少绑一台 MG——无 MG 域里的 SIP 话机/网关救不了</li>
+<li><strong>四状态</strong>（pcsview）：Inactive（随 CS）/ Active（接管中）/ Inactive*（链路恢复等回切计时器）/ Undef（CS 切换后未重建连接）</li>
+<li><strong>救援与回切</strong>：GD/OMS 软复位改连救援地址；话机重启用 CS 下发的 TFTP Backup IP@（p172，藏于话机 flash，排障用 tnet d 的 ipconfig survi 查看）；回切计时器三模式——默认 30 秒、定点 Hour、Timeout 值 1-65535 秒（0=不自动重启人工控制）</li>
+<li><strong>数据纪律</strong>：库单向同步（CS→PCS），PCS 上改的下次更新即丢；防火墙/时间/NTP/SSH/Syslog/hosts/SNMP/Radius 八类参数逐台手工配；最长连续激活 30 天（431 报剩余、432 违约态、427/428 报断链）；不提供 TFTP/DHCP/ABC-F，被救域打不了 4645 VM</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>建域与 CAC 测试</strong>（p154-163）：</p>
+<ol>
+<li>WBM IP 域 Create：域 1（Intra=Large/Extra=Low）、域 2 同法；Domain Max Voice Connection 先设 1</li>
+<li>IP Domain Address 分配地址段（掩码照抄设备；单主机条目 Low=High）</li>
+<li>复位设备与板卡后落域；domstat 看域参数/条目/设备，cnx dom 看 allowed/used 计数</li>
+<li>CAC 验证：域 1 呼域 2 第一通成功、第二通被拒；两域改回 -1 后全通</li>
+<li>compvisu eqt all 验证编解码（域内 G722(83)、跨域 G729(43)）</li>
+</ol>
+<p><strong>PCS 部署与断链演练</strong>（p185-216，实验口径）：</p>
+<ol>
+<li>PCS VM 版本核验（欢迎信息 ≥CS）+ spadmin 确认锁 332=0/3</li>
+<li>console 模式改 IP（出厂 10.253.253.1/26 不兼容实验网）+ 防火墙互信 + hosts 核对</li>
+<li>WBM 声明 PCS 地址/FQDN；域 2 的 Backup IP address 指向 PCS；OMS omsconfig 填 Passive CS address</li>
+<li>oxe-nw-sshkey-sync 全网免密 → PCS 初始化（空库/autostart/日期）→ pcscopy 到 End OK</li>
+<li>断链：Rlab 断开主站子网 → pcsview 显示 ACTIVE、被救话机数 2、域 1/1</li>
+<li>恢复链路 → INACTIVE*（Timeout=0 实验口径人工重启）→ 重启后回 INACTIVE、设备归 CS</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：跨域通话被拒；设备"不落域"；建 PCS；断链演练；"分部断了还能不能用"；PCS 激活超 30 天；回切时机设计；4645 留言打不通。</p>
+<p>语言信号：IP domain / domain 0 / CAC / call admission control / Domain Max Voice Connection / 带宽档 / OPUS / G722 /
+  PCS / passive communication server / pcsview / pcscopy / TFTP Backup IP@ / 30 天 / 427 / 428 / 431 / 432。</p>
+<p>与相邻能力区分：断链后的公网退路转溢出能力；库刷新失败先查免密（SSH 地基能力）；冗余对本身转 CS 冗余能力。</p>
+<h2>S — 现场症状（工单语言）</h2>
+<p>下列说法命中本能力时优先打开本页；与「A2 未来触发」配套使用。</p>
+<ul><li>分部断链后远端话机/网关整片失联</li><li>PCS 不接管或救援地址不对</li><li>CAC 跨域呼叫被拒</li><li>域 0 / 初始 IP 规划错误导致 CS/PCS 必须改址</li><li>PCS 上改过的配置下次更新丢失</li></ul>
+
+<h2>E — 可执行步骤</h2>
+<p>输入契约：网络规划（域划分/地址段/掩码）、PCS 资源（许可锁 332、VM/板卡/GAS）、断链演练窗口。无 MG 的纯 SIP 域要 PCS → 判停，先补 MG 或改方案。</p>
+<ol>
+<li>建域与地址分配：WBM 建域 → 配带宽档/CAC/本地化 → 配地址段（掩码与设备一致）。完成标准：domstat 可见域与条目</li>
+<li>复位落域：复位相关设备与板卡。完成标准：domstat 菜单 8/10 设备进入正确域</li>
+<li>CAC 设定：按话务设 Domain Max Voice Connection（不确定先 -1）。完成标准：cnx dom allowed 值与设计一致</li>
+<li>PCS 前提核验：锁 332&gt;0、版本≥CS、RAM≥CS、PCS 留域 0。完成标准：三项全过</li>
+<li>PCS 部署：console 改 IP、防火墙/hosts 互信、WBM 声明与全局参数、域绑定 Backup IP、OMS/板卡声明、全网免密、pcscopy。完成标准：pcsview 显示 PCS 且域关联正确</li>
+<li>演练：断链看 ACTIVE 接管 → 恢复链路看过渡态 → 按回切策略复位。完成标准：四状态迁移链全程可验、设备归 CS</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>其他域地址段覆盖了 CS/PCS 地址 → 停，重新规划（域 0 硬规则，CAC/生存性全会错乱）</li>
+<li>建了域设备还在域 0 → 先查是否复位、掩码是否一致，不盲目重建</li>
+<li>pcsview 长期 Undef → 查冗余切换后 PCS 与新主的连接重建</li>
+<li>客户期望"PCS 长期顶班"→ 停，30 天上限+单向同步，转中心侧修复方案</li>
+</ul>
+<p>输出契约：生效的域划分与 CAC 口径 + 可验证的 PCS 生存性（演练记录）+ 手工参数八项核对清单。</p>
+<h2>V — 验收与回退</h2>
+<p><strong>验收（DoD，全部满足才收工）</strong></p>
+<ul><li>许可锁 332 满足；CS 与 PCS 版本/RAM 达标</li><li>域绑定正确；PCS 四状态符合预期</li><li>断链演练：域内设备转救援地址可用</li><li>回切计时器行为符合设定（默认 30 秒等）</li></ul>
+<p><strong>回退 / 判停</strong></p>
+<ul><li>PCS 部署失败：停用 PCS 域绑定前先记录原域与地址，避免半配置</li><li>库同步异常：以 CS 侧为权威，PCS 侧修改视为易失</li><li>误改域 0：优先规划窗口内纠正，避免与初始 IP 冲突扩大</li></ul>
+
+<h2>B — 边界</h2>
+<ul>
+<li>域与编号规划、PCS 布点设计需客户网络/话务输入，本书只教机制与施工</li>
+<li>PCS 救不了 4645 VM、SIP 传真、SIP VM；无 TFTP/DHCP/ABC-F（p183）——客户体验预期要提前讲</li>
+<li>PCS 激活期话单 CS 不自动收回，要 OmniVista 8770 同步或手动取回（p181，书外操作）</li>
+<li>断链演练期间主站全部 VM 失去 IP 可达——生产演练先备带外通道（p212）</li>
+<li>空 swinst 库/autostart 等 PCS 初始化操作属 Starter 内容（p185-210 引用）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte401en/skills/entadv-overflow-rerouting.html">公私网双向溢出与重路由</a></p><p class="source-page">能力 ID：cap.entadv.ip-domain-pcs · 来源：ENTPXTE401EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Advanced (Participant's Guide, Edition 13) | edition: — | pages: 543 页 -->

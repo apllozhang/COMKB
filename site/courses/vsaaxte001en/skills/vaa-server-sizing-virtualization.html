@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>VAA 服务器选型与虚拟化</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Visual Automated Attendant · 安装、配置与维护</h2><p>Edition 20 · 351 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/vsaaxte001en/index.html">课程首页</a><a href="/courses/vsaaxte001en/digest.html">精华长文</a><a href="/courses/vsaaxte001en/overview.html">教书理解</a><a href="/courses/vsaaxte001en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/vsaaxte001en/skills/vaa-install-sip-integration.html">VAA 安装与 OXE SIP 对接接通</a><a href="/courses/vsaaxte001en/skills/vaa-multitenant-tree-design.html">VAA 多租户与树设计（公司/日历/UC1-UC3）</a><a href="/courses/vsaaxte001en/skills/vaa-prompt-tts-asr.html">VAA 提示音与 TTS/ASR 引擎</a><a href="/courses/vsaaxte001en/skills/vaa-ivr-option-nodes.html">VAA IVR 选项节点与动态脚本</a><a href="/courses/vsaaxte001en/skills/vaa-master-slave-ha.html">VAA Master/Slave 高可用与 OXE ARS 切换</a><a href="/courses/vsaaxte001en/skills/vaa-maintenance-backup.html">VAA 日常维护与版本升级</a><a href="/courses/vsaaxte001en/skills/vaa-db-integration.html">VAA 外部数据库集成（JDBC/SQL 节点）</a><a href="/courses/vsaaxte001en/skills/vaa-statistics-reporting.html">VAA 统计与报告</a><p class="course-nav-group">路由能力</p><a href="/courses/vsaaxte001en/skills/vaa-webadmin-administration.html">VAA WebAdmin 管理面</a><a href="/courses/vsaaxte001en/skills/vaa-pcs-opex-licensing.html">VAA PCS 同步与 OPEX/许可体系</a><a href="/courses/vsaaxte001en/skills/vaa-server-sizing-virtualization.html">VAA 服务器选型与虚拟化</a><a href="/courses/vsaaxte001en/skills/vaa-architecture-redundancy.html">VAA 架构与冗余全景</a><p class="course-nav-group">已安装技能</p><a href="/courses/vsaaxte001en/index.html">visual-automated-attendant（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/vsaaxte001en/index.html">VSAAXTE001EN</a><span>/</span><span aria-current="page">VAA 服务器选型与虚拟化</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>VAA 服务器选型与虚拟化</h1></div><dl><div><dt>Skill ID</dt><dd>vaa-server-sizing-virtualization</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>VAA 服务器选型与虚拟化（规格三档、Hypervisor 前提、安全基线）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The maximum number of VAA ports supported is 120 • To go above this limit, please contact the central presales team … Given as an example! Always consult the official documentation!"（p52）
+"VMware ESXi 8.0 • Network adapter for the VM must be VMXNet3 • VMWare Tools must be installed / Microsoft Hyper-V 2022 • VM type recommended is Generation 2 / KVM hypervisor Proxmox 8.2 … (1) KVM hypervisor Proxmox supported from VAA 4.6.1"（p53）
+"The remote SSH access for the ROOT account is forbidden. You must use the admin account with the function 'sudo'."（p55）</p>
+</blockquote>
+<p>出处：VSAAXTE001EN p52-55。</p>
+<h2>I — 自述</h2>
+<p>部署前的选型与基线核查：</p>
+<ol>
+<li><strong>规格三档表（示例口径，原文两处强调务必查官方文档）</strong>，VAA 最大支持 120 端口、超限找中央售前：</li>
+</ol>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>端口档</th>
+<th>处理器</th>
+<th>内存</th>
+<th>网络</th>
+<th>硬盘</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最多 8 端口</td>
+<td>双核 2.4 GHz</td>
+<td>8 GB</td>
+<td>100 Mb/s</td>
+<td>80 GB</td>
+</tr>
+<tr>
+<td>最多 50 端口</td>
+<td>四核 2.4 GHz</td>
+<td>16 GB</td>
+<td>1 Gb/s</td>
+<td>80 GB</td>
+</tr>
+<tr>
+<td>最多 120 端口</td>
+<td>八核 2.4 GHz</td>
+<td>32 GB</td>
+<td>1 Gb/s</td>
+<td>最低 320 GB</td>
+</tr>
+</tbody>
+</table></div>
+<ol>
+<li><strong>虚拟化兼容三前提（同样示例口径）</strong>：VMware ESXi 8.0——虚机网卡必须 VMXNet3 且必须装 VMware Tools；Microsoft Hyper-V 2022——推荐 Generation 2 虚机；KVM（Proxmox 8.2）——VAA 4.6.1 起支持且网卡必须 VMXNet3；部署细节以安装手册为准</li>
+<li><strong>安全基线两条</strong>：root 禁止 SSH 远程登录（只能本地控制台），远程一律 admin + sudo su——这是 CIS-2 基线设计而非故障；操作系统底座为 SUSE（ALE BootDVD 安装，物理机/虚机均可）</li>
+<li><strong>端口清单</strong>：p55 为 TCP/UDP 端口清单页，正文仅一句 root SSH 规则；具体端口与防火墙设计以官方安装文档为准</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>选型核查序列</strong>（p52-55 讲义，无实验）：</p>
+<ol>
+<li>从客户预期并发话务推算所需 VAA 端口数</li>
+<li>超过 120 端口即停，转中央售前评估</li>
+<li>按端口档查规格三档表初筛硬件</li>
+<li>引用任何数值时带上原书免责："仅示例，务必查官方文档"</li>
+<li>核对虚拟化平台：版本、虚机代际、网卡类型（VMXNet3）、工具安装</li>
+<li>Proxmox 场景核对 VAA 版本不低于 4.6.1</li>
+<li>交付网络端口需求清单时以官方文档当期版为准</li>
+<li>向客户说明 root SSH 禁用为安全基线，运维走 admin + sudo</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：售前报配置；客户问 Proxmox/ESXi/Hyper-V 能不能跑；虚拟机网卡选型；项目要 200 端口；运维抱怨 root 连不上；写投标文档引用规格。</p>
+<p>语言信号：规格 / sizing / 8 端口 / 50 端口 / 120 端口 / 120 端口上限 / 双核 / 四核 / 八核 / ESXi / VMXNet3 / Hyper-V / Generation 2 / Proxmox / KVM / root SSH / sudo / SUSE / BootDVD。</p>
+<p>与相邻能力区分：安装施工与参数契约归安装对接能力；许可与商用模式归 PCS/OPEX 卡；产品功能边界归架构冗余能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户并发话务预估（端口数）、现有虚拟化平台与版本、运维安全基线要求、官方文档获取渠道（MyPortal）。</p>
+<ol>
+<li>端口测算：按业务峰值并发定端口档位；超 120 转售前。完成标准：档位结论</li>
+<li>硬件初筛：查三档表给配置建议，注明示例口径。完成标准：建议单带免责</li>
+<li>平台核对：对照三前提核查 Hypervisor 版本/虚机类型/网卡/工具。完成标准：无不满足项</li>
+<li>官方复核：用安装手册当期版复核规格与端口清单后再定稿。完成标准：文档指针留档</li>
+<li>基线交底：向客户运维说明 root SSH 禁用与 admin+sudo 工作方式。完成标准：无"故障"误报</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户要求 300 端口单机 → 停，产品上限 120 端口，转中央售前评估拆分或多实例</li>
+<li>客户平台不在三列表（如桌面级虚拟化） → 停，书内无兼容口径，以官方兼容表为准不拍脑袋</li>
+<li>投标文档要引用规格数值 → 停，必须带"示例口径，以官方文档为准"边界（n03）</li>
+<li>有人要求放开 root 远程登录 → 停，安全基线设计，不做"修复"（n10）</li>
+</ul>
+<p>输出契约：端口档位与硬件建议单（含免责）+ 虚拟化核查表 + 运维基线说明。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>规格表与兼容表均标注"Given as an example! Always consult the official documentation!"，教材只给骨架（n03）</li>
+<li>版本锚点随时代漂移（ESXi 8.0/Hyper-V 2022/Proxmox 8.2），选型前必须对官方当期兼容表</li>
+<li>端口清单细节在官方文档，本卡不载具体端口号（n50）</li>
+<li>Hypervisor 表为快照口径：Proxmox 自 VAA 4.6.1 起支持，更早版本不可用（p53 注）</li>
+<li>实验环境虚机规格与口令为教学专用（仅 Boundary 背景，见 book/overview），不可作为生产依据</li>
+<li>SUSE 系统安装全步骤在实验中跳过（预装虚机起步），完整流程见安装指南 4.2（n50）</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.vaa.server-sizing-virtualization · 来源：VSAAXTE001EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Visual Automated Attendant — Installation, Configuration and Maintenance (Participant's Guide, Edition 20) | edition: Edition 20 | pages: 351 页 -->

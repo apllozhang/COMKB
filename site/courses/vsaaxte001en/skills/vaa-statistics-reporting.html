@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>VAA 统计与报告</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Visual Automated Attendant · 安装、配置与维护</h2><p>Edition 20 · 351 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/vsaaxte001en/index.html">课程首页</a><a href="/courses/vsaaxte001en/digest.html">精华长文</a><a href="/courses/vsaaxte001en/overview.html">教书理解</a><a href="/courses/vsaaxte001en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/vsaaxte001en/skills/vaa-install-sip-integration.html">VAA 安装与 OXE SIP 对接接通</a><a href="/courses/vsaaxte001en/skills/vaa-multitenant-tree-design.html">VAA 多租户与树设计（公司/日历/UC1-UC3）</a><a href="/courses/vsaaxte001en/skills/vaa-prompt-tts-asr.html">VAA 提示音与 TTS/ASR 引擎</a><a href="/courses/vsaaxte001en/skills/vaa-ivr-option-nodes.html">VAA IVR 选项节点与动态脚本</a><a href="/courses/vsaaxte001en/skills/vaa-master-slave-ha.html">VAA Master/Slave 高可用与 OXE ARS 切换</a><a href="/courses/vsaaxte001en/skills/vaa-maintenance-backup.html">VAA 日常维护与版本升级</a><a href="/courses/vsaaxte001en/skills/vaa-db-integration.html">VAA 外部数据库集成（JDBC/SQL 节点）</a><a href="/courses/vsaaxte001en/skills/vaa-statistics-reporting.html">VAA 统计与报告</a><p class="course-nav-group">路由能力</p><a href="/courses/vsaaxte001en/skills/vaa-webadmin-administration.html">VAA WebAdmin 管理面</a><a href="/courses/vsaaxte001en/skills/vaa-pcs-opex-licensing.html">VAA PCS 同步与 OPEX/许可体系</a><a href="/courses/vsaaxte001en/skills/vaa-server-sizing-virtualization.html">VAA 服务器选型与虚拟化</a><a href="/courses/vsaaxte001en/skills/vaa-architecture-redundancy.html">VAA 架构与冗余全景</a><p class="course-nav-group">已安装技能</p><a href="/courses/vsaaxte001en/index.html">visual-automated-attendant（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/vsaaxte001en/index.html">VSAAXTE001EN</a><span>/</span><span aria-current="page">VAA 统计与报告</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>VAA 统计与报告</h1></div><dl><div><dt>Skill ID</dt><dd>vaa-statistics-reporting</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>VAA 统计与报告（四指标报表、呼叫日志逐节点排障、邮件周报）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The number of calls received • The number of treated calls • The calls released by the caller • The calls lost due to insufficient VAA license port … A pie chart: Number of calls transferred, number of 'released by vaa', number of 'released by caller', number of 'insufficient licenses'"（p314）
+"if the administrator selects 'Monday', he will receive the Tuesday at the time defined, the report of the previous day, i.e. Monday."（p317）
+"In the /etc/ale/vaa.conf file, two options must be set at true: • 'autogenerateTenantActivityReport'. default value Is true. … 'autogenerate ExcelTenantReport'. By default, this option is set at true."（p317）
+"It is IMPERATIVE to personalize the NAME of each block when configuring a tree! This name is used by statistics"（p145）</p>
+</blockquote>
+<p>出处：VSAAXTE001EN p279-281, p312-317。</p>
+<h2>I — 自述</h2>
+<p>统计体系四层，既是运营报表也是排障工具：</p>
+<ol>
+<li><strong>报表四指标</strong>：收到呼叫数、已处理数、主叫挂断数、许可端口不足丢失数；辅以两图——端口占用（正在处理的呼叫数/已占端口数）与饼图（转出/VAA 挂断/主叫挂断/许可不足）；全局统计在主菜单，按公司统计需先选中公司</li>
+<li><strong>呼叫日志（排障利器）</strong>：Call Logs 逐呼叫明细，点开可见该呼叫经过的节点及各节点时长——树节点命名直接决定日志可读性；CSV 导出字段含 id/主叫/租户/树/时长/结束原因/相关数据输入输出/转接目的地等</li>
+<li>
+<p><strong>租户活动邮件报告</strong>：xlsx 发给管理员，覆盖服务器上全部租户（处理呼叫数与逐小时来话图）</p>
+</li>
+<li>
+<p>开启条件——/etc/ale/vaa.conf 两个开关（autogenerateTenantActivityReport 与 autogenerateExcelTenantReport，默认 true）+ 管理员须有 "received activity reports" 权限 + 有效邮箱；可定发送时间与星期</p>
+</li>
+<li><strong>日期偏移口径</strong>：星期参数语义是"次日报前一天"——选 Monday 即周二收到周一（前一天）的报告；与客户对验收口径时必须说清</li>
+</ol>
+<p>统计前提链：节点命名纪律（树设计阶段）→ 呼叫日志可读 → 报表可解释；HA 故障期间 slave 处理的呼叫无统计（缺口属设计行为）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>周报开启与逐节点诊断</strong>（p312-317 讲义 + p280 字段表，无实验章）：</p>
+<ol>
+<li>核对 /etc/ale/vaa.conf 两个报告开关为 true（默认即是）</li>
+<li>管理员账号勾选 "received activity reports" 权限并确认邮箱有效</li>
+<li>设定发送时间与星期（记住次日报前一天的偏移）</li>
+<li>周期核对收件箱中的 xlsx 报告（处理呼叫数 + 逐小时来话图）</li>
+<li>排障场景：取 Call Logs 中目标呼叫明细</li>
+<li>点开单呼叫查看经过节点与各节点时长</li>
+<li>结合 CSV 导出做离线分析（字段含时长/结束原因/转接目的地等）</li>
+<li>输出结论：哪个节点停留异常、结束原因分布是否异常</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户要话务周报；报表数字对不上；投诉"IVR 卡"要定位节点；许可不足丢话取证；统计缺了一段数据；验收要逐节点时长证据。</p>
+<p>语言信号：统计 / statistics / 报表 / report / 呼叫日志 / call logs / CSV / 周报 / xlsx / autogenerateTenantActivityReport / 逐节点时长 / 许可不足 / insufficient / released by caller / 节点命名。</p>
+<p>与相邻能力区分：节点命名纪律的源头归树设计能力；日志五类与文件路径归维护能力；故障期间无统计的 HA 行为归 HA 能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：管理员账号（含报表接收权限与邮箱）、vaa.conf 访问权限（SSH）、树节点命名已合规、客户报表口径（要哪天/哪个时段的数据）。</p>
+<ol>
+<li>开周报：核对双开关默认 true，配管理员权限与邮箱、定发送日与时点。完成标准：首封 xlsx 按期到达</li>
+<li>口径对齐：向客户说明星期偏移（选周一收周一数据）；要周一上班看上周五需另行安排。完成标准：验收口径书面一致</li>
+<li>日常读表：四指标 + 饼图 + 端口占用逐月对照；许可不足项持续非零则评估扩容。完成标准：异常项有结论</li>
+<li>逐节点排障：按投诉时段取 Call Logs，点开样本呼叫看各节点时长。完成标准：定位到具体节点</li>
+<li>CSV 取证：导出目标时段呼叫日志做分布分析（结束原因/时长）。完成标准：证据文件归档</li>
+<li>缺口解释：报表若缺故障时段数据，对照 HA 行为口径答复（slave 只读无统计）并推动 resync。完成标准：客户认可口径</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户把"缺故障时段数据"当丢数据故障 → 停，按 HA 设计行为解释（nr-07 推断标注），不要承诺补录</li>
+<li>节点全是默认名导致日志读不出语义 → 停，源头在树设计命名纪律，本卡只能给出整改建议</li>
+<li>要实时监控（SNMP trap 集成） → 停，属告警监控域（维护能力），SNMP 默认关需手动启用</li>
+<li>周报没收到 → 停，按序查双开关/权限/邮箱/SMTP 配置与重启状态</li>
+</ul>
+<p>输出契约：周报开启确认 + 报表解读结论 + 逐节点诊断报告与 CSV 证据。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>统计依赖节点命名纪律（p145 三处强调）；默认名节点的日志无排障价值（n21）</li>
+<li>slave 故障期间无统计是设计行为，resync 不回补历史统计（n45，答复口径为实践引申）</li>
+<li>邮件周报的星期偏移易被误读为"周一收当周报"（n44）</li>
+<li>报告覆盖服务器上全部租户，无法按租户拆分投递（口径源自 p317 描述）</li>
+<li>p295 之外本域无实验章，A1 为讲义级流程（原书结构如此）</li>
+<li>CSV 字段名以 p280 表为准，跨版本可能有增删，引用时以现场版本实测</li>
+</ul><h2>相关能力</h2><p><a href="/courses/vsaaxte001en/skills/vaa-multitenant-tree-design.html">VAA 多租户与树设计（公司/日历/UC1-UC3）</a></p><p class="source-page">能力 ID：cap.vaa.statistics-reporting · 来源：VSAAXTE001EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Visual Automated Attendant — Installation, Configuration and Maintenance (Participant's Guide, Edition 20) | edition: Edition 20 | pages: 351 页 -->

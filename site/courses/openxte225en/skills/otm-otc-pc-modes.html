@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OTC PC 远程办公两模式（multi-devices、Nomadic SIP）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch · 移动与远程办公</h2><p>Edition 10 · 287 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte225en/index.html">课程首页</a><a href="/courses/openxte225en/digest.html">精华长文</a><a href="/courses/openxte225en/overview.html">教书理解</a><a href="/courses/openxte225en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte225en/skills/otm-dmz-security-channels.html">远程接入架构与 DMZ 双边缘</a><a href="/courses/openxte225en/skills/otm-certificate-pki.html">证书策略与签发（CA、封装、SAN、自建 CA）</a><a href="/courses/openxte225en/skills/otm-ot-server-settings.html">OpenTouch 服务器侧远程访问设置</a><a href="/courses/openxte225en/skills/otm-otsbc-deployment.html">OTSBC 部署与向导配置</a><a href="/courses/openxte225en/skills/otm-reverse-proxy.html">反向代理两路线部署与选型（内嵌 RP、Nginx）</a><a href="/courses/openxte225en/skills/otm-otc-pc-modes.html">OTC PC 远程办公两模式（multi-devices、Nomadic SIP）</a><a href="/courses/openxte225en/skills/otm-smartphone-provisioning.html">OTC 智能手机开通（Connection 用户、自动对象、R2.6 单设备）</a><a href="/courses/openxte225en/skills/otm-iphone-apns.html">iPhone+ APNS 推送专项</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte225en/skills/otm-client-access-profiles.html">客户端远程接入两步法（接入配置与路由档案）</a><a href="/courses/openxte225en/skills/otm-smartphone-modes.html">智能手机连接模式与回落（WiFi/3G4G/DTMF、无 SIM）</a><a href="/courses/openxte225en/skills/otm-vmware-ovf.html">VMware 虚机 OVF/OVA 部署</a><a href="/courses/openxte225en/skills/otm-lab-dialtest.html">实验环境与拨测验证（RLAB、编号计划、模拟器预期表）</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte225en/index.html">ot-mobility-remote-worker（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte225en/index.html">OPENXTE225EN</a><span>/</span><span aria-current="page">OTC PC 远程办公两模式（multi-devices、Nomadic SIP）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OTC PC 远程办公两模式（multi-devices、Nomadic SIP）</h1></div><dl><div><dt>Skill ID</dt><dd>otm-otc-pc-modes</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OTC PC 远程办公两模式（multi-devices 副设备、Nomadic SIP 池化）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Multi-devices operation brings a second way for users to use their OTC PC application as a client to phone. It's the possibility to associate a SIP extension as a secondary device to the user."（p152）
+"The previous way is still always possible, and is, based on the Nomadic feature with Nomadic SIP. In this case, if the user selects computer as current device, the main set … is frozen and calls are no more routed to the main"（p152）
+"Warning: AS FOR GSM NOMADIC MODE, SIP NOMADIC REQUIRE A POOL OF Z GHOST DEVICES."（p158）
+"Warning: DON'T FORGET TO VALIDATE BOTH FEATURES IN THE USERS' CLASS OF SERVICE."（p153）</p>
+</blockquote>
+<p>出处：OPENXTE225EN p151-161, p204。</p>
+<h2>I — 自述</h2>
+<p>OTC PC 远程办公两条路并存，按"要不要保留主话机"选：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>模式 A：multi-devices 副设备</th>
+<th>模式 B：Nomadic SIP（老法仍在）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原理</td>
+<td>给用户加一个 SIP 分机（实验口径 213100x）做副设备</td>
+<td>用户把当前话机从 Deskphone 切到 Personal Computer，主设备冻结、SIP 软话机顶替</td>
+</tr>
+<tr>
+<td>主话机</td>
+<td>保留，主副同振规则由 COS 支配</td>
+<td>冻结，退出游牧才恢复</td>
+</tr>
+<tr>
+<td>资源占用</td>
+<td>一个副设备号</td>
+<td>每并发连接占 1 个 SIP 设备 + 1 个 Ghost Z（池化、退出才释放）</td>
+</tr>
+<tr>
+<td>前提</td>
+<td>COS 振铃参数 + 两个功能前缀并授权 + 申报 DM</td>
+<td>Ghost Z 池 + SIP 设备池 + Nomadic SIP/Desktop 双许可</td>
+</tr>
+</tbody>
+</table></div>
+<p>模式 A 前提三项（p152-153）：</p>
+<ol>
+<li>COS 里把 "Ring all Secondary if Main Out of Service" 设 Yes</li>
+<li>Translator/Prefix Plan 建两个前缀：Twinset get call（Local features，实验口径 506）与 No ringing（Set features，实验口径 507）</li>
+<li>两个特性必须在用户的 Class of Service 里 Validate——漏掉是"建了但不工作"的高频根因</li>
+</ol>
+<p>模式 B 资源公式（p157-158）：并发游牧连接数 = 所需 SIP 设备数 = 所需 Ghost Z set 数；先统计同时游牧的用户数再建池。两模式都要求 OT 侧申报 DM（设备管理服务器，本书即 OmniVista 8770，端口 8080），OTC PC 从它取 SIP 文件。</p>
+<p>SIP 设备默认口令 0000，必须改成强值（书中建议与分机号一致）；OT 侧 OXE SIP Subscriber 里填的口令要与 OXE 侧一致，两边不一致是最直接的注册失败原因。</p>
+<h2>A1 — 书中案例</h2>
+<p>模式 A 配置主线（p151-156，实验口径号码见 book/overview）：</p>
+<ol>
+<li>8770 的 Phone feature COS 里给目标用户 COS 开 Ring all Secondary=Yes</li>
+<li>Prefix Plan 建前缀 506（Twinset Get Call）与 507（No ringing）</li>
+<li>在用户 COS 里 Validate 这两个特性</li>
+<li>OT 侧 /Eco system/IT server/ 建 Device management server（FQDN 指向 8770，端口默认 8080）</li>
+<li>Users 应用选有 NOE 主话机的用户，右键 Add a secondary set：号段 213100x、类型 SIP extension</li>
+<li>右键 Associate SIP device 新建 OTC PC：SIP URI 填 分机号@OT 服务器 FQDN</li>
+<li>Security 页签配 SBC：地址填 OTSBC 公共 FQDN、端口 5261、协议 TLS、级别 Encrypted only</li>
+</ol>
+<p>模式 B 配置主线（p157-161）：</p>
+<ol>
+<li>OXE 建 Ghost Z 池（Set Type=Analog + Ghost Z 特性选 Nomadic）</li>
+<li>OT 侧 OXE Resources 申报 Ghost Z 号段两端</li>
+<li>OXE 建 SIP 设备池并把默认口令 0000 改为强值</li>
+<li>OT 侧 OXE SIP Subscriber 逐台申报（口令与 OXE 侧一致、Security 页签选 SBC WAN）</li>
+<li>用户 licenses 页签勾 Nomadic SIP 与 Desktop 两项</li>
+<li>把当前话机从 Deskphone 切到 Personal Computer，Test the solution</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：员工在家用 PC 接听且保留办公桌话机；"只有电脑没有话机"的临时坐席；游牧用户反馈切不到 Personal Computer；游牧上线前的池容量评审；副设备建了不振铃。</p>
+<p>语言信号：multi-devices / 副设备 / secondary device / 213100x / Nomadic / 游牧 / Ghost Z / SIP 设备 / 池 / Deskphone / Personal Computer / Twinset get call / No ringing / COS / 506 / 507 / Desktop 许可。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>客户端怎么填 URL 与路由档案 → 客户端接入能力</li>
+<li>手机端配置 → 智能手机配置能力</li>
+<li>拨测验证 → 实验环境与拨测能力</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：模式选型（主话机是否保留）、并发游牧人数（模式 B）、COS 与前缀规划、SBC 申报（已部署 OTSBC）。</p>
+<ol>
+<li>选模式：主话机保留且要同振 → 模式 A；临时顶替主话机 → 模式 B。完成标准：选型带资源口径</li>
+<li>模式 A：按 COS、前缀、COS 授权三前提逐项落地。完成标准：两项特性在用户 COS 显示已授权</li>
+<li>模式 A：申报 DM 后创建副设备（213100x）并关联 OTC PC（SIP URI+SBC 五参数）。完成标准：Device 页签出现关联</li>
+<li>模式 B：按公式建池——池大小=并发游牧数（Ghost Z 与 SIP 设备两池同数）。完成标准：池号段在 OT 侧申报且两端一致</li>
+<li>模式 B：改 SIP 设备默认口令 0000 为强值，OT/OXE 两侧口令对齐。完成标准：注册核验通过</li>
+<li>模式 B：给用户勾 Nomadic SIP 与 Desktop 双许可。完成标准：licenses 页签两项同时启用</li>
+<li>行为验证：按拨测预期表互拨核对（转实验环境与拨测能力）；模式 B 执行切换测试</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>副设备"建了但不工作" → 停，先查用户 COS 是否 Validate 两特性（n12）</li>
+<li>游牧请求失败 → 停，查池是否耗尽与双许可是否齐（n13/n15）；池空后果细节书内未描述（needs-review nr-06）</li>
+<li>客户问池建多大合适但给不出并发数 → 停，公式输入缺失，先做并发统计再定池（n30 无算例）</li>
+</ul>
+<p>输出契约：可用的 OTC PC 远程形态（模式 A 副设备或模式 B 游牧）+ 前提核验记录 + 池容量与许可台账。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>池容量按并发规划是书中唯一容量规则，无算例；CAC/带宽等数值书内缺位（n30/nr-07）</li>
+<li>SIP 设备口令默认 0000 必须改（n14）；具体环境值见 book/overview</li>
+<li>模式 A 的可编程键（用 506/507 前缀）为后续动作，实验仅建前缀；前缀号可自选空闲号码</li>
+<li>两模式可并存于同一系统；模式 B 的 DAS 联动（N 规则）在 OT 服务器侧设置能力</li>
+<li>实验口径：2 个虚拟 Z + 2 个 SIP 设备的池仅教学规模，生产按并发统计替换</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte225en/skills/otm-client-access-profiles.html">客户端远程接入两步法（接入配置与路由档案）</a>、<a href="/courses/openxte225en/skills/otm-lab-dialtest.html">实验环境与拨测验证（RLAB、编号计划、模拟器预期表）</a></p><p class="source-page">能力 ID：cap.otm.otc-pc-modes · 来源：OPENXTE225EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch — 移动与远程办公 (Participant's Guide) | edition: Edition 10 | pages: 287 页 -->

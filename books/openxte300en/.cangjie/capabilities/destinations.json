@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.opentouch-starter",
+  "generated_at": "2026-09-23",
+  "destinations": {
+    "cap.ots.post-installation-wizard": { "promoted_to": "ots-post-installation-wizard" },
+    "cap.ots.license-flexlm": { "promoted_to": "ots-license-flexlm" },
+    "cap.ots.node-declaration-sip": { "promoted_to": "ots-node-declaration-sip" },
+    "cap.ots.prior-management": { "promoted_to": "ots-prior-management" },
+    "cap.ots.users-profiles": { "promoted_to": "ots-users-profiles" },
+    "cap.ots.voice-mail": { "promoted_to": "ots-voice-mail" },
+    "cap.ots.clients-multi-devices": { "promoted_to": "ots-clients-multi-devices" },
+    "cap.ots.maintenance-rehosting": { "promoted_to": "ots-maintenance-rehosting" },
+    "cap.ots.sot-installation": { "served_by": "opentouch-starter-router" },
+    "cap.ots.certificates": { "served_by": "opentouch-starter-router" },
+    "cap.ots.supervision-groups": { "served_by": "opentouch-starter-router" },
+    "cap.ots.lab-connections": { "served_by": "opentouch-starter-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 },
+  "gate_notes": {
+    "promoted_rationale": "八个独立意图域：初始化向导（task-04）、许可与 FlexLM（task-06/07/08）、双向声明与 SIP 及告警（task-09/10/11/13）、prior management（task-12）、档案与用户（task-14）、语音邮箱与通知（task-15）、客户端与多终端（task-17）、维护备份与 rehosting（task-18）——均满足独立意图/独立契约/独立运行/独立复用/独立评估五判据",
+    "router_rationale": "四张路由卡：SOT 装机（task-02/03，线性一次性流程）、证书（task-16，一次性安全域）、监督组（task-17 子域，场景窄）、实验环境与连接（task-01/05，支撑背景域）"
+  }
+}

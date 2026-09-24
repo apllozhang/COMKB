@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>整理摘要 · VSAAXTE001EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Visual Automated Attendant · 安装、配置与维护</h2><p>Edition 20 · 351 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/vsaaxte001en/index.html">课程首页</a><a href="/courses/vsaaxte001en/digest.html">精华长文</a><a href="/courses/vsaaxte001en/overview.html">教书理解</a><a href="/courses/vsaaxte001en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/vsaaxte001en/skills/vaa-install-sip-integration.html">VAA 安装与 OXE SIP 对接接通</a><a href="/courses/vsaaxte001en/skills/vaa-multitenant-tree-design.html">VAA 多租户与树设计（公司/日历/UC1-UC3）</a><a href="/courses/vsaaxte001en/skills/vaa-prompt-tts-asr.html">VAA 提示音与 TTS/ASR 引擎</a><a href="/courses/vsaaxte001en/skills/vaa-ivr-option-nodes.html">VAA IVR 选项节点与动态脚本</a><a href="/courses/vsaaxte001en/skills/vaa-master-slave-ha.html">VAA Master/Slave 高可用与 OXE ARS 切换</a><a href="/courses/vsaaxte001en/skills/vaa-maintenance-backup.html">VAA 日常维护与版本升级</a><a href="/courses/vsaaxte001en/skills/vaa-db-integration.html">VAA 外部数据库集成（JDBC/SQL 节点）</a><a href="/courses/vsaaxte001en/skills/vaa-statistics-reporting.html">VAA 统计与报告</a><p class="course-nav-group">路由能力</p><a href="/courses/vsaaxte001en/skills/vaa-webadmin-administration.html">VAA WebAdmin 管理面</a><a href="/courses/vsaaxte001en/skills/vaa-pcs-opex-licensing.html">VAA PCS 同步与 OPEX/许可体系</a><a href="/courses/vsaaxte001en/skills/vaa-server-sizing-virtualization.html">VAA 服务器选型与虚拟化</a><a href="/courses/vsaaxte001en/skills/vaa-architecture-redundancy.html">VAA 架构与冗余全景</a><p class="course-nav-group">已安装技能</p><a href="/courses/vsaaxte001en/index.html">visual-automated-attendant（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/vsaaxte001en/index.html">VSAAXTE001EN</a><span>/</span><span aria-current="page">整理摘要</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">DIGEST</p><h1>整理摘要 — 全书精华</h1></div></header><article class="markdown-body"><h1>DIGEST — Visual Automated Attendant 安装、配置与维护精华长文</h1>
+<blockquote>
+<p>源：VSAAXTE001EN Edition 20（351 页）· 文档整理入库 · 2026-09-23
+定位：10 分钟建立 VAA 交付与运维的全局认知；操作细节按需查 12 张能力卡。</p>
+</blockquote>
+<h2>一、这套东西是什么</h2>
+<p>VAA（Visual Automated Attendant）是 ALE 跑在 SUSE Linux 上的<strong>软件话务台/IVR</strong>：多租户、SIP 协议、7×24 呼叫路由与欢迎语，宣称符合 CIS-2 安全标准。它和 OmniPCX Enterprise（OXE）是分工关系——OXE 保留呼叫控制与路由，VAA 经 ABC/F 型 SIP 中继接管被叫号码的脚本执行（放欢迎语、收号、转接）。</p>
+<p>整本教材就是一条交付主线，五个阶段依次递进：装 VAA、OXE 侧 SIP 对接、树设计、高可用、运维与集成。</p>
+<p>三个数字先记住：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>数字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>120 端口</td>
+<td>VAA 单机最大端口数，超限找中央售前</td>
+</tr>
+<tr>
+<td>Release 11</td>
+<td>4.8.006 强制新许可（.lic/.vaa 绑 MAC 与 FQDN，旧许可失效）</td>
+</tr>
+<tr>
+<td>92 天</td>
+<td>Web 管理密码默认有效期，到期前 30/7/1 天邮件提醒</td>
+</tr>
+</tbody>
+</table></div>
+<h2>二、安装：一条参数契约定生死</h2>
+<p>安装三条路：手工（教材主线）、S.O.T 全自动（只能自签证书、incoming username 固定为 vaa）、Purple on Demand。4.8.006 只有"全新安装 + 数据库恢复"一条支持路径，没有原地升级。</p>
+<p>install.sh 的参数清单是 VAA 与 OXE 的<strong>接通契约</strong>，关键几项：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>incoming username</td>
+<td>必须与 OXE 外部网关完全一致、无密码留空、认证方式 None——接不通先对这对字符串</td>
+</tr>
+<tr>
+<td>编解码</td>
+<td>G711a/G711mu/G729 勾选；G729 与语音识别（ASR）互斥，要用 ASR 必须 G711</td>
+</tr>
+<tr>
+<td>证书</td>
+<td>/tmp 放 PKCS12 或 PEM 自动识别；不给就自签（生产提前用 CA 生成，SAN 必填 IP 与 DNS）</td>
+</tr>
+<tr>
+<td>转移禁拨前缀</td>
+<td>实验留空；生产不配等于开放外部 callers 借 VAA 外转</td>
+</tr>
+<tr>
+<td>自动备份</td>
+<td>装完即启用（Daily 午夜起）；一旦启用无法关闭</td>
+</tr>
+</tbody>
+</table></div>
+<p>OXE 侧是<strong>手工五段链</strong>，缺一段就可能接不通：</p>
+<ul>
+<li>SIP trunk group：T2 型、Q931 变体 ABC-F、独立 remote network、T2 specificity=SIP</li>
+<li>本地 SIP 网关联动（初始化 SIPMOTOR）；外部网关（type=VAA、端口 5060 UDP、监督定时器 60、incoming username 与安装一致）</li>
+<li>信任 IP 与网络路由表；前缀计划（实验 314 前缀 5 位）</li>
+</ul>
+<p>装完验收就一句：vaa status 全部 Running，拨 31400 听到欢迎语后自动挂断。排障四层抓手：trkstat 中继状态、sipextgw 网关状态、OXE 抓包（motortrace/mtracer）、VAA 侧 softcmp (SIP) 日志。</p>
+<h2>三、树设计：多租户 + 三级用例</h2>
+<p>公司（租户）四要素：时区、DID 段、留言前缀、分机位长。<strong>依赖物先行</strong>：日历、营业时间、过滤器、提示音必须在建树之前建好。12 种原生节点覆盖绝大多数需求（欢迎/菜单 12 键/监督或盲转/忙无应答分支/日历/营业时间/过滤/跳子树/远程录音/挂断）；9 种 IVR 选项节点（收号、ASR、SQL、HTTP、邮件、条件、变量、相关数据、自定义显示名）另购许可，负责对接信息系统。</p>
+<p>三级用例递进：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>用例</th>
+<th>场景</th>
+<th>关键节点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UC1 简单转接</td>
+<td>欢迎 + 监督转 + 忙/无应答分支</td>
+<td>Announcement、Transfer（Wait 15s、Bypass forward）、Release</td>
+</tr>
+<tr>
+<td>UC2 日历+过滤</td>
+<td>营业时间/假日闭馆 + VIP 分流</td>
+<td>Calendar、Business hours、Filter、两个 Transfer（盲转）</td>
+</tr>
+<tr>
+<td>UC3 多语言菜单</td>
+<td>法英双语四选项菜单</td>
+<td>语言选择菜单、Select language、Menu（重试 2/超时 4s）、Voicemail、Go to tree</td>
+</tr>
+</tbody>
+</table></div>
+<p>两条铁律：<strong>每个节点必须个性化命名</strong>（名称直接进统计与呼叫日志，随手默认名等于放弃排障）；多语言树的语言选择前提示必须<strong>双语同文件</strong>（语言选择发生在播报之后）。路由绑定推荐一号一树，通配符"可用但不推荐"。</p>
+<h2>四、高可用：一半在 VAA，一半在 OXE</h2>
+<p>VAA 侧只做数据复制（Master→Slave），切换动作由 OXE 的 ARS 双路由完成。行为口径是客户预期管理的硬底线：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>行为</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>切换丢话</td>
+<td>任何切换都丢进行中呼叫（原书三处重复），SLA 只保证新呼叫</td>
+</tr>
+<tr>
+<td>Slave 只读</td>
+<td>故障期间它处理的呼叫不产生统计</td>
+</tr>
+<tr>
+<td>不自动回同步</td>
+<td>Master 恢复后必须手工 vaa ha resync，Web 客户端要手动重连</td>
+</tr>
+<tr>
+<td>首呼延迟</td>
+<td>切换后第一通呼叫有短延迟（OXE 判定中继断），属预期</td>
+</tr>
+</tbody>
+</table></div>
+<p>部署口诀：slave 独立安装（FQDN vaa2、incoming username vaa2、license2.vaa），配置一律从 master 发起——<code>vaa ha addslave</code> 会用 master 库快照<strong>清空 slave 现有配置</strong>。</p>
+<p>OXE 侧要补第二套中继/网关/识别符/NPD/ARS 双路由才真正生效。N+1 是另一种结构（扩容型，reference VAA 故障期配置冻结），别和双机混谈。</p>
+<h2>五、运维与集成速览</h2>
+<ul>
+<li><strong>命令族</strong>：vaa stop 保留 postgresql 与 nginx，fullstop 全停；status/services/version 巡检；services 输出直接看许可三项（VAA_PORTS/VAA_IVR/VAA_RELEASE）</li>
+<li><strong>备份三级</strong>：db（仅库）/cert（nginx 证书与配置）/full（库 + vaa.conf + secureCall 证书）；自动备份启用后关不掉，系统不监控磁盘，按 6 个月 20GB 起预估</li>
+<li><strong>升级</strong>：备份先行，新 vaa.conf 可能新增必需参数——旧备份不能直接覆盖，逐值比对后 vaa restart；HA 全员升级后 master resync</li>
+<li><strong>告警</strong>：邮件三类（中继断/恢复、端口到限、许可问题）；SMTP 改完必须重启服务；SNMP 默认关</li>
+<li><strong>统计</strong>：四指标（收到/已处理/主叫挂断/许可不足丢失）+ 呼叫日志逐节点时长（排障利器）+ xlsx 邮件周报（选周一收到的是周一数据，次日报前一天）</li>
+<li><strong>数据库集成</strong>：默认只有 PostgreSQL/MariaDB 驱动；MS SQL/Oracle 手装到 /opt/ale/aa-webapp/lib 且 HA 双机都要装；SQL 节点一次取一个字段、多条取首条、空结果不算错（必须 Condition 判）</li>
+<li><strong>PCS/OPEX</strong>：远端站点断网本地接管但应急配置恢复即丢；OPEX（Purple On Demand）要云化 OXE + 单订阅 + 端口分摊，且与跨数据中心空间冗余互斥</li>
+</ul>
+<h2>六、速查卡</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>要做的事</th>
+<th>去哪张能力卡</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>装 VAA/对接 OXE/拨不通</td>
+<td>vaa-install-sip-integration</td>
+</tr>
+<tr>
+<td>建租户/编树/配营业时间</td>
+<td>vaa-multitenant-tree-design</td>
+</tr>
+<tr>
+<td>提示音/TTS/ASR</td>
+<td>vaa-prompt-tts-asr</td>
+</tr>
+<tr>
+<td>变量/收号/HTTP/邮件节点</td>
+<td>vaa-ivr-option-nodes</td>
+</tr>
+<tr>
+<td>双机/ARS 切换</td>
+<td>vaa-master-slave-ha</td>
+</tr>
+<tr>
+<td>巡检/备份/升级</td>
+<td>vaa-maintenance-backup</td>
+</tr>
+<tr>
+<td>查库转接/JDBC 驱动</td>
+<td>vaa-db-integration</td>
+</tr>
+<tr>
+<td>周报/逐节点排障</td>
+<td>vaa-statistics-reporting</td>
+</tr>
+<tr>
+<td>管理员/SMTP/日志页</td>
+<td>路由入口（visual-automated-attendant-router）</td>
+</tr>
+<tr>
+<td>PCS/OPEX/许可/选型/架构</td>
+<td>路由入口（visual-automated-attendant-router）</td>
+</tr>
+</tbody>
+</table></div>
+<h2>版权</h2>
+<ul>
+<li>本精华长文为 ALE Training Services《Visual Automated Attendant — Installation, Configuration and Maintenance》（VSAAXTE001EN Edition 20）的内部学习整理，仅供内部学习使用；教材版权归 ALE Training Services 所有。</li>
+</ul></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Visual Automated Attendant — Installation, Configuration and Maintenance (Participant's Guide, Edition 20) | edition: Edition 20 | pages: 351 页 -->

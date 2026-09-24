@@ -1,0 +1,41 @@
+# otmcxte200en 盲判结果（仅依据能力目录，未读答案）
+
+- should-install-01 | otmsg-install-site-setup | 从装系统到进管理界面的完整流程，即物料介质、core 安装与首启 13 步向导
+- should-install-02 | otmsg-install-site-setup | 向导 DNS 要解析哪些名字与账户密码规矩，对应七类 FQDN 与五账户规则
+- should-license-01 | otmsg-license-management | 新许可文件拷入后如何生效与确认认上，对应 SFTP 手工装、flexlmd 重启、lmstat 核验
+- should-license-02 | otmsg-license-management | 安装时跳过许可后的隐患，对应"向导 OK 只代表文件存在"的坑
+- should-decl-01 | otmsg-declaration-sync | 交换机与信箱服务器都挂 8770 两边各做什么先后顺序，即双向声明与同步
+- should-decl-02 | otmsg-declaration-sync | 节点号能不能随便填与管理密码忘了怎么办，对应节点号规则与密码重置两路
+- should-sip-01 | otmsg-sip-trunk-provisioning | 交换机侧打通话路的中继与网关参数，对应 trunk group 与 external gateway 配置
+- should-sip-02 | otmsg-sip-trunk-provisioning | 留言留不进、呼叫到不了信箱服务器，按该能力四段排障顺序查话路
+- should-umb-01 | otmsg-user-mailbox-provisioning | 建账号到能收留言的完整交付，即 OXE 建户到 OTMC 三级对象全链
+- should-umb-02 | otmsg-user-mailbox-provisioning | 信箱有了但别人留不了言，先查用户对象挂接、分机号对齐与 Voice mail 权
+- should-profile-01 | otmsg-mailbox-profiles | 批量限信箱大小与保留天数，对应 profile 三页签批控行为/时长/容量
+- should-profile-02 | otmsg-mailbox-profiles | 集中换来电前的公司问候，对应问候语四类与 Greeting Managers 集中管理
+- should-notif-01 | otmsg-notification-smtp-sms | 留言自动带录音邮件的通知部署，即 SMTP 通知开通
+- should-notif-02 | otmsg-notification-smtp-sms | 通知一封没收到且无告警，走 chameleon/scorpio 排障与失败静默口径
+- should-backup-01 | otmsg-backup-statistics | 备份与恢复演练，对应 8770 两段式备份与恢复后手工 service opentouchd start
+- should-backup-02 | otmsg-backup-statistics | 每月各信箱使用量报表，对应 statistics 的 XML/HTML/CSV 输出
+- should-pos-01 | otmsg-product-positioning | 是交换机内功能还是单独服务器、物理与虚机差异，即产品定位与部署形态
+- should-pos-02 | otmsg-product-positioning | Supra 网络集中留言可不可行，对应"Supra 不支持集中 VM"红线
+- should-portal-01 | otmsg-web-portal | 网页直接听留言管留言，即 MyMessaging
+- should-portal-02 | otmsg-web-portal | 自助改信箱密码与切换语言，即 My Profile
+- should-imap-01 | otmsg-imap-access | Outlook 里直接看语音留言，走 IMAP 客户端访问
+- should-imap-02 | otmsg-imap-access | 客户端连不上信箱服务器收留言的加密对齐，对应 IMAPS+TLS 与端口
+- should-ga-01 | otmsg-general-announcement | 客户留言前播全公司统一节日通告，是广播的典型播报场景
+- should-ga-02 | otmsg-general-announcement | 录音传上去公告不播，先查 wav 格式（CCITT A-law 8bits 8kHz mono）与 5 分钟限制
+- bait-install-01 | otmsg-declaration-sync | 挂到 8770 统一管理是声明同步的活，跟安装向导无关
+- bait-license-01 | none | IP 话机用户许可属 OXE 话侧许可体系，目录只有 OTMC FlexLM 与信箱交付里的许可核查，不含话机许可
+- bait-decl-01 | otmsg-sip-trunk-provisioning | SIP 中继端口与传输方式是话路参数（5040/TCP），不是 8770 声明
+- bait-sip-01 | otmsg-declaration-sync | 在信箱服务器拓扑里登记交换机节点的端口字段，属 OTMC 拓扑对称声明
+- bait-umb-01 | otmsg-mailbox-profiles | 批量把保留期 15 天改 30 天走 profile 时长页签，与建户交付无关
+- bait-profile-01 | otmsg-user-mailbox-provisioning | 建信箱账号并把信箱分配到人名下，正是 VMS→mailbox→user 对象链交付
+- bait-notif-01 | otmsg-imap-access | 邮件软件直接翻留言列表是 IMAP 访问，与通知邮件两回事
+- bait-portal-01 | otmsg-mailbox-profiles | 管理员批量给几十个用户上传激活同段问候语，走 Greeting Managers 集中管理
+- bait-backup-01 | otmsg-install-site-setup | 装机首启向导里备份存放位置怎么选，属站点安装的备份存储选型，不是备份恢复功能
+- bait-ha-01 | none | 双机热备配对配置超出目录，虚机形态只提 vMotion/DRS 白名单，无 HA 能力
+- bait-um-01 | none | 语音留言落 Exchange 做统一消息的对接配置不在目录内，UM 仅作为 profile 档位出现过
+- bait-aa-01 | none | 自动话务员按键菜单不在目录内，广播能力描述里明确 AA 项废弃
+- edge-node-01 | otmsg-declaration-sync | 节点号 98 还是 99 的争议，按节点号=ABC×100+节点号规则归属该能力
+- edge-mwi-01 | otmsg-notification-smtp-sms | 听完留言红灯不灭，先按 MWI 机制排查而非判硬件坏
+- edge-imap-01 | otmsg-imap-access | 收信测试过、发信红叉算不算配好，正是"IMAP 登录 Completed 才算、发信失败属预期"的验收判据

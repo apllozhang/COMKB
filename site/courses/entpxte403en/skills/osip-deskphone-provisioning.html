@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>ALE 话机 SIP 开通与 NOE↔SIP 切换</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · SIP</h2><p>Edition 12 · 465 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte403en/index.html">课程首页</a><a href="/courses/entpxte403en/digest.html">精华长文</a><a href="/courses/entpxte403en/overview.html">教书理解</a><a href="/courses/entpxte403en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte403en/skills/osip-protocol-foundation.html">SIP 协议机理与 OXE SIP 架构</a><a href="/courses/entpxte403en/skills/osip-user-forms.html">SIP 用户形态选型与容量核算</a><a href="/courses/entpxte403en/skills/osip-sip-device-provisioning.html">SIP Device 用户开通与维护</a><a href="/courses/entpxte403en/skills/osip-deskphone-provisioning.html">ALE 话机 SIP 开通与 NOE↔SIP 切换</a><a href="/courses/entpxte403en/skills/osip-ales-provisioning.html">ALES 软终端开通与认证</a><a href="/courses/entpxte403en/skills/osip-certificate-management.html">OXE DM 证书定制与安全级</a><a href="/courses/entpxte403en/skills/osip-otsbc-carrier-interconnect.html">经 SBC 的 SIP 运营商接入与 OTSBC 部署</a><a href="/courses/entpxte403en/skills/osip-remote-workers.html">远程办公方案与落地</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte403en/skills/osip-codec-negotiation.html">编解码协商与验证</a><a href="/courses/entpxte403en/skills/osip-sip-troubleshooting.html">SIP 跟踪采集与维护排障</a><a href="/courses/entpxte403en/skills/osip-dm-management.html">SIP 设备管理选型与 profile 体系</a><a href="/courses/entpxte403en/skills/osip-sip-features.html">ALE SIP 业务特性配置</a><a href="/courses/entpxte403en/skills/osip-lab-environment.html">POD 实验环境与运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte403en/index.html">oxe-sip（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte403en/index.html">ENTPXTE403EN</a><span>/</span><span aria-current="page">ALE 话机 SIP 开通与 NOE↔SIP 切换</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>ALE 话机 SIP 开通与 NOE↔SIP 切换</h1></div><dl><div><dt>Skill ID</dt><dd>osip-deskphone-provisioning</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>ALE 话机 SIP 开通与 NOE↔SIP 切换（ALE-2/3、ALE-x00 双分区）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"1 DHCP request. SIP Phone retrieves the device management application address 2 SIP Phone downloads its configuration file ... 3 SIP Deskphone downloads its binaries ... 4 SIP signaling establishment"（p71）
+"BE AWARE THAT DISABLING THE DM IN THE OMNIVISTA 8770 WILL CAUSE THE REMOVAL OF THE DEVICE CONFIGURATION FILES FROM THE 8770 SERVER ... A RESET FLASH WILL BE MANDATORY ON ALL DEVICES"（p174）
+"From the binary version R200, out-of-the-box Deskphones include both binaries (NOE and SIP) ... 'Download' message means that ... downloading the SIP binaries in background mode (it can take up to 30 minutes the first time)"（p188, p200）
+"ALE-2/ALE-3 devices belong to a DHCP class, named 'ALE-2X' and use a Vendor Class ID (VCI) called 'aledevice'"（p181）</p>
+</blockquote>
+<p>出处：ENTPXTE403EN p71, p172-216。</p>
+<h2>I — 自述</h2>
+<p>SEPLOS 话机入网四步链：DHCP 拿 DM 地址、HTTPS 拉 DM 配置文件（按 MAC）、拉二进制、SIP 注册。两类话机两条施工线：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>ALE-2/ALE-3</th>
+<th>ALE-30/ALE-x00</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DHCP 类/VCI</td>
+<td>ALE-2X / aledevice</td>
+<td>SIP80x8s / ictouch.0</td>
+</tr>
+<tr>
+<td>TFTP URL（无/本地冗余）</td>
+<td>https://<OXE Main IP>/dmictouch</td>
+<td>同左</td>
+</tr>
+<tr>
+<td>TFTP URL（空间冗余）</td>
+<td>必须 https://<OXE FQDN>/dmictouch</td>
+<td>同左（DNS 可解）</td>
+</tr>
+<tr>
+<td>双分区</td>
+<td>无</td>
+<td>有（NOE/SIP 各一）</td>
+</tr>
+<tr>
+<td>NOE↔SIP 切换</td>
+<td>不适用</td>
+<td>WBM 按钮 / DHCP 批切 / 话机 MMI</td>
+</tr>
+<tr>
+<td>远程搬迁</td>
+<td>不能动态 LAN↔WAN（先换专用 DM profile）</td>
+<td>双栈可即插即迁</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>开通六段（两系通用）：①DM 激活（关 "Device Management in 8770" 参数）②SIP Phone COS ③DM profile ④建户（Set Type=SIP Extension + 子型 + DM profile）⑤DHCP（启用 dhcpd、建范围、配类 TFTP URL、Apply Modifications）⑥注册（MAC 手工绑定或 auto-discovery）</li>
+<li>双分区切换状态图：Force Download NOE/SIP=YES 时对侧二进制后台预载（首次下载可达 30 分钟），切换即快切；=NO 时切换现场下载、明显变慢；R200 起出厂双分区但版本未必最新</li>
+<li>auto-discovery 口令三件（别混）：auto-discovery 认证=分机号+用户密码码（默认 0000）；话机高级菜单=123456；DM profile 下发 admin 密码（实验 2580）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>ALE-2/3 开通（31033）</strong>（p172-186，How-To）：</p>
+<ol>
+<li>WBM 取消勾选 "Device Management In 8770" 激活 OXE DM（存量的先做 reset flash 预案）。</li>
+<li>建 DM profile 3：LDAP（ldap://192.168.1.252:389 实验口径）、DNS/SNTP、DTMF、SBC=No、admin 密码与 SSH。</li>
+<li>建户：DN=31033、Set type=SIP Extension、Sub type=ALE-2/ALE-3、DM profile=3、Phone COS=0。</li>
+<li>DHCP：启用 dhcpd、建范围 192.168.1.161-164（实验口径）、ALE-2X 类 TFTP URL=https://<OXE Main IP 或 FQDN>/dmictouch、Apply Modifications。</li>
+<li>话机置 DHCP 模式（高级菜单口令 123456）；注册走 MAC 手工绑定或 auto-discovery（31033/0000）。</li>
+<li>验证：sipregister 见 31033；nginx access.log 出现 404→401 认证序列与 config.<mac>.xml。</li>
+</ol>
+<p><strong>ALE-300 存量切 SIP（31011）</strong>（p196-216，How-To）：</p>
+<ol>
+<li>先给 Phone COS 0 设 Force download NOE/SIP=Yes，话机后台预载 SIP 二进制（Download 约 30 分钟 → Upgrade 数分钟 → 自动重启）。</li>
+<li>WBM 选 31011 点 "Change NOE to SIP" → OK → 核对子型自动带出、补 DM profile=3。</li>
+<li>验证：话机 MMI 显示双版本；access.log 见 PHONE_MODEL=ALE-300 ST=200 与 downbin 请求。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新站点批量部署 ALE 话机；存量 NOE 话机转 SIP；切换太慢要提速；话机注册不上/拿到旧配置；空间冗余站点配 DHCP 类。</p>
+<p>语言信号：ALE-2 / ALE-3 / ALE-300 / ALE-500 / 双分区 / dual partition / Force Download / Change NOE to SIP / sipconfig.txt / aledevice / ictouch.0 / auto-discovery / dmictouch / Apply Modifications。</p>
+<p>与相邻能力区分：证书与 SSL 安全级前提找证书管理；DM 选型与 profile 体系找 SIP 设备管理；切到 SIP 后配业务键找 SIP 业务特性；话机搬到员工家找远程办公。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：话机型号清单（是否双栈）、MAC 或 auto-discovery 策略、DHCP 现状（OXE 内部/外部）、冗余模式。老话机证书不达标 → 判停先处理 SSL 级。</p>
+<ol>
+<li>核前提：FQDN 已建、证书已生成、CTL 在 /usr3/mao/DM/VHE8082/。完成标准：三件齐</li>
+<li>激活 OXE DM：关 "Device Management in 8770"；存量 8770 话机按 reset flash 预案排窗口。完成标准：DM 在 OXE</li>
+<li>建 DM profile 与 SIP Phone COS：LDAP/DNS/SNTP/DTMF/话务特性/admin 密码。完成标准：profile 先于用户存在</li>
+<li>建户：SIP Extension + 子型 + DM profile + Phone COS；登记防火墙信任主机。完成标准：用户就绪</li>
+<li>配 DHCP：启用 dhcpd、建范围、按型号配类（ALE-2X/aledevice 或 SIP80x8s/ictouch.0）与 TFTP URL；空间冗余必须 FQDN。完成标准：Apply Modifications 已点</li>
+<li>注册入网：话机 DHCP 模式 → MAC 手工绑定或 auto-discovery（分机号+0000）。完成标准：sipregister 见注册</li>
+<li>（ALE-x00 切换）预载：COS 设 Force Download=Yes 等后台 Download/Upgrade 完成再切；批量用 DHCP 类挂 sipconfig.txt（前提无其他 NOE 设备，外部 DHCP 加 option 67）。完成标准：切换后 SIP 版本生效</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>空间冗余却配了 IP 型 URL → 停，改 FQDN（n10）</li>
+<li>改了 DHCP 不点 Apply Modifications → 停，进程不读新配置（n11）</li>
+<li>NOE↔SIP 切换对象是远程用户/8770 DM/带 manager-assistant 键/desk sharing/ubiquity/自动话务员/user profile/ACD → 停，六类禁止（n13）</li>
+<li>Force Download=NO 且要白天批量切 → 停，先预载或改夜间窗口（n14）</li>
+</ul>
+<p>输出契约：入网注册成功的话机清单 + DHCP 类与 profile 配置台账 + 切换窗口记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>关 8770 DM 即删其配置文件，全站 SIP 话机丢配置必须 reset flash——迁移是"全站重开"级操作（n08）</li>
+<li>OpenSSL 安全级 2 拒收 RSA&lt;2048 位或 SHA-1 证书，老话机入网前先查证书；降级到 1/0 必须重启且是权宜之计（n09）</li>
+<li>三个默认口令（0000/123456/2580）全部实验/默认口径，生产必须替换（n12/n50）</li>
+<li>DHCP 批量切 SIP 仅限系统无其他 NOE 设备或外部 DHCP 可设专用类，混存站点用 WBM 逐台（n15）</li>
+<li>ALE-2/3 不能 LAN↔WAN 动态搬迁，必须先挂目标位置专用 DM profile（n38，远程场景详见远程办公卡）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte403en/skills/osip-certificate-management.html">OXE DM 证书定制与安全级</a>、<a href="/courses/entpxte403en/skills/osip-dm-management.html">SIP 设备管理选型与 profile 体系</a></p><p class="source-page">能力 ID：cap.osip.deskphone-provisioning · 来源：ENTPXTE403EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - SIP (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 465 页 -->

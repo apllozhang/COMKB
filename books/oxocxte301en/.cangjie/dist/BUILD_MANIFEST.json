@@ -1,0 +1,44 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\oxoa-attendant-suite.md": "7a7c08d45d34f20892a4ebf12302480c3eddfe18998f6676a811d3dabe1bb9ff",
+    "references\\capabilities\\oxoa-certificate-suite.md": "98f6549c26cf426d0bb31a934c9931c7ca09298f76b31c76b623d46e8152ad9e",
+    "references\\capabilities\\oxoa-cloud-connect-fleet.md": "131bc8ac486d5b25180a755afedc5641e9b79f573b5ea968187b834d20ea27b3",
+    "references\\capabilities\\oxoa-dect-deployment.md": "629f26b3f252e445b1a34bb0d8bab3c55d582e946a871f9dd8affbf27c1de329",
+    "references\\capabilities\\oxoa-foundation-ip.md": "a4e399ea79f03df87cad494ea063989bc4bc13148133c7ada22dba9426250a40",
+    "references\\capabilities\\oxoa-hotel-billing-vertical.md": "54ef367e5c29d0b3a6af8645eab11eb0aff6d8767e1b8becc5df4326515b0f83",
+    "references\\capabilities\\oxoa-maintenance-toolkit.md": "f6d1a6adef24cea949accbd506e863ed3e26bd3bd46eb1038b2c4421ac1e773c",
+    "references\\capabilities\\oxoa-multi-entity.md": "abd1948b657fbac69fb457a87e581d0ec35c6fdb30965568f6939df3b03e6f25",
+    "references\\capabilities\\oxoa-numbering-ars-suite.md": "ebe883a9291b2a7a423775da3f87275780369b9c46202442ead1faa421b4d9e8",
+    "references\\capabilities\\oxoa-security-hardening.md": "92cc9a5593febe702b91cc3a45d4d8ed4639cbe10d5657152c5aabd37c0e2e9f",
+    "references\\capabilities\\oxoa-shared-devices.md": "5dfa11c276a68352aa9d4d81554fde5475624516cdcdfc39d0ddc93e7d4a9055",
+    "references\\capabilities\\oxoa-sip-networking.md": "1341994eca67297ae4d297698f72a4384bbc083649a72522ac9734bfbe92a300",
+    "references\\capabilities\\oxoa-terminal-ecosystem.md": "fea9c7f692a3f628b3357a72a2d66a96ae3f2776b8f1d047a56bdfa9d8c7c095",
+    "references\\capabilities\\oxoa-voicemail-mobility.md": "aeb1d7577654983c0ad25290d5b2d0e63f177904d8b4782f3f74848a5595f820",
+    "references\\capability-index.md": "efd074af7147ce3c8690cdddc01552a2a778ff1ff947a36cc9cc8f3bcdeb4457",
+    "references\\cheatsheet.md": "d8bca1c2118ced8453dfdac119177189d60ff3788f369a9336ecaf2f805c781d",
+    "references\\glossary.md": "84c8f5073cc958fc2e4e4b1923f8ce4fa2416e41dfa465d6fd5e5164e9c35ea9",
+    "references\\overview.md": "2e6887bcfc3eb587dc03d22551c795ccfca85ba2e2b5d22145d67e9e277875f1",
+    "SKILL.md": "409e2969ab3abe2fe572bdaacfda062bef62aab51d67fdb67e2a030b30aeae6e"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.oxo-connect-advanced",
+  "bundle_sha256": "b18c79e176ffc22f226c19472186f94eab2583a226fb5d333743e77548087eb3",
+  "variant": "single",
+  "run_id": "run-20260924-200018-0ef9fe",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 14,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

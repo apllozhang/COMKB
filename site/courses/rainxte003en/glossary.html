@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>术语词典 · RAINXTE003EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Rainbow for OmniPCX Enterprise</h2><p>Edition 12 · 314 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte003en/index.html">课程首页</a><a href="/courses/rainxte003en/digest.html">精华长文</a><a href="/courses/rainxte003en/overview.html">教书理解</a><a href="/courses/rainxte003en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte003en/skills/rxe-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte003en/skills/rxe-agent-onboarding.html">OXE 接入 Rainbow 与接入排障</a><a href="/courses/rainxte003en/skills/rxe-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte003en/skills/rxe-routing-rex.html">OXE 用户形态决策与远程延伸路由</a><a href="/courses/rainxte003en/skills/rxe-webrtc-gateway-deployment.html">WebRTC 网关部署与升级</a><a href="/courses/rainxte003en/skills/rxe-oxe-gateway-config.html">OXE 侧 WebRTC 网关配置九件套</a><a href="/courses/rainxte003en/skills/rxe-gateway-pool-sizing.html">共享 WebRTC 网关池与容量规划</a><a href="/courses/rainxte003en/skills/rxe-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte003en/skills/rxe-rcc-association.html">OXE 分机关联与 RCC 模式</a><a href="/courses/rainxte003en/skills/rxe-attendant-consoles.html">两套话务台（4059EE 与 Rainbow Attendant Console）</a><a href="/courses/rainxte003en/skills/rxe-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte003en/skills/rxe-network-readiness.html">Rainbow 网络就绪核查</a><a href="/courses/rainxte003en/skills/rxe-lab-pod-setup.html">RLAB 实验环境与 Pod 配置</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte003en/index.html">rainbow-oxe-integration（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte003en/index.html">RAINXTE003EN</a><span>/</span><span aria-current="page">术语词典</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">GLOSSARY</p><h1>术语词典 — 中英对照</h1></div></header><article class="markdown-body"><h1>GLOSSARY — Rainbow OmniPCX Enterprise 术语表</h1>
+<blockquote>
+<p>阶段 3 产出（源：candidates/glossary.md，66 条，六大域；本文件为门户精选版，全量口径见工作区 references.md）。
+口径：定义只采信本书正文；CSTA/OMS/GD/ITSP/NPD/ESR/TFTP 等缩写书中未给全称，如实标注；p52 "to to"、p24 "perminute" 为原文笔误。</p>
+</blockquote>
+<h1>Rainbow / OmniPCX Enterprise (RAINXTE003EN Ed12) — 关键术语词典</h1>
+<blockquote>
+<p>文档整理流水线术语提取器产出。取材方法：全量扫描 source_fulltext.txt（314 页全部通读），所有页码均回原文核验。
+用途：下游能力卡的共享中英对照词典。</p>
+</blockquote>
+<h2>一、核心概念域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rainbow</td>
+<td>Rainbow 云协作平台</td>
+<td>UCaaS（协作/云话音）+ CPaaS（开放 API）双定位，混合云模式集成 OXE/OXO/第三方 PBX</td>
+<td>p20-23</td>
+</tr>
+<tr>
+<td>Company</td>
+<td>公司（租户单元）</td>
+<td>主功能仅对成员开放的组织单元；分 Reseller/BP 与 End-customer 两级，一人不能属两家公司</td>
+<td>p38-39</td>
+</tr>
+<tr>
+<td>Visibility</td>
+<td>公司可见性（四级）</td>
+<td>PUBLIC/PRIVATE/CLOSED/ISOLATED 控制与外部互见互邀；教材建议建司即设 CLOSED，不推荐 ISOLATED（无法被外部 bubble 邀请）</td>
+<td>p43</td>
+</tr>
+<tr>
+<td>SSO</td>
+<td>单点登录（Single Sign-On）</td>
+<td>Azure AD-SAML/OIDC、ADFS-SAML 组合；配置管理员须 Enterprise 级；其他标准协议 IdP 须经 ALE 确认</td>
+<td>p44</td>
+</tr>
+<tr>
+<td>TOTP</td>
+<td>时间同步一次性口令（Time-based One Time Password）</td>
+<td>需第三方验证器 App 的双因子，全员可用、特别推荐管理员</td>
+<td>p44</td>
+</tr>
+<tr>
+<td>RCC</td>
+<td>远程呼叫控制（Remote Call Control）</td>
+<td>OXE 分机关联后的基本模式：Rainbow 仅监督话机（接/挂/转），音频全在话机——正常形态非故障</td>
+<td>p109-110, p129</td>
+</tr>
+<tr>
+<td>Remote Extension (REX)</td>
+<td>远程延伸</td>
+<td>OXE 特殊终端设备：让 OXE 把呼叫转往外部资源；Rainbow 场景下是"呼叫路由载体"，agent 按用户路由自动改写其内容</td>
+<td>p111-113, p123</td>
+</tr>
+<tr>
+<td>Ghost Z</td>
+<td>Ghost Z 技术资源</td>
+<td>REX 功能专用的 OXE 内部技术资源：每路并发呼叫占一个、通话结束释放；池大小=REX 并发上限</td>
+<td>p111, p122</td>
+</tr>
+<tr>
+<td>Tandem</td>
+<td>主副站成对结构</td>
+<td>主站=Deskphone、副站=REX；两端必须 multi-line；配置只做主站自动同步副站；Call Routing is not a Forwarding</td>
+<td>p112-113, p125</td>
+</tr>
+<tr>
+<td>Multi-line</td>
+<td>多线</td>
+<td>话机/软终端的多线配置：tandem 成员强制前提；同时决定话务台挂起容量（OXE REX 最多 10 路）</td>
+<td>p124, p232</td>
+</tr>
+<tr>
+<td>Rainbow number</td>
+<td>Rainbow 编号</td>
+<td>分机关联后出现的 17 位技术编号（BBB 开头）；用户选 computer 路由时由 agent 自动写入 REX 的 Remote Extension number</td>
+<td>p91, p142</td>
+</tr>
+<tr>
+<td>Virtual UA</td>
+<td>虚拟 UA 设备</td>
+<td>DECT-only 用户上 Rainbow 路由的替代：与 DECT+REX 做 multi-devices 并任 tandem 主设备；不能被 RCC 控制</td>
+<td>p139</td>
+</tr>
+<tr>
+<td>Integrated Rainbow Agent</td>
+<td>集成 Rainbow 代理</td>
+<td>OXE 内置云连接代理：PBXID+激活码启用；与云间五条链路（WebSocket/XMPP/CSTA/Config/API_MGT）</td>
+<td>p67-68, p87</td>
+</tr>
+<tr>
+<td>WebRTC Gateway</td>
+<td>WebRTC 网关</td>
+<td>客户 premises 的 Debian VM（OVF 由 ALE 交付）：打通 Rainbow 客户端与 OXE 分机/资源的语音互通；呼叫控制在 PBX</td>
+<td>p133-136</td>
+</tr>
+<tr>
+<td>Shared/scalable WebRTC Gateway</td>
+<td>共享可扩展网关池</td>
+<td>多 OXE 共享网关池（推荐按集群推进）：ARS 溢出分流、每 OXE 每网关一条 SIP trunk</td>
+<td>p146-150</td>
+</tr>
+<tr>
+<td>ARS prefix BBB</td>
+<td>BBB 呼出路由前缀</td>
+<td>网关专用前缀：computer 路由时 agent 写入 REX 的号码以 BBB 开头，经判别器进网关；与标准外呼前缀是两条路</td>
+<td>p137, p142, p184</td>
+</tr>
+<tr>
+<td>Callback (translation)</td>
+<td>回拨（翻译表）</td>
+<td>让 PBX 话机用通话记录回拨 Rainbow 分机：CSTA 开关 + 翻译表（DEF 变 BBB）+ 专用实体</td>
+<td>p186-188</td>
+</tr>
+<tr>
+<td>Busy Lamp Field (BLF)</td>
+<td>忙灯监督面板</td>
+<td>4059EE/Rainbow 话务台的用户监督面板：同时呈现 Rainbow 在场与电话状态两列（可不同）</td>
+<td>p199, p221-222</td>
+</tr>
+<tr>
+<td>Supervision group</td>
+<td>监督组</td>
+<td>Rainbow 侧监督组织：监督员（须 Attendant 订阅）+被监督成员同组；监督员 ≤5 组、每组 ≤30 人</td>
+<td>p226, p230-231</td>
+</tr>
+<tr>
+<td>Mutual aid supervision group</td>
+<td>互助监督组</td>
+<td>动态形态：一键进出、临时纳排成员、锁定最后成员；同时最多监督 4 路；代接仅限同 PBX 电话呼叫</td>
+<td>p233-236</td>
+</tr>
+<tr>
+<td>Attendant console (Rainbow)</td>
+<td>Rainbow 内嵌话务台</td>
+<td>Web/Desktop 专属（无移动端）：呼叫队列 OXE 10/OXO 8 路 + BLF + 监督组页签 + 呼叫控制</td>
+<td>p225-232</td>
+</tr>
+<tr>
+<td>Business Directory</td>
+<td>企业目录</td>
+<td>Azure AD 之外的外部联系人库（含号码），改善来话识别；可委托管理；CSV 批量导入</td>
+<td>p51</td>
+</tr>
+<tr>
+<td>Information Channel</td>
+<td>信息频道</td>
+<td>新闻推送：创建者需 Enterprise 级；强制订阅成员不可退订</td>
+<td>p52</td>
+</tr>
+<tr>
+<td>Grace period</td>
+<td>删除宽限期</td>
+<td>成员删除后 Suspended 10 天可恢复；恢复即回落 Essential、须重配许可与话机线；期内邮箱不可复用</td>
+<td>p97, p103</td>
+</tr>
+</tbody>
+</table></div>
+<h2>二、经销体系角色域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BP</td>
+<td>ALE 业务伙伴（Business Partner）</td>
+<td>独占两项操作：申报/创建 PBX、开通付费订阅；并激活网关与远程升级</td>
+<td>p38-39, p48, p161</td>
+</tr>
+<tr>
+<td>DR / IR</td>
+<td>直接/间接经销商</td>
+<td>客户集成伙伴的两种合法身份（二选一）</td>
+<td>p39</td>
+</tr>
+<tr>
+<td>VAD</td>
+<td>增值分销商（Value Added Distributor）</td>
+<td>经销链中间层（书中括注 Grossiste）</td>
+<td>p39</td>
+</tr>
+<tr>
+<td>EC</td>
+<td>最终客户（End Customer）</td>
+<td>由 Reseller 创建、必须挂靠唯一 BP；管理员无建 PBX/开订阅/激活网关权</td>
+<td>p39, p48-50</td>
+</tr>
+<tr>
+<td>BP administrator / Customer administrator</td>
+<td>BP 管理员/客户管理员</td>
+<td>BP 管员客户公司+建 PBX+激活网关；客户管理员管自家用户/订阅分配/分机关联；Roles 页签可设多名</td>
+<td>p48-50</td>
+</tr>
+</tbody>
+</table></div>
+<h2>三、订阅计划域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rainbow Essential</td>
+<td>免费版订阅</td>
+<td>无限期试用、无 SLA、无电话服务；OXE 场景只有 RCC 且不能改路由</td>
+<td>p24, p109, p129</td>
+</tr>
+<tr>
+<td>Rainbow Business</td>
+<td>商务版订阅</td>
+<td>按用户计费的电话服务最低档；网关与 Teams 集成的门槛之一</td>
+<td>p24, p133, p298</td>
+</tr>
+<tr>
+<td>Rainbow Enterprise</td>
+<td>企业版订阅</td>
+<td>Business 全量+多方视频会议+扩展存储+O365/G Suite 集成；SSO/AAD 导入/频道创建的级别门槛所在</td>
+<td>p24, p44, p96</td>
+</tr>
+<tr>
+<td>Rainbow Attendant</td>
+<td>话务台订阅</td>
+<td>Rainbow 内嵌话务台专属：排队+监督；与 4059EE 无关；有 Monthly/Prepaid 两种 offer</td>
+<td>p24, p200, p239</td>
+</tr>
+<tr>
+<td>Enterprise Conference / Conference</td>
+<td>会议类订阅两档</td>
+<td>Enterprise+无限会议分钟（年预付）/ PSTN 会议按分钟按量付费（组织者可为免费用户）</td>
+<td>p24</td>
+</tr>
+<tr>
+<td>Rainbow Connect</td>
+<td>CRM 连接订阅</td>
+<td>经专用连接器集成 CRM 应用（本书不展开）</td>
+<td>p24</td>
+</tr>
+<tr>
+<td>Rainbow Room</td>
+<td>会议室订阅</td>
+<td>按会议室计费、需额外硬件（本书不展开）</td>
+<td>p24</td>
+</tr>
+</tbody>
+</table></div>
+<h2>四、产品与组件域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OmniPCX Enterprise (OXE)</td>
+<td>OXE 企业级 PBX</td>
+<td>本书宿主 PBX：内置 Rainbow Agent 接云；网关功能需系统 12.1 MD4/12.2+</td>
+<td>p1, p67, p135</td>
+</tr>
+<tr>
+<td>4059 EE</td>
+<td>OXE 传统话务台应用</td>
+<td>只管话务不管话音：声明为 4059 IP 终端、必须关联物理话机或 IPDSP 且禁 multi-line；支持 Rainbow 集成/BLF</td>
+<td>p198-213</td>
+</tr>
+<tr>
+<td>IPDSP</td>
+<td>IP 桌面软话机（IP Desktop Softphone）</td>
+<td>ALE 软话机：实验装于 PC Client（分机 31000/31001）；TFTP 指向 OXE CS 主地址；可作 4059EE 话音承载</td>
+<td>p10, p72, p209, p212</td>
+</tr>
+<tr>
+<td>MicroSIP</td>
+<td>第三方软话机</td>
+<td>实验预装模拟公网/紧急号码（注册 ITSP1 公共网关）；互助组实验中作 PBX 软终端入组</td>
+<td>p10, p14-15, p244</td>
+</tr>
+<tr>
+<td>Rainbow Pilot</td>
+<td>连通性与容量评估工具</td>
+<td>pilot.openrainbow.com：现场测连通性 + 按协作/会议/混合/Hub 用法配比评估承载（分区随版本演进）</td>
+<td>p32-36</td>
+</tr>
+<tr>
+<td>MyPortal</td>
+<td>ALE 伙伴门户</td>
+<td>下载网关 VM（OXE/OXO 目录同一软件）、TC2462、TBE067、升级包；开 SR</td>
+<td>p153-154, p174, p255</td>
+</tr>
+<tr>
+<td>网关三服务</td>
+<td>网关 VM 内三个服务</td>
+<td>otlitemediapillargateway、janus-gateway-mediapillar、kamailio：sudo service status/restart 排障</td>
+<td>p159, p162</td>
+</tr>
+<tr>
+<td>OMS</td>
+<td>OXE 软件机架实例（全称未展开）</td>
+<td>实验环境唯一需要的机架（Virtual GD4）；网关 IP 域前提中的"压缩资源（GD/OMS）"</td>
+<td>p72, p180</td>
+</tr>
+</tbody>
+</table></div>
+<h2>五、协议与技术域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIP Trunk Group (T2)</td>
+<td>SIP 中继组</td>
+<td>连网关用 T2 类型、T2 Specification=SIP；ARS 引用 TG 需先建 CDT；回调场景挂专用实体</td>
+<td>p179, p182, p187</td>
+</tr>
+<tr>
+<td>CSTA</td>
+<td>计算机电话集成链路（缩写未展开）</td>
+<td>agent 五链路之一（4509）；Teams 点拨分机 MakeCall API 的落地路径；回调开关所在页签</td>
+<td>p87, p186, p265</td>
+</tr>
+<tr>
+<td>STUN/TURN (GEOIP)</td>
+<td>NAT 穿越（默认口径）</td>
+<td>TURN_SERVER=GEOIP 为默认；mpcheck 该段依赖 GEOIP 文件，缺失报 FAILED 而非网络故障</td>
+<td>p158, p160</td>
+</tr>
+<tr>
+<td>G.711 / G.722 / G.729</td>
+<td>网关编解码口径</td>
+<td>OXE 侧 Rainbow type 网关仅 G711（实验口径）；DTMF 动态载荷 101</td>
+<td>p181</td>
+</tr>
+<tr>
+<td>WebRTC (SIP/RTP)</td>
+<td>网关媒体承载</td>
+<td>Rainbow 客户端与网关间 WebRTC（加密媒体），转成对 OXE 的 SIP/RTP；端口段 WRTRANGE/SIPRANGE 默认 20000-29999/30000-39999</td>
+<td>p133, p158</td>
+</tr>
+</tbody>
+</table></div>
+<h2>六、站点与资源域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>web.openrainbow.com</td>
+<td>网页客户端与管理入口</td>
+<td>管理配置与使用入口（实验主要操作面）</td>
+<td>p61</td>
+</tr>
+<tr>
+<td>help.openrainbow.com</td>
+<td>Rainbow 支持站点</td>
+<td>网络要求文章、Features List、Help Desk Guide、MFATOTP 文章的所在</td>
+<td>p24, p27, p44, p246</td>
+</tr>
+<tr>
+<td>status.openrainbow.com</td>
+<td>云服务状态页</td>
+<td>数据中心故障官方信息源；Get updates 订阅告警（按主题/地域过滤，法国勾 WW/EMEA/DE）</td>
+<td>p249</td>
+</tr>
+<tr>
+<td>RLAB (Remote Lab)</td>
+<td>培训远程实验室</td>
+<td>POD 池相互独立同构 + 公共资源区（NAS/SIP 模拟器/外部 DNS）；每 POD 六实例</td>
+<td>p3-11</td>
+</tr>
+<tr>
+<td>ITSP1</td>
+<td>SIP 运营商模拟器</td>
+<td>RLAB 公共区模拟运营商：注册网关+公网网关两条腿；号码规则含 POD 号（ITSP2 未用）</td>
+<td>p13-18</td>
+</tr>
+<tr>
+<td>mp 命令族</td>
+<td>网关 VM 管理命令</td>
+<td>mpnetwork/mpconfig/mpshow/mpcheck/mpssh/mpupgrade；登录账号实验口径</td>
+<td>p156-166</td>
+</tr>
+<tr>
+<td>OXE 维护命令族</td>
+<td>OXE 侧维护命令</td>
+<td>incvisu/dhs3_init -R/checkCloudConfig.sh -rainbow/sipextgw/lookars/motortrace+traced/multidevice/zdpost/remotesets</td>
+<td>p87-88, p191-195</td>
+</tr>
+<tr>
+<td>TC2462 / TC2479</td>
+<td>OXE/OXO 技术文档</td>
+<td>Rainbow PBX 集成权威配置指南（远程延伸/共享网关/部署维护/话务台各章指向）</td>
+<td>p121, p149, p154, p232</td>
+</tr>
+<tr>
+<td>TBE067</td>
+<td>网关容量估算工具包</td>
+<td>Excel 工具：四输入、通道数、压缩器推算；适用 OXE 101.0 MD3 / WebRTC 3.x 起；单网关 400 并发流上限</td>
+<td>p151</td>
+</tr>
+<tr>
+<td>Rainbow Network Requirements</td>
+<td>网络要求文档</td>
+<td>支持页文章+两份 PDF：端口/域名 IP/带宽/防火墙配置的唯一生产依据</td>
+<td>p26-31</td>
+</tr>
+</tbody>
+</table></div></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Rainbow / OmniPCX Enterprise (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 314 页 -->

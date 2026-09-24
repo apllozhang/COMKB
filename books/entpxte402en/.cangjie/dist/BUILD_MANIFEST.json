@@ -1,0 +1,42 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\entload-cloud-connect.md": "34f62732092e91917631cae3fe45d800463c1cdfdbc435331d8e1ba004a8cd0a",
+    "references\\capabilities\\entload-cs-loading.md": "e0ff1bad45b98b3b9d35c6a6bee626c9771655b48ee896f9184c3f34f5f602f6",
+    "references\\capabilities\\entload-distributor-loading.md": "ac3ab53f28eacc03f293e075f9adb14138eee6aa238a0a36819737ec0b74d040",
+    "references\\capabilities\\entload-fleet-dashboard.md": "89c84fa9dfc5a546b5141be434ea6072e409764fddb3cdec009963a03fa861e8",
+    "references\\capabilities\\entload-gas-delivery.md": "90ff3cade05365a17b02f81b8d9d59652d223e4bb9dadaf4a778214f8eca35d9",
+    "references\\capabilities\\entload-gas-ops.md": "010f98c0e48289113373a973a0e1e9d7cf71d85bbfac92d5b1dd070fb2edd0a5",
+    "references\\capabilities\\entload-oxe-v-deployment.md": "bee3a3317cabe29b67cb896c85a79146038037d9d347bb04e0120d981bb02943",
+    "references\\capabilities\\entload-patch-management.md": "29bfdeab70dd6aceac743d66750e33c4cae4f6c8f5c4d5e062ae91e610ef97dc",
+    "references\\capabilities\\entload-pod-licensing.md": "4f6744b7bfa98f19666291326c434a7e47ce4dfffd59baeaa0918eb951f8f748",
+    "references\\capabilities\\entload-rtr-licensing.md": "84652545cd4ae1d223bb547a689ebceb6ee9d35812f9e60425dfa8c5b15c60c5",
+    "references\\capabilities\\entload-sot-installation.md": "47c498dbccbff3ce52e968601ac9d469d66b1cbea7b1deec94fe8c365bc03c00",
+    "references\\capabilities\\entload-sot-media.md": "da43d59ff5cd217be259e59256e46de0ce27d33042d1a5baa70f89811f5eb297",
+    "references\\capability-index.md": "5150a9816ddfadda894aad26dad929d1114bfb457dc367129c43fa35e9264cd7",
+    "references\\cheatsheet.md": "7d9251a45f54d7162d54f18a560d8fb9e768991c48e9616a0831e0d2d958a09d",
+    "references\\glossary.md": "8f90059285df423dffd28a0b0e37f6538cc491013b60182c473564a129b94824",
+    "references\\overview.md": "7edf0aefd23bf646e94f244827d4647d76d0f13cf30ddae4685cb067f009027a",
+    "SKILL.md": "7d95ddf10793e6868e1b8b01df6de8b820db5e9ada9d77d2e8f7d991f5a431f5"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.oxe-loading",
+  "bundle_sha256": "8ac89946edea5edd23b8bd2f9cf457190a08d05aeed569952a102a1ba281fa2a",
+  "variant": "single",
+  "run_id": "run-20260924-200005-8993f7",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 12,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

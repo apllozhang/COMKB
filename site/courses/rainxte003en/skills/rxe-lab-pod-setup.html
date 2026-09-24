@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>RLAB 实验环境与 Pod 配置</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Rainbow for OmniPCX Enterprise</h2><p>Edition 12 · 314 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte003en/index.html">课程首页</a><a href="/courses/rainxte003en/digest.html">精华长文</a><a href="/courses/rainxte003en/overview.html">教书理解</a><a href="/courses/rainxte003en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte003en/skills/rxe-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte003en/skills/rxe-agent-onboarding.html">OXE 接入 Rainbow 与接入排障</a><a href="/courses/rainxte003en/skills/rxe-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte003en/skills/rxe-routing-rex.html">OXE 用户形态决策与远程延伸路由</a><a href="/courses/rainxte003en/skills/rxe-webrtc-gateway-deployment.html">WebRTC 网关部署与升级</a><a href="/courses/rainxte003en/skills/rxe-oxe-gateway-config.html">OXE 侧 WebRTC 网关配置九件套</a><a href="/courses/rainxte003en/skills/rxe-gateway-pool-sizing.html">共享 WebRTC 网关池与容量规划</a><a href="/courses/rainxte003en/skills/rxe-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte003en/skills/rxe-rcc-association.html">OXE 分机关联与 RCC 模式</a><a href="/courses/rainxte003en/skills/rxe-attendant-consoles.html">两套话务台（4059EE 与 Rainbow Attendant Console）</a><a href="/courses/rainxte003en/skills/rxe-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte003en/skills/rxe-network-readiness.html">Rainbow 网络就绪核查</a><a href="/courses/rainxte003en/skills/rxe-lab-pod-setup.html">RLAB 实验环境与 Pod 配置</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte003en/index.html">rainbow-oxe-integration（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte003en/index.html">RAINXTE003EN</a><span>/</span><span aria-current="page">RLAB 实验环境与 Pod 配置</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>RLAB 实验环境与 Pod 配置</h1></div><dl><div><dt>Skill ID</dt><dd>rxe-lab-pod-setup</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>RLAB 实验环境与 Pod 配置（虚机基线、机架板卡、DID 翻译、外呼验证）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Remote Lab allows accessing a pool of virtual machines and hardware (when required) hosted in a data center. … Pods are independent of each other … have access to common resources"（p5）
+"Registration ID pbxN (where N is your POD number) … Outgoing username pbxN"（p73-74）
+"To make sure that access to public SIP carrier is working properly, set up some outgoing calls."（p75）</p>
+</blockquote>
+<p>出处：RAINXTE003EN p5-18, p70-76。</p>
+<h2>I — 自述</h2>
+<p>RLAB 是培训专用远程实验室：POD 池相互独立、配置相同，公共资源区放 NAS（软件/许可）、SIP 运营商模拟器与外部 DNS。每 POD 6 台实例：OXE（csa/csm 双节点）、OMS、FlexLM 许可服务器、WebRTC 网关、两台 PC Client（装 IPDSP 与 MicroSIP）。</p>
+<p>Pod 配置方法论六步（生产价值在方法不在取值）：</p>
+<ol>
+<li><strong>基线核对</strong>：Rlab 仪表盘确认 6 台虚机在跑；预配项（许可/DHCP/机架板卡/用户/公共 SIP trunk）逐项过</li>
+<li><strong>主站设备核对</strong>：软件机架与虚拟板卡参数对齐讲义表（机架号/槽位/IP）</li>
+<li><strong>话机用户核对</strong>：两部 IPDSP 分机与安装位置对应；IPDSP 网络页填 TFTP 服务器（OXE CS 主地址）</li>
+<li><strong>外部 SIP 网关注册</strong>：Registration ID 与外呼用户名按 POD 号填（模式 pbxN）</li>
+<li><strong>DID 翻译对齐</strong>：外部号码翻译表按 POD 号填首外部号/首内部号/范围大小</li>
+<li><strong>外呼验证</strong>：打几通外呼确认公网 SIP 载体正常；培训邮箱核收并清空旧信</li>
+</ol>
+<p>SIP 模拟器角色（p13-18）：公共区扮演出局运营商——注册网关（PBX 注册账号）与公网网关（模拟公网/紧急号码用户）两条腿；号码规则含 POD 号变量；DDI 表把外部安装号映射到内部分机段。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>Pod 配置实验</strong>（p70-76）：</p>
+<ol>
+<li>Rlab 仪表盘确认 OXE/OMS/FlexLM/WebRTC/两台 Client 共 6 台虚机在跑</li>
+<li>逐项核对预配基线：软件许可、FlexLM 声明、DHCP 池、机架板卡、话机用户、公共 SIP trunk</li>
+<li>核对软件机架与虚拟板卡参数（机架号 4、槽位 0、板卡 IP，实验口径）</li>
+<li>两部 IPDSP 分别装在两台 Client，网络页 TFTP 填 OXE CS 主地址</li>
+<li>外部 SIP 网关按 POD 号填 Registration ID 与外呼用户名（如 POD 3 填 pbx3）</li>
+<li>DID 翻译按 POD 号填首外部号（33210N41000 模式）、首内部号 31000、范围 500</li>
+<li>做几通外呼验证公网载体；核收培训邮箱三账号并清理旧邮件</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：排 RLAB 实验课；自学搭基线；实验里外线打不通；分机外部号对不上；模拟器怎么扮演运营商。</p>
+<p>语言信号：RLAB / Remote Lab / POD / 实验环境 / IPDSP / MicroSIP / ITSP / SIP 模拟器 / DID / DDI / 翻译表 / TFTP / pbxN / 基线核对。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>基线就绪后的 DNS/代理与接入 → OXE 接入能力</li>
+<li>生产站点的中继与号码规划 → 书外（客户拨号规范），本卡仅方法论</li>
+<li>网关虚机部署 → 网关部署能力（RLAB 中镜像已预装）</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：POD 号、讲义基线表、培训邮箱清单、SIP 模拟器账号口径。虚机缺员或许可失效 → 判停找实验管理员，不自行改公共区。</p>
+<ol>
+<li>核虚机：6 台实例全部在跑。完成标准：仪表盘无离线</li>
+<li>核预配：许可/DHCP/机架/用户/trunk 五项过表。完成标准：与讲义基线一致</li>
+<li>配话机：IPDSP 的 TFTP 指向 OXE CS 主地址并注册。完成标准：分机 in service</li>
+<li>配外线：SIP 注册与 DID 翻译按 POD 号对齐。完成标准：翻译表首末号与分机段对应</li>
+<li>验证：外呼打通 + 邮箱可用 + 旧信清理。完成标准：实验基线就绪可交付后续章节</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>外呼不通 → 先核注册账号与翻译表是否带对 POD 号，再查公共区模拟器状态</li>
+<li>生产现场类比此卡 → 停，拓扑与取值不同，仅方法论（基线核对、翻译对齐、外呼验证）可迁移</li>
+<li>公共区资源异常 → 停，POD 间共享 NAS 与模拟器，自行重启可能影响全班</li>
+</ul>
+<p>输出契约：Pod 基线核对单 + DID 翻译记录 + 外呼验证结论。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>本卡是教学专用域：全部 IP、账号、分机、号码规则与 DDI 段为实验口径，完整环境值清单在 book/overview 环境区</li>
+<li>ITSP2 在书中存在但本课程未用（p14）；模拟器行为与生产 SIP 中继差异大（安全/编解码/号码格式），不可等价</li>
+<li>RLAB 的 OXE 数据库已预配（许可/机架/用户/trunk）——存量现场要从零做，书内不覆盖</li>
+<li>培训邮箱为 RLAB 专用 webmail，生产无此物</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte003en/skills/rxe-agent-onboarding.html">OXE 接入 Rainbow 与接入排障</a></p><p class="source-page">能力 ID：cap.rxe.lab-pod-setup · 来源：RAINXTE003EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Rainbow / OmniPCX Enterprise (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 314 页 -->

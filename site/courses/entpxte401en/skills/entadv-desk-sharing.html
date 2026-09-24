@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>办公桌共享（DSS/DSU）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Advanced</h2><p>— · 543 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte401en/index.html">课程首页</a><a href="/courses/entpxte401en/digest.html">精华长文</a><a href="/courses/entpxte401en/overview.html">教书理解</a><a href="/courses/entpxte401en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte401en/skills/entadv-ssh-trust-foundation.html">SSH 免密分发体系</a><a href="/courses/entpxte401en/skills/entadv-cs-redundancy.html">CS 冗余部署与切换维护</a><a href="/courses/entpxte401en/skills/entadv-ip-domain-pcs.html">IP 域与 PCS 域级生存性</a><a href="/courses/entpxte401en/skills/entadv-overflow-rerouting.html">公私网双向溢出与重路由</a><a href="/courses/entpxte401en/skills/entadv-direct-ip-link.html">Direct IP Link 全 IP 组网</a><a href="/courses/entpxte401en/skills/entadv-audit-broadcast.html">Audit 与 Broadcast 数据一致性</a><a href="/courses/entpxte401en/skills/entadv-multiline-supervision.html">多线监督与经理助理组</a><a href="/courses/entpxte401en/skills/entadv-hunting-pickup-speeddial.html">寻线代接组与速拨编号体系</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte401en/skills/entadv-desk-sharing.html">办公桌共享（DSS/DSU）</a><a href="/courses/entpxte401en/skills/entadv-multi-device.html">多设备用户与 Twinset</a><a href="/courses/entpxte401en/skills/entadv-lab-pod-baseline.html">实验/交付前置环境基线</a><a href="/courses/entpxte401en/skills/entadv-cli-toolbox.html">维护命令与事件/许可速查</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte401en/index.html">oxe-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte401en/index.html">ENTPXTE401EN</a><span>/</span><span aria-current="page">办公桌共享（DSS/DSU）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>办公桌共享（DSS/DSU）</h1></div><dl><div><dt>Skill ID</dt><dd>entadv-desk-sharing</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>办公桌共享（DSS/DSU、虚拟 MAC、系统选项）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"A shared terminal is called a Desk Sharing Set (DSS) … A roaming user using a DSS is called a Desk Sharing User (DSU)"（p330）
+"'aa:bb:xx:xx:xx:xx' → xx:xx:xx:xx is replaced by the directory number of the DSU • Example for the DSU user 31000 : 'aa:bb:00:03:10:00'"（p333）
+"Allow Reset of Busy DSU True: … the call is released … An incident '6004' is generated."（p346）</p>
+</blockquote>
+<p>出处：ENTPXTE401EN p327-351。</p>
+<h2>I — 自述</h2>
+<p>工位漫游：DSS=共享话机（真 MAC 注册，配 LogOn 键+Help Desk 键），DSU=漫游用户（自动获得虚拟 MAC aa:bb:分机号，配 OverLogOn/LogOff 键），登录即恢复键位/特性/邮箱。虚拟 MAC 是应用层标识，物理帧仍用真地址；前缀默认 62（OverLogOn）/63（LogOff），COS 放行。</p>
+<p>五个系统选项：</p>
+<ol>
+<li>登出免密（默认 False）</li>
+<li>忙时 DSU 重置（默认 True：通话被释放并发 6004；False 则保通话但异机登录显示 Unauthorized）</li>
+<li>首次登录强制改密（默认 False）</li>
+<li>定时全员自动登出（-1 关闭；0-23 点）</li>
+<li>免重启即时登录（默认 True，仅 NOE3GEE/IP Essential/Enterprise 同族同节点且无 AOM，IPDSP 不适用）</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>配置与验证</strong>（p338-351，实验口径号码）：</p>
+<ol>
+<li>Prefix Plan 建 62/63 两前缀，COS 放行 Desk Sharing Over Logon/Logoff</li>
+<li>建 DSS：Users 建共享话机对象（Set Function=Desk Sharing Set）；IPDSP 需开 IP-Softphone emulation</li>
+<li>改 DSU：把漫游用户 Set Type 改话机型号、Set Function=Desk Sharing User；TSC IP user 自动出现虚拟 MAC</li>
+<li>DSS 配键 1=62（LogOn）+键 2=Help Desk 号；DSU 配键 1=62（OverLogOn）+键 2=63（LogOff）</li>
+<li>系统参数五项按客户策略核对（默认值见 I 段）</li>
+<li>验证：登录/登出/忙时被顶（6004）/定时登出；dsstat 13 项、domstat DS 列（S=DSS/U=DSU）、ippstat 判读（登出态虚拟 INTIP 255/255）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：共享工位/轮班坐席；"工位随便坐、配置跟着人走"；DSU 通话中被顶的客诉；混机型办公区的登录体验承诺。</p>
+<p>语言信号：desk sharing / DSS / DSU / 办公桌共享 / 虚拟 MAC / aa:bb / LogOn / LogOff / OverLogOn / 62 / 63 / 6004 / dsstat / ippstat / free seating。</p>
+<p>与相邻能力区分：一号多机（固定关联）→ multi-device（路由卡）；登录底层的注册与 TFTP 属装机域（Starter）。</p>
+<h2>S — 现场症状（工单语言）</h2>
+<p>下列说法命中本能力时优先打开本页；与「A2 未来触发」配套使用。</p>
+<ul><li>DSS/DSU 共享后占线灯/登录状态不一致</li><li>办公桌共享切换后无法取回配置</li></ul>
+
+<h2>E — 可执行步骤</h2>
+<p>输入契约：机型清单（对照支持面）、前缀/COS、系统选项策略（忙时重置与自动登出先和客户对齐）。机型不在支持清单 → 判停。</p>
+<ol>
+<li>配前缀与 COS：62/63 建好并放行。完成标准：前缀可拨</li>
+<li>建 DSS 与 DSU：Set Function 角色化配置。完成标准：TSC IP user 见真/虚拟 MAC</li>
+<li>配键：DSS（LogOn+Help Desk）、DSU（OverLogOn+LogOff）。完成标准：四键可用</li>
+<li>定系统选项：忙时重置/自动登出/免密/即时登录按客户策略。完成标准：与书面承诺一致</li>
+<li>验证：登录恢复配置、登出清空、6004 行为符合所选策略。完成标准：dsstat/ippstat/doministat 证据齐</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户要求"通话中绝不能被顶" → Allow Reset of Busy DSU=False，并告知代价（忙时无法异机登录、跳过自动登出）</li>
+<li>客户要求 IPDSP 即时登录 → 不适用（明确排除），体验回落为重启式切换</li>
+<li>DSU 登录显示 Unauthorized → 查忙时重置是否被设为 False 且该 DSU 正忙</li>
+</ul>
+<p>输出契约：可漫游的 DSS/DSU 池 + 系统选项策略记录 + 6004/自动登出的行为说明。</p>
+<h2>V — 验收与回退</h2>
+<p><strong>验收（DoD，全部满足才收工）</strong></p>
+<ul><li>DSS/DSU 状态与桌面定义一致</li><li>共享/独占切换可逆且数据不丢</li></ul>
+<p><strong>回退 / 判停</strong></p>
+<ul><li>共享异常：先恢复独占默认桌面，再重建共享关系</li></ul>
+
+<h2>B — 边界</h2>
+<ul>
+<li>适用机型：8 系列 IP Touch EE、IP Premium、IP Essential/Enterprise、IPDSP（p329）；即时登录仅 NOE3GEE/Essential/Enterprise 同族同节点无 AOM（p336）</li>
+<li>虚拟 MAC 是应用层标识；ippstat 登出态显示虚拟 INTIP 255/255（p333/p350）</li>
+<li>话机侧清除走 I+# → IP parameters → Free seating（实验口径菜单）</li>
+<li>前缀 62/63 为书内建卡示例值，现场以 Prefix Plan 实查为准</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte401en/skills/entadv-multi-device.html">多设备用户与 Twinset</a></p><p class="source-page">能力 ID：cap.entadv.desk-sharing · 来源：ENTPXTE401EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Advanced (Participant's Guide, Edition 13) | edition: — | pages: 543 页 -->

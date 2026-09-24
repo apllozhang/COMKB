@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>术语词典 · ENTPXTE421EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 加密解决方案</h2><p>Edition 05 · 410 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte421en/index.html">课程首页</a><a href="/courses/entpxte421en/digest.html">精华长文</a><a href="/courses/entpxte421en/overview.html">教书理解</a><a href="/courses/entpxte421en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte421en/skills/enc-certificate-trust-chain.html">证书与信任链全生命周期</a><a href="/courses/entpxte421en/skills/enc-native-encryption-bringup.html">加密解决方案开通与 lanpbx.cfg</a><a href="/courses/entpxte421en/skills/enc-dtls-verification-maintenance.html">DTLS 验证、排障与维护闭环</a><a href="/courses/entpxte421en/skills/enc-sip-tls-endpoints.html">SIP TLS 扩展加密</a><a href="/courses/entpxte421en/skills/enc-sip-trunk-tls.html">SIP trunk 的 TLS 与 SRTP</a><a href="/courses/entpxte421en/skills/enc-eegw-deployment.html">EEGW/NSP 大容量部署</a><a href="/courses/entpxte421en/skills/enc-abcf-network-encryption.html">ABC-F 网络加密</a><a href="/courses/entpxte421en/skills/enc-mtls-endpoint-authentication.html">mTLS 双向认证与版本限制</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte421en/skills/enc-pcs-failover.html">PCS 加密接管</a><a href="/courses/entpxte421en/skills/enc-pki-workshop-xca.html">XCA 外部 CA 工坊</a><a href="/courses/entpxte421en/skills/enc-application-encryption.html">应用生态加密与安全下载</a><a href="/courses/entpxte421en/skills/enc-lab-environment.html">实验环境底座（RLAB）</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte421en/index.html">oxe-native-encryption（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte421en/index.html">ENTPXTE421EN</a><span>/</span><span aria-current="page">术语词典</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">GLOSSARY</p><h1>术语词典 — 中英对照</h1></div></header><article class="markdown-body"><h1>GLOSSARY — OmniPCX Enterprise 加密解决方案 术语表</h1>
+<blockquote>
+<p>阶段 3 产出（源：candidates/glossary.md，52 条，六大域；此处为门户精选 30 条）。
+口径：定义只采信本书正文；NOE/OMS/IPDSP/ALES/VAA/DC/IP-xBS/GD4/FlexLM 等缩写书中未给全称，如实标注；"Diffie-Helmman"（p7）、"11520-8-N-1"（p367）、"ENCRYTPION"（p247）为原文笔误。</p>
+</blockquote>
+<h1>OmniPCX Enterprise 加密解决方案 (ENTPXTE421EN Ed05) — 关键术语词典</h1>
+<blockquote>
+<p>文档整理流水线术语提取器产出。取材方法：全量扫描 source_fulltext.txt（410 页全部通读），所有页码均回原文核验。
+用途：下游能力卡的共享中英对照词典。</p>
+</blockquote>
+<h2>一、核心概念域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Native Encryption (FSNE)</td>
+<td>加密解决方案</td>
+<td>OXE 内原生支持信令（DTLS/TLS 1.2/IPSec）与媒体（SRTP）加密的纯软件能力，零硬件 footprint；激活=数据库配置+许可 #424/#359</td>
+<td>p61-66, p109</td>
+</tr>
+<tr>
+<td>EGW (Encryption Gateway)</td>
+<td>加密网关</td>
+<td>处理 DTLS 信令加密的软件组件，端点的 DTLS 服务器（内嵌 CS/PCS）；TFTP 等其它流不经它</td>
+<td>p76-77, p87</td>
+</tr>
+<tr>
+<td>EEGW (External EGW)</td>
+<td>外部加密网关</td>
+<td>&gt;1500 会话的必需形态：强制 VM（OST 包，Rocky Linux）、每 CS 一台、内含 SIP Translator、上限 15000</td>
+<td>p77, p199-203</td>
+</tr>
+<tr>
+<td>SIP Translator (NSP)</td>
+<td>SIP 翻译器</td>
+<td>与 EEGW 同 VM 的 Nginx SIP 代理：一切 SIP TCP/TLS 连接的入口点；仅外部 EGW 场景强制声明</td>
+<td>p76, p202, p247</td>
+</tr>
+<tr>
+<td>OST (OXE Signaling Translator)</td>
+<td>EEGW 软件包名</td>
+<td>EEGW VM 的软件包（机器类型 EEGW/OST64，ostconfig 配置）；OST/EEGW/NSP 指同一台 VM 的三个侧面</td>
+<td>p201-202, p209</td>
+</tr>
+<tr>
+<td>CTL (Certificates Trust List)</td>
+<td>受信证书链</td>
+<td>受信 CA 证书链单文件（PEM 拼接，最多 5 级层级），存于信任库用于验证对端；lanpbx 字段 DTLS_CERT_TRUST</td>
+<td>p24-25, p79-80, p124</td>
+</tr>
+<tr>
+<td>TOFU</td>
+<td>首次信任</td>
+<td>出厂/空信任库端点第一次连接不验证服务器证书，之后按存储 CTL 全量认证；客户拒绝则手工预置或 SCEP/EST</td>
+<td>p80, p74, p108</td>
+</tr>
+<tr>
+<td>mTLS (Mutual Authentication)</td>
+<td>双向认证</td>
+<td>OXE 在握手时反向验证端点证书（身份比对证书 CN 与宣告 MAC）；激活后所有话机含明文用户都须有证书</td>
+<td>p82-83, p165, p359</td>
+</tr>
+<tr>
+<td>Partial encryption</td>
+<td>部分加密</td>
+<td>按用户选项逐台启用加密的灰度机制；DSS/DSU 与 ProACD/agent 上下文必须同质配置</td>
+<td>p65-66</td>
+</tr>
+<tr>
+<td>lanpbx.cfg</td>
+<td>OXE IP 配置文件</td>
+<td>NE 开启后注入 DTLS 参数（DTLS_SRV/端口 32643/FQDN/CTL/签名）并签名下发——端点侧的信任载体</td>
+<td>p121-125, p124</td>
+</tr>
+<tr>
+<td>Factory certificate</td>
+<td>工厂证书</td>
+<td>仅 GD4/GA4/GD-XL/GA-XL 板卡、话机与 IP-xBS 出厂携带；板卡侧自 R101.1 MD4 起可用</td>
+<td>p78, p83, p371</td>
+</tr>
+<tr>
+<td>End entity / CN=MAC 约定</td>
+<td>端点实体命名</td>
+<td>板卡/话机/软话机实体证书 CN=设备 MAC；CS/PCS 证书 CN=OXE FQDN；节点证书 CN 恒为节点 FQDN</td>
+<td>p322, p344, p399</td>
+</tr>
+</tbody>
+</table></div>
+<h2>二、账户与角色域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mtcl</td>
+<td>OXE 维护账户</td>
+<td>日常操作与验证命令的登录账户（netadmin 切 root 前的登录、lanpbxbuild、cryptview 等）</td>
+<td>p34, p113, p129-131</td>
+</tr>
+<tr>
+<td>root</td>
+<td>Linux 超级用户</td>
+<td>证书导入导出、内部防火墙、SSL level 等敏感操作要求 su - root</td>
+<td>p107, p113, p191</td>
+</tr>
+<tr>
+<td>swinst</td>
+<td>软件安装账户</td>
+<td>Linux Data 备份走 swinst（证书自动随备份）；EEGW 下载证书经 ssh-copy-id 用其口令</td>
+<td>p107, p133, p237</td>
+</tr>
+<tr>
+<td>CA Administrator (trainer)</td>
+<td>CA 管理员</td>
+<td>实验中由 trainer 充当外部 CA 管理员签发 CSR；生产对应客户 PKI 运营方</td>
+<td>p115, p381</td>
+</tr>
+</tbody>
+</table></div>
+<h2>三、许可域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>License #424</td>
+<td>加密解决方案用户许可</td>
+<td>定义系统内允许的 DTLS/TLS 会话总数（Actis 系统级计数器；实验值 75）</td>
+<td>p109, p129</td>
+</tr>
+<tr>
+<td>License #359</td>
+<td>SIP 加密中继许可</td>
+<td>定义并发 SIP TLS 通信数上限（实验值 30）</td>
+<td>p109, p129</td>
+</tr>
+</tbody>
+</table></div>
+<h2>四、产品与组件域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OmniPCX Enterprise (OXE)</td>
+<td>企业通信服务器</td>
+<td>本书主角：CS 承载全部加密组件；PCS 为分支救援服务器（同 CA 异证书、须先连过 CS）</td>
+<td>p62-64, p91-92</td>
+</tr>
+<tr>
+<td>OMS</td>
+<td>软件机架/VM</td>
+<td>承载虚拟 GD4 板卡（omsconfig 管理）；mTLS 场景导入 GW.pfx；换拓扑须清信任库</td>
+<td>p52, p147, p288-289</td>
+</tr>
+<tr>
+<td>IPMG 家族</td>
+<td>IP 媒体网关家族</td>
+<td>GD4/GA4/GD-XL/GA-XL（新代）/GD3/GA3/INTIP3（老代）/OXE-MS；AES-256 与工厂证书能力有差异</td>
+<td>p63-64, p72, p74</td>
+</tr>
+<tr>
+<td>IPDSP</td>
+<td>PC 软话机</td>
+<td>NOE 侧软话机应用；只工作在 SRTP 认证模式；证书两法（文件/Windows 库）</td>
+<td>p119, p127-128, p360-362</td>
+</tr>
+<tr>
+<td>ALES</td>
+<td>ALE 软话机</td>
+<td>SIP TLS 扩展加密主力终端（SEPLOS 模式，盾牌图标）</td>
+<td>p63, p88, p142</td>
+</tr>
+<tr>
+<td>OTSBC (OT-SBC)</td>
+<td>会话边界控制器</td>
+<td>SIP trunk 的 TLS/SRTP 对端（WebAdmin 管理）；与 OXE 两侧端口成对</td>
+<td>p90, p173-184</td>
+</tr>
+<tr>
+<td>netadmin</td>
+<td>OXE 命令行管理工具</td>
+<td>证书全生命周期主操作面（11.9.1/11.9.2/11.9.3/11.1.3/11.6.3/17/19/20/10）</td>
+<td>p101, p104</td>
+</tr>
+<tr>
+<td>lanpbxbuild</td>
+<td>lanpbx 生成工具</td>
+<td>-auto 建文件（重置除 IP_CPU/IP_DOWNLOAD 外配置）；j/k=DTLS 地址、6=重签；duplication 在 main 跑</td>
+<td>p121-123</td>
+</tr>
+<tr>
+<td>omsconfig / mgconfig / ostconfig</td>
+<td>三类网元配置工具</td>
+<td>OMS VM/GD 板卡（V24 串口）/EEGW VM 的配置与证书管理（都有 Certificate management 子菜单）</td>
+<td>p147, p235-238, p356-369</td>
+</tr>
+<tr>
+<td>XCA</td>
+<td>开源证书管理工具</td>
+<td>外部 CA 的教学替身（hohnstaedt.de/xca）；客户已有 CA 就用客户的</td>
+<td>p335, p381</td>
+</tr>
+<tr>
+<td>S.O.T.</td>
+<td>ALE 部署工具</td>
+<td>EEGW VM 生成与加载（Greenfield 工程→.ova→ESXi）；仅 Chrome/Firefox</td>
+<td>p272-282</td>
+</tr>
+<tr>
+<td>VAA / Dispatch Console</td>
+<td>语音应用服务器/调度台</td>
+<td>经 Native SIP TLS（internal ABC-F 型）加密；VAA 加密后端口 120→60，DC 保持 120</td>
+<td>p98-99</td>
+</tr>
+</tbody>
+</table></div>
+<h2>五、协议与技术域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DTLS 1.2</td>
+<td>数据报传输层安全</td>
+<td>NOE 侧信令加密协议（RFC 6347/5246），EGW 承载，默认端口 32643</td>
+<td>p67, p87</td>
+</tr>
+<tr>
+<td>TLS 1.2 (SIP TLS)</td>
+<td>传输层安全</td>
+<td>SIP 扩展与中继的信令加密（RFC 5246），sipmotor 或 NSP 承载，端口 5061/6261</td>
+<td>p67, p160</td>
+</tr>
+<tr>
+<td>SRTP</td>
+<td>安全实时传输协议</td>
+<td>媒体加密：AES-CM-128/256-HMAC-SHA1-80 二选一不混用；密钥每方向一把、经加密信令下发</td>
+<td>p69-72</td>
+</tr>
+<tr>
+<td>IPSec</td>
+<td>网络层安全协议</td>
+<td>ABC-F 节点间信令加密（IPSec Manager/OpenSwan；端口协商 500/TCP 2579），证书认证</td>
+<td>p67, p293, p301</td>
+</tr>
+<tr>
+<td>NOE</td>
+<td>ALE 私有 IP 话音协议族</td>
+<td>IP NOE 端点经 EGW 走 NOE over DTLS，密钥由 CS 生成</td>
+<td>p69, p87</td>
+</tr>
+<tr>
+<td>SCEP / EST / ACME</td>
+<td>三个证书自动注册协议</td>
+<td>SCEP=话机（HTTP+共享密钥）；EST（RFC7030）=IPMG/IP-xBS 自动续期；ACME（RFC8555）=仅 WBM 且须本地 CA</td>
+<td>p23, p84</td>
+</tr>
+<tr>
+<td>PKCS 容器家族</td>
+<td>证书/密钥容器格式</td>
+<td>PEM/DER/PKCS#7（证书+链无私钥，推荐线载体）/PKCS#12（含私钥+口令）/PKCS#10（CSR）</td>
+<td>p14-16, p103</td>
+</tr>
+<tr>
+<td>X.509 v3 / DN / CN / SAN</td>
+<td>证书标准与身份字段</td>
+<td>ALE 采用 X.509 v3（RFC5280）；SAN 是身份验证主字段（EEGW 拓扑按五字段顺序装配）</td>
+<td>p13, p85, p206</td>
+</tr>
+<tr>
+<td>CRL / CDP / OCSP</td>
+<td>证书吊销机制</td>
+<td>概念层讲义：CRL=失效证书清单、CDP=下载位置扩展、OCSP=在线核查；OXE 侧无吊销操作实验</td>
+<td>p12, p17</td>
+</tr>
+</tbody>
+</table></div>
+<h2>六、平台与资源域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RLAB / POD</td>
+<td>培训远程实验室/实验单元</td>
+<td>全虚拟化按 POD 划分同构单元；每 POD 两套拓扑（stand-alone 与 ABC-F 网络）</td>
+<td>p27-35</td>
+</tr>
+<tr>
+<td>ITSP2 / MicroSIP</td>
+<td>SIP 运营商模拟器</td>
+<td>教学专用（gateway.itsp2.com+public.itsp1.com 两腿）；章内 ITSP1/2 命名混用为原书现象</td>
+<td>p35, p42-46</td>
+</tr>
+<tr>
+<td>ALE Knowledge Hub</td>
+<td>ALE 培训平台</td>
+<td>课后在线评估与培训证书下载（enterprise-education.csod.com）</td>
+<td>p404-410</td>
+</tr>
+</tbody>
+</table></div></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — Native Encryption (Participant's Guide, Edition 05) | edition: Edition 05 | pages: 410 页 -->

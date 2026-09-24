@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>整理摘要 · RAINXTE001EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Rainbow OXO Connect 集成</h2><p>Edition 13 · 251 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte001en/index.html">课程首页</a><a href="/courses/rainxte001en/digest.html">精华长文</a><a href="/courses/rainxte001en/overview.html">教书理解</a><a href="/courses/rainxte001en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte001en/skills/rbx-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte001en/skills/rbx-omc-onboarding.html">OMC 安装首次连接与 IP 规划修改</a><a href="/courses/rainxte001en/skills/rbx-pbx-onboarding.html">OXO 接入 Rainbow 与接入排障</a><a href="/courses/rainxte001en/skills/rbx-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte001en/skills/rbx-gateway-planning.html">WebRTC 网关拓扑决策与容量规划</a><a href="/courses/rainxte001en/skills/rbx-gateway-deployment.html">WebRTC 网关部署与虚拟终端配置</a><a href="/courses/rainxte001en/skills/rbx-attendant-supervision.html">Rainbow 话务台与监督组</a><a href="/courses/rainxte001en/skills/rbx-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte001en/skills/rbx-admin-tools.html">Rainbow 管理员工具（权责/企业目录/信息频道）</a><a href="/courses/rainxte001en/skills/rbx-rcc-association.html">OXO 分机关联与 RCC 模式</a><a href="/courses/rainxte001en/skills/rbx-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte001en/skills/rbx-network-readiness.html">Rainbow 网络就绪核查</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte001en/index.html">rainbow-oxo-connect（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte001en/index.html">RAINXTE001EN</a><span>/</span><span aria-current="page">整理摘要</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">DIGEST</p><h1>整理摘要 — 全书精华</h1></div></header><article class="markdown-body"><h1>DIGEST — Rainbow OXO Connect 集成精华长文</h1>
+<blockquote>
+<p>源：RAINXTE001EN Edition 13（251 页）· 文档整理入库 · 2026-09-23
+定位：10 分钟建立 Rainbow 混合云集成的全局认知；操作细节按需查 12 张能力卡。</p>
+</blockquote>
+<h2>一、这套东西是什么</h2>
+<p>Rainbow 是 ALE 的云协作平台（UCaaS 协作/云话音 + CPaaS 开放 API），与 OXO Connect 是<strong>混合云关系</strong>：PBX 保留呼叫控制和现场话音，Rainbow 提供聊天、会议、移动端和云服务，中间靠一条 WebRTC 网关打通音频。</p>
+<p>整本教材就是一条交付主线：<strong>云侧开户 → PBX 接入 → 分机关联（RCC）→ 网关解锁完整音频 → 话务台/Teams 等增值场景</strong>。</p>
+<p>三个数字先记住：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>数字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Business / Enterprise / Attendant</td>
+<td>电话服务必须付费订阅，免费 Essential 不行</td>
+</tr>
+<tr>
+<td>BP 专属</td>
+<td>建 PBX 和开付费订阅只有经销商能做</td>
+</tr>
+<tr>
+<td>50 / 20 / 150</td>
+<td>网关通话上限：外部拓扑 50、OCE 集成与 Front End 20、用户上限 150</td>
+</tr>
+</tbody>
+</table></div>
+<h2>二、云侧三件套：公司、订阅、成员</h2>
+<ul>
+<li><strong>公司（Company）</strong>：一切功能的挂靠单元。BP 建客户公司，客户管理员管日常。可见性四级拿不准就 CLOSED（教材原话"建司即设"）；ISOLATED 别乱用——用户会无法被外部会议邀请。</li>
+<li><strong>认证</strong>：两条路——SSO（Azure AD-SAML/OIDC、ADFS-SAML，管理员须 Enterprise 级）或本地密码（≥12 位含大写/数字/特殊字符）+ TOTP（推荐管理员）。</li>
+<li><strong>订阅</strong>：先由 BP 开给公司（月付或预付 1/3/5 年），再分给成员。八种订阅按场景选：话音看 Business/Enterprise，话务台必须 Attendant，会议室是 Room，CRM 集成是 Connect。</li>
+<li><strong>成员</strong>：邮箱即身份，一人不能属两家公司。开户四法（手动/邀请/CSV 批量/Azure AD 同步）。</li>
+<li><strong>删除与安全</strong>：删除进 10 天宽限——恢复后回落免费版要重配订阅和电话线，宽限期内邮箱不能复用。管理员改密会立即踢掉在线会话（防盗号特性，批量改密避开工作时间）。</li>
+</ul>
+<h2>三、接入主线：从 RCC 到完整音频</h2>
+<ol>
+<li><strong>OMC 首连</strong>：Expert 模式 + 服务器认证，证书装进受信任的根（一劳永逸消除告警），密码逐客户必改——pbxk1064 只是出厂一次性密码。</li>
+<li><strong>接入 Rainbow</strong>：PBXID + 激活码（经销商给，或客户管理员在 My company/Communication 自取），填入 OMC/Cloud/Rainbow，域名保持 openrainbow.com 不动。验证判据：Webdiag 显示 <strong>connected with final password</strong>；排障日志 ccrbagent.log。</li>
+<li><strong>分机关联（RCC）</strong>：Telephony 页签把 OXO 分机绑到 Rainbow 账号。此时 Rainbow 只能<strong>监督</strong>话机（接/挂/转），音频全在话机——这是无网关时的正常形态，不是故障。用户问"为什么耳机没声音"，答案就在这。</li>
+<li><strong>WebRTC 网关解锁音频</strong>：只建音频媒体关系，呼叫控制始终在 PBX。R4.0.020.002 起 Reseller 管理员在 Rainbow 管理端一键自动配置（网关/SIP 账号/中继组/ARS 全自动），但<strong>连 PBX、建终端、编号计划与闭锁仍是安装员的活</strong>。</li>
+</ol>
+<h2>四、网关选型一张表</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>拓扑</th>
+<th>承载</th>
+<th>版本前提</th>
+<th>通话上限</th>
+<th>许可特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OCE 集成</td>
+<td>OCE（IPBox）内置</td>
+<td>R3.2+</td>
+<td>20</td>
+<td>免 SIP trunk 许可（bypass）；Power CPU EE 不支持</td>
+</tr>
+<tr>
+<td>OCE Front End</td>
+<td>独立 IPBox 前置</td>
+<td>双端 ≥R4.0 MD</td>
+<td>20</td>
+<td>许可免费 FTR 自给；无 PBX 能力；仅配 Power CPU EE</td>
+</tr>
+<tr>
+<td>外部 VM/NUC</td>
+<td>ESXi 或迷你 PC</td>
+<td>—</td>
+<td>50</td>
+<td>通用扩容路径</td>
+</tr>
+</tbody>
+</table></div>
+<p>容量查表（用户数 → 推荐通道数，p147）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>用户数</th>
+<th>外部拓扑</th>
+<th>集成/FE 拓扑</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>10</td>
+<td>7</td>
+<td>7</td>
+</tr>
+<tr>
+<td>20</td>
+<td>11</td>
+<td>11</td>
+</tr>
+<tr>
+<td>30</td>
+<td>15</td>
+<td>15</td>
+</tr>
+<tr>
+<td>50</td>
+<td>20</td>
+<td>20</td>
+</tr>
+<tr>
+<td>70</td>
+<td>27</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>100</td>
+<td>36</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>150</td>
+<td>50（打满）</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table></div>
+<p>150 用户上限的前提是极低话务——引用这个数字必须带前提。FE 改配置后必须 warm reset；双机 PBXID 必须一致；SIP 网关端口核对 5059；FTR 出厂占位凭证 FleetRef-Installref 正式接入前必须替换。</p>
+<p>终端形态决定许可：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>用户形态</th>
+<th>终端结构</th>
+<th>许可</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有话机</td>
+<td>Multiset：物理主站 + <strong>Free Rainbow in Twinset</strong> 虚拟副站（R6.0 起）</td>
+<td>1 UTL（副站不额外占）</td>
+</tr>
+<tr>
+<td>纯软话机</td>
+<td>Anydevice 单终端</td>
+<td>1 UTL</td>
+</tr>
+</tbody>
+</table></div>
+<p>R5.2 及以前副站位置用 Anydevice——升级过的系统按旧语义建副站会白占许可。</p>
+<h2>五、两个增值场景</h2>
+<ul>
+<li><strong>话务台（Attendant）</strong>：Attendant 订阅解锁，仅 Web/Desktop（手机上没有）。队列 OXE 10 路 / OXO 8 路；监督组每监督员 ≤5 组、每组 ≤30 人。互助组支持一键进出、临时纳排成员、锁定成员；代接<strong>仅限同 PBX 的话机呼叫</strong>——纯软话机用户和跨 PBX 都不在覆盖内，需求评审先泼这盆冷水。</li>
+<li><strong>Teams 集成</strong>：工作台级（每台 PC 装配），不是租户一键生效。Teams 里的 Rainbow App 管电话面（拨号盘/历史/留言），Rainbow Desktop 管点击外呼和呼叫控制且<strong>必须常驻运行</strong>；权限收敛成 Telephony-only（协作归 Teams）；订阅 Business/Enterprise；在场同步默认关，要手动激活 O365 共享；SSO 不是前提。</li>
+</ul>
+<h2>六、交付红线与维护抓手</h2>
+<p>三条红线：</p>
+<ol>
+<li>教材全部密码/账号/网段是实验值，上生产必须换</li>
+<li>端口/带宽/TURN/防火墙等网络数值在书外（以官方《Rainbow Network Requirements》PDF 为准）</li>
+<li>编号计划与闭锁全书不教（TC2479 + 客户拨号规范）</li>
+</ol>
+<p>维护八抓手：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>抓手</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户日志</td>
+<td>About Rainbow → Open logs</td>
+</tr>
+<tr>
+<td>用户问题上报</td>
+<td>集成商能看到与客户同一份上报</td>
+</tr>
+<tr>
+<td>status.openrainbow.com</td>
+<td>云故障状态页 + 告警订阅</td>
+</tr>
+<tr>
+<td>维护预告</td>
+<td>管理门户内按地域/架构过滤的计划维护</td>
+</tr>
+<tr>
+<td>音频告警</td>
+<td>设阈值通知音质劣化与无音频</td>
+</tr>
+<tr>
+<td>操作历史</td>
+<td>审计谁在什么时候改了配置</td>
+</tr>
+<tr>
+<td>HelpDesk 指南</td>
+<td>help.openrainbow.com 排障入口</td>
+</tr>
+<tr>
+<td>MyPortal 开 SR</td>
+<td>注意：只有 Rainbow 认证伙伴的工单才会被建，项目启动先理顺认证</td>
+</tr>
+</tbody>
+</table></div>
+<h2>七、速查卡</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>要做的事</th>
+<th>去哪张能力卡</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>建 Rainbow 公司/开订阅</td>
+<td>rbx-company-subscription</td>
+</tr>
+<tr>
+<td>装 OMC/首连/改 IP</td>
+<td>rbx-omc-onboarding</td>
+</tr>
+<tr>
+<td>PBX 接入 Rainbow/接入排障</td>
+<td>rbx-pbx-onboarding</td>
+</tr>
+<tr>
+<td>开户/销户/批量导入</td>
+<td>rbx-member-lifecycle</td>
+</tr>
+<tr>
+<td>网关选型/容量计算</td>
+<td>rbx-gateway-planning</td>
+</tr>
+<tr>
+<td>网关部署/建终端</td>
+<td>rbx-gateway-deployment</td>
+</tr>
+<tr>
+<td>话务台/监督组/互助代接</td>
+<td>rbx-attendant-supervision</td>
+</tr>
+<tr>
+<td>Teams 集成全流程</td>
+<td>rbx-teams-integration</td>
+</tr>
+<tr>
+<td>分机关联/RCC/日志/SR/网络核查</td>
+<td>路由入口（rainbow-oxo-connect-router）</td>
+</tr>
+</tbody>
+</table></div>
+<h2>版权</h2>
+<ul>
+<li>本精华长文为 ALE Training Services《Rainbow OXO Connect》（RAINXTE001EN Edition 13）的内部学习整理，仅供内部学习使用；教材版权归 ALE Training Services 所有。</li>
+</ul></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Rainbow OXO Connect (Participant's Guide, Edition 13) | edition: Edition 13 | pages: 251 页 -->

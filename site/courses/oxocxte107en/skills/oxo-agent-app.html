@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Agent 坐席席面部署（弹屏/打标/客户库）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OXO Connect · 呼叫中心</h2><p>Edition 07 · 218 页 · 文档整理入库（15 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte107en/index.html">课程首页</a><a href="/courses/oxocxte107en/digest.html">精华长文</a><a href="/courses/oxocxte107en/overview.html">教书理解</a><a href="/courses/oxocxte107en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte107en/skills/oxo-acd-basic-setup.html">OXO Connect 基础 ACD 全流程搭建</a><a href="/courses/oxocxte107en/skills/oxo-acd-call-scenarios.html">ACD 呼入六场景排障</a><a href="/courses/oxocxte107en/skills/oxo-acd-routing.html">呼叫特征化与 Smart Call Routing 路由表设计</a><a href="/courses/oxocxte107en/skills/oxo-acd-queue.html">ACD 等待队列管理（容量公式与出口配置）</a><a href="/courses/oxocxte107en/skills/oxo-acd-search-noanswer.html">坐席搜索模式选型与无应答处理</a><a href="/courses/oxocxte107en/skills/oxo-acd-login-status.html">坐席签入签出（free seating）与状态排障</a><a href="/courses/oxocxte107en/skills/oxo-multi-secretary.html">Multi-Secretary 多秘书方案配置</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte107en/skills/oxo-omc-first-connect.html">OMC 安装与首次连接</a><a href="/courses/oxocxte107en/skills/oxo-ip-replan.html">OXO 与客户端 IP 规划修改</a><a href="/courses/oxocxte107en/skills/oxo-acd-schedule-calendar.html">ACD 营业时段与例外日配置</a><a href="/courses/oxocxte107en/skills/oxo-supervisor-app.html">Supervisor 班长台部署与实时监控</a><a href="/courses/oxocxte107en/skills/oxo-agent-app.html">Agent 坐席席面部署（弹屏/打标/客户库）</a><a href="/courses/oxocxte107en/skills/oxo-statistics-app.html">Statistics 统计应用与报表导出</a><a href="/courses/oxocxte107en/skills/oxo-dtmf-client-popup.html">DTMF 客户码识别弹屏</a><a href="/courses/oxocxte107en/skills/oxo-acd-voice-prompts.html">ACD 语音提示定制</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte107en/index.html">oxo-connect-call-center（15 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte107en/index.html">OXOCXTE107EN</a><span>/</span><span aria-current="page">Agent 坐席席面部署（弹屏/打标/客户库）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Agent 坐席席面部署（弹屏/打标/客户库）</h1></div><dl><div><dt>Skill ID</dt><dd>oxo-agent-app</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>Agent 坐席席面部署（OXO Connect）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Architecture based on PC / Terminal association ... Association PC 1 + Ext. 2001"（p169）
+"Once an ACD incoming call is routed to an agent using the Agent application, the agent can tag this call according to the kind of call they are involved with"（p99）
+"A screen popup should appear as soon as the call is distributed"（p183）</p>
+</blockquote>
+<p>出处：OXOCXTE107EN p99, p166-184。</p>
+<h2>I — 自述</h2>
+<p>Agent 席面是坐席的 PC 工作台，架构是 <strong>PC 绑定话机</strong>。四个要点：</p>
+<ol>
+<li><strong>来话信息</strong>：CLI、DID、所属组、来话组名、等待+振铃耗时、通话时长、客户码入口</li>
+<li><strong>部署顺序</strong>：先在 OMC 的 Types 表定义通话分类码（事后打标供统计）→ 装应用（MyPortal 下载 Agent_assistant）→ 首连</li>
+<li><strong>连接三要素</strong>：OXO IP + 关联分机号 + 可管理该分机的坐席名单</li>
+<li><strong>功能验证四件事</strong>：状态切换（Supervisor 台交叉核对）、改所属组、客户库弹屏、来话打标</li>
+</ol>
+<p>权限由 Admin 账户管理（受 OXO Operator 密码保护）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>部署实验</strong>（p181-184，厂商实验，PC 绑定话机 102）</p>
+<ul>
+<li>Types 表定义分类码</li>
+<li>安装并首连（192.168.1.246 + 分机 102）</li>
+<li>状态切换：On duty / Clerical work / Temporary absence → Supervisor 台核对</li>
+<li>组变更：席面改所属组 → Supervisor 台核对</li>
+<li>弹屏：Customers data base → Edit → New 建联系人（姓/名/电话），用该号码呼组2，弹屏出现</li>
+<li>打标：来话接听后右侧下拉选分类码</li>
+<li>队列联动：组1 的 K 从 0.1 改 2.0 → 席面观察队列容量 1 → 4（与公式吻合）</li>
+</ul>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：坐席要在电脑上接听管理来电；来话要弹客户资料；通话要分类打标供统计；坐席软件重装。</p>
+<p>语言信号：坐席软件 / agent application / 弹屏 / screen popup / 打标 / 分类码 / 客户库 / 来电资料。</p>
+<p>与相邻能力区分：来电者输 DTMF 码触发的弹屏 → DTMF 弹屏能力；坐席登录签出 → 签入签出能力；本能力是席面软件本体部署与验证。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：坐席 PC 与话机分机对应关系、分类码定义、客户资料样例（验证弹屏）。</p>
+<ol>
+<li>定义分类码：OMC / ACD-SCR Services / General Parameters / "Types" tab。完成标准：码表可用</li>
+<li>安装：下载解压 → setup.exe。完成标准：安装完成</li>
+<li>关联与首连：服务器 IP + 关联分机号 + 语言 → Connection。完成标准：席面登录（三要素缺一先补配）</li>
+<li>状态验证：切状态 → Supervisor 台核对。完成标准：实时同步</li>
+<li>组变更验证：席面改组 → Supervisor 台核对。完成标准：组列表更新</li>
+<li>弹屏验证：建联系人 → 用该号码呼入 → 弹屏出现。完成标准：弹屏正确</li>
+<li>打标验证：来话后下拉选分类码。完成标准：标记保存</li>
+<li>队列联动（可选）：改 K 值观察席面队列容量变化。完成标准：与公式一致</li>
+</ol>
+<p>输出契约：可用坐席席面 + 分类码表 + 弹屏/打标验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>p183 原文 "agent 1002" 疑为话机 102 笔误，操作以实际关联分机为准</li>
+<li>席面弹屏两路：客户库按 CLI 匹配（本能力）与 DTMF 码触发（另一能力）——排查"不弹屏"先分清哪一路</li>
+<li>权限入口受 Operator 密码保护；密码遗失走设备管理流程（原书未覆盖）</li>
+<li>与 PIMphony 的集成原书仅提及可行，细节未展开</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte107en/skills/oxo-dtmf-client-popup.html">DTMF 客户码识别弹屏</a>、<a href="/courses/oxocxte107en/skills/oxo-statistics-app.html">Statistics 统计应用与报表导出</a>、<a href="/courses/oxocxte107en/skills/oxo-supervisor-app.html">Supervisor 班长台部署与实时监控</a></p><p class="source-page">能力 ID：cap.oxo-cc.agent-app · 来源：OXOCXTE107EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OXO Connect 呼叫中心 (Participant's Guide, Edition 07) | edition: Edition 07 | pages: 218 页 -->

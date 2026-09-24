@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>ACR 坐席直拨融合</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced Call Routing</h2><p>Edition 01 · 470 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte150en/index.html">课程首页</a><a href="/courses/otccxte150en/digest.html">精华长文</a><a href="/courses/otccxte150en/overview.html">教书理解</a><a href="/courses/otccxte150en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte150en/skills/acr-script-editor-fundamentals.html">ACR 脚本编辑器与调试工具链</a><a href="/courses/otccxte150en/skills/acr-ccd-matrix-foundation.html">ACR 基础 CCD 矩阵地基</a><a href="/courses/otccxte150en/skills/acr-redirect-redistribution.html">ACR 重定向与再分发兜底</a><a href="/courses/otccxte150en/skills/acr-direct-call-dica.html">ACR 坐席直拨融合</a><a href="/courses/otccxte150en/skills/acr-internal-database-routing.html">ACR 内部数据库路由</a><a href="/courses/otccxte150en/skills/acr-rule-combination-advanced.html">ACR 综合规则组合与高级构件</a><a href="/courses/otccxte150en/skills/acr-asm-deployment.html">ACR 外部 ASM 部署与双机热备</a><a href="/courses/otccxte150en/skills/acr-database-query-routing.html">ACR 外部数据库查询路由</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte150en/skills/acr-list-rules.html">ACR 授权与非授权名单规则</a><a href="/courses/otccxte150en/skills/acr-call-tag-transfer.html">ACR Call Tag 生成与传递</a><a href="/courses/otccxte150en/skills/acr-multilanguage-voiceguide.html">ACR 多语言语音引导与语言偏好分发</a><a href="/courses/otccxte150en/skills/acr-filter-statistics.html">ACR 过滤器与统计报表</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte150en/index.html">otcc-advanced-call-routing（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte150en/index.html">OTCCXTE150EN</a><span>/</span><span aria-current="page">ACR 坐席直拨融合</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>ACR 坐席直拨融合</h1></div><dl><div><dt>Skill ID</dt><dd>acr-direct-call-dica</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>ACR 坐席直拨融合（Pilot Direct Call、私有号、DICA、CALL_TYPE 脚本）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Complete the "Pilot direct call" parameter at the agent processing group level … Complete the Private agent number parameter in the agent data"（p106）
+"When a private number is managed for one Agent, the system automatically assigns a new skill for this Agent • Domain: Media • Skill: DirectCall • Abbreviation: DICA"（p111）
+"If the "DirectCall" skill is not activated, it is no more possible to call the agent directly (whatever the agent status: idle, busy…)"（p111）
+"Only 1 ACR script can be used at the same time on an ACR Pilot"（p113）</p>
+</blockquote>
+<p>出处：OTCCXTE150EN p103-127。</p>
+<h2>I — 自述</h2>
+<p>"回头客直拨找原坐席、忙时等一等"靠四件套实现：</p>
+<ol>
+<li><strong>Pilot Direct Call</strong>：处理组级参数填一个 Pilot 号（实验口径填直拨 Pilot 31604）。直拨呼叫 ACD 化，坐席忙时溢出到该 Pilot</li>
+<li><strong>Private Agent Number</strong>：坐席数据里配私有号。该参数的存在形态决定呼叫类型判定——未管理=仅矩阵内呼叫算 CCd；私有号=CCd 号时全部外部来电算 CCd；两号不同时各归各类</li>
+<li><strong>DICA 自动技能</strong>：配了私有号，系统自动在 Media 域挂 DirectCall 技能（缩写 DICA）。它是开关型技能——停用后无论坐席空闲与否都无法直拨，呼叫立即转 pilot direct call</li>
+<li><strong>CALL_TYPE=DIRECT_CALL</strong>：脚本关键字，区分直拨与普通来话，配合 SEQUENCE 与重选超时实现"第 1 次执行等 N 秒原坐席、第 2 次执行转走"</li>
+</ol>
+<p>无 ACR 与有 ACR 的直拨行为对照：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>坐席忙时直拨行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无 ACR</td>
+<td>立即溢出到 pilot direct call，矩阵内重路由，可能换人接听</td>
+</tr>
+<tr>
+<td>有 ACR</td>
+<td>带 ASM 动态列表进等待房间，等原坐席指定时长后按脚本转走</td>
+</tr>
+</tbody>
+</table></div>
+<p>设计约束：一个 ACR Pilot 同一时刻只能激活 1 个脚本；直拨 Pilot 若非专用（还接普通来话），脚本必须用 CALL_TYPE 分支兼容两种呼叫来源，否则必有一边路由错。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>直拨特性验证（c05 前半）</strong>：</p>
+<ol>
+<li>建直拨 Pilot 31604 接等待房间 31999703（实验口径）</li>
+<li>处理组 31999800 的 Pilot Direct Call 参数填 31604</li>
+<li>坐席 31501（DN 31500）配 Private Agent No.=31001；初始不给 31604 挂脚本</li>
+<li>坐席空闲时直拨 DN 正常；坐席忙时观察溢出行为（无脚本时在房间等到空闲）</li>
+<li>停用 31501 的 DICA 技能再直拨：空闲/可用/忙全部立即转 pilot direct call</li>
+</ol>
+<p><strong>DICA 脚本（c05 后半）</strong>：</p>
+<ol>
+<li>编辑器建脚本 DICA：构件 Statement(SEQUENCE=%1) 接 RULE_REDIRECTION（目标 31010）</li>
+<li>SET RESELECTION_TIMEOUT=%30 定等待 30 秒</li>
+<li>IF(CALL_TYPE=DIRECT_CALL) 分支接 RULE_ISM Call_Profile=%1，连线完成</li>
+<li>脚本挂 ACR Pilot 31604 激活；Debugger 观察：坐席忙时首呼等 30 秒、重选后转 31010、非直拨走 ISM</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户要求"回头客直拨等原坐席"；临时屏蔽某坐席直拨；直拨忙时行为不符合预期；私有号与呼叫类型判定咨询。</p>
+<p>语言信号：直拨 / Direct Call / Pilot Direct Call / 私有号 / Private Agent Number / DICA / DirectCall 技能 / CALL_TYPE / DIRECT_CALL / 等原坐席 / 溢出。</p>
+<p>与相邻能力区分：等原坐席要查历史，见 内部数据库三键路由能力（坐席号键）；脚本写法细节，见 脚本编辑器能力；等待体验编程，见 综合规则组合能力（IQUEUE）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：直拨业务时长口径（等几秒、转哪里）、坐席私有号方案、ACR Pilot 就绪。矩阵或房间没建好先回 CCD 矩阵地基能力。</p>
+<ol>
+<li>处理组配 Pilot Direct Call 填 ACR Pilot 号。完成标准：直拨溢出目标生效</li>
+<li>给目标坐席配私有号。完成标准：CCS 坐席页可见自动生成的 DICA 技能</li>
+<li>无脚本先验证基线行为：忙时直拨应溢出到该 Pilot 并在等待房间等待。完成标准：行为与预期一致</li>
+<li>写直拨脚本：CALL_TYPE 分支 + SEQUENCE 分支 + RESELECTION_TIMEOUT + 兜底转接。完成标准：保存传输激活</li>
+<li>Debugger 验证三路径：忙时首呼等待、超时转接、非直拨走常规分支。完成标准：三路径轨迹正确</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户要"临时不让任何人直拨某坐席" → 停用该坐席 DICA 技能即可，不要删私有号</li>
+<li>直拨 Pilot 同时接普通来话而脚本无 CALL_TYPE 分支 → 停，先改脚本兼容双来源再上线</li>
+<li>直拨行为像普通 Pilot 一样换人接听 → 停，核对处理组 Pilot Direct Call 是否真指向 ACR Pilot</li>
+</ul>
+<p>输出契约：直拨特性配置 + CALL_TYPE 脚本 + 三路径验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>原文 "Direct Call the an ACR Pilot will not work in the same way as with a "normal" Pilot"（p120，原文拼写如此）——直拨打到 ACR Pilot 的行为与普通 Pilot 不同，按普通 Pilot 经验预测会误判（n12）</li>
+<li>DICA 停用即完全不可直拨（含空闲态），排障时容易漏查这个自动技能（n13）</li>
+<li>"忙时等原坐席"是 ACR 部署后的增值能力，系统默认行为是立即溢出换人（n14），需求沟通先讲清</li>
+<li>私有号（实验口径 31001）与 Pilot 号（31604）为实验值，生产按客户编号方案</li>
+<li>直拨场景才支持内部数据库的坐席号键（见内部数据库能力条件）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte150en/skills/acr-internal-database-routing.html">ACR 内部数据库路由</a></p><p class="source-page">能力 ID：cap.acr.direct-call-dica · 来源：OTCCXTE150EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Advanced Call Routing (Participant's Guide, Issue 01) | edition: Edition 01 | pages: 470 页 -->

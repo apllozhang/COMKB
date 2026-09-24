@@ -1,0 +1,640 @@
+schema_version: 1
+bundle_id: bundle.visual-automated-attendant
+book:
+  title: Visual Automated Attendant — Installation, Configuration and Maintenance (Participant's Guide, Edition 20)
+  author: ALE Training Services
+  source_pack: VSAAXTE001EN.pdf (351 pages)
+  baseline_tag: VAA R4.8.006 / OXE / RLAB
+entry:
+  name: visual-automated-attendant
+  description: 'VAA（Visual Automated Attendant）软件话务台/IVR 的安装、配置与维护：SUSE 服务器安装（install.sh 参数契约）与 HTTPS 证书、OXE 侧 SIP 五段链对接与接通排障、多租户与三级树设计（UC1-UC3）、提示音与 TTS/ASR 资产、IVR 选项节点（变量/收号/显示名/HTTP/邮件）、
+    Master/Slave 高可用与 OXE ARS 切换、日常维护备份升级、外部数据库集成、统计报告。适用于 VAA 交付、配置、排障与方案落地问答；OXE 编号计划原理、生产网络端口与公网证书细节不在原书范围内（见 out_of_scope）。
+
+    '
+  core_principles:
+  - 双层路由缺一不可：VAA 内 Routing 把 DID 绑到树，OXE 侧经 ABC/F 型 SIP 中继把呼叫送进 VAA；incoming username 双侧一致是接通契约
+  - 一切配置在 Web 界面完成且必须 HTTPS（4.6.104 起）；树是拖出来的（12 种原生节点 + 9 种 IVR 选项节点另购许可），每个节点必须命名——名称直接进统计
+  - 依赖物先行：日历/营业时间/过滤器/提示音必须在建树之前建好；多语言树的语言选择前提示必须双语同文件
+  - 高可用是 VAA 侧复制 + OXE 侧切换：Slave 只读无统计、切换丢进行中呼叫、Master 恢复后必须手工 vaa ha resync
+  - 实验环境口径：教材密码、账号与网段仅限实验；规格表与端口清单为示例口径，生产以官方文档为准
+  out_of_scope:
+  - OXE 编号计划原理与冗余工程实施（ABC-F 语义、呼叫服务器冗余设计；OXE 侧文档体系承载）
+  - 端口清单、完整安装步骤、公网证书配置细节（原书外置到 VAA Installation Guide 4.2/6.4 与第 6 章）
+  - multi-company 配置细节（TBE083 与 OTEC-S 配置指南）与 OPEX 超配处置行为
+  - 非 JDBC 关系库（如 NoSQL）接入、离线/国产化 TTS 替代方案、Teams 等第三方集成（原书未涉及）
+  stop_conditions:
+  - 端口数超 120 或需跨站点容灾 + OPEX 组合 → 超出书内范围（120 上限找中央售前；空间冗余与 Purple On Demand 互斥），如实声明
+  - 需要生产网络端口/证书细节或完整安装步骤 → 指向 VAA Installation Guide 对应章节，不以实验口径搪塞
+  - 涉及 RLAB/ITSP1 实验环境搭建 → 参考 book/overview 环境区背景，不虚构生产配置
+  - 4.8.006 升级诉求 → 按书内唯一路径回答（全新安装 + 数据库恢复 + Release 11 新许可），不提供原地升级方案
+router_entry:
+  name: visual-automated-attendant-router
+  description: 'VAA 能力路由入口：按用户意图分发到 12 张能力卡——安装对接、多租户树设计、提示音 TTS/ASR、IVR 选项节点、高可用、维护备份、数据库集成、统计报告八个 promoted 能力，
+    以及 WebAdmin 管理面、PCS/OPEX 许可、服务器选型虚拟化、架构冗余全景四张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.vaa.install-sip-integration
+  revision: 1
+  status: active
+  slug: vaa-install-sip-integration
+  title: VAA 安装与 OXE SIP 对接接通
+  importance: critical
+  importance_rationale: 对应 task-02/task-03/task-04，全书第一关口；install.sh 参数契约与 OXE 五段链是后续一切的前提，接通排障是现场高频
+  one_liner: install.sh 双侧契约（incoming username 一致、编解码与 ASR 互斥）+ OXE 五段链 + 测试树拨通 31400 + 四层排障
+  intents:
+  - 安装 VAA 服务器
+  - OXE 对接 VAA
+  - 拨测试树不通
+  - install.sh parameters
+  - VAA SIP trunk
+  keywords:
+  - install.sh
+  - incoming username
+  - G711
+  - G729
+  - ABC-F
+  - trunk group
+  - SIPMOTOR
+  - trkstat
+  - motortrace
+  - 自签证书
+  - "Release 11"
+  - 接通
+  also_read:
+  - vaa-master-slave-ha
+  card: cards/vaa-install-sip-integration.md
+  frontmatter:
+    description: '在 SUSE 服务器上手工安装 VAA（改密/配网/传输/install.sh 参数清单）并在 OXE 侧完成 SIP 五段链对接（trunk group/外部网关/信任 IP/路由/前缀计划），含 HTTPS 证书安装、
+      测试树接通验证与四层排障。当用户要"装 VAA/对接 OXE/拨不通/填安装参数/换证书"时使用。不适用于双机部署（HA 能力）；4.8.006 只支持全新安装 + 数据库恢复。
+
+      '
+    tags:
+    - procedure
+    - installation
+    - sip-trunk
+    - troubleshooting
+    - vaa
+  source_evidence:
+  - source_id: src-vsaaxte001
+  - location: p76-126
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-02/03/04 核心，交付起点
+- capability_id: cap.vaa.multitenant-tree-design
+  revision: 1
+  status: active
+  slug: vaa-multitenant-tree-design
+  title: VAA 多租户与树设计（公司/日历/UC1-UC3）
+  importance: critical
+  importance_rationale: 对应 task-06/task-08/09/10，核心交付能力域；节点命名纪律与依赖物先行决定统计排障能力
+  one_liner: 公司四要素 + 日历/营业时间/过滤器先行 + 12 种原生节点拖树 + 三级用例（简单转接/日历过滤分流/多语言菜单）+ 一号一树激活
+  intents:
+  - 创建 VAA 公司租户
+  - 设计 IVR 树
+  - 多语言菜单
+  - business hours routing
+  - VIP 过滤分流
+  keywords:
+  - tree
+  - 树
+  - Menu
+  - Transfer
+  - Filter
+  - Calendar
+  - business hours
+  - 营业时间
+  - 多语言
+  - 路由号码
+  - DID
+  - VIP
+  - 节点命名
+  also_read:
+  - vaa-prompt-tts-asr
+  - vaa-ivr-option-nodes
+  card: cards/vaa-multitenant-tree-design.md
+  frontmatter:
+    description: '创建 VAA 公司租户（时区/DID 段/留言前缀/分机位长）并设计树脚本：日历/营业时间/过滤器/提示音依赖物先行，12 种原生节点拖拽编排，三级用例模板（UC1 简单转接、UC2 日历+VIP 过滤、UC3 多语言菜单），
+      路由号码绑定激活与节点命名纪律。当用户要"建租户/编 IVR/配营业时间/做菜单/绑树号"时使用。不适用于收号/SQL 等增值节点（IVR 选项节点能力）；Go to tree 仅限同租户。
+
+      '
+    tags:
+    - procedure
+    - tree-design
+    - multitenant
+    - ivr
+    - vaa
+  source_evidence:
+  - source_id: src-vsaaxte001
+  - location: p22-39, p133-201
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-06/08/09/10，核心交付
+- capability_id: cap.vaa.prompt-tts-asr
+  revision: 1
+  status: active
+  slug: vaa-prompt-tts-asr
+  title: VAA 提示音与 TTS/ASR 引擎
+  importance: high
+  importance_rationale: 对应 task-07，树脚本的声音来源；WAV 硬约束与 Pico/Google 选型边界是高频踩点
+  one_liner: 提示音三来源（WAV 导入 8KHz PCM 16-bit 单声道/电话录音/TTS）；Pico 免费不建议生产、Google Cloud 收费；ASR 需 Google API key 且与 G729 互斥
+  intents:
+  - 导入提示音
+  - 选 TTS 引擎
+  - 开语音识别
+  - prompt management
+  - TTS generation
+  keywords:
+  - prompt
+  - 提示音
+  - WAV
+  - "8KHz"
+  - PCM
+  - Pico
+  - Google Cloud TTS
+  - ASR
+  - 语音识别
+  - 录音
+  also_read:
+  - vaa-multitenant-tree-design
+  card: cards/vaa-prompt-tts-asr.md
+  frontmatter:
+    description: '管理 VAA 语音资产：WAV 导入（8KHz/PCM/16-bit/单声道、名称无空格）、电话录音通道（租户用户 ID+PIN）、TTS 生成与引擎激活（Pico/Google Cloud）、ASR 配置（Google API key、Quota 控成本）、
+      语音一致性（存量 WAV 转 TTS 统一音色）。当用户要"传提示音/选 TTS/开 ASR/统一音色"时使用。不适用于树内节点编排（树设计能力）；G729 与 ASR 互斥的决策在安装对接能力。
+
+      '
+    tags:
+    - procedure
+    - prompts
+    - tts
+    - asr
+    - vaa
+  source_evidence:
+  - source_id: src-vsaaxte001
+  - location: p33-37, p137-142
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-07，语音资产管线
+- capability_id: cap.vaa.ivr-option-nodes
+  revision: 1
+  status: active
+  slug: vaa-ivr-option-nodes
+  title: VAA IVR 选项节点与动态脚本
+  importance: high
+  importance_rationale: 对应 task-11..15，增值集成入口（全部需 IVR 许可）；收号/*/#行为、SQL 单字段等细则决定脚本正确性
+  one_liner: 九节点（变量/条件/收号/显示名/识别/相关数据/SQL/HTTP/邮件）+ 变量三类（Local/Global/Contextual 只读）+ 收号与显示名行为边界
+  intents:
+  - 配置 IVR 变量与条件
+  - 收号采集
+  - HTTP 节点集成
+  - display name node
+  - collect digits
+  keywords:
+  - variable
+  - Condition
+  - Collect digit
+  - 收号
+  - display name
+  - HTTP
+  - Mail
+  - JSON
+  - correlator
+  - IVR 许可
+  also_read:
+  - vaa-db-integration
+  card: cards/vaa-ivr-option-nodes.md
+  frontmatter:
+    description: '用 IVR 选项节点（另购许可）做动态脚本：Set variable/Condition（三类变量）、Collect digit（min=max 判失败、* 合法、# 不可改）、Custom display name（仅监督转接振铃期、需 COS）、
+      HTTP request（GET/POST 与 JSON 点语法取值）、Mail、Speech recognition、Correlator data。当用户要"动态分流/采工号/调外部接口/来话发邮件/屏显信息"时使用。不适用于 JDBC 驱动与库连接（数据库集成能力）。
+
+      '
+    tags:
+    - procedure
+    - ivr
+    - nodes
+    - integration
+    - vaa
+  source_evidence:
+  - source_id: src-vsaaxte001
+  - location: p203-238
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-11..15，增值集成
+- capability_id: cap.vaa.master-slave-ha
+  revision: 1
+  status: active
+  slug: vaa-master-slave-ha
+  title: VAA Master/Slave 高可用与 OXE ARS 切换
+  importance: critical
+  importance_rationale: 对应 task-16/task-17，生产可靠性刚需；addslave 清库、切换丢话、不自动回同步是高频事故源
+  one_liner: slave 独立安装 + master addslave（清库警告）+ 双侧五项验证；OXE 侧第二中继/识别符/NPD/ARS 双路由；行为口径：Slave 只读无统计、切换丢话、恢复后 resync
+  intents:
+  - 部署 VAA 双机
+  - 主备切换测试
+  - OXE ARS 双路由
+  - vaa ha addslave
+  - 高可用行为
+  keywords:
+  - HA
+  - Master
+  - Slave
+  - addslave
+  - resync
+  - vaa ha role
+  - whoismaster
+  - ARS
+  - 切换
+  - 只读
+  - NPD
+  - 识别符
+  also_read:
+  - vaa-install-sip-integration
+  - vaa-architecture-redundancy
+  card: cards/vaa-master-slave-ha.md
+  frontmatter:
+    description: '部署 VAA Master/Slave 高可用（slave 独立安装、vaa ha addslave、双侧验证）并完成 OXE 侧附加配置（第二 trunk group/外部网关/识别符/NPD/编号命令表/ARS 双路由/时间路由），
+      含切换测试与恢复纪律。当用户要"上双机/配主备/切换后异常/ARS 路由"时使用。不适用于 N+1 扩容结构（架构冗余能力）；任何切换丢进行中呼叫是设计行为。
+
+      '
+    tags:
+    - procedure
+    - ha
+    - ars
+    - failover
+    - vaa
+  source_evidence:
+  - source_id: src-vsaaxte001
+  - location: p44-48, p239-271
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-16/17，可靠性闭环
+- capability_id: cap.vaa.maintenance-backup
+  revision: 1
+  status: active
+  slug: vaa-maintenance-backup
+  title: VAA 日常维护与版本升级
+  importance: high
+  importance_rationale: 对应 task-18/task-20，售后日常最高频；备份不可关闭、密码-备份陷阱、vaa.conf 不覆盖是三大坑
+  one_liner: vaa 命令族 + 密码策略（92 天/5 次锁定）+ 三级备份（db/cert/full）+ 自动备份规则（启用后关不掉、6 个月 20GB）+ 升级（备份先行、vaa.conf 逐值比对、HA resync）
+  intents:
+  - VAA 日常巡检
+  - 备份恢复
+  - 升级 VAA 版本
+  - vaa commands
+  - 密码策略
+  keywords:
+  - vaa status
+  - vaa.conf
+  - backup
+  - restore
+  - "92 天"
+  - 密码过期
+  - SNMP
+  - 日志
+  - 升级
+  - NFS
+  - 自动备份
+  also_read:
+  - vaa-install-sip-integration
+  - vaa-master-slave-ha
+  card: cards/vaa-maintenance-backup.md
+  frontmatter:
+    description: 'VAA 运维闭环：许可核查（FEATURE 项与 vaa services 三项）、密码策略（12 位四类字符、92 天有效期、5 次锁定）、命令族（stop 保留 postgresql 与 nginx）、三级备份恢复（db/cert/full）、
+      自动备份规则与 NFS、日志与告警（邮件三类、SNMP 默认关）、版本升级七步（备份先行/vaa.conf 逐值比对/HA resync）。当用户要"巡检/备份/恢复/升级/密码被锁/告警不发"时使用。不适用于 PCS 同步命令（PCS/OPEX 卡）。
+
+      '
+    tags:
+    - procedure
+    - maintenance
+    - backup
+    - upgrade
+    - vaa
+  source_evidence:
+  - source_id: src-vsaaxte001
+  - location: p272-299, p307-310
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-18/20，运维高频
+- capability_id: cap.vaa.db-integration
+  revision: 1
+  status: active
+  slug: vaa-db-integration
+  title: VAA 外部数据库集成（JDBC/SQL 节点）
+  importance: high
+  importance_rationale: 对应 task-22，与客户信息系统打通的核心；驱动安装路径、SQL 单字段规则、MS SQL 三默认值陷阱是高频堵点
+  one_liner: 装驱动（/opt/ale/aa-webapp/lib、HA 双机）+ 建连接（External Databases/JDBC URL）+ SQL 节点树（单字段/首条/空结果不算错）+ MS SQL/Oracle 接入
+  intents:
+  - VAA 连接外部数据库
+  - SQL 节点查库转接
+  - 安装 JDBC 驱动
+  - MS SQL connectivity
+  - Oracle JDBC URL
+  keywords:
+  - JDBC
+  - SQL
+  - mssql-jdbc
+  - Oracle
+  - "1433"
+  - External Databases
+  - ODBC
+  - MS SQL
+  - 空结果
+  - 单字段
+  also_read:
+  - vaa-ivr-option-nodes
+  card: cards/vaa-db-integration.md
+  frontmatter:
+    description: '把 VAA 树接到客户数据库：JDBC 驱动手装（默认仅 PostgreSQL/MariaDB，MS SQL/Oracle 手装到 /opt/ale/aa-webapp/lib 且 HA 双机都要）、External Databases 建连接与连接测试、
+      SQL 节点树（SELECT 单字段、多条取首条、空结果不算错必须 Condition 判）、MS SQL Express 测试库三默认值陷阱与 ODBC 验证、Oracle 两种连接串不等价。当用户要"按来电查库转接/装驱动/连不上库"时使用。收号等节点参数细节见 IVR 选项节点能力。
+
+      '
+    tags:
+    - procedure
+    - database
+    - jdbc
+    - integration
+    - vaa
+  source_evidence:
+  - source_id: src-vsaaxte001
+  - location: p319-344
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-22，信息系统集成
+- capability_id: cap.vaa.statistics-reporting
+  revision: 1
+  status: active
+  slug: vaa-statistics-reporting
+  title: VAA 统计与报告
+  importance: high
+  importance_rationale: 对应 task-21，运营与排障抓手；周报日期偏移与故障期统计缺口是口径争议高发区
+  one_liner: 报表四指标 + 呼叫日志逐节点时长排障 + CSV 导出 + xlsx 邮件周报（vaa.conf 双开关默认开、选周一收周一数据）
+  intents:
+  - 配置话务周报
+  - 逐节点排障
+  - 导出呼叫日志
+  - VAA statistics
+  - 报表口径
+  keywords:
+  - statistics
+  - 报表
+  - call logs
+  - CSV
+  - xlsx
+  - 周报
+  - 逐节点
+  - 许可不足
+  also_read:
+  - vaa-multitenant-tree-design
+  card: cards/vaa-statistics-reporting.md
+  frontmatter:
+    description: 'VAA 统计体系：全局与按公司报表（收到/已处理/主叫挂断/许可不足四指标与饼图）、呼叫日志逐节点时长诊断、CSV 导出字段、租户活动邮件周报（双开关、权限、日期偏移次日报前一天）。
+      当用户要"开周报/分析话务/定位卡顿节点/解释报表缺口"时使用。统计前提是节点命名纪律（树设计能力）；故障期间无统计属 HA 设计行为。
+
+      '
+    tags:
+    - procedure
+    - statistics
+    - reports
+    - vaa
+  source_evidence:
+  - source_id: src-vsaaxte001
+  - location: p279-281, p312-317
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-21，运营抓手
+- capability_id: cap.vaa.webadmin-administration
+  revision: 1
+  status: active
+  slug: vaa-webadmin-administration
+  title: VAA WebAdmin 管理面
+  importance: medium
+  importance_rationale: 对应 task-05，一次性初始配置为主；新账号默认密码=用户名、SMTP 改后必重启是两个高频坑
+  one_liner: 首连 admin/admin 强制改密 + 管理员角色分派（新账号默认密码=用户名）+ SMTP 告警（改后必重启）+ 四页（Server info/Supervision/Logs/License）
+  intents:
+  - 添加 VAA 管理员
+  - 配置 SMTP 告警
+  - 查看 VAA 日志
+  - webadmin setup
+  - 受限用户档案
+  keywords:
+  - WebAdmin
+  - 管理员
+  - SMTP
+  - Supervision
+  - logs
+  - License
+  - 受限档案
+  card: cards/vaa-webadmin-administration.md
+  frontmatter:
+    description: 'VAA Web 管理面初始管理：首连改密、建第二管理员与角色分派（管理类/功能类/受限档案）、SMTP 通知配置（保存后必须重启服务）、Administrator menu 四页（Server info/Supervision/Logs/License server）。
+      当用户要"加管理员/配告警邮箱/看日志/受限账号"时经路由使用。密码锁定与 unlockAdmin 细则在维护能力；Supervision 按钮无支持指示不要用。
+
+      '
+    tags:
+    - reference
+    - webadmin
+    - administration
+    - vaa
+  source_evidence:
+  - source_id: src-vsaaxte001
+  - location: p22-39, p127-132
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 一次性配置域，路由可达即可
+- capability_id: cap.vaa.pcs-opex-licensing
+  revision: 1
+  status: active
+  slug: vaa-pcs-opex-licensing
+  title: VAA PCS 同步与 OPEX/许可体系
+  importance: medium
+  importance_rationale: 对应 task-19 与许可域，特殊场景支撑；空间冗余与 OPEX 互斥、许可绑定 MAC/FQDN 是售前与运维双边界
+  one_liner: vaa conf pcs/sendBackup（01:00 起 cron 错开）+ OPEX 三前提（云化 OXE/单订阅/端口分摊、每晚午夜校验）+ FlexLM 许可绑定 MAC/FQDN 核查
+  intents:
+  - 配置 PCS 同步
+  - OPEX 模式评估
+  - 核查 VAA 许可
+  - Purple On Demand
+  - 许可失效排查
+  keywords:
+  - PCS
+  - OPEX
+  - CAPEX
+  - Purple On Demand
+  - FlexLM
+  - FEATURE
+  - AAIVR
+  - AAPORTS
+  - VAA_RELEASE
+  - Backup4PCS
+  card: cards/vaa-pcs-opex-licensing.md
+  frontmatter:
+    description: '远端站点与商用模式：PCS 支撑架构与同步命令（vaa conf pcs/vaa db sendBackup、cron 01:00 起错开、应急配置恢复即丢）、OPEX（Purple On Demand）三前提与每晚校验、
+      FlexLM 许可核查（.lic/.vaa 绑 MAC/FQDN、FEATURE 四项、vaa services 三项）。当用户要"远端容灾/OPEX/许可失效/端口余量"时经路由使用。自动备份规则与 NFS 在维护能力。
+
+      '
+    tags:
+    - reference
+    - pcs
+    - opex
+    - licensing
+    - vaa
+  source_evidence:
+  - source_id: src-vsaaxte001
+  - location: p46, p49-51, p273-274, p300-305
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 特殊场景域，路由可达即可
+- capability_id: cap.vaa.server-sizing-virtualization
+  revision: 1
+  status: active
+  slug: vaa-server-sizing-virtualization
+  title: VAA 服务器选型与虚拟化
+  importance: medium
+  importance_rationale: 对应 task-01 选型部分，售前初筛为主；全部数值为示例口径，独立触发价值低但是安装前提
+  one_liner: 规格三档（8/50/120 端口对应双核 8GB/四核 16GB/八核 32GB、上限 120）+ Hypervisor 三前提（ESXi/Hyper-V/Proxmox、VMXNet3）+ root 禁 SSH 走 sudo
+  intents:
+  - 选 VAA 服务器规格
+  - 核对虚拟化兼容
+  - 端口数上限
+  - VAA hypervisor
+  - sizing
+  keywords:
+  - sizing
+  - ESXi
+  - VMXNet3
+  - Hyper-V
+  - Proxmox
+  - 端口上限
+  - root SSH
+  - SUSE
+  card: cards/vaa-server-sizing-virtualization.md
+  frontmatter:
+    description: 'VAA 部署前选型核查：规格三档表（示例口径，最多 120 端口、超限找售前）、虚拟化三前提（ESXi 8.0 需 VMXNet3+Tools、Hyper-V 2022 推荐 Gen2、Proxmox 8.2 自 4.6.1 起）、
+      安全基线（root 禁止 SSH 远程、admin+sudo）、SUSE 底座与 BootDVD。当用户要"报配置/能不能跑 Proxmox/多少端口"时经路由使用。具体端口清单与完整安装步骤在官方安装手册。
+
+      '
+    tags:
+    - reference
+    - sizing
+    - virtualization
+    - presales
+    - vaa
+  source_evidence:
+  - source_id: src-vsaaxte001
+  - location: p52-55
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 选型初筛域，路由可达即可
+- capability_id: cap.vaa.architecture-redundancy
+  revision: 1
+  status: active
+  slug: vaa-architecture-redundancy
+  title: VAA 架构与冗余全景
+  importance: medium
+  importance_rationale: 对应架构底座与方案沟通场景；概念解释为主，实施都指向其他能力卡或书外文档
+  one_liner: 组件族七件 + 四步呼叫流（OXE 呼控/VAA 执行脚本）+ multi-company 端口共享 + N+1 reference 结构 + OXE 冗余三用例（切换必丢话）
+  intents:
+  - 解释 VAA 架构
+  - multi-company 集成
+  - N+1 冗余
+  - VAA call flow
+  - 冗余选型
+  keywords:
+  - architecture
+  - 呼叫流
+  - CMIP
+  - multi-company
+  - N+1
+  - reference VAA
+  - 冗余
+  - 空间冗余
+  card: cards/vaa-architecture-redundancy.md
+  frontmatter:
+    description: 'VAA 架构底座与方案沟通：软件组件族七件职责、四步典型呼叫流、multi-company（媒体服务器共享不能预留端口）、N+1（reference VAA 扩容结构、故障期配置冻结）、
+      OXE 冗余三用例行为（任何切换丢进行中呼叫）。当用户要"讲架构/多公司方案/N+1 与双机怎么选/组件归谁管"时经路由使用。双机实施在 HA 能力；multi-company 细节外置 TBE083。
+
+      '
+    tags:
+    - reference
+    - architecture
+    - redundancy
+    - vaa
+  source_evidence:
+  - source_id: src-vsaaxte001
+  - location: p41-51
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 概念底座域，路由可达即可

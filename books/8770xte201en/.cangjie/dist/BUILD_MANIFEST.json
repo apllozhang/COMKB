@@ -1,0 +1,43 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\ovbill-archiving.md": "75e39bccb753c8a1c517a894d3d49bdee6f7b96c2559bdf61c3584b30f177837",
+    "references\\capabilities\\ovbill-codebook-migration.md": "434056f70ffb38c0b0cbfec4858f8e6cbf99cfcaa6c10085319a90708c768652",
+    "references\\capabilities\\ovbill-confidentiality.md": "49a4a6420219bad61d203cdf2945d6aa411e7ed6a8b7333a62cbc4921e458779",
+    "references\\capabilities\\ovbill-cost-profile.md": "de1a44886cf14c69a8aaef11a716d5b0a5bad93ac9e9e53870aa6916a3ea75dc",
+    "references\\capabilities\\ovbill-node-onboarding.md": "36c427ae3eb9d6d9535648e04f025fbfb7f3b55579f32a431d1830dcf8c264f9",
+    "references\\capabilities\\ovbill-org-costing.md": "1bbadd687093d916a3743227a1381f9263dda6daf35a456083b1fea70d7515c0",
+    "references\\capabilities\\ovbill-report-design.md": "3604f99b87a78534b7991a2ec8a3c93b4a93983d7693df75d08b3ea1722349f9",
+    "references\\capabilities\\ovbill-reporting.md": "e250ca1b8d9f617d29cc40dbed713a13b515d81faa7459d1478b06cb6c64473d",
+    "references\\capabilities\\ovbill-tariff-costing.md": "3cecfe8219b8b628c551d40f7e52dbb5c97cc58958d83223b8efceaddfb2359d",
+    "references\\capabilities\\ovbill-ticket-pipeline.md": "711088987d4ce48b18fc4ba5ac44c6ee4e3f629ddea813ea9c4ae3f35b015be5",
+    "references\\capabilities\\ovbill-traffic-tracking.md": "ba2dac1d12ae2f1617b40bc7558d500152d0bbc5a6d5dce0789291afaaf05ccf",
+    "references\\capabilities\\ovbill-voip-monitoring.md": "504a9b1af64dd1ca7d52c38a7f841246cf0ff53f77d7ec926e9eee9cb5aee51d",
+    "references\\capabilities\\ovbill-web-performance.md": "a776a3a9d16e56a69e0f30ed373ac4043f4e72416283b4c9e9279719b86ccf43",
+    "references\\capability-index.md": "afb624a30b9df7e98a01cdf41d2e892995d0dc37693a06499ecede5e37872ee6",
+    "references\\cheatsheet.md": "6955984a697c92d227e4f95c7ba66db0ebaaeb3be9a334a6c1f760eb66de9323",
+    "references\\glossary.md": "f02e69650a79d223857856451d6e358f5a72df926022eca6e65d4ed9e0c5a3dc",
+    "references\\overview.md": "2825c1eede2035002355434007ae6ea0d7ff9609b08dd0672fc5d01295b4dab9",
+    "SKILL.md": "ba594571b92898178066f8efd29c48032662dfc4af58626e8c13a6196b18588e"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.omnivista-billing-performance",
+  "bundle_sha256": "a538d440c265506b618b9984d2cce8b2f9f5366fccf83d8c4810f99df8bbde2b",
+  "variant": "single",
+  "run_id": "run-20260924-195959-ba4297",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 13,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

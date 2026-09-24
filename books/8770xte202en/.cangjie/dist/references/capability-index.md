@@ -1,0 +1,16 @@
+# 能力索引（完整版）
+
+| capability_id | 标题 | 重要度 | 意图 | 关键词 | 能力卡 |
+|---|---|---|---|---|---|
+| cap.ovdir.oxe-sync-ldap | OXE 节点注册与同步 | critical | 注册 OmniPCX Enterprise 节点；OXE 同步失败排查；节点声明字段怎么填；register OXE node to 8770 | OXE、siteid、netadmin、节点号、Subnetwork、adfexc、mtcl、SSH、信任列表、101、Permanent IP connectivity、Complete、Separate、NMCSyncLdapPbx | capabilities/ovdir-oxe-sync-ldap.md |
+| cap.ovdir.auto-creation | 目录树搭建与 PCX 自动创建 | critical | 搭建公司目录树；配置 PCX 自动创建；同名员工 UID 冲突；automatic creation troubleshooting | 自动创建、AutomaticCreation、目录树、UID construction、同名、homonym、Extension、Location、Process directory、Cut Paste、Visio Room、user alias | capabilities/ovdir-auto-creation.md |
+| cap.ovdir.links-rename | 六类链接与改名语义 | critical | 管理人员与话机链接；成本中心修改被拒绝；改名后链接断裂修复；4760 多主链迁移 | 主链接、primary link、副链、secondary link、传真链、fax、multi-device、多设备、成本中心、cost center、改名、rename、断链、修复、Settings links、4760 | capabilities/ovdir-links-rename.md |
+| cap.ovdir.msad-azure-pipelines | MSAD 与 Azure AD 同步管道 | critical | 对接 Active Directory 同步；属性映射与同步规则；AD 删人后 8770 行为；Azure AD Entra ID sync | MSAD、Active Directory、LDAPS、636、attribute mapping、objectGUID、synchronization rule、Flat、Tree、Complete 同步、Automatic deletion、Azure AD、Entra ID、Graph API | capabilities/ovdir-msad-azure-pipelines.md |
+| cap.ovdir.click-to-call | Click to Call 交付 | high | 交付网页目录点击外呼；ISDN 号没生成排查；配置拨号前缀规则；STAP associated station setup | Click to Call、STAP、DDI、翻译器、ISDN 号、前缀规则、prefix rule、关联话机、粗体号码、Misc、Off hook、Authorized | capabilities/ovdir-click-to-call.md |
+| cap.ovdir.confidentiality | 目录保密级别与访问级别 | high | 配置目录保密级别；授予目录访问级别；匿名与认证可见性；web directory authentication | 保密、confidentiality、Green、Orange、Red、Administration 8770、personal data、个人数据、匿名、anonymous、访问级别、access level、Security、地址簿 | capabilities/ovdir-confidentiality.md |
+| cap.ovdir.replication | 目录复制主从部署 | high | 部署目录复制主从；复制不一致恢复；副本移除与属性集变更；directory replication setup | 复制、replication、Master replica、Consumer、referral、Replication agreement、Attribute set、Initialize、65535、7 天、调度、Schedule、断联 | capabilities/ovdir-replication.md |
+| cap.ovdir.domains-delegation | 管理域与委派 | high | 搭建多站点分域管理；本地管理员权限分组；配置委派与定制视图；management domain delegation | 管理域、domain、Domain Management、本地管理员、local administrator、Delegation、委派、strict view、定制视图、customized view、预定义组、可见性 | capabilities/ovdir-domains-delegation.md |
+| cap.ovdir.msad-plugin | MSAD 插件开户（AD 右键一键开通） | medium | 部署 MSAD 插件；AD 右键开户 OXE 用户；Meta profile 前置配置；MSAD plug-in provisioning | MSAD 插件、MSAD plug-in、Unified User Management、Meta profile、ADPlugin、空闲号段、MSAD8770Admin、信任站点、8770MSADPlugin.properties、NMC Java Service | capabilities/ovdir-msad-plugin.md |
+| cap.ovdir.ldif-tools | LDIF 导入导出与管理工具管道 | medium | 目录数据备份与恢复；批量导入外部目录数据；外部删除跟随清理；LDIF batch pipeline | LDIF、导入、导出、Branch、Csv2Ldif、ConvertLdif、ImportLdap、PurgeLdap、LinkDn、go.bat、purge.bat、misc10、p.conf、dirmanag | capabilities/ovdir-ldif-tools.md |
+| cap.ovdir.client-dictionary | 目录词典与 Web 客户端定制 | medium | 目录属性显示名定制；Web 目录客户端界面定制；定制回退与恢复；dictionary customization | 词典、dictionary、CustomDict、dict_user.zip、Context information、客户端定制、GlobalParameters、Grid、Detail、theme、主题、cookie、回退 | capabilities/ovdir-client-dictionary.md |
+| cap.ovdir.platform-basics | 8770 平台基础（套件/拓扑/兼容/虚拟化） | medium | 8770 套件与应用全景；版本兼容核对；虚拟化部署形态；8770 architecture overview | 8770、套件、suite、WBM、厚客户端、拓扑、兼容、compatibility、R5.2、Purple、ESXi、Hyper-V、RLAB、Capacity Planning | capabilities/ovdir-platform-basics.md |

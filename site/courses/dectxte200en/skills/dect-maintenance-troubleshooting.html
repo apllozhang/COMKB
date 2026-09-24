@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>DECT 日常维护与排障（命令族/syslog/WBM）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · DECT 解决方案</h2><p>Edition 12 · 298 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/dectxte200en/index.html">课程首页</a><a href="/courses/dectxte200en/digest.html">精华长文</a><a href="/courses/dectxte200en/overview.html">教书理解</a><a href="/courses/dectxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/dectxte200en/skills/dect-pari-identifier.html">DECT 标识号码体系与 multi-PARI 适配</a><a href="/courses/dectxte200en/skills/dect-product-selection.html">DECT 产品线选型与拓扑决策</a><a href="/courses/dectxte200en/skills/dect-ipxbs-deployment.html">8378 IP-xBS 部署与故障换站</a><a href="/courses/dectxte200en/skills/dect-xbs-sync-topology.html">xBS 空中同步体系与组网域（含外部同步与多站点）</a><a href="/courses/dectxte200en/skills/dect-handset-registration.html">DECT 用户创建与手机注册/注销</a><a href="/courses/dectxte200en/skills/dect-mixed-mode.html">混合 DECT 基础设施部署（TDM + xBS、PLI 统一）</a><a href="/courses/dectxte200en/skills/dect-auto-reregistration.html">DECT 手机自动重注册（PARI/PLI 变更零接触迁移）</a><a href="/courses/dectxte200en/skills/dect-firmware-management.html">DECT 固件双轨升级管理（基站 downstat x / 手机 OTA downstat m）</a><p class="course-nav-group">路由能力</p><a href="/courses/dectxte200en/skills/dect-maintenance-troubleshooting.html">DECT 日常维护与排障（命令族/syslog/WBM）</a><a href="/courses/dectxte200en/skills/dect-radio-survey.html">DECT 无线覆盖勘测（RSSI 门槛/SSK/survey mode）</a><a href="/courses/dectxte200en/skills/dect-ibs-deployment.html">8379 IBS 基础设施部署（UA 板卡/布线/建站）</a><a href="/courses/dectxte200en/skills/dect-sip-dect.html">8328 SIP-DECT 部署（四步注册/双小区）</a><p class="course-nav-group">已安装技能</p><a href="/courses/dectxte200en/index.html">dect-solutions（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/dectxte200en/index.html">DECTXTE200EN</a><span>/</span><span aria-current="page">DECT 日常维护与排障（命令族/syslog/WBM）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>DECT 日常维护与排障（命令族/syslog/WBM）</h1></div><dl><div><dt>Skill ID</dt><dd>dect-maintenance-troubleshooting</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>DECT 日常维护与排障（命令族/syslog 日志收集/WBM）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The following tools are adapted to work for xBS in the same way as for IBS: dectview / dectinston / dectinfo / dectarea / dectobs / obstraf / ippstat / downstat / Domstat / tftp_check"（p137）
+"P = data sync Primary xbs (the one which collects data) M = Master configured (for DECT synchronization) B = Backup configured (for DECT synchronization)"（p116）
+"SYSLOG IP address &lt; Enter the IP address of the syslog server &gt; ... SYSLOG port 514"（p160）
+"Debug: Used for troubleshooting. Must not be enabled during normal operation."（p160）</p>
+</blockquote>
+<p>出处：DECTXTE200EN p116, p137-139, p153-161, p230-234。</p>
+<h2>I — 自述</h2>
+<p>售后日常的三套抓手（命令均在 mtcl 下，xBS 与 IBS 通用）：</p>
+<ol>
+<li>
+<p><strong>命令族清单</strong>（mtcl 下，xBS 与 IBS 通用）：</p>
+</li>
+<li>
+<p>状态查询：dectview xbs/ibs/com（基站表/通话表）、dectinfo（全局）、dectarea（位置区）</p>
+</li>
+<li>同步树：xbssynchro（从 Data Sync Primary 取树，文本输出 RPN+RSSI）</li>
+<li>事件与链路：incvisu | grep xBS（或事件码 60/78）、listerm <mg> <cpl>（UA 链路）、listibs p <mg> <cpl> 0 <equip>（IBS 详情）</li>
+<li>复位与抓包：outserv/inserv；tcdump -s 0 -w /tmp/*.cap（root）或 xBS WBM 内 PCAP</li>
+<li>辅助：tftp_check / Domstat / obstraf</li>
+<li><strong>dectview xbs 标志判读</strong>：OK 在服 / NOK 停服 / OOS 已 outserv；P = Data Sync Primary（收集数据的站）、M = Master configured、B = Backup configured、+ = Master free running——P/M/B 是同步与切换健康度的第一读数。</li>
+<li>
+<p><strong>日志收集（syslog）</strong>：OXE 侧 PWT/DECT System / xBS system 配 SYSLOG IP+端口（默认 514），按基站设四级：</p>
+</li>
+<li>
+<p>off：不记录</p>
+</li>
+<li>Normal operation：呼叫、注册、定位、拥塞丢话、严重错误</li>
+<li>System Analyze：漫游、手机固件状态（含 Normal 全部）</li>
+<li>Debug：排障专用，禁常开</li>
+</ol>
+<p>建议全部 xBS 日志落同一文件便于关联；WBM Syslog 菜单核验下发结果。</p>
+<p>WBM 是排障入口之一（PCAP/同步树/统计/IP 设置），但其修改可被 PBX 下发覆盖——临时改动要记录，长期变更回 OXE 数据库做（p77）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>日志收集实验</strong>（p155-161）：</p>
+<ol>
+<li>客户端 PC 装 Visual Syslog server（安装包在 NAS，实验口径映射 \12.0.0.2\RLAB\ENTP）</li>
+<li>PWT/DECT System / xBS system → Modify → SYSLOG IP address=192.168.1.9（实验口径）、SYSLOG port=514</li>
+<li>xBS base station → 选基站 → Syslog level=Debug（排障档）</li>
+<li>基站侧核验：xBS WBM → Syslog 菜单核对 IP/port/级别已下发</li>
+<li>服务器侧核验：Visual Syslog 界面收到该基站日志</li>
+</ol>
+<p><strong>状态判读</strong>（p116/p147）：dectview xbs 输出表尾图例逐字对照 P/M/B/+/OOS 标志，再据标志分流（同步问题找 M/B、切换问题找 P）。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：用户报断话/掉注册先看什么；要收基站日志给二线；基站状态灯异常；切换失败初判；排障完收尾。</p>
+<p>语言信号：dectview / dectinfo / xbssynchro / incvisu / tcdump / listerm / listibs / outserv / inserv / 日志 / syslog / Syslog level / Debug / 514 / PCAP / LED / 排障 / troubleshooting / P 标志 / M 标志。</p>
+<p>与相邻能力区分：同步拓扑怎么配见同步拓扑能力；固件下载失败的重试操作见固件管理能力；基站部署入库见 IP-xBS 部署能力；本卡只管判读、日志与取证分流。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：故障现象（断话/掉注册/切换失败/状态异常）、受影响基站/手机清单、syslog 服务器（可用性）。</p>
+<ol>
+<li>初判：dectview xbs/ibs 拉状态表，对照 P/M/B/OK/NOK/OOS 标志。完成标准：异常站与标志定位</li>
+<li>分流：同步问题用 xbssynchro 看树，事件用 incvisu | grep xBS，UA 链路用 listerm，IBS 详情用 listibs。完成标准：问题域收窄</li>
+<li>取证：按需开 Debug 级别收 syslog（端口 514），或 WBM/tcdump 抓 PCAP。完成标准：日志/包可交付</li>
+<li>恢复动作：复位 outserv/inserv 或重启基站，记录前后状态。完成标准：服务恢复或升级二线</li>
+<li>收尾：Debug 回落 Normal operation，工单闭环注明。完成标准：无调试残留</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>PCAP/日志深读超出判读表 → 转二线依据 8AL91443ENAA 排障指南（p138 指针），不要现场猜包</li>
+<li>排障结束忘了降日志级别 → Debug 禁常开（p160），影响程度书内未量化，一律回落</li>
+<li>WBM 改动"自己变回去" → PBX 下发覆盖（p77），临时改动要记录、长期变更回 OXE 做</li>
+<li>命令无输出/报未知命令 → 核对是否在 mtcl 与对应节点（注册节点/安装节点）</li>
+</ul>
+<p>输出契约：排障记录（现象/标志判读/处置）+ 日志或 PCAP 存档 + 级别还原确认。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>LED 亮灯语义书内仅图示（p31/p139/p157-159/p221），无文字判读表——LED 细节不构成本卡内容</li>
+<li>Debug 常开的性能影响程度未量化（推断标注，needs-review nr-06）；四级之外无更细级别</li>
+<li>tcdump 需 root；深度过滤与分析方法在 8AL91443ENAA（书外）</li>
+<li>实验 syslog 地址 192.168.1.9 与 NAS 凭据为实验口径；生产指向客户日志服务器</li>
+<li>本卡不覆盖基站硬件维修与返修流程（书内无）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/dectxte200en/skills/dect-ipxbs-deployment.html">8378 IP-xBS 部署与故障换站</a></p><p class="source-page">能力 ID：cap.dect.maintenance-troubleshooting · 来源：DECTXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: DECT Solutions (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 298 页 -->

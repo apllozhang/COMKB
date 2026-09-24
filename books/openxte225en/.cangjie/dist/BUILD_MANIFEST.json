@@ -1,0 +1,42 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\otm-certificate-pki.md": "ed13170b4606d117fc6dd7bc19b2fe87b5d816dd210fae1dca207d5f6fac87f0",
+    "references\\capabilities\\otm-client-access-profiles.md": "72ed013b39551003d0b7d73a211132eb850abeafb801e97db8fbb63e31c3b060",
+    "references\\capabilities\\otm-dmz-security-channels.md": "77ee68837238de8cface2b21d0bf9c4c3631c6ff10ec0a7396669f41d2882df5",
+    "references\\capabilities\\otm-iphone-apns.md": "fed2e99e82d27dfddb6926d5858c66f3a44b7eaac58b5e63e6b52b539b5630d7",
+    "references\\capabilities\\otm-lab-dialtest.md": "4e3e729a7b4707467e0c11de04d6f7e669dc279e70fdffa472f32b125790b0d9",
+    "references\\capabilities\\otm-ot-server-settings.md": "bf628cbb9065ff13c916da01dfe8628c8815d4f80cd92053c2fd4588a6725ef3",
+    "references\\capabilities\\otm-otc-pc-modes.md": "040be195e527195aecb36062c6a988539a22d8cd7c0f79e41665a170eff05466",
+    "references\\capabilities\\otm-otsbc-deployment.md": "29a0a53d83894fa9c0c196d5c66c812e733b53a14bc601f5ae0e0597d05e4d78",
+    "references\\capabilities\\otm-reverse-proxy.md": "257657dda030bb292ef83ba5c0c4ef8cf7162f2ecfb32d73904c25d2f41a321b",
+    "references\\capabilities\\otm-smartphone-modes.md": "6ad0cfec5317cfc6aa2ab530ec20afa1952ccbf9f45d4600c7ff2258ab06024c",
+    "references\\capabilities\\otm-smartphone-provisioning.md": "60be8abb60d2409ce39a7f66d5c6516bedaf28008a5ef1ed4dfa367f7db45c26",
+    "references\\capabilities\\otm-vmware-ovf.md": "1cf51679618c52c15d15b87f13e1c6287f5c2d13f5f9ec332a912b224fa0bc1e",
+    "references\\capability-index.md": "0b8f77d9407e068e78837f0f883dcdd4d49b939531365c92fb56ae79cf3ecd59",
+    "references\\cheatsheet.md": "dab5084a047ef22d7bd95c36fa18887bb6d7cc904ac37c16a716908e25ad9440",
+    "references\\glossary.md": "de202d80b2e4ce244db6b614d7579e3cee9a4e7f9fd04d0b1dded9373f094b33",
+    "references\\overview.md": "6123aed48cac844825595fdaadb11044f3a136f4276e1c946252a9c499634284",
+    "SKILL.md": "0ef359e68d58728172a82b884134cc3c7fa5c4ddb525bc5de2cec33c5c97d076"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.ot-mobility-remote-worker",
+  "bundle_sha256": "d0b2def66593acda880e6b7df48b5a815dbc6703a822a21a62548311e75b95e8",
+  "variant": "single",
+  "run_id": "run-20260924-200008-5fa811",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 12,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

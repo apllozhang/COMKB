@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>六类链接与改名语义</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 目录管理</h2><p>Edition 40 · 565 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte202en/index.html">课程首页</a><a href="/courses/8770xte202en/digest.html">精华长文</a><a href="/courses/8770xte202en/overview.html">教书理解</a><a href="/courses/8770xte202en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte202en/skills/ovdir-oxe-sync-ldap.html">OXE 节点注册与同步</a><a href="/courses/8770xte202en/skills/ovdir-auto-creation.html">目录树搭建与 PCX 自动创建</a><a href="/courses/8770xte202en/skills/ovdir-links-rename.html">六类链接与改名语义</a><a href="/courses/8770xte202en/skills/ovdir-msad-azure-pipelines.html">MSAD 与 Azure AD 同步管道</a><a href="/courses/8770xte202en/skills/ovdir-click-to-call.html">Click to Call 交付</a><a href="/courses/8770xte202en/skills/ovdir-confidentiality.html">目录保密级别与访问级别</a><a href="/courses/8770xte202en/skills/ovdir-replication.html">目录复制主从部署</a><a href="/courses/8770xte202en/skills/ovdir-domains-delegation.html">管理域与委派</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte202en/skills/ovdir-msad-plugin.html">MSAD 插件开户（AD 右键一键开通）</a><a href="/courses/8770xte202en/skills/ovdir-ldif-tools.html">LDIF 导入导出与管理工具管道</a><a href="/courses/8770xte202en/skills/ovdir-client-dictionary.html">目录词典与 Web 客户端定制</a><a href="/courses/8770xte202en/skills/ovdir-platform-basics.html">8770 平台基础（套件/拓扑/兼容/虚拟化）</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte202en/index.html">omnivista-directory（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte202en/index.html">8770XTE202EN</a><span>/</span><span aria-current="page">六类链接与改名语义</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>六类链接与改名语义</h1></div><dl><div><dt>Skill ID</dt><dd>ovdir-links-rename</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>六类链接与改名语义（基数规则、成本中心继承、断链修复）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Primary link: 1 entry =&gt; 1 user, 1 user =&gt; 1 entry ... Name, first name and cost center name are identical • Only one primary link can be defined for each entry"（p69）
+"In case of primary link, the name and / or first name modification must be done via the Company directory"（p79）
+"he inherits from the Jean Dupont cost center. Now DECT Dupont cost center is MKT."（p130）
+"the primary link between Paul Tregueur and the phone 31001 is broken. A new primary link is created between Michel Durand and the phone 31001."（p145）
+"Using the Users application, thick or web client, is the best way to update and modify the first name and last name of a person."（p151）</p>
+</blockquote>
+<p>出处：8770XTE202EN p68-72, p79-84, p123-155。</p>
+<h2>I — 自述</h2>
+<p>人机绑定的根是主链接，其余链接都是挂在其上的扩展。六类链接基数与匹配条件：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>链接类型</th>
+<th>基数</th>
+<th>匹配/语义</th>
+<th>成本中心</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary 主链接</td>
+<td>1 entry : 1 user（每条目仅一条）</td>
+<td>姓名+名字+成本中心三项一致</td>
+<td>双向同步</td>
+</tr>
+<tr>
+<td>Multi-device 多设备链</td>
+<td>1 entry : n users</td>
+<td>同步后自动建，多话机共用一条目</td>
+<td>随主链接</td>
+</tr>
+<tr>
+<td>Secondary 副链</td>
+<td>1 entry : n users，1 user : 1 entry</td>
+<td>异名同 CC（典型 DECT）</td>
+<td>建链瞬间继承主链接 CC</td>
+</tr>
+<tr>
+<td>Fax 传真链</td>
+<td>n : n（传真机可共享）</td>
+<td>CC 不同、姓名不同</td>
+<td>互不影响</td>
+</tr>
+<tr>
+<td>Miscellaneous 杂项链</td>
+<td>1 entry : n users</td>
+<td>异名同 CC（数据终端/Modem）</td>
+<td>双向同步</td>
+</tr>
+<tr>
+<td>Additional resources 附加资源链</td>
+<td>同主链接性质但可多条</td>
+<td>4760 迁移"一人多主链"场景</td>
+<td>同主链接</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>数据更新方向</strong>（主链接）：姓名/名字单向目录到 PCX；成本中心双向；ISDN 号从 PCX 取回</li>
+<li><strong>改 CC 硬规则</strong>：目录侧改 CC 时 PCX 必须已有同名 CC，否则拒绝并告警回滚；正确顺序是先在 PCX 建 CC（Specific Telephone Services &gt; 1 &gt; Cost Center）</li>
+<li><strong>四入口改名行为对比</strong>：</li>
+</ul>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>改名入口</th>
+<th>链接</th>
+<th>成本中心</th>
+<th>后果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Directory 应用</td>
+<td>全保留</td>
+<td>保留</td>
+<td>需手工同步改 User id</td>
+</tr>
+<tr>
+<td>Users 应用（厚/WBM）</td>
+<td>全保留</td>
+<td>保留</td>
+<td>Name 同步更新——原书钦定最佳入口</td>
+</tr>
+<tr>
+<td>Configuration 界面</td>
+<td>主链接断裂</td>
+<td>—</td>
+<td>按新名自动生成新人，需修复</td>
+</tr>
+<tr>
+<td>直接改 PCX 话机数据</td>
+<td>同上</td>
+<td>—</td>
+<td>同上（姓名方向是目录到 PCX）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>断链修复流程</strong>：删除新生成人员 → 旧人员 Settings links &gt; Primary link &gt; Edit &gt; Search 选中分机重建</li>
+<li><strong>改名细节</strong>：改姓名时必须连 User ID 一起改，否则目录 key 与姓名脱节</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>链接管理与四入口改名实验</strong>（p123-155）：</p>
+<ol>
+<li>补建 PCX 用户 31002（DECT）与 31011（Fax Set），删除其自动生成的人员条目</li>
+<li>Jean Dupont 右键 Settings links &gt; Secondary link 页签，搜索双击 31002 建副链</li>
+<li>核验：DECT Dupont 的 CC 从 Training 变 MKT（继承主链接）</li>
+<li>Fax link 页签同法挂 31011；核验 Fax Set CC 保持 TSS 不变</li>
+<li>Users 应用给 Pierre Williams 加 secondary set 31105（多设备链）</li>
+<li>目录侧把 Jean Dupont CC 改 Training：主链接与副链用户跟随变化</li>
+<li>目录侧把 Paul Tregueur CC 改不存在的 BEAN：PCX 拒绝告警，CC 保持原值</li>
+<li>目录侧把 Jean Dupont 改名 Albert Simon：31000 姓名同步更新、链接全保留</li>
+<li>Configuration 界面改 31001 姓名：主链接断裂、生成新人 Michel Durand</li>
+<li>修复：删除新人，旧人员 Primary link &gt; Edit &gt; Search 选中 31001 重挂</li>
+<li>Users 应用改名 Michel Vincent：链接与 CC 全保留（最佳入口实证）</li>
+<li>WBM 同法改名核验：目录与用户同步更新</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：一人多话机（DECT/软话机）怎么绑；传真机能不能共享；改了名字目录没变/链接断了；改成本中心被拒绝；4760 迁移过来的人有多条主链；改 CC 后界面显示没变。</p>
+<p>语言信号：primary link / 主链接 / secondary link / 副链 / DECT / fax link / 传真链 / multi-device / 多设备 / additional resources / 4760 / cost center / 成本中心 / 改名 / rename / 断链 / 修复 / Settings links / User id。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>自动建人没发生 → 自动创建能力</li>
+<li>CC 改不动是因为 PCX 没有 → 本卡 E 段覆盖拒绝分支</li>
+<li>Web 目录展示哪些属性 → 保密能力</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：目录人员与 OXE 用户已存在（自动创建/同步前置）、目标链接类型、CC 是否已在 PCX 建。</p>
+<ol>
+<li>判型：按终端类型与姓名/CC 异同选链接类型（对照本卡 I 段六类表）。完成标准：类型有依据</li>
+<li>建链：Directory 右键人员 Settings links，选对应页签 Edit 后搜索分机确认。完成标准：链接建立</li>
+<li>核验 CC：Configuration 界面关开 Users 文件夹强制刷新后看值（不刷新会误判）。完成标准：CC 符合继承规则</li>
+<li>改 CC：先在 PCX 建 CC（若不存在），再目录侧修改。完成标准：无拒绝告警</li>
+<li>改名（推荐）：Users 应用或 WBM 改 Last name/First name/User ID 三件套。完成标准：链接与 CC 保留、Name 更新</li>
+<li>断链修复（Configuration 入口误改后）：删新生成人员，Primary link Edit Search 重挂分机。完成标准：主链接恢复</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>目录侧改 CC 报 PCX 拒绝告警 → 停止重试，先回 PCX 建 CC 再改，告警详情在 Alarms 应用核对（n07）</li>
+<li>发现主链接断裂生成新人 → 不要手工给新人重建数据，走"删新人+旧人重挂"标准修复（n05）</li>
+<li>想给传真链继承 CC → 语义不成立：传真链不继承不改 CC（n09），需要计费归属就换副链方案</li>
+<li>只能从 Configuration 界面改名 → 向客户说明风险并按修复流程预案操作，优先改用 Users/WBM</li>
+</ul>
+<p>输出契约：正确的链接关系 + CC 归属核验记录 + 改名操作记录（入口与 User id 同步证据）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>Configuration Users 文件夹显示旧缓存（n08）：核验必须关开刷新，"改了没生效"多数是它</li>
+<li>副链与传真链的 CC 语义差异是计费归属问题（n09）：选型时向客户讲清</li>
+<li>多设备链经 Users 应用建（Add a secondary set）；副链/传真链在 Directory 应用 Settings links 建——入口不同不混用</li>
+<li>WBM Users 应用需 Unified Management 许可（p35）；无许可时走厚客户端 Users 应用</li>
+<li>附加资源链仅服务 4760 迁移场景（p71），日常交付不应主动使用</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte202en/skills/ovdir-auto-creation.html">目录树搭建与 PCX 自动创建</a>、<a href="/courses/8770xte202en/skills/ovdir-ldif-tools.html">LDIF 导入导出与管理工具管道</a></p><p class="source-page">能力 ID：cap.ovdir.links-rename · 来源：8770XTE202EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 — Directory Administration (Participant's Guide, Edition 40) | edition: Edition 40 | pages: 565 页 -->

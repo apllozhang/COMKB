@@ -1,0 +1,42 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\ots-certificates.md": "c590669ecb6b86b9fa18e376339f532234ebffb52307cb88a43af974286fbbc5",
+    "references\\capabilities\\ots-clients-multi-devices.md": "8906a440fe8fc5ee89bf86b79e166fe80b30bdccfb41bfe314fb6f708db14881",
+    "references\\capabilities\\ots-lab-connections.md": "6f638e1ae1df9f1cedd6264439a2ecea2e29eec3a8362fb8fce3d1c0bcc4439d",
+    "references\\capabilities\\ots-license-flexlm.md": "bfdd9c62f864c4ab4b0ebe01769919f2e3e4a8479294fd6e2cfdcc495e96c77d",
+    "references\\capabilities\\ots-maintenance-rehosting.md": "a8d08d53ba101bfaea4cc900f14e12a2dd20553c832a3d3fac31776752dd3fd0",
+    "references\\capabilities\\ots-node-declaration-sip.md": "7b83a17d6b4d7b77015f4df1fc63db17e3567e13a98a74e8265c69e81d3d9155",
+    "references\\capabilities\\ots-post-installation-wizard.md": "ae4ab810740c3b1a511f45a4d9ccf6427023568213bb20539148bb3ed29ddf31",
+    "references\\capabilities\\ots-prior-management.md": "05e632d9bfbf08f3dbc70dc72506b8198a53ffa5ac1e4db697452ccf9ea010fd",
+    "references\\capabilities\\ots-sot-installation.md": "2baefe2365e5c2241fa7bf2b68ee101d2ac4c862c5641fc5cf09aa87da6ebb80",
+    "references\\capabilities\\ots-supervision-groups.md": "585cc36371030e3ee3ed257213b7e82bec1cb6a086f3d4a77970f0480c16674a",
+    "references\\capabilities\\ots-users-profiles.md": "70d43948de112d42e350d53c805bb45192417f943d734160040d9d330c379e94",
+    "references\\capabilities\\ots-voice-mail.md": "319ef97dc471c88c32165d25d613211735dc3b311035fd1be8490c1088139397",
+    "references\\capability-index.md": "8f462989c4e0bc9c06900d4781d3f3fa000029975529ed1032624abf5ea00b83",
+    "references\\cheatsheet.md": "f8a3044a68e08c2f190b432c77bfd551a50ce11f05e2f2fa8b485a901c656621",
+    "references\\glossary.md": "535425283a1ee2851ca05da7989b18e6cd93916cdfefaf5252f498b5e5f24ffa",
+    "references\\overview.md": "e0356ddfb1f86eff4bdd0400c9cded010b2ec9d40cc2fef6fa82851f2c469445",
+    "SKILL.md": "9346ff3bbaa8ad5e076e50f9be6187bea6422e975207f86eee3657e9aafae461"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.opentouch-starter",
+  "bundle_sha256": "42fb1b7638ef82918f3895571befad18394979a9e8052d61906646f5e7708f7a",
+  "variant": "single",
+  "run_id": "run-20260924-052139-e94f59",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 12,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

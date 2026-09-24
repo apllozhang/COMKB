@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OmniVista 8770 用户开通（Profile / Meta profile / 批量 / WBM）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 安装与网络管理</h2><p>Edition 47 · 705 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte200en/index.html">课程首页</a><a href="/courses/8770xte200en/digest.html">精华长文</a><a href="/courses/8770xte200en/overview.html">教书理解</a><a href="/courses/8770xte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte200en/skills/ovnms-platform-installation.html">OmniVista 8770 平台安装（服务器 + 客户端 + 补丁 + 首连）</a><a href="/courses/8770xte200en/skills/ovnms-node-onboarding.html">OmniVista 8770 节点接入（OXE 注册同步 + SSH 安全 + OXO Connect 纳管）</a><a href="/courses/8770xte200en/skills/ovnms-user-provisioning.html">OmniVista 8770 用户开通（Profile / Meta profile / 批量 / WBM）</a><a href="/courses/8770xte200en/skills/ovnms-alarm-management.html">OmniVista 8770 告警管理（接入 + 定制出口 + SNMP Proxy）</a><a href="/courses/8770xte200en/skills/ovnms-security-administration.html">OmniVista 8770 安全管理（密码策略 / 管理员与组 / 访问控制 / TLS）</a><a href="/courses/8770xte200en/skills/ovnms-audit-compliance.html">OmniVista 8770 审计合规（Audit 启用 / mao 日志 / 检索导出）</a><a href="/courses/8770xte200en/skills/ovnms-backup-restore.html">OmniVista 8770 备份恢复（8770 数据库 rehosting + OXE swinst 全链）</a><a href="/courses/8770xte200en/skills/ovnms-license-management.html">OmniVista 8770 许可管理（锁结构 / 查询 / 更新 / 受限模式）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte200en/skills/ovnms-reports-scheduling.html">OmniVista 8770 报表与任务编排（Reports / Scheduler / 自动维护）</a><a href="/courses/8770xte200en/skills/ovnms-maintenance-operations.html">OmniVista 8770 维护运营（诊断工具 / NMC 服务与日志）</a><a href="/courses/8770xte200en/skills/ovnms-topology-views.html">OmniVista 8770 Topology 视图（标准视图 / 自定义视图 / 告警重定向）</a><a href="/courses/8770xte200en/skills/ovnms-oxe-ui-efficiency.html">OmniVista 8770 OXE 配置界面高效操作（搜索/冻结/网格/导入导出）</a><a href="/courses/8770xte200en/skills/ovnms-network-drive.html">OmniVista 8770 网络驱动器映射（报表与备份落网络存储）</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte200en/index.html">omnivista-8770-nms（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte200en/index.html">8770XTE200EN</a><span>/</span><span aria-current="page">OmniVista 8770 用户开通（Profile / Meta profile / 批量 / WBM）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OmniVista 8770 用户开通（Profile / Meta profile / 批量 / WBM）</h1></div><dl><div><dt>Skill ID</dt><dd>ovnms-user-provisioning</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OmniVista 8770 用户开通（Profile / Meta profile / 批量 / WBM）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Select Use profile with auto. recognition ... This parameter allows creating a user from a profile."（p183）
+"Warning: SYNCHRONIZATION IS REQUIRED TO RETRIEVE THE FREE NUMBER RANGES FROM THE OMNIPCX ENTERPRISE!"（p205）
+"Personal and mandatory attributes which can't be provided by the Profile or Metaprofile replaced by XXXX to invite the administrator to enter them; Attributes that can be automatically computed from Profile or Metaprofile set to NULL"（p216）
+"Mass provisioning file generated from thick client cannot be used in WebAdmin and vice-et-versa"（p250）
+"Action[+;-;#] Replace the # by the + character, to add a new user."（p258-259）</p>
+</blockquote>
+<p>出处：8770XTE200EN p170-224（Users 应用与批量）、p225-260（WBM）。</p>
+<h2>I — 自述</h2>
+<p>开通能力四层递进：手建、Profile 复用、Meta profile 自动取号、批量文件；WBM 是给非专家的轻入口。</p>
+<p><strong>Profile 机制（OXE 侧模板）</strong></p>
+<ul>
+<li>OXE 侧建 Set Function=Profile 的特殊用户：General Characteristics 页设 Profile、Rights 页设三个 COS（Public Network/Phone Feature/Connection）、All 页设继承默认值</li>
+<li>生效双前提：OXE System Parameters 勾 "Use profile with auto. recognition"；Profile 名称必须全大写</li>
+<li>8770 建户时选 profile 即继承参数；profile 用户默认不在 Users 文件夹显示，按 Filter "Set Function = Profile" 查看</li>
+<li>Key profile：set profile（机型+Profile）&gt; Progr. Keys（键位定义）&gt; Profile Features（键功能关联）；建户选 Key Profiles 自动配键；取回 8770 需同步一次</li>
+</ul>
+<p><strong>Meta profile（8770 侧自动取号模板）</strong></p>
+<ul>
+<li>构成：Meta profile 名 + OXE 节点 + OXE 空闲号码段 + 设备类型 + OXE profile（可选）+ Key Profile（可选）</li>
+<li>前置：OXE 侧建 Free Numbers Ranges List 后必须同步，8770 才可见</li>
+<li>建户只填姓名即自动取段内首个空闲号并填满 OXE 属性；选了 OXE profile 时邮箱号字段不可用</li>
+</ul>
+<p><strong>批量开通（thick client 文件语义）</strong></p>
+<ul>
+<li>导出四法：全参导出（改参用，定位靠 UID，全表头文件直接再导入无效）、空模板（仅表头）、单用户模板 Export user for template（批量新建首选）、Rainbow 用户批量（导 OXE 数据建 Rainbow 用户）</li>
+<li>字段占位：XXXX=必填人工填；NULL=由 profile/metaprofile 自动计算；action 取 ADD/MODIFY/DELETE（模板默认 ADD）</li>
+<li>手工指定号码：填 oxeDirectoryNumber 字段</li>
+<li>导入：Users 树根右键 Import user data &gt; From local drive（文件类型选 All Files）；核验双通道——Users 树确认 + Scheduler 的 Import user data 任务绿态与 ADD 成功日志</li>
+</ul>
+<p><strong>WBM 轻客户端（非专家入口，需 Unified Management 许可）</strong></p>
+<ul>
+<li>入口 https://<FQDN>:8443 &gt; NETWORK MANAGEMENT &gt; Users；单建向导按 User &gt; Main device 选项卡渐进</li>
+<li>批量：Export（Type 选 Users data 或 Template、TXT、Immediate）落下载目录；文件 action[+;-;#]（# 原样导出、+ 新增、- 删除）；import 后看 Activity report</li>
+<li>三条红线：不能从用户移除设备；不能移除 Connection 用户的 OT 应用；thick client 与 WBM 批量文件互不通用</li>
+<li>设备页签上限 4 个，ALES-Desktop/ALES-Mobile 软终端计入上限；secretCode 填 NULL 会以默认密码 1234 建户</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>Profile 建户实验</strong>（p182-195）：</p>
+<ol>
+<li>OXE 配置界面勾 Use profile with auto. recognition</li>
+<li>Users 文件夹右键 Create 建 profile BASIC（大写），Directory number 用空闲物理号</li>
+<li>Rights 页设三个 COS 值（实验取 3/4/5）</li>
+<li>Users 应用建户 Bruno Black 引用 BASIC，Rights 页三 COS 自动按 profile 填入</li>
+</ol>
+<p><strong>Meta profile 实验</strong>（p203-210）：</p>
+<ol>
+<li>OXE 建号段 Range 31050-31059 后同步（Partial &gt; Separate）</li>
+<li>Users 应用 Profiles 页建 OXE meta profile：绑节点、号段、设备 IP Touch 8078s、profile BASIC</li>
+<li>建户 Bobby Bell 只填姓名，号码自动取段内首个空闲号，OXE 侧参数正确</li>
+</ol>
+<p><strong>批量实验</strong>（p219-224）：导出 Bobby Bell 模板，Excel 改出 Berta Bernstein（action=ADD、oxeMetaProfile 填好、其余 NULL），Import user data 导入，Scheduler 任务绿态。</p>
+<p><strong>WBM 实验</strong>（p253-260）：单建 Beatriz Buckler（号码 31014、profile BASIC）；导出 Bruno Black 文件改出 Bill Buffy（action 改 +、secretCode 改 NULL），导入后 Activity report 确认。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：开局批量建户；迁移导户；新员工自动取号；给话机预配可编程键；客户自助用 WBM 开户；批量导入报错。</p>
+<p>语言信号：profile 自动识别 / BASIC / meta profile / 空闲号段 / 自动取号 / XXXX NULL / Import user data / Export user for template / Rainbow 批量 / WBM / Activity report / secretCode 1234。</p>
+<p>与相邻能力区分：节点没同步先查接入（节点接入能力）；账户权限与白名单（安全管理能力）；本能力管"把用户建出来"，不管权限收敛。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：已同步的 OXE 节点、开通清单（姓名/设备类型/号码规则或号段）、批量场景确认 thick client 与 WBM 不混用文件。</p>
+<ol>
+<li>开关核查：OXE System Parameters 勾 Use profile with auto. recognition。完成标准：不勾则 profile/key profile 均不工作</li>
+<li>模板准备：建 profile（大写名+COS）或 meta profile（号段已同步）。完成标准：Filter 可见 profile / Profiles 页可见 meta profile</li>
+<li>手建验证：先建 1 个引用用户。完成标准：COS 继承生效或号码自动取段内首个空闲号</li>
+<li>批量导出：选样板用户 Export user for template。完成标准：文件含优化键值（XXXX/NULL 语义可读）</li>
+<li>文件编辑：改必填项与 action，其余 NULL 保留。完成标准：逐行核对 action 与号码字段</li>
+<li>导入：树根右键 Import user data &gt; From local drive &gt; All Files。完成标准：成功消息 + Scheduler 任务绿态</li>
+<li>WBM 线：8443 登录单建或导改导批量。完成标准：Activity report 无错误 + thick client 侧可见</li>
+<li>收尾安全：WBM 批量默认密码户立即改密。完成标准：无 1234 弱口令残留</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>号段下拉为空 → 号段建后未同步，先同步再建 meta profile，不要手填号码段</li>
+<li>拿全参导出文件做批量新建 → 换单用户模板（全表头导入无效）</li>
+<li>要"移除设备/移除 OT 应用"或超 4 设备页签 → 转 thick client，WBM 做不了</li>
+<li>thick client 文件拿到 WBM 导（或反之）→ 判停换文件，两边格式互不通用</li>
+</ul>
+<p>输出契约：新用户清单（含号码与 profile 归属）+ 导入任务日志 + 弱口令整改记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>WBM 需 Unified Management 许可；Performance/目录树管理等进阶属许可包差异（见许可管理卡）</li>
+<li>批量文件只能"加/改/删用户"，不覆盖设备资产盘点；Devices 应用仅面向 OXE 的 SIP 设备</li>
+<li>secretCode=NULL 的默认密码 1234 是批量弱口令源头（安全审计必查）；生产开通必须配套改密流程</li>
+<li>Manage My Phone 终端自助（呼转/密码重置/可编程键）另有许可与并发口径（20 OXE/100 并发、仅法语英语），本书只作功能分区介绍</li>
+<li>实验用户名单（Bruno Black/31000-31002 等）与实验密码为教学口径，见 book/overview</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte200en/skills/ovnms-node-onboarding.html">OmniVista 8770 节点接入（OXE 注册同步 + SSH 安全 + OXO Connect 纳管）</a></p><p class="source-page">能力 ID：cap.ovnms.user-provisioning · 来源：8770XTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 — Setup & Network Management (Participant's Guide, Edition 47) | edition: Edition 47 | pages: 705 页 -->

@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>教书理解 · RAINXTE101EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Rainbow Hub</h2><p>Edition 16 · 351 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte101en/index.html">课程首页</a><a href="/courses/rainxte101en/digest.html">精华长文</a><a href="/courses/rainxte101en/overview.html">教书理解</a><a href="/courses/rainxte101en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte101en/skills/hub-company-voice-subscription.html">Rainbow 公司体系与 Voice 订阅开通</a><a href="/courses/rainxte101en/skills/hub-cloud-pbx-provisioning.html">Cloud PBX 声明与话务配置</a><a href="/courses/rainxte101en/skills/hub-member-telephony.html">成员管理与话务配置</a><a href="/courses/rainxte101en/skills/hub-zero-touch-provisioning.html">ALE 设备 zero-touch 部署与 DECT 移动</a><a href="/courses/rainxte101en/skills/hub-device-maintenance.html">设备维护日志与 Generic SIP 接入</a><a href="/courses/rainxte101en/skills/hub-hunt-groups.html">呼叫组与话务分配</a><a href="/courses/rainxte101en/skills/hub-attendant-supervision.html">话务台与监督组</a><a href="/courses/rainxte101en/skills/hub-welcome-service-ivr.html">欢迎服务与 IVR</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte101en/skills/hub-network-readiness.html">Rainbow Hub 网络就绪核查</a><a href="/courses/rainxte101en/skills/hub-multisite.html">多站点配置</a><a href="/courses/rainxte101en/skills/hub-analytics.html">分析体系</a><a href="/courses/rainxte101en/skills/hub-maintenance-support.html">Hub 维护与支持体系</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte101en/index.html">rainbow-hub（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte101en/index.html">RAINXTE101EN</a><span>/</span><span aria-current="page">教书理解</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">BOOK OVERVIEW</p><h1>教书理解 — 整书骨架与任务清单</h1></div></header><article class="markdown-body"><h1>Rainbow Hub (RAINXTE101EN Sprint 170 Ed16) — 整书理解 (阶段 0 产出)</h1>
+<blockquote>
+<p>本文档为文档整理的阶段 0 产出，后续所有整理与知识条目都以此为全局上下文。</p>
+</blockquote>
+<h2>基本信息</h2>
+<ul>
+<li><strong>标题</strong>: Rainbow Hub (Participant's Guide)</li>
+<li><strong>作者</strong>: ALE Training Services</li>
+<li><strong>出版/发布时间</strong>: Edition 16（Rainbow Hub Sprint 170 时代）</li>
+<li><strong>内容类型</strong>: 课程（官方售后培训讲义幻灯片 + 分步实验 How-To）</li>
+<li><strong>版本来源</strong>: <code>F:\AIwork\ZCode\books\rainxte101en\source_fulltext.txt</code>（351 页，含 ===== PAGE N ===== 页码标记）</li>
+<li><strong>处理时间</strong>: 2026-09-23</li>
+</ul>
+<hr />
+<h2>1. 结构 (Structural)</h2>
+<h3>类型</h3>
+<p>实操手册（厂商培训教材：概念讲义幻灯片 + 分步实验 How-To，讲义约占 60%、实验约占 40%；与 RAINXTE001EN 同构，但主题从"混合云接入"换成"纯云 Hub 开户与话务全配置"）</p>
+<h3>一句话主旨</h3>
+<p>把客户的通信整体搬上 Rainbow Hub 纯云 PBX：从公司/订阅/Cloud PBX 云侧开户，到设备（Myriad 零接触、DECT、第三方 Generic SIP）与成员话务配置，再到群组、欢迎服务/IVR、多站点、分析与维护的全套管理员交付能力。</p>
+<h3>骨架 (主要论点及其关系)</h3>
+<ol>
+<li><strong>产品概览</strong>（Rainbow→Rainbow Hub 定位：全云、OPEX、合规定位；混合云与 Hub 两条产品线对照；4 档 Voice 订阅 + 话机谱系）</li>
+<li><strong>培训实验环境</strong>（POD 体系、公司/成员/公网号段规划、MicroSIP 公网模拟器、RLAB 远程实验室）</li>
+<li><strong>网络前提</strong>（Network Requirements 文档体系 + Rainbow Pilot 连通性/容量评估工具）</li>
+<li><strong>公司与管理体系</strong>（Company 概念、BP/EC 两级与经销链、可见性四级、SSO/TOTP 认证、管理员权责、企业目录/信息频道）</li>
+<li><strong>订阅</strong>（8 种订阅逐一定义、两层分配：先公司后成员、月付/预付计费）</li>
+<li><strong>Cloud PBX</strong>（全书核心对象：声明创建、编号计划、Call settings、公网号码/DDI、流量控制白黑名单、SIP trunk 与 bundled/separated 商务模式、带宽口径、多站点、话务术语）</li>
+<li><strong>设备体系</strong>（Myriad/ALE-2 谱系与零接触部署、设备网络端口表、设备维护日志、DECT 8328/8368 两档、Generic SIP 第三方设备的原则与限制）</li>
+<li><strong>成员与话务</strong>（成员创建四法含 LDAP/AAD、成员七块设置、个人例行程序、JSON 来电卡片、按键组、删除宽限与安全）</li>
+<li><strong>群组</strong>（四类组：Hunt Group 含等待队列、Manager/Assistant、Supervision、Emergency；组内角色；通话录音）</li>
+<li><strong>欢迎服务与增值域</strong>（日历/语音提示/欢迎服务/IVR 四件套；多站点单 PBX；分析三视角 CDR/仪表盘/MOS；维护支持八件套；培训收尾）</li>
+</ol>
+<p><strong>论点之间的关系</strong>: 层层递进为主——1-3 是产品定位与地基，4-6 是云侧体系（公司→订阅→Cloud PBX 的开户主线），7-8 是端侧供给（设备+成员），9-13 是并列的话务能力域（群组/欢迎服务/站点/分析/维护），14 为培训行政收尾。与 RAINXTE001EN（混合云）最大的结构差异：无 WebRTC 网关章，取而代之的是 Cloud PBX 章、设备章（zero-touch/DECT/Generic SIP）与欢迎服务/IVR 章的深度显著加大。</p>
+<h3>作者要解决的核心问题</h3>
+<p>让售后/渠道工程师独立完成"Rainbow Hub 纯云话音"交付：云侧开公司开订阅、声明 Cloud PBX 并接通 SIP trunk、按 zero-touch 或手工方式供应终端、配好成员与四类群组、搭好欢迎服务/IVR 与多站点，并能用分析与维护体系承接日常运营。</p>
+<hr />
+<h2>2. 解释 (Interpretive)</h2>
+<h3>关键术语 (作者本人的用法)</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>术语</th>
+<th>作者的定义</th>
+<th>和常识用法的差异</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rainbow Hub</td>
+<td>Rainbow 平台的公有云版本：电话服务全部托管在 Cloud PBX，基于纯软话机技术让用户完全迁往云端（p5）</td>
+<td>不是"又一个 App"，是一套完整云话音产品线，与 Rainbow 混合云并列（p6 两张图）</td>
+</tr>
+<tr>
+<td>Cloud PBX</td>
+<td>软 SIP PBX：连 ALE 与通用 SIP 设备、经 trunk 接公共 SIP 运营商、管话务特性；一公司有且只有一个，呼叫通道与电话线数无上限（p78）</td>
+<td>类似"云侧话务核心"，但商务上与 SIP trunk 强绑定：一个 Cloud PBX 只能挂一条外部 trunk</td>
+</tr>
+<tr>
+<td>Voice 四档订阅</td>
+<td>Voice Phone（纯硬话机）/Voice Business（三端+协作+代接）/Voice Enterprise（+视频会议+监督代接）/Voice Attendant（+话务台，仅 PC）——可组合定制（p9/p67）</td>
+<td>命名与混合云教材的 Business/Enterprise/Attendant 不同：Hub 侧全部加 Voice 前缀，且多出 Voice Phone 纯话机档</td>
+</tr>
+<tr>
+<td>BP（Reseller）</td>
+<td>ALE 业务伙伴：独占四项操作——声明并激活 Cloud PBX（或传统 PBX）、开通付费订阅、声明终端（话机/DECT）、电话线加装或携转（p49）</td>
+<td>比混合云教材的"两项专属"多了终端声明与电话线两项——Hub 交付中 BP 的卡位更重</td>
+</tr>
+<tr>
+<td>Zero Touch</td>
+<td>Myriad/DECT 设备零接触部署：按 MAC/IPEI 注册后设备自动从云取配置与固件，禁止用设备自带 web 管理页做配置（p106/p134/p137）</td>
+<td>不只是"自动升级"：DHCP option 43/66/67 会顶掉 zero-touch 指向，必须关闭（p136）</td>
+</tr>
+<tr>
+<td>RCC</td>
+<td>软+硬双端用户模式下，应用对话机的远程监督与控制（p112）</td>
+<td>在 Hub 里 RCC 是"话机伴随形态"，与混合云教材里"无网关中间态"的语境不同</td>
+</tr>
+<tr>
+<td>Generic SIP</td>
+<td>第三方 SIP 终端：手工配置、无集中管理、无固件自动更新、无 RCC、TLS 1.2+SRTP 强制；ALE 不为大规模部署提供支持（p116-120）</td>
+<td>官方明确定性为"补充手段"，不是同等的接入方式</td>
+</tr>
+<tr>
+<td>Hunt group</td>
+<td>呼叫组：一号码达多人，Parallel/Serial/Circular 三分发，可带等待队列（溢出 10-900 秒可调、先来先接），组内限 50 人（p210-215）</td>
+<td>与 PBX 时代的 hunt group 同名，但多了配套 bubble（协作群聊）与组统计</td>
+</tr>
+<tr>
+<td>Waiting queue</td>
+<td>等待队列：无队列组全员占线即溢出；有队列则先来先服务，超时可调时长后按组策略溢出（p215）</td>
+<td>是 Hunt group 的可选开关，不是独立组类型</td>
+</tr>
+<tr>
+<td>Emergency group</td>
+<td>打了"紧急组"标记的标准组：激活后拨打紧急号码（免出局前缀）的呼叫改路由到该组而非外线；转外线要加前缀（如 0112）（p227-228）</td>
+<td>"紧急组"是监管场景（安保站）设计，组员转公共紧急号必须手动加前缀，容易误读</td>
+</tr>
+<tr>
+<td>Welcome service</td>
+<td>日历+语音提示的组合体：开/闭时段分别路由到不同目的地；可手动强制开/闭，下个时段自动回 Auto（p258-259）</td>
+<td>中文常译"话务欢迎/白天黑夜服务"，作者是"欢迎服务"组件化定义</td>
+</tr>
+<tr>
+<td>Automated attendant (IVR)</td>
+<td>自动话务员：最多 3 级菜单、根菜单 10 个 0-9 DTMF 入口、可无限创建且无许可（p266）</td>
+<td>IVR 在 Hub 里零许可限制，与"有排队即可用"的付费话务台是两套东西</td>
+</tr>
+<tr>
+<td>Personal routines</td>
+<td>个人例行程序：把在场状态、主叫 ID、呼叫设备、呼转、退组等参数打包成一键场景（At work/DND/On break/Out of office）（p173-174）</td>
+<td>不只是"状态"：它同时改主叫号码与呼转目标，是话务行为切换器</td>
+</tr>
+<tr>
+<td>Sites</td>
+<td>多站点：单 Cloud PBX 下按站点挂成员/公网号/服务，可定站点主叫号与站点级音乐保持（p301-304）</td>
+<td>"站点"不是分 PBX：内呼、组、目录跨站点全部不变</td>
+</tr>
+<tr>
+<td>CDR</td>
+<td>话单：经 Cloud PBX 的入/出/内部呼叫均生成 .csv；纯 Rainbow VoIP 音视频呼叫不产生；ALE 每月 1 日提供，BP 用于计费（p318）</td>
+<td>话费与 PSTN 计量不在 ALE 手里——BP/运营商负责，CDR 只是数据</td>
+</tr>
+<tr>
+<td>MOS</td>
+<td>话音质量分：每次呼叫结束采集质量票，仪表盘呈现；参考阈值抖动&lt;30ms、RTT≤150ms、丢包≤1%（p328）</td>
+<td>书内给的是排查口径，不是承诺 SLA</td>
+</tr>
+<tr>
+<td>Grace period</td>
+<td>成员删除后 10 天宽限：可恢复；恢复后订阅已回收、回落 Essential，须重新分配许可与电话线（p176）</td>
+<td>与混合云教材同规则，但"回落 Essential"在 Hub 语境是回落免费协作账号</td>
+</tr>
+</tbody>
+</table></div>
+<h3>核心命题 (用自己的话)</h3>
+<ol>
+<li>Rainbow Hub 是 Rainbow 的公有云形态：话务核心搬到云端 Cloud PBX，客户侧不再部署任何 PBX，靠软话机+直连云的 SIP 话机/DECT 完成"完全上云"。</li>
+<li>产品线两条：混合云（连已有 OXO/OXE，Business/Enterprise/Attendant 订阅）与 Hub（全云，Voice Phone/Business/Enterprise/Attendant 四档）；选型第一步是分清客户走哪条线。</li>
+<li>合规与商务是卖点也是约束：GDPR/ISO 27001/欧洲托管/不受 CLOUD Act 约束；全 OPEX 按用户订阅，月付或预付 1/3/5 年；PSTN 流量由 BP/运营商承载，商务模式分 bundled（一单一发票）与 separated（两单两票）。</li>
+<li>云侧开户有顺序：BP 建 EC 公司（必填时区）→ 开 Voice 订阅（至少一条 Voice Business/Enterprise 才能声明 Cloud PBX）→ 声明 Cloud PBX（编号计划+trunk）→ 分公网号 → 建终端 → 建成员 → 配功能，共七步。</li>
+<li>权责切分清晰：BP 独占 Cloud PBX 声明、付费订阅、终端声明、电话线加装/携转四项；客户管理员做成员、组、欢迎服务、话务台等日常配置；Roles 页签可配多管理员。</li>
+<li>电话服务硬门槛：成员必须持有 Voice 四档订阅之一才能分配电话号码；无物理话机也可以是纯软话机用户。</li>
+<li>终端供给分三等：ALE 原生（Myriad/DECT，zero-touch、集中管理、官方支持）&gt; ALE-2/入门 &gt; 第三方 Generic SIP（手工配置、无 RCC、无在场、ALE 不为大规模部署兜底）；Generic SIP 只该做补充（门禁、传真、模拟转接）。</li>
+<li>Zero-touch 有技术红线：设备按 MAC/IPEI 注册后自动取配置；DHCP option 43/66/67 会覆盖 zero-touch 指向必须关闭（否则指向 rdd.openrainbow.com）；LAN 里有 PBX 时 TFTP 抢先会导致设备起不来；未分配设备报 Config Failed；禁止用设备自带 web 页做配置。</li>
+<li>群组是话务分配的主战场：Hunt group（50 人、三分发、队列 10-900 秒、FCFS、组 bubble 自动建）、Manager/Assistant（单经理多助理、筛选仅限电话呼叫、经理 DID 挂组级）、Supervision（监督员 5 组、组 30 人）、Emergency（唯一一组、免前缀直达、转外线加 0、定位责任在 BP 与 SIP 运营商）。</li>
+<li>欢迎服务四件套互相咬合：日历（基于公司时区，法定假日不预填）+ 语音提示（≤4MB/问候≤120 秒）+ 欢迎服务（开/闭双路由、可强制）+ IVR（3 级、0-9、无许可上限）；组管理员可管本组专属日历。</li>
+<li>多站点是一公司一 Cloud PBX 下的逻辑分区：站点挂成员/号码/服务、有站点主叫号与站点 MoH；内呼/组/目录/欢迎服务跨站点不变，号码可同时是公司主号与站点主号。</li>
+<li>运营三视角+支持闭环：CDR 月度文件（BP 计费依据、纯 VoIP 呼叫不产生）、分析仪表盘（采纳率/话务/组/成员级可关）、MOS 质量票（抖动&lt;30ms/RTT≤150ms/丢包≤1%）；维护有日志、设备监督（debug 15 分钟一次性口令）、状态页、用户上报与 MyPortal SR（仅认证 Rainbow Hub 伙伴受理）。</li>
+</ol>
+<h3>论证链</h3>
+<p>教材以"云侧体系讲义 → 管理界面分步实验 → 行为验证"推进：每个 How-To 都有明确操作路径（Administration/My Customers/Customer companies/…）与验收点（如"handset is seen Running"、"test the search on tag feature"、拨打欢迎服务听提示音）；选型与限制部分用对比表（订阅表 p67、组类型表 p209、角色权限表 p214、容量数字）支撑判断。</p>
+<hr />
+<h2>3. 批判 (Critical) ★</h2>
+<h3>作者的时代局限</h3>
+<ul>
+<li>基于 Sprint 170 / Edition 16 的管理界面；Hub 迭代快，菜单与截图会漂移（书内自己引用 "prior to version 161" 说明功能随版本搬移）。</li>
+<li>订阅目录按本版口径（含 Rainbow Alert、Voice Enterprise Dial-In Pack），细节依赖 help.openrainbow.com 的 Features List，会随后续 Sprint 变化。</li>
+<li>DECT/WiFi 互补方案只覆盖 ALE 自家（8328/8368、OmniAccess Stellar），未讨论第三方无线生态。</li>
+</ul>
+<h3>作者的立场盲点</h3>
+<ul>
+<li>全书默认实验环境：账号密码（Ask to Trainer / Superuser-P<em> / PasswordP</em>）、固定号段（02982967XX）贯穿正文，生产安全基线（trunk 侧 TLS/SRTP 加密协商、防火墙白名单全文）只给外部文档指针。</li>
+<li>PSTN 侧被"外包"给 BP/运营商：号码携转、DID 地址登记（紧急定位）、计费与 SLA 全在书外，但这些恰是 Hub 项目能否落地的商务与合规关键。</li>
+<li>Generic SIP 一章立场先行：先讲"复用旧设备"的价值，再用一整页 Important 声明不支持大规模、不提供支持——选型风险提示真实，但替代方案成本对比缺席。</li>
+<li>成员级话务统计的隐私开关（p325）只有三句话，各国劳动合规差异完全没展开。</li>
+</ul>
+<h3>未被证明的假设</h3>
+<ul>
+<li>假设读者持 BP/经销商账号（实验全程用 bpX.rv1@ale-training.com），而生产中客户管理员恰恰做不了 BP 专属四项操作。</li>
+<li>假设 SIP 模拟器行为等同生产运营商（书内脚注自认"不能按公网号呼本公司成员"）。</li>
+<li>假设客户已有 Azure AD/LDAP/Exchange 基础设施可用；LDAP 连接器"免费安装"但部署细节全在支持网站。</li>
+<li>假设站内已有满足端口表的网络（UDP 30000-44999 媒体段在很多企业防火墙上要特批）。</li>
+</ul>
+<h3>最强反对意见</h3>
+<p>"这本手册教的是在 Rainbow 管理界面里把 Hub 功能点全，不是 Hub 交付"——网络端口/带宽、SIP trunk 商务与号码携转、DID 紧急定位登记、编号计划设计方法、安全基线，全都只给指针或不讲。因此每个能力的 Boundary 必须标注"实验环境口径"，并显式指向 Network Requirements 文章（help.openrainbow.com 23942019777170）、Features List、TBE099（话音服务/CDR）、TBE127（DECT）等外部文档作为生产化依据。</p>
+<blockquote>
+<p><strong>以上批判会直接成为下游 skill 的 Boundary (B) 字段来源</strong></p>
+</blockquote>
+<hr />
+<h2>4. 应用潜力 (Applicability)</h2>
+<h3>可 skill 化的内容</h3>
+<ul>
+<li>[x] Rainbow Hub 网络前提核查与 Pilot 连通性评估（含端口表与 DHCP option 红线）</li>
+<li>[x] 公司体系规划（BP 建 EC、可见性四级选型、时区强制、SSO/TOTP 认证）</li>
+<li>[x] 管理员权责划分与企业目录/信息频道配置</li>
+<li>[x] Voice 订阅开通与两层分配（月付/预付、8 种订阅选型）</li>
+<li>[x] Cloud PBX 声明与编号计划/Call settings 配置</li>
+<li>[x] 公网号码（DDI 段）分配与主叫 ID 策略</li>
+<li>[x] 流量控制与呼叫闭锁（公司级/成员级、白黑名单前缀格式）</li>
+<li>[x] SIP trunk 商务模式与带宽估算（bundled/separated、Opus/G711 口径）</li>
+<li>[x] 成员管理（邀请/手动/CSV/AAD/LDAP、七块设置、删除宽限、改密踢人）</li>
+<li>[x] 个人例行程序/标签/限制档案/按键组/JSON 来电卡片配置</li>
+<li>[x] ALE 话机与 DECT zero-touch 部署（MAC/IPEI 注册、首装 DHCP/静态、网络端口）</li>
+<li>[x] 设备维护与日志采集（webadmin 报告、debug 会话、pcap）</li>
+<li>[x] Generic SIP 设备接入（证书链、TLS/SRTP、限制与参考设备清单）</li>
+<li>[x] Hunt Group 与等待队列配置（分发模式、溢出、组角色）</li>
+<li>[x] Manager/Assistant 组配置（筛选边界、DID 挂组级）</li>
+<li>[x] 监督组与话务台启用（Voice Attendant、5 组/30 人、设备限制）</li>
+<li>[x] 紧急号码与紧急组（创建两法、激活、0112 转接、定位责任链）</li>
+<li>[x] 通话录音与 Rainbow Exporter 归档</li>
+<li>[x] 欢迎服务全家桶（日历/欢迎服务/语音提示/MoH）</li>
+<li>[x] 自动话务员 IVR 配置（菜单树、语音提示两模式）</li>
+<li>[x] 多站点配置（站点创建、用户/服务分布、站点主号与站点 MoH）</li>
+<li>[x] 分析体系运用（CDR 获取三通道、仪表盘、组报表、MOS 排障）</li>
+<li>[x] Hub 维护与支持体系（日志/设备监督/状态页/上报/SR）</li>
+</ul>
+<h3>不适合 skill 化的内容</h3>
+<ul>
+<li>RLAB/MicroSIP/培训号段等实验基础设施细节（p12-34，教学专用，仅作 Boundary 背景）</li>
+<li>培训评估/证书流程（p345-351）</li>
+<li>话机产品参数表逐项转述（p107 硬件规格，采购口径以产品目录为准）</li>
+</ul>
+<h3>预估 skill 数量</h3>
+<p><strong>约 10-12 个能力单元</strong>（阶段 1.5 决定保留，阶段 1.6 与输出模式决定独立入口数量；入口软预算 8 含路由入口）</p>
+<h3>原书关键任务清单（覆盖审计基准，不从旧 verified 反推）</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>task_id</th>
+<th>读者任务</th>
+<th>原文位置/图表</th>
+<th>预期交付物</th>
+<th>重要性及依据</th>
+<th>尚缺条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>task-01</td>
+<td>核查 Hub 网络前提并用 Pilot 评估站点连通性/承载</td>
+<td>p36-45, p90, p136</td>
+<td>网络/带宽/端口就绪结论</td>
+<td>一切上线前提，官方文档指针+工具</td>
+<td>生产需对照 Network Requirements 文章全文</td>
+</tr>
+<tr>
+<td>task-02</td>
+<td>规划并创建客户公司（BP 建 EC、可见性、时区、SSO/TOTP）</td>
+<td>p47-55, p71-75</td>
+<td>可用的 EC 公司</td>
+<td>云侧体系地基</td>
+<td>SSO 依赖客户 Azure AD/ADFS</td>
+</tr>
+<tr>
+<td>task-03</td>
+<td>划分管理员权责，配置企业目录与信息频道</td>
+<td>p57-62</td>
+<td>权责清晰的管理团队+目录</td>
+<td>多管理员协作与来电识别</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-04</td>
+<td>开通 Voice 订阅并分配给成员（8 种选型、月付/预付）</td>
+<td>p64-69, p74-75</td>
+<td>成员可用的服务许可</td>
+<td>电话功能前置条件</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-05</td>
+<td>声明并配置 Cloud PBX（编号计划、Call settings）</td>
+<td>p76-83, p99-103</td>
+<td>可用的云话务核心</td>
+<td>全书核心对象</td>
+<td>编号计划设计方法论在书外</td>
+</tr>
+<tr>
+<td>task-06</td>
+<td>分配公网号码/DDI 段并定主叫 ID 策略</td>
+<td>p83-84, p103-104</td>
+<td>公司主号+成员 DID</td>
+<td>外呼显示与内呼落地</td>
+<td>号码携转在运营商侧书外</td>
+</tr>
+<tr>
+<td>task-07</td>
+<td>配置流量控制与呼叫闭锁（白黑名单、成员级）</td>
+<td>p85-87, p93</td>
+<td>闭锁策略生效</td>
+<td>监管与成本控制刚需</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-08</td>
+<td>规划 SIP trunk 商务模式与带宽（bundled/separated）</td>
+<td>p88-90</td>
+<td>trunk 接通+带宽结论</td>
+<td>PSTN 侧商务关键</td>
+<td>合同/资费在书外</td>
+</tr>
+<tr>
+<td>task-09</td>
+<td>规划多站点参数（用户改主叫、站点主号）</td>
+<td>p91-93, p301-305</td>
+<td>站点话务方案</td>
+<td>多址客户常态需求</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-10</td>
+<td>创建与管理成员（邀请/手动/CSV/AAD/LDAP；电话设置、例行程序、标签、档案、按键组、JSON 卡片）</td>
+<td>p165-206</td>
+<td>带订阅与号码的成员账户</td>
+<td>云侧日常运营主体</td>
+<td>AAD/LDAP 依赖客户目录设施</td>
+</tr>
+<tr>
+<td>task-11</td>
+<td>创建与部署 ALE 话机（手动/批量、zero-touch、端口、首装）</td>
+<td>p105-113, p133-139, p156-159</td>
+<td>注册成功的终端</td>
+<td>硬件交付主体</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-12</td>
+<td>采集设备日志与维护（webadmin 报告、debug、pcap、重启/复位）</td>
+<td>p141-145</td>
+<td>排障证据链</td>
+<td>售后高频</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-13</td>
+<td>接入 Generic SIP 第三方设备（证书链、SIP 参数、限制评估）</td>
+<td>p114-132</td>
+<td>第三方终端可用或决策放弃</td>
+<td>存量设备复用诉求</td>
+<td>互操作测试在书外</td>
+</tr>
+<tr>
+<td>task-14</td>
+<td>部署 DECT 移动（8328/8368 基站、8214/8262 注册）</td>
+<td>p147-155, p160-164</td>
+<td>可移动的分机</td>
+<td>门店/车间场景</td>
+<td>无线勘测在书外</td>
+</tr>
+<tr>
+<td>task-15</td>
+<td>创建 Hunt Group 与等待队列（分发、溢出、组角色、组 bubble）</td>
+<td>p208-217, p233-235</td>
+<td>可用的呼叫组</td>
+<td>团队接听刚需</td>
+<td>话务建模在书外</td>
+</tr>
+<tr>
+<td>task-16</td>
+<td>配置 Manager/Assistant 组（筛选边界、DID 挂组级）</td>
+<td>p218-222, p236-237</td>
+<td>经理-助理话务过滤</td>
+<td>管理层刚需</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-17</td>
+<td>启用话务台与监督组（Voice Attendant、attendant group）</td>
+<td>p223-225, p245-249, p284-289</td>
+<td>可用话务台</td>
+<td>前台/秘书场景</td>
+<td>设备限制（无话机/无移动端）要向客户讲清</td>
+</tr>
+<tr>
+<td>task-18</td>
+<td>配置紧急号码与紧急组（两法创建、激活、0112 转接）</td>
+<td>p226-229, p238-242</td>
+<td>合规的紧急呼叫链路</td>
+<td>监管合规刚需</td>
+<td>DID 地址登记在 BP/运营商侧书外</td>
+</tr>
+<tr>
+<td>task-19</td>
+<td>配置通话录音与归档（2 个月、Rainbow Exporter）</td>
+<td>p230-231</td>
+<td>录音可用/归档方案</td>
+<td>合规与质检</td>
+<td>法务口径在书外</td>
+</tr>
+<tr>
+<td>task-20</td>
+<td>配置欢迎服务全家桶（日历、欢迎服务、语音提示、MoH）</td>
+<td>p243-264, p277-283</td>
+<td>开/闭时段路由生效</td>
+<td>客户感知最强的功能</td>
+<td>提示音文案制作在书外</td>
+</tr>
+<tr>
+<td>task-21</td>
+<td>配置自动话务员 IVR（菜单树、语音提示两模式）</td>
+<td>p265-275, p290-300</td>
+<td>可用的 IVR</td>
+<td>中大型客户刚需</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-22</td>
+<td>配置多站点（站点创建、用户/服务分布、站点主号与 MoH）</td>
+<td>p301-316</td>
+<td>站点话务生效</td>
+<td>多址客户</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-23</td>
+<td>运用分析体系（CDR 三通道、仪表盘、组报表、MOS）</td>
+<td>p317-328</td>
+<td>运营/质量数据可用</td>
+<td>售后增值与验收</td>
+<td>计费模型在 BP 侧书外</td>
+</tr>
+<tr>
+<td>task-24</td>
+<td>运用维护支持体系（日志/设备监督/状态页/上报/SR）</td>
+<td>p330-343</td>
+<td>可运转的运维闭环</td>
+<td>售后日常</td>
+<td>ESR 需 Rainbow Hub 认证伙伴</td>
+</tr>
+</tbody>
+</table></div>
+<h3>优先级排序 (按"最能赋能售后工程师"的角度)</h3>
+<ol>
+<li>task-05 Cloud PBX 声明与配置（全书核心对象，错一步全盘卡住）</li>
+<li>task-04 订阅开通（无 Voice 订阅连 Cloud PBX 都建不了）</li>
+<li>task-02 公司创建（时区强制、BP 专属动作都在这里）</li>
+<li>task-10 成员管理（日常运营最高频）</li>
+<li>task-11/12 设备部署与维护（zero-touch 红线多，现场坑集中）</li>
+<li>task-15/17 群组与话务台（话务分配主战场）</li>
+<li>task-20/21 欢迎服务与 IVR（客户感知最强）</li>
+<li>task-06/07 号码与闭锁（外呼合规）</li>
+<li>task-18/19 紧急与录音（合规刚需）</li>
+<li>task-22 多站点、task-23 分析、task-24 维护、task-08/01/03/09/13/14/16（按客户形态选用）</li>
+</ol>
+<hr />
+<h2>✅ 质量门检查</h2>
+<ul>
+<li>[x] 主旨能用一句话说清</li>
+<li>[x] 骨架列出 10 个一级部分（产品定位 1 + 地基 2 + 云侧体系 3 + 端侧 2 + 增值域 5 中的核心，培训收尾未计入）</li>
+<li>[x] 术语按实际内容列出（17 个）</li>
+<li>[x] 已检查作者局限/假设（实验口径、PSTN 外包、Generic SIP 立场、隐私合规单薄）</li>
+<li>[x] 原书关键任务 24 项，全部有来源页码、交付物与重要性依据</li>
+<li>[x] 用户授权按流水线任务书执行（阶段 0+1 连续产出，2026-09-23）</li>
+</ul>
+<p><strong>用户确认时间</strong>: 2026-09-23（流水线任务授权）</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Rainbow Hub (Participant's Guide, Edition 16) | edition: Edition 16 | pages: 351 页 -->

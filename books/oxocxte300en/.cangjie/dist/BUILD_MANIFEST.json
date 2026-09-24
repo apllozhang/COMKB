@@ -1,0 +1,42 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\oxos-audio-messages.md": "02f29d077300d946aca652e89470ade3314eeebf86f53d5c2d8c88e58a2249b2",
+    "references\\capabilities\\oxos-commissioning.md": "3410237fd84042d5d40680e46715499a5b1f64681060795309f3954d4463e0a7",
+    "references\\capabilities\\oxos-data-collection.md": "2b3d6538b2320890f26a210fa1f37a8f4441d4958aaa902df32ed85efb4e7a04",
+    "references\\capabilities\\oxos-hardware-platform.md": "40d04ef685ab891d29c168f3c6d3bb68e2fc20dc97265dbd7330219cec397b23",
+    "references\\capabilities\\oxos-incoming-barring.md": "7f0480b9f15fea055058bd5bf1c82db30096de6a27bb9fe84885c8cc0edaf65c",
+    "references\\capabilities\\oxos-maintenance.md": "7149c0d9e5929f24a4619ed04e172497122670d1e9eb971683a37b628c639431",
+    "references\\capabilities\\oxos-numbering-groups.md": "ea04ff096b1bd90cbdd669ddd1d2e1115120fa39b92beadb30595f431693a177",
+    "references\\capabilities\\oxos-rainbow-integration.md": "09d3b2c382fbd8ae6f045b2c6f898d84a947ee6fd5e8599d7791bf17ca21c4c5",
+    "references\\capabilities\\oxos-security.md": "173fd48d0a08b2825f135efe3ac79ac2f8714e72dd1f57d737cb6f219b0edb9d",
+    "references\\capabilities\\oxos-sip-trunk.md": "c2d934aae72d2bad02df53359369926e6342629fe37b664222c0b06f45c6bca1",
+    "references\\capabilities\\oxos-terminals.md": "958c636c62cae14cf5726da78f0688fce557772ec9fdf8c07b5cb38f2fed21e9",
+    "references\\capabilities\\oxos-user-features.md": "1ec0d4ccb6e95645331d4145a53c6c6a508ad1a6a38602f39852b344d03e16c3",
+    "references\\capability-index.md": "7c70d3b2d9a8b9ae506eebdde459a75a159a73ed5bc48c3d6cf81dec18990bbf",
+    "references\\cheatsheet.md": "0acce50cf1299b4eb086437cbaed676f73915ebf91cba6716c96570d4181ecf8",
+    "references\\glossary.md": "f94df995efe42d5b6806d7aee81ccfb3c413cd14e18a7585cbc90957aa6b09be",
+    "references\\overview.md": "a04e369f85dc8f29fae59c38a79fdd09ed1997bce5e85f2b11d43eeb7b88d6e5",
+    "SKILL.md": "e1881a70a6009f2743b9a66f1de233f24223fb9eb849b6211920405b70e9ac76"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.oxo-connect-starter",
+  "bundle_sha256": "9a8b9e933cb6ed8fec370675335a8f2d92e4cab8f035a633901e55b1608f6002",
+  "variant": "single",
+  "run_id": "run-20260924-200017-2596a3",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 12,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

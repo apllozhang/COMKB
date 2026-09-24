@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>多实体与伪多公司</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OXO Connect · Advanced</h2><p>Edition 18 · 601 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte301en/index.html">课程首页</a><a href="/courses/oxocxte301en/digest.html">精华长文</a><a href="/courses/oxocxte301en/overview.html">教书理解</a><a href="/courses/oxocxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte301en/skills/oxoa-sip-networking.html">SIP 组网：公网网关与私网互联</a><a href="/courses/oxocxte301en/skills/oxoa-numbering-ars-suite.html">ARS 路由套件：三表协作与 Internal ARS</a><a href="/courses/oxocxte301en/skills/oxoa-hotel-billing-vertical.html">酒店与计费垂直方案</a><a href="/courses/oxocxte301en/skills/oxoa-security-hardening.html">系统安全加固</a><a href="/courses/oxocxte301en/skills/oxoa-certificate-suite.html">证书与加密传输（证书/DTLS/TLS-SRTP）</a><a href="/courses/oxocxte301en/skills/oxoa-attendant-suite.html">语音导航套件（AA/MLAA/SCR）</a><a href="/courses/oxocxte301en/skills/oxoa-voicemail-mobility.html">语音邮箱与移动办公</a><a href="/courses/oxocxte301en/skills/oxoa-cloud-connect-fleet.html">Cloud Connect 舰队与远程维护</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte301en/skills/oxoa-foundation-ip.html">交付地基：OMC 首连与 IP 规划</a><a href="/courses/oxocxte301en/skills/oxoa-terminal-ecosystem.html">终端生态：PIMphony 与 SIP 话机接入</a><a href="/courses/oxocxte301en/skills/oxoa-shared-devices.html">共享终端：站群监督、Hot Desking 与 Multiset</a><a href="/courses/oxocxte301en/skills/oxoa-multi-entity.html">多实体与伪多公司</a><a href="/courses/oxocxte301en/skills/oxoa-dect-deployment.html">DECT 无线移动</a><a href="/courses/oxocxte301en/skills/oxoa-maintenance-toolkit.html">维护工具箱：Webdiag、Noteworthy 与 LoLa</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte301en/index.html">oxo-connect-advanced（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte301en/index.html">OXOCXTE301EN</a><span>/</span><span aria-current="page">多实体与伪多公司</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>多实体与伪多公司</h1></div><dl><div><dt>Skill ID</dt><dd>oxoa-multi-entity</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>多实体与伪多公司（Entity 隔离、MoH 分离、分账外线）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The system supports 4 Entities … Call restriction between user of different company … Attendant Group • Common for all entity • No call restriction"（p243-244）
+"Number of entries for individual greetings: from 15 to 200 • Number of preannouncement messages: from 8 to 20 • Message duration: from 128 to 320 seconds"（p248）
+"Manage a traffic sharing link category level for the A extensions: 3 for example … Modify the traffic sharing matrix by creating a straight line from 1/1 to 16/16"（p250）
+"Each company will be able to dial the same main trunk group prefix … Each company will take their own external lines to avoid problems according to metering bills"（p249）</p>
+</blockquote>
+<p>出处：OXOCXTE301EN p242-261。</p>
+<h2>I — 自述</h2>
+<p>两级"共享系统"方案：多实体是系统内建隔离，伪多公司是在多实体之上用流量分担实现分账。</p>
+<p><strong>多实体（最多 4 个）</strong>：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>机制</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实体归属</td>
+<td>用户默认实体 1，逐话机在 Details/Entity 关联</td>
+</tr>
+<tr>
+<td>MoH 隔离</td>
+<td>每实体独立 MoH（保持方实体决定播哪个），每段最长 10 分钟（license：4 实体 MoH-10 分钟）</td>
+</tr>
+<tr>
+<td>呼叫禁止</td>
+<td>"Do not allow internal calls between multi-tenant entities" 开关连带影响：立即/忙转、RSL 键、个人代接、文本/语音邮箱；话务员组话机不受限（n25）</td>
+</tr>
+<tr>
+<td>系统限制增强</td>
+<td>个人问候增至 200 条、预告消息增至 20 条、消息时长增至 320 秒；计费小票含实体信息</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>伪多公司四步法</strong>（p250-251, p257-261）：</p>
+<ol>
+<li>话机管理：A 公司话机流量分担链路类别=X，B 公司=Y（讲义例 3/4、实验 1/2，自洽即可，nr-06）</li>
+<li>副中继组：A 的中继组类别=X、B 的=Y（话机类别=本公司中继组类别，配对成立）</li>
+<li>流量分担矩阵：拉 1/1 到 16/16 直线（类别相同才可互走）</li>
+<li>ARS：主中继行 base 改 ADL 进 ARS 表，加透明线；中继组列表含两公司中继组并设 Char 1/2</li>
+</ol>
+<p>效果：两家公司共享一台 OXO、同一外拨前缀，各走各的外线、账单分离；外拨时话机显示 Char 1 或 2 确认占了本公司中继组。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>多实体与伪多公司实验</strong>（p252-261，厂商实验）：</p>
+<ol>
+<li>拓扑：100/101 属实体 1、102/103 属实体 2；实体间禁呼；每实体独立 MoH。</li>
+<li>实体分布：Details/Entity 把 102、103 放实体 2。</li>
+<li>Feature design/Part 1 勾 "Do not allow calls between entities"；验证跨实体被禁。</li>
+<li>按实体录 MoH1/MoH2（MMC Operator session 或 OMC；勿与 MSG1-20 欢迎消息混淆，p256）。</li>
+<li>话机链路类别：公司 1 话机=1、公司 2 话机=2（实验口径）。</li>
+<li>中继组 400 类别设 1、401 设 2；流量分担矩阵按直线配置。</li>
+<li>主中继行 base 改 ADL；ARS 表加透明线（列表 1）；列表内 Char 1 给公司 1、Char 2 给公司 2。</li>
+<li>测试：跨实体呼被禁、保持听各自 MoH、两公司拨 0 外呼显示各自字符 1/2（p255-261）。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：两三家小公司合租一套 PBX；楼宇/园区共享系统分账；分公司要独立保持音乐；实体之间要禁止互呼；外呼要分清哪家公司的线路账单。</p>
+<p>语言信号：多实体 / entity / 多租户 / multi-tenant / 实体隔离 / 伪多公司 / pseudo multi-company / MoH / 保持音乐 / 分账 / 流量分担 / traffic sharing / 链路类别 / link category / 矩阵 / Char。</p>
+<p>与相邻能力区分：ARS 三表机制归 ARS 套件能力；账号码记账（按客户/项目而非按公司）归酒店与计费垂直能力；多实体 MoH 录制的 MMC 入口与欢迎消息的区分见语音邮箱与移动能力（n24）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：公司数（≤4）、用户与实体分配表、各公司中继资源、是否禁实体间呼叫、MoH 素材。公司数超 4 → 判停：超出系统上限，改多系统方案。</p>
+<ol>
+<li>实体分配：逐话机 Details/Entity 归属（默认实体 1）。完成标准：归属落表</li>
+<li>隔离开关：按需勾实体间禁呼；向客户说明连带影响清单（转接/RSL/代接/邮箱，n25）。完成标准：隔离生效且预期一致</li>
+<li>MoH：按实体分别加载（MMC 或 OMC），与 MSG 欢迎消息分清。完成标准：各实体保持音乐独立</li>
+<li>伪多公司：话机与本公司中继组设相同链路类别；矩阵拉直线。完成标准：配对成立</li>
+<li>ARS：主中继行 base 改 ADL、透明线入列表，列表含两公司中继组并设 Char。完成标准：同前缀各走各线</li>
+<li>验证：跨实体呼被禁、MoH 各自播放、外拨显示对应 Char、小票分账。完成标准：三隔离闭环</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>需要真正的数据隔离（用户/话务员互不可见）→ 多实体是"伪多租户"：用户与话务员组仍共享（BOOK_OVERVIEW 术语口径），超预期则改独立系统</li>
+<li>话务员组需求 → 话务员组对所有实体公共且不受限，无法按公司隔离（p244）</li>
+<li>实体间仍需部分互通（如转接）→ 逐项对照 n25 连带清单再定开关</li>
+<li>链路类别取值 → 讲义 3/4 与实验 1/2 并存（nr-06），取一套自洽值即可，不照抄</li>
+</ul>
+<p>输出契约：实体分配表 + 隔离开关与连带影响确认单 + 链路类别配对与矩阵记录 + 外拨 Char 验证结论。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>容量与 license：4 实体上限；每实体 MoH 每段 ≤10 分钟需 license（多实体 MoH-10 分钟）</li>
+<li>禁实体间呼叫的连带影响覆盖转接/RSL/代接/邮箱（n25）：设计跨公司协作流程前逐项核对</li>
+<li>伪多公司靠"链路类别配对+ARS 透明线"实现记账隔离，非硬隔离：故障或误配时可能互走对方外线，交付前务必验证 Char</li>
+<li>计费小票新增实体信息：对账模板需同步更新</li>
+<li>MoH 与 MSG1-20 欢迎消息共用 MMC 录制入口（n24）：录错位置表现为"来电播错语音/保持听错音乐"</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.oxoa.multi-entity · 来源：OXOCXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OXO Connect - Advanced (Participant's Guide, Edition 18) | edition: Edition 18 | pages: 601 页 -->

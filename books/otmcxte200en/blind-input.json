@@ -1,0 +1,223 @@
+{
+ "code": "otmcxte200en",
+ "capability_catalog": [
+  {
+   "slug": "otmsg-install-site-setup",
+   "name": "OTMC 服务器安装与站点配置",
+   "description": "物料与介质两法、OTMC-V 虚机创建与调优、SUSE 三种安装模式、core 安装、首启 13 步向导；DNS 前向反向七类 FQDN、五账户规则、备份存储选型、网络安全口径"
+  },
+  {
+   "slug": "otmsg-license-management",
+   "name": "FlexLM 许可证体系部署与更换",
+   "description": ".ice 装 $LICENSES_HOME、FlexLM 内嵌或外部、ALUID 与 dongle 绑定、SFTP 手工装、flexlmd 重启、lmstat 核验；向导 OK 只代表文件存在"
+  },
+  {
+   "slug": "otmsg-declaration-sync",
+   "name": "OXE/OTMC 双向声明进 8770 与同步",
+   "description": "OXE 侧 netadmin 准备与 4400 Synchro、8770 三层树声明（OXE 节点号=ABC×100+节点号）、bics.conf 对账、OTMC 拓扑对称声明、同步矩阵选型、密码重置两路"
+  },
+  {
+   "slug": "otmsg-sip-trunk-provisioning",
+   "name": "OXE 侧 SIP 对接 OTMC",
+   "description": "trunk group（T2/ABC-F/SIP）、OTMC 声明为 external gateway（5040/TCP/ICE type）、trusted 地址、G.729+DPNSS 前缀+Routing Optimisation；四段排障顺序"
+  },
+  {
+   "slug": "otmsg-user-mailbox-provisioning",
+   "name": "Connection 用户与语音邮箱交付",
+   "description": "OXE 建户两法、resurrection/空闲地址/IP 话机寻址、许可三族六类核查（spadmin）；OTMC 三级对象 VMS→mailbox（必挂 profile）→user（分机号对齐+Voice mail 权）、TUI 验证"
+  },
+  {
+   "slug": "otmsg-mailbox-profiles",
+   "name": "语音邮箱 profile 定制与问候语管理",
+   "description": "默认四 profile（Advanced/Classic/Simplified=LS、Standard=UM）、三页签批控行为/时长/容量、Check quota 与 zero-out、TUI 密码档位；问候语四类与 Greeting Managers 集中管理"
+  },
+  {
+   "slug": "otmsg-notification-smtp-sms",
+   "name": "SMTP/SMS 通知部署与排障",
+   "description": "全局参数（2MB/80%）、VPIM 路由声明外部 SMTP（无认证无 TLS）、模板按语言定制与升级行为、用户级设置、LS/UM 可用性矩阵、MWI 机制、chameleon/scorpio 排障与失败静默口径"
+  },
+  {
+   "slug": "otmsg-backup-statistics",
+   "name": "OpenTouch 备份恢复与语音信箱统计",
+   "description": "8770 发起两段式备份（SSH/SFTP）、恢复后手工 service opentouchd start、跨版本 Force、删测试用户走 OT Configuration；statistics.properties 默认值、手工建目录、mascd 重启、XML/HTML/CSV"
+  },
+  {
+   "slug": "otmsg-product-positioning",
+   "name": "OTMC 产品定位与部署形态",
+   "description": "单服务器独立信箱三通道（TUI/GUI/IMAP）、物理（ALUID）与 OTMC-V（dongle、vMotion/DRS 白名单）、15000/5000 口径、集中式与分布式组网、Supra 不支持集中 VM；规格与容量工具书外"
+  },
+  {
+   "slug": "otmsg-web-portal",
+   "name": "用户自助门户 My Profile 与 MyMessaging",
+   "description": "My Profile（FQDN 根路径）管语言/问候/密码/通知，MyMessaging（FQDN/MyMessaging）网页听留言；登录用 GUI 账号、可见项受管理员授权"
+  },
+  {
+   "slug": "otmsg-imap-access",
+   "name": "IMAP 客户端访问语音邮箱",
+   "description": "OTMC 即 IMAP 服务器（默认 IMAPS+TLS）；客户端/IMAP4 Front End/验收判据三处对齐；IMAP 登录测试 Completed 才算、发信测试失败属预期、改级须改端口并重启 imap4fed"
+  },
+  {
+   "slug": "otmsg-general-announcement",
+   "name": "企业广播 General Announcement",
+   "description": "三类播报场景（AA 项废弃）、用户管理权授权、TUI 增强菜单 6 录制、general_announcement.wav（CCITT A-law 8bits 8kHz mono）；单条/新录覆盖/≤5 分钟硬限制"
+  }
+ ],
+ "cases": [
+  {
+   "id": "should-install-01",
+   "prompt": "客户买了台服务器要全新上一套 OTMC，从装系统到能进管理界面，整个流程怎么走？"
+  },
+  {
+   "id": "should-install-02",
+   "prompt": "跑站点配置向导的时候，DNS 那一步到底要让客户提前解析哪些名字？账户密码有什么规矩？"
+  },
+  {
+   "id": "should-license-01",
+   "prompt": "客户扩容买了新许可文件，我拷进服务器之后怎么让它生效、怎么确认已经认上了？"
+  },
+  {
+   "id": "should-license-02",
+   "prompt": "装的时候许可那一步直接跳过了，现在系统总觉得不对劲，是不是跟这个有关？"
+  },
+  {
+   "id": "should-decl-01",
+   "prompt": "新站点要把交换机和语音信箱服务器都挂到 8770 下面统一管，两边各自要做什么、先后顺序是什么？"
+  },
+  {
+   "id": "should-decl-02",
+   "prompt": "8770 里声明语音信箱服务器的时候，节点号随便填吗？之前设的管理密码忘了怎么办？"
+  },
+  {
+   "id": "should-sip-01",
+   "prompt": "交换机这边要跟语音信箱服务器打通话路，中继和网关那些参数分别在哪配、填什么值？"
+  },
+  {
+   "id": "should-sip-02",
+   "prompt": "用户留言老是留不进去，呼叫好像根本到不了信箱服务器，从话路这边怎么查？"
+  },
+  {
+   "id": "should-umb-01",
+   "prompt": "招了几个新员工，每人要有一个带留言功能的信箱，从建账号到能收留言完整要配哪些东西？"
+  },
+  {
+   "id": "should-umb-02",
+   "prompt": "有个同事信箱是有了，但别人给他打电话就是留不了言，这个一般是什么问题？"
+  },
+  {
+   "id": "should-profile-01",
+   "prompt": "客服部门信箱老被塞满，想统一限制他们的信箱大小和留言保留天数，批量改怎么弄？"
+  },
+  {
+   "id": "should-profile-02",
+   "prompt": "老板想让所有来电先听到一段专业的公司问候再进信箱，这个集中换一下能实现吗？"
+  },
+  {
+   "id": "should-notif-01",
+   "prompt": "想让员工有人留言时自动收到一封带录音的邮件，这套通知要怎么开起来？"
+  },
+  {
+   "id": "should-notif-02",
+   "prompt": "有用户反馈留言通知一封都没收到过，服务器这边也没什么告警，从哪查起？"
+  },
+  {
+   "id": "should-backup-01",
+   "prompt": "信箱系统上线前想演练一下坏了能不能救回来，备份和恢复各要怎么做？"
+  },
+  {
+   "id": "should-backup-02",
+   "prompt": "客户想要每个月各信箱的使用量报表，系统里能不能自动出？"
+  },
+  {
+   "id": "should-pos-01",
+   "prompt": "客户问语音信箱是装在交换机里的功能还是要单独买台服务器？物理机和虚机版本有什么区别？"
+  },
+  {
+   "id": "should-pos-02",
+   "prompt": "客户好几个分部想把留言集中放到总部一台信箱服务器上，他们网络是 Supra 的，这样可行吗？"
+  },
+  {
+   "id": "should-portal-01",
+   "prompt": "员工不想记电话按键那些操作，能不能在网页上直接听留言、管理留言？"
+  },
+  {
+   "id": "should-portal-02",
+   "prompt": "用户想自己改信箱密码和切换界面语言，不想到处找管理员，有自助的地方吗？"
+  },
+  {
+   "id": "should-imap-01",
+   "prompt": "出差的销售想在自己 Outlook 里直接看到语音留言，这个怎么配？"
+  },
+  {
+   "id": "should-imap-02",
+   "prompt": "邮件客户端死活连不上信箱服务器收留言，加密那块要两边怎么对？"
+  },
+  {
+   "id": "should-ga-01",
+   "prompt": "公司想在客户打进来留言之前先播一段节日通告，全公司统一的那种，怎么弄？"
+  },
+  {
+   "id": "should-ga-02",
+   "prompt": "做好的录音文件传到服务器上了，公告却没播出来，一般是什么原因？"
+  },
+  {
+   "id": "bait-install-01",
+   "prompt": "怎么把语音信箱服务器挂到 8770 网管平台上统一管理？"
+  },
+  {
+   "id": "bait-license-01",
+   "prompt": "新买了几台 IP 话机，怎么确认交换机上对应的话机用户许可还够用？"
+  },
+  {
+   "id": "bait-decl-01",
+   "prompt": "交换机连信箱服务器的那条 SIP 中继，端口和传输方式要配成多少？"
+  },
+  {
+   "id": "bait-sip-01",
+   "prompt": "在语音信箱服务器的拓扑里登记交换机节点时，那两个端口字段分别填什么？"
+  },
+  {
+   "id": "bait-umb-01",
+   "prompt": "想把一批信箱的留言保留期从 15 天改成 30 天，在哪改最快？"
+  },
+  {
+   "id": "bait-profile-01",
+   "prompt": "来了个新同事，给他建好信箱账号并且把信箱分配到他名下，具体步骤是什么？"
+  },
+  {
+   "id": "bait-notif-01",
+   "prompt": "我想在自己电脑的邮件软件里直接翻语音留言列表，不走通知邮件，怎么配？"
+  },
+  {
+   "id": "bait-portal-01",
+   "prompt": "管理员想批量给几十个用户上传并激活同一段问候语，在哪里操作？"
+  },
+  {
+   "id": "bait-backup-01",
+   "prompt": "装语音信箱服务器跑向导的时候，备份存放位置那一步应该怎么选？"
+  },
+  {
+   "id": "bait-ha-01",
+   "prompt": "语音信箱服务器想做双机热备，两台之间的高可用怎么配置？"
+  },
+  {
+   "id": "bait-um-01",
+   "prompt": "语音留言想直接落到客户的 Exchange 邮箱里做统一消息，具体怎么对接配置？"
+  },
+  {
+   "id": "bait-aa-01",
+   "prompt": "想给公司配一个自动话务员， callers 按 1 转销售按 2 转售后那种菜单怎么搭？"
+  },
+  {
+   "id": "edge-node-01",
+   "prompt": "语音信箱服务器在 8770 里的节点号，教材一会儿写 98 一会儿写 99，到底该填哪个？"
+  },
+  {
+   "id": "edge-mwi-01",
+   "prompt": "用户在邮箱里听完留言了，话机上的红灯还亮着，是不是坏了？"
+  },
+  {
+   "id": "edge-imap-01",
+   "prompt": "Outlook 测试账户设置时收信那项是通过的，发测试邮件却是红叉，这样到底算配好了吗？"
+  }
+ ]
+}

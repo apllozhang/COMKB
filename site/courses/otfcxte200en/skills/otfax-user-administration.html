@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OTFC 用户与管理员管理（双用户源、CSV、两级管理员）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch Fax Center · Starter</h2><p>Edition 04 · 233 页 · 文档整理入库（11 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otfcxte200en/index.html">课程首页</a><a href="/courses/otfcxte200en/digest.html">精华长文</a><a href="/courses/otfcxte200en/overview.html">教书理解</a><a href="/courses/otfcxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otfcxte200en/skills/otfax-installation-ftw.html">OTFC 首次交付（宿主准备、安装、FTW、许可）</a><a href="/courses/otfcxte200en/skills/otfax-sip-channel-integration.html">OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）</a><a href="/courses/otfcxte200en/skills/otfax-mail-exchange-integration.html">OTFC 邮件与 Exchange 集成（SMTP 网关、FAX 连接器、通知排障）</a><a href="/courses/otfcxte200en/skills/otfax-user-administration.html">OTFC 用户与管理员管理（双用户源、CSV、两级管理员）</a><a href="/courses/otfcxte200en/skills/otfax-profile-policy.html">OTFC Profile 策略与电话簿（限制组、呼号限制、通知 Profile、LDAP 电话簿）</a><a href="/courses/otfcxte200en/skills/otfax-directory-routing.html">OTFC 高级目录集成与来传真路由（LDAP、Lookup、NT 免密、路由表、DTMF、Modification）</a><a href="/courses/otfcxte200en/skills/otfax-services-operations.html">OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）</a><a href="/courses/otfcxte200en/skills/otfax-backup-upgrade.html">OTFC 备份、恢复、升级与删除策略（三数据域、五步升级法、零保留）</a><p class="course-nav-group">路由能力</p><a href="/courses/otfcxte200en/skills/otfax-client-coversheet.html">OTFC 客户端部署与封页定制（四件套、Web Client、GPO、封页五步）</a><a href="/courses/otfcxte200en/skills/otfax-solution-planning.html">OTFC 方案评估与部署规划（容量协议合规、架构拓扑、支持矩阵）</a><a href="/courses/otfcxte200en/skills/otfax-reports-monitoring.html">OTFC 报表与监控（31 报表、BIRT、SNMP V2 陷阱）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otfcxte200en/index.html">ot-fax-center（11 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otfcxte200en/index.html">OTFCXTE200EN</a><span>/</span><span aria-current="page">OTFC 用户与管理员管理（双用户源、CSV、两级管理员）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OTFC 用户与管理员管理（双用户源、CSV、两级管理员）</h1></div><dl><div><dt>Skill ID</dt><dd>otfax-user-administration</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OTFC 用户与管理员管理（双用户源、CSV 批量、两级管理员、认证方式）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"In OpenTouch Fax Center, a user is always identified by an SMTP Address."（p23）
+"Internal Users: … Active Directory integration: … Note: The two type of user's directory can co-exist"（p100）
+"Users can be imported by the Webadmin interface only • .csv file format … The list of users could be exported by the Webadmin interface only"（p104-105）
+"There are two types of administrators: SYSTEM Administrators ; SITE Administrators … It is recommended to create a backup administrator"（p107, p110）</p>
+</blockquote>
+<p>出处：OTFCXTE200EN p97-116（含 How-To 实验 4 的建户与建管理员步骤）。</p>
+<h2>I — 自述</h2>
+<p>用户是运营主体，三条主线：</p>
+<ol>
+<li><strong>身份与绑定</strong>：用户恒以 SMTP 地址（邮箱）为身份；必须同时属于一个 Site、有一个 faxing Profile 才能用系统；时区写入传真报头并影响封页/报头/邮件通知三处时间戳</li>
+<li><strong>双源可共存</strong>：内部用户（OTFC 内建，手工建或静态导入，可导出 CSV）与 AD 集成（经域管理，Windows 账号登录用 NT Account 属性反查 SMTP 地址）不是二选一，按群体混用；CSV 批量导入/导出仅 Webadmin 界面有，MMC 没有</li>
+<li><strong>两级管理员</strong>：System administrator 管整个系统（可多名，认证基于内部服务器/AD/SAML）；Site administrator 只管自己的站点；官方推荐建备份管理员防锁死；登录认证可用 SMTP 地址或 Windows 认证（SSO 与 SAML）</li>
+</ol>
+<p>建户要素：邮箱地址、Profile、密码（首登必改）、个人信息、电话号码、传真号；时区可在 Profile 级管理。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>建备份管理员与两个测试用户</strong>（p114-116，实验 4，实验口径）：</p>
+<ol>
+<li>启动 OpenTouch Fax Center 应用，用 Administrator 登录 MMC，按提示改密为 Alcatel1!@123</li>
+<li>浏览器打开 http://fax/faxadmin 发现 Web 管理界面</li>
+<li>System Configurations ➤ Administrators 选 add，建 backupadmin（认证选传真服务器，密码 Alcatel1!@123）后 Create</li>
+<li>用新账号登录 MMC 验证，按提示改密并记录</li>
+<li>在 Sites ➤ Site ➤ Configuration ➤ Internal Users 建 allen@company.com（传真号 31604）与 barkley@company.com（传真号 31600）</li>
+<li>两用户登录 Web Client（http://localhost/fax）互发传真，检查 inbound/outbound/queue 三菜单</li>
+<li>从管理界面监控传真交换</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：批量开传真账号；删错用户怎么补；管理员密码丢了；客户问 AD 账号能不能直接用；MMC 里找不到导入用户按钮；跨时区用户通知时间不对。</p>
+<p>语言信号：用户 / user / Internal Users / Active Directory / NT Account / CSV / 批量导入 / 导出 / SMTP 地址 / Profile 分配 / 管理员 / administrator / backupadmin / SSO / SAML / 时区 / time zone / 传真号。</p>
+<p>与相邻能力区分：Profile 里的策略（限制组/通知格式/封页）归 Profile 策略能力；外部用户自动归类（Lookup 表）归目录与路由能力；登录问题里目录侧的排查归目录与路由能力的 NT Account 段。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：站点已建（Site 就绪）、Profile 体系已规划（见 Profile 策略能力）、用户清单（邮箱/传真号/时区）、AD 域环境（如走 AD 源）。</p>
+<ol>
+<li>定用户源：主体用户走 AD、少量外部/临时走内部库（两源可共存）。完成标准：各群体归属明确</li>
+<li>内部建户：Web 管理界面 Sites ➤ Site ➤ Configuration ➤ Internal Users ➤ Create，填邮箱/Profile/密码/个人信息/传真号/时区。完成标准：用户出现在列表且绑定 Site+Profile</li>
+<li>批量导入：Webadmin 的 Import users，.csv 格式，第 3 步选套用 Profile。完成标准：导入报告无报错、用户可登录</li>
+<li>AD 源准备：确认域内 NT Account 属性可反查 SMTP 地址（Lookup 链见目录与路由能力）。完成标准：AD 用户可经 Windows 账号登录</li>
+<li>建管理员：System 级按 p110 三步（认证可选内部服务器/AD/SAML）；Site 级按 p111 四步。完成标准：两类账号各就位</li>
+<li>建备份管理员：与主管理员不同认证路径，密码入交付文档。完成标准：backupadmin 可独立登录</li>
+<li>行为验证：建两个测试用户互发传真，核对 inbound/outbound/queue 与管理端监控。完成标准：双向传真与监控记录齐全</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>MMC 里翻不到 Import/Export users → 停，这是功能边界（仅 Webadmin），切 Web 管理界面操作</li>
+<li>用户建了但登录被拒 → 先核对是否绑定了 Site 与 Profile（缺一即拒用），再查密码首登强制改密</li>
+<li>客户只有一名 System 管理员且用 SSO 登录 → 停，锁死风险高，先落备份管理员再上线</li>
+<li>时区没按用户所在地设置 → 交付前逐用户核对，否则封页/报头/通知三处时间戳全错</li>
+</ul>
+<p>输出契约：用户清单（源/站点/Profile/传真号/时区）+ 管理员账号表（级别/认证方式）+ 备份管理员交接记录 + 测试互发验证结果。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>评估许可下用户数上限 100（p52）：批量开号前先核许可余量</li>
+<li>CSV 导入导出仅 Webadmin；MMC 无此功能——功能分布差异以原书口径为准</li>
+<li>教材账号密码（Alcatel1!@123、123456）是实验口径，生产必须替换并纳入交付检查表</li>
+<li>NT Account Lookup 的两条实现路径与 IIS 免密登录配置在目录与路由能力展开；本卡只覆盖账号管理面</li>
+<li>Site 管理员的建号步骤（p111）书内为讲义级四步，无独立实验章</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otfcxte200en/skills/otfax-profile-policy.html">OTFC Profile 策略与电话簿（限制组、呼号限制、通知 Profile、LDAP 电话簿）</a>、<a href="/courses/otfcxte200en/skills/otfax-directory-routing.html">OTFC 高级目录集成与来传真路由（LDAP、Lookup、NT 免密、路由表、DTMF、Modification）</a></p><p class="source-page">能力 ID：cap.otfax.user-administration · 来源：OTFCXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch Fax Center - R9.2 Starter (Participant's Guide, Edition 04) | edition: Edition 04 | pages: 233 页 -->

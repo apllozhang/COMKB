@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>三层服务与网关冗余（DHCP/Loopback0/静态路由/VRRP）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniSwitch LAN Access Switching</h2><p>Edition 23 · 587 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/dt00xte215en/index.html">课程首页</a><a href="/courses/dt00xte215en/digest.html">精华长文</a><a href="/courses/dt00xte215en/overview.html">教书理解</a><a href="/courses/dt00xte215en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/dt00xte215en/skills/swl2-aaa-hardening.html">交换机登录接入与 AAA 管理面加固</a><a href="/courses/dt00xte215en/skills/swl2-lightning-config.html">Lightning Config 快速开局</a><a href="/courses/dt00xte215en/skills/swl2-config-lifecycle.html">配置生命周期（保存/认证/回滚/备份）</a><a href="/courses/dt00xte215en/skills/swl2-virtual-chassis.html">Virtual Chassis 堆叠</a><a href="/courses/dt00xte215en/skills/swl2-vlan-routing.html">VLAN 与 VLAN 间路由</a><a href="/courses/dt00xte215en/skills/swl2-link-redundancy.html">链路与生成树冗余（LAG/STP/DHL）</a><a href="/courses/dt00xte215en/skills/swl2-l3-services.html">三层服务与网关冗余（DHCP/Loopback0/静态路由/VRRP）</a><a href="/courses/dt00xte215en/skills/swl2-qos-acl-policy.html">QoS 与 ACL 策略</a><p class="course-nav-group">路由能力</p><a href="/courses/dt00xte215en/skills/swl2-access-guardian.html">Access Guardian 接入认证</a><a href="/courses/dt00xte215en/skills/swl2-diagnostics.html">诊断工具箱八件套</a><a href="/courses/dt00xte215en/skills/swl2-lldp-poe.html">LLDP/LLDP-MED 与 PoE 管理</a><a href="/courses/dt00xte215en/skills/swl2-upgrade-autofabric.html">软件升级与 Auto-Fabric 零触开局</a><a href="/courses/dt00xte215en/skills/swl2-fleet-tools.html">资产与装机工具（Fleet Supervision/OST）</a><p class="course-nav-group">已安装技能</p><a href="/courses/dt00xte215en/index.html">omniswitch-lan-access（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/dt00xte215en/index.html">DT00XTE215EN</a><span>/</span><span aria-current="page">三层服务与网关冗余（DHCP/Loopback0/静态路由/VRRP）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>三层服务与网关冗余（DHCP/Loopback0/静态路由/VRRP）</h1></div><dl><div><dt>Skill ID</dt><dd>swl2-l3-services</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>三层服务与网关冗余（DHCP/UDP Relay、Loopback0、静态路由、VRRP）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Two types of DHCP relay agents: global and per-interface. ... They are mutually exclusive"（p353）
+"• Not bound to any VLAN • Always remain operationally active (as long as at least one VLAN is active) ... • Automatically advertised by RIP and OSPF protocols when the interface is created (not by BGP)"（p360）
+"By default, static routes have preference over dynamic routes • Priority can be set by assigning a metric value"（p363）
+"Multicast - 224.0.0.18 Virtual MAC address: 00-00-5E-00-01-{VRID}"（p375）
+"THE VRRP INSTANCE MUST BE DISABLED BEFORE CHANGING THE PRIORITY"（p390）</p>
+</blockquote>
+<p>出处：DT00XTE215EN p345-390。</p>
+<h2>I — 自述</h2>
+<p>三层侧的五个基础件加一个网关冗余协议：</p>
+<ol>
+<li><strong>DHCP Client</strong>（p350-351）：任意 VLAN 单接口动态取址（RFC 2131 release/renew）；Option-1 掩码落地、Option-3 网关生成默认路由、Option-51 租期、Option-58/59 续租/重绑、Option-60 可配串；地址作 VLAN 主地址</li>
+<li><strong>DHCP Relay</strong>（p353-355）：全局型（ip dhcp relay destination + enable）与接口型（per-interface-mode + interface destination）互斥；默认 max hops 16、Opt82 格式 Base MAC、Relay Agent Information 与 PXE 默认关</li>
+<li><strong>UDP Relay</strong>：tftp/tacacs/ntp/nbns/nbdd/dns 或自定义端口按 VLAN/地址转发（p357）</li>
+<li><strong>Loopback0</strong>（p360）：不绑 VLAN、只要有一个 VLAN 活动就永活；RIP/OSPF 自动通告（BGP 不会）；七类用途——PIM-SM RP、sFlow Agent、RADIUS 源、NTP、BGP peering、OSPF router-id、NMS 识别；配 ip service source-ip 统一服务源</li>
+<li><strong>静态路由</strong>（p363-364）：默认优先于动态路由，metric 调相对优先级，可做主备默认路由（metric 1 主 / metric 2 备）；关联接口须 up</li>
+<li><strong>VRRP</strong>（p374-390）：虚拟 IP+虚拟 MAC 00-00-5E-00-01-{VRID}、组播 224.0.0.18；三步配置=ip vrrp interface、address <vip>、admin-state enable；默认优先级 100、默认允许抢占；跟踪策略五类（ADDRESS、IPV4/V6-INTERFACE、PORT、VLAN）做上行故障降级</li>
+</ol>
+<p><strong>实验主备指定</strong>（p390，实验口径）：改优先级必须 disable 实例 → priority 150 → enable；两侧各主一组 VLAN 即负载分担。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>DHCP Relay 实验</strong>（p367-371）：</p>
+<ol>
+<li>核查路由：show ip routes 确认到 192.168.100.0/24 的 OSPF 路由，ping DHCP 服务器通</li>
+<li>两台交换机各 ip dhcp relay destination 192.168.100.102 并 admin-state enable</li>
+<li>show ip dhcp relay 核对：Enable、Max hops 16、Relay Mode Global、Opt82 Base MAC</li>
+<li>客户端改 DHCP 模式后取到对应网段地址</li>
+<li>show ip dhcp relay statistics 计数增长（实验值 43/43 与 40/40，实验口径）</li>
+</ol>
+<p><strong>VRRP 实验</strong>（p383-390）：</p>
+<ol>
+<li>6870-A 与 6860-B 互补建 int_20/int_30，再各建 VRID 1/2 指向相同 VIP（192.168.20.254/30.254）</li>
+<li>show ip vrrp：Version V2、Priority 100、Preempt Yes、Interval 100、虚拟 MAC 尾字节即 VRID</li>
+<li>同优先级时最低 router ID 当 master：初始 6870-A 双 Master</li>
+<li>终端网关指向 VIP，ip neigh show 看到 VRRP 虚拟 MAC；reload 主设备后 Backup 接管</li>
+<li>指定主备：6870-A 主 VLAN 20（VRID 1 priority 150）、6860-B 主 VLAN 30（VRID 2 priority 150）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：用户网段跨网段取地址；多 DHCP 服务器分网段；管理/协议源地址规划；双出口主备默认路由；两台汇聚做网关冗余；VRRP 主备指定与上行跟踪。</p>
+<p>语言信号：DHCP relay / IP helper / UDP relay / Loopback0 / source-ip / 静态路由 / metric / 默认路由 / VRRP / VRID / 虚拟 IP / 虚拟 MAC / 优先级 / 抢占 / preempt / 跟踪 / track。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>VLAN 网关接口 DOWN 的成因：VLAN 与路由能力卡</li>
+<li>RADIUS 源地址只是 Loopback0 的一个用途，认证体系本身：Access Guardian 能力卡</li>
+<li>OSPF/BGP 协议细节：超本书（仅 Auto-Routing 触及）</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：网段与 DHCP 服务器地址、中继模式选择依据、管理源地址规划、网关冗余的 VRID/VIP 与主备角色。改优先级在业务窗口内做。</p>
+<ol>
+<li>取址链路：DHCP Client 直接取址，或配 DHCP Relay（单服务器用全局型；分服务器才用接口型，两型互斥）。完成标准：客户端取到对应网段地址、statistics 增长</li>
+<li>UDP Relay（按需）：按服务清单转发跨网段 UDP 服务。完成标准：目标服务可达</li>
+<li>管理面源地址：建 Loopback0（如 192.168.254.x/32），ip service source-ip loopback0 统一指定。完成标准：show 中服务源为 Loopback0</li>
+<li>出口路由：静态默认路由主备双条（metric 1/2）；确认关联接口 up。完成标准：show ip routes 主备有序</li>
+<li>VRRP 冗余：两侧建 VRID 指向相同 VIP 并 enable；验证虚拟 MAC 出现在终端 ARP。完成标准：一主一备</li>
+<li>主备与演练：改优先级按 disable → priority → enable 三步；断主验证 Backup 接管（Become Master 计数）。完成标准：切换达标且角色符合设计</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>全局与接口中继要并存 → 互斥，先清一侧再切另一侧</li>
+<li>需要 PXE 或接入认证带 Option 82 → 默认是关的，显式打开并核对策略（Drop）</li>
+<li>VRRP 直接改优先级不生效 → 必须先 disable 实例；disable 本身即触发切换，安排窗口</li>
+<li>超过两台做网关冗余或多组 VRID 规划 → 本卡覆盖主备与双组负载分担；更多形态以 Network Configuration Guide 为准</li>
+</ul>
+<p>输出契约：跨网段取址可用的用户网段 + 管理/协议源地址方案 + 网关冗余（主备角色与切换验证记录）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>DHCP Relay 全局/接口两型互斥；接口型仅转发该接口所绑 VLAN 发起的 DHCP 包（p353）</li>
+<li>Loopback0 由 RIP/OSPF 自动通告但 BGP 不会；名字必须写 Loopback0（p360）</li>
+<li>静态路由关联接口须 up and running，否则不生效（p363）</li>
+<li>VRRP 实验输出为 Version V2（p387）；RFC 2338/2787 口径</li>
+<li>实验服务器地址 192.168.100.102 与 VIP 数值为实验口径，生产按客户编址</li>
+<li>DHCP 服务器本身、RADIUS 服务器侧、动态路由协议（OSPF/BGP）配置不在本书范围</li>
+</ul><h2>相关能力</h2><p><a href="/courses/dt00xte215en/skills/swl2-vlan-routing.html">VLAN 与 VLAN 间路由</a>、<a href="/courses/dt00xte215en/skills/swl2-link-redundancy.html">链路与生成树冗余（LAG/STP/DHL）</a></p><p class="source-page">能力 ID：cap.swl2.l3-services · 来源：DT00XTE215EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniSwitch LAN Access Switching (Participant's Guide, Edition 23) | edition: Edition 23 | pages: 587 页 -->

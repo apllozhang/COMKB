@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>VAA IVR 选项节点与动态脚本</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Visual Automated Attendant · 安装、配置与维护</h2><p>Edition 20 · 351 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/vsaaxte001en/index.html">课程首页</a><a href="/courses/vsaaxte001en/digest.html">精华长文</a><a href="/courses/vsaaxte001en/overview.html">教书理解</a><a href="/courses/vsaaxte001en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/vsaaxte001en/skills/vaa-install-sip-integration.html">VAA 安装与 OXE SIP 对接接通</a><a href="/courses/vsaaxte001en/skills/vaa-multitenant-tree-design.html">VAA 多租户与树设计（公司/日历/UC1-UC3）</a><a href="/courses/vsaaxte001en/skills/vaa-prompt-tts-asr.html">VAA 提示音与 TTS/ASR 引擎</a><a href="/courses/vsaaxte001en/skills/vaa-ivr-option-nodes.html">VAA IVR 选项节点与动态脚本</a><a href="/courses/vsaaxte001en/skills/vaa-master-slave-ha.html">VAA Master/Slave 高可用与 OXE ARS 切换</a><a href="/courses/vsaaxte001en/skills/vaa-maintenance-backup.html">VAA 日常维护与版本升级</a><a href="/courses/vsaaxte001en/skills/vaa-db-integration.html">VAA 外部数据库集成（JDBC/SQL 节点）</a><a href="/courses/vsaaxte001en/skills/vaa-statistics-reporting.html">VAA 统计与报告</a><p class="course-nav-group">路由能力</p><a href="/courses/vsaaxte001en/skills/vaa-webadmin-administration.html">VAA WebAdmin 管理面</a><a href="/courses/vsaaxte001en/skills/vaa-pcs-opex-licensing.html">VAA PCS 同步与 OPEX/许可体系</a><a href="/courses/vsaaxte001en/skills/vaa-server-sizing-virtualization.html">VAA 服务器选型与虚拟化</a><a href="/courses/vsaaxte001en/skills/vaa-architecture-redundancy.html">VAA 架构与冗余全景</a><p class="course-nav-group">已安装技能</p><a href="/courses/vsaaxte001en/index.html">visual-automated-attendant（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/vsaaxte001en/index.html">VSAAXTE001EN</a><span>/</span><span aria-current="page">VAA IVR 选项节点与动态脚本</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>VAA IVR 选项节点与动态脚本</h1></div><dl><div><dt>Skill ID</dt><dd>vaa-ivr-option-nodes</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>VAA IVR 选项节点与动态脚本（变量/收号/显示名/HTTP/邮件、九节点全集）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Options subject to licenses allowing the VAA server to be connected to an information system"（p203）
+"Local: The variable is created when the script (tree) is launched … Global: the variable is created at company level … Contextual: a context variable is a variable linked to the current call. These variables are predefined and cannot be modified."（p216）
+"An empty result does not generate an SQL error … The VAA can only recover one field at a time. … In case of multiple results, the VAA returns the first occurrence only."（p323）
+"The information collected must imperatively be stored in a variable for future use"（p222）</p>
+</blockquote>
+<p>出处：VSAAXTE001EN p203-238, p215-220。</p>
+<h2>I — 自述</h2>
+<p>IVR 选项是"让 VAA 连接信息系统"的节点族（9 种，全部另购 IVR 许可），四个知识块：</p>
+<ol>
+<li><strong>九节点清单</strong>（全部另购 IVR 许可）：</li>
+</ol>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>节点</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Custom display name</td>
+<td>监督转接振铃期屏显</td>
+</tr>
+<tr>
+<td>Collect digit</td>
+<td>收号存变量</td>
+</tr>
+<tr>
+<td>Speech recognition</td>
+<td>识别结果存变量</td>
+</tr>
+<tr>
+<td>SQL request</td>
+<td>外部库 SELECT/INSERT</td>
+</tr>
+<tr>
+<td>Correlator data</td>
+<td>SIP 帧注入 User-to-User 相关数据（Magic ID 0xC015、ASCII 最长 27 字节 + XOR 校验、OXE 振铃期显示呼叫标签）</td>
+</tr>
+<tr>
+<td>Condition</td>
+<td>变量比较路由</td>
+</tr>
+<tr>
+<td>HTTP request</td>
+<td>GET/POST/PUT/DELETE，可配头与出站代理</td>
+</tr>
+<tr>
+<td>Mail</td>
+<td>脚本内发邮件（SMTP/SMTPs）</td>
+</tr>
+<tr>
+<td>Set variable</td>
+<td>声明/赋值变量</td>
+</tr>
+<tr>
+<td>2. <strong>变量三类</strong>：Local（脚本启动时创建，仅本 VAA 线可见）、Global（公司级全树共享，适合免改脚本调参）、Contextual（呼叫上下文预定义只读，如 callingNumber，清单在管理指南）；变量是 SQL/HTTP/收号/TTS 四类节点的必需品</td>
+<td></td>
+</tr>
+<tr>
+<td>3. <strong>节点行为细则</strong>：</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Condition 比较算子（Is empty/Contains/Equals/Starts with/End with/length 等，可比较另一变量）</li>
+<li>收号节点（min=max 时位数不足判失败、单独输入 * 视为正确输入、# 结束符不可改、结果必须存变量）</li>
+<li>显示名（仅监督转接、仅振铃期、摘机即恢复主叫信息、需 OXE 侧 COS 配合）</li>
+<li>HTTP 返回 JSON 按点语法取值（VAR(变量.对象.字段)）</li>
+<li><strong>SQL 节点硬规则</strong>：一次只取一个字段（多字段发多条请求）；多条结果只取第一条；空结果不算错（必须用 Condition 判非空再转接，SQL 失败走红色连线）；脚本里塞太多查询会拖长呼叫时长；库连接应定义在公司设置而非节点手工配置</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>变量判断树（31404）与 HTTP 天气树（31407）</strong>（p215-235，实验口径 token）：</p>
+<ol>
+<li>建树，Start 自动生成；加 Set variable 节点复制上下文变量 callingNumber</li>
+<li>加欢迎 Announcement，接 Condition 判断主叫以 31 开头（内部来话）</li>
+<li>内部分支接 TTS 播报 "Internal Call"；继续 Condition 判断是否等于 VIP 号码</li>
+<li>VIP 分支播 "VIP call"，其余播 "Other calls"；Release 收尾；绑 31405 前先按此树验证变量链</li>
+<li>HTTP 实验：openweathermap 免费但需注册取 tokenID（实验提供两枚）</li>
+<li>建 HTTP 节点请求天气接口，结果存变量 resultHTTP</li>
+<li>播报节点用 VAR(resultHTTP.main.temp) 与 VAR(resultHTTP.main.humidity) 取值</li>
+<li>绑测试号激活；拨打应播报布雷斯特实时温度与湿度</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：按主叫属性分流；自助查询采集工号/PIN；转接时屏显自定义信息；通话中调外部接口；来话邮件通知；按数据库数据转接前的变量准备；ASR 识别节点。</p>
+<p>语言信号：变量 / variable / Local / Global / Contextual / callingNumber / Condition / 收号 / collect digits / 显示名 / display name / HTTP / JSON / VAR / 邮件节点 / mail / 相关数据 / correlator / IVR 许可。</p>
+<p>与相邻能力区分：JDBC 驱动安装与库连接归数据库集成能力；TTS 文本生成归语音资产能力；树画布与路由绑定归树设计能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：IVR 许可已购（vaa services 的 VAA_IVR 字段核查）、变量规划（取哪些上下文变量、存哪些结果）、外部服务可达性（HTTP/SMTP）、收号业务的输入长度与异常策略。</p>
+<ol>
+<li>核查许可：vaa services 看 VAA_IVR [true/false]，未购则停。完成标准：许可就位</li>
+<li>变量规划：列出每个节点读取/写入的变量与类型（Local/Global/Contextual）。完成标准：变量表评审通过</li>
+<li>建树骨架：Start/欢迎/业务节点/Release 先行，逐节点连线并命名。完成标准：主干可走通</li>
+<li>接入选项节点：按需加 Set variable/Condition/Collect digit/HTTP/Mail 等，结果一律存变量。完成标准：节点参数完整</li>
+<li>异常路径：收号配错误输入与超时处理；SQL/HTTP 失败走红色连线播专用提示。完成标准：每条异常连线有落点</li>
+<li>路由激活：绑测试号并激活，按行为测试清单拨打（含 * 输入、位数不足、超时等边界）。完成标准：清单全过</li>
+<li>演进：显示名文本可改变量动态生成；收号可改造为可变长度输入。完成标准：进阶项按需启用</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>SQL 要一次取多个字段 → 停，单字段限制下拆成多条请求，或评估树结构（原书进阶题即 2 条 SQL）</li>
+<li>收号要把 * 当返回键 → 停，* 被视为正确输入，需自行加 Condition 判断其值</li>
+<li>客户无 IVR 许可要上收号/SQL 节点 → 停，全部九节点都是付费选项，先走商务</li>
+<li>显示名在盲转场景不显示 → 停，机制仅限监督转接振铃期，需求改用播报或改转接策略</li>
+</ul>
+<p>输出契约：激活的动态脚本树 + 变量表与节点参数记录 + 边界行为测试记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>九节点全部依赖 IVR 许可（Additional licenses），HA 许可也列在 Option 栏（p21/p26）</li>
+<li>收号三细节：min=max 判失败、* 是合法输入、# 结束符不可改（n36）</li>
+<li>显示名三边界：仅监督转接、仅振铃期（摘机即恢复主叫信息）、需 OXE COS（n35）</li>
+<li>SQL 安全口径：库连接定义在公司设置，不要节点手工配置，防凭证散落脚本（n24）</li>
+<li>Correlator data 的 Magic ID 与字节上限为 SIP 私有机制，OXE 侧解析前提书内未展开</li>
+<li>HTTP 出站走客户网络，代理与防火墙前提属客户基础设施（p34 口径）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/vsaaxte001en/skills/vaa-db-integration.html">VAA 外部数据库集成（JDBC/SQL 节点）</a></p><p class="source-page">能力 ID：cap.vaa.ivr-option-nodes · 来源：VSAAXTE001EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Visual Automated Attendant — Installation, Configuration and Maintenance (Participant's Guide, Edition 20) | edition: Edition 20 | pages: 351 页 -->

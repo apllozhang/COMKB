@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>整理摘要 · OTCCXTE100EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Starter</h2><p>Edition  · 649 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte100en/index.html">课程首页</a><a href="/courses/otccxte100en/digest.html">精华长文</a><a href="/courses/otccxte100en/overview.html">教书理解</a><a href="/courses/otccxte100en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte100en/skills/otcc-ccd-matrix-foundation.html">CCD 基础矩阵创建与验证</a><a href="/courses/otccxte100en/skills/otcc-ccs-installation.html">CCS 班长台安装、OXE 声明与 ccs.ini</a><a href="/courses/otccxte100en/skills/otcc-routing-distribution-rules.html">路由规则与分配规则全生命周期</a><a href="/courses/otccxte100en/skills/otcc-agent-supervisor-onboarding.html">ACD 话机、座席与班长创建登录</a><a href="/courses/otccxte100en/skills/otcc-object-tuning.html">CCD 对象参数调优（pilot/PG/队列）</a><a href="/courses/otccxte100en/skills/otcc-voice-guides.html">语音指南三路径（话机录音/.wav 导入/欢迎指南）</a><a href="/courses/otccxte100en/skills/otcc-monitoring-statistics.html">实时监控告警与 Excel 统计</a><a href="/courses/otccxte100en/skills/otcc-multilanguage-calendar.html">多语言语音指南与双日历</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte100en/skills/otcc-supervisor-features.html">座席班长特性配置（监听强插/通用转发/多线/事务码）</a><a href="/courses/otccxte100en/skills/otcc-queue-experience.html">EWT 表与排队位置播报（518）</a><a href="/courses/otccxte100en/skills/otcc-direct-calls-emergency.html">CCD 直接呼叫与紧急关闭</a><a href="/courses/otccxte100en/skills/otcc-statistic-pilot.html">统计型 pilot 与 Call Tag</a><a href="/courses/otccxte100en/skills/otcc-lab-connectivity.html">实验环境与链路打通（POD/ITSP1/ABC-F）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte100en/index.html">otcc-standard-starter（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte100en/index.html">OTCCXTE100EN</a><span>/</span><span aria-current="page">整理摘要</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">DIGEST</p><h1>整理摘要 — 全书精华</h1></div></header><article class="markdown-body"><h1>DIGEST — OmniTouch Contact Center Standard 入门精华长文</h1>
+<blockquote>
+<p>源：OTCCXTE100EN Edition 09（649 页）· 文档整理入库 · 2026-09-23
+定位：10 分钟建立 OXE 内置呼叫中心（CCD + CCS）入门交付的全局认知；操作细节按需查 13 张能力卡。</p>
+</blockquote>
+<h2>一、这套东西是什么</h2>
+<p>OTCC Standard Edition 是<strong>内置在 OmniPCX Enterprise（OXE）里的呼叫中心</strong>：CCD 分配软件长在呼叫服务器内，不是外挂平台；可选件只有 CCS（班长台）、CCA、ACR、Soft Panel 四个。交付主战场就是两个图形台——OXE Web Admin 与 CCsupervision（CCS）——外加 mtcl 命令行（p21-23）。</p>
+<p>一切呼叫流服从五级矩阵：<strong>pilot、路由、队列、分配、处理组</strong>。配置的本质是在这五级上"连方向、定优先级、给默认行为"（p22-29）。</p>
+<p>三个先记住的口径：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>默认全关</td>
+<td>分配规则默认停用（须 OXE 激活）、所有方向默认关闭——"配好了不通"先查这两处</td>
+</tr>
+<tr>
+<td>优先级 0-9</td>
+<td>0 最高 9 最低；平局规则三类各异：路由看 EWT、资源选择看 LIT、呼叫选择看真实等待时间</td>
+</tr>
+<tr>
+<td>CCS 无权建对象</td>
+<td>中继组/pilot/队列/处理组/座席只能 OXE 侧建；CCS 只能建班长与分配规则（p79）</td>
+</tr>
+</tbody>
+</table></div>
+<h2>二、入门交付闭环（八步主线）</h2>
+<ol>
+<li><strong>建矩阵</strong>：ACD 前缀（实验 "12"）先行，再建 3 类处理组（Agent/Forwarding/Voice guide，兼容硬约束：Voice Guide PG 只接 Redirection 队列）、3 类队列（Normal/Intelligent Overflow/Redirection）、pilot（p63-77）</li>
+<li><strong>装 CCS</strong>：CCS.msi 决策链（Full/Monosite/Excel=Yes）；node1 直连 OXE 后必须重启；ccs.ini 的 id_terminal 0..127 全网唯一（p89-97）</li>
+<li><strong>建规则</strong>：路由规则连 pilot 与队列（30 条/pilot），分配规则连队列与 PG（全局 10 条）；优先级常态方向最小；分配规则必须回 OXE 勾 Active Rule（p98-120）</li>
+<li><strong>建人员</strong>：ACD 话机 + 座席 + 班长；三种座席形态（固定/移动/自指派），班长恒自指派无优选组；前缀 "12" 全家桶登入登出（p121-149）</li>
+<li><strong>通链路</strong>：POD 收尾（SIP 网关 pbxN、DID 翻译、RDP 音频）打通公网来话；ABC-F 同节点不同网络、双 access UP 打通内呼（p150-165）</li>
+<li><strong>调参数</strong>：wrap-up/pause（1-3276 秒，自动挂 pilot、手动挂 PG）、服务水平 85%/15s 与 smiley 三色、PG 八选项逐项行为测试、队列饱和与改址（p166-193）</li>
+<li><strong>配体验</strong>：语音指南三路径（"401" 录音/".wav"+SFTP 导入/"538" 欢迎指南）、EWT 分档播报、"518" 排队位次（p194-264, p348-400）</li>
+<li><strong>管运营</strong>：Navigator 3 秒快照、三级告警各存 "100" 条、Excel 报表（"132" 行偏移）、紧急关闭、统计 pilot、双日历（p401-642）</li>
+</ol>
+<h2>三、关键表</h2>
+<p><strong>队列与 PG 兼容</strong>（p40）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>队列类型</th>
+<th>可接 PG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Normal</td>
+<td>Agent / IVR / Forward / Rerouting</td>
+</tr>
+<tr>
+<td>Intelligent Overflow</td>
+<td>Agent / IVR / Forward / Rerouting</td>
+</tr>
+<tr>
+<td>Redirection</td>
+<td>Agent / IVR / Forward / Rerouting / Voice Guide</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>容量上限族</strong>（p27/p43/p54/p103/p528/p546）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>对象</th>
+<th>上限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>队列共享/服务</td>
+<td>30 个 pilot / 50 个 PG</td>
+</tr>
+<tr>
+<td>路由规则</td>
+<td>每 pilot 30 条、全局 1200 条</td>
+</tr>
+<tr>
+<td>分配规则 / 分配方向</td>
+<td>全局 10 条 / 每队列 50 个方向</td>
+</tr>
+<tr>
+<td>紧急关闭</td>
+<td>50 个列表 × 每列 600 pilot</td>
+</tr>
+<tr>
+<td>统计 pilot</td>
+<td>3000 个（单一路由 pilot 关联）</td>
+</tr>
+<tr>
+<td>停车级 / EWT 阈值</td>
+<td>6 级 / 每表 6 阈值</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>座席状态时序</strong>（p275-280）：空闲、振铃、通话之后，挂机进自动 wrap-up（pilot 计时器，可被打断），再到 pause（可接私人电话）后回闲；手动 wrap-up 挂 PG（默认口径 600 秒）；wrap-up 中做任何操作（除 Queue info）即取消。</p>
+<p><strong>"518" 位次播报</strong>（p377-383）：1-50 位逐个精确、51-100 位按 5 步进向上取整（63 位播 65）、Max position 上限 "100"、超限播提示音、语言缺失走回退链（默认语言→不播）。</p>
+<p><strong>双日历</strong>（p607-616）：pilot 日历 "10" 切换/日（规则 ID+Nor/Fwd）、分配日历 "20" 切换/日（方向与参数）、特殊日 ≤"50" 个覆盖周历；切换只在时间点执行——改活动时间片不立即生效（p638）。</p>
+<h2>四、排障金句（来自原书 Warning/Notes）</h2>
+<ul>
+<li>矩阵看着齐全、来话全走不通 → 方向没开（p117 "BY DEFAULT, ALL DIRECTION RULES ARE CLOSED"）</li>
+<li>"没动配置客户打不通" → 末座席下班，pilot 自动 Blocked（p26/p28）</li>
+<li>wrap-up 怎么改都不生效 → 自动挂 pilot、手动挂 PG，调错了对象（p277-278）</li>
+<li>中继组实时唯独空白 → OXE 侧 CSTA-Monitored 没开（p414）</li>
+<li>EWT 测试不切换 → TSP 滞后，别用单通呼叫下结论（p373）</li>
+<li>direct call 在内呼链路上测不通 → 硬约束：ABC-F 不能承载 direct call（p469）</li>
+<li>紧急关闭选不了 pilot → 需要 CCS ADMINISTRATOR；测完必须 Deactivate（p542）</li>
+<li>改了日历不生效 → 切换点才生效，测试提前几分钟改（p638）</li>
+</ul>
+<h2>五、速查卡</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>要做的事</th>
+<th>去哪张能力卡</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>建 pilot/队列/处理组、acdsup 判读</td>
+<td>otcc-ccd-matrix-foundation</td>
+</tr>
+<tr>
+<td>装 CCS、ccs.ini、连不上</td>
+<td>otcc-ccs-installation</td>
+</tr>
+<tr>
+<td>建规则、设优先级、呼叫不通</td>
+<td>otcc-routing-distribution-rules</td>
+</tr>
+<tr>
+<td>建座席班长、登录登出、形态选型</td>
+<td>otcc-agent-supervisor-onboarding</td>
+</tr>
+<tr>
+<td>wrap-up/SLA/PG 选项/饱和溢出</td>
+<td>otcc-object-tuning</td>
+</tr>
+<tr>
+<td>监听强插/通用转发/事务码</td>
+<td>otcc-supervisor-features（路由卡）</td>
+</tr>
+<tr>
+<td>录语音/传 .wav/欢迎指南</td>
+<td>otcc-voice-guides</td>
+</tr>
+<tr>
+<td>监控大屏/告警/Excel 报表</td>
+<td>otcc-monitoring-statistics</td>
+</tr>
+<tr>
+<td>多语言播报/节假日日历</td>
+<td>otcc-multilanguage-calendar</td>
+</tr>
+<tr>
+<td>EWT 分档/排队位次/直通号/紧急关闭/统计 pilot/实验环境</td>
+<td>路由入口（otcc-standard-starter-router）</td>
+</tr>
+</tbody>
+</table></div>
+<h2>六、边界与红线</h2>
+<ol>
+<li>教材全部密码/账号/号码/前缀是 RLAB 实验值（法国目标库），上生产必须整体替换</li>
+<li>话务建模（话务量→队列数→座席数）书外——原书只有 EWT/TSP 公式与"逐步调参"口径</li>
+<li>CCIVR、ACR、CCA、Soft Panel、ALE Connect、多站点、Excel 宏（ACDMacro）只点名不展开，指向 OTCC901 进阶教材与 Feature list</li>
+<li>原书自相矛盾 8+ 处（口令两写、建队列表格复制错误、acdsup/acdsetup、语言索引漂移等）——引用以 needs-review.md 裁决为准</li>
+<li>Rainbow 只以"座席形态"进本书：三不限制 + 三种登录；网关与平台部署书外</li>
+</ol>
+<h2>版权</h2>
+<ul>
+<li>本精华长文为 ALE Training Services《OmniTouch Contact Center Standard Edition — Starter》（OTCCXTE100EN Edition 09）的内部学习整理，仅供内部学习使用；教材版权归 ALE Training Services 所有。</li>
+</ul></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Starter (Participant's Guide, Edition 09) | edition: Edition  | pages: 649 页 -->

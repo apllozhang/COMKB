@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.rainbow-oxo-connect",
+  "generated_at": "2026-09-23",
+  "destinations": {
+    "cap.rbx.company-subscription": { "promoted_to": "rbx-company-subscription" },
+    "cap.rbx.omc-onboarding": { "promoted_to": "rbx-omc-onboarding" },
+    "cap.rbx.pbx-onboarding": { "promoted_to": "rbx-pbx-onboarding" },
+    "cap.rbx.member-lifecycle": { "promoted_to": "rbx-member-lifecycle" },
+    "cap.rbx.gateway-planning": { "promoted_to": "rbx-gateway-planning" },
+    "cap.rbx.gateway-deployment": { "promoted_to": "rbx-gateway-deployment" },
+    "cap.rbx.attendant-supervision": { "promoted_to": "rbx-attendant-supervision" },
+    "cap.rbx.teams-integration": { "promoted_to": "rbx-teams-integration" },
+    "cap.rbx.admin-tools": { "served_by": "rainbow-oxo-connect-router" },
+    "cap.rbx.rcc-association": { "served_by": "rainbow-oxo-connect-router" },
+    "cap.rbx.maintenance-support": { "served_by": "rainbow-oxo-connect-router" },
+    "cap.rbx.network-readiness": { "served_by": "rainbow-oxo-connect-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 }
+}

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Nomadic 移动模式与 Ghost Z 资源池</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch · Advanced</h2><p>Edition 08 · 468 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte301en/index.html">课程首页</a><a href="/courses/openxte301en/digest.html">精华长文</a><a href="/courses/openxte301en/overview.html">教书理解</a><a href="/courses/openxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte301en/skills/ota-remote-access.html">OpenTouch 远程接入通道与证书</a><a href="/courses/openxte301en/skills/ota-nomadic-ghost-z.html">Nomadic 移动模式与 Ghost Z 资源池</a><a href="/courses/openxte301en/skills/ota-smartphone-rex.html">OTC 智能手机交付全流程（REX/DISA/APNS）</a><a href="/courses/openxte301en/skills/ota-um-exchange-integration.html">统一消息 UM（Exchange/O365/Gmail/IMAP）</a><a href="/courses/openxte301en/skills/ota-conference-collaboration.html">协作会议（ACS 配置、角色权限、数据会议）</a><a href="/courses/openxte301en/skills/ota-calendar-sync.html">日历在场与日历同步（Calendar presence/synchro）</a><a href="/courses/openxte301en/skills/ota-directory-udas.html">目录搜索与 Single Business Card（UDAS）</a><a href="/courses/openxte301en/skills/ota-enterprise-authentication.html">企业认证集成（LDAP/RADIUS/Kerberos SSO）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte301en/skills/ota-desksharing.html">Desksharing 共享工位（DSU/DSS）</a><a href="/courses/openxte301en/skills/ota-extended-mobility.html">Extended Mobility（QR/NFC 切换与路由修改）</a><a href="/courses/openxte301en/skills/ota-dcs-documents.html">DCS 文档转换服务器（Office 会议演示）</a><a href="/courses/openxte301en/skills/ota-otc-web-guest.html">OTC Web 与访客入会</a><a href="/courses/openxte301en/skills/ota-lab-pod.html">RLAB 实验 POD 与 SIP 运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte301en/index.html">opentouch-advanced（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte301en/index.html">OPENXTE301EN</a><span>/</span><span aria-current="page">Nomadic 移动模式与 Ghost Z 资源池</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Nomadic 移动模式与 Ghost Z 资源池</h1></div><dl><div><dt>Skill ID</dt><dd>ota-nomadic-ghost-z</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>Nomadic 移动模式与 Ghost Z 资源池（蜂窝/VoIP、tsa_maintenance）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The system requires ONE Ghost Z set for each Nomadic connection ... Ghost Z sets are retained as busy throughout the connection and are only released when nomadic mode is disabled."（p47）
+"For each Nomadic SIP connection, the system requires: 1 SIP device ... 1 Ghost Z set"（p51）
+"When nomadic mode is activated, the user phone set in the office is frozen and disabled."（p34）
+"Warning The management done for nomadic in cellular mode shown in the previous step is a pre-requisite."（p51）</p>
+</blockquote>
+<p>出处：OPENXTE301EN p31-57。</p>
+<h2>I — 自述</h2>
+<p>Nomadic 是 Connection 用户专属的移动机制：激活后办公话机冻结，来话改道。核心是资源池换轨：</p>
+<ol>
+<li><strong>双模式</strong>：蜂窝（cellular）——来话经虚拟 Ghost Z 改道到任意号码（家庭/手机）；VoIP——经 Ghost Z+SIP 设备改道到 PC 软话音</li>
+<li><strong>容量公式</strong>：池规模=最大并发连接数；每路蜂窝占 1 个 Ghost Z，每路 VoIP 占 1 个 Ghost Z + 1 个 SIP 设备；占线持续到用户关闭 nomadic（挂机不释放）</li>
+<li><strong>权限成对</strong>：蜂窝=Nomadic GSM+Desktop；VoIP=Nomadic SIP+Desktop；从 OTC PC 激活必须先有 Desktop 许可</li>
+<li><strong>两侧登记</strong>：Ghost Z 在 OXE 建（Set Type Analog+Ghost Z feature=Nomadic），OT 侧按范围登记（OXE Resources 的 Z ghosts min/max）；SIP 设备两侧各声明（OXE SIP Subscriber）</li>
+<li><strong>编解码口径</strong>：窄带用 G.711u/a、G.729a、G.723，加宽带用 G.722.2；VLAN 打标不支持、QoS 按 IP TOS；SIP 生存性不支持</li>
+</ol>
+<p>激活入口在 OTC PC 的 routing 窗口切换"当前电话"（Home/Mobile/Personal computer）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>Nomadic 蜂窝到 VoIP 到维护的完整实验</strong>（p45-57）：</p>
+<ol>
+<li>OXE 建 3 个 Ghost Z：31017/31018/31019（Set Type Analog，feature=Nomadic，实验口径）</li>
+<li>OT 侧登记范围：OXE Resources 的 Z ghosts min/max=31017/31019</li>
+<li>授权 Barkley：Licenses 页签启用 Nomadic GSM 与 Desktop</li>
+<li>OTC PC 填 Home/Mobile 号码，routing 窗口切到 Home phone 测试（办公话机冻结）</li>
+<li>OXE 建 2 个 SIP 设备：31951/31952 并核对 SIP 页签默认值</li>
+<li>OT 侧声明 OXE SIP Subscriber（登录/密码/SBC WAN），授权 Nomadic SIP+Desktop</li>
+<li>routing 窗口切到 Personal Computer，来话在 PC 接听</li>
+<li>维护：OT 服务器跑 tsa_maintenance，选项 20 dump Nomadic 核对三个 Ghost Z 在库</li>
+<li>缺失则手动同步：选 100（秘密码 2998）→ 输 106 2998 → 选 7 Load All Acapi Object</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：员工居家/出差要接办公电话；用户说 OTC PC 上没有 nomadic 菜单；"人连不上 nomadic"容量问题；Ghost Z 资源一致性核查；nomadic 目的号码能不能填同事。</p>
+<p>语言信号：nomadic / 蜂窝 / cellular / VoIP 模式 / Ghost Z / 资源池 / 冻结 / frozen / Nomadic GSM / Nomadic SIP / tsa_maintenance / dump / routing 窗口。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>手机的移动服务（OTC Smartphone）→ 智能手机能力</li>
+<li>话机登出的共享工位场景（UA 替代冻结）→ Desksharing 能力</li>
+<li>远程通道本身 → 远程接入能力</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：并发 nomadic 用户数（规划输入）、目的号码清单、用户许可现状。池规模算例需按客户话务补做（书内只有公式）。</p>
+<ol>
+<li>规划池：并发数=Ghost Z 数（VoIP 另加等量 SIP 设备）。完成标准：号码段规划表评审通过</li>
+<li>OXE 建池：Ghost Z（Analog+Nomadic feature）与 SIP 设备逐个建。完成标准：号码在服</li>
+<li>OT 登记范围与 SIP Subscriber：min/max 与登录参数、SBC WAN。完成标准：两侧一致</li>
+<li>授权：Nomadic GSM/SIP 与 Desktop 逐用户勾选。完成标准：OTC PC 出现 routing 入口</li>
+<li>号码管理：Home/Mobile 填目的号码。完成标准：号码可保存（同事号码会被拒绝）</li>
+<li>行为测试：蜂窝切 Home、VoIP 切 PC 各测一轮；关闭 nomadic 后话机恢复。完成标准：冻结/恢复与资源释放符合预期</li>
+<li>资源核查：tsa_maintenance 选项 20 dump，缺项走 100→106 2998→7 手动同步。完成标准：全部 Ghost Z 在库</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>用户看不到 nomadic 菜单 → 先查 Desktop 与模式许可（Nomadic GSM/SIP），不要查终端</li>
+<li>VoIP 配不上的排查顺序：先确认 cellular 管理已完成（p51 前提），再查 SIP 两侧参数一致</li>
+<li>"挂着不用也占资源"的投诉 → 机制如此（关闭才释放），向用户宣导用完即关，必要时扩池</li>
+<li>目的号码要求填同事号码 → 需求不被 nomadic 支持（n03），改路由档案/呼叫转移另行实现</li>
+</ul>
+<p>输出契约：资源池规划与登记记录 + 授权清单 + 蜂窝/VoIP 行为测试结论 + 资源一致性核查记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>池满后新用户无法激活：容量=最大并发连接数，且要向用户宣导关闭习惯（n05）</li>
+<li>UA 替代只覆盖 Desksharing 场景：一般 nomadic 需要在服话机做底（p61，见 Desksharing 卡）</li>
+<li>SIP 生存性（OXE CS/OXE PCS/第三方网关）不支持（p36）</li>
+<li>tsa_maintenance 原文 option 47 在菜单中不存在，核验按选项 20（nr-02）；秘密码 2998 为实验口径</li>
+<li>实验池号 31017-31019/31951-31952 为实验口径，生产按客户号码计划替换</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte301en/skills/ota-remote-access.html">OpenTouch 远程接入通道与证书</a>、<a href="/courses/openxte301en/skills/ota-desksharing.html">Desksharing 共享工位（DSU/DSS）</a></p><p class="source-page">能力 ID：cap.ota.nomadic-ghost-z · 来源：OPENXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch - Advanced (Participant's Guide, Edition 08) | edition: Edition 08 | pages: 468 页 -->

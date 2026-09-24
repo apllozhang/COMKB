@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>呼叫特征化与 Smart Call Routing 路由表设计</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OXO Connect · 呼叫中心</h2><p>Edition 07 · 218 页 · 文档整理入库（15 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte107en/index.html">课程首页</a><a href="/courses/oxocxte107en/digest.html">精华长文</a><a href="/courses/oxocxte107en/overview.html">教书理解</a><a href="/courses/oxocxte107en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte107en/skills/oxo-acd-basic-setup.html">OXO Connect 基础 ACD 全流程搭建</a><a href="/courses/oxocxte107en/skills/oxo-acd-call-scenarios.html">ACD 呼入六场景排障</a><a href="/courses/oxocxte107en/skills/oxo-acd-routing.html">呼叫特征化与 Smart Call Routing 路由表设计</a><a href="/courses/oxocxte107en/skills/oxo-acd-queue.html">ACD 等待队列管理（容量公式与出口配置）</a><a href="/courses/oxocxte107en/skills/oxo-acd-search-noanswer.html">坐席搜索模式选型与无应答处理</a><a href="/courses/oxocxte107en/skills/oxo-acd-login-status.html">坐席签入签出（free seating）与状态排障</a><a href="/courses/oxocxte107en/skills/oxo-multi-secretary.html">Multi-Secretary 多秘书方案配置</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte107en/skills/oxo-omc-first-connect.html">OMC 安装与首次连接</a><a href="/courses/oxocxte107en/skills/oxo-ip-replan.html">OXO 与客户端 IP 规划修改</a><a href="/courses/oxocxte107en/skills/oxo-acd-schedule-calendar.html">ACD 营业时段与例外日配置</a><a href="/courses/oxocxte107en/skills/oxo-supervisor-app.html">Supervisor 班长台部署与实时监控</a><a href="/courses/oxocxte107en/skills/oxo-agent-app.html">Agent 坐席席面部署（弹屏/打标/客户库）</a><a href="/courses/oxocxte107en/skills/oxo-statistics-app.html">Statistics 统计应用与报表导出</a><a href="/courses/oxocxte107en/skills/oxo-dtmf-client-popup.html">DTMF 客户码识别弹屏</a><a href="/courses/oxocxte107en/skills/oxo-acd-voice-prompts.html">ACD 语音提示定制</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte107en/index.html">oxo-connect-call-center（15 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte107en/index.html">OXOCXTE107EN</a><span>/</span><span aria-current="page">呼叫特征化与 Smart Call Routing 路由表设计</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>呼叫特征化与 Smart Call Routing 路由表设计</h1></div><dl><div><dt>Skill ID</dt><dd>oxo-acd-routing</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>呼叫特征化与 Smart Call Routing 路由表设计（OXO Connect）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Priority comparison # 1: CLIn / CLIt &amp; DIDn / DIDt ... # 2: CLIn / CLIt &amp; DIDt not filled in ... # 3: DIDn / DIDt &amp; CLIt not filled in"（p87）
+"CLI comparison CLIn / CLIt starts from the left to the right. DIDn / DIDt comparison starts from the right to the left"（p88）
+"Fill in the table beginning with the special case (the longest numbers) • Ending with the general case (the shortest numbers)"（p88）</p>
+</blockquote>
+<p>出处：OXOCXTE107EN p86-88（机制与规则）、p115-116（国别+大客户分流实验）。</p>
+<h2>I — 自述</h2>
+<p>呼叫特征化决定"这通电话进哪个 ACD 组"，匹配有三条硬规则：</p>
+<ol>
+<li><strong>三级优先序</strong>：</li>
+<li>
+<h1>1 CLI 与 DDI 双命中 → 立即应用该组</h1>
+</li>
+<li>
+<h1>2 CLI 命中且条目 DDI 留空 → 应用</h1>
+</li>
+<li>
+<h1>3 DDI 命中且条目 CLI 留空 → 应用</h1>
+</li>
+<li>全不中 → 回振铃音（<strong>不进 ACD</strong>）</li>
+<li><strong>比较方向不对称</strong>：</li>
+<li>CLI 从左向右比（前缀匹配，适合国别码）</li>
+<li>DDI 从右向左比（后缀匹配，适合分机尾号）</li>
+<li><strong>填表顺序 = 匹配顺序</strong>：从最特殊（最长号码、双条件）填到最一般，否则宽泛条目先截胡精准条目</li>
+</ol>
+<p>设计套路：大客户双匹配条目放最前 → 国别/号段单条件条目放中间 → 兜底条目放最后。表上限 10000 条，支持 CSV 导入导出。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>按国别 + 大客户分流实验</strong>（p115-116，厂商实验）</p>
+<ul>
+<li><strong>需求</strong>：UK(0044) 进组1、Spain(0034) 进组2、Germany(0049) 进组3；三家大客户（Brest / Paris / Illkirch bank）以 CLI+DDI 双条件进组1；大客户没拨对 DDI 时全部落组3</li>
+<li><strong>填表</strong>：</li>
+<li>先填大客户双匹配条目（CLI 全号 + DDI 尾号 → 组1）</li>
+<li>再填国别条目（仅 CLI：0044/0034/0049，DDI 留空 → 组1/2/3）</li>
+<li>最后填兜底条目（→ 组3）</li>
+<li><strong>行为推演</strong>：Brest bank 拨对 DDI 时双匹配进组1；拨错 DDI 则双匹配不中，落兜底组3，与需求一致（原书未逐行给表，行序按规则推演，已标注）</li>
+</ul>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：</p>
+<ol>
+<li>"VIP 客户来电要进专属组"——大客户 CLI+DDI 双匹配</li>
+<li>"不同国家的来电分给不同语言组"——国别前缀路由</li>
+<li>"配了路由怎么不生效/进错组"——命中级别与比较方向排查</li>
+<li>"400/服务号分流到不同业务组"——DDI 维度分流</li>
+<li>"没有匹配的电话怎么处理"——兜底条目设计</li>
+</ol>
+<p>语言信号：分流 / 按客户进组 / 大客户专线 / CLI / DDI / 主叫识别 / Smart Call Routing / route by number / VIP 分组 / 路由不生效。</p>
+<p>与相邻能力区分：组内"哪个坐席接"→ 搜索模式能力；来话进组后的行为 → 六场景能力；本能力只管"进哪个组"。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：分流需求表（CLI 段、DDI 段、目标组，标注特殊/一般级别）、兜底去向。缺任一条先询问。</p>
+<ol>
+<li><strong>排序</strong>：双匹配（最长）→ 仅 CLI（长前缀在前）→ 仅 DDI（长后缀在前）→ 兜底。完成标准：条目表次序明确</li>
+<li>进入：OMC / Call distribution Services / ACD-SCR Services / Smart Call Routing → Line parameters</li>
+<li>按序录入：每条填 CLI 模式（留空=不比对）与 DDI 模式（留空=不比对）及目标组。完成标准：次序与第 1 步一致</li>
+<li><strong>核对方向</strong>：CLI 条目=前缀语义；DDI 条目=后缀语义。完成标准：无方向性错误</li>
+<li>实呼验证：每个条目代表号码实呼记录落组；特别验证大客户"拨错 DDI"的兜底行为。完成标准：落组与需求表一致</li>
+</ol>
+<p>判停点：条目不生效 → 回第 4 步查方向与优先级（是否被更靠前的宽泛条目截胡）。</p>
+<p>输出契约：Line parameters 条目表（CLI / DDI / 目标组 / 次序）+ 实呼验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>方向搞反是最常见错误：CLI 不是后缀匹配、DDI 不是前缀匹配</li>
+<li>兜底缺失 = 未匹配来电<strong>回振铃不进 ACD</strong>；"其他来电进 X 组"必须显式加兜底条目</li>
+<li>上限 10000 条；超出需外部预处理（原书未给方案）</li>
+<li>原书实验为法国号码方案；国内落地先确认运营商发送的号码格式（原书未覆盖），避免照搬位数</li>
+<li>大客户"拨错 DDI 进兜底组"是需求设计而非系统容错——写进方案文档</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte107en/skills/oxo-acd-call-scenarios.html">ACD 呼入六场景排障</a></p><p class="source-page">能力 ID：cap.oxo-cc.routing · 来源：OXOCXTE107EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OXO Connect 呼叫中心 (Participant's Guide, Edition 07) | edition: Edition 07 | pages: 218 页 -->

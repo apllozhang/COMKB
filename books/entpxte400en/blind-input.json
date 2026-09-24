@@ -1,0 +1,237 @@
+{
+ "code": "entpxte400en",
+ "capability_catalog": [
+  {
+   "slug": "ents-first-login-hardening",
+   "name": "OXE 首登加固（四账户与密码治理）",
+   "description": "V24/SSHv2/控制台三通道；mtcl/swinst/root/client 四账户；root 仅本地直登；密码 14 位九规则；失败 3-5 次锁 15 分钟；老化 10-366 天开区间且与 RADIUS 互斥；900 秒固定超时"
+  },
+  {
+   "slug": "ents-system-start-stop",
+   "name": "OXE 系统启停与 autostart 管理",
+   "description": "起话务 Easy 8 或 RUNTEL；停话务仅 Easy 7 且连带取消 autostart；无独立停话务命令；重启 5 秒窗口取消自启；role 与 (E) 提示符判状态"
+  },
+  {
+   "slug": "ents-cs-network-firewall",
+   "name": "Call Server IP 寻址与内部防火墙",
+   "description": "物理地址永远可达、Role MAIN 地址仅话务运行时生效；netadmin 改动必须 Apply+重启；默认域名致证书错误；N3 起 iptables 默认 DROP，互通靠可信主机白名单；SSH-for-all 便门配完必须 Deny"
+  },
+  {
+   "slug": "ents-time-sync",
+   "name": "OXE 时间同步（NTP/chrony）",
+   "description": "chrony 渐进同步 client/server、UDP 123；瞬时同步必须先停 chronyd；时区改动必须重启；chronyc sources 见 ^* 判据"
+  },
+  {
+   "slug": "ents-db-license",
+   "name": "空数据库创建与 OPS 许可管理",
+   "description": "空库只能话务停止时建且连 OPS 一起抹；停话务、建库、恢复 OPS、起话务顺序固定；许可 ID 四态（CPU-ID/Product ID/ALU-ID/CC-SUITE-ID）；5 天自检、30 天宽限、降级三阶段；spadmin 与 FlexLM 巡检"
+  },
+  {
+   "slug": "ents-media-gateway-deployment",
+   "name": "媒体网关上架（GD4/OMS/XL）",
+   "description": "OPS 自动建架+WBM 声明+mgconfig/omsconfig；crystal 1-255（18/19 保留）；自动 crystal 或 DHCP 必须登记 MAC；GD4 口令 mg4.ale、OMS 均 letacla1、GDXL mgxl.ale；OMS 禁止加板；rstcpl 打在 GD 上=整架重启"
+  },
+  {
+   "slug": "ents-user-terminal-provisioning",
+   "name": "用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）",
+   "description": "分机号唯一 ≤8 位；IP 话机绑 MAC、IPDSP 绑 Phone Identifier、TDM 绑物理地址；初始密码 0000；CS 内部 DHCP 默认关且 dhcpd.conf 按 MAO 再生；User Profile 模板名大写；TDM 功耗事件 3757"
+  },
+  {
+   "slug": "ents-numbering-cos",
+   "name": "编号计划与 COS 管理",
+   "description": "前缀唯一对应功能 ≤8 位；Timer 23（3 秒）消解 31T/31000 歧义；Phone Features COS 256 类管功能开关；Connection/Transfer 矩阵管连转；改前缀必须同步核对语音指南"
+  },
+  {
+   "slug": "ents-call-processing",
+   "name": "呼叫处理业务域（语音指南/话务台/Entity/计时器）",
+   "description": "MOH 激活=删 Tone 2+建 VG 2；GD4/GA4 指南 4+1 槽 16 并发、OMS 120；话务台必须属组（50 组/250 台每节点）；4059EE 只管操作须关联单线话机；CDT 四状态 3+1 路由、溢出号须单线；Timer 76=80 秒转 Absent；外线用户段溢出走 trunk COS 300"
+  },
+  {
+   "slug": "ents-voicemail-4645",
+   "name": "OmniMessage 4645 语音邮件与邮件通知",
+   "description": "一节点一套留言系统；7000 信箱/30 端口/500(600) 小时；仅 G711；通知三档 None（默认）/Basic/Advanced（附件）；SMTP 经 netadmin 声明+防火墙加白；CPU Name 用物理地址"
+  },
+  {
+   "slug": "ents-sip-trunk",
+   "name": "公共 SIP 中继开通与弹性",
+   "description": "去话九步流水线（ARS 前缀、鉴别符、ARS 表、TG、NPD、DID、外部网关）；SIP 禁直抓必须走 ARS；真实鉴别符必须先建；G722/OPUS 系统级+网关级两级放行且仅 OMS 支持；标准 TG 32 接入成对 62 通道；备份走 ARS 第二路由或 SIP Pool（Supervision timer 设短）"
+  },
+  {
+   "slug": "ents-barring-emergency",
+   "name": "外呼闭锁与紧急呼叫通知",
+   "description": "闭锁=Area × Public COS × 实体状态（默认 Night）；8 逻辑/256 真实鉴别符/64 Area/32 COS；紧急组 ≤10 台仅 stand-alone 需 ARS；Location ID（P-ANI，RFC 7913）依赖 Direct IP Link"
+  },
+  {
+   "slug": "ents-backup-maintenance",
+   "name": "数据库备份恢复与维护排障工具箱",
+   "description": "自动备份每日 5:45；DAY/WEEK/MONTH/IMMED/OPS 分区；停话务后 SFTP 必须用 CS 物理地址且传输 Binary；恢复选项 secure restoration 与 Cloud/Rainbow 剥离；oxetrace/incinfo/infocollect/tcpdump 八件套"
+  },
+  {
+   "slug": "ents-legacy-trunks-umc",
+   "name": "传统中继（T0/T2）与 UMC 云管理",
+   "description": "T0=BRA 2B+D、T2=PRA 30 通道；信令变体按运营商（VN=ISDN France/ETSI=all countries）；节点号必须=本系统 ID；同步优先级 IP 架 200-254；UMC 三功能（N3-MD3 起）前提 SPS/PoD+云连接，排除话务台/ACD/多实体，不支持 Mini SIP"
+  }
+ ],
+ "cases": [
+  {
+   "id": "should-login-01",
+   "prompt": "新到一台 OXE 虚拟机，我第一次怎么登进去？听说 root 能直接 SSH，对吗？"
+  },
+  {
+   "id": "should-login-02",
+   "prompt": "客户安全整改要求：密码最少 14 位、错 3 次锁账号、密码半年必须换，OXE 上怎么落？"
+  },
+  {
+   "id": "should-start-01",
+   "prompt": "昨天维护完重启了 OXE，今天发现话务没自动起来，所有话机没注册，怎么回事？"
+  },
+  {
+   "id": "should-start-02",
+   "prompt": "要做一次停机维护，正确的停话务和停机顺序是什么？"
+  },
+  {
+   "id": "should-netfw-01",
+   "prompt": "OXE 装好了，管理 PC ping 都 ping 不通，网线交换机都好的，是什么问题？"
+  },
+  {
+   "id": "should-netfw-02",
+   "prompt": "客户网络改造，要把 OXE 的物理地址和 Role 地址迁到新网段，怎么改、要注意什么？"
+  },
+  {
+   "id": "should-time-01",
+   "prompt": "客户内网有一台 NTP 服务器，怎么让 OXE 跟它对时并保持同步？"
+  },
+  {
+   "id": "should-time-02",
+   "prompt": "这台 OXE 的时间快了好几个小时，计费记录都不对，怎么把钟校准？"
+  },
+  {
+   "id": "should-dblic-01",
+   "prompt": "交付前要把 OXE 初始化成全新配置库，按客户所在国家初始化，步骤和风险是什么？"
+  },
+  {
+   "id": "should-dblic-02",
+   "prompt": "话务台一直弹告警要确认，话机上显示 Please call your administrator，内也打不通了，什么情况？"
+  },
+  {
+   "id": "should-mg-01",
+   "prompt": "新到一台 GD4 机架要上电入网，WBM 里和板子上分别要配什么？"
+  },
+  {
+   "id": "should-mg-02",
+   "prompt": "客户要虚拟化交付还想加高密度模拟口，OMS 和 XL 分别怎么上架？板子用 DHCP 地址要注意什么？"
+  },
+  {
+   "id": "should-user-01",
+   "prompt": "新员工入职要用 ALE-300 话机，分机 31050，怎么开通？"
+  },
+  {
+   "id": "should-user-02",
+   "prompt": "装了 IPDSP 的电脑没有声音进不了服务，另外客户没有 DHCP 服务器，话机能用 OXE 自己的 DHCP 吗？"
+  },
+  {
+   "id": "should-numcos-01",
+   "prompt": "用户反映拨 31 开头的分机要等 3 秒才响，能不能改快？会有什么副作用？"
+  },
+  {
+   "id": "should-numcos-02",
+   "prompt": "要求销售部之间不能互相转接电话，另外有人的立即呼转功能被禁了要放开，分别怎么配？"
+  },
+  {
+   "id": "should-callproc-01",
+   "prompt": "客户投诉来电保持时听到的是嘟嘟声，想换成企业宣传音乐，怎么配？"
+  },
+  {
+   "id": "should-callproc-02",
+   "prompt": "前台要一个话务台，下班时间来电要自动转到值班分机，怎么实现？"
+  },
+  {
+   "id": "should-vm-01",
+   "prompt": "客户要给全员开语音信箱，留言后邮件提醒，这套在 OXE 上怎么落地？"
+  },
+  {
+   "id": "should-vm-02",
+   "prompt": "用户说有留言但邮箱从来没收到过通知邮件，按什么顺序排查？"
+  },
+  {
+   "id": "should-sip-01",
+   "prompt": "运营商给了 SIP 中继的注册账号和参数，怎么在 OXE 上把外线打通？"
+  },
+  {
+   "id": "should-sip-02",
+   "prompt": "SIP 外线打出去了，但对方看到的号码不对；而且外面打进来说 484 Address Incomplete，怎么修？"
+  },
+  {
+   "id": "should-bar-01",
+   "prompt": "要求财务部只能打市话不能打国际长途，另外国际方向周末要全部封掉，怎么做？"
+  },
+  {
+   "id": "should-bar-02",
+   "prompt": "合规要求有人拨紧急电话时保安室的电话要弹窗提醒，OXE 支持吗？怎么配？"
+  },
+  {
+   "id": "should-bk-01",
+   "prompt": "下周要做版本升级，升级前怎么把配置完整备份一份？恢复流程也给我讲讲。"
+  },
+  {
+   "id": "should-bk-02",
+   "prompt": "ALE 支持工程师让现场提供 trace 和日志包，用哪些工具怎么采？"
+  },
+  {
+   "id": "should-legacy-01",
+   "prompt": "客户这条 ISDN 线路是 ETSI 的 T2，中继组怎么建？线路上没信号要看哪里？"
+  },
+  {
+   "id": "should-legacy-02",
+   "prompt": "客户问能不能用 ALE 的云平台给 OXE 批量开用户和 SIP 中继，前提是什么？"
+  },
+  {
+   "id": "bait-bar-01",
+   "prompt": "把张三的免打扰和遇忙回叫功能关掉"
+  },
+  {
+   "id": "bait-cos-01",
+   "prompt": "限制客服部只能拨打本地号码，国际方向全部禁止"
+  },
+  {
+   "id": "bait-vm-01",
+   "prompt": "客户打进电话等待时想听音乐，不要嘟嘟声"
+  },
+  {
+   "id": "bait-mg-01",
+   "prompt": "GD4 机架换了一块新板，插上后整架话机都离线了"
+  },
+  {
+   "id": "bait-sip-01",
+   "prompt": "运营商通知把 T2 中继的信令变体从 ISDN France 改成 ISDN all countries，去位数也要调整"
+  },
+  {
+   "id": "bait-restore-01",
+   "prompt": "恢复数据库时 SFTP 连不上 192.168.1.3，一直超时"
+  },
+  {
+   "id": "bait-umc-01",
+   "prompt": "用 UMC 给客户配置多实体和话务台坐席"
+  },
+  {
+   "id": "bait-ha-01",
+   "prompt": "两台 OXE 组网做双机容灾和集中话务台，怎么规划？"
+  },
+  {
+   "id": "edge-aging-01",
+   "prompt": "密码老化期能不能正好设 366 天？"
+  },
+  {
+   "id": "edge-emergency-01",
+   "prompt": "客户是多节点组网还带 PCS，能用紧急呼叫通知吗？"
+  },
+  {
+   "id": "edge-disc-01",
+   "prompt": "在实体鉴别符选择器里把逻辑 0 映射到一个新建的真实鉴别符号，保存不了是为什么？"
+  },
+  {
+   "id": "edge-version-01",
+   "prompt": "客户的 OXE 是 N2 老版本，为什么防火墙没有默认全关？要不要照 N3 的口径给它配白名单？"
+  }
+ ]
+}

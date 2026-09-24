@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>8379 IBS 基础设施部署（UA 板卡/布线/建站）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · DECT 解决方案</h2><p>Edition 12 · 298 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/dectxte200en/index.html">课程首页</a><a href="/courses/dectxte200en/digest.html">精华长文</a><a href="/courses/dectxte200en/overview.html">教书理解</a><a href="/courses/dectxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/dectxte200en/skills/dect-pari-identifier.html">DECT 标识号码体系与 multi-PARI 适配</a><a href="/courses/dectxte200en/skills/dect-product-selection.html">DECT 产品线选型与拓扑决策</a><a href="/courses/dectxte200en/skills/dect-ipxbs-deployment.html">8378 IP-xBS 部署与故障换站</a><a href="/courses/dectxte200en/skills/dect-xbs-sync-topology.html">xBS 空中同步体系与组网域（含外部同步与多站点）</a><a href="/courses/dectxte200en/skills/dect-handset-registration.html">DECT 用户创建与手机注册/注销</a><a href="/courses/dectxte200en/skills/dect-mixed-mode.html">混合 DECT 基础设施部署（TDM + xBS、PLI 统一）</a><a href="/courses/dectxte200en/skills/dect-auto-reregistration.html">DECT 手机自动重注册（PARI/PLI 变更零接触迁移）</a><a href="/courses/dectxte200en/skills/dect-firmware-management.html">DECT 固件双轨升级管理（基站 downstat x / 手机 OTA downstat m）</a><p class="course-nav-group">路由能力</p><a href="/courses/dectxte200en/skills/dect-maintenance-troubleshooting.html">DECT 日常维护与排障（命令族/syslog/WBM）</a><a href="/courses/dectxte200en/skills/dect-radio-survey.html">DECT 无线覆盖勘测（RSSI 门槛/SSK/survey mode）</a><a href="/courses/dectxte200en/skills/dect-ibs-deployment.html">8379 IBS 基础设施部署（UA 板卡/布线/建站）</a><a href="/courses/dectxte200en/skills/dect-sip-dect.html">8328 SIP-DECT 部署（四步注册/双小区）</a><p class="course-nav-group">已安装技能</p><a href="/courses/dectxte200en/index.html">dect-solutions（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/dectxte200en/index.html">DECTXTE200EN</a><span>/</span><span aria-current="page">8379 IBS 基础设施部署（UA 板卡/布线/建站）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>8379 IBS 基础设施部署（UA 板卡/布线/建站）</h1></div><dl><div><dt>Skill ID</dt><dd>dect-ibs-deployment</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>8379 IBS 基础设施部署（UA 板卡/布线/建站/维护命令）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"1 UA link corresponds at 3 B channels available for voice communications • 2 UA link corresponds at 6 B channels ... Master link connected on an even port, slave link connected on the next odd port"（p219）
+"Cable SYT 0.5 mm Max length : 800m ... Cable LY278 0.6 mm Max length : 1200m"（p220）
+"MIX4/4/8 → 2"</p>
+<p>"UAI8, MIX4/8/4 → 4"</p>
+<p>"UAI16-1 → 8"（p219 板卡密度表）
+"Encryption is not available for IBS Base Stations on Common Hardware architecture"（p37）</p>
+</blockquote>
+<p>出处：DECTXTE200EN p218-234, p37。</p>
+<h2>I — 自述</h2>
+<p>IBS 是 TDM 基站线，接 UA 板卡（UAI/MIX），与 IP-xBS 是两代架构：</p>
+<ol>
+<li><strong>容量</strong>：1 条 UA 链路=3 个 B 信道（3 路通话），2 条=6 路；全网仅 1 个 PARI、最多 256 台；板卡密度 MIX4/4/8=2 站、UAI8 与 MIX4/8/4=4 站、UAI16-1=8 站。</li>
+<li><strong>接线</strong>：双链路时主链路接偶数端口、从链路接下一奇数端口（选 2 条时系统自动预留下一端口）；线缆 SYT 0.5mm 最长 800m、LY278 0.6mm 最长 1200m；建站时 Line delay 按实际距离三档选（Short 0-400M / Medium 400-800M / Long 800-1200M）；IBS generation 选 1G/2G。</li>
+<li><strong>建站路径</strong>：全局参数（Radio base type=IBS、PLI、AC、Security level——IBS 不能选 Encryption）；IBS System 配 PARI Value/Area type；Shelf/&lt;网关&gt; 指派 PARI；再在 Shelf/<mg>/Board/<UA 板>/IBS 建站。</li>
+<li><strong>架构边界</strong>：handover 要求全部基站挂同一 media gateway（跨网关无切换）；同步靠 PBX 时钟；不支持加密。</li>
+</ol>
+<p>维护命令：dectview ibs（状态行含 INSERV/信道数/2G 1G/AUTHE）、listerm <mg> <cpl>（UA 终端）、listibs p <mg> <cpl> 0 <equip>（站详情）、outserv/inserv（复位）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>IBS 部署实验</strong>（p226-234）：</p>
+<ol>
+<li>恢复默认数据库（用 POD 配置阶段的备份）；全局参数：Radio base type=IBS、PLI=31、AC System=1111、Security level=Authentication</li>
+<li>IBS System：PARI Value=100004101x0（x=POD 号，实验口径）、Area type 按漫游优化</li>
+<li>PARI 指派：Shelf / &lt;目标 media gateway&gt; → PARI Number=选 IBS PARI</li>
+<li>建站：Board/<UA 板>/IBS → Create → Equipment address（双链路用偶数口）、Location name、Line delay 三档、UA links=1 或 2、generation=1G/2G</li>
+<li>核验：dectview ibs 显示 "INSERV just 3 channe DECT V 2G 8379 ... AUTHE NORMAL"</li>
+<li>复位演示：outserv p 2 1 0 34（按 Y 确认），再 inserv p 2 1 0 34（按 Y 确认）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：TDM 存量站点扩 DECT；UA 板卡怎么选；IBS 建站参数；布线距离够不够；IBS 状态判读；老网要不要留 IBS。</p>
+<p>语言信号：IBS / 8379 / UA 板卡 / UAI / MIX / B 信道 / 偶数端口 / Line delay / SYT / LY278 / 800m / 1200m / 1G / 2G / 256 台 / dectview ibs / listibs。</p>
+<p>与相邻能力区分：IBS+xBS 混合与 PLI 适配见混合部署能力；IBS 的手机注册见手机注册能力（同一套流程）；跨网关无切换的替代方案见产品选型能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：UA 板卡型号与在位情况、基站数量与布线距离、是否与 xBS 混用。板卡不在位 → 先回 OXE 硬件配置（书外，指针 8AL91047ENAD）。</p>
+<ol>
+<li>全局参数：Radio base type=IBS（或 Mixed）、PLI、AC、Security level（上限 Authentication）。完成标准：全局就位</li>
+<li>配 PARI：IBS System 写 PARI Value 与 Area type。完成标准：全网单 PARI 就位</li>
+<li>指派网关：Shelf/<mg> 绑定 IBS PARI。完成标准：PARI-网关映射成立</li>
+<li>建站：按端口规则（主偶从奇）、Line delay 三档、UA links 数逐站 Create。完成标准：站表在库</li>
+<li>核验：dectview ibs 看 INSERV/AUTHE；listerm 看 UA 终端；listibs 看站详情。完成标准：状态行正常</li>
+<li>交付检查：布线距离复核（800m/1200m 口径）、同网关切换域确认。完成标准：切换域边界写进交付文档</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户要加密 → IBS 做不到（p37 硬边界），转产品选型能力评估 IP-xBS</li>
+<li>基站分布跨多个 media gateway → 无跨网关 handover（p224），要么归并网关、要么接受跨域仅 roaming、要么演进 xBS</li>
+<li>布线超 800m/1200m 口径 → 停，超规范的线缆方案书内不支持</li>
+<li>双链路建站后端口冲突 → 系统已自动预留下一奇数端口，检查端口规划不要手工占用</li>
+</ul>
+<p>输出契约：IBS 站表（端口/链路数/Line delay/代际）+ 状态核验记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>IBS 与 xBS 的 handover 域规则不同：IBS 按网关、xBS 按 Site/Data Sync Primary——混合站两类规则并存</li>
+<li>IBS 的 ATEX 防爆变体（3BN77020EA，p222）仅订货号信息，部署细节书内未展开</li>
+<li>dectview ibs 输出逐字段语义（odd/V/53.02 等）书内未全部注解，深度判读在 8AL91443ENAA</li>
+<li>实验值（PARI=100004101x0、AC=1111、outserv 端口串）为实验口径</li>
+</ul><h2>相关能力</h2><p><a href="/courses/dectxte200en/skills/dect-mixed-mode.html">混合 DECT 基础设施部署（TDM + xBS、PLI 统一）</a></p><p class="source-page">能力 ID：cap.dect.ibs-deployment · 来源：DECTXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: DECT Solutions (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 298 页 -->

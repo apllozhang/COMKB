@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Click to Call 交付</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 目录管理</h2><p>Edition 40 · 565 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte202en/index.html">课程首页</a><a href="/courses/8770xte202en/digest.html">精华长文</a><a href="/courses/8770xte202en/overview.html">教书理解</a><a href="/courses/8770xte202en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte202en/skills/ovdir-oxe-sync-ldap.html">OXE 节点注册与同步</a><a href="/courses/8770xte202en/skills/ovdir-auto-creation.html">目录树搭建与 PCX 自动创建</a><a href="/courses/8770xte202en/skills/ovdir-links-rename.html">六类链接与改名语义</a><a href="/courses/8770xte202en/skills/ovdir-msad-azure-pipelines.html">MSAD 与 Azure AD 同步管道</a><a href="/courses/8770xte202en/skills/ovdir-click-to-call.html">Click to Call 交付</a><a href="/courses/8770xte202en/skills/ovdir-confidentiality.html">目录保密级别与访问级别</a><a href="/courses/8770xte202en/skills/ovdir-replication.html">目录复制主从部署</a><a href="/courses/8770xte202en/skills/ovdir-domains-delegation.html">管理域与委派</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte202en/skills/ovdir-msad-plugin.html">MSAD 插件开户（AD 右键一键开通）</a><a href="/courses/8770xte202en/skills/ovdir-ldif-tools.html">LDIF 导入导出与管理工具管道</a><a href="/courses/8770xte202en/skills/ovdir-client-dictionary.html">目录词典与 Web 客户端定制</a><a href="/courses/8770xte202en/skills/ovdir-platform-basics.html">8770 平台基础（套件/拓扑/兼容/虚拟化）</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte202en/index.html">omnivista-directory（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte202en/index.html">8770XTE202EN</a><span>/</span><span aria-current="page">Click to Call 交付</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Click to Call 交付</h1></div><dl><div><dt>Skill ID</dt><dd>ovdir-click-to-call</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>Click to Call 交付（DDI 翻译器、ISDN 构造、STAP、前缀规则、属性关联）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"ISDN number = ISDN prefix + Entity installation number + Set directory number"（p258）
+"STAP - Off hook: automatic call is authorized when the receiver is picked up. - Authorized: ... - Forbidden: ... The STAP option can be setup for all types of phones except SIP devices."（p272）
+"Types of prefix rules • None • Rule for external call • Rule for call between network"（p261）
+"By default, the extension, ISDN and Mobile numbers attributes can be used to initiate a call"（p256）
+"All phone numbers in bold characters are available for STAP call"（p283）</p>
+</blockquote>
+<p>出处：8770XTE202EN p254-263, p265-284。</p>
+<h2>I — 自述</h2>
+<p>Click to Call 的号码逻辑链五环，缺一环号码就点不动：</p>
+<ol>
+<li><strong>PCX 数据环</strong>：DDI 翻译器定义 DDI 与内线映射（首个外部号/首个内部号/范围大小）；用户 STAP 权限三态（Off hook 摘机发起 / Authorized 均可 / Forbidden 禁止）；OXE 同步回填</li>
+<li><strong>ISDN 构造环</strong>：8770 侧 Process ISDN Number 启用后为人员自动构造 ISDN 号；公式为"前缀+实体安装号+话机号"，DDI 话机的话机号被 DDI 号替换；无安装号/翻译器未纳管且无补充号时都不构造；改了 PCX 数据必须重新同步</li>
+<li><strong>前缀规则环</strong>：三类规则——None 原样拨、外部呼叫规则（Prefix to delete 是"匹配头+删除"双重语义）、网间呼叫规则（选目标网络+加前缀）；全网通用建 Network 层、单 OXE 建 PCX 层；PCX 已有 ARS 时单规则"删空+加 0"即可</li>
+<li><strong>属性关联环</strong>：Administration 应用 nmc &gt; Application Configuration &gt; Click to Call 下默认已建 Extension/ISDN Number/Mobile 三项；Misc 1-5 需 Create &gt; Prefix management 手工添加并可绑规则</li>
+<li><strong>使用环</strong>：Web 目录客户端 Define associated station（分机号+话机密码）绑主叫话机，搜索后在 Detail(s) 点粗体号码发起呼叫</li>
+</ol>
+<p>关联完成后人员最多可有 5 个可点号码（Extension/ISDN/Mobile/Misc 1-5）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>Click to Call 交付实验</strong>（p265-284）：</p>
+<ol>
+<li>配外部 SIP 网关注册与 DID 翻译器（首外部号/首内部号/范围，实验口径随 POD 号）</li>
+<li>PCX 页签配 DID translation usage 与按需的专属前缀</li>
+<li>Data Collection 页签勾 Process ISDN Number</li>
+<li>用户 31000 All 页签设 STAP=Authorized</li>
+<li>Directory 核验 Jean Dupont/Paul Tregueur 的 ISDN 号已自动构造</li>
+<li>Client PC 启动 IPDSP 关联 31000，MicroSIP 注册其余分机（实验口径）</li>
+<li>Configuration 树建外部呼叫规则：Prefix to add=00、Prefix to delete=33</li>
+<li>再建网间呼叫规则：目标子网+中继组前缀（实验口径）</li>
+<li>Administration 应用 Click to Call 下：Extension 绑 None、ISDN/Mobile 绑外部规则</li>
+<li>右键 Create &gt; Prefix management 添加 Misc 1 并绑规则</li>
+<li>给 Paul Tregueur 补 Mobile 与 Misc.1 值</li>
+<li>Web 客户端 Define associated station（31000+密码）后搜人，点粗体号码拨测四路</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户要从网页目录一键外呼；点了号码话机不响；人员的 ISDN 号没生成；拨出去的号码少了/多了前缀；SIP 话机能不能点；想多加几个可拨字段。</p>
+<p>语言信号：Click to Call / 点击外呼 / STAP / Off hook / DDI translator / DDI 翻译器 / ISDN 号 / Process ISDN Number / 前缀规则 / prefix rule / 外部呼叫规则 / 网间呼叫 / associated station / 关联话机 / 粗体号码 / Misc 属性。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>通话质量/媒体问题 → 语音侧（书外）</li>
+<li>目录条目缺属性值 → 保密与客户端能力域的数据维护</li>
+<li>OXE 没注册同步 → OXE 注册能力</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OXE 已注册且可同步、话机类型清单（SIP 话机先排除）、外部号码方案（DDI 段）、主叫话机分机与密码。话机全为 SIP → 判停本能力不适用。</p>
+<ol>
+<li>核 DDI：确认 PCX 侧翻译器三字段与取回参数（DID translation usage）。完成标准：翻译器可用</li>
+<li>开构造：Data Collection 勾 Process ISDN Number，触发同步。完成标准：人员 ISDN 号生成</li>
+<li>配 STAP：目标用户 All 页签按场景设三态之一。完成标准：主叫用户已授权</li>
+<li>建规则：按号段方案建外部/网间规则于正确层级。完成标准：规则序列符合匹配预期</li>
+<li>关联属性：Click to Call 下默认三项按需绑规则，Misc 属性按需新增。完成标准：属性规则表成文</li>
+<li>交付拨测：Define associated station 绑主叫话机，点粗体号码逐路验证。完成标准：四路（或五路）可点通</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>ISDN 号没生成 → 按"安装号、DDI 翻译器、补充号"顺序排查，最后查前缀；改过 PCX 数据先重同步（n11/n12）</li>
+<li>点了号码不响 → 依次查关联话机定义（分机+密码）、STAP 权限、主叫话机是否 SIP 话机</li>
+<li>号码前缀不对 → 先核对 Prefix to delete 的"匹配头"语义是否被当纯删除理解（n14）</li>
+<li>想用个人呼叫号码（Private Calling Number） → 原书标注 FOR INFORMATION ONLY 未验证（n13），先测试环境演练</li>
+<li>需要真实运营商中继参数 → 实验模拟器口径不可用于生产，转客户中继方案（nr-08）</li>
+</ul>
+<p>输出契约：可用的点击外呼系统 + 属性规则关联表 + 拨测记录（主叫话机、目标号码、结果）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>SIP 话机全线不支持 STAP 与 Click to Call（n10，含 MicroSIP/SIP extension）：交付前先盘点话机类型</li>
+<li>ISDN 号不自动更新（n11）：PCX 数据变更后必须重新同步</li>
+<li>前缀规则是 8770 侧"迷你 ARS"，与 PCX 自身 ARS 独立；两者并存时单规则方案（p284）</li>
+<li>通话媒体质量、中继侧路由属语音与运营商域，本书不覆盖</li>
+<li>实验号码（33210N41000 族等）全部为实验口径（n47），生产以客户 DDI 段替换</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte202en/skills/ovdir-oxe-sync-ldap.html">OXE 节点注册与同步</a></p><p class="source-page">能力 ID：cap.ovdir.click-to-call · 来源：8770XTE202EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 — Directory Administration (Participant's Guide, Edition 40) | edition: Edition 40 | pages: 565 页 -->

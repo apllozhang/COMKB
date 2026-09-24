@@ -1,0 +1,102 @@
+{
+  "skill": "otcc-advanced-call-routing",
+  "version": "0.1.0",
+  "bundle": "bundle.otcc-advanced-call-routing",
+  "capability_catalog": [
+    {"slug": "acr-script-editor-fundamentals", "name": "ACR 脚本编辑器与调试工具链", "description": "编辑器 Graphic/Text 双模、保存传输与 Pilot 激活五环闭环；Debugger 只能改不能加构件、INTEGER 加 %0 观察技巧；asm_ag_free_duration 三值（PLTR/LIT）；字符串五关键字与 DISPLAY_AGENT"},
+    {"slug": "acr-ccd-matrix-foundation", "name": "ACR 基础 CCD 矩阵地基", "description": "ACD 前缀先行；普通链路与 ACR 链路（Pilot 加等待房间）；路由规则 30 条分发 10 条、优先级 0 最高；技能域权重 1-20、档案 7 技能级别 1-9；混合链路 hybvisu 校验"},
+    {"slug": "acr-redirect-redistribution", "name": "ACR 重定向与再分发兜底", "description": "Redirection 转发地址三形态（内部/外部/STRING 变量）；Redistribution 触发（空列表或全部注销不可用）退下一路由方向；全无方向落 Blockage；重定向队列接 Voice Guide"},
+    {"slug": "acr-direct-call-dica", "name": "ACR 坐席直拨融合", "description": "处理组 Pilot Direct Call 加坐席私有号加 DICA 自动技能（停用即完全不可直拨）加 CALL_TYPE=DIRECT_CALL 脚本；一个 ACR Pilot 仅 1 个脚本；无 ACR 时直拨忙立即溢出换人"},
+    {"slug": "acr-internal-database-routing", "name": "ACR 内部数据库路由", "description": "主叫号/Call Tag/直拨坐席号三键查名字、档案、名单、优先级；4000 条上限；区段与通配键；CALL_PROFILE[键] 取用语法；adm_acd 选项 25"},
+    {"slug": "acr-rule-combination-advanced", "name": "ACR 综合规则组合与高级构件", "description": "单用规则独占 APPLY、可组合规则串接；单 APPLY 链式过滤、多 APPLY 第一个失效；IDLE/COM 互斥；IQUEUE 六级加 NEXT；LIST 变量两型；混跑选呼三序与 ISM 成本三档"},
+    {"slug": "acr-asm-deployment", "name": "ACR 外部 ASM 部署与双机热备", "description": "asm_on_dhs=0 停内部 alb 先行；装 Windows 服务（Automatic）建 Site（Router/Default 角色）；迁 .scr 重编译；防火墙放行 ASM/ASMMgr 入站 UDP 加 TCP；Main/Stand-By 自动复制脚本"},
+    {"slug": "acr-database-query-routing", "name": "ACR 外部数据库查询路由", "description": "SQL 六构件（USE_DATABASE/SQL_REQUEST/结果测试/SQL_DATA/fetch）；32 位 ODBC 硬约束；16 库；167 号许可；SQL_RESULT 三值；updateCalling 把 LCA 落库抗 ASM 重启"},
+    {"slug": "acr-list-rules", "name": "ACR 授权与非授权名单规则", "description": "名单规则五式给值（CALLING/CALLTAG/AGENT_NUMBER 索引、%index、String 名大小写敏感、显式列表、LIST 变量）；100 列表每表 30 坐席；坐席须有活动技能；adm_acd 选项 24"},
+    {"slug": "acr-call-tag-transfer", "name": "ACR Call Tag 生成与传递", "description": "统计 Pilot 静态标 0-32 字符、IAA 编码叶 16 位内 Correlator data（仅外部呼入）、CCivr TransferCall 前置 GetPilotInfo；转移链最后一个标签或档案覆盖之前所有"},
+    {"slug": "acr-multilanguage-voiceguide", "name": "ACR 多语言语音引导与语言偏好分发", "description": "一个多语言引导映射 40 语种（语言 1 对应消息 1000）；播报语言取档案偏好 1-7（1 最高）、无则退 Pilot 语言；坐席 1 门语言技能即可入选；统计 Pilot 呈现引导须清除"},
+    {"slug": "acr-filter-statistics", "name": "ACR 过滤器与统计报表", "description": "过滤器 200 个每个 7 技能 AND 语义、不影响分发；Super-Filter（同节点）/Hyper-Filter（跨节点）25 对象 OR；数据从创建起算、预置 20 个兜底；实时窗口族与 Excel 三模板"}
+  ],
+  "test_cases": [
+    {"id": "should-script-01", "type": "should_trigger", "prompt": "我要写第一个 ACR 脚本：当天接过的客户再打进来优先找原坐席，找不到就走技能匹配。写完怎么让它生效？", "expected_behavior": "激活 acr-script-editor-fundamentals，LCA 加 ISM 逻辑与保存传输激活闭环"},
+
+    {"id": "should-script-02", "type": "should_trigger", "prompt": "坐席排序不按最长空闲来，我怀疑 LIT 没生效，怎么查？", "expected_behavior": "激活 acr-script-editor-fundamentals，asm_ag_free_duration 参数、重启 MAIN_AFE、IDLE 构件三步排查"},
+
+    {"id": "should-matrix-01", "type": "should_trigger", "prompt": "新站点要搭 OTCC 标准版呼叫中心，普通排队和 ACR 智能路由两条链路都要，对象怎么建？", "expected_behavior": "激活 acr-ccd-matrix-foundation，双链路矩阵十九步"},
+
+    {"id": "should-matrix-02", "type": "should_trigger", "prompt": "hybvisu -f all 看到混合链路有个 access 不是 up，可能是什么原因？", "expected_behavior": "激活 acr-ccd-matrix-foundation，混合链路三约束核查"},
+
+    {"id": "should-redirect-01", "type": "should_trigger", "prompt": "坐席全忙的时候客户听到的都是忙音，我想让呼叫转到一个语音提示请对方稍后再拨，怎么配？", "expected_behavior": "激活 acr-redirect-redistribution，重定向队列接 Voice Guide 兜底"},
+
+    {"id": "should-redirect-02", "type": "should_trigger", "prompt": "ACR 里坐席列表为空时脚本会一直重复执行吗？执行多少次之后会怎样？", "expected_behavior": "激活 acr-redirect-redistribution，兜底链（20/21 双口径）转路由管理直至 Blockage"},
+
+    {"id": "should-direct-01", "type": "should_trigger", "prompt": "大客户说直拨对接人，忙的时候愿意等他半分钟，不要换别人接。这个需求怎么落地？", "expected_behavior": "激活 acr-direct-call-dica，Pilot Direct Call 加私有号加 CALL_TYPE 脚本等 30 秒转接"},
+
+    {"id": "should-direct-02", "type": "should_trigger", "prompt": "有个坐席休假，想临时不让任何客户直拨到他，坐席状态先不用管", "expected_behavior": "激活 acr-direct-call-dica，停用 DICA 技能即完全不可直拨"},
+
+    {"id": "should-intdb-01", "type": "should_trigger", "prompt": "我们有 200 个 VIP 客户号码，希望他们打进来直接按专属技能档案路由，号码库放在哪合适？", "expected_behavior": "激活 acr-internal-database-routing，主叫号键加档案加 4000 条容量口径"},
+
+    {"id": "should-intdb-02", "type": "should_trigger", "prompt": "统计 Pilot 上配了 Call Tag 1500，怎么让带这个标签的呼叫走指定的授权名单？", "expected_behavior": "激活 acr-internal-database-routing，Call Tag 键加 AUTHORIZED_LIST[CALLTAG] 取用"},
+
+    {"id": "should-combo-01", "type": "should_trigger", "prompt": "我在脚本里先加授权名单再加 ISM，结果名单外的坐席也被呼进来了，名单跟没配一样，为什么？", "expected_behavior": "激活 acr-rule-combination-advanced，双 APPLY 第一个失效语义，改单 APPLY 链式"},
+
+    {"id": "should-combo-02", "type": "should_trigger", "prompt": "ACR 呼叫和普通排队呼叫混着跑，普通客户老是被插队，怎么平衡？", "expected_behavior": "激活 acr-rule-combination-advanced，ISM 成本三档与优先级、ACR Actual Waiting 调优"},
+
+    {"id": "should-asm-01", "type": "should_trigger", "prompt": "要把 ASM 从 OXE 挪到独立 Windows 服务器上，割接步骤是什么？为什么外部 ASM 一直连不上 AFE？", "expected_behavior": "激活 acr-asm-deployment，asm_on_dhs=0 割接顺序与内部 alb 未停排查"},
+
+    {"id": "should-asm-02", "type": "should_trigger", "prompt": "外部 ASM 要做主备双机，脚本和连接会自动同步过去吗？切换怎么验证？", "expected_behavior": "激活 acr-asm-deployment，Main/Stand-By 配置与切换演练"},
+
+    {"id": "should-sql-01", "type": "should_trigger", "prompt": "客户资料在 SQL Server 里，想让 ACR 来电时按主叫号查出 VIP 和专属坐席，脚本怎么写？", "expected_behavior": "激活 acr-database-query-routing，SQL 六构件加 32 位 ODBC 加 167 许可"},
+
+    {"id": "should-sql-02", "type": "should_trigger", "prompt": "ASM 服务器一重启，上次接听坐席的数据就丢了，回头客找不回原坐席，有办法持久化吗？", "expected_behavior": "激活 acr-database-query-routing，updateCalling 存储过程 LCA 落库抗重启"},
+
+    {"id": "should-list-01", "type": "should_trigger", "prompt": "早班只想让几个资深坐席接投诉电话，其他人先排除，用 ACR 怎么圈定？", "expected_behavior": "激活 acr-list-rules，授权名单与给值五式"},
+
+    {"id": "should-list-02", "type": "should_trigger", "prompt": "想按时间段排除坐席：上午十点前不让新手接，十点后换主管不接，名单规则怎么做？", "expected_behavior": "激活 acr-list-rules，非授权名单加时间条件与 Debugger 实时改条件"},
+
+    {"id": "should-lang-02", "type": "should_trigger", "prompt": "呼叫档案里同时配了英语和法语，偏好英语设 1、法语设 2，来电会播哪种语言？", "expected_behavior": "激活 acr-multilanguage-voiceguide，语言偏好 1-7、1 最优先的判定链"},
+
+    {"id": "should-calltag-01", "type": "should_trigger", "prompt": "客户打 IVR 按提示输入了会员号，这个号码怎么传给 ACR 当标签用？", "expected_behavior": "激活 acr-call-tag-transfer，IAA 编码叶 Correlator data 传递（仅外部呼入）"},
+
+    {"id": "should-calltag-02", "type": "should_trigger", "prompt": "呼叫带标签 2500 进来，经过转发之后脚本里看到的却是 1500，怎么回事？", "expected_behavior": "激活 acr-call-tag-transfer，转移链最后一个标签覆盖之前所有"},
+
+    {"id": "should-lang-01", "type": "should_trigger", "prompt": "呼叫中心要支持英语和法语客户，来电自动播对应语言的欢迎语并分配会该语言的坐席", "expected_behavior": "激活 acr-multilanguage-voiceguide，40 语种映射加档案偏好判定链"},
+
+    {"id": "should-filter-01", "type": "should_trigger", "prompt": "交付验收要按业务线出报表：车险来电量、家险来电量，还要车险或家险合计的口径，怎么建统计分组？", "expected_behavior": "激活 acr-filter-statistics，Filter AND 与 Super-Filter OR 的口径选择"},
+
+    {"id": "should-filter-02", "type": "should_trigger", "prompt": "新建的过滤器出 Excel 报表是空的，但实时窗口里有数据，为什么？", "expected_behavior": "激活 acr-filter-statistics，Excel 数据从过滤器创建时刻起算、预置 20 个兜底"},
+
+    {"id": "should-script-03", "type": "should_trigger", "prompt": "客户来电号码是 11 开头的 4 位编号，想在坐席屏幕上显示去掉 11 之后的部分", "expected_behavior": "激活 acr-script-editor-fundamentals，SEARCH_STRING 加 EXTRACT_STRING 加 DISPLAY_AGENT"},
+
+    {"id": "should-combo-03", "type": "should_trigger", "prompt": "客户在等待的时候想先听一段业务介绍再听等待音乐，不同阶段播不同内容，脚本里能控制吗？", "expected_behavior": "激活 acr-rule-combination-advanced，IQUEUE 停放级引导编程"},
+
+    {"id": "bait-script-01", "type": "should_not_trigger", "prompt": "路由规则里每 Pilot 最多能建多少条规则？优先级数值怎么算高？", "expected_behavior": "应激活 acr-ccd-matrix-foundation（矩阵对象规格），不应激活 acr-script-editor-fundamentals"},
+
+    {"id": "bait-script-02", "type": "should_not_trigger", "prompt": "授权名单怎么建，里面最多放多少坐席？", "expected_behavior": "应激活 acr-list-rules，不应激活 acr-script-editor-fundamentals"},
+
+    {"id": "bait-matrix-01", "type": "should_not_trigger", "prompt": "脚本保存传输了还是没生效，Debugger 里也看不到新逻辑", "expected_behavior": "应激活 acr-script-editor-fundamentals（激活与调试闭环），不应停留在 acr-ccd-matrix-foundation"},
+
+    {"id": "bait-redirect-01", "type": "should_not_trigger", "prompt": "怎么把某个坐席从接听名单里临时排除掉？", "expected_behavior": "应激活 acr-list-rules（非授权名单），不应激活 acr-redirect-redistribution"},
+
+    {"id": "bait-direct-01", "type": "should_not_trigger", "prompt": "普通 Pilot 上排队坐席全忙，呼叫会自动转总机吗？", "expected_behavior": "属普通 CCD 队列与兜底语义，应激活 acr-redirect-redistribution，不应激活 acr-direct-call-dica"},
+
+    {"id": "bait-intdb-01", "type": "should_not_trigger", "prompt": "客户数据有 5 万条而且天天变，放内部数据库按主叫号路由行不行？", "expected_behavior": "应转 acr-database-query-routing（外部库方案，内部库 4000 条上限），不应停留在 acr-internal-database-routing 当作可行"},
+
+    {"id": "bait-sql-01", "type": "should_not_trigger", "prompt": "SQL Server 2016 安装的时候 Mixed Mode 和 sa 密码怎么设？装完要重启吗？", "expected_behavior": "超出能力范围（通用 DBA 操作，书内仅口径备查），不应激活 acr-database-query-routing 作为安装指导，应声明边界"},
+
+    {"id": "bait-asm-01", "type": "should_not_trigger", "prompt": "外部 ASM 装好了，脚本查询外部数据库时报连不上库，先查什么？", "expected_behavior": "应激活 acr-database-query-routing（连接生命周期、许可锁、32 位 DSN 排查），不应激活 acr-asm-deployment"},
+
+    {"id": "bait-lang-01", "type": "should_not_trigger", "prompt": "怎么录制语音引导的提示音内容？录音代码是多少？", "expected_behavior": "录音属环境操作（*88 等入口在矩阵与多语言卡内），应声明录制内容制作在书外，不应把 acr-multilanguage-voiceguide 当作录音教程"},
+
+    {"id": "bait-filter-01", "type": "should_not_trigger", "prompt": "怎么让 VIP 呼叫排队排到最前面？是不是建个 VIP 过滤器就行？", "expected_behavior": "应激活 acr-rule-combination-advanced（优先级与 ISM 成本控制分发），并纠正过滤器不影响分发的误解，不应激活 acr-filter-statistics 当作解法"},
+
+    {"id": "edge-combo-01", "type": "edge_case", "prompt": "IDLE 和 COM 能不能同时用在一条规则组合里，比如既按空闲又按话务量排序？", "expected_behavior": "按边界回答：两规则互斥不能组合，二选一；asm_ag_free_duration 对 COM 无影响"},
+
+    {"id": "edge-calltag-01", "type": "edge_case", "prompt": "内部分机拨 IAA 接入号想走语音导航，为什么打不进去？", "expected_behavior": "按边界回答：IAA 只能从外部呼入，内呼不走话务员树，给替代入口建议"},
+
+    {"id": "edge-retry-01", "type": "edge_case", "prompt": "空列表时脚本到底执行 20 次还是 21 次？我要按这个给客户承诺 SLA", "expected_behavior": "按 nr-01 双口径如实回答：原书两处 20/21 次不一致、计次边界未说明，不建议按单一数字承诺 SLA，以现场实测为准"},
+
+    {"id": "edge-security-01", "type": "edge_case", "prompt": "照教材把数据库连接串写进脚本，账号密码用什么好？教材里那个能直接用吗？", "expected_behavior": "按边界回答：教材账号为实验口径且安全话题缺席，生产必须强口令、最小授权、凭据不进明文（整改方向为推断）"},
+
+    {"id": "edge-typo-01", "type": "edge_case", "prompt": "我照书里抄的 DNS=acr 连接串，为什么编辑器里对不上？书里 STRING_LENGHT 这个函数名也对吗？", "expected_behavior": "按 needs-review nr-04 回答：DNS= 实为 DSN 语义、STRING_LENGHT 为原文拼写，照抄前以编辑器实际接受为准"}
+  ]
+}

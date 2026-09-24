@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OXE/OTMC 双向声明进 8770 与同步</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch Message Center · Starter</h2><p>Edition 08 · 259 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otmcxte200en/index.html">课程首页</a><a href="/courses/otmcxte200en/digest.html">精华长文</a><a href="/courses/otmcxte200en/overview.html">教书理解</a><a href="/courses/otmcxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otmcxte200en/skills/otmsg-install-site-setup.html">OTMC 服务器安装与站点配置</a><a href="/courses/otmcxte200en/skills/otmsg-license-management.html">FlexLM 许可证体系部署与更换</a><a href="/courses/otmcxte200en/skills/otmsg-declaration-sync.html">OXE/OTMC 双向声明进 8770 与同步</a><a href="/courses/otmcxte200en/skills/otmsg-sip-trunk-provisioning.html">OXE 侧 SIP 对接 OTMC</a><a href="/courses/otmcxte200en/skills/otmsg-user-mailbox-provisioning.html">Connection 用户与语音邮箱交付</a><a href="/courses/otmcxte200en/skills/otmsg-mailbox-profiles.html">语音邮箱 profile 定制与问候语管理</a><a href="/courses/otmcxte200en/skills/otmsg-notification-smtp-sms.html">SMTP/SMS 通知部署与排障</a><a href="/courses/otmcxte200en/skills/otmsg-backup-statistics.html">OpenTouch 备份恢复与语音信箱统计</a><p class="course-nav-group">路由能力</p><a href="/courses/otmcxte200en/skills/otmsg-product-positioning.html">OTMC 产品定位与部署形态</a><a href="/courses/otmcxte200en/skills/otmsg-web-portal.html">用户自助门户 My Profile 与 MyMessaging</a><a href="/courses/otmcxte200en/skills/otmsg-imap-access.html">IMAP 客户端访问语音邮箱</a><a href="/courses/otmcxte200en/skills/otmsg-general-announcement.html">企业广播 General Announcement</a><p class="course-nav-group">已安装技能</p><a href="/courses/otmcxte200en/index.html">ot-message-center（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otmcxte200en/index.html">OTMCXTE200EN</a><span>/</span><span aria-current="page">OXE/OTMC 双向声明进 8770 与同步</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OXE/OTMC 双向声明进 8770 与同步</h1></div><dl><div><dt>Skill ID</dt><dd>otmsg-declaration-sync</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OXE/OTMC 双向声明进 8770 与同步（bics.conf 对账、节点编号、同步矩阵）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Subnetwork – Node number: Enter a numeric value equal to the ABC network*100 + OmniPCX Enterprise node number."（p87）
+"OTMC server must be declared in the same sub-network than the OXE call server."（p94）
+"Partial and complete synchronization are identical for OTMC node."（p100）
+"OTMC information can be found in the file bics.conf on the OTMC server"（p92）</p>
+</blockquote>
+<p>出处：OTMCXTE200EN p83-101（c03/c04、f12/f13、p08、n09/n17 归并）。</p>
+<h2>I — 自述</h2>
+<p>纳管闭环四段：</p>
+<ol>
+<li><strong>OXE 侧准备</strong>：netadmin -m 核 IP 与角色地址、配节点名（改完必须 20.'APPLY MODIFICATION'，否则丢弃）、核节点/网络号（siteid 或提示符括号）、开目录实时同步（47xx directory – 4400 Synchro = True，8770 目录自动增改的前提）</li>
+<li><strong>8770 声明 OXE</strong>：三层树 Network（自由编号）→ Subnetwork（编号必须等于 OXE 的 ABC 网络号）→ Node；OXE 节点号 = ABC×100 + 节点号</li>
+<li><strong>声明 OTMC</strong>：bics.conf（/var/data/bics/bics.conf）是站点账本——HOST_NAME/HOST_DOMAIN + ICE 三账户（otAdmin=8770 配置、otProfile=模板管理、otuser=维护/SSH），声明时逐项对账；OTMC 节点号自由但不得与任何 OXE 节点号重复，且必须与 OXE 呼叫服务器同子网</li>
+<li><strong>OTMC 拓扑对称声明 OXE</strong>：System services/Topology/OXE CS 下建 network/subnetwork/OXE CS（名称编号沿用 8770 侧定义；Port 2570、SIP Port 5060、FTP adfexc）</li>
+</ol>
+<p>同步矩阵：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>发起节点</th>
+<th>类型+目标</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OXE</td>
+<td>Partial + Separate</td>
+<td>仅该 OXE 增量（用户/目录/数据终端/缩位拨号/远端用户）</td>
+</tr>
+<tr>
+<td>OXE</td>
+<td>Partial + Global</td>
+<td>OXE 增量 + OpenTouch 全量</td>
+</tr>
+<tr>
+<td>OXE</td>
+<td>Complete + Separate</td>
+<td>OXE 全量</td>
+</tr>
+<tr>
+<td>OTMC</td>
+<td>Partial 或 Complete + Separate</td>
+<td>OTMC 全量（对 OTMC 节点两者等价）</td>
+</tr>
+<tr>
+<td>OTMC</td>
+<td>任意 + Global</td>
+<td>OTMC 全量 + 连带全量同步关联 OXE</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>双向声明与同步实验</strong>（c03+c04，网段/口令等环境值见 book/overview）：</p>
+<ol>
+<li>OXE 侧核 IP：netadmin -m 进 Local Ethernet interface 核对（实验口径见 book/overview）</li>
+<li>配角色地址：netadmin -m 的 Role addressing 下 Add main 角色</li>
+<li>配节点名：Node Setup 下 Update；离开菜单前必须执行 20.'APPLY MODIFICATION'</li>
+<li>核节点/网络号：siteid 或命令行提示符括号确认 OXE 为目标节点号（ABC×100+节点号，实验为 101）</li>
+<li>开实时同步：47xx directory – 4400 Synchro 置 True</li>
+<li>8770 建网络与子网：Configuration 应用右键 Create；子网号等于 OXE 的 ABC 网络号</li>
+<li>8770 声明 OXE：Subnetwork-Node number=101、IP=main 地址、FTP adfexc、勾 Process configuration 与 Process directory</li>
+<li>同步 OXE：右键 Synchronization，Complete+Separate，刷新任务日志至无错、OXE 分支生成</li>
+<li>OTMC 对账：more /var/data/bics/bics.conf 记下主机名/域与 ICE 三账户；DNS 正反双向 nslookup 核验（示例网段漂移见 nr-02）</li>
+<li>8770 声明 OTMC：Create 选 OTMC；OT 页签填自由节点号（实验用 98、模板例 99，见 nr-01）、FQDN、otAdmin 凭据；Connectivity 页签填 otProfile；Maintenance 页签填 otuser</li>
+<li>OTMC 拓扑声明 OXE：Topology/OXE CS 下建 network/subnetwork/OXE CS（Port 2570、SIP Port 5060、FTP adfexc、Node Identifier 与 8770 侧一致）</li>
+<li>同步 OTMC：右键 Synchronization 目标 Global；确认 OXE 节点挂到 OTMC 的 Topology 分支下</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新站点纳管；声明后同步报错；OXE 改动"没生效"；OTMC 账户密码丢失；同步只想要增量还是全量；OXE 节点没出现在 OTMC 拓扑下。</p>
+<p>语言信号：声明 / declaration / 8770 / Nmc / 节点号 / node number / bics.conf / otAdmin / otProfile / otuser / 同步 / synchronization / Complete / Partial / Global / Separate / 4400 Synchro / APPLY MODIFICATION。</p>
+<p>与相邻能力区分：前置的站点配置 → otmsg-install-site-setup；后续的话路对接 → otmsg-sip-trunk-provisioning；OXE 侧基础命令属 OXE 课程（本书直接使用）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OXE 可管理（netadmin/mgr）、8770 已装可达、DNS 正反解析就绪、post-install 完成且 bics.conf 可读。账户密码丢失先走重置（见 B 与判停）。</p>
+<ol>
+<li>准备 OXE：IP/角色地址/节点名/节点号四项设置并 APPLY；开 4400 Synchro。完成标准：siteid 显示目标节点号</li>
+<li>声明 OXE 进 8770：三层树建节点（编号=ABC×100+节点号）并同步。完成标准：同步日志无错、OXE 分支生成</li>
+<li>对账 bics.conf：主机名/域/ICE 三账户逐项核对；DNS 正反 nslookup 双向核验。完成标准：声明参数与账本一致</li>
+<li>声明 OTMC 进 8770：节点号自由但唯一、与 OXE 呼叫服务器同子网、填三账户。完成标准：OTMC 节点创建成功</li>
+<li>OTMC 拓扑声明 OXE：network/subnetwork/OXE CS 逐层建（2570/5060/adfexc）。完成标准：拓扑层与 8770 侧定义一致</li>
+<li>双向同步验收：OTMC 发起 Global 同步。完成标准：OXE 出现在 OTMC Topology 分支下</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>bics.conf 与声明参数对不上 → 停，回 post-install 记录核对，不硬猜账户（p92）</li>
+<li>OXE 改动没生效 → 先查 netadmin 是否漏了 20.'APPLY MODIFICATION'（n09），再查别处</li>
+<li>同步后 OXE 不在 OTMC 拓扑下 → 查 DNS 正反解析、节点号唯一性、同子网约束</li>
+<li>密码丢失：otAdmin/otProfile 走 WBM 重置，otuser 走 root 执行 /usr/bin/musett.sh（p93-94）</li>
+</ul>
+<p>输出契约：8770 中 OXE/OTMC 双节点就位、拓扑互挂、同步基线完成 + bics.conf 对账记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>OTMC 节点号示例双口径：p94 实施写 98、p95 模板举例 99（规则一致：自由号、不撞 OXE 节点号）——引用注明 nr-01</li>
+<li>声明章示例网段 155.1.1.x 与拓扑章 151.1.1.x 并存、p94 反查 .50 返回 .60、p84 掩码 /16 与 /24 不符——示例仅示意（nr-02/nr-03）</li>
+<li>OXE 节点可由 WBM 首登自动创建（p96）；未用 WBM 时才手工声明</li>
+<li>OXE 基础命令（netadmin/mgr/siteid/ednump）属 OXE 课程内容，本书直接使用不解释</li>
+<li>实验网段、otAdmin/otuser 口令、csa/csm 地址等环境值集中见 book/overview</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otmcxte200en/skills/otmsg-install-site-setup.html">OTMC 服务器安装与站点配置</a></p><p class="source-page">能力 ID：cap.otmsg.declaration-sync · 来源：OTMCXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch Message Center Starter (Participant's Guide, Issue 08) | edition: Edition 08 | pages: 259 页 -->

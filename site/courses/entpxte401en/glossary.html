@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>术语词典 · ENTPXTE401EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Advanced</h2><p>— · 543 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte401en/index.html">课程首页</a><a href="/courses/entpxte401en/digest.html">精华长文</a><a href="/courses/entpxte401en/overview.html">教书理解</a><a href="/courses/entpxte401en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte401en/skills/entadv-ssh-trust-foundation.html">SSH 免密分发体系</a><a href="/courses/entpxte401en/skills/entadv-cs-redundancy.html">CS 冗余部署与切换维护</a><a href="/courses/entpxte401en/skills/entadv-ip-domain-pcs.html">IP 域与 PCS 域级生存性</a><a href="/courses/entpxte401en/skills/entadv-overflow-rerouting.html">公私网双向溢出与重路由</a><a href="/courses/entpxte401en/skills/entadv-direct-ip-link.html">Direct IP Link 全 IP 组网</a><a href="/courses/entpxte401en/skills/entadv-audit-broadcast.html">Audit 与 Broadcast 数据一致性</a><a href="/courses/entpxte401en/skills/entadv-multiline-supervision.html">多线监督与经理助理组</a><a href="/courses/entpxte401en/skills/entadv-hunting-pickup-speeddial.html">寻线代接组与速拨编号体系</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte401en/skills/entadv-desk-sharing.html">办公桌共享（DSS/DSU）</a><a href="/courses/entpxte401en/skills/entadv-multi-device.html">多设备用户与 Twinset</a><a href="/courses/entpxte401en/skills/entadv-lab-pod-baseline.html">实验/交付前置环境基线</a><a href="/courses/entpxte401en/skills/entadv-cli-toolbox.html">维护命令与事件/许可速查</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte401en/index.html">oxe-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte401en/index.html">ENTPXTE401EN</a><span>/</span><span aria-current="page">术语词典</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">GLOSSARY</p><h1>术语词典 — 中英对照</h1></div></header><article class="markdown-body"><h1>GLOSSARY — OmniPCX Enterprise Advanced 术语表</h1>
+<blockquote>
+<p>阶段 3 产出（源：candidates/glossary.md，g01-g65 共 65 条，六类；本表精选高频约 42 条按域分组）。
+口径：定义只采信本书正文；DDI/TFTP/WBM/MIPT/ARS/RTP/DTLS/IPSec/FQDN 等缩写书中未给全称，如实标注；C.A.C/PCS/ABC-F2/DSS/DSU/REX/SCP/OMS/IPDSP 等书中已展开的照录。</p>
+</blockquote>
+<h1>OmniPCX Enterprise Advanced (ENTPXTE401EN Ed13) — 关键术语词典</h1>
+<blockquote>
+<p>文档整理流水线术语提取器产出。取材方法：全量扫描 source_fulltext.txt（543 页全部通读），所有页码均回原文核验。
+用途：下游能力卡的共享中英对照词典。</p>
+</blockquote>
+<h2>一、核心概念域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CS Duplication</td>
+<td>呼叫服务器复制</td>
+<td>main+standby 软件平台成对，备库实时 scp 复制；切换时已建立通话保持、建立中丢失；两机须同版本同类平台</td>
+<td>p70-71</td>
+</tr>
+<tr>
+<td>Mastercopy</td>
+<td>数据库克隆</td>
+<td>在备机上经 swinst 把主库（至少 DATABASE AND ACCOUNTING，可选 LINUX DATA）复制过来；440 事件后的唯一修复手段</td>
+<td>p79, p106-108</td>
+</tr>
+<tr>
+<td>Reference Media Gateway</td>
+<td>参考媒体网关</td>
+<td>double main 的裁判网关：两 CS 失联时连它的一侧为 Real Main，恢复后另一侧自动重启</td>
+<td>p74, p76-77</td>
+</tr>
+<tr>
+<td>Double Main Mode</td>
+<td>双主模式</td>
+<td>IP 链路中断出现 Real Main+Pseudo Main（MAO 关）；期间话单/话务观察不合并、部分网络无语音邮箱——故障态非目标态</td>
+<td>p76-77, p82</td>
+</tr>
+<tr>
+<td>Spatial Redundancy</td>
+<td>空间冗余</td>
+<td>两 CS 分处不同子网的冗余（机制同本地）：各自主角色地址 csma/csmb；配套内部 DNS/委派/DHCP/TFTP 适配</td>
+<td>p82, p84-90</td>
+</tr>
+<tr>
+<td>Preferred CS IP @</td>
+<td>主角色优先地址</td>
+<td>MAO 参数：两 CS 同时上线时定 main；未配置则 IP 高者成 main（防御行为）</td>
+<td>p75, p105</td>
+</tr>
+<tr>
+<td>Updates storage time limit</td>
+<td>失联存储窗口</td>
+<td>备机不可达时主库存 MAO 命令历史的时限，默认 120 分钟（0-120 可配）；超时删历史并触发 440</td>
+<td>p79</td>
+</tr>
+<tr>
+<td>IP Domain</td>
+<td>IP 域</td>
+<td>按设备 IP 在初始化时归类的逻辑域：每系统 1000 域、未匹配落默认域 0；CS 必须域 0 且其他域不得覆盖 CS 地址</td>
+<td>p143, p152</td>
+</tr>
+<tr>
+<td>C.A.C (Call Admission Control)</td>
+<td>呼叫准入控制</td>
+<td>只控跨域通话条数（Domain Max Voice Connection，-1 不限）；域内不受控；cnx dom 读计数</td>
+<td>p144, p162</td>
+</tr>
+<tr>
+<td>PCS (Passive Communication Server)</td>
+<td>被动通信服务器</td>
+<td>域级生存性备用 CS：锁 332&gt;0、版本≥CS；失联转 Active 接管；库单向同步、最长激活 30 天；非热备</td>
+<td>p166-184</td>
+</tr>
+<tr>
+<td>TFTP Backup IP@</td>
+<td>备份 TFTP 地址</td>
+<td>CS 经信令链路下发到话机 flash 的 PCS 地址；断链时话机改连 PCS；tnet d 的 ipconfig survi 可查</td>
+<td>p172</td>
+</tr>
+<tr>
+<td>Local Private to Public Overflow</td>
+<td>本地私到公溢出</td>
+<td>CAC 饱和/缺压缩机/断链（PCS 激活）时跨域呼叫改经公网；对 SIP 扩展/设备不适用；话务台恒放行</td>
+<td>p218-226</td>
+</tr>
+<tr>
+<td>Thin Sector</td>
+<td>细分扇区</td>
+<td>把一段非 DID 内部号映射到唯一外部号（段首号）；该外号不得与既有 DID 段重叠</td>
+<td>p224, p230-231</td>
+</tr>
+<tr>
+<td>Speed Dialing</td>
+<td>缩位拨号</td>
+<td>统一索引表 0-32499（默认仅 4000 可配）；直接式+范围式（至多 400 范围、每实体 32 区）；默认绕过闭锁</td>
+<td>p236-244, p247</td>
+</tr>
+<tr>
+<td>Multiline</td>
+<td>多线</td>
+<td>话机持一/多目录号、每号可配多线键；Multi-keys（一号多键）与 Multi-MCDU（多号一机）；监督类特性公共前置</td>
+<td>p257-261</td>
+</tr>
+<tr>
+<td>Supervision Key</td>
+<td>监督键</td>
+<td>看被监督方状态、按键直呼或代接；上限 20 监督者/话机、100（网络 20）/邮箱、15000 键/系统；话务台与寻线组不可被监督</td>
+<td>p262-265</td>
+</tr>
+<tr>
+<td>Screening / Unscreening</td>
+<td>过滤/反过滤键</td>
+<td>经理/助理过滤：仅表内来话转助理/仅表内来话留经理；互斥激活；过滤表 1000 张×16 参数</td>
+<td>p277-279</td>
+</tr>
+<tr>
+<td>Hunting Group</td>
+<td>寻线组</td>
+<td>Sequential/Cyclical/Parallel 三搜索；成员随进出组切换组 COS（公网 COS 留 255 保留自己）；一台话机仅属一组</td>
+<td>p299-305, p318</td>
+</tr>
+<tr>
+<td>Call Pick-up</td>
+<td>代接</td>
+<td>组代接（拨前缀接同组振铃）与直接代接（前缀+号码）；Pickup 组无独立建组菜单，填 PickupGroup Name 自动成组</td>
+<td>p306, p313-314, p323</td>
+</tr>
+<tr>
+<td>Desk Sharing (DSS/DSU)</td>
+<td>办公桌共享</td>
+<td>DSS=共享话机（真 MAC）、DSU=漫游用户（虚拟 MAC aa:bb:分机号）；登录即恢复键位/特性/邮箱</td>
+<td>p329-336</td>
+</tr>
+<tr>
+<td>Multi Device / Twinset</td>
+<td>多设备用户</td>
+<td>主站+至多 4 副站逻辑关联（twinset 为 2 台特例）；主站号即多设备号；建关联清空两机数据</td>
+<td>p353, p366</td>
+</tr>
+<tr>
+<td>Rapid Call Shift (Twinset Get Call)</td>
+<td>快速移机</td>
+<td>空闲侧拨 Get Call 前缀，通话无感迁移（对端听不出、屏显不变）</td>
+<td>p363</td>
+</tr>
+<tr>
+<td>Direct IP Link</td>
+<td>直连 IP 链路</td>
+<td>ABC-F2 新一代节点间链路：子网内全互联、RTP 直传、IPSec+SRTP 原生加密、免许可免 H.323；Enabled 不可逆</td>
+<td>p383-397</td>
+</tr>
+<tr>
+<td>Audit</td>
+<td>审计对账</td>
+<td>全网库一次性对账：两阶段（参考库构建→全网下发）；直改表须先模拟+强烈建议备份；链式对象常需跑两遍</td>
+<td>p426-442</td>
+</tr>
+<tr>
+<td>Broadcast</td>
+<td>广播同步</td>
+<td>MAO 修改先进 buffer，默认 10 分钟后落 LOG，再互比 lupd.dat 补齐，确认后删除；128 广播域；远端写失败产 RLOG</td>
+<td>p471-486</td>
+</tr>
+<tr>
+<td>Network/Routing Number</td>
+<td>网络/路由号</td>
+<td>直链 audit 前指向远端用户的两种编号手段：单号/号段；audit 后远端用户自动入本地编号计划</td>
+<td>p410-411</td>
+</tr>
+<tr>
+<td>Node Access Prefix</td>
+<td>节点接入前缀</td>
+<td>溢出方向的路由钉子：Number to add（本地 ARS 前缀，不广播）+Install No Last Part+Node DID Translation（广播）</td>
+<td>p504-505</td>
+</tr>
+<tr>
+<td>Reference Node</td>
+<td>审计参考节点</td>
+<td>shared 对象以其库为准全网替换；默认=运行 audit 的本地节点，可指定远端</td>
+<td>p426, p432</td>
+</tr>
+<tr>
+<td>pcscopy</td>
+<td>PCS 库刷新</td>
+<td>手动命令（菜单 1 update）或 WBM Daily/Weekly 计划；前提双向 trusted hosts+hosts 条目+SSH 免密</td>
+<td>p179, p209</td>
+</tr>
+<tr>
+<td>Broadcast Area</td>
+<td>广播域</td>
+<td>节点分组限定广播范围：域号 -1..127 共 128 个；出向三态×入向三态，全局或逐对象</td>
+<td>p481-483</td>
+</tr>
+</tbody>
+</table></div>
+<h2>二、角色与账户域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mtcl</td>
+<td>电话维护账户</td>
+<td>命令行维护默认登录账户；SSH 密钥三账户之一</td>
+<td>p10, p57</td>
+</tr>
+<tr>
+<td>swinst</td>
+<td>软件安装账户</td>
+<td>Easy/Expert 菜单（克隆/autostart/停起话音/空库）；swinst 管的 Linux 数据随冗余链路复制</td>
+<td>p74, p107</td>
+</tr>
+<tr>
+<td>root</td>
+<td>系统超级账户</td>
+<td>oxe-ssh-auth/oxe-nw-sshkey-sync/netadmin -m 须 root；SSH 密钥三账户之一</td>
+<td>p59-60, p193</td>
+</tr>
+<tr>
+<td>Real Main / Pseudo Main</td>
+<td>真主/伪主</td>
+<td>double main 期两角色；/IP/Duplication parameters 的 Pseudo Main 参数定组合（True=real+pseudo 典型）</td>
+<td>p76-77, p105</td>
+</tr>
+<tr>
+<td>DSS / DSU</td>
+<td>共享话机/漫游用户</td>
+<td>办公桌共享把话机角色做成 Set Function 属性；DSU 自动获得虚拟 MAC</td>
+<td>p330-332</td>
+</tr>
+<tr>
+<td>Manager / Assistant</td>
+<td>经理/助理</td>
+<td>经键对声明的逻辑角色：经理侧 Assistant Call、助理侧自动生成 Manager Call；Routing Assistant 每经理一名</td>
+<td>p276, p287</td>
+</tr>
+</tbody>
+</table></div>
+<h2>三、许可与协议域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lock 186 / 332</td>
+<td>冗余/PCS 许可锁</td>
+<td>186 E-CS redundancy（冗余前提 ≥1）；332 PCS max. number（实验上限 3）；spadmin 核验</td>
+<td>p94, p167, p188</td>
+</tr>
+<tr>
+<td>ABC-F / ABC-F2</td>
+<td>ALE 私有组网协议族</td>
+<td>ABC-F2=Alcatel-Lucent Business Communication – Features 2（直链承载的新一代）</td>
+<td>p384</td>
+</tr>
+<tr>
+<td>FlexLM</td>
+<td>浮动许可服务</td>
+<td>OXE 预配置声明其地址；spadmin 有专菜单查连接；软件锁/CAPEX 许可来源</td>
+<td>p10, p49, p188</td>
+</tr>
+<tr>
+<td>SSHv2 / 公钥认证</td>
+<td>安全外壳协议 v2</td>
+<td>N3 起默认启用且 host-based 因 CIS 移除；mtcl/swinst/root 各持独立密钥对</td>
+<td>p57</td>
+</tr>
+<tr>
+<td>SCP / SFTP</td>
+<td>安全复制/传输</td>
+<td>冗余库实时复制走 scp；audit 对象表转 ASCII 压缩后走 sftp</td>
+<td>p71, p437</td>
+</tr>
+<tr>
+<td>IPSec / DTLS / SIP TLS / SRTP</td>
+<td>直链加密栈</td>
+<td>节点间信令（含 audit/broadcast）走 IPSec；媒体 DTLS/SIP TLS+SRTP（密钥由各 CS 生成下发）</td>
+<td>p393-394</td>
+</tr>
+<tr>
+<td>RTP (Direct RTP)</td>
+<td>实时传输协议</td>
+<td>架构卖点：话机/网关间媒体直达不经转发；直链把 RTP 装进 ABC-F 信令内全 IP 传输</td>
+<td>p43, p385</td>
+</tr>
+<tr>
+<td>DDI</td>
+<td>直拨外线翻译</td>
+<td>外线号段映射内部号段（Default DID translator 与 Node DID Translation 两级）；缩写未展开</td>
+<td>p54, p224</td>
+</tr>
+<tr>
+<td>ARS</td>
+<td>自动路由选择</td>
+<td>溢出与重路由的路由引擎（Node Access Prefix 的 Number to add 常填 ARS 前缀）；基础管理属 Starter</td>
+<td>p222, p519-522</td>
+</tr>
+<tr>
+<td>TFTP / DHCP</td>
+<td>终端引导/地址协议</td>
+<td>话机 binaries/配置下载与地址分配；spatial 下可发两个 TFTP 地址；PCS 不提供两者</td>
+<td>p90, p112, p183</td>
+</tr>
+</tbody>
+</table></div>
+<h2>四、产品与组件域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OmniPCX Enterprise (OXE)</td>
+<td>企业通信服务器</td>
+<td>本书主角（R101.1 MD4）：集中式 15000 分机/组网 100000 分机；CS 板卡/GAS/VM 三类平台</td>
+<td>p1, p43-44</td>
+</tr>
+<tr>
+<td>OMS (OXE Media Service)</td>
+<td>OXE 媒体服务</td>
+<td>Rocky Linux 虚拟机（omsconfig）：OPUS/G722 转码与会议等媒体资源；冗余章作参考 MG、PCS 章为被救对象</td>
+<td>p135, p147, p200</td>
+</tr>
+<tr>
+<td>GD4 / mgconfig</td>
+<td>GD 网关板卡与配置工具</td>
+<td>IP/角色地址/下载协议/SSH/证书管理；PCS 救援时软复位改连救援 IP</td>
+<td>p110-111, p171</td>
+</tr>
+<tr>
+<td>INTIP (virtual INTIP A)</td>
+<td>IP 信令板</td>
+<td>域内设备与其交换信令（虚拟机架 19 位 1）；DSU 未登录时 ippstat 显示虚拟 INTIP 255/255</td>
+<td>p147, p350</td>
+</tr>
+<tr>
+<td>IPDSP</td>
+<td>IP 桌面软话机</td>
+<td>实验主力终端（31000-31003）；Settings→Network 填 TFTP Server Main；即时登录不适用</td>
+<td>p51, p336</td>
+</tr>
+<tr>
+<td>4645 Voice Mail</td>
+<td>语音邮箱服务器</td>
+<td>仅 G711；跨域访问需同域板卡转码；PCS 被救域不可达</td>
+<td>p151, p183</td>
+</tr>
+<tr>
+<td>OmniVista 8770</td>
+<td>网管平台</td>
+<td>PCS 激活期话单取回通道；broadcast 激活入口之一；操作细节在书外</td>
+<td>p181, p473</td>
+</tr>
+<tr>
+<td>WBM / mgr</td>
+<td>Web 配置界面</td>
+<td>本书全部 WBM 配置路径的入口（IP Domain、Passive Com. Server、Inter-Nodes Links 等）</td>
+<td>p155, p473</td>
+</tr>
+<tr>
+<td>REX (Remote Extension)</td>
+<td>远端扩展</td>
+<td>多设备副站类型之一（每多设备限 1）；振铃可经激活/停用前缀控制（示例 651）</td>
+<td>p354, p360</td>
+</tr>
+</tbody>
+</table></div>
+<h2>五、资源与站点域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/usr2/mtcl/.ssh 路径族</td>
+<td>SSH 密钥路径</td>
+<td>mtcl/swinst/root 三账户密钥与 authorized_keys 所在；核验条数（两机 6 条/三机 9 条）</td>
+<td>p67, p100</td>
+</tr>
+<tr>
+<td>/usr4/mao 文件族</td>
+<td>广播文件目录</td>
+<td>buffer（cm_cb.sav）、LOG.N.S/A.Z.N.S、RLOG、lupd.dat——广播健康第一现场</td>
+<td>p474-478</td>
+</tr>
+<tr>
+<td>/tmpd 文件族</td>
+<td>实验文件目录</td>
+<td>Firewall_Rules_multi.txt、ssh_multi.csv（自动删除）、oxenwsynclogs.zip</td>
+<td>p94, p203-206</td>
+</tr>
+<tr>
+<td>TG0028</td>
+<td>话机排障指南</td>
+<td>My Portal 下载：IP 话机命令（tnet/ipconfig 等）权威清单</td>
+<td>p200</td>
+</tr>
+<tr>
+<td>My Portal / ALE Knowledge Hub</td>
+<td>门户与培训站</td>
+<td>技术文档下载/培训评估与证书（enterprise-education.csod.com）</td>
+<td>p200, p539-543</td>
+</tr>
+<tr>
+<td>RLAB / POD</td>
+<td>远程实验室/实验单元</td>
+<td>Pod 间独立同构、共享公共资源（NAS/ITSP1/外部 DNS）；两种 Pod 拓扑+Hybrid 变体</td>
+<td>p5-32</td>
+</tr>
+<tr>
+<td>ITSP1</td>
+<td>SIP 运营商模拟器</td>
+<td>公共区模拟出局：pbxP/alcatel 注册、DDI 41000-41499 ↔ 31000-31499、PN=POD 号</td>
+<td>p33-39</td>
+</tr>
+</tbody>
+</table></div></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Advanced (Participant's Guide, Edition 13) | edition: — | pages: 543 页 -->

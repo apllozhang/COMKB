@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Code Book 导出与导入</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 计费与性能管理</h2><p>Edition 45 · 650 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte201en/index.html">课程首页</a><a href="/courses/8770xte201en/digest.html">精华长文</a><a href="/courses/8770xte201en/overview.html">教书理解</a><a href="/courses/8770xte201en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte201en/skills/ovbill-node-onboarding.html">OXE 纳管与 SIP 中继对接</a><a href="/courses/8770xte201en/skills/ovbill-ticket-pipeline.html">计费票据管道（出票、回收、加载过滤）</a><a href="/courses/8770xte201en/skills/ovbill-tariff-costing.html">运营商资费建模与成本计算</a><a href="/courses/8770xte201en/skills/ovbill-org-costing.html">计费组织树与成本归属</a><a href="/courses/8770xte201en/skills/ovbill-confidentiality.html">计费机密控制三道闸（掩码、解密、可见域）</a><a href="/courses/8770xte201en/skills/ovbill-reporting.html">报表生成、导出与定时</a><a href="/courses/8770xte201en/skills/ovbill-report-design.html">报表定制（Querytool 与 Designer）</a><a href="/courses/8770xte201en/skills/ovbill-voip-monitoring.html">VoIP 性能监控（IP ticket 与 KPI）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte201en/skills/ovbill-codebook-migration.html">Code Book 导出与导入</a><a href="/courses/8770xte201en/skills/ovbill-cost-profile.html">成本档案（发票价与订阅费）</a><a href="/courses/8770xte201en/skills/ovbill-traffic-tracking.html">流量分析与 Tracking 告警</a><a href="/courses/8770xte201en/skills/ovbill-web-performance.html">Web Performance 实时仪表盘</a><a href="/courses/8770xte201en/skills/ovbill-archiving.html">计费归档与恢复</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte201en/index.html">omnivista-billing-performance（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte201en/index.html">8770XTE201EN</a><span>/</span><span aria-current="page">Code Book 导出与导入</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Code Book 导出与导入</h1></div><dl><div><dt>Skill ID</dt><dd>ovbill-codebook-migration</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>Code Book 导出与导入（运营商配置迁移、.itl 节点修复、EFFECT_DATE 新周期）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"@ is the header character. A line beginning with this symbol gives the name of the fields used in the file • Only one header line per file and it is mandatory in all except information file ... % is the comment character"（p230）
+"Field Node must correspond to the name of the PCX declared in Configuration application ... Node name must be configured before importing the code book"（p233）
+"A second export is required to save the complete carrier configuration"（p236）
+"ALL MODIFICATIONS ON TELECOM 2 CODE BOOK FILES MUST BE APPLIED FROM THE DOCUMENTS DIRECTORY AND NOT FROM THE NAS DRIVE."（p246）</p>
+</blockquote>
+<p>出处：8770XTE201EN p226-250。</p>
+<h2>I — 自述</h2>
+<p>Code Book 是运营商配置的文本文件集，用于跨服务器迁移与存档：</p>
+<ul>
+<li>十种文件：.inf 总信息（引用其余文件，含 VERSION/CARRIER_NAME/EFFECT_DATE）、.rgn 区域与前缀、.trf 资费、.dir 方向、.cal 特定日、.ccn 城市国家名、.adj 调整系数、.fct ISDN 服务费、.itl 安装文件（主叫区内 PCX 清单）、.trg 主叫区内中继组</li>
+<li>格式规则三条：@行=表头（.inf 除外，每文件仅一行且必须）；Tab 分隔字段（要默认值就留空跳 Tab）；%行=注释</li>
+<li>导入按 .inf 索引重建运营商；.itl 的 Node 必须与目标机 Configuration 里声明的 PCX 名一致，否则导入"部分成功"（区域/资费建了、方向建不出来）更具迷惑性</li>
+<li>生命周期语义：改 .inf 的 EFFECT_DATE 再导入=同运营商下新增 Period（旧周期自动封口），是价目随政策演进的正规做法</li>
+<li>备份规则：一次导出≠完整备份，第二次导出才完整；一切修改在 Documents 副本上做，不动共享盘原件</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>导出与重导入</strong>（p238-242）：</p>
+<ol>
+<li>Carriers 页签选 Telecom 1 &gt; Period &gt; 右键 Export，存 Documents 下新建文件夹，File Name=Telecom1.inf</li>
+<li>删除运营商 Telecom 1</li>
+<li>右键 Carrier &gt; Import，选 Telecom1.inf，运营商重建成功</li>
+</ol>
+<p><strong>EFFECT_DATE 演进</strong>（p243-244）：</p>
+<ol>
+<li>Notepad++ 编辑 Telecom1.inf，把 EFFECT_DATE 改为 20220101</li>
+<li>再次 Import，结果为同一运营商下新增一个 Period（价目演进的正规做法）</li>
+</ol>
+<p><strong>跨服务器迁移与 .itl 修复</strong>（p245-250）：</p>
+<ol>
+<li>从共享盘复制 Telecom2_7x 到 Documents（修改只动副本）</li>
+<li>直接 Import Telecom2.inf 报错：方向建不出来</li>
+<li>检查发现 Telecom2.itl 的 Node 名是 oxe9，与本机声明的 oxe 不一致</li>
+<li>把 Node 名改为 oxe，删除已导入的 Telecom 2，重新 Import 成功</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：运营商配置从测试机搬到生产机；价目政策换版怎么并存；导入报错但部分对象建出来了；配置备份怎么做才完整；.itl 是什么。</p>
+<p>语言信号：Code Book / codebook / .inf / .itl / .rgn / .trf / .dir / EFFECT_DATE / 导出 / 导入 / export / import / Node 名 / oxe9 / Period / 价目迁移 / 运营商备份。</p>
+<p>与相邻能力区分：建模本体（对象怎么配）→ 资费建模能力；本卡只管配置的搬移与存档形态。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：源机运营商可导出、目标机已声明同名结构的 PCX。目标机节点名未知 → 判停先到 Configuration 核对，不改名直接导必然踩 .itl 坑。</p>
+<ol>
+<li>源机导出两次到 Documents 文件夹（第二次才完整）。完成标准：文件夹含 .inf 与全部关联文件</li>
+<li>传输到目标机 Documents（不占共享盘原件）。完成标准：副本可编辑</li>
+<li>用文本编辑器改 .itl 的 Node 为目标机声明名。完成标准：Node 与 Configuration 一致</li>
+<li>价目换版场景：改 .inf 的 EFFECT_DATE 后导入（结果=新增 Period）。完成标准：周期数符合预期</li>
+<li>Import 并验证区域/资费/方向三层全部生成。完成标准：方向列表非空且与源一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>导入"成功"但方向缺失 → 十有八九是 .itl 的 Node 不匹配，改后删除半成品重导</li>
+<li>期望"修正原配置"却出现两个周期 → EFFECT_DATE 导入语义是新增不是覆盖，删多余周期前先确认无票据引用</li>
+<li>共享盘原件只读使用，任何编辑都先复制到本地 Documents</li>
+</ul>
+<p>输出契约：迁移文件包清单 + .itl 修改记录 + 导入验证结论（区域/资费/方向计数对照）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>.itl 的 Node 匹配的是"目标机"声明名，跨服务器前必须先改（p233/p247）</li>
+<li>导出需两次才完整（p236），单次导出作备份不完整</li>
+<li>文件格式为 @表头/Tab 分隔/%注释（p230）；字段顺序与默认值写法照原文样例，不自创格式</li>
+<li>本卡不覆盖资费对象怎么建模（资费建模能力），也不覆盖导入后的成本重算触发（同上，属建模卡 B）</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.ovbill.codebook-migration · 来源：8770XTE201EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 R5.2 Accounting and Performance Administration (Participant Guide, Edition 45) | edition: Edition 45 | pages: 650 页 -->

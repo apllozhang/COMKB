@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Extended Mobility（QR/NFC 切换与路由修改）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch · Advanced</h2><p>Edition 08 · 468 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte301en/index.html">课程首页</a><a href="/courses/openxte301en/digest.html">精华长文</a><a href="/courses/openxte301en/overview.html">教书理解</a><a href="/courses/openxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte301en/skills/ota-remote-access.html">OpenTouch 远程接入通道与证书</a><a href="/courses/openxte301en/skills/ota-nomadic-ghost-z.html">Nomadic 移动模式与 Ghost Z 资源池</a><a href="/courses/openxte301en/skills/ota-smartphone-rex.html">OTC 智能手机交付全流程（REX/DISA/APNS）</a><a href="/courses/openxte301en/skills/ota-um-exchange-integration.html">统一消息 UM（Exchange/O365/Gmail/IMAP）</a><a href="/courses/openxte301en/skills/ota-conference-collaboration.html">协作会议（ACS 配置、角色权限、数据会议）</a><a href="/courses/openxte301en/skills/ota-calendar-sync.html">日历在场与日历同步（Calendar presence/synchro）</a><a href="/courses/openxte301en/skills/ota-directory-udas.html">目录搜索与 Single Business Card（UDAS）</a><a href="/courses/openxte301en/skills/ota-enterprise-authentication.html">企业认证集成（LDAP/RADIUS/Kerberos SSO）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte301en/skills/ota-desksharing.html">Desksharing 共享工位（DSU/DSS）</a><a href="/courses/openxte301en/skills/ota-extended-mobility.html">Extended Mobility（QR/NFC 切换与路由修改）</a><a href="/courses/openxte301en/skills/ota-dcs-documents.html">DCS 文档转换服务器（Office 会议演示）</a><a href="/courses/openxte301en/skills/ota-otc-web-guest.html">OTC Web 与访客入会</a><a href="/courses/openxte301en/skills/ota-lab-pod.html">RLAB 实验 POD 与 SIP 运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte301en/index.html">opentouch-advanced（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte301en/index.html">OPENXTE301EN</a><span>/</span><span aria-current="page">Extended Mobility（QR/NFC 切换与路由修改）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Extended Mobility（QR/NFC 切换与路由修改）</h1></div><dl><div><dt>Skill ID</dt><dd>ota-extended-mobility</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>Extended Mobility（QR 码/NFC 标签切换呼叫与路由修改）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"«Extended OT mobility» allows users with Android or iPhone (<em>) Smartphones: To switch an established communication from OTC application to any internal deskphone (one way) • To modify the end-user's call routing profile ... (</em>) NFC not supported by iPhone"（p150）
+"QR Code label ... accepted by the smartphone app for audio switch on an OXE deskphone: {\"v\":\"1\",\"DI\":{\"DiD\":{\"User\":\"phone number\"}}}"（p158）
+"Since the automated scenario has been executed, there is no retrieve facility to switch back the call to smartphone"（p152）</p>
+</blockquote>
+<p>出处：OPENXTE301EN p148-167。</p>
+<h2>I — 自述</h2>
+<p>用贴在话机上的标签触发两个动作，无需装新 App（OTC 应用须已启动）：</p>
+<ol>
+<li><strong>两个功能</strong>：呼叫切换——把进行中的通话从 OTC 应用切到任意内部话机（单向，不可回切）；路由修改——把当前路由档案切到含 "other and mobile()"（值=目标话机号）的条目</li>
+<li><strong>QR 语法固定</strong>：{"v":"1","DI":{"DiD":{"User":"<OXE 目录号>"}}}，任意第三方生成器可做；例 User=31000</li>
+<li><strong>NFC 生态</strong>：写卡用 Google 市场 "ALE NFC Extended Mobility Administration" 工具（Android R4.2+）；推荐 ALE 标签（Ref 3BA27856AA，100 张装），自购须 NFC Type 2 且由 BP 验证</li>
+<li><strong>周期提醒</strong>：路由修改后每小时弹提醒——Yes 恢复原档案、No 保留并停表、Later 一小时后再弹；再扫同一标签可 toggle 停止</li>
+<li><strong>前提与成本</strong>：OpenTouch R2.1 MD1 起（iPhone QR 自 R2.2）；成本项为话机/手机/许可（Connection+universal connection client）+REX 资源（GhostZ/IP/DTMF）+标签，无软件增项与使用费</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>标签制作与两类测试</strong>（p163-167）：</p>
+<ol>
+<li>前提：OTC Mobile 已装、复用智能手机实验的设备（Backman 31001，实验口径）</li>
+<li>用在线生成器按语法生成 QR（User=31000）并打印/投屏</li>
+<li>NFC：装 ALE 工具，OpenTouch Deskphone 页签填 DN=31000 写入标签</li>
+<li>测试 1（切换）：Boop 呼 Backman、手机接听、扫 QR → 通话切到 Barkley 话机 31000（用户拿起话机）</li>
+<li>测试 2（路由修改）：Backman 空闲态从 Routing Profile 菜单扫同一标签 → 档案改写为 other number=31000</li>
+<li>观察：小时提醒三种应答行为；再扫一次 toggle 取消</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：办公室内手机通话切到座机；把"到工位就用房机"做成碰一碰体验；售前算 Extended Mobility 的许可与资源成本；提醒弹窗行为解释。</p>
+<p>语言信号：Extended Mobility / QR 码 / NFC / 标签 / 切换 / switch / 碰一碰 / 路由档案 / routing profile / other and mobile() / 周期提醒 / 3BA27856AA / NFC Type 2。</p>
+<p>与相邻能力区分：手机基础交付（关联/授权）→ 智能手机能力；nomadic 离开办公室场景 → Nomadic 能力；本卡只管办公室内标签触发。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：标签覆盖的话机清单（目录号）、手机平台（NFC 仅 Android）、OTC 应用版本、标签采购渠道。</p>
+<ol>
+<li>生成标签：QR 按固定 JSON 语法；NFC 用官方工具写卡。完成标准：标签内容可读且目录号正确</li>
+<li>现场张贴并验证切换：手机通话中扫码/碰标签 → 话机响铃接续。完成标准：通话延续、手机释放</li>
+<li>验证路由修改与提醒行为（空闲态执行）。完成标准：档案改写与小时提醒符合预期</li>
+<li>用户教育：单向不可回切、应用须已启动、NFC 仅 Android、拿起话机保私密。完成标准：培训完成</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户要求"能从话机切回手机" → 机制不支持（单向），需求改道或升级</li>
+<li>扫码后铃在别处 → 目标话机配了立即呼转，切换跟呼转走；演示前先清呼转（n16）</li>
+<li>杀掉后台后标签无效 → 触发靠 OTC 应用，应用必须已启动（n17）</li>
+<li>自购 NFC 标签 → 须 NFC Type 2 且由 BP 验证，否则兼容性自担</li>
+</ul>
+<p>输出契约：标签清单（话机号对应表）+ 两类测试记录 + 用户教育材料要点。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>切换底层是"二通呼叫+转移"自动场景，执行后无回切；路由修改仅限空闲态（n41）</li>
+<li>支持话机范围广（ALE-x/80x8/8001/DECT/模拟/4135 等，p157）但具体型号兼容以现场验证为准</li>
+<li>教室 6 SSID 热点与学员自带手机为实验前提，生产需现场勘测替代（BOOK_OVERVIEW 批判节）</li>
+<li>无容量与使用费口径之外的商务条款（p161 成本清单为许可+资源口径）</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.ota.extended-mobility · 来源：OPENXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch - Advanced (Participant's Guide, Edition 08) | edition: Edition 08 | pages: 468 页 -->

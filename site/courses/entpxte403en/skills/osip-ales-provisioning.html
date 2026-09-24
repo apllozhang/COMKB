@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>ALES 软终端开通与认证</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · SIP</h2><p>Edition 12 · 465 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte403en/index.html">课程首页</a><a href="/courses/entpxte403en/digest.html">精华长文</a><a href="/courses/entpxte403en/overview.html">教书理解</a><a href="/courses/entpxte403en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte403en/skills/osip-protocol-foundation.html">SIP 协议机理与 OXE SIP 架构</a><a href="/courses/entpxte403en/skills/osip-user-forms.html">SIP 用户形态选型与容量核算</a><a href="/courses/entpxte403en/skills/osip-sip-device-provisioning.html">SIP Device 用户开通与维护</a><a href="/courses/entpxte403en/skills/osip-deskphone-provisioning.html">ALE 话机 SIP 开通与 NOE↔SIP 切换</a><a href="/courses/entpxte403en/skills/osip-ales-provisioning.html">ALES 软终端开通与认证</a><a href="/courses/entpxte403en/skills/osip-certificate-management.html">OXE DM 证书定制与安全级</a><a href="/courses/entpxte403en/skills/osip-otsbc-carrier-interconnect.html">经 SBC 的 SIP 运营商接入与 OTSBC 部署</a><a href="/courses/entpxte403en/skills/osip-remote-workers.html">远程办公方案与落地</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte403en/skills/osip-codec-negotiation.html">编解码协商与验证</a><a href="/courses/entpxte403en/skills/osip-sip-troubleshooting.html">SIP 跟踪采集与维护排障</a><a href="/courses/entpxte403en/skills/osip-dm-management.html">SIP 设备管理选型与 profile 体系</a><a href="/courses/entpxte403en/skills/osip-sip-features.html">ALE SIP 业务特性配置</a><a href="/courses/entpxte403en/skills/osip-lab-environment.html">POD 实验环境与运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte403en/index.html">oxe-sip（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte403en/index.html">ENTPXTE403EN</a><span>/</span><span aria-current="page">ALES 软终端开通与认证</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>ALES 软终端开通与认证</h1></div><dl><div><dt>Skill ID</dt><dd>osip-ales-provisioning</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>ALES 软终端开通与认证（PC/Android、LDAP/本地、一号多机）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Remember, the login information must match with 'uid' of a person managed in the LDAP directory."（p230）
+"14 characters minimum with - at least 2 characters (1 upper case mandatory) - at least 2 digits - at least 1 special character ... Must not contain 4 or more consecutive or identical characters"（p114）
+"Keep Alive NO. For ALES Mobile, this 'Keep Alive' option is mandatory to be set 'NO' to be compatible with the Push Notification mechanism"（p252）
+"a unique identifier (ALES-DUID) is sent by each ALES in any SIP request (RFC4122)"（p115）</p>
+</blockquote>
+<p>出处：ENTPXTE403EN p106-121, p217-270。</p>
+<h2>I — 自述</h2>
+<p>ALES 是 SIP+ 软终端（Windows/Android/iOS），只受 OXE DM 管理。开通七段：LDAP 认证、SIP 代理、Phone COS、DM profile、建户、装软件登录、维护。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>主题</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>认证三模式</td>
+<td>外部 LDAP（swinst 配 uid/Bind DN）、OXE 本地、OpenID Connect（规划中）；外部与本地互斥，切换先关再开</td>
+</tr>
+<tr>
+<td>密码策略（本地认证）</td>
+<td>≥14 位、至少 2 字母含 1 大写、2 数字、1 特殊字符、禁 4 连续/相同、不与前 5 次重复；密码加密存独立文件不入 MAO 库，双机同步随库备份</td>
+</tr>
+<tr>
+<td>防隔离</td>
+<td>SIP Proxy Framework period=3s、Nb Message=50；不配好软终端会被 DoS 检测误隔离 30 分钟</td>
+</tr>
+<tr>
+<td>移动端双强制</td>
+<td>Phone COS Keep Alive=NO（否则推送不工作）；DM profile 轮询 ≥21600s（低于则 Android 配置通知失效）</td>
+</tr>
+<tr>
+<td>一号多机</td>
+<td>同型互斥（PC vs PC、手机 vs 手机）：403 + Warning 399 Multiple Logins，可 force 抢占，通话中禁抢；跨型（PC 与手机）并存互不影响</td>
+</tr>
+<tr>
+<td>建户</td>
+<td>Set type=SIP extension、Sub type=ALES-desktop/ALES-mobile、Login=LDAP uid、外部认证密码留空</td>
+</tr>
+<tr>
+<td>退出语义</td>
+<td>关窗/隐藏只是后台化仍收来话；任务栏右键 Quit 才退出（此后不再收来话）</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>ALES PC 开通（31030 eevans）</strong>（p217-246，How-To）：</p>
+<ol>
+<li>LDAPExplorerTool 先探目录，核对 eevans 的 uid/telephoneNumber（实验 192.168.1.252/389 口径）。</li>
+<li>swinst 配 LDAP 认证：Expert / System management / User authentication / Configure LDAP，录 Realm、Port 389、Search Base DN、Login attribute=uid、Bind DN。</li>
+<li>Enable LDAP 激活；退出菜单时 nginx 重配重启提示答 y。</li>
+<li>SIP 代理配 SIP Digest + Framework 3s/50 条 + TCP 长消息。</li>
+<li>建 DM profile 1（LDAP 映射、DTMF、拨号规则 33/FR/0/;0/10 实验口径）。</li>
+<li>建户 31030：Sub type=ALES-Desktop、Login=eevans、Password 留空、勾 Dial by name。</li>
+<li>装 msi 填 CS 地址，登录 eevans/alcatel（实验口径），首连接受证书（可 GPO 预铺 ROOT CA）。</li>
+<li>验证：sipregister 见 31030；check_ales_ldap eevans 出 DN；寻线组/监督按键实验照做。</li>
+</ol>
+<p><strong>ALES Android 开通（31035 eedison）</strong>（p247-270，How-To）：</p>
+<ol>
+<li>认证与代理同 PC 线；Phone COS 设 Keep Alive=NO（推送强制）。</li>
+<li>DM profile 加目录映射（givenname/sn/telephonenumber）与轮询 ≥21600s。</li>
+<li>建户 31035：Sub type=ALES-mobile、Login=eedison、密码留空。</li>
+<li>Play Store 安装、连 Wi-Fi、登录后 sipregister 验证；csipsets -d 31035 可看配置文件路径。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：给移动/居家员工配软终端；ALES 登录失败；来话不推送；"同一账号两台电脑打架"；从 LDAP 切回本地认证；软终端莫名 30 分钟连不上。</p>
+<p>语言信号：ALES / ALE SoftPhone / softphone / LDAP / uid / swinst / 本地认证 / 密码策略 / Keep Alive / 推送 / 21600 / Framework / 隔离 / 一号多机 / DUID / 403 / Multiple Logins / ALES-desktop / ALES-mobile。</p>
+<p>与相邻能力区分：装好后配按键/寻线组/监督找 SIP 业务特性；出门在外经 SBC 注册找远程办公；排查信令找 SIP 跟踪排障。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：LDAP/AD 基础设施、用户清单（login 对应 uid）、终端平台（PC/Android/iOS）、认证模式选择。VDI/RDS 虚拟桌面 → 判停劝退。</p>
+<ol>
+<li>探目录：LDAPExplorerTool 核对每个 login 在 LDAP 的 uid 与号码属性。完成标准：login-uid 对照表成文</li>
+<li>配认证：swinst 走 LDAP（外部开着切本地必须先关，反之亦然）。完成标准：认证模式激活且 nginx 重配完成</li>
+<li>配代理与 COS：SIP Digest、Framework 3s/50 条、TCP 长消息；移动端 Keep Alive=NO。完成标准：参数落库</li>
+<li>建 DM profile：LDAP 映射、拨号规则、DTMF；Android 版轮询 ≥21600s。完成标准：profile 先于用户存在</li>
+<li>建户：Sub type 按平台、Login=uid、外部认证密码留空、勾 Dial by name。完成标准：sipdict 可见</li>
+<li>装软件并登录：msi 或应用商店；首连接受证书；登录验证通话。完成标准：sipregister 见注册</li>
+<li>维护核对：check_ales_ldap 验认证链、csipsets 看能力、切本地认证后按策略补密码并让用户首连改密。完成标准：维护命令全部通过</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>login 未预建就发软件给用户 → 停，ALES 无 auto-discovery，登录必失败（n16）</li>
+<li>认证开关直接切 → 停，互斥先关再开，且切本地要给全量用户补密码（n18）</li>
+<li>客户在 VDI/RDS 虚拟桌面推 ALES → 停，明确不支持，改物理机/瘦客户机直装（n20）</li>
+<li>移动端来话不推送 → 查 Keep Alive=NO 与轮询 ≥21600s 两条强制（n17）</li>
+</ul>
+<p>输出契约：注册在网的 ALES 用户清单 + 认证方案与密码基线 + 移动端推送参数记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>密码策略与全部口令值为书中口径（实验值如 alcatel/Superuser1245* 生产必须替换，n50）</li>
+<li>ALES 不支持酒店、话务员助理、MLA、VDI/RDS 部署（p121）；iPhone 无监督端</li>
+<li>一号多机只互斥同型设备；403 399 是顶号不是盗号（n19）</li>
+<li>视频通话在虚拟桌面（Guacamole）测不了，需物理摄像头与桌面（p241）</li>
+<li>OpenID Connect 当时为规划中（p163），不得当作已交付能力引用</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte403en/skills/osip-sip-features.html">ALE SIP 业务特性配置</a>、<a href="/courses/entpxte403en/skills/osip-remote-workers.html">远程办公方案与落地</a></p><p class="source-page">能力 ID：cap.osip.ales-provisioning · 来源：ENTPXTE403EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - SIP (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 465 页 -->

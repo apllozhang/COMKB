@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.rainbow-hub",
+  "generated_at": "2026-09-23",
+  "destinations": {
+    "cap.hub.company-voice-subscription": { "promoted_to": "hub-company-voice-subscription" },
+    "cap.hub.cloud-pbx-provisioning": { "promoted_to": "hub-cloud-pbx-provisioning" },
+    "cap.hub.member-telephony": { "promoted_to": "hub-member-telephony" },
+    "cap.hub.zero-touch-provisioning": { "promoted_to": "hub-zero-touch-provisioning" },
+    "cap.hub.device-maintenance": { "promoted_to": "hub-device-maintenance" },
+    "cap.hub.hunt-groups": { "promoted_to": "hub-hunt-groups" },
+    "cap.hub.attendant-supervision": { "promoted_to": "hub-attendant-supervision" },
+    "cap.hub.welcome-service-ivr": { "promoted_to": "hub-welcome-service-ivr" },
+    "cap.hub.network-readiness": { "served_by": "rainbow-hub-router" },
+    "cap.hub.multisite": { "served_by": "rainbow-hub-router" },
+    "cap.hub.analytics": { "served_by": "rainbow-hub-router" },
+    "cap.hub.maintenance-support": { "served_by": "rainbow-hub-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 }
+}

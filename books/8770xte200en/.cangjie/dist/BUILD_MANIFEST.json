@@ -1,0 +1,43 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\ovnms-alarm-management.md": "9e53e5f431140d34218d1afee182dd35d41a2f55d465a20db40ed3b4949d26eb",
+    "references\\capabilities\\ovnms-audit-compliance.md": "039c20b3e480a3339693358a3ea33d3242938d399480715920de09f25fc3bcf8",
+    "references\\capabilities\\ovnms-backup-restore.md": "80fe3580e12773d52715339f71421df0e087bd61bbb325530d5eb0b8cea14f9c",
+    "references\\capabilities\\ovnms-license-management.md": "4b64056d8ce873e60639d9fd85a0454cd41d990b17a100d36e4d375531daea3e",
+    "references\\capabilities\\ovnms-maintenance-operations.md": "9a4ccf20a2d66bbc5a3a96f15cf341604b3afd2b5ec7418dac6bf9d02870bfe3",
+    "references\\capabilities\\ovnms-network-drive.md": "33dcf6326c9c9b4ca70f07415d1276b9873d00e05a631e4a3de4e1c34daf5a9a",
+    "references\\capabilities\\ovnms-node-onboarding.md": "1349c2a146f180c4ca09b0c46be2f82ea79cdf3da6ccd57aee8770ef2e8f76de",
+    "references\\capabilities\\ovnms-oxe-ui-efficiency.md": "d971cffc8aec4a9e4cabd8708530b1fa34b6495528a9d519bf45217f95665cef",
+    "references\\capabilities\\ovnms-platform-installation.md": "c2e944dd6e08982487611709bc6fc84ad273692bae0ee10d749a968ae9916e7d",
+    "references\\capabilities\\ovnms-reports-scheduling.md": "bce2cbfe49fa793b9a16855fb389f6ec88c2fbc5ae65b1fe7c9614e8578eee60",
+    "references\\capabilities\\ovnms-security-administration.md": "3979e0006e10f3a432d8e9d1f783c4dc9a98458c7ef9d25365de1f7075ecbe3c",
+    "references\\capabilities\\ovnms-topology-views.md": "e40ac9185cf078c1729df9ce3e1534f63bb9e4e1f87a9392a44eb9f1af28edd2",
+    "references\\capabilities\\ovnms-user-provisioning.md": "5e9a0867eb30f0eef221aaf8a29d407237ede7b3c758c5d5c59144d0edee09a4",
+    "references\\capability-index.md": "3d009321331339fd51f2feca3b5753c39ca9ab03d9abb0d5ab2a708fadbd4e6d",
+    "references\\cheatsheet.md": "051f8316d1b3f11d8a42027e516a927f2a4a5226f703c777beaae7bafc18ee91",
+    "references\\glossary.md": "d111dac1a151b867bed5c08d943e4c27dd49124229b24d50f977195b9913ac01",
+    "references\\overview.md": "02571e8c101349f390de75943f0fdd61ef8abc93174b7de91b2a6f15f61e3210",
+    "SKILL.md": "81510b0b8e4c117ede958bb49f6fd42f005b6a79361a93a089d6c7a7105f258d"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.omnivista-8770-nms",
+  "bundle_sha256": "71b420e10c6c1a74378c67f1840053e5e4622958cfb8f36ed6e5b696739cccc4",
+  "variant": "single",
+  "run_id": "run-20260924-195958-56a44c",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 13,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

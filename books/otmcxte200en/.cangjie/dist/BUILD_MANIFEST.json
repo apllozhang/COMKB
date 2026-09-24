@@ -1,0 +1,42 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\otmsg-backup-statistics.md": "ad9f30c771fc5e065e6aa24072dd5875e9c9157b7b256a0c6684e8128dbf8978",
+    "references\\capabilities\\otmsg-declaration-sync.md": "a988d59452d4741894fbaf02332ee92bb871db571b6925e0ff168837261101ec",
+    "references\\capabilities\\otmsg-general-announcement.md": "53ea434ad495ce9d9dec89b8d541d75b8823188da73d1a5f8cd5ac6aa933f230",
+    "references\\capabilities\\otmsg-imap-access.md": "93f642916e35748eb7537e0d60482a1e3db5010800fdf7d625ac9e3bfe01a673",
+    "references\\capabilities\\otmsg-install-site-setup.md": "29eb2914341f48444a17b0cd4c73d8b2218b86b3bd7de184ab37d7c00a0cd2ff",
+    "references\\capabilities\\otmsg-license-management.md": "926b0948c827b2eb226fae11e4fe7b721ada40ab86cbf5c4aa9a3bc4dcda936a",
+    "references\\capabilities\\otmsg-mailbox-profiles.md": "9398e6acfd9303d2bb28bd2b4ef9b0c50a88215e0a8b6cb0742e5096c0b3925f",
+    "references\\capabilities\\otmsg-notification-smtp-sms.md": "889fef43e858582a09b327b6ad3c1303d2f4583189c2e3a859ce6c17db0e7840",
+    "references\\capabilities\\otmsg-product-positioning.md": "20df42410a381bd00232a0e8abc900836543b4b99c9eaedf43454a9530ee8f3b",
+    "references\\capabilities\\otmsg-sip-trunk-provisioning.md": "88f576e63f9c04b854d4a412154dd4458309560e8d3d7bd26b1f36bf7f183934",
+    "references\\capabilities\\otmsg-user-mailbox-provisioning.md": "36b2b15b2753a92c5712b8184889a7d78348ab7c7766d77e239fc2023cae7e21",
+    "references\\capabilities\\otmsg-web-portal.md": "e793ef7120267e2f8e9e2fa776cf7f295c58b10f62967aa945ac90aba3a3411c",
+    "references\\capability-index.md": "772530f1274487f44fea3ef4dbc53a158eea7de34a8cd0c32bbd8f3622a2a594",
+    "references\\cheatsheet.md": "e98928fe54f9a4d577ba07bf0a44889221009931fa7da43b75b1c775ab5d90b0",
+    "references\\glossary.md": "542fe16b3d5dfcbdd503557e8ff4353bece6875f10039f34ec24e76164eee6a2",
+    "references\\overview.md": "117184bc512a40464ba4d12c4cb31366aa474235cc85d6653e531da6cbe1c8be",
+    "SKILL.md": "ce44583e07e08aaeb842ced30cf6387a0ac7cb79e16bbed944341fadff2a22e7"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.ot-message-center",
+  "bundle_sha256": "e1d3bf374942fbd13eb1366bcfb9320db4557a3ef989daf3ae2e8839fb92b240",
+  "variant": "single",
+  "run_id": "run-20260924-200015-5b3833",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 12,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>诊断工具箱八件套</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniSwitch LAN Access Switching</h2><p>Edition 23 · 587 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/dt00xte215en/index.html">课程首页</a><a href="/courses/dt00xte215en/digest.html">精华长文</a><a href="/courses/dt00xte215en/overview.html">教书理解</a><a href="/courses/dt00xte215en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/dt00xte215en/skills/swl2-aaa-hardening.html">交换机登录接入与 AAA 管理面加固</a><a href="/courses/dt00xte215en/skills/swl2-lightning-config.html">Lightning Config 快速开局</a><a href="/courses/dt00xte215en/skills/swl2-config-lifecycle.html">配置生命周期（保存/认证/回滚/备份）</a><a href="/courses/dt00xte215en/skills/swl2-virtual-chassis.html">Virtual Chassis 堆叠</a><a href="/courses/dt00xte215en/skills/swl2-vlan-routing.html">VLAN 与 VLAN 间路由</a><a href="/courses/dt00xte215en/skills/swl2-link-redundancy.html">链路与生成树冗余（LAG/STP/DHL）</a><a href="/courses/dt00xte215en/skills/swl2-l3-services.html">三层服务与网关冗余（DHCP/Loopback0/静态路由/VRRP）</a><a href="/courses/dt00xte215en/skills/swl2-qos-acl-policy.html">QoS 与 ACL 策略</a><p class="course-nav-group">路由能力</p><a href="/courses/dt00xte215en/skills/swl2-access-guardian.html">Access Guardian 接入认证</a><a href="/courses/dt00xte215en/skills/swl2-diagnostics.html">诊断工具箱八件套</a><a href="/courses/dt00xte215en/skills/swl2-lldp-poe.html">LLDP/LLDP-MED 与 PoE 管理</a><a href="/courses/dt00xte215en/skills/swl2-upgrade-autofabric.html">软件升级与 Auto-Fabric 零触开局</a><a href="/courses/dt00xte215en/skills/swl2-fleet-tools.html">资产与装机工具（Fleet Supervision/OST）</a><p class="course-nav-group">已安装技能</p><a href="/courses/dt00xte215en/index.html">omniswitch-lan-access（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/dt00xte215en/index.html">DT00XTE215EN</a><span>/</span><span aria-current="page">诊断工具箱八件套</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>诊断工具箱八件套</h1></div><dl><div><dt>Skill ID</dt><dd>swl2-diagnostics</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>诊断工具箱（日志、事件、镜像抓包、RMON、health、sFlow）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Switch events can be logged to • Switch console • Local text file • Configurable default file size 1250 Kbytes • Multiple remote devices (syslog) 12 max"（p235）
+"the maximum port-mirroring sessions has been increased from 2 to 4. • There is a limit of 4 Mirror-to-port (MTP) indexes."（p249）
+"Captures first 64-bytes of frame • Session supported per switch or stack: 1 • Default file size: R8: 64 KB (max = 2 MB)"（p251）
+"<SWLOG TIMESTAMP> : <CMM>/<NI> : <MODULE_NAME> : <LOG_DESCRIPTION>"（p243）</p>
+</blockquote>
+<p>出处：DT00XTE215EN p232-269。</p>
+<h2>I — 自述</h2>
+<p>售后日常排障的八件套，按"取证目的"选工具：</p>
+<ol>
+<li><strong>switch logging（swlog）</strong>：输出到 console/flash/syslog（最多 12 台）；单文件默认 1250KB、/flash 下最多 8 个 swlog 文件、归档最多 40 个；默认级别 info（数值 6），按 appid/subapp 细粒度调级（如 ospf hello 单独 debug3）</li>
+<li><strong>可读事件日志</strong>：先 swlog appid all subapp all level event 过滤，再 show log events；输出四段格式=时间戳: CMM/NI: 模块: 描述，适合客户侧快读（License 到期、电源、VC 角色、STP 根、链路 up/down）</li>
+<li><strong>命令日志</strong>：command.log 存最近 100 条命令（命令/用户/时间/来源/结果），启用期间不可删除</li>
+<li><strong>port mirroring</strong>：复制流量到本机或远端口（远端口经 linkagg 8.9R3 起部分型号支持）；会话上限按新规格 4、MTP 索引 4 个（双向计 2）——与旧口径 2 并存，见 nr-01</li>
+<li><strong>port monitoring（抓包）</strong>：每交换机/堆叠 1 会话、只捕前 64 字节、默认 64KB（上限 2MB）、存 ENC 格式 pmonitor.enc；与镜像不能同端口</li>
+<li><strong>RMON</strong>：统计/历史/告警/事件四组探针供 NMS（OmniVista）取数</li>
+<li><strong>health</strong>：CMM CPU/内存的当前/1 分钟/1 小时/1 天均值与阈值</li>
+<li><strong>sFlow</strong>：Agent/Receiver/Sampler/Poller 四角色采样，用于拥塞、DoS、应用 mix、容量规划</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>诊断工具实验</strong>（p261-269，How-To，实验宿主 6870-A）：</p>
+<ol>
+<li>swlog 开关：show swlog（Running、console flash、info）&gt; swlog disable &gt; 变 Not Running &gt; swlog enable</li>
+<li>show log swlog 浏览原始日志（Ctrl+C 停止；支持 grep/timestamp 过滤）</li>
+<li>可读事件：swlog appid all subapp all level event 后 show log events，对比原始日志</li>
+<li>命令日志：command-log enable &gt; 执行 vlan 4-5 与 no vlan 4-5 &gt; show command-log 显示两条（用户/时间/来源）&gt; disable</li>
+<li>端口镜像：port-mirroring 1 source port 1/1/1 destination port 1/1/10 并 enable，show 核对 bidirectional</li>
+<li>端口抓包：port-monitoring 1 source port 1/1/1 enable &gt; 客户端 ping 造流量 &gt; pause/resume 观察 Oper 状态</li>
+<li>取证文件：disable 后提示数据在 /flash/pmonitor.enc，show port-monitoring file 显示捕获帧</li>
+<li>health：show health 与 show health slot 1/1 看 CPU/内存多粒度均值</li>
+<li>RMON：show rmon probes/history/stats 核对探针与采集资源</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：定位某口异常流量；给客户出一份重大事件清单；审计谁改了配置；远端取包分析；CPU/内存趋势；组播/广播异常定位。</p>
+<p>语言信号：诊断 / 排障 / swlog / show log events / 事件日志 / command-log / 端口镜像 / port-mirroring / 抓包 / port-monitoring / pmonitor.enc / RMON / health / sFlow / syslog / CPU 内存。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>升级验证看 show microcode loaded（本卡 B 段口径），升级流程：升级与 Auto-Fabric 能力卡</li>
+<li>接入排障里 UNP 状态查询：Access Guardian 能力卡</li>
+<li>OST 工具化的排障（PoE 向导/Auto-Ticket）：资产与装机工具能力卡</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：故障现象与端口范围、取证时段、是否需要完整报文、远端日志服务器（如有）。规格上限按型号查 Specification Guide。</p>
+<ol>
+<li>现象分流：看现状用 show 类命令；看历史用事件日志（show log events）与命令日志。完成标准：时间线成型</li>
+<li>调日志：按 appid/subapp 调级别（默认 info=6），需要远端留存配 syslog（最多 12 台）。完成标准：目标模块日志可见</li>
+<li>镜像取证：port-mirroring 会话把源口流量复制到分析口；同目的口多会话与双向都计入 MTP 索引。完成标准：分析口收到流量</li>
+<li>抓包定性：port-monitoring 单会话捕前 64 字节，pause/resume 控制，文件在 /flash/pmonitor.enc。完成标准：帧头部可读</li>
+<li>资源面：show health 看 CPU/内存趋势；RMON/sFlow 看端口统计与采样。完成标准：异常点定位</li>
+<li>收尾：关闭镜像/抓包会话，恢复日志级别，避免长期占用资源。完成标准：无残留会话</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>需要完整报文（应用层） → 抓包只存前 64 字节，改用镜像+外部抓包器</li>
+<li>镜像与抓包想同端口 → 互斥，二选一或换端口</li>
+<li>镜像会话数规划 → 双口径（新规格 4/旧口径 2，nr-01）：以 show port-mirroring 实测与 Specification Guide 为准，老设备按 2 规划</li>
+<li>command.log 想清空 → 启用期间不可删，先 disable 再处理（删除会连带丢历史）</li>
+<li>升级后验证版本 → 看 show microcode loaded，不要看 working（镜像进目录不等于已运行）</li>
+</ul>
+<p>输出契约：可定位问题的证据链（时间线/镜像或抓包文件/资源数据）+ 工具现场已恢复原状。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>镜像会话数两处口径（p249 vs p265）按 nr-01 处置：取 4 为新口径、以实测与规格指南为准</li>
+<li>LLDP 类邻居发现也属诊断视野，但其配置与语音场景归 LLDP 与 PoE 能力卡</li>
+<li>抓包文件 ENC（Network General Sniffer）格式，Wireshark 可识别；轮转或写满即停策略二选一（p251）</li>
+<li>sFlow Collector 为第三方软件（p258）；Agent IP 建议用 Loopback0（p360 口径）</li>
+<li>实验 show 输出取自 8.7.98.R03/8.10.9.R04 截图（nr-08），参数随版本可能漂移</li>
+<li>规格上限（镜像会话、抓包文件、syslog 台数在各型号的差值）查 Specification Guide</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.swl2.diagnostics · 来源：DT00XTE215EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniSwitch LAN Access Switching (Participant's Guide, Edition 23) | edition: Edition 23 | pages: 587 页 -->

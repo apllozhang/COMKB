@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Rainbow 成员全生命周期管理</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Rainbow for OmniPCX Enterprise</h2><p>Edition 12 · 314 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte003en/index.html">课程首页</a><a href="/courses/rainxte003en/digest.html">精华长文</a><a href="/courses/rainxte003en/overview.html">教书理解</a><a href="/courses/rainxte003en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte003en/skills/rxe-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte003en/skills/rxe-agent-onboarding.html">OXE 接入 Rainbow 与接入排障</a><a href="/courses/rainxte003en/skills/rxe-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte003en/skills/rxe-routing-rex.html">OXE 用户形态决策与远程延伸路由</a><a href="/courses/rainxte003en/skills/rxe-webrtc-gateway-deployment.html">WebRTC 网关部署与升级</a><a href="/courses/rainxte003en/skills/rxe-oxe-gateway-config.html">OXE 侧 WebRTC 网关配置九件套</a><a href="/courses/rainxte003en/skills/rxe-gateway-pool-sizing.html">共享 WebRTC 网关池与容量规划</a><a href="/courses/rainxte003en/skills/rxe-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte003en/skills/rxe-rcc-association.html">OXE 分机关联与 RCC 模式</a><a href="/courses/rainxte003en/skills/rxe-attendant-consoles.html">两套话务台（4059EE 与 Rainbow Attendant Console）</a><a href="/courses/rainxte003en/skills/rxe-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte003en/skills/rxe-network-readiness.html">Rainbow 网络就绪核查</a><a href="/courses/rainxte003en/skills/rxe-lab-pod-setup.html">RLAB 实验环境与 Pod 配置</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte003en/index.html">rainbow-oxe-integration（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte003en/index.html">RAINXTE003EN</a><span>/</span><span aria-current="page">Rainbow 成员全生命周期管理</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Rainbow 成员全生命周期管理</h1></div><dl><div><dt>Skill ID</dt><dd>rxe-member-lifecycle</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>Rainbow 成员全生命周期管理（开户、密码策略、宽限期、安全）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Via the email received, users will customize their password. (At least 12 characters and contain at least 1 uppercase, 1 number, and 1 special character)"（p97）
+"When you delete a user, his or her status becomes 'Suspended' for a period of 10 days (called the 'grace period')"（p103）
+"If you get an error message about the e-mail address you wish to use, please check that it is not already the identifier of a user deleted less than 10 days ago"（p97）</p>
+</blockquote>
+<p>出处：RAINXTE003EN p60-65, p94-105。</p>
+<h2>I — 自述</h2>
+<p>成员=邮箱身份，一人不能属两家公司；生命周期四段：</p>
+<ol>
+<li><strong>开户两法（实验主线）</strong>：手动创建（Members、Create，填登录名/密码/可见性，勾发 enrollment 邮件）与邮件邀请（Invitations 页签，可一次邀多人，账户保持 invited 直到接受）</li>
+<li><strong>批量两法（讲义级）</strong>：CSV 批量导入（SSO 场景密码字段留空）与 Azure AD 导入/同步（管理员须 Voice Enterprise 级，p96）</li>
+<li><strong>密码与安全</strong>：平台级密码策略 12+3 类字符（大写/数字/特殊字符各至少 1）；管理员改密会立即踢掉在线会话（防盗号应急手段）；TOTP 双因子推荐给管理员</li>
+<li><strong>删除与恢复</strong>：删除后账号 Suspended 10 天（grace period），可恢复或等永久删除；期内同邮箱不能重建</li>
+</ol>
+<p>宽限期行为对照（p97/p103）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th>账号状态</th>
+<th>恢复/重建后果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>删除后 10 天内</td>
+<td>Suspended</td>
+<td>可恢复；同邮箱不能建新用户（报占用错误）</td>
+</tr>
+<tr>
+<td>恢复时</td>
+<td>回落 Essential</td>
+<td>订阅已清空，需重配许可并重挂话机线</td>
+</tr>
+<tr>
+<td>10 天后</td>
+<td>永久删除</td>
+<td>邮箱身份释放，可重新开户</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>开户与协作测试实验</strong>（p60-65）：</p>
+<ol>
+<li>管理员登录 web.openrainbow.com，进 My company、Members、Create</li>
+<li>手动建 user1：填登录名（实验口径）与密码，Sign-in method 保持默认</li>
+<li>Visibility 保持 same as company（该公司按 private 管理）</li>
+<li>勾选发送 enrollment 邮件后保存，到培训邮箱核收（先查 SPAM）</li>
+<li>邀请建 user2：Invitations 页签、Invite、输入邮箱、Continue、OK</li>
+<li>用户侧点邀请邮件底部的 JOIN 按钮完成注册（不点开头链接）</li>
+<li>行为测试三项：用户间互打呼叫、共享屏幕、互发 IM，全部通过</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：批量开 Rainbow 账号；删人后邮箱建不了新号；恢复误删用户；密码策略是什么；改密后用户被踢线。</p>
+<p>语言信号：建用户 / 邀请 / invitation / CSV / Azure AD / 批量导入 / 删除 / 恢复 / 宽限期 / grace period / 密码策略 / password / suspended / 邮箱占用。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>订阅从哪来 → 公司体系与订阅能力</li>
+<li>绑定话机分机与验证通话 → 分机关联能力（路由卡）</li>
+<li>收不到验证邮件之外的登录故障 → 维护支持能力（路由卡）</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：公司已建且订阅池就位、成员清单（姓名/邮箱/订阅档）、认证方式（密码或 SSO）。邮箱身份有歧义 → 先与客户确认唯一归属。</p>
+<ol>
+<li>选开户法：单人用手动或邀请；批量用 CSV 或 Azure AD（核操作者 Voice Enterprise 级）。完成标准：开户路径确定</li>
+<li>手动建户：Members、Create，填登录名/密码/可见性/订阅。完成标准：成员出现在列表</li>
+<li>邀请建户：Invitations、Invite、输邮箱、确认。完成标准：用户接受后状态从 invited 变正式</li>
+<li>密码口径传递：12+3 类字符；SSO 场景 CSV 密码字段留空。完成标准：无弱密码开户</li>
+<li>删除操作：确认宽限期影响后执行。完成标准：账号进 Suspended 且工单注明 10 天窗口</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>同邮箱报"已占用" → 先查 10 天内是否删过人（宽限期占用），不要反复重试</li>
+<li>恢复用户后打不了电话 → 预期行为（回落 Essential），重新分订阅并重挂话机线</li>
+<li>疑似账号被冒用 → 管理员改密强制踢线，再走密码重置</li>
+<li>生产邮箱网关未放行平台发件地址 → 邀请邮件全数丢失，先协调客户邮件组</li>
+</ul>
+<p>输出契约：成员账户清单（含订阅与可见性）+ 宽限期/恢复操作记录 + 安全口径说明。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>CSV/Azure AD 批量在本书为讲义级（无分步实验）；样本文件与导入报告入口见 p96-98 讲义</li>
+<li>强制信息频道订阅、企业目录委托属公司管理面（公司体系与订阅能力覆盖）</li>
+<li>邀请邮件两坑（SPAM、JOIN 按钮）在实验环境尤甚；生产先确认邮件网关放行（n04）</li>
+<li>实验账号（cCpP 命名法）与培训邮箱、密码等环境值见 book/overview 环境区，均为实验口径，生产一律不用</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte003en/skills/rxe-company-subscription.html">Rainbow 公司体系与订阅开通</a></p><p class="source-page">能力 ID：cap.rxe.member-lifecycle · 来源：RAINXTE003EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Rainbow / OmniPCX Enterprise (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 314 页 -->

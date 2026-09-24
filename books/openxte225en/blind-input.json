@@ -1,0 +1,211 @@
+{
+ "code": "openxte225en",
+ "capability_catalog": [
+  {
+   "slug": "otm-dmz-security-channels",
+   "name": "远程接入架构与 DMZ 双边缘",
+   "description": "三类用户需求、DMZ 双边缘（反代管 Web 服务、OTSBC 管 SIP/媒体）、客户端×边缘组件用例矩阵（N.U./N.A. 语义）、DNS 内外分离与端口/NAT 规划口径；VPN 仅为技术替代"
+  },
+  {
+   "slug": "otm-certificate-pki",
+   "name": "证书策略与签发",
+   "description": "三来源选型（远程访问必须 CA 签发、通用证书被官方反对）、PKCS7/PKCS12 封装规则、通配符与专用证书布局、部署五步清单、OpenSSL 与 Windows CA 签发、SAN 核验与 CTL 联动"
+  },
+  {
+   "slug": "otm-ot-server-settings",
+   "name": "OpenTouch 服务器侧远程访问设置",
+   "description": "RP 申报四公共 URL（EVS 带 8016）、OTSBC 申报 5261/8061、DAS 规则按序且国家相关、ACS 会议专用 FQDN 与 rehost、证书 SAN 重签联动"
+  },
+  {
+   "slug": "otm-otsbc-deployment",
+   "name": "OTSBC 部署与向导配置",
+   "description": "OVF 上电、CLI 初始化（write 后 reload）、许可与 TLS 证书、Alcatel-Lucent Remote Users 向导七组参数、SIP 接口换证书、手工补 TCP 5060 与 iPhone 5265 声明"
+  },
+  {
+   "slug": "otm-reverse-proxy",
+   "name": "反向代理两路线部署与选型",
+   "description": "OTSBC 7.2+ 内嵌 RP（HTTP proxy 许可、RP 专用证书、模板 ini 十二处映射）与独立 Nginx（三份 conf+snippets 十一个变量）；OT 2.2 起双 conf 同改；LDAP 认证（Python 2、daemon 8888、内嵌需专用机器）"
+  },
+  {
+   "slug": "otm-otc-pc-modes",
+   "name": "OTC PC 远程办公两模式",
+   "description": "multi-devices 副设备（COS 振铃参数、506/507 前提并授权、DM 申报）与 Nomadic SIP（Ghost Z 池+SIP 设备池、1 并发占 1+1、双许可、切换测试）"
+  },
+  {
+   "slug": "otm-smartphone-provisioning",
+   "name": "OTC 智能手机开通",
+   "description": "Connection 用户全链：OXE 通用参数九项（RE DISA/DDI、自动替代、Ghost Z、速拨号范围、溢出定时器）、OT 侧参数与 5265、关联一次自动建对象矩阵、两处手工（判别器关联、COS 区域授权）、R2.6 单设备、App 安装"
+  },
+  {
+   "slug": "otm-iphone-apns",
+   "name": "iPhone+ APNS 推送专项",
+   "description": "APNS 推送唤醒与多次 SIP invite（UDP 强制、场外 TCP 由 kamailio-wasp 缓冲）、防火墙四端口 5223/2195/2196/443、SBC 5265 声明、APNS 证书年更 hotfix、组件维护命令"
+  },
+  {
+   "slug": "otm-client-access-profiles",
+   "name": "客户端远程接入两步法",
+   "description": "接入配置（公共 URL+凭证，各客户端入口）与路由档案激活；手机发起拨打永远本机发话、dial from 不影响；OTC Web 用会议公共 URL"
+  },
+  {
+   "slug": "otm-smartphone-modes",
+   "name": "智能手机连接模式与回落",
+   "description": "按数据连接五分场景（场内 WiFi/场外 WiFi/3G4G/无数据 DTMF 回落/Android 无 SIM）的功能矩阵；无 SIM 三项代价（回落/私人呼叫/短信）；有数据时的高级服务清单"
+  },
+  {
+   "slug": "otm-vmware-ovf",
+   "name": "VMware 虚机 OVF/OVA 部署",
+   "description": "web client（ESXi 6.5 口径）与 vSphere client（仅 ESXi 6.0 及以下）两路线；网络映射选 DMZ、磁盘 Thin；OVA 与 OVF 原理相同"
+  },
+  {
+   "slug": "otm-lab-dialtest",
+   "name": "实验环境与拨测验证",
+   "description": "RLAB/POD 认知基准、编号三层（DHCP 池/用户编号/模拟器变换）、拨测预期表（国内 10 位/规范 11 位/国际 13 位，核对落点与主叫显示）；全部实验口径不复用生产"
+  }
+ ],
+ "cases": [
+  {
+   "id": "should-dmz-01",
+   "prompt": "公司要让员工在家用电脑和手机正常接打电话，网络架构上要从哪几块准备起？"
+  },
+  {
+   "id": "should-dmz-02",
+   "prompt": "外部客户要用浏览器进我们的会议，他们走的通道和内部员工有什么区别，边缘要放什么组件？"
+  },
+  {
+   "id": "should-cert-01",
+   "prompt": "上远程接入，证书是自己搭一套签还是买 CA 的？装系统时默认那套通用的省事，能不能直接用？"
+  },
+  {
+   "id": "should-cert-02",
+   "prompt": "客户点会议邀请链接提示证书不对，我怀疑哪台服务器的证书缺了名字，怎么核实？"
+  },
+  {
+   "id": "should-otset-01",
+   "prompt": "客户端从外网登录要回连公司哪几个地址？这些地址要在系统哪里登记才会生效？"
+  },
+  {
+   "id": "should-otset-02",
+   "prompt": "我们在德国部署，文档里那套会议号码变换规则是按法国写的，能不能直接抄？"
+  },
+  {
+   "id": "should-sbc-01",
+   "prompt": "会话边界控制器的虚机包刚下载好，从导入虚机到远端客户端能注册上来，中间要过哪几步？"
+  },
+  {
+   "id": "should-sbc-02",
+   "prompt": "向导跑完了，同事说 OXE 那条 SIP 链路少了个 TCP 承载，这要在哪补？"
+  },
+  {
+   "id": "should-rp-01",
+   "prompt": "客户已经有边界控制器了，网页服务这块的反代是塞进边界控制器里还是单独装台 Nginx？怎么取舍？"
+  },
+  {
+   "id": "should-rp-02",
+   "prompt": "Nginx 反代装好后，会议里共享桌面死活用不了，配置文件是不是漏改了哪份？"
+  },
+  {
+   "id": "should-pc-01",
+   "prompt": "有员工居家时想用电脑接电话，但工位上的话机也得照常响铃，这个怎么给他配？"
+  },
+  {
+   "id": "should-pc-02",
+   "prompt": "十五个人可能同时把自己的话机切到电脑软话机上，系统资源得预留多少、怎么算？"
+  },
+  {
+   "id": "should-sp-01",
+   "prompt": "给销售配了工作手机并绑到系统里，我接下来要逐项检查哪些对象是不是自动生成对了？"
+  },
+  {
+   "id": "should-sp-02",
+   "prompt": "这个用户只有手机没有座机，系统是 R2.6，开户时怎么配最省事？"
+  },
+  {
+   "id": "should-iph-01",
+   "prompt": "iPhone 锁屏时来话只弹一条通知、点开却没铃声接不起来，这条推送链路按什么顺序查？"
+  },
+  {
+   "id": "should-iph-02",
+   "prompt": "防火墙团队要一份 iPhone 话音相关的对外放行清单，要开哪些端口、什么协议？"
+  },
+  {
+   "id": "should-client-01",
+   "prompt": "员工手机上装好了客户端，第一次打开要填哪几个东西才能登进公司系统？"
+  },
+  {
+   "id": "should-client-02",
+   "prompt": "用户明明设了从座机拨出，可在手机上点联系人还是用手机号打出去，是不是档案没保存上？"
+  },
+  {
+   "id": "should-mode-01",
+   "prompt": "用户出差的地方没有数据网络，这时候他的工作手机上还能干什么？"
+  },
+  {
+   "id": "should-mode-02",
+   "prompt": "想给车间人员配不带 SIM 卡的安卓手机当话机，这样会有什么功能用不了？"
+  },
+  {
+   "id": "should-vm-01",
+   "prompt": "现场宿主机是 ESXi 6.5，我该用什么工具把 OVF 包导进去？"
+  },
+  {
+   "id": "should-vm-02",
+   "prompt": "导入反代虚机时让你选网络，这一步应该挂到哪张网、磁盘给多少合适？"
+  },
+  {
+   "id": "should-lab-01",
+   "prompt": "培训环境里拨一个 0044 开头的 13 位号码，应该落到哪个分机、对方屏幕上显示的来电是多少？"
+  },
+  {
+   "id": "should-lab-02",
+   "prompt": "实验里把话机切到电脑模式做完了，怎么向讲师证明这个切换行为是成功的？"
+  },
+  {
+   "id": "bait-dmz-01",
+   "prompt": "客户坚持要走 VPN 隧道方案，AES 加密算法和分流策略帮我们设计一下"
+  },
+  {
+   "id": "bait-cert-01",
+   "prompt": "企业 PKI 的证书模板权限和自动注册策略应该怎么规划？"
+  },
+  {
+   "id": "bait-sbc-01",
+   "prompt": "两千个并发用户的站点，边界控制器要部署几台、CAC 阈值给多少？"
+  },
+  {
+   "id": "bait-pc-01",
+   "prompt": "用户在设置里把当前设备切到电脑模式之后，他桌上那台话机还响不响？"
+  },
+  {
+   "id": "bait-rp-01",
+   "prompt": "边界控制器配置向导里 Application 下拉选哪项、模板名填什么？"
+  },
+  {
+   "id": "bait-sp-01",
+   "prompt": "iPhone 装好了但后台完全收不到来电提醒，先从哪里查起？"
+  },
+  {
+   "id": "bait-otset-01",
+   "prompt": "Nginx 里那个公共域名和 DNS 解析地址分别在哪份配置文件改？"
+  },
+  {
+   "id": "bait-mode-01",
+   "prompt": "用户手机没流量时打不出电话，是不是我们系统参数没配对，帮我把开通参数再过一遍？"
+  },
+  {
+   "id": "edge-version-01",
+   "prompt": "我们的系统还是 R2.5，能直接把远程分机配成用户唯一的设备吗？"
+  },
+  {
+   "id": "edge-nomadic-01",
+   "prompt": "二十五个人会同时游牧，Ghost Z 和 SIP 设备各建多少？会不会有别的瓶颈？"
+  },
+  {
+   "id": "edge-dialfrom-01",
+   "prompt": "把路由档案里的拨出设备改成电脑后，在手机上拨号是不是就自动从电脑出去了？"
+  },
+  {
+   "id": "edge-labcred-01",
+   "prompt": "实验手册里那些账号密码和网段，我们内网演练能不能原样照搬到生产环境？"
+  }
+ ]
+}

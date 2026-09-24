@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>共享 WebRTC 网关池与容量规划</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Rainbow for OmniPCX Enterprise</h2><p>Edition 12 · 314 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte003en/index.html">课程首页</a><a href="/courses/rainxte003en/digest.html">精华长文</a><a href="/courses/rainxte003en/overview.html">教书理解</a><a href="/courses/rainxte003en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte003en/skills/rxe-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte003en/skills/rxe-agent-onboarding.html">OXE 接入 Rainbow 与接入排障</a><a href="/courses/rainxte003en/skills/rxe-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte003en/skills/rxe-routing-rex.html">OXE 用户形态决策与远程延伸路由</a><a href="/courses/rainxte003en/skills/rxe-webrtc-gateway-deployment.html">WebRTC 网关部署与升级</a><a href="/courses/rainxte003en/skills/rxe-oxe-gateway-config.html">OXE 侧 WebRTC 网关配置九件套</a><a href="/courses/rainxte003en/skills/rxe-gateway-pool-sizing.html">共享 WebRTC 网关池与容量规划</a><a href="/courses/rainxte003en/skills/rxe-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte003en/skills/rxe-rcc-association.html">OXE 分机关联与 RCC 模式</a><a href="/courses/rainxte003en/skills/rxe-attendant-consoles.html">两套话务台（4059EE 与 Rainbow Attendant Console）</a><a href="/courses/rainxte003en/skills/rxe-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte003en/skills/rxe-network-readiness.html">Rainbow 网络就绪核查</a><a href="/courses/rainxte003en/skills/rxe-lab-pod-setup.html">RLAB 实验环境与 Pod 配置</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte003en/index.html">rainbow-oxe-integration（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte003en/index.html">RAINXTE003EN</a><span>/</span><span aria-current="page">共享 WebRTC 网关池与容量规划</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>共享 WebRTC 网关池与容量规划</h1></div><dl><div><dt>Skill ID</dt><dd>rxe-gateway-pool-sizing</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>共享 WebRTC 网关池与容量规划（三配置对比、406 溢出、TBE067 sizing）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Allows multiple OXEs to share the same WebRTC gateway pool • Increase capacity for simultaneous calls • Resilience in the event of a WebRTC failure"（p147）
+"If the traffic limit is reached, the gateway responds to a new request with a SIP message '406 - Not Acceptable'. As a result, the OXE will overflow onto the next ARS route"（p149）
+"If this parameter is empty, the SIP trunk limit will determine the overflow."（p149）
+"A WebRTC gateway supports up to 400 simultaneous streams."（p151）</p>
+</blockquote>
+<p>出处：RAINXTE003EN p146-152。</p>
+<h2>I — 自述</h2>
+<p>规模化时网关怎么摆，三种配置（p146-148）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>配置</th>
+<th>结构</th>
+<th>取舍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>每 OXE 网关复制</td>
+<td>每个 OXE 挂自己的网关</td>
+<td>抗故障+增并发但成本高；书中示例：每 OXE 用户数 ≥5000 才划算</td>
+</tr>
+<tr>
+<td>共享 WebRTC 池（推荐）</td>
+<td>多 OXE 共享网关池，按 OXE 集群推进</td>
+<td>抗故障+增并发+省成本；代价是 ARS 管理复杂度随节点数上升</td>
+</tr>
+<tr>
+<td>OXE 网络</td>
+<td>多节点（高低流量混合）池化网关组</td>
+<td>面向多站点组网场景</td>
+</tr>
+</tbody>
+</table></div>
+<p>溢出机制（p149）：</p>
+<ol>
+<li>每网关最大并发流在 Rainbow 界面（Communications、Equipments、编辑该 PBX）设定</li>
+<li>满载时网关对新请求回 SIP 406 Not Acceptable，OXE 依 ARS 表声明顺序溢出到下一条路由</li>
+<li>该参数留空时溢出由 SIP trunk 限制决定——池化弹性会悄悄失效，交付核查必查项（n27）</li>
+<li>硬要求：每 OXE 节点对每网关一条 SIP trunk/外部 SIP 网关，各节点 ARS 管理需相似</li>
+</ol>
+<p>容量口径（p151）：</p>
+<ol>
+<li>单网关上限 400 并发流；用户数与并发数是两个量纲，报容量先声明口径</li>
+<li>TBE067 Excel 工具四输入：OXE 用户总数、持 Rainbow 客户端用户数、Rainbow 客户端使用率、客户端间直呼占比</li>
+<li>工具输出所需并发通道数，再据此推算 OXE 压缩器数量</li>
+<li>工具适用 OXE 101.0 MD3 / WebRTC 3.x 起（版本口径见 needs-review nr-03）</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>sizing 评估流程</strong>（p151，讲义章无分步实验）：</p>
+<ol>
+<li>取 TBE067_Rainbow - WebRTC Gateway Pres&amp;Sizing 工具包（MyPortal/ALE 内部链接）</li>
+<li>输入四个关键值：用户总数、Rainbow 用户数、使用率、直呼占比</li>
+<li>流量模型假设可按站点调整（工具内可改）</li>
+<li>读出并发通道数，与单网关 400 并发上限对照定网关数量</li>
+<li>由通道数推算 OXE 压缩器数量并核对硬件资源</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：多台 OXE 共用网关；网关池怎么扩容；容量与通道数怎么报；ARS 溢出怎么配；网关满载后第二路由不生效。</p>
+<p>语言信号：共享池 / shared pool / 网关复制 / duplication / OXE cluster / 集群 / 406 / 溢出 / overflow / ARS / 容量 / capacity / sizing / TBE067 / 400 并发 / 通道 / channels / 压缩器。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>网关本身安装升级 → 网关部署能力</li>
+<li>溢出路由的 OXE 侧逐字段配置 → OXE 侧网关配置能力</li>
+<li>网络前提与带宽核查 → 网络就绪能力（路由卡）</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OXE 节点清单与用户分布、Rainbow 用户画像（可支撑四输入取值）、话务假设来源、网关资源预算。话务画像拿不到 → 判停，先与客户共同定假设再算。</p>
+<ol>
+<li>选架构：默认共享池按集群推进；仅超高流量（示例 ≥5000 用户/OXE）评估复制。完成标准：架构决策成文</li>
+<li>算容量：TBE067 填四输入得通道数，对照 400 上限定网关数。完成标准：通道数与网关数有依据</li>
+<li>定溢出参数：Rainbow 端逐网关填最大并发流，不留空。完成标准：406 溢出链生效</li>
+<li>核 trunk 配比：每 OXE 节点对每网关一条 SIP trunk。完成标准：配比核查通过</li>
+<li>验证：压测或人工满载触发 406，确认溢出到 ARS 下一条路由。完成标准：溢出行为实测成立</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>溢出参数为空 → 停，SIP trunk 限制接管、池化弹性失效（n27），填值并记入变更单</li>
+<li>节点间 ARS 管理差异大 → 停，先统一 ARS 再池化，否则溢出顺序不可预期</li>
+<li>通道需求超 400 → 停，加网关而非调参（单网关硬上限）</li>
+<li>话务假设无来源 → 停，不虚构容量结论；标注假设并让客户确认</li>
+</ul>
+<p>输出契约：网关池架构决策 + TBE067 估算记录（含假设）+ 溢出参数与 trunk 配比核查单。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>TBE067 工具本体与流量建模假设在书外（MyPortal/ALE 内部链接，p151）；本卡只有流程与口径</li>
+<li>图示示例值 400 为实验口径示例；400 是单网关上限，不是站点容量</li>
+<li>详细池化配置在 TC2462（p149 指向）；书内无逐字段池化实验</li>
+<li>OXE 网络架构（ABC/FABC/F 节点）书中仅概述，多节点组网细节在书外</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte003en/skills/rxe-webrtc-gateway-deployment.html">WebRTC 网关部署与升级</a>、<a href="/courses/rainxte003en/skills/rxe-network-readiness.html">Rainbow 网络就绪核查</a></p><p class="source-page">能力 ID：cap.rxe.gateway-pool-sizing · 来源：RAINXTE003EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Rainbow / OmniPCX Enterprise (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 314 页 -->

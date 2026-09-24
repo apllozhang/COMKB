@@ -1,0 +1,42 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\ovdir-auto-creation.md": "12c0add3e07378f6b2a9a7ee934cf85ff30299115b40d693ee89b3a504a2d677",
+    "references\\capabilities\\ovdir-click-to-call.md": "d8b08aace66a8325e476874ed11d20380e90c373bb06840dd2796dcdfadd8fa5",
+    "references\\capabilities\\ovdir-client-dictionary.md": "47ec33af953412a0a086f3d63d486c741ef78fbdfd2f3bf0b6a696fc569c009c",
+    "references\\capabilities\\ovdir-confidentiality.md": "b926c9164982efa24a2207a137a79537bff9df2e13aaf6d7c41313d3f115e8f3",
+    "references\\capabilities\\ovdir-domains-delegation.md": "ce226b5234b7b5cacfbd7a218bb887652a1fd19151f76a53acb49c52cb90f2e2",
+    "references\\capabilities\\ovdir-ldif-tools.md": "b89c116c3c761caad300bbd07aa865201bd025ac16f6f8320f38bcfc73b76061",
+    "references\\capabilities\\ovdir-links-rename.md": "cc022bb0c878511bfc8784d0ea653d000a3f2fe1936e1532dbd63dad6eee3be1",
+    "references\\capabilities\\ovdir-msad-azure-pipelines.md": "548e1c0edf8efbf63b8d36f022cd5ce4f600139c1569daef77402e93afe5aa14",
+    "references\\capabilities\\ovdir-msad-plugin.md": "dc280dc205e17c438905e7236adbd9e185201c20c46f23eb543cf59b42c3b98a",
+    "references\\capabilities\\ovdir-oxe-sync-ldap.md": "c464cff4ee2bc42e9299fb920da24c660ebd7fc09c9261aaa0faf47cb4576235",
+    "references\\capabilities\\ovdir-platform-basics.md": "6a86ffdf4d4492c4514fbb7c80e35a54b43e2c617942038128a50dc5eb03dea6",
+    "references\\capabilities\\ovdir-replication.md": "5269d3e600c925b1e51b96eaad75ba84db44cc8a8c424225ed2d2cf2e99fa9ef",
+    "references\\capability-index.md": "3863ef53d1b17e5162169be2ff5010e5501a43d5655e81b5bca769237d1e6cf7",
+    "references\\cheatsheet.md": "e5623c75059343ee1d91daf3f362f43a23cbf2f75411a0d0fb790abb846a93b2",
+    "references\\glossary.md": "591b90c949a8486447251ea3647d6ba1a8a3663734fdb4f931124829c6c8865c",
+    "references\\overview.md": "d3dd79f23be2b69920b9cc778800f76bb40086ee3f01ab437400fc35fd1ef0f1",
+    "SKILL.md": "5528e378b72513cd2412d353532637ed3e96fc414b3fb6f37076357722fa25c1"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.omnivista-directory",
+  "bundle_sha256": "53b8ca6d8ad99873b30aa06fd1dc05ab7a214ab868d50e87a4cec73c64312997",
+  "variant": "single",
+  "run_id": "run-20260924-195959-8200e2",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 12,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

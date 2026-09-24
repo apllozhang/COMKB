@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>多设备用户与 Twinset</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Advanced</h2><p>— · 543 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte401en/index.html">课程首页</a><a href="/courses/entpxte401en/digest.html">精华长文</a><a href="/courses/entpxte401en/overview.html">教书理解</a><a href="/courses/entpxte401en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte401en/skills/entadv-ssh-trust-foundation.html">SSH 免密分发体系</a><a href="/courses/entpxte401en/skills/entadv-cs-redundancy.html">CS 冗余部署与切换维护</a><a href="/courses/entpxte401en/skills/entadv-ip-domain-pcs.html">IP 域与 PCS 域级生存性</a><a href="/courses/entpxte401en/skills/entadv-overflow-rerouting.html">公私网双向溢出与重路由</a><a href="/courses/entpxte401en/skills/entadv-direct-ip-link.html">Direct IP Link 全 IP 组网</a><a href="/courses/entpxte401en/skills/entadv-audit-broadcast.html">Audit 与 Broadcast 数据一致性</a><a href="/courses/entpxte401en/skills/entadv-multiline-supervision.html">多线监督与经理助理组</a><a href="/courses/entpxte401en/skills/entadv-hunting-pickup-speeddial.html">寻线代接组与速拨编号体系</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte401en/skills/entadv-desk-sharing.html">办公桌共享（DSS/DSU）</a><a href="/courses/entpxte401en/skills/entadv-multi-device.html">多设备用户与 Twinset</a><a href="/courses/entpxte401en/skills/entadv-lab-pod-baseline.html">实验/交付前置环境基线</a><a href="/courses/entpxte401en/skills/entadv-cli-toolbox.html">维护命令与事件/许可速查</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte401en/index.html">oxe-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte401en/index.html">ENTPXTE401EN</a><span>/</span><span aria-current="page">多设备用户与 Twinset</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>多设备用户与 Twinset</h1></div><dl><div><dt>Skill ID</dt><dd>entadv-multi-device</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>多设备用户与 Twinset（主副站、状态语义、快速移机）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The twinset feature (also called tandem) is a logical association between two sets: a main set and a secondary set … The number of sets can be extended up to 4 in a multi device user configuration"（p353）
+"ON CREATION OF THE MULTI DEVICE ASSOCIATION, ALL DATA (CALL FORWARDINGS, CALLBACKS, MESSAGE DEPOSITS, ETC.) ARE CANCELLED ON THE SETS."（p366）
+"To perform a rapid call shift, the set which is in idle state dials the Twinset Get Call prefix … the remote party do not detect the change"（p363）</p>
+</blockquote>
+<p>出处：ENTPXTE401EN p352-371。</p>
+<h2>I — 自述</h2>
+<p>一号多机：主站+至多 4 个副站的逻辑关联（twinset 为 2 台的特例/旧称），主站号即多设备号；主副都必须 multiline。</p>
+<ol>
+<li><strong>机型矩阵</strong>：主站 NOE IP/TDM/IPDSP/SIP(SEPLOS)/DSU；副站另可 DECT、MIPT、REX（每多设备仅 1 台 DECT、1 个 REX）；禁用模拟/S0/话务台/ACD 分配坐席/寻线组成员/夜转/客房</li>
+<li><strong>呼叫行为</strong>：主副号同响先接停响；副号只响副站；忙=主站全线忙；Partial busy=True 则任一话机忙即算忙</li>
+<li><strong>监督降级</strong>：Specific supervision=True 后监督变为状态监督（按键显示 MAIN/SECONDARY/TOTAL BUSY，不再振铃提示）</li>
+<li><strong>REX 与振铃控制</strong>：REX 振铃可用激活/停用前缀（示例 651）；Ring Secondary REX in Parallel 控制主为 IPDSP 时副 REX 是否同响（默认 True）</li>
+<li><strong>主站退服三参数</strong>：Forward if set OOS（COS）+ Overflow to sec tandem if main OOS（系统参数）+ Ring all its secondar. if main oos（COS，生效依赖前两项）；参数在主站退服期间修改不生效，要等恢复后再退服才按新值走</li>
+<li><strong>快速移机</strong>：空闲侧拨 Twinset Get Call 前缀（示例 652，Local features+COS），通话无感迁移（对端听不出、屏显不变）</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>配置与验证</strong>（p365-371，实验口径号码）：</p>
+<ol>
+<li>前置清理：主站退出办公桌共享角色、删相关键；确认两机各有多把主号 multiline 键</li>
+<li>主站声明：Users/主号 → Tandem Directory Number=第 1 副站号、Main set in the tandem=True、Attached multi device 最多再加 3 台</li>
+<li>同页配 Partial busy（默认 False）/Ringing in partial busy（默认 Long）/Specific supervision（默认 False）</li>
+<li>副站核对：自动显示 Tandem DN 与 Main set=False</li>
+<li>建快速移机前缀（示例 652）+COS 放行；呼入接听后另一空闲侧拨 652 验证无感迁移</li>
+<li>主站退服演练：配三参数后断主站，验证来话转副站/副站同响</li>
+<li>核验：zdpost d 主号 看 multi_device_main/tandem_mcdu/tandem_principal 等字段</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：办公+居家双机；DECT+话机组合；"手机化办公但保留话机号"；快速移机（会议室接一半挪工位）；主站故障时的来话兜底。</p>
+<p>语言信号：multi device / twinset / tandem / 主站 / 副站 / secondary set / rapid call shift / Twinset Get Call / 652 / partial busy / specific supervision / REX / 651 / 主站退服。</p>
+<p>与相邻能力区分：工位漫游（人动号不动）→ desk-sharing（路由卡）；监督键本身 → 多线监督能力；副站装机动(DECT/REX)属 Starter 装机域。</p>
+<h2>S — 现场症状（工单语言）</h2>
+<p>下列说法命中本能力时优先打开本页；与「A2 未来触发」配套使用。</p>
+<ul><li>Twinset 双机不同振或身份错位</li><li>多设备用户有一端无业务</li></ul>
+
+<h2>E — 可执行步骤</h2>
+<p>输入契约：机型清单（主/副站类型与限制）、用户数据备份（关联会清数据）、前缀与 COS。目标机型在禁用清单 → 判停。</p>
+<ol>
+<li>备份与前置：记录两机现有呼转/回叫/留言；确认 multiline 键位。完成标准：可回退、键位就绪</li>
+<li>声明关联：主站填 Tandem DN/Attached multi device（合计至多 4 副）。完成标准：副站侧自动回显关联</li>
+<li>状态与振铃：按需求配 Partial busy/Ringing/Specific supervision/REX 振铃参数。完成标准：行为实测符合</li>
+<li>快速移机：建 Get Call 前缀+COS 放行+实测无感迁移。完成标准：移机中对端无感知</li>
+<li>退服兜底：三参数联动配置并演练。完成标准：主站退服后来话按预期到副站</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>存量用户改造（如从办公桌共享转多设备）→ 停，先做步骤 1 备份（关联是破坏性操作）</li>
+<li>想配第 2 台 DECT 或第 2 个 REX → 硬限制各 1，换其他副站类型</li>
+<li>主站退服期间改三参数"没生效" → 机制如此（冻结到下次退服），不是配置丢失</li>
+<li>副站数据想单独改 → 复制到副站的数据不可再改，改主站</li>
+</ul>
+<p>输出契约：生效的多设备关联（zdpost 证据）+ 移机/退服演练记录 + 用户数据变更说明。</p>
+<h2>V — 验收与回退</h2>
+<p><strong>验收（DoD，全部满足才收工）</strong></p>
+<ul><li>双设备同振/选路符合 Twinset 策略</li><li>单端故障不影响另一端注册</li></ul>
+<p><strong>回退 / 判停</strong></p>
+<ul><li>绑定错误：解除 Twinset 绑定，单机恢复后再绑定</li></ul>
+
+<h2>B — 边界</h2>
+<ul>
+<li>关联创建清空两机全部数据且复制数据不可改（p366 大写警告）——破坏性操作</li>
+<li>副站静音振铃仅 IP/TDM NOE 支持（DECT/SIP/REX 不适用，p359）</li>
+<li>每多设备限 1 台 DECT、1 个 REX；WBM 上第 1 副站用 Tandem DN 字段、其余走 Attached（p354/p367）</li>
+<li>前缀 651/652 为书内示例值，现场以 Prefix Plan 实查为准</li>
+<li>具体监督降级行为与多线监督键的联动详见多线监督能力卡</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte401en/skills/entadv-desk-sharing.html">办公桌共享（DSS/DSU）</a>、<a href="/courses/entpxte401en/skills/entadv-multiline-supervision.html">多线监督与经理助理组</a></p><p class="source-page">能力 ID：cap.entadv.multi-device · 来源：ENTPXTE401EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Advanced (Participant's Guide, Edition 13) | edition: — | pages: 543 页 -->

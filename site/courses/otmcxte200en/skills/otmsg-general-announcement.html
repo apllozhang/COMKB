@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>企业广播 General Announcement</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch Message Center · Starter</h2><p>Edition 08 · 259 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otmcxte200en/index.html">课程首页</a><a href="/courses/otmcxte200en/digest.html">精华长文</a><a href="/courses/otmcxte200en/overview.html">教书理解</a><a href="/courses/otmcxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otmcxte200en/skills/otmsg-install-site-setup.html">OTMC 服务器安装与站点配置</a><a href="/courses/otmcxte200en/skills/otmsg-license-management.html">FlexLM 许可证体系部署与更换</a><a href="/courses/otmcxte200en/skills/otmsg-declaration-sync.html">OXE/OTMC 双向声明进 8770 与同步</a><a href="/courses/otmcxte200en/skills/otmsg-sip-trunk-provisioning.html">OXE 侧 SIP 对接 OTMC</a><a href="/courses/otmcxte200en/skills/otmsg-user-mailbox-provisioning.html">Connection 用户与语音邮箱交付</a><a href="/courses/otmcxte200en/skills/otmsg-mailbox-profiles.html">语音邮箱 profile 定制与问候语管理</a><a href="/courses/otmcxte200en/skills/otmsg-notification-smtp-sms.html">SMTP/SMS 通知部署与排障</a><a href="/courses/otmcxte200en/skills/otmsg-backup-statistics.html">OpenTouch 备份恢复与语音信箱统计</a><p class="course-nav-group">路由能力</p><a href="/courses/otmcxte200en/skills/otmsg-product-positioning.html">OTMC 产品定位与部署形态</a><a href="/courses/otmcxte200en/skills/otmsg-web-portal.html">用户自助门户 My Profile 与 MyMessaging</a><a href="/courses/otmcxte200en/skills/otmsg-imap-access.html">IMAP 客户端访问语音邮箱</a><a href="/courses/otmcxte200en/skills/otmsg-general-announcement.html">企业广播 General Announcement</a><p class="course-nav-group">已安装技能</p><a href="/courses/otmcxte200en/index.html">ot-message-center（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otmcxte200en/index.html">OTMCXTE200EN</a><span>/</span><span aria-current="page">企业广播 General Announcement</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>企业广播 General Announcement</h1></div><dl><div><dt>Skill ID</dt><dd>otmsg-general-announcement</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>企业广播 General Announcement（播报场景/TUI 录制/wav 部署）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Only one general announcement can be recorded at a time. • Any new recording will overwrite the previous one. • Max duration: 5 minutes"（p223）
+"The name must be 'general_announcement.wav' • Format: CCITT A-law 8bits 8kHz mono"（p223）
+"3 choices are available (one of the 4 existing choices is not more used: on AA)."（p225）</p>
+</blockquote>
+<p>出处：OTMCXTE200EN p210-227（c11、f22、p21、n18/n19/n20 归并）。</p>
+<h2>I — 自述</h2>
+<p>general announcement 是在留言落箱与信箱查询前播放的公司级公告，四要素：</p>
+<ol>
+<li><strong>播报场景三类（可多选）</strong>：外呼留言落箱、内呼留言落箱、信箱查询进菜单前；由管理员在 TUI global configuration 勾选。第四项 "arrive on AA" 是 OT 服务器早期内嵌自动话务员时留下的功能，外置 VAA 方案下无效，不要勾</li>
+<li><strong>录制两法</strong>：wav 文件（音质最佳，适合品牌声音；改名 general_announcement.wav、格式 CCITT A-law 8bits 8kHz mono、传到指定目录即启用）或任意话机 TUI 录制（灵活，适合常换）</li>
+<li><strong>用户权限</strong>：勾 "User has right to manage the general announcement" 后，授权用户经 TUI 增强主菜单选项 6 进子菜单——1 试听 / 2 录制 / 3 停用；录制或上传后自动激活</li>
+<li><strong>硬限制</strong>：同时仅一条、新录覆盖旧录、最长 5 分钟、仅对支持 wav 文件的语言开放</li>
+</ol>
+<p>wav 存放路径书中两处口径：p223 写 /var/data/general_announcement、p227 写 /var/data/ics-group/general_announcement（见 nr-04）——落地以现场系统实际目录为准。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>广播部署实验</strong>（c11）：</p>
+<ol>
+<li>定播报类型（仅管理员）：TUI global configuration 勾场景（实验任务配"信箱查询时播放"；勿选已废弃的 AA 项）</li>
+<li>授权用户：OT configuration 里选用户勾 "User has right to manage the general announcement"</li>
+<li>TUI 录制验证：授权用户话机登录信箱，进增强主菜单选 6，子菜单 2 录制指定文案后自动激活；子菜单 1 试听、3 停用</li>
+<li>wav 方式：取格式正确的 wav（CCITT A-law 8bits 8kHz mono），改名 general_announcement.wav 传入指定目录（路径按 nr-04 现场核实），文件就位即启用；停用为删文件或走 TUI</li>
+<li>复测：按所配场景呼叫/查询，公告先于问候语/信箱菜单播放</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户要品牌彩铃式公告；"换公告/临时下线公告"；"不同部门不同公告"的需求评估；wav 传上去没生效。</p>
+<p>语言信号：general announcement / 企业广播 / 公告 / announcement / general_announcement.wav / TUI 菜单 / 录音 / 播报 / 落箱 / 查询前播放。</p>
+<p>与相邻能力区分：用户个性化问候语（standard/personal/absence/alternative）→ otmsg-mailbox-profiles；信箱与 TUI 密码前置 → otmsg-user-mailbox-provisioning。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：播报场景与文案经客户确认；wav 素材（录音棚口径）或现场话机录制。</p>
+<ol>
+<li>定场景与授权：管理员勾播报类型、给指定用户授权。完成标准：配置在册</li>
+<li>落地公告：TUI 录制或 wav 部署（格式/改名/目录三查）。完成标准：公告激活</li>
+<li>行为复测：按所配场景呼叫/查询核对播放时序。完成标准：先于问候/菜单播放</li>
+<li>交付说明：单条/覆盖/5 分钟限制书面告知。完成标准：期望管理到位</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户要"多套公告按部门/季节轮换" → 硬限制是单条+覆盖，功能不覆盖该需求（n20），谈替代方案（多 profile 问候语/多站点，书中未展开）</li>
+<li>wav 传了没生效 → 依次核对格式（CCITT A-law 8bits 8kHz mono）、文件名、目录（两处口径现场 ls 核实，n18/nr-04）</li>
+<li>勾了 arrive on AA 没效果 → 该项已废弃，外置 VAA 下无效（n19）</li>
+</ul>
+<p>输出契约：生效的企业广播（场景/权限/素材口径记录）+ 变更与停用操作指引。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>专业录音制作（录音棚产线）在书外；"仅对支持 wav 文件的语言开放"限制（p223）</li>
+<li>VAA 缩写书中未展开；AA/VAA 的配置不属于本书范围</li>
+<li>存放路径 p223 与 p227 不一致（nr-04），以现场实际目录为准，不按单一页码硬记</li>
+<li>实验录制文案（"Welcome to OpenTouch training session"）为课堂口径</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otmcxte200en/skills/otmsg-user-mailbox-provisioning.html">Connection 用户与语音邮箱交付</a></p><p class="source-page">能力 ID：cap.otmsg.general-announcement · 来源：OTMCXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch Message Center Starter (Participant's Guide, Issue 08) | edition: Edition 08 | pages: 259 页 -->

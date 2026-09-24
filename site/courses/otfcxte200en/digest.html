@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>整理摘要 · OTFCXTE200EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch Fax Center · Starter</h2><p>Edition 04 · 233 页 · 文档整理入库（11 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otfcxte200en/index.html">课程首页</a><a href="/courses/otfcxte200en/digest.html">精华长文</a><a href="/courses/otfcxte200en/overview.html">教书理解</a><a href="/courses/otfcxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otfcxte200en/skills/otfax-installation-ftw.html">OTFC 首次交付（宿主准备、安装、FTW、许可）</a><a href="/courses/otfcxte200en/skills/otfax-sip-channel-integration.html">OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）</a><a href="/courses/otfcxte200en/skills/otfax-mail-exchange-integration.html">OTFC 邮件与 Exchange 集成（SMTP 网关、FAX 连接器、通知排障）</a><a href="/courses/otfcxte200en/skills/otfax-user-administration.html">OTFC 用户与管理员管理（双用户源、CSV、两级管理员）</a><a href="/courses/otfcxte200en/skills/otfax-profile-policy.html">OTFC Profile 策略与电话簿（限制组、呼号限制、通知 Profile、LDAP 电话簿）</a><a href="/courses/otfcxte200en/skills/otfax-directory-routing.html">OTFC 高级目录集成与来传真路由（LDAP、Lookup、NT 免密、路由表、DTMF、Modification）</a><a href="/courses/otfcxte200en/skills/otfax-services-operations.html">OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）</a><a href="/courses/otfcxte200en/skills/otfax-backup-upgrade.html">OTFC 备份、恢复、升级与删除策略（三数据域、五步升级法、零保留）</a><p class="course-nav-group">路由能力</p><a href="/courses/otfcxte200en/skills/otfax-client-coversheet.html">OTFC 客户端部署与封页定制（四件套、Web Client、GPO、封页五步）</a><a href="/courses/otfcxte200en/skills/otfax-solution-planning.html">OTFC 方案评估与部署规划（容量协议合规、架构拓扑、支持矩阵）</a><a href="/courses/otfcxte200en/skills/otfax-reports-monitoring.html">OTFC 报表与监控（31 报表、BIRT、SNMP V2 陷阱）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otfcxte200en/index.html">ot-fax-center（11 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otfcxte200en/index.html">OTFCXTE200EN</a><span>/</span><span aria-current="page">整理摘要</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">DIGEST</p><h1>整理摘要 — 全书精华</h1></div></header><article class="markdown-body"><h1>DIGEST — OpenTouch Fax Center 精华长文</h1>
+<blockquote>
+<p>源：OTFCXTE200EN Edition 04（233 页）· 文档整理入库 · 2026-09-23
+定位：10 分钟建立 OTFC 传真服务器交付与运维的全局认知；操作细节按需查 11 张能力卡。</p>
+</blockquote>
+<h2>一、这套东西是什么</h2>
+<p>OTFC（OpenTouch Fax Center）是 ALE 的<strong>纯软件 FoIP 传真服务器</strong>：装在一台专用 Windows 服务器或虚机上，旁边挨着 OmniPCX Enterprise（OXE）语音网，话路走 SIP/T.38（或 G.711 透传），邮件走 SMTP——硬件无关、无传真板卡。</p>
+<p>三个数字先记住：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>数字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>15000 用户 / 30 端口</td>
+<td>单专用服务器容量上限</td>
+</tr>
+<tr>
+<td>T.38 14.4k / G.711 33.8k</td>
+<td>两种传真传输路径的速率口径</td>
+</tr>
+<tr>
+<td>12 项 / 25 / 5360</td>
+<td>FTW 向导动作数、SMTP 网关独占端口、OTFC 本地 SIP UDP 端口</td>
+</tr>
+</tbody>
+</table></div>
+<p>整本教材就是一条交付主线：<strong>准备服务器、装软件、FTW 搭最小可用系统、接 OXE 话路、接邮件通道、用户与策略、运维纵深</strong>。</p>
+<h2>二、从裸机到第一份传真</h2>
+<ol>
+<li>
+<p><strong>准备服务器</strong>：与用户同域；FQDN 正向解析到 IP、IP 反向解析回 FQDN；IIS 角色带四个角色服务（Windows Authentication、ISAPI Filters、ISAPI Extensions、IIS 6 Metabase Compatibility）</p>
+</li>
+<li>
+<p><strong>服务账号与 Office</strong>：服务账号六项权限（域服务账号、LDAP 查询、文件夹读写、打印权限、本地管理员、密码永不过期）；装 Office 并预初始化——首次运行不能弹窗，否则传真转换会卡死</p>
+</li>
+<li>
+<p><strong>装软件</strong>：Setup.exe 选语言（有两项持久副作用：默认邮件通知 Profile 与 Basic Profile 封面语言）、选 IP、Create a new system、传真主机名 + SIP 协议、装全部第三方软件。装完第一件事：停用并禁用 Microsoft SMTP（OTFC 网关同样占 25 端口），再启动 XMSMTPGateway</p>
+</li>
+<li>
+<p><strong>FTW 向导</strong>：12 项动作一次搭出最小可用系统——建站点、站点 QOS 0/0/240、XML Poll 文件夹、默认 Profile 去 SMTP 认证、CSID=站点名、建首用户、Postmaster、站点/系统路由表、告警通知、Mail Relay、产出摘要存盘。跳过向导可事后跑 FirstTimeSetup.exe 或逐项手工配</p>
+</li>
+<li>
+<p><strong>许可</strong>：首装自带评估许可——每组件 1 实例、共 2 通道、10 站点、100 用户、每页水印。测试时"怎么每页都有水印/并发就 2 路"是许可边界，验收前必须找经销商（提供服务器 MAC 地址）买许可并手工导入</p>
+</li>
+</ol>
+<h2>三、两大外部集成（缺一不可收发）</h2>
+<ul>
+<li><strong>OXE 话路</strong>：OTFC 侧本地 SIP UDP 5360 + 声明 OXE + Dial Plan（单 PBX 默认 * 全路由；空间冗余在 Peer List 声明两台呼叫服务器并排优先级）。OXE 侧 MGR 七步菜单（Trunk groups、SIP gateway、Proxy、Trusted IP、SIP Ext gateway、Network Routing Table、Prefix plan）——只是骨架，参数一律参照 TC3048。排障三法：CHtrace（tuner/actdbg/mtracer）、SIP trace（motortrace/traced）、tcpdump 转 Wireshark，均在 OXE 的 mtcl 账号下执行。</li>
+<li><strong>邮件通道</strong>：SMTP 网关监听 25 收传真作业、发通知，feedback address 不能为空，同机不能有别的 SMTP 服务。官方强烈建议前置真实邮件服务器（队列管理/Outlook 表单/反垃圾/防病毒）。Exchange 集成建 'FAX' 地址空间 Send Connector（fax:*;1 指向网关智能主机，许可特性）；通知一封不到先查 feedback address 与 Receive Connector。寻址：31600@传真服务器 FQDN、[FAX:号码]、Outlook 联系人直选。</li>
+</ul>
+<h2>四、人与策略</h2>
+<ul>
+<li><strong>用户</strong>：恒以 SMTP 地址标识，必须绑 Site + Profile 才能用系统；内部库与 AD 双源可共存（FTW 只给两个选项，别理解成二选一）；CSV 批量导入导出只在 Webadmin 有。时区写进传真报头，影响封页/报头/邮件通知三处时间戳。</li>
+<li><strong>管理员</strong>：System 管全局、Site 管自己的站点；认证可用 SMTP 地址或 Windows 认证（SSO/SAML）；官方推荐建备份管理员防锁死。</li>
+<li><strong>Profile 是策略中枢</strong>：六块属性（信息/封页/计费码/传真选项/安全/通知）挂五类机制——出方向 Restriction group（如"仅国内禁国际"）、入方向站点级呼号限制、每语言一份的邮件通知 Profile（Exchange 场景勾 Exchange integration + Text，只影响邮件不影响 Web）、公共电话簿与封页都经 Profile 下发。</li>
+<li><strong>目录与路由（大客户）</strong>：LDAP 声明（389/Search base/属性映射）→ Site/Profile Lookup 两张 if 规则表（没配 = 外部用户用不了）→ NT Account 免密两路（专用接口或 samAccountName 过滤器 + IIS 禁匿名）。来传真路由三类规则（Default 兜底恒最后，$did:?????$ 匹配被叫）；DTMF 补拨（+33155667000 P 1234）；Modification Table 规整号码（33 开头换 00）；OXE 话单交 OmniVista 8770 出计费报表（默认映射传真号）。</li>
+</ul>
+<h2>五、运维纵深</h2>
+<ul>
+<li><strong>服务架构</strong>：模块 → 服务（Windows 服务）→ 组件；9 个服务分有状态复制（FaxManager/ConfigManager/CoConfig/FaxArchive/FaultTolerance）与无状态负载均衡（Driver/Rasterizer/SMTP/XML Gateway）。查状态走 Services Status，脚本走 xmsc -ra/-oa/-aa。</li>
+<li><strong>日志</strong>：每组件一个专属日志，统一在 FaxCenter\Trace，默认单文件 20MB、归档保留 15 天，满后 zip 入 Archive；来传真通知/路由问题先看 ConfigManager.log 与 Smtp.log。</li>
+<li><strong>备份/升级</strong>：冷备三数据域（注册表键 + Data/Bin/Config + MySQL；MediaStore 图像含在 Data 内）；备份停服"不可 kill"、恢复"可 kill"；恢复四前提（版本等同/拓扑一致/路径一致/先擦除）。升级五步法：确认健康、停流量、停服务、备份、升级；CompanyConfig/XmediusArchive 两库不在升级自动备份内，xmedius.war 会被整包替换。</li>
+<li><strong>合规与监控</strong>：传真记录（元数据）与传真文档（MediaStore 图像）可分开/一起删，支持零保留；31 个报表可用 BIRT 自定义（装在安装包 3rd\birt）；SNMP V2 trap 覆盖队列满、配额满、光栅化失败、路由失败、LDAP 断连等十余类。</li>
+</ul>
+<h2>六、交付红线</h2>
+<p>三条红线：</p>
+<ol>
+<li>教材密码/账号/网段（Alcatel1!@123、123456、mtcl、192.168.1.x）全是实验值，上生产必须换</li>
+<li>端口全表、45 格式、浏览器支持、服务器资源数值都在书外——以 OTFC Features List 为准（书内五处强调）</li>
+<li>OXE 侧只有 MGR 菜单骨架，参数以 TC3048 为准；无 TC3048 不上站</li>
+</ol>
+<h2>七、速查卡</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>要做的事</th>
+<th>去哪张能力卡</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>装系统/跑 FTW/许可水印</td>
+<td>otfax-installation-ftw</td>
+</tr>
+<tr>
+<td>接 OXE/话路排障/抓包</td>
+<td>otfax-sip-channel-integration</td>
+</tr>
+<tr>
+<td>邮件发传真/Exchange 连接器/通知不到</td>
+<td>otfax-mail-exchange-integration</td>
+</tr>
+<tr>
+<td>开户/批量导入/建管理员</td>
+<td>otfax-user-administration</td>
+</tr>
+<tr>
+<td>禁国际号/通知格式/电话簿</td>
+<td>otfax-profile-policy</td>
+</tr>
+<tr>
+<td>接 AD/免密/路由表/DTMF/计费</td>
+<td>otfax-directory-routing</td>
+</tr>
+<tr>
+<td>重启服务/看日志/SIP 日志</td>
+<td>otfax-services-operations</td>
+</tr>
+<tr>
+<td>备份/恢复/升级/零保留</td>
+<td>otfax-backup-upgrade</td>
+</tr>
+<tr>
+<td>装客户端/做封页/队列状态</td>
+<td>路由入口（ot-fax-center-router）</td>
+</tr>
+<tr>
+<td>选型容量/拓扑/合规应答</td>
+<td>路由入口（ot-fax-center-router）</td>
+</tr>
+<tr>
+<td>报表/BIRT/SNMP 告警</td>
+<td>路由入口（ot-fax-center-router）</td>
+</tr>
+</tbody>
+</table></div>
+<h2>版权</h2>
+<ul>
+<li>本精华长文为 ALE Training Services《OpenTouch Fax Center - R9.2 Starter》（OTFCXTE200EN Edition 04）的内部学习整理，仅供内部学习使用；教材版权归 ALE Training Services 所有。</li>
+</ul></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch Fax Center - R9.2 Starter (Participant's Guide, Edition 04) | edition: Edition 04 | pages: 233 页 -->

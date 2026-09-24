@@ -1,0 +1,659 @@
+schema_version: 1
+bundle_id: bundle.otcc-advanced-call-routing
+book:
+  title: OmniTouch Contact Center Standard Edition — Advanced Call Routing (Participant's Guide, Issue 01)
+  author: ALE Training Services
+  source_pack: OTCCXTE150EN.pdf (470 pages)
+  baseline_tag: OpenTouch Suite for MLE / OXE + OTCC Standard Edition Issue 01（实验环境含 MS SQL Server 2016、Access 2016）
+entry:
+  name: otcc-advanced-call-routing
+  description: 'OTCC 标准版高级呼叫路由（ACR）的交付与排障支持：基础 CCD 矩阵地基（双 Pilot、等待房间、坐席技能档案）、ASM 脚本编写调试工具链、九种路由规则及组合语义（APPLY 链式过滤）、
+    坐席直拨融合（DICA）、内部数据库三键路由、Call Tag 传递、多语言引导、IQUEUE/LIST 等高级构件、过滤器统计、外部 ASM 部署割接与双机热备、外部数据库 SQL 查询与 LCA 持久化。
+    适用于 OTCC Standard Edition 的 ACR 配置、脚本、排障与方案问答；容量测算方法、多节点组网与安全基线不在原书范围内（见 out_of_scope）。
+
+    '
+  core_principles:
+  - ACR 的本质是脚本选坐席：CCS 内嵌编辑器写脚本（.scr 源/.alb 编译），ASM 服务器解释执行并按呼叫特征返回动态坐席列表；选人归 ASM，呼叫控制仍在 CCD 矩阵
+  - 分发三步固定：呼叫特征化关联档案进 Pilot，ASM 算列表（动态组），呼叫带列表进等待房间；房间与队列互斥且房间不按 FIFO
+  - 规则分两族：单用规则（LCA/Redirection/Redistribution/IVR）独占 APPLY；可组合规则（名单/ISM/IDLE/COM）可串接；单 APPLY 链式过滤，多 APPLY 第一个失效；IDLE 与 COM 互斥
+  - 空列表必有两式兜底：Redirection 转号或 Redistribution 退下一路由方向，全无方向落 Blockage；脚本空列表重试原书两处口径 20/21 次
+  - 呼叫选择统一排座次：优先级 0-9（0 最高），再按 ACR Actual Waiting 决定 ISM 成本与实际等待谁先；等待队列里普通 CCD 呼叫 ISM 成本为无穷（ACR 默认插队）
+  - 外部化三线：外部 ASM 角色与内部 alb 一致（割接先 asm_on_dhs=0 停内部）、双机 Main/Stand-By 自动复制；外部库走 32 位 ODBC 加 167 号许可，存储过程可把 LCA 落库抗重启
+  - 实验环境口径：教材对象编号（3xXXX）、账号口令、IP 仅限实验；引用容量数字必须标注原书 Issue 01 口径
+  out_of_scope:
+  - 规模测算方法（话务量、Erlang、坐席数规划）——原书只给 p18 容量上限表，"该建多少"在书外
+  - MS SQL Server/Access/SSMS 界面操作细节与语音引导录制内容——通用软件与环境操作，书内仅给与 ACR 相关的字段、账号与过程约定
+  - 安全基线（强口令、最小授权、传输加密、SQL 注入防护）——原书系统性缺席，仅有实验口令口径
+  - 多节点组网 ACR 细节与混合链路以外的网络规划、OXE 侧冗余与脚本版本管理
+  stop_conditions:
+  - 需要容量测算或坐席数规划 → 指向 OXE 侧配套文档与 Feature List，不以 p18 上限表冒充测算方法
+  - 数据库安装、界面点选、录音制作类请求 → 声明属通用技能/环境操作，只保留 ACR 相关约定
+  - 生产环境安全设计 → 按实验口径警示并建议叠加安全基线（整改方向为推断，原书未讨论）
+  - 版本敏感判定（asm_ag_free_duration 最低 l2.300.32.a、patchIdle 已废弃）→ 按 needs-review nr-08 口径如实说明
+router_entry:
+  name: otcc-advanced-call-routing-router
+  description: 'OTCC ACR 能力路由入口：按用户意图分发到 12 张能力卡——脚本编辑器、CCD 矩阵地基、重定向再分发、直拨融合、内部数据库、综合规则组合、外部 ASM 部署、
+    外部数据库查询八个 promoted 能力，以及名单规则、Call Tag 传递、多语言引导、过滤器统计四张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.acr.script-editor-fundamentals
+  revision: 1
+  status: active
+  slug: acr-script-editor-fundamentals
+  title: ACR 脚本编辑器与调试工具链
+  importance: critical
+  importance_rationale: 对应 task-02/task-08，一切脚本能力的前提与全书优先级第 1 位；"改了没生效"与 LIT 不工作是最高频现场问题
+  one_liner: 编辑器写脚本传输激活五环闭环；Debugger 只能改不能加构件；asm_ag_free_duration 定 Idle 语义；字符串五关键字
+  intents:
+  - 编写并激活 ACR 脚本
+  - 用 Debugger 调试脚本
+  - 配置 LIT/PLTR 坐席排序
+  - 脚本里处理字符串与屏显
+  - write and debug ACR script
+  keywords:
+  - ASM Script Editor
+  - Debugger
+  - 激活脚本
+  - Building Block
+  - asm_ag_free_duration
+  - LIT
+  - PLTR
+  - SEARCH_STRING
+  - EXTRACT_STRING
+  - STRING_LENGHT
+  - 屏显
+  - 重启 MAIN_AFE
+  also_read:
+  - acr-rule-combination-advanced
+  card: cards/acr-script-editor-fundamentals.md
+  frontmatter:
+    description: 'ACR 脚本从编写到验证的全链路：CCS 内嵌编辑器（Graphic/Text 双模）、保存传输与 Pilot 激活、Debugger 跟踪与实时改条件、adm_acd 内存检查、
+      parameters.cfg 的 asm_ag_free_duration 三值语义、字符串五关键字与 DISPLAY_AGENT 屏显。当用户要"写脚本/调脚本/排序不对/解析客户号"时使用。
+      不适用于规则组合语义（综合规则组合能力）与矩阵搭建（CCD 矩阵地基能力）。
+
+      '
+    tags:
+    - procedure
+    - acr
+    - script
+    - debugger
+  source_evidence:
+  - source_id: src-otccxte150
+  - location: p11, p42-50, p190-196, p253, p262
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-02/08 核心，优先级第 1 位
+- capability_id: cap.acr.ccd-matrix-foundation
+  revision: 1
+  status: active
+  slug: acr-ccd-matrix-foundation
+  title: ACR 基础 CCD 矩阵地基
+  importance: critical
+  importance_rationale: 对应 task-01，全书全部实验的公共地基（优先级第 2 位）；地基错误全盘返工
+  one_liner: ACD 前缀先行，普通链路与 ACR 链路并行搭矩阵；规则 30 条分发 10 条，优先级 0 最高；房间与队列互斥
+  intents:
+  - 搭建 CCD/ACR 基础矩阵
+  - 配置 Pilot 路由与分发规则
+  - 建技能域与呼叫档案
+  - 配置混合链路
+  - build CCD matrix for ACR
+  keywords:
+  - ACD 前缀
+  - Processing Group
+  - Waiting Queue
+  - Waiting Room
+  - ACR Pilot
+  - Statistic Pilot
+  - Pilot Rule Guide
+  - Distribution Rule
+  - 呼叫档案
+  - 技能域
+  - Weight
+  - 混合链路
+  - hybvisu
+  also_read:
+  - acr-script-editor-fundamentals
+  - acr-filter-statistics
+  card: cards/acr-ccd-matrix-foundation.md
+  frontmatter:
+    description: 'OTCC 标准版呼叫中心矩阵从零搭建：ACD 前缀、处理组、队列与等待房间、普通与 ACR 双 Pilot、路由规则（30 条）与分发规则（10 条）、
+      话机坐席开户、混合链路与 hybvisu 校验、统计 Pilot、技能域/技能/呼叫档案取值域。当用户要"建矩阵/配 Pilot/建技能档案/混合链路起不来"时使用。
+      不适用于脚本编写（脚本编辑器能力）；矩阵编号为实验口径。
+
+      '
+    tags:
+    - procedure
+    - acr
+    - ccd
+    - matrix
+  source_evidence:
+  - source_id: src-otccxte150
+  - location: p19-41
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-01，公共地基
+- capability_id: cap.acr.redirect-redistribution
+  revision: 1
+  status: active
+  slug: acr-redirect-redistribution
+  title: ACR 重定向与再分发兜底
+  importance: high
+  importance_rationale: 对应 task-04，生产安全网（优先级第 3 位）；呼叫悬死进 Blockage 是高价值排障场景
+  one_liner: 空列表两式兜底——Redirection 转号（静态/动态地址）或 Redistribution 退下一路由方向，全无方向落 Blockage
+  intents:
+  - 配置空坐席列表兜底
+  - 呼叫转接外部号码
+  - 再分发到语音引导队列
+  - 排查呼叫进封锁
+  - redirection and redistribution rule
+  keywords:
+  - Redirection
+  - Redistribution
+  - Blockage
+  - 封锁
+  - 兜底
+  - Voice Guide 队列
+  - 重定向队列
+  - 路由方向
+  - 空列表
+  also_read:
+  - acr-script-editor-fundamentals
+  card: cards/acr-redirect-redistribution.md
+  frontmatter:
+    description: 'ACR 空坐席列表的两条兜底路径与落点设计：Redirection 转发地址三形态（内部分机/外部缩位拨号或网络号/STRING 变量动态号）、
+      Redistribution 触发条件与退回语义、Blockage 封锁落点、重定向队列接 Voice Guide 的矩阵扩展。当用户要"忙时转接/退回/呼叫悬死"时使用。
+      不适用于规则组合写法（综合规则组合能力）；两规则均为单用规则须独占 APPLY。
+
+      '
+    tags:
+    - procedure
+    - acr
+    - fallback
+    - routing
+  source_evidence:
+  - source_id: src-otccxte150
+  - location: p82-102, p50
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-04，生产安全网
+- capability_id: cap.acr.direct-call-dica
+  revision: 1
+  status: active
+  slug: acr-direct-call-dica
+  title: ACR 坐席直拨融合
+  importance: high
+  importance_rationale: 对应 task-05，最高频客户诉求"回头客直拨等原坐席"（优先级第 4 位）；DICA 开关与 CALL_TYPE 分支是关键机制
+  one_liner: Pilot Direct Call 加私有号加 DICA 自动技能加 CALL_TYPE 分支脚本，实现直拨忙时等原坐席再转接
+  intents:
+  - 实现直拨等原坐席
+  - 配置私有号与直拨 Pilot
+  - 停用/启用坐席直拨
+  - 编写 CALL_TYPE 分支脚本
+  - direct call with ACR
+  keywords:
+  - Direct Call
+  - Pilot Direct Call
+  - Private Agent Number
+  - 私有号
+  - DICA
+  - DirectCall
+  - CALL_TYPE
+  - DIRECT_CALL
+  - 直拨
+  - 溢出
+  also_read:
+  - acr-internal-database-routing
+  card: cards/acr-direct-call-dica.md
+  frontmatter:
+    description: '坐席直拨与 ACR 融合的四件套：处理组 Pilot Direct Call 参数、坐席私有号与呼叫类型判定、DICA 自动技能（停用即完全不可直拨）、
+      CALL_TYPE=DIRECT_CALL 脚本骨架（等 N 秒转接）。当用户要"直拨等原坐席/屏蔽直拨/直拨忙时行为异常"时使用。
+      不适用于内部数据库坐席号键的数据维护（内部数据库路由能力）；直拨打到 ACR Pilot 的行为与普通 Pilot 不同。
+
+      '
+    tags:
+    - procedure
+    - acr
+    - direct-call
+    - dica
+  source_evidence:
+  - source_id: src-otccxte150
+  - location: p103-127
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-05，高频业务诉求
+- capability_id: cap.acr.internal-database-routing
+  revision: 1
+  status: active
+  slug: acr-internal-database-routing
+  title: ACR 内部数据库路由
+  importance: high
+  importance_rationale: 对应 task-06，VIP/大客户路由的核心手段（优先级第 5 位），高价值低门槛；4000 条上限是方案边界
+  one_liner: 主叫号、Call Tag、坐席号三键查档案名单优先级；CALL_PROFILE[键] 语法取用；区段键整段命中
+  intents:
+  - 按主叫号定制路由
+  - 按 Call Tag 区段配名单
+  - 直拨场景按坐席号查档案
+  - 配置内部数据库条目
+  - internal database routing
+  keywords:
+  - Internal Database
+  - ACR Data
+  - CALL_PROFILE
+  - CALL_PRIORITY
+  - 主叫号键
+  - Call Tag 键
+  - 坐席号键
+  - "4000 条"
+  - VIP 路由
+  - 区段
+  also_read:
+  - acr-call-tag-transfer
+  - acr-direct-call-dica
+  card: cards/acr-internal-database-routing.md
+  frontmatter:
+    description: 'ACR 内部数据库的键值结构与脚本取用：三键（主叫号/Call Tag/直拨坐席号）查五属性（名字/档案/名单/优先级）、4000 条容量、
+      通配与区段键、CALL_PROFILE[键] 等取用语法、adm_acd 选项 25 运维。当用户要"VIP 来电路由/回头客档案/区段名单"时使用。
+      不适用于外部数据库（外部数据库查询路由能力）与标签生成（Call Tag 卡）。
+
+      '
+    tags:
+    - procedure
+    - acr
+    - internal-database
+    - routing
+  source_evidence:
+  - source_id: src-otccxte150
+  - location: p128-164
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-06，个性化路由核心
+- capability_id: cap.acr.rule-combination-advanced
+  revision: 1
+  status: active
+  slug: acr-rule-combination-advanced
+  title: ACR 综合规则组合与高级构件
+  importance: critical
+  importance_rationale: 对应 task-10，全书脚本能力集大成章（优先级第 6 位）；双 APPLY 第一个失效是全书最反直觉语义与最高频组合错误
+  one_liner: 单 APPLY 链式过滤、多 APPLY 第一个失效；IDLE/COM 互斥；IQUEUE 停放覆写；LIST 变量动态名单；混跑选呼三序
+  intents:
+  - 组合多个 ACR 规则
+  - 编程等待停放体验（IQUEUE）
+  - 动态拼装坐席/技能列表
+  - 调优 CCD 与 ACR 混合呼叫选择
+  - combine ACR rules and APPLY
+  keywords:
+  - APPLY
+  - 单用规则
+  - 可组合规则
+  - IDLE
+  - COM
+  - IQUEUE
+  - 停放级
+  - LIST 变量
+  - CLEAR AGENT LIST
+  - IVR 规则
+  - ISM 成本
+  - ACR Actual Waiting
+  - 混合选呼
+  also_read:
+  - acr-script-editor-fundamentals
+  - acr-list-rules
+  card: cards/acr-rule-combination-advanced.md
+  frontmatter:
+    description: 'ACR 规则组合语义与高级构件：单用与可组合规则两族、APPLY 数量决定链式过滤或独立失效、IDLE/COM 排序与互斥、IQUEUE 六级加 NEXT 覆写、
+      LIST 变量两型与截断策略、CLEAR AGENT LIST、IVR 规则、CCD/ACR 混跑呼叫选择三序与 ISM 成本三档。当用户要"名单加技能/排队体验/坐席排序/插队问题"时使用。
+      不适用于单规则语法与调试（脚本编辑器能力）。
+
+      '
+    tags:
+    - procedure
+    - acr
+    - rules
+    - advanced
+  source_evidence:
+  - source_id: src-otccxte150
+  - location: p230-282
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-10，脚本能力集大成
+- capability_id: cap.acr.asm-deployment
+  revision: 1
+  status: active
+  slug: acr-asm-deployment
+  title: ACR 外部 ASM 部署与双机热备
+  importance: critical
+  importance_rationale: 对应 task-12/13，架构级改造（优先级第 7 位）；割接顺序（asm_on_dhs=0 先行）与脚本迁移规则是高频事故源
+  one_liner: asm_on_dhs=0 停内部 alb，装 Windows 服务建 Site 链路，迁 .scr 重编译；双机 Main/Stand-By 自动复制脚本与连接
+  intents:
+  - 部署外部 ASM 服务器
+  - 从内部 ASM 割接
+  - 迁移脚本到外部 ASM
+  - 部署 Main/Stand-By 双机
+  - external ASM deployment
+  keywords:
+  - External ASM
+  - asm_on_dhs
+  - alb 进程
+  - Site
+  - Router 角色
+  - Default 角色
+  - Duplicated ASM
+  - Stand-By
+  - 脚本迁移
+  - 防火墙
+  - 割接
+  also_read:
+  - acr-database-query-routing
+  card: cards/acr-asm-deployment.md
+  frontmatter:
+    description: '外部 ASM 服务器的完整部署链：组件选择与 Windows 服务、asm_on_dhs=0 停内部 alb 的割接顺序、Site 链路与 Router/Default 角色、
+      .scr 迁移重编译、防火墙放行、adm_acd 链路核查、Main/Stand-By 双机配置与切换演练。当用户要"装外部 ASM/割接/双机/连不上 AFE"时使用。
+      不适用于外部库脚本写法（外部数据库查询路由能力）；硬件需求查安装规程（书外）。
+
+      '
+    tags:
+    - procedure
+    - acr
+    - asm
+    - deployment
+    - ha
+  source_evidence:
+  - source_id: src-otccxte150
+  - location: p318-373
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-12/13，架构级动作
+- capability_id: cap.acr.database-query-routing
+  revision: 1
+  status: active
+  slug: acr-database-query-routing
+  title: ACR 外部数据库查询路由
+  importance: critical
+  importance_rationale: 对应 task-14/15/16/17，生产集成主路（优先级第 8 位，覆盖四项任务）；32 位 ODBC 与 LCA 持久化是核心价值与风险项
+  one_liner: SQL 六构件（连接/请求/测试/映射/fetch）加 32 位 ODBC 加 167 许可；存储过程把 LCA 落库，ASM 重启不丢
+  intents:
+  - 脚本查询外部数据库
+  - 配置 ODBC 数据源
+  - 调用存储过程读写
+  - 实现 LCA 持久化
+  - external database SQL routing
+  keywords:
+  - External Database
+  - ODBC
+  - "32 位"
+  - DSN
+  - SQL_REQUEST
+  - USE_DATABASE
+  - SQL_RESULT
+  - SQL_START_FETCH
+  - SQL_ROW_COUNT
+  - 存储过程
+  - updateCalling
+  - LCA 持久化
+  - "167 许可"
+  also_read:
+  - acr-asm-deployment
+  card: cards/acr-database-query-routing.md
+  frontmatter:
+    description: 'ASM 脚本访问外部数据库的完整编程模型：SQL 六构件、SELECT 与 CALL 存储过程、SQL_RESULT 三值、fetch 循环与 LIST 收集策略、
+      26 项 WHERE 变量、32 位 ODBC 与 167 号许可前提、updateCalling 把 LCA 写库抗 ASM 重启的完整实验链。当用户要"查外部库/VIP 查询/重启丢数据/ODBC"时使用。
+      不适用于数据库安装与界面操作（通用 DBA 技能，书外）；前提是外部 ASM 已部署。
+
+      '
+    tags:
+    - procedure
+    - acr
+    - sql
+    - odbc
+    - persistence
+  source_evidence:
+  - source_id: src-otccxte150
+  - location: p374-452
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-14-17，生产集成主路
+- capability_id: cap.acr.list-rules
+  revision: 1
+  status: active
+  slug: acr-list-rules
+  title: ACR 授权与非授权名单规则
+  importance: medium
+  importance_rationale: 对应 task-03；触发常与脚本编写共同出现（名单是脚本构件选型），独立意图弱，路由可达即可
+  one_liner: 名单规则五式给值（上下文索引/整数/名字/显式列表/LIST 变量）；100 列表每表 30 坐席；String 索引大小写敏感
+  intents:
+  - 建授权/非授权名单
+  - 名单按主叫号或标签索引
+  - 动态名单传入规则
+  - authorized and unauthorized list
+  keywords:
+  - Authorized List
+  - Unauthorized List
+  - WList
+  - BList
+  - 名单索引
+  - CALLING 索引
+  - 大小写敏感
+  - 显式列表
+  also_read:
+  - acr-rule-combination-advanced
+  card: cards/acr-list-rules.md
+  frontmatter:
+    description: 'ACR 名单规则的给值方式与硬规格：授权/非授权两族、五式给值（CALLING/CALLTAG/AGENT_NUMBER 索引、%index、String 名、显式列表、LIST 变量）、
+      100 列表与每表 30 坐席上限、坐席须有活动技能、adm_acd 选项 24 运维。当用户要"圈定/排除坐席/大客户名单"时经路由使用。
+      名单与 ISM 组合的单 APPLY 语义见综合规则组合能力。
+
+      '
+    tags:
+    - procedure
+    - acr
+    - list
+    - routing
+  source_evidence:
+  - source_id: src-otccxte150
+  - location: p51-81
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 与脚本编写共同触发，路由可达即可
+- capability_id: cap.acr.call-tag-transfer
+  revision: 1
+  status: active
+  slug: acr-call-tag-transfer
+  title: ACR Call Tag 生成与传递
+  importance: medium
+  importance_rationale: 对应 task-07；枢纽语义（三来源一覆盖规则）偏知识域，落地常伴随内部数据库或 IAA 环境操作，路由可达即可
+  one_liner: 统计 Pilot 静态标、IAA 编码叶 16 位、CCivr TransferCall 三来源；转发链上最后一个标签覆盖之前所有
+  intents:
+  - 用 IAA 采集客户号作标签
+  - 统计 Pilot 打标
+  - 排查转发链标签覆盖
+  - call tag generation and transfer
+  keywords:
+  - Call Tag
+  - Correlator data
+  - IAA
+  - Code Entry Guide
+  - CCivr
+  - TransferCall
+  - GetPilotInfo
+  - 覆盖
+  - GFW
+  - 统计 Pilot 打标
+  also_read:
+  - acr-internal-database-routing
+  - acr-multilanguage-voiceguide
+  card: cards/acr-call-tag-transfer.md
+  frontmatter:
+    description: 'Call Tag 的三个生成途径与传递语义：统计 Pilot 静态标（0-32 字符）、IAA 编码叶（16 位内经 CSTA Correlator data，仅外部呼入）、
+      CCivr TransferCall（前置 GetPilotInfo）；转移覆盖原则（最后一个标签或档案覆盖之前值）。当用户要"IVR 打标/客户号采集/标签不对"时经路由使用。
+      标签喂给路由见内部数据库路由能力。
+
+      '
+    tags:
+    - reference
+    - acr
+    - call-tag
+    - ivr
+  source_evidence:
+  - source_id: src-otccxte150
+  - location: p165-189
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 枢纽知识域，路由可达即可
+- capability_id: cap.acr.multilanguage-voiceguide
+  revision: 1
+  status: active
+  slug: acr-multilanguage-voiceguide
+  title: ACR 多语言语音引导与语言偏好分发
+  importance: medium
+  importance_rationale: 对应 task-09；多语言为细分需求，判定链语义清晰但独立触发频率低于路由与脚本主路，路由可达即可
+  one_liner: 一个引导映射 40 语种；语言取档案偏好（1 最高）无则退 Pilot 语言；坐席 1 门语言技能即可入选
+  intents:
+  - 配置多语言引导
+  - 按客户语言选坐席
+  - 排查播报语言错误
+  - multi-language voice guide
+  keywords:
+  - 多语言
+  - Multi-language
+  - Voice Guide
+  - preference
+  - 语言偏好
+  - 呈现引导
+  - Backup Tone
+  - "40 语种"
+  also_read:
+  - acr-ccd-matrix-foundation
+  card: cards/acr-multilanguage-voiceguide.md
+  frontmatter:
+    description: '多语言语音引导的承载、判定与选人三段结构：40 语种到消息的映射、档案语言偏好（1-7、1 最高）判定链、坐席 1 门语言技能命中、
+      统计 Pilot 呈现引导干扰清除。当用户要"多语言播报/语言选坐席/播错语言"时经路由使用。
+      录音制作为环境操作；档案体系见 CCD 矩阵地基能力。
+
+      '
+    tags:
+    - reference
+    - acr
+    - multilanguage
+    - voice-guide
+  source_evidence:
+  - source_id: src-otccxte150
+  - location: p212-229
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 细分需求域，路由可达即可
+- capability_id: cap.acr.filter-statistics
+  revision: 1
+  status: active
+  slug: acr-filter-statistics
+  title: ACR 过滤器与统计报表
+  importance: medium
+  importance_rationale: 对应 task-11，支撑类任务（优先级第 10 位）；AND/OR 语义与数据时效是报表口径沟通要点，路由可达即可
+  one_liner: 过滤器只影响观测不改分发；200 个每个 7 技能 AND 语义；Super/Hyper-Filter 25 对象 OR；Excel 三模板
+  intents:
+  - 建过滤器与超组
+  - 出实时监控与 Excel 报表
+  - 排查报表口径不符
+  - filter and statistics reporting
+  keywords:
+  - Filter
+  - Super-Filter
+  - Hyper-Filter
+  - AND
+  - OR
+  - 服务水准
+  - 实时监控
+  - Formfilter
+  - Excel 报表
+  - 临时过滤器
+  card: cards/acr-filter-statistics.md
+  frontmatter:
+    description: 'ACR 过滤器体系与统计产出：过滤器规格（200 个/7 技能/AND）、Super 与 Hyper-Filter（25 对象/OR）、数据时效（从创建起算、预置 20 个兜底）、
+      实时窗口族与 Excel 三模板分工。当用户要"监控报表/业务分组统计/数字对不上"时经路由使用。
+      过滤器不影响呼叫分发；优先级控制见综合规则组合能力。
+
+      '
+    tags:
+    - reference
+    - acr
+    - filter
+    - statistics
+  source_evidence:
+  - source_id: src-otccxte150
+  - location: p283-317
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 支撑类域，路由可达即可

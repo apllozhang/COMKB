@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>整理摘要 · OXOCXTE107EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OXO Connect · 呼叫中心</h2><p>Edition 07 · 218 页 · 文档整理入库（15 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte107en/index.html">课程首页</a><a href="/courses/oxocxte107en/digest.html">精华长文</a><a href="/courses/oxocxte107en/overview.html">教书理解</a><a href="/courses/oxocxte107en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte107en/skills/oxo-acd-basic-setup.html">OXO Connect 基础 ACD 全流程搭建</a><a href="/courses/oxocxte107en/skills/oxo-acd-call-scenarios.html">ACD 呼入六场景排障</a><a href="/courses/oxocxte107en/skills/oxo-acd-routing.html">呼叫特征化与 Smart Call Routing 路由表设计</a><a href="/courses/oxocxte107en/skills/oxo-acd-queue.html">ACD 等待队列管理（容量公式与出口配置）</a><a href="/courses/oxocxte107en/skills/oxo-acd-search-noanswer.html">坐席搜索模式选型与无应答处理</a><a href="/courses/oxocxte107en/skills/oxo-acd-login-status.html">坐席签入签出（free seating）与状态排障</a><a href="/courses/oxocxte107en/skills/oxo-multi-secretary.html">Multi-Secretary 多秘书方案配置</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte107en/skills/oxo-omc-first-connect.html">OMC 安装与首次连接</a><a href="/courses/oxocxte107en/skills/oxo-ip-replan.html">OXO 与客户端 IP 规划修改</a><a href="/courses/oxocxte107en/skills/oxo-acd-schedule-calendar.html">ACD 营业时段与例外日配置</a><a href="/courses/oxocxte107en/skills/oxo-supervisor-app.html">Supervisor 班长台部署与实时监控</a><a href="/courses/oxocxte107en/skills/oxo-agent-app.html">Agent 坐席席面部署（弹屏/打标/客户库）</a><a href="/courses/oxocxte107en/skills/oxo-statistics-app.html">Statistics 统计应用与报表导出</a><a href="/courses/oxocxte107en/skills/oxo-dtmf-client-popup.html">DTMF 客户码识别弹屏</a><a href="/courses/oxocxte107en/skills/oxo-acd-voice-prompts.html">ACD 语音提示定制</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte107en/index.html">oxo-connect-call-center（15 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte107en/index.html">OXOCXTE107EN</a><span>/</span><span aria-current="page">整理摘要</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">DIGEST</p><h1>整理摘要 — 全书精华</h1></div></header><article class="markdown-body"><h1>DIGEST — OXO Connect 呼叫中心精华长文</h1>
+<blockquote>
+<p>源：OXOCXTE107EN Edition 07（218 页）· 文档整理入库 · 2026-09-23
+定位：10 分钟建立 OXO ACD 的全局认知；操作细节按需查 15 张能力卡。</p>
+</blockquote>
+<h2>一、这套东西是什么</h2>
+<p>OXO Connect 的呼叫中心（ACD）是<strong>内置于话机的服务</strong>，不是外挂软件：开许可、做配置，话机就变成有排队、有话务分配、有统计的呼叫中心。坐席用什么话机都行（模拟/DECT/IP/TDM/软电话）。许可分两档：Welcome 底包（5 坐席 8 组），加 Option 解锁坐席助手、班长台、统计。</p>
+<p>容量天花板：32 在值坐席、8 个组、16 个 ACD 端口、每组 6 条语音、10000 条路由规则、统计留存 14 个月。</p>
+<h2>二、一条主线理解 ACD：六场景</h2>
+<p>每一通来电，引擎先看"开门了吗"，OPEN 后按资源占用落进六个场景，<strong>每个场景的出口都独立可配</strong>：</p>
+<ol>
+<li><strong>有空闲坐席</strong>：欢迎语 → 转坐席。</li>
+<li><strong>坐席全忙</strong>：进队列；先播消息 1，到阈值插播预计等待或排名，循环播消息 2；来电者随时按 <code>*</code> 自救（转组邮箱或指定号码）。</li>
+<li><strong>队列满</strong>：劝漏第一形态——转指定号码 / 进组邮箱 / 播劝漏语音后释放，按此优先级判定。</li>
+<li><strong>ACD 端口全忙</strong>（≤16，与 MLAA 共享）：跳过队列直接劝漏（第二形态），出口同上。</li>
+<li><strong>全员登出/off duty</strong>：<strong>只有第一通</strong>转预定义 Transfer number，后续要么排队要么劝漏——"来电时好时坏"的常见真相。</li>
+<li><strong>组关闭</strong>：关闭语后释放，出口同样三选。</li>
+</ol>
+<p>排障口诀：任何"来电行为怪"先归场景，再核对该场景的出口配置。</p>
+<h2>三、配置的两层结构</h2>
+<p><strong>第一层 ACD Setup 向导</strong>一次成型，页签按顺序做：</p>
+<ol>
+<li>General：端口数、状态前缀 501 在值/502 离值/503 文书/504 暂离、组-DDI 关联</li>
+<li>ACD Group：组邮箱</li>
+<li>Profiles：坐席/班长按键模板</li>
+<li>Agents/Supervisors：套模板到话机</li>
+<li>OK 后<strong>必须重启 ACD 引擎</strong>——不重启不生效，这是新手第一大坑</li>
+</ol>
+<p>向导会在后台自动生成虚拟终端、cyclic 寻线组、邮箱呼转、DDI、profiles——这些"自动生成物"别手改；同时有一个必须人工核对的开关：signalization mode 保持禁用，否则来话显示在组监管键上坐席没法接。</p>
+<p><strong>第二层 ACD Services 菜单</strong>做精细化：Line parameters（路由表）、Agent parameters（坐席入组与 rank）、General parameters（时段/队列/搜索模式/组名）、Voice messages（语音）。</p>
+<h2>四、四个"规则武器"</h2>
+<ol>
+<li><strong>呼叫特征化路由</strong>：CLI 从左向右比、DDI 从右向左比；三级优先（双匹配 &gt; 仅 DDI &gt; 仅 CLI）；路由表<strong>从最特殊填到最一般</strong>，兜底条目必须显式写（没匹配的来电是回振铃，不进 ACD）。</li>
+<li><strong>队列公式</strong>：长度 = ceil(在值坐席 N × 话务因子 K)，K∈0.1-9.9、上限 16；N 只数 On duty——坐席签出队列立即缩容。预计等待 = (队列数/在值坐席 + 1) × 平均通话时长，线性估算高峰低估，对外承诺留余量。</li>
+<li><strong>搜索模式三选一</strong>：Fixed 按 rank 硬优先 / Rotating 轮转 / Longest idle 谁闲谁接；与 rank（组内序）、Priority order（跨组序）三层正交。叠加"无应答自动移除"后，超时未接的坐席会被自动置 off duty——坐席"集体消失"的怪象源于此。</li>
+<li><strong>坐席建链</strong>：坐席名+坐席号+组+终端四要素建立关联才接活（free seating）。登录后默认状态看 <strong>ACDAutoLog</strong>（01 在值/00 离值）——"登录了却不接电话"先查它。话机 ACD 页签状态码：<code>组号:等待数</code>，<code>+</code>=队满，<code>-</code>=组关闭。</li>
+</ol>
+<h2>五、三个客户端 + 一个扩展</h2>
+<ul>
+<li><strong>Supervisor 班长台</strong>：实时看坐席/组、改坐席组与 rank、开关组。坐席的 On Duty 有八个子状态（待接/未应答/转接预留/振铃/通话/刚挂休整/外呼中/处理非 ACD 来话）——"显示忙却不接"对照子状态定位。密码用独立 ACD Admin，别把 installer 密码给客户。</li>
+<li><strong>Agent 席面</strong>：PC 绑话机；来话显示主叫/被叫/组名/等待时长；支持通话打标（Types 码表）、客户库弹屏、实时个人统计。</li>
+<li><strong>Statistics</strong>：S1=10s/S2=40s 两个等待阈值定义统计口径；组/坐席两维、图形/表格、自动打印；导出 binary（自用）或 CSV（外部 BI）。</li>
+<li><strong>Multi-Secretary</strong>：多经理共享秘书团，复用 ACD 引擎——经理 DDI 当被叫特征、秘书全 rank 1、话机显示被叫（经理）姓名。十步配置<strong>顺序敏感</strong>，乱序返工。</li>
+</ul>
+<h2>六、交付清单思维（从书到现场）</h2>
+<p>标准交付顺序：OMC 安装首连（改默认密码！）→ IP 规划 → 基础 ACD 三步走（向导/Services/语音）→ 路由表 → 时段日历 → 三件套部署 → 实呼验证。两个贯穿始终的红线：<strong>教材所有密码与网段是实验值</strong>（pbxk1064/Acdc1064 上生产=裸奔）；<strong>容量与安全规划在书外</strong>（话务量建模、SBC/中继安全需另行设计）。</p>
+<h2>七、速查卡</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>要做的事</th>
+<th>去哪张能力卡</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>从零建 ACD</td>
+<td>oxo-acd-basic-setup</td>
+</tr>
+<tr>
+<td>来电行为异常</td>
+<td>oxo-acd-call-scenarios</td>
+</tr>
+<tr>
+<td>按客户/国别分流</td>
+<td>oxo-acd-routing</td>
+</tr>
+<tr>
+<td>队列容量与等待播报</td>
+<td>oxo-acd-queue</td>
+</tr>
+<tr>
+<td>分配算法/自动签出怪象</td>
+<td>oxo-acd-search-noanswer</td>
+</tr>
+<tr>
+<td>坐席登录/状态码</td>
+<td>oxo-acd-login-status</td>
+</tr>
+<tr>
+<td>多经理共享秘书</td>
+<td>oxo-multi-secretary</td>
+</tr>
+<tr>
+<td>首连/IP/时段/班长/坐席/统计/弹屏/语音</td>
+<td>路由入口（oxo-connect-call-center-router）</td>
+</tr>
+</tbody>
+</table></div>
+<h2>版权</h2>
+<p>原文教材版权归 ALE Training Services 所有；本整理产物仅供内部学习，请勿外传或商用。</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OXO Connect 呼叫中心 (Participant's Guide, Edition 07) | edition: Edition 07 | pages: 218 页 -->

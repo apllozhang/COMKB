@@ -1,0 +1,817 @@
+schema_version: 1
+bundle_id: bundle.oxo-connect-call-center
+book:
+  title: OXO Connect 呼叫中心 (Participant's Guide, Edition 07)
+  author: ALE Training Services
+  source_pack: OXOCXTE107EN.pdf (218 pages)
+  baseline_tag: OXO Connect R6.x / RLAB
+entry:
+  name: oxo-connect-call-center
+  description: 'OXO Connect 呼叫中心（ACD）交付与运营支持：从 OMC 安装、基础 ACD 搭建、 呼入场景排障、特征化路由、队列与搜索模式调优，到坐席签入签出、多秘书方案、
+    Supervisor/Agent/Statistics 三件套部署与语音定制。适用于 OXO Connect R6.x 时代的 配置、排障与方案落地问答；生产化安全加固与话务容量规划不在原书范围内（见
+    out_of_scope）。
+
+    '
+  core_principles:
+  - 一切呼入行为先归入六场景之一（空闲/全忙/队满/端口忙/全员登出/组关闭），再谈配置与排障
+  - 配置分两层：ACD Setup 向导一次成型，ACD Services 菜单精细调整；改完向导必须重启 ACD 引擎才生效
+  - 呼叫特征化按 CLI(左→右)+DDI(右→左) 三级优先匹配，路由表从最特殊填到最一般
+  - 队列长度 = ceil(On duty 坐席数 × 话务因子 K)，上限 16；坐席状态与登录状态是两类独立排障维度
+  - 实验环境口径：教材密码（pbxk1064/Acdc1064）与网段仅限实验，生产必须替换并做安全加固
+  out_of_scope:
+  - 生产环境安全加固、SBC/真实中继对接、防火墙策略（原书仅 RLAB 模拟器口径）
+  - 话务量分析与坐席/端口容量规划方法论（原书仅给许可包与上限）
+  - 非 OXO Connect 平台的呼叫中心（OmniPCX Enterprise ACD、OpenTouch Contact Center 等另属其他教材）
+  stop_conditions:
+  - 需求超出 OXO Connect 平台范围（如 32 坐席以上、跨站点容灾）→ 转对应产品线教材或 ALE 预销售支持
+  - 涉及 RLAB/SIP 模拟器环境搭建细节 → 参考 book/overview 环境区，不虚构配置步骤
+  - 用户问的是生产安全/加固 → 明确声明超出原书范围，避免以实验口径误导
+router_entry:
+  name: oxo-connect-call-center-router
+  description: 'OXO Connect 呼叫中心能力路由入口：按用户意图分发到 15 张能力卡——基础搭建、六场景排障、 特征化路由、队列、搜索模式、签入签出、多秘书七个 promoted
+    能力，以及 OMC 首连、IP 规划、 营业日历、Supervisor/Agent/Statistics 三件套、DTMF 弹屏、语音定制八张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.oxo-cc.basic-setup
+  revision: 1
+  status: active
+  slug: oxo-acd-basic-setup
+  title: OXO Connect 基础 ACD 全流程搭建
+  importance: critical
+  importance_rationale: 对应 task-03（全书核心交付），是其余一切 ACD 能力的前提；遗漏后果为呼叫中心完全不可用
+  one_liner: ACD Setup 向导五步成型 + ACD Services 两菜单补齐，OK 后必须重启 ACD 引擎才生效
+  intents:
+  - 从零搭建 OXO ACD
+  - 新建呼叫中心组
+  - ACD 初始配置
+  - configure ACD on OXO Connect
+  keywords:
+  - ACD Setup
+  - 向导
+  - DDI
+  - 状态前缀 501-504
+  - hunting group
+  - voice mailbox
+  - ACD 引擎重启
+  - Line parameters
+  - rank
+  also_read:
+  - oxo-acd-call-scenarios
+  - oxo-acd-routing
+  - oxo-acd-login-status
+  card: cards/basic-setup.md
+  frontmatter:
+    description: '在 OXO Connect 上从零搭建基础 ACD（建组、关联 DDI、生成坐席/班长 profile、
+
+      坐席分组定 rank、下载语音、验证）。当用户要"配 ACD/建呼叫中心/新建 ACD 组/
+
+      初始化呼叫分配"时使用。不适用于已有 ACD 的行为排障（用六场景排障能力）、
+
+      路由分流（用特征化路由能力）；改完配置必须重启 ACD 引擎，实验密码不得上生产。
+
+      '
+    tags:
+    - procedure
+    - acd
+    - oxo-connect
+    - setup
+  source_evidence:
+  - source_id: src-oxocxte107
+  - location: p43-48, p69-77, p80-84
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-03 核心，全部五判据通过
+- capability_id: cap.oxo-cc.call-scenarios
+  revision: 1
+  status: active
+  slug: oxo-acd-call-scenarios
+  title: ACD 呼入六场景排障
+  importance: critical
+  importance_rationale: 对应 task-04，是所有'来电行为异常'报障的统一排查主轴；遗漏则排障无框架
+  one_liner: 任何呼入异常先归入六场景（空闲/全忙/队满/端口忙/全员登出/关闭），再按场景查出口配置
+  intents:
+  - 来电被挂断/排队/没铃声
+  - ACD 呼入行为异常
+  - caller behavior troubleshooting
+  - 为什么电话直接被劝退
+  keywords:
+  - 六场景
+  - Opening hours
+  - queue full
+  - dissuasion
+  - 劝漏
+  - 端口全忙
+  - 全员登出
+  - transfer number
+  - closed
+  - welcoming message
+  also_read:
+  - oxo-acd-queue
+  - oxo-acd-login-status
+  - oxo-acd-schedule-calendar
+  card: cards/call-scenarios.md
+  frontmatter:
+    description: '排查 OXO ACD 呼入行为异常：先按营业时间与资源占用把来电归入六场景之一
+
+      （坐席空闲/全忙进队列/队列满/ACD 端口全忙/全员登出/组关闭），再核对各场景的
+
+      出口配置（欢迎语、队列消息、劝漏、转接号码、组邮箱）。当用户描述"来电没人接/
+
+      被直接挂断/有时转有时不转/非工作时间还响铃"时使用。不适用于坐席侧登录与
+
+      状态问题（用签入签出能力）与组间话务分配策略（用搜索模式能力）。
+
+      '
+    tags:
+    - troubleshooting
+    - acd
+    - call-flow
+  source_evidence:
+  - source_id: src-oxocxte107
+  - location: p36-42, p112-114
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 排障总入口
+- capability_id: cap.oxo-cc.routing
+  revision: 1
+  status: active
+  slug: oxo-acd-routing
+  title: 呼叫特征化与 Smart Call Routing 路由表设计
+  importance: high
+  importance_rationale: 对应 task-05（按主叫/被叫分流是最常见的定制需求）；填表顺序错误导致隐蔽的路由失效
+  one_liner: 三级优先（双匹配>仅DDI>仅CLI），CLI 从左向右、DDI 从右向左比较，路由表从最特殊填到最一般
+  intents:
+  - 按客户/国家分流来电
+  - 配置 Smart Call Routing
+  - 大客户专线分组
+  - call routing by CLI DDI
+  keywords:
+  - call characterization
+  - Line parameters
+  - Smart Call Routing
+  - CLI
+  - DDI
+  - 路由表
+  - 分流
+  - 优先级
+  also_read:
+  - oxo-acd-call-scenarios
+  card: cards/routing.md
+  frontmatter:
+    description: '设计 OXO ACD 的呼叫特征化路由：按主叫 CLI 与被叫 DDI 把呼入分到不同 ACD 组
+
+      （国别分流、大客户专线、兜底路由）。当用户要"不同客户进不同组/按号码段分流/
+
+      路由不生效排查"时使用。关键规则：三级匹配优先级、CLI 左→右 DDI 右→左、
+
+      表从最特殊填到最一般。不适用于组内坐席分配策略（用搜索模式能力）。
+
+      '
+    tags:
+    - decision
+    - routing
+    - acd
+  source_evidence:
+  - source_id: src-oxocxte107
+  - location: p86-88, p115-116
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 含大客户兜底设计模式
+- capability_id: cap.oxo-cc.queue
+  revision: 1
+  status: active
+  slug: oxo-acd-queue
+  title: ACD 等待队列管理（容量公式与出口配置）
+  importance: high
+  importance_rationale: 对应 task-07，队列长度与等待播报直接影响来电体验；公式配置错误导致劝漏过早
+  one_liner: 队列长度 = ceil(On duty 坐席数 × K)，K∈0.1-9.9、上限 16；等待播报 = (队列数/坐席+1)×平均通话时长
+  intents:
+  - 队列长度怎么设
+  - 排队等待时间播报
+  - queue length
+  - estimated waiting time
+  - 队满了还来电
+  keywords:
+  - queue
+  - N×K
+  - traffic factor
+  - 话务因子
+  - 等待时间
+  - 星号退出
+  - Call management
+  - 劝漏出口
+  also_read:
+  - oxo-acd-login-status
+  - oxo-acd-search-noanswer
+  - oxo-acd-call-scenarios
+  card: cards/queue.md
+  frontmatter:
+    description: '配置与解释 OXO ACD 等待队列：按 N×K 公式定队列长度、配置队列消息（排名/预计等待
+
+      时间阈值）、设置队满/星号退出出口（组邮箱或转号码）。当用户问"队列设多大/等待时间
+
+      播报怎么配/第二通电话就被挂"时使用。注意 N 只数 On duty 坐席；公式为线性简化模型，
+
+      高峰会低估。不适用于端口全忙劝漏（归六场景排障）与坐席搜索顺序（用搜索模式能力）。
+
+      '
+    tags:
+    - decision
+    - queue
+    - capacity
+  source_evidence:
+  - source_id: src-oxocxte107
+  - location: p38-39, p93-94, p112-113, p184
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 含 p184 实测口径（组1 两坐席 K=2.0 → 队列 4）
+- capability_id: cap.oxo-cc.search-noanswer
+  revision: 1
+  status: active
+  slug: oxo-acd-search-noanswer
+  title: 坐席搜索模式选型与无应答处理
+  importance: high
+  importance_rationale: 对应 task-06，'坐席陆续自动变 off duty'是典型怪象，无判据时极难定位
+  one_liner: 组内分配三选一（Fixed/Rotating/Longest idle）与 rank 正交；无应答自动移除会把坐席连锁置 off duty
+  intents:
+  - 话务怎么在坐席间分配
+  - 坐席被自动签出
+  - ringing duration
+  - 无应答自动移除
+  - search mode 选哪种
+  keywords:
+  - search mode
+  - Fixed
+  - Rotating
+  - Longest idle
+  - rank
+  - priority order
+  - maximum ringing duration
+  - automatically removed
+  - off duty
+  also_read:
+  - oxo-acd-login-status
+  - oxo-acd-queue
+  card: cards/search-noanswer.md
+  frontmatter:
+    description: '选择并验证 OXO ACD 组内坐席分配算法（固定优先级/轮转/最久空闲），配置最大振铃
+
+      时长与"无应答自动移除"，处理两类典型问题：话务分配不均、坐席陆续被自动置
+
+      off duty 导致来电钉在最后一人。当用户问"怎么让电话轮流分配/坐席怎么被自动签出/
+
+      振铃多久转下一个"时使用。与 rank（组内优先序）、Priority order（组间优先序）是
+
+      正交概念；不适用于队列容量（用队列管理能力）。
+
+      '
+    tags:
+    - decision
+    - troubleshooting
+    - acd
+  source_evidence:
+  - source_id: src-oxocxte107
+  - location: p95, p97, p109-111
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 含两档行为的标准答案（p110-111）
+- capability_id: cap.oxo-cc.login-status
+  revision: 1
+  status: active
+  slug: oxo-acd-login-status
+  title: 坐席签入签出（free seating）与状态排障
+  importance: critical
+  importance_rationale: 对应 task-09，坐席日常最高频操作与一线报障入口（话机状态码解读）
+  one_liner: 四要素建链（坐席名+组+终端+坐席号）才算进入 ACD；登录默认状态看 ACDAutoLog（01 on duty/00 off duty）
+  intents:
+  - 坐席怎么登录/签出
+  - 登录了却不接电话
+  - 话机显示 1:01
+  - ACD tab
+  - free seating
+  - agent login logout
+  keywords:
+  - login
+  - logout
+  - ACD prefix
+  - base0 base1
+  - free seating
+  - ACDAutoLog
+  - 状态码
+  - 501 502 503 504
+  - On duty
+  - Off duty
+  also_read:
+  - oxo-supervisor-app
+  - oxo-acd-call-scenarios
+  card: cards/login-status.md
+  frontmatter:
+    description: '处理 OXO ACD 坐席签入签出与状态问题：登录/登出流程（前缀 base1/base0 或话机
+
+      ACD 页签）、四要素建链、登录后默认状态（ACDAutoLog）、四态前缀 501-504、
+
+      话机状态码解读（1:01 队列有话 / 1:01+ 队满 / 1-00 组关闭）。当用户说"坐席登录了
+
+      不接电话/话机显示 1:01/怎么签入签出"时使用。不适用于来话行为异常（用六场景）
+
+      与 Supervisor 台的坐席子状态细读（它作为该能力的相邻能力）。
+
+      '
+    tags:
+    - troubleshooting
+    - agent
+    - login
+  source_evidence:
+  - source_id: src-oxocxte107
+  - location: p70, p119-123
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 状态码'属于/不属于'变体符号存疑已标 Boundary（nr-02）
+- capability_id: cap.oxo-cc.multi-secretary
+  revision: 1
+  status: active
+  slug: oxo-multi-secretary
+  title: Multi-Secretary 多秘书方案配置
+  importance: high
+  importance_rationale: 对应 task-10（差异化方案场景，销售常承诺）；顺序敏感，乱序导致返工
+  one_liner: 复用 ACD 引擎：经理 DDI 当被叫特征、秘书组当坐席（全 rank1）、十步按序编程
+  intents:
+  - 多经理共享秘书
+  - 秘书台显示老板名字
+  - multi secretary
+  - 领导秘书分机方案
+  keywords:
+  - Multi-Secretary
+  - multi-secretary mode
+  - collective speed dialing
+  - 医生/经理 DDI
+  - Secretary
+  - rank 1
+  - programming order
+  also_read:
+  - oxo-acd-basic-setup
+  - oxo-acd-routing
+  - oxo-acd-schedule-calendar
+  - oxo-acd-voice-prompts
+  card: cards/multi-secretary.md
+  frontmatter:
+    description: '配置 OXO Multi-Secretary（多经理共享秘书团）：经理 DDI 作被叫特征化、秘书作
+
+      全 rank1 坐席、 collective speed dialing 显示被叫姓名、关闭时段转邮箱。当用户
+
+      要"几个领导共用一个秘书/秘书要知道替谁接电话/医疗诊所或多老板场景"时使用。
+
+      必须按既定顺序编程（DDI→邮箱→profile→Supervisor 声明→坐席→路由→时段→语音）。
+
+      需 ACD 许可；不适用于普通 ACD 组（用基础搭建能力）。
+
+      '
+    tags:
+    - procedure
+    - multi-secretary
+    - solution
+  source_evidence:
+  - source_id: src-oxocxte107
+  - location: p89, p124-146
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 激活控件名存疑已标 Boundary（nr-04）
+- capability_id: cap.oxo-cc.omc-first-connect
+  revision: 1
+  status: active
+  slug: oxo-omc-first-connect
+  title: OMC 安装与首次连接
+  importance: high
+  importance_rationale: 对应 task-01，一切配置的前提；证书与首连密码问题高频
+  one_liner: Expert 模式 + Server authentication + 首连密码 pbxk1064，装证书到受信任根消除告警
+  intents:
+  - 装 OMC
+  - 连不上 OXO
+  - 安全告警反复弹
+  - OMC installation
+  - pbxk1064
+  keywords:
+  - OMC
+  - Expert mode
+  - Server authentication
+  - certificate
+  - pbxk1064
+  - 192.168.92.246
+  also_read:
+  - oxo-ip-replan
+  - oxo-acd-basic-setup
+  card: cards/omc-first-connect.md
+  frontmatter:
+    description: '安装 OMC 并首次连接 OXO Connect：Expert 模式 LAN/WAN 连接、服务器认证、
+
+      安装证书到 Trusted Root、逐账户改密、录客户信息。当用户"第一次连 OXO/
+
+      安全告警反复出现/问 pbxk1064"时使用。实验密码不得用于生产。
+
+      '
+    tags:
+    - procedure
+    - omc
+  source_evidence:
+  - source_id: src-oxocxte107
+  - location: p54-64
+  promotion:
+    destination: router
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 五判据全过但预算有限；频率低于七个 promoted，router 可达不损失
+- capability_id: cap.oxo-cc.ip-planning
+  revision: 1
+  status: active
+  slug: oxo-ip-replan
+  title: OXO 与客户端 IP 规划修改
+  importance: medium
+  importance_rationale: 对应 task-02，现场交付第一步但操作短、频率低于核心 ACD 能力
+  one_liner: 先改 OXO 侧（Boards/LAN/DNS/DHCP 四页签）重启，再改客户端 PC，之后可 RDP
+  intents:
+  - 改 OXO IP
+  - 换网段
+  - DHCP 地址池
+  - change IP settings
+  keywords:
+  - IP configuration
+  - Main CPU
+  - DHCP range
+  - 192.168.1.246
+  - 网关
+  - DNS
+  also_read:
+  - oxo-omc-first-connect
+  card: cards/ip-replan.md
+  frontmatter:
+    description: '修改 OXO Connect 与客户端 PC 的 IP 规划：OMC/Hardware and limits/Lan/IP
+
+      configuration 下改 Main CPU、网关、掩码、DNS、DHCP 池并重启，再改 PC 侧。
+
+      当用户"现场换网段/改管理地址/配话机 DHCP 池"时使用。
+
+      '
+    tags:
+    - procedure
+    - network
+  source_evidence:
+  - source_id: src-oxocxte107
+  - location: p65-68
+  promotion:
+    destination: router
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: false
+      independent_eval: true
+    notes: 短规程，router 可达
+- capability_id: cap.oxo-cc.schedule-calendar
+  revision: 1
+  status: active
+  slug: oxo-acd-schedule-calendar
+  title: ACD 营业时段与例外日配置
+  importance: medium
+  importance_rationale: 对应 task-08，呼叫中心交付必备但操作独立成块、频率中等
+  one_liner: 每周常规时段 + 例外日两层：上限 40 关闭日/10 开放日/每开放日 2 时段，按组分别定义
+  intents:
+  - 设置营业时间
+  - 节假日关闭
+  - exceptional days
+  - opening hours
+  keywords:
+  - Opening criteria
+  - Exceptional days
+  - 时段
+  - 节假日
+  - 40/10/2 上限
+  also_read:
+  - oxo-acd-call-scenarios
+  card: cards/schedule-calendar.md
+  frontmatter:
+    description: '配置 ACD 组的营业时段与例外日：每周开放时段、例外关闭日（≤40）、例外开放日
+
+      （≤10，每日≤2 时段），按组分别定义。当用户"下班/节假日不要进呼叫中心/
+
+      特定日子例外开放"时使用。关闭时段的来话行为（关闭语/转接/邮箱）见六场景能力。
+
+      '
+    tags:
+    - procedure
+    - calendar
+    - acd
+  source_evidence:
+  - source_id: src-oxocxte107
+  - location: p100, p108
+  promotion:
+    destination: router
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: false
+    notes: 独立契约成立；评测断言较弱（行为依赖六场景）故 router
+- capability_id: cap.oxo-cc.supervisor-app
+  revision: 1
+  status: active
+  slug: oxo-supervisor-app
+  title: Supervisor 班长台部署与实时监控
+  importance: high
+  importance_rationale: 对应 task-11，运营管理刚需；含 On Duty 八子态解读这一排障知识
+  one_liner: ACD Admin 专用密码（勿用 installer）+ 活动率周期 1/2h；实时视图含八子态与干预权
+  intents:
+  - 装班长监控台
+  - 实时看坐席状态
+  - 坐席显示忙却不接
+  - supervisor application
+  - activity rate
+  keywords:
+  - Supervisor application
+  - ACD Admin
+  - Acdc1064
+  - activity rate
+  - 八子态
+  - On hold
+  - Being routed
+  also_read:
+  - oxo-acd-login-status
+  - oxo-statistics-app
+  - oxo-agent-app
+  card: cards/supervisor-app.md
+  frontmatter:
+    description: '部署与使用 Supervisor 班长台：设 ACD Admin 专用密码（与 installer 分离）、活动率
+
+      计算周期、安装首连、选受监控坐席/组，实时干预坐席（组/rank/状态）与组状态
+
+      （open/closed）。含 On Duty 八子态解读（Awaiting call/On hold/Busy outgoing 等）。
+
+      当用户"要监控坐席/坐席显示忙但闲着/活动率怎么看"时使用。坐席签入签出本身
+
+      用签入签出能力。
+
+      '
+    tags:
+    - procedure
+    - supervisor
+    - monitoring
+  source_evidence:
+  - source_id: src-oxocxte107
+  - location: p147-165
+  promotion:
+    destination: router
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 五判据全过，预算有限 router；与 Agent/Statistics 合称三件套
+- capability_id: cap.oxo-cc.agent-app
+  revision: 1
+  status: active
+  slug: oxo-agent-app
+  title: Agent 坐席席面部署（弹屏/打标/客户库）
+  importance: high
+  importance_rationale: 对应 task-12，坐席效率刚需；screen popup 三处配置缺一即失效
+  one_liner: PC-终端关联后登录；Types 表先定义分类码；弹屏需 Line parameters+107.wav+坐席权限三处齐配
+  intents:
+  - 装坐席软件
+  - 来电弹屏
+  - 通话分类打标
+  - agent application
+  - screen popup
+  keywords:
+  - Agent application
+  - PC/terminal association
+  - Types
+  - call qualification
+  - screen popup
+  - contact database
+  - PIMphony
+  also_read:
+  - oxo-dtmf-client-popup
+  - oxo-statistics-app
+  - oxo-supervisor-app
+  card: cards/agent-app.md
+  frontmatter:
+    description: '部署与配置 Agent 坐席席面：PC 与话机关联、首连、定义通话分类码（Types）、
+
+      客户数据库与 screen popup、坐席权限管理。当用户"坐席要弹客户资料/通话要打标/
+
+      装坐席软件"时使用。DTMF 客户码触发弹屏的入口配置另见 DTMF 弹屏能力。
+
+      '
+    tags:
+    - procedure
+    - agent
+  source_evidence:
+  - source_id: src-oxocxte107
+  - location: p99, p166-184
+  promotion:
+    destination: router
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: p183 'agent 1002' 疑笔误已标注
+- capability_id: cap.oxo-cc.statistics-app
+  revision: 1
+  status: active
+  slug: oxo-statistics-app
+  title: Statistics 统计应用与报表导出
+  importance: medium
+  importance_rationale: 对应 task-13，运营分析刚需但使用频率低于部署类；S1/S2 阈值口径易被忽略
+  one_liner: 先核 S1=10s/S2=40s 阈值再连库；导出分 binary（自用）与 csv（外部分析）两种
+  intents:
+  - 看来话量报表
+  - 坐席统计
+  - 导出统计
+  - statistics application
+  - S1 S2 threshold
+  keywords:
+  - Statistics Manager
+  - S1/S2
+  - Group statistics
+  - Agent statistics
+  - CSV
+  - binary export
+  - automatic printout
+  also_read:
+  - oxo-supervisor-app
+  card: cards/statistics-app.md
+  frontmatter:
+    description: '部署与使用 Statistics 统计应用：核对 S1/S2 等待阈值、连接 OXO 取数、组/坐席
+
+      维度查询（图形/表格/绝对值/百分比/时长）、自动打印、binary/CSV 导出。当用户
+
+      "要话务报表/坐席绩效数据/统计导出"时使用。统计留存上限 14 个月。
+
+      '
+    tags:
+    - procedure
+    - statistics
+    - reporting
+  source_evidence:
+  - source_id: src-oxocxte107
+  - location: p185-209
+  promotion:
+    destination: router
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: router（预算）
+- capability_id: cap.oxo-cc.dtmf-popup
+  revision: 1
+  status: active
+  slug: oxo-dtmf-client-popup
+  title: DTMF 客户码识别弹屏
+  importance: medium
+  importance_rationale: 对应 task-14，VIP 体验卖点功能；三处配置缺一即失效的排查清单价值高
+  one_liner: 来电输客户码（如 035#）触发席面弹屏；Line parameters 勾组 + 107.wav 提示 + 坐席弹屏权限三处齐配
+  intents:
+  - 客户来电弹资料
+  - 输码识别客户
+  - DTMF client code
+  - customer code popup
+  keywords:
+  - DTMF
+  - customer code
+  - 107.wav
+  - automatic screen pop up
+  - line parameters
+  also_read:
+  - oxo-agent-app
+  - oxo-acd-voice-prompts
+  card: cards/dtmf-popup.md
+  frontmatter:
+    description: '配置 DTMF 客户识别：来电者在语音提示下输客户码，坐席席面自动弹出客户资料。
+
+      三处前置缺一不可：Line parameters 勾选该组、定制 107.wav 客户码提示音、
+
+      坐席参数授予 automatic screen pop up 权限。当用户"VIP 来电要弹资料/输码识别
+
+      客户/弹屏不出来"时使用。弹屏的坐席侧权限细节与 Agent 应用能力互链。
+
+      '
+    tags:
+    - flow
+    - dtmf
+    - popup
+  source_evidence:
+  - source_id: src-oxocxte107
+  - location: p101-102
+  promotion:
+    destination: router
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: false
+    notes: 原书无端到端实测步骤（case 提取器标注），评测断言弱故 router
+- capability_id: cap.oxo-cc.voice-prompts
+  revision: 1
+  status: active
+  slug: oxo-acd-voice-prompts
+  title: ACD 语音提示定制
+  importance: medium
+  importance_rationale: 对应 task-15，本地化交付必做；wav 编号规则是核心知识
+  one_liner: 每组 6 条提示按固定编号（101=欢迎…x07=客户码）；MMC 话机录制或 OMC 四步上传
+  intents:
+  - 定制欢迎语
+  - 换提示音
+  - voice prompts
+  - 101.wav
+  - 录音上传
+  keywords:
+  - voice guide
+  - wav
+  - 101.wav 102.wav 107.wav
+  - MMC session
+  - Transfer mode
+  - ACD Voice messages
+  also_read:
+  - oxo-acd-call-scenarios
+  - oxo-acd-queue
+  - oxo-dtmf-client-popup
+  card: cards/voice-prompts.md
+  frontmatter:
+    description: '定制 ACD 各组语音提示：编号规则（101.wav 欢迎/102.wav 等待/…/x07.wav 客户码，
+
+      组1-8 对应 107-807）、话机 MMC 录制路径、OMC 四步上传（Transfer→勾选→路径→Load）。
+
+      当用户"要换欢迎语/录音怎么传/提示音编号"时使用。注意 Default messages 会下载到
+
+      全部组，需点列号排除；wav 格式参数书中为截图（见 Boundary）。
+
+      '
+    tags:
+    - procedure
+    - voice
+    - prompts
+  source_evidence:
+  - source_id: src-oxocxte107
+  - location: p76, p104-105, p135-136
+  promotion:
+    destination: router
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: false
+    notes: wav 格式参数为截图未提取（nr-05/nr-07）

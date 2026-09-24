@@ -1,0 +1,652 @@
+schema_version: 1
+bundle_id: bundle.oxo-connect-starter
+book:
+  title: OXO Connect Starter (Participant's Guide, Edition 16)
+  author: ALE Training Services
+  source_pack: OXOCXTE300EN.pdf (472 pages)
+  baseline_tag: OXO Connect R6.3 / OpenTouch Suite for SMB / RLAB
+entry:
+  name: oxo-connect-starter
+  description: 'OXO Connect（OCE IPBox 与 PowerCPU EE 平台）从开箱到投产的端到端交付：交付前数据采集、FTR 上云与 OMC Standard 双路线开通、IP 规划、终端开通（IP 话机/DECT）、编号计划与组、用户功能与语音信箱、公共 SIP 中继、呼入分发与呼出闭锁、备份升级复位、安全基线，以及 Rainbow 混合云接入速览。
+    适用于 OXO 本体交付的配置、排障与方案问答；Rainbow 云侧运营深入内容与 OXO ACD 呼叫中心不在本 bundle（见 out_of_scope 与姊妹技能）。
+
+    '
+  core_principles:
+  - 交付从数据采集开始：IP 规划、七账户密码表、三位编号计划（100-199/主中继组 0/hunt 500-525/DDI 41100-41199）先定稿后动配置
+  - 开通两条路：Cloud Connect（FTR 自动注册、许可自动下载、Fleet Dashboard）与 Standard（OMC 连 192.168.92.246、导入 .msl+.csl 双钥匙）；pbxk1064 仅首连一次
+  - 出局控制是矩阵不是清单：Traffic sharing 与 Barring 两类链路类别 × 6 张闭锁表 × digit counter，用户 COS × 中继组 COS 求交判定
+  - 呼入靠话务台组+时段表+Normal/Restricted 双 DDI 计划；组恒并行；用户默认不跟随时段，要逐话机关 Inhibition Time-ranges
+  - 维护三板斧语义分明：备份（OCE SD 卡 AES 256、恢复仅同主版本）、双版本+Swap 可回退、Warm/Cold/Factory 递进删除
+  - 实验环境口径：教材全部密码、账号、网段仅限实验；生产化依据外置 TC1143/TC1284/TC1994/TC2479/cookbook 五份文档
+  out_of_scope:
+  - Rainbow 云侧公司/订阅/成员运营、OCE-FE 多场景开局、Teams 集成、SR 支持体系（bundle.rainbow-oxo-connect 承载，本 bundle 仅速览）
+  - OXO ACD 呼叫中心排队坐席体系（bundle.oxo-connect-call-center 承载）
+  - 生产 SIP 运营商选型与加密要求（TC1284）、安全加固全文（TC1143）、TURN 与防火墙白名单（cookbook）
+  - RLAB 实验环境与 ITSP1 模拟器搭建（教学基础设施，仅 Boundary 背景）
+  stop_conditions:
+  - 用户数超 300 或需机柜扩展以外的平台能力 → 超出 OXO 产品定位，转其他产品线方案
+  - 需要生产网络数值、TC 全文或 cookbook 操作步骤 → 明确指向外部权威文档，不以实验口径搪塞
+  - 涉及 Rainbow 云侧深度运营或 ACD 排队业务 → 转对应姊妹技能，不越界作答
+  - 版本恰为 R4.0.020.002 的自动配置判定 → 按 needs-review nr-01 双口径如实说明，建议以更高版本执行
+router_entry:
+  name: oxo-connect-starter-router
+  description: 'OXO Connect Starter 能力路由入口：按用户意图分发到 12 张能力卡——数据采集、系统开通、终端、编号计划与组、用户功能与信箱、SIP 中继、呼入闭锁、
+    备份升级复位八个 promoted 能力，以及硬件平台、消息彩铃、安全基线、Rainbow 接入速览四张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.oxos.data-collection
+  revision: 1
+  status: active
+  slug: oxos-data-collection
+  title: 交付前数据采集
+  importance: critical
+  importance_rationale: 对应 task-01，一切配置的输入，缺项即返工；采集表是后续所有能力卡的输入契约
+  one_liner: 七块清单（IP/参考值/密码表/编号/信箱/组与按键/呼入呼出与运维前提）先定稿，后动配置
+  intents:
+  - 做 OXO 交付前数据采集
+  - 定编号计划与 IP 规划
+  - 准备安装密码表
+  - data collection checklist
+  keywords:
+  - 数据采集
+  - data collection
+  - IP 规划
+  - 编号计划
+  - 密码表
+  - 需求清单
+  - Partner fleet
+  - '三参考值'
+  - 呼入呼出需求
+  also_read:
+  - oxos-commissioning
+  - oxos-numbering-groups
+  card: cards/oxos-data-collection.md
+  frontmatter:
+    description: 'OXO 交付前的客户安装数据采集：生态 IP 规划、FTR 三参考值与终端清单、七个系统账户密码表、编号计划、信箱/组/按键、呼入呼出权限与 Rainbow 前提、备份计划。
+      当用户要"开工前准备/安装数据表/采集清单"时使用。不适用于系统开通动作（开通能力）；样例值均为实验口径需整体替换。
+
+      '
+    tags:
+    - procedure
+    - planning
+    - oxo-connect
+  source_evidence:
+  - source_id: src-oxocxte300
+  - location: p43-49
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-01，交付起点
+- capability_id: cap.oxos.commissioning
+  revision: 1
+  status: active
+  slug: oxos-commissioning
+  title: 系统开通双路线与首次连接
+  importance: critical
+  importance_rationale: 对应 task-02/03/04/24，OCE 交付第一步；OMC 证书与首连密码是现场高频卡点
+  one_liner: Cloud Connect 走 FTR（192.168.94.246）自动上云，Standard 走 OMC 首连+双钥匙许可；IP 四页签改完必须重启
+  intents:
+  - OCE FTR 注册 Cloud Connect
+  - 安装 OMC 并首次连接
+  - 修改 OXO IP 规划
+  - 冷复位后重建基础配置
+  - FTR first time registration
+  keywords:
+  - FTR
+  - Cloud Connect
+  - Standard
+  - OMC
+  - pbxk1064
+  - Server authentication
+  - 证书
+  - 软件钥匙
+  - '.msl'
+  - '.csl'
+  - 初始安装向导
+  - Hotel 模式
+  - warm reset
+  also_read:
+  - oxos-terminals
+  - oxos-data-collection
+  card: cards/oxos-commissioning.md
+  frontmatter:
+    description: 'OXO 系统开通：Cloud Connect（FTR 上云、许可自动下载）与 Standard（OMC 安装、Expert 首连、证书入受信任根、.msl/.csl 导入、逐客户改密）双路线，IP 规划四页签修改与初始安装向导（Business/Hotel 唯一入口）。
+      当用户要"开箱交付/装 OMC/首连/弹证书告警/改 IP/进 Hotel 模式"时使用。不适用于终端开通（终端能力）；pbxk1064 仅首次连接。
+
+      '
+    tags:
+    - procedure
+    - commissioning
+    - omc
+    - oxo-connect
+  source_evidence:
+  - source_id: src-oxocxte300
+  - location: p50-95, p439-452
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-02/03/04/24，一切配置的前提
+- capability_id: cap.oxos.terminals
+  revision: 1
+  status: active
+  slug: oxos-terminals
+  title: 终端开通（IP 话机与 DECT）
+  importance: high
+  importance_rationale: 对应 task-05/06，终端交付高频动作；Auto-Provision 忘开与 Dynamic 模式选错是最高频失败原因
+  one_liner: Auto-Provision+DHCP 池是总前置；IP 话机 static/dynamic 两路，DECT 走 ARI+GAP 或 8328 SIP 两条线
+  intents:
+  - 开通 IP 话机
+  - 话机拿不到地址
+  - 部署 IP-DECT 基站
+  - 注册 8328/8214 话机
+  - put in service IP phone
+  keywords:
+  - Auto-Provision
+  - DHCP 池
+  - TFTP
+  - Dynamic Alcatel
+  - xBS
+  - ARI
+  - GAP
+  - IPUI
+  - '8328'
+  - '8214'
+  - '*47*'
+  - FXS
+  - Open SIP
+  also_read:
+  - oxos-commissioning
+  card: cards/oxos-terminals.md
+  frontmatter:
+    description: '终端在役开通：IP 话机静态（TFTP+NOE 密码）与动态（Dynamic/Dynamic Alcatel）两模式、IP-DECT xBS（ARI 绑定+GAP 注册+LED 六步）、8328 SIP-DECT（Web Admin+旗标+两段注册）、模拟设备经 FXS 网关接入。
+      当用户要"装话机/终端不上线/DECT 部署/模拟话机接入"时使用。不适用于组与按键业务（编号计划与组能力）。
+
+      '
+    tags:
+    - procedure
+    - terminals
+    - dect
+    - oxo-connect
+  source_evidence:
+  - source_id: src-oxocxte300
+  - location: p104, p106-122, p453-465
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-05/06，高频交付
+- capability_id: cap.oxos.numbering-groups
+  revision: 1
+  status: active
+  slug: oxos-numbering-groups
+  title: 编号计划与四种组
+  importance: critical
+  importance_rationale: 对应 task-07/08，全部呼叫功能的寻址地基与团队协作基础业务；Base 语义与组 500 保留是硬约束
+  one_liner: 四层拨号计划+Base 映射（0-2199）；先删冲突段再建新段；hunt/代接/广播/经理秘书四组各管一件事
+  intents:
+  - 配置编号计划
+  - 建新前缀段报冲突
+  - 建 hunt/代接/广播组
+  - 建经理秘书组
+  - numbering plan configuration
+  keywords:
+  - 编号计划
+  - numbering
+  - Base
+  - 安装号
+  - 前缀
+  - 缩位拨号
+  - hunt group
+  - Sequential
+  - Parallel
+  - 代接
+  - pickup
+  - 广播
+  - broadcast
+  - 经理秘书
+  - multiline
+  also_read:
+  - oxos-user-features
+  card: cards/oxos-numbering-groups.md
+  frontmatter:
+    description: 'OXO 编号计划（四层拨号计划、Base 内外映射、前缀冲突处理范式、安装号）与四种组业务：hunt group 三种分发、pick-up 组与代接键、broadcast 组权限与扬声器约束、manager/secretary 组三键（双方须 multiline）。
+      当用户要"规划拨号方案/建前缀/建组/代接/广播/经理秘书"时使用。不适用于用户级前转与按键权限（用户功能能力）；组 500 被语音信箱保留。
+
+      '
+    tags:
+    - procedure
+    - numbering
+    - groups
+    - oxo-connect
+  source_evidence:
+  - source_id: src-oxocxte300
+  - location: p123-156
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-07/08，寻址与组业务底座
+- capability_id: cap.oxos.user-features
+  revision: 1
+  status: active
+  slug: oxos-user-features
+  title: 用户功能与语音信箱
+  importance: high
+  importance_rationale: 对应 task-09/10，用户级交付主体与高频诉求；apply diversion 总开关与 Feature Rights 两段式是排障关键
+  one_liner: 键三类+动态路由两级两计时（级联 5 级）+权限与载体两段式；信箱三态双模，录音默认 30 天删除
+  intents:
+  - 配用户可编程键
+  - 配动态路由与前转
+  - 前转不生效排障
+  - 管理语音信箱
+  - configure dynamic routing
+  keywords:
+  - 可编程键
+  - 功能键
+  - 资源键
+  - RSL
+  - 动态路由
+  - '3276'
+  - apply diversion
+  - 前转
+  - 插入
+  - 热线
+  - 语音信箱
+  - mailbox
+  - answer only
+  - screening
+  - 远程访问
+  also_read:
+  - oxos-numbering-groups
+  card: cards/oxos-user-features.md
+  frontmatter:
+    description: 'OXO 用户级功能：呼叫/功能/资源三类键、动态路由（T1/T2 两级两计时、级联上限 5、apply diversion 总开关）、前转/插入/热线及其 Feature Rights 放行链路，语音信箱（Standard/Guest/Answer-only 三态、双访问模式、录音监听、远程访问、通用信箱）。
+      当用户要"配键/设前转/久叫不应转接/信箱/录音监听"时使用。不适用于组业务（编号计划与组能力）。
+
+      '
+    tags:
+    - procedure
+    - user-features
+    - voicemail
+    - oxo-connect
+  source_evidence:
+  - source_id: src-oxocxte300
+  - location: p157-196
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-09/10，用户级主体
+- capability_id: cap.oxos.sip-trunk
+  revision: 1
+  status: active
+  slug: oxos-sip-trunk
+  title: 公共 SIP 中继
+  importance: critical
+  importance_rationale: 对应 task-11，局外通话主通道且配置项最多；两处顺序依赖（DNS→Outbound Proxy、网关→回填 index）是典型断点
+  one_liner: 周边四项+网关九页签按序配置；验收判据 SIP registration success；生产参数与紧急号 ARS 以 TC1284 为准
+  intents:
+  - 配置公共 SIP 网关
+  - SIP 注册失败排障
+  - 导入运营商 Profile
+  - 补短号与紧急号码路由
+  - configure SIP trunk
+  keywords:
+  - SIP 网关
+  - SIP Gateway
+  - Outbound Proxy
+  - Registrar
+  - RTP Direct
+  - 带宽
+  - SIP registration
+  - Profile
+  - Easy Connect
+  - ARS
+  - 紧急号码
+  - 安装号
+  - DDI
+  also_read:
+  - oxos-incoming-barring
+  card: cards/oxos-sip-trunk.md
+  frontmatter:
+    description: 'OXO 公共 SIP 中继全流程：SIP 拓扑与 OCE 双口接入、周边配置（LAN/安装号/DDI/VoIP 接入与中继组）、网关九页签（含 DNS 先于 Outbound Proxy、回填 Gateway index 两处顺序依赖）、SIP 账户、注册验收（SIP registration success）、Profile 导入与 Easy Connect、ARS 短号紧急号补充、Webdiag 抓包。
+      当用户要"接运营商 SIP/注册排障/SIP Profile/紧急呼叫路由"时使用。不适用于出局权限（闭锁能力）。
+
+      '
+    tags:
+    - procedure
+    - sip-trunk
+    - troubleshooting
+    - oxo-connect
+  source_evidence:
+  - source_id: src-oxocxte300
+  - location: p197-242
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-11，配置项最多章节
+- capability_id: cap.oxos.incoming-barring
+  revision: 1
+  status: active
+  slug: oxos-incoming-barring
+  title: 呼入分发与呼出闭锁
+  importance: high
+  importance_rationale: 对应 task-13/14，日夜切换与出局权限是客户最高频业务诉求；Inhibition Time-ranges 不关是限呼失效第一原因
+  one_liner: 呼入=话务台组+时段表+双 DDI 计划；呼出=Traffic sharing→Barring→闭锁表三层判定，00 国际默认禁
+  intents:
+  - 配置呼入日夜分发
+  - 配置时段表与预公告
+  - 控制用户出局权限
+  - 配置国际闭锁
+  - call barring management
+  keywords:
+  - 话务台组
+  - attendant group
+  - 时段表
+  - time ranges
+  - Normal
+  - Restricted
+  - 预公告
+  - 闭锁
+  - barring
+  - Link Category
+  - 矩阵
+  - '0053'
+  - DDIonPRI
+  also_read:
+  - oxos-sip-trunk
+  card: cards/oxos-incoming-barring.md
+  frontmatter:
+    description: 'OXO 站点话务管理：呼入分发（话务台组恒并行、Time Ranges 时段切换、Normal/Restricted 双 DDI 计划、话务台转移键、预公告三模式）与呼出闭锁（Traffic sharing 与 Barring 两类链路类别、6 张闭锁表、digit counter、矩阵求交、Inhibition Time-ranges 逐话机关闭、DDIonPRI 按线选段）。
+      当用户要"下班转留言/按时段切组/限外呼/禁国际/限呼不生效"时使用。不适用于中继注册（SIP 中继能力）。
+
+      '
+    tags:
+    - procedure
+    - incoming-calls
+    - barring
+    - oxo-connect
+  source_evidence:
+  - source_id: src-oxocxte300
+  - location: p252-291
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-13/14，权限与分发底座
+- capability_id: cap.oxos.maintenance
+  revision: 1
+  status: active
+  slug: oxos-maintenance
+  title: 备份恢复、软件升级与复位
+  importance: high
+  importance_rationale: 对应 task-15/16/17，运维底线；SD 卡同主版本限制与 Cold 复位保留四类是最易踩的边界
+  one_liner: 四线备份（自动/OMC 手动/SD 卡/DBAdapter）+双版本 Swap 可回退+三档复位按损失最小选
+  intents:
+  - 建立备份制度
+  - 恢复数据库
+  - 执行软件升级与回退
+  - 选择复位方式
+  - backup restore software download
+  keywords:
+  - 备份
+  - backup
+  - 恢复
+  - restore
+  - SD 卡
+  - 'EXT2'
+  - DBAdapter
+  - 软件下载
+  - Swap
+  - switchover
+  - warm reset
+  - cold reset
+  - factory reset
+  - 复位
+  also_read:
+  - oxos-commissioning
+  card: cards/oxos-maintenance.md
+  frontmatter:
+    description: 'OXO 运维三板斧：数据备份四线（自动周期、OMC 手动 .cdb、OCE SD 卡 AES 256 仅同主版本恢复、DBAdapter 跨版本迁移）、软件下载与双版本机制（MyPortal 三件套、Swap 排程、switchover 回退）、三种复位的选择矩阵（Warm/Cold/Factory 与数据六分类、Cold 不勾子选项保留四类）。
+      当用户要"备份/恢复/升级/回退/复位/清机"时使用。讲义口径、无书内实验验收。
+
+      '
+    tags:
+    - procedure
+    - maintenance
+    - backup
+    - oxo-connect
+  source_evidence:
+  - source_id: src-oxocxte300
+  - location: p292-324
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-15/16/17，运维底线
+- capability_id: cap.oxos.hardware-platform
+  revision: 1
+  status: active
+  slug: oxos-hardware-platform
+  title: 硬件平台与容量
+  importance: medium
+  importance_rationale: 认知与选型参考章，无独立施工动作；售前与扩容问题的分流入口
+  one_liner: 四平台两 CPU 线（OCE IPBox / PowerCPU EE 三档）；DSP 通道 16/48/60/76；HSL 三机柜 5 米
+  intents:
+  - 选硬件平台形态
+  - 估算话音并发容量
+  - 评估机柜扩展条件
+  - OXO hardware family
+  keywords:
+  - IPBox
+  - OCE
+  - PowerCPU EE
+  - Armada
+  - DSP 通道
+  - HSL
+  - PowerMEX
+  - ETH1
+  - eMMC
+  - MSDB
+  - '300 用户'
+  - 启动八步
+  card: cards/oxos-hardware-platform.md
+  frontmatter:
+    description: 'OXO 硬件认知与选型参考：产品家族定位（≤300 用户）、IPBox 接口（ETH0/ETH1 分工、SD 卡槽）、PowerCPU EE 规格与子板（Armada DSP 通道 16/48/60/76、MSDB eMMC）、多机柜 HSL 互连（3 机柜/5 米）、启动八步与停机 LED。
+      当用户问"硬件怎么选/并发多少/扩展柜/开机步骤"时经路由使用。报价与商用许可在 ALE 渠道。
+
+      '
+    tags:
+    - reference
+    - hardware
+    - oxo-connect
+  source_evidence:
+  - source_id: src-oxocxte300
+  - location: p23-42, p431-438
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 认知参考域，路由可达即可
+- capability_id: cap.oxos.audio-messages
+  revision: 1
+  status: active
+  slug: oxos-audio-messages
+  title: 消息与彩铃
+  importance: medium
+  importance_rationale: 对应 task-12，客户体验项、单主题小域；默认 4 条与 .wav 格式是两条硬约束
+  one_liner: MSG1-20（默认 4 条许可 20、总 320 秒）与 MoH（仅外线保持、三源、Entity 1-4），.wav 格式硬约束
+  intents:
+  - 上传欢迎与预公告消息
+  - 配置保持音乐
+  - 音频格式转换核查
+  - music on hold download
+  keywords:
+  - 欢迎消息
+  - MSG
+  - 彩铃
+  - Music on hold
+  - MoH
+  - '.wav'
+  - '8kHz'
+  - Entity
+  - '320 秒'
+  card: cards/oxos-audio-messages.md
+  frontmatter:
+    description: 'OXO 站点音频资源：MSG1-20 消息池（默认 4 条、许可 20 条、总长 320 秒、五种用途）与 Music on Hold（仅外线保持播放、默认乐/Tape/录制三源、Entity 1-4 多公司）、.wav 格式硬约束（16-bit PCM 或 A/μ-law 8kHz Mono）与 MMC 会话录制备选。
+      当用户要"传彩铃/换等待音乐/消息下载"时经路由使用。消息在呼入流程中的挂接属呼入分发能力。
+
+      '
+    tags:
+    - reference
+    - audio
+    - oxo-connect
+  source_evidence:
+  - source_id: src-oxocxte300
+  - location: p243-251
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 单主题体验项，路由可达即可
+- capability_id: cap.oxos.security
+  revision: 1
+  status: active
+  slug: oxos-security
+  title: 安全基线与防盗打
+  importance: high
+  importance_rationale: 对应 task-18，客户钱包安全；TC1143 是唯一权威入口，书内只有常识层
+  one_liner: 密码三句（非默认/常改/不简单）+8 位三类字符规则+盗打损失口径；生产加固强制 TC1143
+  intents:
+  - 制定密码策略
+  - 清理默认口令
+  - 处置疑似盗打
+  - phreaking security baseline
+  keywords:
+  - 密码策略
+  - 默认密码
+  - pbxk1064
+  - 盗打
+  - phreaking
+  - 弱密码
+  - '000000'
+  - TC1143
+  - 安全基线
+  card: cards/oxos-security.md
+  frontmatter:
+    description: 'OXO 安全基线：七个系统账户与设备管理面的默认口令清理、管理密码 8 位三类字符规则、信箱弱密码拒绝机制、R10.1 前旧默认密码表已弃用、盗打（Phreaking）风险口径（一周末可损失 2 万欧以上）与应急、TC1143+Expert SECURITY 章强制指针。
+      当用户要"改密码/安全加固/话费异常排查"时经路由使用。具体加固取值以 TC1143 最新版为准。
+
+      '
+    tags:
+    - reference
+    - security
+    - oxo-connect
+  source_evidence:
+  - source_id: src-oxocxte300
+  - location: p94-95, p184, p325-329
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 策略核查域，路由可达即可
+- capability_id: cap.oxos.rainbow-integration
+  revision: 1
+  status: active
+  slug: oxos-rainbow-integration
+  title: Rainbow 混合云接入速览
+  importance: medium
+  importance_rationale: 对应 task-19-23 的 OXO 侧入口；深度内容在姊妹 bundle，本卡承担接入、RCC 分流与容量速查
+  one_liner: PBXID+激活码接入（域名不动）+Webdiag 判据 connected with final password；网关四拓扑 20/50 上限；深入转姊妹技能
+  intents:
+  - 把 OXO 接入 Rainbow
+  - Rainbow 连接排障
+  - 网关拓扑与容量速查
+  - connect OXO to Rainbow
+  keywords:
+  - Rainbow
+  - PBXID
+  - Activation code
+  - 激活码
+  - Webdiag
+  - connected with final password
+  - ccrbagent.log
+  - RCC
+  - WebRTC 网关
+  - Twinset
+  - Anydevice
+  - UTL
+  also_read:
+  - oxos-commissioning
+  card: cards/oxos-rainbow-integration.md
+  frontmatter:
+    description: 'OXO 侧 Rainbow 混合云速览：PBXID+激活码接入（OMC/Cloud/Rainbow、域名保持 openrainbow.com）、Webdiag/ccrbagent.log/用户日志三抓手排障、RCC 中间态语义（音频在话机属正常）、WebRTC 网关四拓扑与 20/50 通话容量对照、Twinset/Anydevice 终端与 UTL 口径、话务台与互助监督组规格。
+      当用户要"接 Rainbow/查连接状态/选网关拓扑/软话机终端"时经路由使用。云侧运营与 Teams 深度内容转 bundle.rainbow-oxo-connect；ACD 转 bundle.oxo-connect-call-center。
+
+      '
+    tags:
+    - reference
+    - rainbow
+    - webrtc-gateway
+    - oxo-connect
+  source_evidence:
+  - source_id: src-oxocxte300
+  - location: p330-426
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 从简收录，指向姊妹技能

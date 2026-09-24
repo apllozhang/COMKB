@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>ASM 脚本与 LCA 主干</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced</h2><p>Edition  · 597 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte101en/index.html">课程首页</a><a href="/courses/otccxte101en/digest.html">精华长文</a><a href="/courses/otccxte101en/overview.html">教书理解</a><a href="/courses/otccxte101en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte101en/skills/otcad-ism-skill-matching.html">ISM 技能匹配与排序口径</a><a href="/courses/otccxte101en/skills/otcad-remote-pg-mutual-aid.html">Remote PG 分布式互助与 ABC-F 链路</a><a href="/courses/otccxte101en/skills/otcad-spm-deployment.html">Soft Panel Manager 部署与基础设置</a><a href="/courses/otccxte101en/skills/otcad-soft-panel-manager.html">Soft Panel 可视化配置（视图/挂件/消息/告警）</a><a href="/courses/otccxte101en/skills/otcad-ccta-ticket-analysis.html">CCTA 话务票据分析</a><a href="/courses/otccxte101en/skills/otcad-special-features.html">特殊功能开关（优先转接/忙音/代接/监听/永恒整理/中继预留）</a><a href="/courses/otccxte101en/skills/otcad-excel-report-customization.html">Excel 报表模板定制</a><a href="/courses/otccxte101en/skills/otcad-ccs-server.html">CCS Server 集中接入</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte101en/skills/otcad-acr-objects.html">ACR 对象与技能体系</a><a href="/courses/otccxte101en/skills/otcad-asm-script-advanced.html">ASM 脚本与 LCA 主干</a><a href="/courses/otccxte101en/skills/otcad-ccs-onboarding.html">CCS 安装与实验环境定稿</a><a href="/courses/otccxte101en/skills/otcad-acd-maintenance.html">ACD 维护命令箱</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte101en/index.html">otcc-standard-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte101en/index.html">OTCCXTE101EN</a><span>/</span><span aria-current="page">ASM 脚本与 LCA 主干</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>ASM 脚本与 LCA 主干</h1></div><dl><div><dt>Skill ID</dt><dd>otcad-asm-script-advanced</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>ASM 脚本与 LCA 主干（编辑器安装、脚本生命周期、调试器、记忆路由）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"If the CCsupervision application is already installed, you can't reuse the executable CCsupervision setup file to add the ASM Script Editor package. You must use the dedicated executable setup file (asm-se_setup.msi)"（p206）
+"When the script is completed, it must be saved &amp; compiled • 2 files will be generated • "Script_name".scr • "Script_name".alb"（p198）
+"Only one script per pilot, or one common script for all pilots!"（p213）
+"The ASM memory is emptied when the ASM process is re-started. • MAIN_AFE re-starting has no effect on the ASM memory."（p252）</p>
+</blockquote>
+<p>出处：OTCCXTE101EN p188-259, p260-292。</p>
+<h2>I — 自述</h2>
+<p>ACR 脚本体系的主干四块（编写深度由姊妹技能 ACR 专题承接，本卡给主干与排障入口）：</p>
+<p><strong>安装与工具链</strong>：装 CCS 时可勾 ASM Script Editor 组件一步到位；CCS 已装后补装必须用专用 asm-se_setup.msi（重跑 CCS 安装包无效）；
+编辑器起不来先补 JRE（书示 Azul Zulu 8.72.0.17 32 位，版本可不同）。
+入口在 Configurations &gt; Advanced Call Routing &gt; ASM Script Editor；在线模式先 ASM &gt; Connection 填服务器 IP（内置 ASM=Call Server 地址）。</p>
+<p><strong>脚本生命周期</strong>：脚本名 ≤8 字符；积木块入口/出口不得悬空；保存编译生成 .scr（源）+.alb（产物），内置 ASM 存 /usr3/afe；激活时绑定 Pilot——一 Pilot 一脚本，或全 Pilot 公共脚本；换脚本必须重新 Activate。</p>
+<p><strong>调试器</strong>：三窗格（只读图形窗/轨迹控制台/命令窗）；过滤器四模式（CALLING 主叫号须与运营商送达完全一致、CALLED、CALLTAG、无过滤）；Make call 的发起分机必须是普通用户（非坐席非班长）；轨迹可保存；调试器里不能新增积木块。</p>
+<p><strong>LCA 记忆路由主干</strong>：ASM 按主叫记录最后应答坐席、Pilot、时间与 7 种上次呼叫状态（LAST_CALLED_STATE 1-7：劝阻/已应答/互助/GFW/闭锁/等待放弃/振铃放弃）；
+脚本范式=IF(有记忆且未超 1 天) 走 LCA 规则（优先级 2、重选 10 秒），否则回落 ISM（优先级 8、20 秒）；
+清理记忆必须 kill alb 进程（MAIN_AFE 重启不清），用 adm_acd <ASM IP> -salb option 28 复核。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>从安装到 LCA 验证的最短路径</strong>（p204-292）：</p>
+<ol>
+<li>专用 msi 装 ASM Script Editor，需要时补 JRE，启动后放行防火墙</li>
+<li>连 ASM（192.168.1.3，实验口径），建 ISM 脚本（RULE_ISM+CHARACTERISTICS_LIST）并激活到 Pilot 31603</li>
+<li>三路测试：31660 振铃坐席 1、31661 振铃坐席 2、直拨 31603 无档案跑满 21 次走闭锁</li>
+<li>建 Reselect 脚本：RULE_ISM + 设 RESELECTION_TIMEOUT=10，右键 Debugger 激活，第二序列等 10 秒出第 2 子列表</li>
+<li>建 LCA_1：IF(SEQUENCE=1) 分支 TRUE=PRIORITY 2+超时 10+LCA 规则，FALSE=PRIORITY 8+超时 20+ISM</li>
+<li>清记忆：ps -edf|grep alb 找 PID，su - 提权 kill -9，option 28* 复核为空</li>
+<li>两通验证：第一通走 ISM 且记忆新增条目，第二通条件 TRUE 走 LCA 规则（p277 轨迹）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：编辑器装不上/起不来；脚本改了行为没变；要用调试器抓路由轨迹；客户要"回头客找原坐席"；LCA 测试前清记忆。</p>
+<p>语言信号：ASM Script Editor / asm-se / .scr / .alb / 激活 / Activate / 调试器 / Debugger / Make call / RESELECTION_TIMEOUT / LCA / LAST_CALLED_AGENT / ASM 记忆 / kill alb / option 28。</p>
+<p>与相邻能力区分：ISM 算法为什么这样排序转 ISM 技能匹配卡；脚本对象/ Pilot 配置转 ACR 对象卡（路由卡）；<strong>脚本积木块详解、LCA_1/2/3 渐进脚本族、调试器完整实操转姊妹技能 otcc-standard-advanced-call-routing（ACR 专题）</strong>。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：CCS 已装、ACR 矩阵与统计 Pilot 就绪（走 ACR 对象卡）、ASM 服务器地址。需要完整脚本开发 → 转姊妹技能。</p>
+<ol>
+<li>装编辑器（专用 msi）+ 必要时补 JRE。完成标准："ASM Script Editor application is started"</li>
+<li>连 ASM 并创建脚本，连线闭合后保存编译。完成标准：/usr3/afe 下出现 .scr+.alb</li>
+<li>激活到目标 Pilot。完成标准：Navigator 显示脚本生效的行为</li>
+<li>需要排障时右键 Debugger 激活，选过滤器抓轨迹并保存。完成标准：轨迹能解释当次路由</li>
+<li>LCA 场景：写 IF 守门范式，测试前 kill alb 清记忆并复核为空。完成标准：第二通命中 LCA 规则</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>脚本改了行为没变 → 停，先查是否重新 Activate（一 Pilot 一脚本，n06），再查 ccs.ini 类重启家族</li>
+<li>直拨路由 Pilot 无呼叫档案 → 停，空列表 21 次后闭锁是设计行为（n07），业务号码要引导拨统计 Pilot</li>
+<li>调试器 Make call 用坐席号发起 → 停，必须普通用户（n10），轨迹不代表真实路径</li>
+<li>需要脚本级深度开发/复杂 LCA 策略 → 停，转姊妹技能 otcc-standard-advanced-call-routing</li>
+</ul>
+<p>输出契约：可用的 ACR 脚本（已激活）+ 调试轨迹存档 +（LCA 场景）记忆清理与两通验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>本卡为 ACR 脚本主干（从简版）；积木块级开发、LCA_1/2/3 全族与调试器完整流程由姊妹技能承接</li>
+<li>关键字拼写两套并存（LAST_CALLED_/LAST_CALL_），以编辑器下拉可选值为准（nr-03）</li>
+<li>"21 次执行 vs 21 请求/20 次执行"两口径并存（nr-05）；RESELECTION_TIMEOUT 是重跑节拍不是最长等待（n14）</li>
+<li>alb 重启清记忆、MAIN_AFE 重启不清（p252）：改 parameters.cfg 后的例行重启不影响 LCA 记忆</li>
+<li>外置 ASM（external ASM）模式本书未展开；alb 参数（.inialb StatPeriod 5/NbMaxAgent 200）为实验观察口径（p272）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte101en/skills/otcad-acr-objects.html">ACR 对象与技能体系</a></p><p class="source-page">能力 ID：cap.otcad.asm-script-advanced · 来源：OTCCXTE101EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition - Advanced (Participant's Guide, Edition 07) | edition: Edition  | pages: 597 页 -->

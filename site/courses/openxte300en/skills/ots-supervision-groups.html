@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>监督组（话务监督、进出组与代接）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch · Starter</h2><p>Edition 10 · 603 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte300en/index.html">课程首页</a><a href="/courses/openxte300en/digest.html">精华长文</a><a href="/courses/openxte300en/overview.html">教书理解</a><a href="/courses/openxte300en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte300en/skills/ots-post-installation-wizard.html">OTMS 初始化向导（两模式十节）</a><a href="/courses/openxte300en/skills/ots-license-flexlm.html">许可体系与 FlexLM（安装、核查、外部切换）</a><a href="/courses/openxte300en/skills/ots-node-declaration-sip.html">双向节点声明与 SIP 打通（含告警对接）</a><a href="/courses/openxte300en/skills/ots-prior-management.html">Prior management（号码段、前缀、拨号规则、UDAS、会议桥）</a><a href="/courses/openxte300en/skills/ots-users-profiles.html">档案与用户供给（三类用户、WPC 批量）</a><a href="/courses/openxte300en/skills/ots-voice-mail.html">语音邮箱、IMAP 收取与通知公告（Local Storage）</a><a href="/courses/openxte300en/skills/ots-clients-multi-devices.html">OTC PC 客户端交付与多终端</a><a href="/courses/openxte300en/skills/ots-maintenance-rehosting.html">维护、备份恢复与 rehosting（TC2149 矩阵）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte300en/skills/ots-sot-installation.html">SOT 自动化装机与虚机手动导入</a><a href="/courses/openxte300en/skills/ots-certificates.html">证书部署三路线</a><a href="/courses/openxte300en/skills/ots-supervision-groups.html">监督组（话务监督、进出组与代接）</a><a href="/courses/openxte300en/skills/ots-lab-connections.html">实验 POD 与系统连接通道</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte300en/index.html">opentouch-starter（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte300en/index.html">OPENXTE300EN</a><span>/</span><span aria-current="page">监督组（话务监督、进出组与代接）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>监督组（话务监督、进出组与代接）</h1></div><dl><div><dt>Skill ID</dt><dd>ots-supervision-groups</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>监督组（话务监督、进出组与代接）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Each group is a set of 2 or more members of the same type (group of Conversation users or group of Connection users) 40 members maximum per group"（p497）
+"An user can only be declared in one group Group members may be declared on different OXE nodes but must be attached to the same OT node (no multi OT)"（p500）
+"No link with OXE supervision feature (no management synchronization)"（p501）
+"The OXE routing is prior to the OT supervision group feature: - Incoming calls to a supervised member, with an immediate forward to a non supervised destination, are not monitored by OT supervision group."（p502）</p>
+</blockquote>
+<p>出处：OPENXTE300EN p494-513。</p>
+<h2>I — 自述</h2>
+<p>OT 监督组是管理员建删改的话务监督单元：同类型成员（Conversation 组或 Connection 组）2-40 人，每成员角色为 Supervisor（看全组话务、收通知、可代接）、Supervised（被监督、可进出组）或双职。</p>
+<p>规格与边界：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>组规模</td>
+<td>每组 2-40 名同类型成员</td>
+</tr>
+<tr>
+<td>系统上限</td>
+<td>500 组</td>
+</tr>
+<tr>
+<td>监督链</td>
+<td>500-1500 用户系统 4000 条；3000-5000 用户系统 6000 条</td>
+</tr>
+<tr>
+<td>归属</td>
+<td>成员可跨 OXE 节点，但必须挂同一 OT 节点（不支持多 OT）</td>
+</tr>
+<tr>
+<td>一人多组</td>
+<td>不允许，每人只能属于一个组</td>
+</tr>
+<tr>
+<td>许可</td>
+<td>无专用许可（监督本身免费）</td>
+</tr>
+</tbody>
+</table></div>
+<p>模式、进出组与代接三要点：</p>
+<ul>
+<li>工作模式两档：Regular（被监督者看不到他人）与 Collaboration（OTC PC 专属，被监督者可见全组与富在场；话机上即使组设为 collaboration 也按 regular 跑）</li>
+<li>进出组经 OTC PC、手机或 TUI 前缀（OT 侧 Join or leave group 前缀 + OXE 侧同名 External Voice Mail 走 ICM 网关）</li>
+<li>代接走 OXE Direct call pick-up（需在 OXE 侧建前缀并在类目启用），仅 Connection 用户组需要</li>
+</ul>
+<p>三对易混边界：OT 监督组与 OXE 话机监督键是两套机制、无联动；OTC PC One 无监督功能；OXE 呼叫路由优先——立即前转到非监督目标、忙/无应答前转、副号码呼叫都可能脱离监督（Twinset 副站本身被监督，只监督主号码）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>监督组实验</strong>（p508-513）：</p>
+<ol>
+<li>8770 中 OT 节点 Features 页建监督组并选 regular 模式。</li>
+<li>组内逐个加成员并勾 Is Supervisor 与 Is Supervised。</li>
+<li>双职成员同时勾两项；核对每组不超 40 人。</li>
+<li>OT 侧 Telephone prefixes 配 Join or leave group 前缀。</li>
+<li>OXE 侧对同值建 External Voice Mail 走 ICM 网关。</li>
+<li>OXE Translator/Prefix plan 建 Direct call pick-up 前缀。</li>
+<li>用户类目的 Phone Facilities Categories 启用代接。</li>
+<li>测试：被监督成员来话，监督员客户端收通知并代接。</li>
+<li>验证进出组：客户端操作或话机拨进出组前缀。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：主管要看全组来话并代接；组员要临时退出监督；评估监督覆盖有没有漏洞；话机监督键行为为什么不受 OT 组控制。</p>
+<p>语言信号：监督组 / supervision / 主管 / 话务监督 / 代接 / pickup / Direct call pick-up / 进出组 / Join or leave group / Regular / Collaboration / 40 人 / 500 组 / 双职。</p>
+<p>与相邻能力区分：话机副站与 Twinset 前缀 → 客户端能力；OXE 话机监督键是另一套机制（n32）；OXE ACD 呼叫中心不在本书范围。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：组员名单与角色（跨 OXE 节点时核对同一 OT 归属）；进出组与代接前缀值规划；监督覆盖范围承诺。</p>
+<ol>
+<li>建组派角色。完成标准：2-40 人、一人一组、同 OT 节点</li>
+<li>配进出组前缀两侧成对（OT 前缀 + OXE External Voice Mail）。完成标准：进出组生效</li>
+<li>配代接前缀并在类目启用。完成标准：代接成功</li>
+<li>交互边界核对（前转/溢出/副号码）。完成标准：覆盖承诺与 p502 交互表一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户要"所有来话都可见" → 前转与溢出会让呼叫脱离监督，按交互表核对再承诺</li>
+<li>想一人进多组 → 不支持，一人一组</li>
+<li>成员分属两台 OT → 不支持多 OT，重新规划归属</li>
+<li>OTC PC One 用户要监督 → 该模式无此功能，升 Desktop 或换客户端</li>
+<li>话机上要 Collaboration 行为 → 设计按 regular 跑，预期管理</li>
+</ul>
+<p>输出契约：监督组配置记录 + 代接与进出组测试证据 + 覆盖边界说明（给客户的承诺口径）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>实验口径（生产按现场计划替换）：组名 Connection_SG、模式 regular、进出组前缀 44、成员 Barkley/Boop/Backman。</li>
+<li>监督功能无专用许可；更细 provisioning 上限见 Features list 与 Product limits（书外指针，p507）。</li>
+<li>Collaboration 模式仅 OTC PC 生效；话机上按 regular 跑（p500）。</li>
+<li>只监督主号码；Twinset 副站本身被监督（p502）。</li>
+<li>与 OXE 话机监督键无同步；Connection 用户可两套并用，代接走 OXE Direct call pick-up（p499-501）。</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.ots.supervision-groups · 来源：OPENXTE300EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch — OpenTouch Suite for MLE — Solution Overview / Starter (Participant's Guide) | edition: Edition 10 | pages: 603 页 -->

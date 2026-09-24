@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch Fax Center · Starter</h2><p>Edition 04 · 233 页 · 文档整理入库（11 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otfcxte200en/index.html">课程首页</a><a href="/courses/otfcxte200en/digest.html">精华长文</a><a href="/courses/otfcxte200en/overview.html">教书理解</a><a href="/courses/otfcxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otfcxte200en/skills/otfax-installation-ftw.html">OTFC 首次交付（宿主准备、安装、FTW、许可）</a><a href="/courses/otfcxte200en/skills/otfax-sip-channel-integration.html">OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）</a><a href="/courses/otfcxte200en/skills/otfax-mail-exchange-integration.html">OTFC 邮件与 Exchange 集成（SMTP 网关、FAX 连接器、通知排障）</a><a href="/courses/otfcxte200en/skills/otfax-user-administration.html">OTFC 用户与管理员管理（双用户源、CSV、两级管理员）</a><a href="/courses/otfcxte200en/skills/otfax-profile-policy.html">OTFC Profile 策略与电话簿（限制组、呼号限制、通知 Profile、LDAP 电话簿）</a><a href="/courses/otfcxte200en/skills/otfax-directory-routing.html">OTFC 高级目录集成与来传真路由（LDAP、Lookup、NT 免密、路由表、DTMF、Modification）</a><a href="/courses/otfcxte200en/skills/otfax-services-operations.html">OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）</a><a href="/courses/otfcxte200en/skills/otfax-backup-upgrade.html">OTFC 备份、恢复、升级与删除策略（三数据域、五步升级法、零保留）</a><p class="course-nav-group">路由能力</p><a href="/courses/otfcxte200en/skills/otfax-client-coversheet.html">OTFC 客户端部署与封页定制（四件套、Web Client、GPO、封页五步）</a><a href="/courses/otfcxte200en/skills/otfax-solution-planning.html">OTFC 方案评估与部署规划（容量协议合规、架构拓扑、支持矩阵）</a><a href="/courses/otfcxte200en/skills/otfax-reports-monitoring.html">OTFC 报表与监控（31 报表、BIRT、SNMP V2 陷阱）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otfcxte200en/index.html">ot-fax-center（11 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otfcxte200en/index.html">OTFCXTE200EN</a><span>/</span><span aria-current="page">OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）</h1></div><dl><div><dt>Skill ID</dt><dd>otfax-sip-channel-integration</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OTFC 与 OXE 的 SIP 通道集成（OTFC 侧声明、OXE 侧 MGR 七步、传真抓包）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"SIP configuration • Local SIP UDP port: 5360 • Activate SIP message in log files (for maintenance) • SIP authentication"（p142）
+"In Driver/Peer List • Declare the 2 call servers: IP addresses or FQDN (if managed in DNS server) … In Driver/Dial Plan • For the number pattern concerned, specify the 2 call servers declared previously with a priority order"（p145-146）
+"Use MGR or Omnivista 8770 to manage. mtcl is the default login &amp; password … Select mgr / Trunk groups/ Create"（p152）
+"To manage SIP connexion between the OTFC &amp; OmniPCX Enterprise, you have to refer to the Technical Communication: • TC3048"（p141）</p>
+</blockquote>
+<p>出处：OTFCXTE200EN p140-155（含 How-To 实验 6）、p148-150（Maintenance 抓包）。</p>
+<h2>I — 自述</h2>
+<p>传真话路是收发传真的命脉，两侧都要配，缺一边就不通：</p>
+<ol>
+<li><strong>OTFC 侧</strong>：SIP 基础配置——本地 SIP UDP 端口 5360（防火墙放行与排障核对点）、SIP 认证、维护时可激活 SIP 消息日志；OXE 声明可增改；Dial Plan 单 PBX 默认所有号码（*）路由到该 PBX</li>
+<li><strong>OXE 侧（MGR 七步）</strong>：Trunk groups/Creat、SIP gateway、Proxy、Trusted IP addresses/Creat、SIP Ext gateway/Creat、Translator/Network Routing Table、Prefix plan/Creat——菜单序列骨架，参数细节一律参照 TC3048</li>
+<li><strong>空间冗余</strong>：Driver/Peer List 声明 2 台呼叫服务器（IP 或 FQDN），Driver/Dial Plan 对相关号码模式排优先级</li>
+<li><strong>抓包三法</strong>（OXE 呼叫服务器 mtcl 账号）：CHtrace（tuner/actdbg/mtracer 滚动日志）、SIP trace（motortrace/traced）、网络包（tcpdump -s 2000 -w，FTP bin 模式取回 Wireshark 分析）</li>
+</ol>
+<p>多网关多站点：Fax Center 可配多个 SIP 网关按号码段分流（如 GW1 对 1200-1500、GW2 对 3300-3800，实验口径示例）；OXE 侧必须建 SIP private trunk。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>OXE 侧 SIP 网关配置</strong>（p151-155，实验 6）：</p>
+<ol>
+<li>终端登录 OXE 呼叫服务器：mtcl/mtcl（默认口径），进入 csa 后执行 mgr</li>
+<li>mgr / Trunk groups / Create 建 SIP 中继组</li>
+<li>mgr / SIP / SIP gateway 配网关参数（细节照书内截图与 TC3048）</li>
+<li>mgr / SIP / Proxy 配代理</li>
+<li>mgr / SIP / Trusted IP addresses / Create 把传真服务器列入信任</li>
+<li>mgr / SIP / SIP Ext gateway / Create 配外部网关</li>
+<li>mgr / Translator / Network Routing Table / 5 配路由表</li>
+<li>mgr / Translator / Prefix plan / Create 把目录号 #31600-31699 指向传真网关（实验口径号段）</li>
+</ol>
+<p><strong>CHtrace 抓包</strong>（p148）：tuner km、tuner clear-traces、tuner +cpu +cpl +at hybrid=on、actdbg all=off sip=on abcf=on、mtracer -ag -d -1 /DHS3dyn/tmp/CHtrace -s 1000000 -f 90，停止 Control C 或 killall mtracer。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：OTFC 装好了发不出/收不到传真；OXE 和 OTFC 之间 SIP 不通；OXE 有两台呼叫服务器要做冗余；多台 OXE 接一台 OTFC；传真时通时断要取证；SIP 信令要看日志。</p>
+<p>语言信号：SIP / T.38 / G.711 / 5360 / trunk / 中继组 / MGR / mtcl / Trusted IP / Prefix plan / 前缀计划 / dial plan / 拨号计划 / Peer List / 空间冗余 / 抓包 / CHtrace / motortrace / tcpdump / Wireshark / TC3048。</p>
+<p>与相邻能力区分：装系统与许可归首次交付能力；邮件入口不通归邮件与 Exchange 集成能力；来传真路由到人归目录与路由能力；服务日志归服务运维能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OTFC 已安装且 XMSMTPGateway 等服务正常（见首次交付能力）、OXE 的 mtcl/mgr 访问权限、两侧 IP/号段规划、TC3048 文档在手。没有 TC3048 不开工。</p>
+<ol>
+<li>OTFC 侧 SIP：确认本地 UDP 5360、SIP 认证口径，维护场景激活 SIP 消息日志。完成标准：SIP 配置页参数落定</li>
+<li>OTFC 侧声明 OXE：核对安装时声明的 PBX，多 PBX 场景逐台声明。完成标准：每台 OXE 在声明列表内</li>
+<li>Dial Plan：单 PBX 保持默认（* 全路由）；多 PBX 按号码模式分派。完成标准：出呼号码模式全覆盖</li>
+<li>空间冗余（如适用）：Peer List 声明 2 台呼叫服务器，Dial Plan 排优先级。完成标准：两服务器均在列表且优先级明确</li>
+<li>OXE 侧 MGR 七步：Trunk groups、SIP gateway、Proxy、Trusted IP、SIP Ext gateway、Network Routing Table、Prefix plan。完成标准：七步全部落配置，参数以 TC3048 核对</li>
+<li>联通验证：两端互发测试传真（书内口径以 p116 两用户互发 + 管理端监控为准）。完成标准：测试传真双向可达</li>
+<li>故障取证（如不通）：按 mtcl 账号抓 CHtrace / SIP trace / tcpdump，FTP bin 取回 Wireshark 按 SIP 过滤分析。完成标准：拿到可分析的 trace 文件</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>手头没有 TC3048 → 停，向 ALE 渠道索要后再上站；本书只有菜单骨架，照抄参数大概率回工</li>
+<li>抓包发现 SIP 请求根本没到对端 → 先查防火墙/路由（5360 放行），再查 Trusted IP 列表，不要急着改两侧配置</li>
+<li>客户要求加密话路（SIP/TLS）→ 停，概览页提到 SIP/TLS 能力但本书无启用路径，按 Features List 与产品安全文档答复</li>
+<li>涉及 XMFaultTolerance 高可用部署 → 停，本书只介绍该组件不教部署，转产品文档/专业服务</li>
+</ul>
+<p>输出契约：两侧 SIP 配置清单（OTFC 侧 5360/声明/Dial Plan + OXE 侧七步结果）+ 双向测试传真记录（或 trace 文件与初步分析）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>OXE 侧七步是菜单序列骨架，网关/中继具体参数（编码、号码变换、中继属性）原书未给，权威口径在 TC3048</li>
+<li>mtcl/mtcl 是 OXE 出厂默认账号，生产必须改；#31600-31699 与 GW1/GW2 号段均为实验口径示例</li>
+<li>SIP/TLS 在 p7 概览作为能力出现，配置章只有 UDP 5360，加密信令的证书与启用路径书内为零</li>
+<li>高可用停留在虚拟化平台层（vMotion/HA）；XMFaultTolerance 只作组件介绍，failover 部署与演练全书未教</li>
+<li>生态图中的 CSGD 缩写（p34）书内未定义；引用架构图时如实标注，不臆测含义</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otfcxte200en/skills/otfax-installation-ftw.html">OTFC 首次交付（宿主准备、安装、FTW、许可）</a>、<a href="/courses/otfcxte200en/skills/otfax-services-operations.html">OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）</a></p><p class="source-page">能力 ID：cap.otfax.sip-channel-integration · 来源：OTFCXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch Fax Center - R9.2 Starter (Participant's Guide, Edition 04) | edition: Edition 04 | pages: 233 页 -->

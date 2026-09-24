@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Rainbow 公司体系与订阅开通</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Rainbow for OmniPCX Enterprise</h2><p>Edition 12 · 314 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte003en/index.html">课程首页</a><a href="/courses/rainxte003en/digest.html">精华长文</a><a href="/courses/rainxte003en/overview.html">教书理解</a><a href="/courses/rainxte003en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte003en/skills/rxe-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte003en/skills/rxe-agent-onboarding.html">OXE 接入 Rainbow 与接入排障</a><a href="/courses/rainxte003en/skills/rxe-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte003en/skills/rxe-routing-rex.html">OXE 用户形态决策与远程延伸路由</a><a href="/courses/rainxte003en/skills/rxe-webrtc-gateway-deployment.html">WebRTC 网关部署与升级</a><a href="/courses/rainxte003en/skills/rxe-oxe-gateway-config.html">OXE 侧 WebRTC 网关配置九件套</a><a href="/courses/rainxte003en/skills/rxe-gateway-pool-sizing.html">共享 WebRTC 网关池与容量规划</a><a href="/courses/rainxte003en/skills/rxe-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte003en/skills/rxe-rcc-association.html">OXE 分机关联与 RCC 模式</a><a href="/courses/rainxte003en/skills/rxe-attendant-consoles.html">两套话务台（4059EE 与 Rainbow Attendant Console）</a><a href="/courses/rainxte003en/skills/rxe-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte003en/skills/rxe-network-readiness.html">Rainbow 网络就绪核查</a><a href="/courses/rainxte003en/skills/rxe-lab-pod-setup.html">RLAB 实验环境与 Pod 配置</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte003en/index.html">rainbow-oxe-integration（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte003en/index.html">RAINXTE003EN</a><span>/</span><span aria-current="page">Rainbow 公司体系与订阅开通</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Rainbow 公司体系与订阅开通</h1></div><dl><div><dt>Skill ID</dt><dd>rxe-company-subscription</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>Rainbow 公司体系与订阅开通（BP/EC、可见性、认证、订阅分配、管理员权责）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"However, the following actions can only be performed by the BP: • Declaration &amp; PBX • Opening of paid subscriptions"（p39）
+"Get into the habit of systematically setting the 'closed' mode as soon as you create a Rainbow company."（p43）
+"Each member must have a subscription to use telephony services • Business • Enterprise • Attendant"（p56）
+"During LAB Use ONLY Voice MONTHLY subscriptions per company. DO NOT USE YEAR PREPAID!!!"（p57）</p>
+</blockquote>
+<p>出处：RAINXTE003EN p24, p37-59。</p>
+<h2>I — 自述</h2>
+<p>云侧开户是 Rainbow 集成的一切前提，四件事按序做：</p>
+<ol>
+<li><strong>建公司</strong>：BP 账号创建 EC 公司（建司前先搜索查重；成员=邮箱身份，一人不能属两家公司）</li>
+<li><strong>定可见性</strong>：PUBLIC / PRIVATE / CLOSED / ISOLATED 四级——拿不准就 CLOSED（教材明示建议）；ISOLATED 不推荐（用户无法被外部会议邀请）</li>
+<li><strong>定认证与权责</strong>：SSO（Azure AD-SAML/OIDC、ADFS-SAML，配置管理员须 Enterprise 级）或本地密码（12+3 类字符）+ TOTP（推荐管理员）；Roles 页签可设多名管理员</li>
+<li><strong>开订阅并分配</strong>：BP 给公司开（月付或预付 1/3/5 年），管理员分给成员；电话服务必须 Business/Enterprise/Attendant</li>
+</ol>
+<p>订阅全景 8 种（p24）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>订阅</th>
+<th>定位</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Essential</td>
+<td>免费试用</td>
+<td>无 SLA、无电话服务；可与付费混用</td>
+</tr>
+<tr>
+<td>Business</td>
+<td>个人/团队日常</td>
+<td>电话服务最低档</td>
+</tr>
+<tr>
+<td>Enterprise</td>
+<td>Business 全量+</td>
+<td>多方视频会议、扩展存储、O365/G Suite 集成</td>
+</tr>
+<tr>
+<td>Attendant</td>
+<td>话务台专用</td>
+<td>等待队列 + 监督控制台；与 4059EE 无关</td>
+</tr>
+<tr>
+<td>Enterprise Conference</td>
+<td>Enterprise+无限会议分钟</td>
+<td>按年预付 12 个月</td>
+</tr>
+<tr>
+<td>Conference</td>
+<td>PSTN 会议按量计费</td>
+<td>按分钟/连接付费，组织者可为免费用户</td>
+</tr>
+<tr>
+<td>Connect</td>
+<td>CRM 集成</td>
+<td>各兼容 CRM 专用连接器</td>
+</tr>
+<tr>
+<td>Room</td>
+<td>会议室</td>
+<td>按房间订阅，需额外硬件</td>
+</tr>
+</tbody>
+</table></div>
+<p>两个管理面：企业目录（外部联系人+号码，改善来话识别，CSV 可导）；信息频道（仅 Enterprise 级可建，成员强制订阅、不可退订）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>实验前置约定</strong>（p60-65，厂商实验）：</p>
+<ol>
+<li>公司与 PBX 由讲师（BP 角色）预先创建，学员用培训管理员账号登录 web.openrainbow.com（实验口径）</li>
+<li>手动建成员：My company、Members、Create，填登录名与密码，订阅暂留默认 Essential</li>
+<li>勾选发送 enrollment 邮件；到培训邮箱核收，先翻 SPAM 防漏信（实验口径）</li>
+<li>邀请建成员：Members、Invitations 页签、Invite、输入邮箱、Continue</li>
+<li>用户侧完成开户：点邮件底部的 JOIN 按钮（不是开头链接），设密码与必填信息</li>
+<li>行为测试三项：两个 Rainbow 用户互打呼叫、一方共享屏幕、两用户互发 IM，全部通过</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新客户上 Rainbow；客户管理员建不了 PBX/开不了订阅；选可见性或认证方式；买哪种订阅；外部联系人怎么进目录。</p>
+<p>语言信号：创建公司 / company / BP / EC / 可见性 / visibility / CLOSED / ISOLATED / SSO / TOTP / 订阅 / subscription / Essential / Business / Enterprise / Attendant / 预付 / prepaid / 企业目录 / 信息频道。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>建户之后的人员管理 → 成员生命周期能力</li>
+<li>PBX 侧接入 → OXE 接入能力</li>
+<li>公司可见后的人员组织与监督 → 两套话务台能力（路由卡）</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：BP 账号（建司/开订阅）、公司命名与归属、认证基础设施现状（有无 Azure AD/ADFS）、用户数与服务需求。缺 BP 账号 → 找渠道，不要试图用 EC 账号绕过。</p>
+<ol>
+<li>查重并创建公司（BP）：搜名字防重复，创建 EC 公司并录必填信息。完成标准：公司出现在客户公司列表</li>
+<li>可见性选型：默认 CLOSED；有明确外部协作诉求才评估 PUBLIC/PRIVATE。完成标准：可见性写入公司设置</li>
+<li>认证选型：有 Azure AD/ADFS 规划 SSO（操作者须 Enterprise 级）；否则密码+TOTP。完成标准：认证方式确定且操作者级别达标</li>
+<li>开订阅（BP）：公司订阅区选类型与计费周期、定数量、Subscribe。完成标准：公司订阅池就位</li>
+<li>分配订阅：Members 选成员、Services 页签勾选、Apply。完成标准：电话用户均持 Business/Enterprise/Attendant</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>需要建 PBX 或开付费订阅而手里只有 EC 管理员 → 停，转 BP（权限设计非故障）</li>
+<li>客户坚持 ISOLATED 又要参加外部会议 → 停，二者不可兼得，升级商务决策</li>
+<li>订阅扣成功但成员无电话 → 查分配步骤，不要重复购买</li>
+<li>要给全员推信息频道 → 先确认内容长期可维护（强制订阅不可退订）</li>
+</ul>
+<p>输出契约：可用的公司（可见性/认证已定）+ 公司订阅池 + 成员订阅分配清单。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>BP 专属权限仅两项（申报建 PBX、开付费订阅），加上网关激活与远程升级也归 BP——这是渠道体系设计，不是故障（p39/p48/p161）</li>
+<li>原书未展开 SSO 的具体配置步骤（只有指针到支持站点）；跨 IdP（OKTA/Shibboleth 等）须经 ALE 确认（p44 NB）</li>
+<li>公司创建的完整实验在书中缺位（实验中由讲师代做）——步骤 1 为讲义口径</li>
+<li>培训禁用预付是实验口径（p57/p239），生产按客户商务选择</li>
+<li>订阅细节以 help.openrainbow.com 的 Features List 为准（p24/p48 指针），本卡订阅表为 Ed12/R101.1 口径</li>
+<li>实验账号、培训邮箱与密码等环境值仅作实验参考（见 book/overview 环境区），生产一律替换</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte003en/skills/rxe-member-lifecycle.html">Rainbow 成员全生命周期管理</a></p><p class="source-page">能力 ID：cap.rxe.company-subscription · 来源：RAINXTE003EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Rainbow / OmniPCX Enterprise (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 314 页 -->

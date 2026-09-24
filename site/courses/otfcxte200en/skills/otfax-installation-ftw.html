@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OTFC 首次交付（宿主准备、安装、FTW、许可）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch Fax Center · Starter</h2><p>Edition 04 · 233 页 · 文档整理入库（11 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otfcxte200en/index.html">课程首页</a><a href="/courses/otfcxte200en/digest.html">精华长文</a><a href="/courses/otfcxte200en/overview.html">教书理解</a><a href="/courses/otfcxte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otfcxte200en/skills/otfax-installation-ftw.html">OTFC 首次交付（宿主准备、安装、FTW、许可）</a><a href="/courses/otfcxte200en/skills/otfax-sip-channel-integration.html">OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）</a><a href="/courses/otfcxte200en/skills/otfax-mail-exchange-integration.html">OTFC 邮件与 Exchange 集成（SMTP 网关、FAX 连接器、通知排障）</a><a href="/courses/otfcxte200en/skills/otfax-user-administration.html">OTFC 用户与管理员管理（双用户源、CSV、两级管理员）</a><a href="/courses/otfcxte200en/skills/otfax-profile-policy.html">OTFC Profile 策略与电话簿（限制组、呼号限制、通知 Profile、LDAP 电话簿）</a><a href="/courses/otfcxte200en/skills/otfax-directory-routing.html">OTFC 高级目录集成与来传真路由（LDAP、Lookup、NT 免密、路由表、DTMF、Modification）</a><a href="/courses/otfcxte200en/skills/otfax-services-operations.html">OTFC 服务架构与日常运维（有状态/无状态、xmsc、日志）</a><a href="/courses/otfcxte200en/skills/otfax-backup-upgrade.html">OTFC 备份、恢复、升级与删除策略（三数据域、五步升级法、零保留）</a><p class="course-nav-group">路由能力</p><a href="/courses/otfcxte200en/skills/otfax-client-coversheet.html">OTFC 客户端部署与封页定制（四件套、Web Client、GPO、封页五步）</a><a href="/courses/otfcxte200en/skills/otfax-solution-planning.html">OTFC 方案评估与部署规划（容量协议合规、架构拓扑、支持矩阵）</a><a href="/courses/otfcxte200en/skills/otfax-reports-monitoring.html">OTFC 报表与监控（31 报表、BIRT、SNMP V2 陷阱）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otfcxte200en/index.html">ot-fax-center（11 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otfcxte200en/index.html">OTFCXTE200EN</a><span>/</span><span aria-current="page">OTFC 首次交付（宿主准备、安装、FTW、许可）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OTFC 首次交付（宿主准备、安装、FTW、许可）</h1></div><dl><div><dt>Skill ID</dt><dd>otfax-installation-ftw</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OTFC 首次交付（宿主准备、软件安装、FTW 向导、许可）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Preparing the server … Software installation … First time wizard First site creation. … Clients installation … Initial set-up OTFC basic configuration."（p46）
+"Server FQDN resolves to the server IP address in DNS • Reverse lookup of the server IP address in DNS returns the server FQDN"（p47）
+"Launch First Time Setup Wizard must be checked … Disable Microsoft's SMTP service before starting the OpenTouch Fax Center SMTP gateway service."（p65）
+"Enables a total of two channels (FoIP and fax boards) in evaluation mode … Applies a watermark on every fax page"（p52）</p>
+</blockquote>
+<p>出处：OTFCXTE200EN p43-70（含 How-To 实验 1-3）。</p>
+<h2>I — 自述</h2>
+<p>OTFC 是纯软件 FoIP 传真服务器，首次交付按四步主线走，从裸 Windows 服务器到"能收发传真"的最小可用系统：</p>
+<ol>
+<li><strong>准备服务器</strong>：与用户同域；FQDN 正向解析到 IP、IP 反向解析回 FQDN；与外部组件双向可达；装 IIS 角色带 4 个角色服务；建服务账号（六项权限，密码永不过期）</li>
+<li><strong>软件安装</strong>：Setup.exe 向导选语言（决定默认通知 Profile 与封页语言）、选 IP、Create a new system、传真主机名 + SIP 协议、装全部第三方软件；装完禁用 Microsoft SMTP（25 端口冲突）</li>
+<li><strong>FTW 向导</strong>：12 项动作搭出最小可用系统（建站点、QOS 0/0/240、CSID=站点名、建首用户、站点/系统路由表、告警通知、Mail Relay、产出摘要存盘）；可跳过或事后跑 FirstTimeSetup.exe</li>
+<li><strong>许可</strong>：首装自带评估许可——每组件 1 实例、共 2 通道、10 站点不限时、100 用户、每页水印；采购时向经销商提供服务器 MAC 地址，许可文件只能手工导入</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>准备传真服务器宿主</strong>（p55-57，实验口径）：</p>
+<ol>
+<li>执行 ipconfig /all，核对与实验服务器信息匹配（fax.company.com / 192.168.1.60）</li>
+<li>ping 主机名（fax.company.com），应 ping 通</li>
+<li>nslookup 主机名，应解析出完整地址</li>
+<li>启动 Excel/PowerPoint/Word 各一次，确认无任何对话框弹出（Office 预初始化）</li>
+<li>关闭本地防火墙三 Profile（Domain/Private/Public 全 Off，实验口径）</li>
+<li>Server Manager 添加 Web Server (IIS) 角色与 4 个角色服务后 Install</li>
+</ol>
+<p><strong>安装与 FTW</strong>（p58-70）：</p>
+<ol>
+<li>Setup.exe 按向导 Next，选安装语言（注意持久副作用）</li>
+<li>选 XM FAX IP 192.168.1.60，系统类型 Create a new system</li>
+<li>定传真主机名 Fax，协议选 SIP；管理员临时密码 123456（首登必改）</li>
+<li>Install 后全选第三方软件；收尾保持勾选 Launch First Time Setup Wizard</li>
+<li>停用并禁用 Microsoft SMTP 服务，再启动 XMSMTPGateway 服务</li>
+<li>FTW：站点 My Organisation、用户源 Internal Database、SMTP 配置、首用户 baker@company.com、Proceed 后配置状态窗自动关闭</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新买的服务器装 OTFC；装完收不到传真邮件任务；评估许可水印去不掉；要不要用 FTW 向导；装错语言想补救；通道数/用户数到了评估上限。</p>
+<p>语言信号：安装 / Setup.exe / First Time Setup Wizard / FTW / 首次配置 / IIS / 角色服务 / 服务账号 / DNS 反向解析 / Microsoft SMTP / 25 端口 / 第三方软件 / 许可 / license / MAC 地址 / 水印 / watermark / 2 通道 / QOS。</p>
+<p>与相邻能力区分：装完接话路归 SIP 通道集成能力；接邮件归邮件与 Exchange 集成能力；建用户策略归用户管理与 Profile 策略能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：一台满足支持矩阵的 Windows 服务器（含 Office）、域名/DNS 可用、发行介质、许可商务口径（MAC 地址找谁要）。缺 Office 或域环境先补齐，否则 Rasterizer 与 AD 登录都会卡。</p>
+<ol>
+<li>核网络：FQDN 正反解 + ping/nslookup 三连验证。完成标准：三项全过，任一失败先修 DNS</li>
+<li>补角色：IIS + Windows Authentication / ISAPI Filters / ISAPI Extensions / IIS 6 Metabase Compatibility。完成标准：角色服务列表四项齐全</li>
+<li>建服务账号：域账号 + LDAP 查询权 + 目的地文件夹读写 + 网络打印权限 + 本地管理员 + 密码永不过期。完成标准：六项逐条核对通过</li>
+<li>预初始化 Office：以服务账号上下文启动 Word/Excel/PowerPoint 无弹窗。完成标准：三个应用首启零对话框</li>
+<li>跑 Setup.exe：选语言（按客户语言环境）、选 IP、Create a new system、组件与 SIP、装全部第三方软件。完成标准：服务列表出现 XMSMTPGateway 等服务</li>
+<li>处理 25 端口：Stop 并 Disable Microsoft SMTP，再启动 XMSMTPGateway（默认 Automatic）。完成标准：XMSMTPGateway 运行中、MS SMTP 停用</li>
+<li>跑 FTW：站点名、用户源、SMTP 配置、首用户、Proceed。完成标准：配置状态窗自动关闭，摘要文件已存盘</li>
+<li>导许可：取服务器 MAC 地址给经销商 → 手工导入许可文件。完成标准：水印消失、通道数解锁</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>DNS 反向解析配不出来 → 停，先修客户 DNS 再继续，反向解析缺失会导致后续邮件/目录环节偶发故障</li>
+<li>服务器上已有别的 SMTP 服务常驻 → 停，先做服务器角色规划（OTFC 独占 25 端口），不要并行安装</li>
+<li>客户要求多通道/去水印但商务流程未走 → 停，许可采购必须先提供 MAC 地址，这不是技术问题</li>
+<li>版本/环境不在支持矩阵内 → 停，查最新 OTFC Features List 再答复，不用书内矩阵下硬结论</li>
+</ul>
+<p>输出契约：可启动的 OTFC 系统（IIS 就绪、XMSMTPGateway 运行、MS SMTP 停用）+ 最小可用站点（首用户可登录）+ 许可状态说明。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>关闭本地与网络防火墙是实验口径（p48/p56），生产必须保持开启并按端口白名单放行；端口全表在 OTFC Features List，书内 p42 无数值</li>
+<li>服务器资源推荐表书内无数值（p38 仅指针），sizing 结合 15000 用户/30 端口容量口径与 Features List 共同确定</li>
+<li>安装语言有两项持久副作用（默认邮件通知 Profile 与 Basic Profile 封面语言），选错善后靠手工改默认 Profile</li>
+<li>教材密码（123456/Alcatel1!@123/mtcl）全部是实验或出厂口径，生产必须整体替换；交付检查表含"默认密码已替换"</li>
+<li>恢复场景的版本等同/拓扑一致前提与备份细节 → 备份升级运维能力；OXE 话路配置 → SIP 通道集成能力</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otfcxte200en/skills/otfax-sip-channel-integration.html">OTFC 与 OXE 的 SIP 通道集成（声明、MGR 七步、抓包）</a></p><p class="source-page">能力 ID：cap.otfax.installation-ftw · 来源：OTFCXTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch Fax Center - R9.2 Starter (Participant's Guide, Edition 04) | edition: Edition 04 | pages: 233 页 -->

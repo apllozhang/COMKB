@@ -1,0 +1,219 @@
+{
+ "code": "entpxte402en",
+ "capability_catalog": [
+  {
+   "slug": "entload-sot-installation",
+   "name": "S.O.T. 部署工具的安装、初始化、更新与 Template Factory",
+   "description": "Standalone/Hosted 两模式部署 SOT；首连强制改密+口令短语；最多 4 子网且网卡数与声明 IP 数一致；更新仅同主版本 zip+MD5；Template Factory 标准（8CPU/16GB/500GB）与降级模式（50GB 盘+templateFactory）；一次只允许一个部署任务"
+  },
+  {
+   "slug": "entload-cs-loading",
+   "name": "OXE 呼叫服务器单版本全加载与加载后初始化",
+   "description": "网络引导（BOOTP/DHCP）经 TFTP 与 FTP 安装；空盘自动装、已装盘 grubboot ETHER 或 BIOS 强制；加载后四账户密码九条规则与 aging、角色寻址、许可恢复、国家码、板卡上线等后置清单"
+  },
+  {
+   "slug": "entload-patch-management",
+   "name": "OXE 多版本加载、分区切换与静态/动态补丁管理",
+   "description": "双分区装第二版本不停话音、切换才重启；同基础版本复制+补丁、跨 Linux 完整加载+数据复制；静态补丁停话音或装 inactive、动态补丁热装但排静态之后；补丁累积；downstat 收尾；N420536a 与 siteid 读法"
+  },
+  {
+   "slug": "entload-oxe-v-deployment",
+   "name": "OXE-V 虚拟化：平台选型、许可路径与 OXE/OMS 虚机交付",
+   "description": "平台矩阵（ESXi 8.0/7.0、Hyper-V 2022/2019/2016、KVM ≥4.12.14、Nutanix AHV、AWS）决定许可路径：FlexLM+加密狗仅 ESXi/KVM，其余强制 Cloud Connect，FlexLM 与 RTR 互斥；OXE 规格模板 500/3000/7000/15000；OMS 120 通道/240 台、Lock 384/385"
+  },
+  {
+   "slug": "entload-gas-delivery",
+   "name": "GAS 通用设备服务器：硬件前置、软件加载与后安装向导",
+   "description": "硬件前置表（满配 4 核 2.8GHz 8GB 360GB、只认硬件 RAID）；BootDVD+GAS iso 经 SOT 加载（BIOS 取 MAC、PXE 引导）；后安装向导六段；WebRTC GW 50 并发/7000 用户外部网关；FlexLM .ice 安装与 OXE 对接端口 27000"
+  },
+  {
+   "slug": "entload-cloud-connect",
+   "name": "Cloud Connect 云连接：网络前提、FTR 首次注册与 PIN 恢复",
+   "description": "出站 443 XMPP/WSS+80 SOCKS5+53 DNS 连 connect2.opentouch.com；checkCloudConfig.sh 验证；FTR 用 swk 里的 CCSID 换永久凭证，备机禁做；PIN 恢复 6 位数字 5 天有效不落盘；KeepAlive 默认 90 秒"
+  },
+  {
+   "slug": "entload-rtr-licensing",
+   "name": "RTR 许可开关：资格期状态机、事件监控与 FlexLM 互斥",
+   "description": "资格期 30 天起、OK 加 0.5 天/NOK 减 1 天、归零 Panic（Call your administrator）；Dashboard 四级状态 29-28/27-10/9-1/0；事件 647-651；Duplicated 双扣与 PIN 恢复；FlexLM 与 RTR 不能同时启用"
+  },
+  {
+   "slug": "entload-pod-licensing",
+   "name": "OPEX / Purple on Demand：订阅许可、LMS 同步、panic 时间线与 C2P 转换",
+   "description": "lock 431=1 开 OPEX（旧 CAPEX 锁失效仅 87/165 例外）；24 项订阅；Unitary/On activation/By threshold 三种消耗；spadmin 对账 lms/oxe 两列必须一致；每 4 小时对账、失联 30 天或超订进 panic（15/45 天时间线）；C2P 下单即定局、件号 3EYxxxxxMA；MyPortal 项目须 Active"
+  },
+  {
+   "slug": "entload-distributor-loading",
+   "name": "Easy Installation 分发器模式：无 SOT 环境的本地加载",
+   "description": "媒体传 /tmpd、swinst 9-10 本地解包安装；全版本/静态补丁强制 inactive、动态补丁可选分区；Rload 解包物需 9-7 手动清理、/tmpd 源文件自动删；动态补丁后 downstat d/i/t 收尾"
+  },
+  {
+   "slug": "entload-sot-media",
+   "name": "SOT 媒体传输与加载项目配置（公共动作）",
+   "description": "媒体三库（Windows/NFS/本地）；FTP 或 SFTP 2222、upload 账号传文件；Refresh 后 Declare media；Easy 向导与 Expert 独立管理；OVF generation 勾后虚机免 MAC；许可可随项目部署"
+  },
+  {
+   "slug": "entload-gas-ops",
+   "name": "GAS 日常运维：版本、备份、host 升级与 UPS",
+   "description": "gasversion 查五层版本；gasbackup 出 tar.gz+_PostInstall.cfg，全新安装+备份=免后安装；host 升级走 SOT 项目或 gas-rocky-update.sh（全系统停机窗口）；UPS 用 NUT、默认 30% 阈值 5 秒轮询"
+  },
+  {
+   "slug": "entload-fleet-dashboard",
+   "name": "Fleet Dashboard 云端机队服务：Inventory、Offer、远程控制台与软件更新",
+   "description": "五服务开关；动作状态字段 D/I/A/S 与 P/O/K/F 读法；远程控制台单会话、1 分钟无操作断开、shell.log 审计；软件更新需 SPS 合同+technical advanced+cdn 域名白名单，只管传输、切换归 BP"
+  }
+ ],
+ "cases": [
+  {
+   "id": "should-sot-01",
+   "prompt": "SOT 里 Template Factory 功能一直没出现，机器配置也够不着 8CPU/16GB 的标准前置，怎么办？"
+  },
+  {
+   "id": "should-sot-02",
+   "prompt": "SOT 想从 3.1 直接升到 3.2，我下了个 zip 补丁包能更吗？"
+  },
+  {
+   "id": "should-cs-01",
+   "prompt": "全新 CS3 板卡要装系统，SOT 项目怎么建、装完还要做哪些初始化？"
+  },
+  {
+   "id": "should-cs-02",
+   "prompt": "SOT 项目部署后一直显示等待目标机，机器也重启了就是加载不动"
+  },
+  {
+   "id": "should-patch-01",
+   "prompt": "生产 OXE 要打补丁，客户不想停话音，怎么安排？"
+  },
+  {
+   "id": "should-patch-02",
+   "prompt": "动态补丁装完了，系统版本也对，但一部分话机行为没变化"
+  },
+  {
+   "id": "should-oxev-01",
+   "prompt": "客户要用 VMware 虚拟化部署 OXE，平台版本和许可方式怎么定？"
+  },
+  {
+   "id": "should-oxev-02",
+   "prompt": "虚拟化部署的媒体资源怎么规划？OMS 配几台、许可怎么算？"
+  },
+  {
+   "id": "should-gas-01",
+   "prompt": "客户自己买了台服务器要装 GAS，硬件有什么要求、加载流程怎么走？"
+  },
+  {
+   "id": "should-gas-02",
+   "prompt": "GAS 后安装向导里 WebRTC 网关那段要填 PBXID 和 TURN，取值有什么讲究？"
+  },
+  {
+   "id": "should-cloud-01",
+   "prompt": "新装的 OXE 要接入 ALE 云，防火墙和 DNS 要提前准备什么？"
+  },
+  {
+   "id": "should-cloud-02",
+   "prompt": "自动 FTR 一直不成功，incvisu 里反复出 6214 事件，怎么排查？"
+  },
+  {
+   "id": "should-rtr-01",
+   "prompt": "用户投诉话机一打电话就显示 Call your administrator，系统出什么事了？"
+  },
+  {
+   "id": "should-rtr-02",
+   "prompt": "Fleet Dashboard 上系统变成 Duplicated 状态，说是 ID 被另一台系统占用"
+  },
+  {
+   "id": "should-pod-01",
+   "prompt": "客户现有系统想从买断转成 OPEX 订阅，转换怎么走、要注意什么？"
+  },
+  {
+   "id": "should-pod-02",
+   "prompt": "spadmin 里 LMS 和 OXE 两边的消耗数对不上，系统进了 panic，怎么处理？"
+  },
+  {
+   "id": "should-dist-01",
+   "prompt": "客户安全策略不允许我在机房架临时虚机，新版本还能不能装到 OXE 上？"
+  },
+  {
+   "id": "should-dist-02",
+   "prompt": "用 OXE 自身当分发器装完补丁，硬盘快被装满了，哪些东西能删？"
+  },
+  {
+   "id": "should-media-01",
+   "prompt": "版本 iso 明明传到 SOT 上了，建项目的时候列表里就是选不到"
+  },
+  {
+   "id": "should-media-02",
+   "prompt": "许可文件是跟着 SOT 项目一起带上，还是装完系统再手工恢复？"
+  },
+  {
+   "id": "should-gasops-01",
+   "prompt": "GAS 宿主的 Rocky 系统要打安全补丁，对业务有什么影响、怎么操作？"
+  },
+  {
+   "id": "should-gasops-02",
+   "prompt": "GAS 的整机备份怎么做？换机恢复的时候还要重跑后安装向导吗？"
+  },
+  {
+   "id": "should-fleet-01",
+   "prompt": "不出机房能不能看到客户几十台 OXE 的资产、版本和许可清单？"
+  },
+  {
+   "id": "should-fleet-02",
+   "prompt": "用云端远程控制台帮客户处理问题，为什么老是一分钟就断开？"
+  },
+  {
+   "id": "bait-sot-01",
+   "prompt": "版本 iso 传到 SOT 本地存储了，建项目时却选不到这个版本"
+  },
+  {
+   "id": "bait-cs-01",
+   "prompt": "客户机房不让接临时设备，装 OXE 新版本还有别的办法吗？"
+  },
+  {
+   "id": "bait-patch-01",
+   "prompt": "两台 OXE 要同时升级不同版本，SOT 能不能并行跑两个部署任务？"
+  },
+  {
+   "id": "bait-oxev-01",
+   "prompt": "客户平台已经定了 Hyper-V，帮我们把 FlexLM 加密狗许可方案配上"
+  },
+  {
+   "id": "bait-gas-01",
+   "prompt": "GAS 交付完成了，以后每个月的例行备份和版本盘点怎么做？"
+  },
+  {
+   "id": "bait-cloud-01",
+   "prompt": "FTR 已经注册成功了，为什么 RTR 剩余资格期只剩 25 天还往下掉？"
+  },
+  {
+   "id": "bait-rtr-01",
+   "prompt": "RTR 启用了，能不能把 FlexLM 加密狗也一起留着当双保险？"
+  },
+  {
+   "id": "bait-pod-01",
+   "prompt": "MyPortal 上项目还是 Pending，先把下载按钮多点几次试试能不能把许可拉下来"
+  },
+  {
+   "id": "bait-license-01",
+   "prompt": "话机注册时屏幕显示 No license available，是不是话机硬件坏了要换机？"
+  },
+  {
+   "id": "bait-scope-01",
+   "prompt": "帮我在 OXE 上建 200 个用户并把编号计划和外线路由配好"
+  },
+  {
+   "id": "edge-rtr-01",
+   "prompt": "RTR 请求失败后到底多久扣 1 天资格期？4 小时宽限是真的吗？"
+  },
+  {
+   "id": "edge-pod-01",
+   "prompt": "我们 CAPEX 系统的用户界面里也能看到 OPEX activation 开关，是不是已经在按云计费了？"
+  },
+  {
+   "id": "edge-oxev-01",
+   "prompt": "客户的虚拟化平台比教材矩阵里的版本都新，能不能直接上 OXE-V？"
+  },
+  {
+   "id": "edge-gas-01",
+   "prompt": "服务器用软件 RAID 组了个大容量盘，容量远超 360GB，装 GAS 应该没问题吧？"
+  }
+ ]
+}

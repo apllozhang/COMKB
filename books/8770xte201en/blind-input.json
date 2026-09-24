@@ -1,0 +1,224 @@
+{
+ "code": "8770xte201en",
+ "capability_catalog": [
+  {
+   "slug": "ovbill-node-onboarding",
+   "name": "OXE 纳管与 SIP 中继对接",
+   "description": "OXE 侧核查（siteid/SSH/信任主机/冗余双 IP）、8770 三级声明（节点号=网络号×100+节点号）、同步验证与日志；培训环境 ITSP1 模拟器对接（pbxN 与 DID 翻译）"
+  },
+  {
+   "slug": "ovbill-ticket-pipeline",
+   "name": "计费票据管道",
+   "description": "OXE 外部计费开启（0 计费呼出、744 文件）、account compress/accview 核查、五种计费方法、8770 回收（FTP 用户 adfexc 禁改、收集器、PCS）、五道加载过滤、loader 目录与 NMCLD 日志验证"
+  },
+  {
+   "slug": "ovbill-tariff-costing",
+   "name": "运营商资费建模与成本计算",
+   "description": "币种/税/国家、直连与脉冲运营商、Region 前缀最优匹配与跨区互斥、Direction 方向矩阵、exact/round/pulse 公式族（接通费/免费时长/保底/分段）、服务费 C+S 双资费、Adjustment、Compute cost（Force）重算与 No first carrier found 排障"
+  },
+  {
+   "slug": "ovbill-codebook-migration",
+   "name": "Code Book 导出与导入",
+   "description": "十种文本文件与格式规则、二次导出才完整、.itl 节点名必须匹配目标机声明、EFFECT_DATE 改期导入等于新增 Period、修改只能在 Documents 副本"
+  },
+  {
+   "slug": "ovbill-org-costing",
+   "name": "计费组织树与成本归属",
+   "description": "组织树对象模型与自动更新、默认成本中心（cc=255 落根）、搬移权限二分（分机只能经 OXE 配置改）、剪贴无历史/复制留灰条目、回溯只能选设备、ToolsOmniVista 全局更新强制停服务不可逆"
+  },
+  {
+   "slug": "ovbill-confidentiality",
+   "name": "计费机密控制三道闸",
+   "description": "掩码档案按树继承（grouped 报表只认 Default 档案）、解密须 Mask data access 组口令且改组要关 Reports、可见域开启须重启计费应用且未配域只见根、群组域无效；OXE 侧已遮号码无法还原"
+  },
+  {
+   "slug": "ovbill-cost-profile",
+   "name": "成本档案（发票价与订阅费）",
+   "description": "发票价=总成本线性或百分比调整（+10% 即 A=1.1 或 A=10）、订阅费日/周日/月一出票且月订阅次月 1 日起计、Compute cost 的 Variable cost/Fixed Cost 更新（订阅重算先删后建）"
+  },
+  {
+   "slug": "ovbill-reporting",
+   "name": "报表生成、导出与定时",
+   "description": "预定义报表复制到个人目录、六项尺寸上限（TXT 400 行/PDF 50 页/库 100000 行）、文件与邮件导出（server:port 无空格）、累计报表空表先 Total calculation、Schedule 定时"
+  },
+  {
+   "slug": "ovbill-report-design",
+   "name": "报表定制（Querytool 与 Designer）",
+   "description": "定义四步向导、Detailed/Grouped 语义、Operation 聚合、表达式公式（双币种）、Generation Time Filter、Hit-list 仅 grouped、同视图区域规则、嵌套汇总切 View、前景空白遮蔽、五练习模式"
+  },
+  {
+   "slug": "ovbill-voip-monitoring",
+   "name": "VoIP 性能监控",
+   "description": "IP ticket 分段出票、KPI 默认 150ms/3%/5%（BFI>3% 才统计 burst）、VoipParameters、清理周期（小时 45 天到票据 15 天）、ipview、预定义质量报告与空表排障（话务须走被监控承载段）"
+  },
+  {
+   "slug": "ovbill-traffic-tracking",
+   "name": "流量分析与 Tracking 告警",
+   "description": "pmm 半小时计数器与六类观察对象（仅 OXE）、双阈值组互不相干、PtpType ALL 改造两个 Job、Tracking 阈值档案、变化率与移动平均默认 30/3/1 期、Reset Profile 全量强制、告警邮件"
+  },
+  {
+   "slug": "ovbill-web-performance",
+   "name": "Web Performance 实时仪表盘",
+   "description": "VoIP CDR 与 OXE SNMP MIB（SNMPv3 authPriv）两条数据腿、五大主题 widget、R5.0 GA/MD1 轮询 30 分钟到 5 分钟、原始数据仅最后一天、widget 最多 6 元素、配置不一致即告警停用监控、中继类型支持列表"
+  },
+  {
+   "slug": "ovbill-archiving",
+   "name": "计费归档与恢复",
+   "description": "archZ 每天每节点一档、Archive Delay 31 不带 D 与 Clean-up delay 94D 必带 D、合计 125 天按记录日期清理、恢复标签 Loaded/Archived 二选一、Record origin 过滤、Only restored records 定向清除"
+  }
+ ],
+ "cases": [
+  {
+   "id": "should-node-01",
+   "prompt": "客户新买了一台 OXE，要把它接到 OmniVista 8770 上做计费，第一步要核查什么、节点怎么声明？"
+  },
+  {
+   "id": "should-node-02",
+   "prompt": "8770 里对 OXE 执行同步一直不成功，日志里有什么可以查？信任主机要包含哪些机器？"
+  },
+  {
+   "id": "should-pipe-01",
+   "prompt": "OXE 上明明打了电话，8770 里就是看不到话单，应该按什么顺序排查？"
+  },
+  {
+   "id": "should-pipe-02",
+   "prompt": "在 OXE 上开启外部计费要注意哪些参数？为什么没打通的电话也有记录？"
+  },
+  {
+   "id": "should-tariff-01",
+   "prompt": "客户给的价目是工作时间每分钟 0.5 元、夜间 0.3 元、接通费 0.1 元，在 8770 里怎么建资费？"
+  },
+  {
+   "id": "should-tariff-02",
+   "prompt": "改了运营商的费率之后，老话单的成本还是老价格，怎么让存量记录按新价目重算？"
+  },
+  {
+   "id": "should-codebook-01",
+   "prompt": "要把测试机上配好的运营商价目搬到生产 8770，导入时报错方向建不出来，怎么回事？"
+  },
+  {
+   "id": "should-codebook-02",
+   "prompt": "运营商明年要换价目，新旧两套费率要按日期并存，在 8770 里怎么备份和演进配置？"
+  },
+  {
+   "id": "should-org-01",
+   "prompt": "公司组织调整，一批分机要从 A 成本中心挪到 B，在组织树上拖不动，怎么改？"
+  },
+  {
+   "id": "should-org-02",
+   "prompt": "员工离职后分机给了新人，旧用户的通话记录怎么并到新用户名下？"
+  },
+  {
+   "id": "should-conf-01",
+   "prompt": "合规要求普通管理员查话单时看不到完整被叫号码和金额，但经理要看全号，怎么配？"
+  },
+  {
+   "id": "should-conf-02",
+   "prompt": "开启了可见域之后，管理员登录计费应用只看到一个根节点，数据是不是丢了？"
+  },
+  {
+   "id": "should-cost-01",
+   "prompt": "公司要对各部门话费加收 20% 管理费再加每通 0.5 元手续费，然后按月收话机订阅费，怎么实现？"
+  },
+  {
+   "id": "should-report-01",
+   "prompt": "怎么把系统自带的分机时长报表导出成 PDF 发给领导，再配置成每天早上 5 点自动跑？"
+  },
+  {
+   "id": "should-report-02",
+   "prompt": "Daily Station Traffic 报表生成出来是空的，是不是坏了？"
+  },
+  {
+   "id": "should-design-01",
+   "prompt": "客户要一份报表：先按成本中心小计、再按分机小计、最后明细，成本要显示美元换算列，怎么做？"
+  },
+  {
+   "id": "should-design-02",
+   "prompt": "怎么做一个只显示通话时间最长的前 10 台分机的排行报表？"
+  },
+  {
+   "id": "should-voip-01",
+   "prompt": "用户反映 IP 话机通话质量差，8770 里怎么看时延、丢包这些质量指标？"
+  },
+  {
+   "id": "should-voip-02",
+   "prompt": "VoIP 质量报告生成出来一条数据都没有，但确实打了电话，问题可能出在哪？"
+  },
+  {
+   "id": "should-traffic-01",
+   "prompt": "想知道每条中继的话务量好不好，为扩容提供依据，另外被叫号码维度的话务报表怎么打开？"
+  },
+  {
+   "id": "should-traffic-02",
+   "prompt": "想监控某个分机当月话费超过阈值就自动发邮件告警，怎么配？"
+  },
+  {
+   "id": "should-web-01",
+   "prompt": "给管理层搭一个 OXE 实时健康与中继状态的大屏，8770 有什么方案？轮询能调到多快？"
+  },
+  {
+   "id": "should-web-02",
+   "prompt": "OXE 侧改了 SNMPv3 的口令之后，Web Performance 仪表盘整个没数据了还报了告警，怎么回事？"
+  },
+  {
+   "id": "should-archive-01",
+   "prompt": "计费库越来越大了，想把一年的旧话单归档又能在客户投诉时查回来，怎么配？"
+  },
+  {
+   "id": "should-archive-02",
+   "prompt": "归档参数里 Archive Delay 写 31、Clean-up delay 写 94D，为什么一个带 D 一个不带？"
+  },
+  {
+   "id": "bait-pipe-vs-node-01",
+   "prompt": "OXE 同步成功了，loader 目录也有文件，但 8770 组织树里看不到新话单，是不是节点声明错了要重新纳管？"
+  },
+  {
+   "id": "bait-tariff-vs-cost-01",
+   "prompt": "运营商成本算出来都对，但我们要在成本基础上加 15% 卖给内部部门，这是改运营商资费里的百分比参数 A 吗？"
+  },
+  {
+   "id": "bait-report-01",
+   "prompt": "报表模板库里现成的报表都不满足需求，我要从零定义一个带嵌套汇总的新报表"
+  },
+  {
+   "id": "bait-conf-vs-report-01",
+   "prompt": "汇总报表里号码没有按掩码档案遮蔽，是不是要把每个成本中心的档案都改一遍？"
+  },
+  {
+   "id": "bait-voip-vs-traffic-01",
+   "prompt": "中继组话务量报表想看呼叫数量和占用率，用 VoIP 质量报告能看出来吗？"
+  },
+  {
+   "id": "bait-outofscope-01",
+   "prompt": "法国 08 特服号现在的官方费率表是多少？帮我们按最新监管价格配进系统"
+  },
+  {
+   "id": "bait-outofscope-02",
+   "prompt": "MariaDB 数据库要扩容到能扛十年话单，帮忙规划一下磁盘和备份策略"
+  },
+  {
+   "id": "bait-org-vs-archive-01",
+   "prompt": "组织树里那些灰色的重名条目看着乱，直接用 ToolsOmniVista 清掉行不行？要先做什么？"
+  },
+  {
+   "id": "edge-lab-01",
+   "prompt": "书上写的密码 Superuser2580* 我直接用到客户生产环境可以吗？"
+  },
+  {
+   "id": "edge-voip-02",
+   "prompt": "MOS 分数是怎么算出来的？8770 能不能给出 MOS 的具体计算公式？"
+  },
+  {
+   "id": "edge-tariff-02",
+   "prompt": "教材练习里美元汇率一会儿 1.21 一会儿 1.3，我做验收到底按哪个？"
+  },
+  {
+   "id": "edge-multi-01",
+   "prompt": "我们有 5 台 OXE 组网加 2 台 PCS，8770 计费能直接照书上单节点实验上生产吗？"
+  },
+  {
+   "id": "edge-report-03",
+   "prompt": "报表数据库扫描上限 100000 行能不能直接改成 1000 万，一劳永逸？"
+  }
+ ]
+}

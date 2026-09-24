@@ -1,0 +1,613 @@
+schema_version: 1
+bundle_id: bundle.rainbow-oxo-connect
+book:
+  title: Rainbow OXO Connect (Participant's Guide, Edition 13)
+  author: ALE Training Services
+  source_pack: RAINXTE001EN.pdf (251 pages)
+  baseline_tag: Rainbow / OXO Connect R6.3 SP149 / RLAB
+entry:
+  name: rainbow-oxo-connect
+  description: 'Rainbow 与 OXO Connect 混合云集成交付与运营支持：云侧公司/订阅/成员体系、 OXO 接入（PBXID+激活码）与接入排障、WebRTC 网关三拓扑选型与部署、
+    虚拟终端与 UTL 口径、话务台与监督组、Rainbow/Teams 集成、维护支持体系。适用于 Rainbow Hybrid on OXO Connect 的配置、选型、排障与方案落地问答；
+    生产化网络数值、编号计划与 Teams 租户策略不在原书范围内（见 out_of_scope）。
+
+    '
+  core_principles:
+  - 混合云分工：PBX 保留呼叫控制，Rainbow 提供协作/移动/云服务；WebRTC 网关只建音频媒体关系（排障先分媒体面与呼控面）
+  - 云侧一切挂在 Company 体系下：BP 专属建 PBX 与开付费订阅，成员须持 Business/Enterprise/Attendant 才有电话服务
+  - 接入闭环按序推进：建公司开订阅 → OMC 首连 → PBXID 接入 → 分机关联（RCC）→ 网关解锁完整音频
+  - 网关三拓扑功能等价：集成（R3.2+/20 通话/免 SIP trunk 许可）、OCE-FE（双端 ≥R4.0 MD/20）、外部 VM/NUC（50）；自动配置 R4.0.020.002 起且仅 Reseller 管理员可激活，终端/编号计划/闭锁仍归安装员
+  - 实验环境口径：教材密码、账号与网段仅限实验；引用容量数字必须带话务前提（150 用户上限仅极低话务成立）
+  out_of_scope:
+  - 端口/带宽/防火墙/TURN 具体数值（原书外置到 Rainbow Network Requirements PDF 与安装指南）
+  - 编号计划与闭锁配置、话务建模方法论（原书明示安装员自做且不教）
+  - OCE-FE 多场景开局细节（必须按 MyPortal 最新版 Rainbow WebRTC cookbook）
+  - Teams 租户侧策略（应用权限策略、紧急呼叫、Direct Routing 共存）与非 OXO 平台（OXE 详节见 TC2462）
+  stop_conditions:
+  - 用户数超 150 或需跨站点容灾 → 超出 OXO Rainbow VoIP 范围，转其他产品线方案
+  - 需要生产网络数值或 FE 开局操作步骤 → 明确指向外部权威文档（Network Requirements PDF / cookbook / TC2479），不以实验口径搪塞
+  - 涉及 RLAB/SIP 模拟器环境搭建 → 参考 book/overview 环境区背景，不虚构生产配置
+  - 版本恰为 R4.0.020.002 的自动配置判定 → 按 needs-review nr-01 双口径如实说明，建议以更高版本执行
+router_entry:
+  name: rainbow-oxo-connect-router
+  description: 'Rainbow OXO Connect 能力路由入口：按用户意图分发到 12 张能力卡——公司订阅、OMC 首连、PBX 接入、成员管理、网关规划、网关部署、话务台监督、
+    Teams 集成八个 promoted 能力，以及管理员工具、分机关联 RCC、维护支持、网络就绪四张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.rbx.company-subscription
+  revision: 1
+  status: active
+  slug: rbx-company-subscription
+  title: Rainbow 公司体系与订阅开通
+  importance: critical
+  importance_rationale: 对应 task-02/task-04，云侧一切操作的前提；权责错位（EC 做 BP 动作）是最高频的现场困惑
+  one_liner: BP 建司开订阅（月付/预付）、EC 管成员分订阅；可见性默认 CLOSED，电话服务必须付费订阅
+  intents:
+  - 创建 Rainbow 公司
+  - 开通 Rainbow 订阅
+  - 选择公司可见性
+  - 配置 SSO/TOTP 认证
+  - create Rainbow company
+  - Rainbow subscription plans
+  keywords:
+  - Company
+  - BP
+  - EC
+  - 可见性
+  - CLOSED
+  - ISOLATED
+  - SSO
+  - TOTP
+  - Essential
+  - Business
+  - Enterprise
+  - Attendant
+  - 预付
+  also_read:
+  - rbx-member-lifecycle
+  - rbx-pbx-onboarding
+  card: cards/rbx-company-subscription.md
+  frontmatter:
+    description: '在 Rainbow 云侧创建客户公司并开通订阅（BP 建 EC、可见性四级选型、SSO/TOTP 认证、订阅两层流转与分配）。当用户要"建 Rainbow 公司/开订阅/选订阅类型/
+      配公司认证"时使用。不适用于成员账户操作（成员生命周期）、PBX 接入（PBX 接入能力）；建 PBX 与开付费订阅是 BP 专属权限。
+
+      '
+    tags:
+    - procedure
+    - rainbow
+    - company
+    - subscription
+  source_evidence:
+  - source_id: src-rainxte001
+  - location: p33, p46-68
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-02/04 核心，交付起点
+- capability_id: cap.rbx.omc-onboarding
+  revision: 1
+  status: active
+  slug: rbx-omc-onboarding
+  title: OMC 安装首次连接与 IP 规划修改
+  importance: high
+  importance_rationale: 对应 task-05/task-06，PBX 侧一切配置的前提；证书与首连密码是现场高频卡点
+  one_liner: Expert 模式首连 + 证书入受信任根 + 逐客户改密；IP 四页签改完必须重启 OXO
+  intents:
+  - 安装 OMC
+  - OMC 连不上 OXO
+  - 修改 OXO IP 规划
+  - install OMC first connection
+  keywords:
+  - OMC
+  - pbxk1064
+  - Expert mode
+  - Server authentication
+  - 证书
+  - Trusted Root
+  - Lan/IP configuration
+  - DHCP 池
+  - 重启
+  also_read:
+  - rbx-pbx-onboarding
+  card: cards/rbx-omc-onboarding.md
+  frontmatter:
+    description: '安装 OMC 并首次连接 OXO Connect（Expert 模式、服务器认证、证书安装、逐客户改密、客户信息录入），以及 OXO 与客户端 PC 的 IP 规划修改。
+      当用户要"装 OMC/首连/证书告警/改 OXO IP"时使用。不适用于 Rainbow 接入（PBX 接入能力）；出厂密码 pbxk1064 仅首次连接有效。
+
+      '
+    tags:
+    - procedure
+    - omc
+    - oxo-connect
+    - onboarding
+  source_evidence:
+  - source_id: src-rainxte001
+  - location: p69-82
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-05/06，交付第一步
+- capability_id: cap.rbx.pbx-onboarding
+  revision: 1
+  status: active
+  slug: rbx-pbx-onboarding
+  title: OXO 接入 Rainbow 与接入排障
+  importance: critical
+  importance_rationale: 对应 task-07，混合闭环第一关口；Webdiag 判据与 ccrbagent.log 是接入排障的唯一直接抓手
+  one_liner: PBXID+激活码填入 OMC/Cloud/Rainbow（域名保持默认），Webdiag 显示 connected with final password 即接通
+  intents:
+  - OXO 接入 Rainbow
+  - PBXID 在哪找
+  - Rainbow 连接状态异常
+  - connect OXO to Rainbow
+  keywords:
+  - PBXID
+  - Activation code
+  - 激活码
+  - openrainbow.com
+  - Webdiag
+  - Rainbow Status
+  - connected with final password
+  - ccrbagent.log
+  also_read:
+  - rbx-rcc-association
+  card: cards/rbx-pbx-onboarding.md
+  frontmatter:
+    description: '用 PBXID 与激活码把 OXO Connect 接入 Rainbow（凭证两来源、OMC/Cloud/Rainbow 填入启用），并用 Webdiag/ccrbagent.log/用户日志三抓手排障。
+      当用户要"接 PBX 到 Rainbow/查连接状态/接入排障/找 PBXID"时使用。不适用于网关部署（网关部署能力）；域名固定 openrainbow.com 不改。
+
+      '
+    tags:
+    - procedure
+    - rainbow
+    - oxo-connect
+    - onboarding
+    - troubleshooting
+  source_evidence:
+  - source_id: src-rainxte001
+  - location: p83-89
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-07，混合闭环关口
+- capability_id: cap.rbx.member-lifecycle
+  revision: 1
+  status: active
+  slug: rbx-member-lifecycle
+  title: Rainbow 成员全生命周期管理
+  importance: critical
+  importance_rationale: 对应 task-08，云侧运营最高频动作；删除宽限期与改密踢线是易产生客诉的行为规则
+  one_liner: 四法开户（手动/邀请/CSV/AAD）、七分区设置；删除进 10 天宽限，恢复即回落 Essential 须重配
+  intents:
+  - 批量创建 Rainbow 用户
+  - 删除恢复用户
+  - 成员设置
+  - Rainbow user management
+  keywords:
+  - members
+  - 邀请
+  - invitation
+  - CSV
+  - Azure AD
+  - 批量导入
+  - grace period
+  - 宽限期
+  - 改密踢下线
+  - 密码策略
+  also_read:
+  - rbx-rcc-association
+  card: cards/rbx-member-lifecycle.md
+  frontmatter:
+    description: 'Rainbow 成员的全生命周期：手动/邀请/CSV 批量/Azure AD 四法开户、七分区设置核对、删除 10 天宽限与恢复代价、账号安全（改密踢线/改邮箱/认证方式）。
+      当用户要"建用户/批量开户/删用户/恢复用户/改密码策略"时使用。不适用于分机关联（分机关联能力）；密码 ≥12 位含大写/数字/特殊字符。
+
+      '
+    tags:
+    - procedure
+    - rainbow
+    - members
+    - lifecycle
+  source_evidence:
+  - source_id: src-rainxte001
+  - location: p90-110
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-08，日常运营主体
+- capability_id: cap.rbx.gateway-planning
+  revision: 1
+  status: active
+  slug: rbx-gateway-planning
+  title: WebRTC 网关拓扑决策与容量规划
+  importance: critical
+  importance_rationale: 对应 task-10/task-12，全书最核心架构决策；选错拓扑的代价是硬件/许可/返工
+  one_liner: 三拓扑按硬件与容量对号入座（集成 20/FE 20/外部 50），通道查表，150 用户上限带话务前提
+  intents:
+  - 选择 WebRTC 网关拓扑
+  - 网关容量规划
+  - 网关通道数
+  - WebRTC gateway dimensioning
+  keywords:
+  - 拓扑
+  - 集成网关
+  - OCE Front End
+  - NUC
+  - ESXi
+  - 容量
+  - channels
+  - 20 通话
+  - 50 通话
+  - 150 用户
+  - UTL
+  - Twinset
+  - Anydevice
+  also_read:
+  - rbx-gateway-deployment
+  - rbx-network-readiness
+  card: cards/rbx-gateway-planning.md
+  frontmatter:
+    description: 'WebRTC 网关的拓扑选型与容量规划：三拓扑对比（OCE 集成/OCE Front End/外部 VM 或 NUC）、硬件与版本前提、p147 容量对照表、20/50/150 硬上限、
+      终端形态（Twinset/Anydevice）与 UTL 口径。当用户要"选网关方案/算通道数/评估容量/定终端形态"时使用。不适用于施工步骤（网关部署能力）；引用容量数字必须带话务前提。
+
+      '
+    tags:
+    - decision
+    - webrtc-gateway
+    - capacity
+    - rainbow
+  source_evidence:
+  - source_id: src-rainxte001
+  - location: p117-129, p146-147
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-10/12，架构决策核心
+- capability_id: cap.rbx.gateway-deployment
+  revision: 1
+  status: active
+  slug: rbx-gateway-deployment
+  title: WebRTC 网关部署与虚拟终端配置
+  importance: critical
+  importance_rationale: 对应 task-11/task-13/task-14，核心施工链；自动配置边界与 FE 双机 PBXID 是高频错误源
+  one_liner: Reseller 激活自动配置（边界清单）→ 三拓扑施工 → 建终端（Twinset/Anydevice 各 1 UTL）→ 行为验证
+  intents:
+  - 部署 WebRTC 网关
+  - 自动配置网关
+  - 配置 Twinset/Anydevice 终端
+  - deploy WebRTC gateway
+  keywords:
+  - Activate WebRTC Gateway
+  - 自动配置
+  - Reseller 管理员
+  - FTR
+  - Frontend WebRTC
+  - warm reset
+  - FleetRef-Installref
+  - 端口 5059
+  - Subscribers list
+  - secondary set
+  - UTL Bypass
+  also_read:
+  - rbx-gateway-planning
+  card: cards/rbx-gateway-deployment.md
+  frontmatter:
+    description: '按所选拓扑部署 WebRTC 网关（Reseller 管理员激活、自动配置边界、OCE-FE FTR 链、外部 VM/NUC 安装）并配置虚拟终端（Twinset 副站/Anydevice、UTL 口径）、
+      完成路由行为验证。当用户要"装网关/激活网关/自动配置/建软话机终端"时使用。不适用于选型（网关规划能力）；编号计划与闭锁、TURN/白名单在书外。
+
+      '
+    tags:
+    - procedure
+    - webrtc-gateway
+    - deployment
+    - rainbow
+    - oxo-connect
+  source_evidence:
+  - source_id: src-rainxte001
+  - location: p121-122, p124-161
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-11/13/14，核心施工
+- capability_id: cap.rbx.attendant-supervision
+  revision: 1
+  status: active
+  slug: rbx-attendant-supervision
+  title: Rainbow 话务台与监督组
+  importance: high
+  importance_rationale: 对应 task-15/task-16，前台/秘书/互助场景刚需；代接边界（同 PBX、仅电话呼叫）决定方案可行性
+  one_liner: Attendant 订阅解锁话务台（OXO 8 路/OXE 10 路）；监督组 5 组/30 人；互助组动态进出，代接仅限同 PBX 电话呼叫
+  intents:
+  - 部署 Rainbow 话务台
+  - 建监督组
+  - 互助值班方案
+  - attendant console setup
+  keywords:
+  - attendant console
+  - 话务台
+  - 监督组
+  - supervision group
+  - 互助组
+  - mutual aid
+  - 代接
+  - pickup
+  - BLF
+  - 队列 8 路
+  also_read:
+  - rbx-company-subscription
+  card: cards/rbx-attendant-supervision.md
+  frontmatter:
+    description: 'Rainbow 话务台部署与监督组管理：Attendant 订阅、话务台四功能区与容量（OXE 10/OXO 8）、监督组规格（5 组/30 人）、互助监督组（动态进出/临时纳排/
+      锁定成员/4 路监督）、代接边界。当用户要"配话务台/建监督组/互助代接/前台方案"时使用。不适用于 OXO 侧 ACD 呼叫中心（另一 bundle）；话务台仅 Web/Desktop 可用。
+
+      '
+    tags:
+    - procedure
+    - attendant
+    - supervision
+    - rainbow
+  source_evidence:
+  - source_id: src-rainxte001
+  - location: p162-181
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-15/16，完整业务场景
+- capability_id: cap.rbx.teams-integration
+  revision: 1
+  status: active
+  slug: rbx-teams-integration
+  title: Microsoft Teams 集成全流程
+  importance: high
+  importance_rationale: 对应 task-18，客户最常见共存诉求；Desktop 依赖与在场同步默认关是两大现场坑
+  one_liner: 工作台级集成：Teams App 管电话面 + Rainbow Desktop 管呼叫控制；权限收敛 Telephony；在场同步须激活 O365 共享
+  intents:
+  - Rainbow 集成 Teams
+  - Teams 应用上架与权限同意
+  - Teams 在场同步
+  - Rainbow for Teams integration
+  keywords:
+  - Teams
+  - Rainbow App
+  - Rainbow Desktop
+  - consent
+  - 权限同意
+  - Telephony 权限
+  - click-to-call
+  - F6
+  - presence
+  - 在场同步
+  - Office 365
+  also_read:
+  - rbx-gateway-deployment
+  - rbx-rcc-association
+  card: cards/rbx-teams-integration.md
+  frontmatter:
+    description: 'Rainbow for Teams 的完整部署：应用上架与权限同意（两法+Azure 核验）、用户配置（关联/Telephony 收敛/订阅）、连接器安装（Rainbow Desktop 强依赖）、
+      Teams/Rainbow 在场同步激活与验证。当用户要"Teams 里打电话/装 Rainbow App/状态同步/权限同意"时使用。不适用于租户级策略（原书范围外）；SSO 非必需。
+
+      '
+    tags:
+    - procedure
+    - teams
+    - integration
+    - rainbow
+  source_evidence:
+  - source_id: src-rainxte001
+  - location: p195-244
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-18，共存方案主线
+- capability_id: cap.rbx.admin-tools
+  revision: 1
+  status: active
+  slug: rbx-admin-tools
+  title: Rainbow 管理员工具（权责/企业目录/信息频道）
+  importance: medium
+  importance_rationale: 对应 task-03，一次性配置为主，独立触发频率低；权责表与目录/频道入口经路由可达即可
+  one_liner: Roles 页签分权（可多管理员）；企业目录存外部联系人（CSV 可导）；信息频道仅 Enterprise 可建且强制订阅不可退
+  intents:
+  - 分配管理员权限
+  - 企业目录导入
+  - 信息频道创建
+  keywords:
+  - roles
+  - 管理员
+  - business directory
+  - 企业目录
+  - information channel
+  - 信息频道
+  - 委托
+  card: cards/rbx-admin-tools.md
+  frontmatter:
+    description: 'Rainbow 管理面配置：Roles 页签分配管理权（BP/EC 分工）、企业目录（外部联系人 CSV 导入与委托管理）、信息频道（Enterprise 级创建、强制订阅）。
+      当用户问"加管理员/导入外部联系人/发公司频道"时经路由使用。服务级别三门槛：SSO=Enterprise、AAD 导入=Voice Enterprise、频道=Enterprise。
+
+      '
+    tags:
+    - reference
+    - rainbow
+    - admin
+  source_evidence:
+  - source_id: src-rainxte001
+  - location: p56-62
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 低频一次性配置，路由可达即可
+- capability_id: cap.rbx.rcc-association
+  revision: 1
+  status: active
+  slug: rbx-rcc-association
+  title: OXO 分机关联与 RCC 模式
+  importance: medium
+  importance_rationale: 对应 task-09，单步操作且是成员/网关两能力间的桥接段；"接听没声音"类问题的第一分流入口
+  one_liner: Telephony 页签绑定分机即得 RCC（接/挂/转、音频在话机）；Rainbow number 由 agent 在选 computer 路由时自动写入
+  intents:
+  - 关联 OXO 分机到 Rainbow
+  - RCC 模式验证
+  - Rainbow number
+  keywords:
+  - RCC
+  - Remote Call Control
+  - associate extension
+  - Telephony 页签
+  - Rainbow number
+  - Office phone
+  card: cards/rbx-rcc-association.md
+  frontmatter:
+    description: '把 OXO 分机关联到 Rainbow 账户并验证 RCC 模式（双侧验连接、验话机、Telephony 关联、三项测试），含 Rainbow number 自动写入机制。
+      当用户要"绑分机/RCC/接听没声音/分机列表"时经路由使用。RCC 是无网关阶段的正常形态，不是故障；完整音频需网关。
+
+      '
+    tags:
+    - procedure
+    - rcc
+    - rainbow
+    - oxo-connect
+  source_evidence:
+  - source_id: src-rainxte001
+  - location: p111-116
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 桥接段操作，路由可达即可
+- capability_id: cap.rbx.maintenance-support
+  revision: 1
+  status: active
+  slug: rbx-maintenance-support
+  title: Rainbow 维护与支持体系
+  importance: medium
+  importance_rationale: 对应 task-17，运维知识域偏"查资源"而非执行任务；SR 认证前提是关键边界
+  one_liner: 八抓手：用户日志/上报/状态页/维护预告/告警/操作历史/HelpDesk/SR（仅认证伙伴建 ESR）
+  intents:
+  - 查 Rainbow 日志
+  - 开 Rainbow 服务请求
+  - 云状态与维护预告
+  keywords:
+  - logs
+  - report a problem
+  - status.openrainbow.com
+  - 告警
+  - 操作历史
+  - Service Request
+  - SR
+  - ESR
+  - MyPortal
+  card: cards/rbx-maintenance-support.md
+  frontmatter:
+    description: 'Rainbow 运维闭环八抓手：用户日志与问题上报、status 状态页与告警订阅、计划维护预告、音频告警阈值、操作历史审计、HelpDesk 指南、MyPortal 开 SR
+      （仅 Rainbow 认证伙伴建 ESR）。当用户要"查日志/上报问题/开 SR/查云状态"时经路由使用。PBX 侧接入排障属 PBX 接入能力。
+
+      '
+    tags:
+    - reference
+    - maintenance
+    - rainbow
+  source_evidence:
+  - source_id: src-rainxte001
+  - location: p182-194
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 运维资源域，路由可达即可
+- capability_id: cap.rbx.network-readiness
+  revision: 1
+  status: active
+  slug: rbx-network-readiness
+  title: Rainbow 网络就绪核查
+  importance: medium
+  importance_rationale: 对应 task-01，书内只有文档指针与工具入口；独立触发价值低但它是网关规划的前置引用
+  one_liner: 查 Network Requirements 文章+两份 PDF 取端口/帶寬数值；Rainbow Pilot 测连通性与承载
+  intents:
+  - Rainbow 网络要求
+  - 连通性评估
+  - 端口放行
+  keywords:
+  - network requirements
+  - 端口
+  - 带宽
+  - 防火墙
+  - Rainbow Pilot
+  - 连通性
+  - 勘测
+  card: cards/rbx-network-readiness.md
+  frontmatter:
+    description: 'Rainbow 上线前网络就绪核查：help.openrainbow.com 网络要求文章与两份 PDF（端口/域名/带宽/防火墙）、Rainbow Pilot 连通性与承载评估。
+      当用户要"开什么端口/带宽够不够/站点评估"时经路由使用。本卡无具体数值——一切以当期 PDF 为准（原书明确外置）。
+
+      '
+    tags:
+    - reference
+    - network
+    - rainbow
+    - presales
+  source_evidence:
+  - source_id: src-rainxte001
+  - location: p35-45
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 指针与工具域，路由可达即可

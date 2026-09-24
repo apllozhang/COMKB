@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>EWT 表与排队位置播报（518）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Starter</h2><p>Edition  · 649 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte100en/index.html">课程首页</a><a href="/courses/otccxte100en/digest.html">精华长文</a><a href="/courses/otccxte100en/overview.html">教书理解</a><a href="/courses/otccxte100en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte100en/skills/otcc-ccd-matrix-foundation.html">CCD 基础矩阵创建与验证</a><a href="/courses/otccxte100en/skills/otcc-ccs-installation.html">CCS 班长台安装、OXE 声明与 ccs.ini</a><a href="/courses/otccxte100en/skills/otcc-routing-distribution-rules.html">路由规则与分配规则全生命周期</a><a href="/courses/otccxte100en/skills/otcc-agent-supervisor-onboarding.html">ACD 话机、座席与班长创建登录</a><a href="/courses/otccxte100en/skills/otcc-object-tuning.html">CCD 对象参数调优（pilot/PG/队列）</a><a href="/courses/otccxte100en/skills/otcc-voice-guides.html">语音指南三路径（话机录音/.wav 导入/欢迎指南）</a><a href="/courses/otccxte100en/skills/otcc-monitoring-statistics.html">实时监控告警与 Excel 统计</a><a href="/courses/otccxte100en/skills/otcc-multilanguage-calendar.html">多语言语音指南与双日历</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte100en/skills/otcc-supervisor-features.html">座席班长特性配置（监听强插/通用转发/多线/事务码）</a><a href="/courses/otccxte100en/skills/otcc-queue-experience.html">EWT 表与排队位置播报（518）</a><a href="/courses/otccxte100en/skills/otcc-direct-calls-emergency.html">CCD 直接呼叫与紧急关闭</a><a href="/courses/otccxte100en/skills/otcc-statistic-pilot.html">统计型 pilot 与 Call Tag</a><a href="/courses/otccxte100en/skills/otcc-lab-connectivity.html">实验环境与链路打通（POD/ITSP1/ABC-F）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte100en/index.html">otcc-standard-starter（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte100en/index.html">OTCCXTE100EN</a><span>/</span><span aria-current="page">EWT 表与排队位置播报（518）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>EWT 表与排队位置播报（518）</h1></div><dl><div><dt>Skill ID</dt><dd>otcc-queue-experience</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>EWT 表与排队位置播报（518）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"EWT = Average wait x (Nb of calls in queue + 1)"（p47）
+"Parking Level … Guide N° / IVR in queue PG directory N° / IAA directory N° / EWT Table Threshold(1 to 6)"（p351）
+"Tree menus: 5 levels max • 4 choices max per level • 8 trees maxi • When an agent becomes free, the caller leaves the IAA menu"（p356）
+"The Variable Part is made of several voice messages that give the positions from 1 to 50 then by step of 5 up to 100."（p377）
+"The messages numbers are already created in the OXE (from 3226 to 4217)"（p379）</p>
+</blockquote>
+<p>出处：OTCCXTE100EN p44-49, p348-357, p374-400。</p>
+<h2>I — 自述</h2>
+<p>EWT（预期等待时间）是排队体验的中枢，公式：EWT = 平均等待 ×（队内呼叫数+1），平均等待按每队列 TSP 滚动计算；它同时是路由平局依据、饱和判据（EWT&gt;最大等待时间）、播报分档依据（p02/g07）。</p>
+<p>EWT 表（Configurations&gt; EWT Tables）：每表 6 个阈值，每阈值=EWT 值+地址（仅 IAA 号或 CCIVR 号）+指南号；只能挂 normal 队列的 parking level（p351-352/f23）。</p>
+<p>parking level 四种填充物：语音指南号 / 队内 IVR PG 号 / IAA 号 / EWT 表；下游资源空出时指南可被打断（cut auth）（p45/p365）。</p>
+<p>518 排队位置指南（系统预置不可建改）：</p>
+<ul>
+<li>结构：固定段（"You are in position"）+ 变量段（位次）+ 固定段（"in the waiting queue"）；固定段每语言一条，消息号 L1=3226/3227 起步进 2；变量段 L1 从 3258 起、每语言步进 60，至 4217</li>
+<li>播报规则：位次 1-50 逐个精确播报、51-100 按 5 步进向上取整（63 位播 65）；Max position 上限 100，超限播 pilot 提示音直至位次回落；每次播报重算位次、第 6 级循环</li>
+<li>语言回退链：呼叫语言未管理时回退默认语言；无默认语言则不播跳下一级；子消息缺失 → 播备份音（p15/n32）</li>
+</ul>
+<p>IAA 菜树三重上限：5 层、每层 4 选项、8 棵树；座席一空闲，来电者即离开 IAA、播报可打断——不适合长内容（n35）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>EWT 三阈值实验</strong>（p358-373）：</p>
+<ol>
+<li>建 720/721/722 三指南（"少于 10 秒"/"约 20 秒"/"超过 1 分钟"；原书"四条消息"实三条，见 nr-08）</li>
+<li>401 录三条消息并装板；vgstat 复核</li>
+<li>CCS EWT Tables 建 Table[0]：阈值 1=10s/720、阈值 2=20s/721、阈值 3=60s/722，均勾 Cut Auth</li>
+<li>把 EWT 表挂到 Offer pilot 路由规则 Level[1]</li>
+<li>Navigator 定制 Normal Queue 显示 Expected Waiting Time</li>
+<li>行为测试：PG idle wrap-up 拉到 300 秒制造排队，观察 EWT 跨阈值时播报切换（受 TSP 滞后影响，n30）</li>
+</ol>
+<p><strong>518 位次实验</strong>（p385-400）：</p>
+<ol>
+<li>518 指南页设语言与消息顺序（Fix1+Variable+Fix2）、Max position=2（实验口径）</li>
+<li>分配并录制变量段 3318="one"、3319="two" 与固定段 3228/3229</li>
+<li>After-Sales 排分级：L2=518（1 次）夹在音乐与 684 之间</li>
+<li>三连测：第 1 通听"position 1"、第 2 通听"position 2"、第 3 通因超 Max position 只播提示音</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境："让客户知道要等多久"；按等待时长播不同话术；"您排在第 N 位"；位次播到第几位合适；多语言站点位次播报；EWT 阈值不切换怀疑故障。</p>
+<p>语言信号：EWT / Expected Waiting Time / 预期等待 / TSP / 饱和 / EWT table / 阈值 / parking level / cut auth / IAA / CCIVR / 518 / 排队位置 / position / Max position / 3226 / 4217 / 63 播 65。</p>
+<p>与相邻能力区分：指南怎么录 → 语音指南能力；队列饱和参数（Maximum waiting time）→ 对象调优能力；路由平局用 EWT 归路由与分配规则能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：排队话术分档与阈值已定、语言清单已核（nr-07）、518 预置资源完好。</p>
+<ol>
+<li>建分档指南：按阈值数建指南并录制装板（实验 720/721/722 三档）。完成标准：vgstat 全部选中</li>
+<li>建 EWT 表：6 阈值内逐档填 EWT 值+指南，勾 Cut Auth。完成标准：表保存且阈值升序合理</li>
+<li>挂表：pilot 路由规则 Additional 页把 EWT 表填入目标 parking level。完成标准：规则保存</li>
+<li>配位次播报（按需）：518 设语言、消息顺序与 Max position，录固定段/变量段并分配板位。完成标准：580 试听通过</li>
+<li>制造排队验证：长时间占用座席拉长队列，Navigator 看 EWT 值与所听档位对应。完成标准：跨阈值切换符合设计</li>
+<li>位次三连测：验证逐位、步进与超限三个场景。完成标准：第 3 通只闻提示音（Max position 内）</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>EWT 阈值切换"不及时" → TSP 滚动计算有滞后，勿用单通呼叫下结论，逐步调参（n30）</li>
+<li>位次超上限听无限提示音 → Max position 上限 100，超限行为是设计而非故障（n32）</li>
+<li>高位来电者无位次播报 → 语言回退链命中：未管理语言/无默认语言/缺子消息逐层查（n32）</li>
+<li>要复杂菜单 → IAA 三重上限（5 层 4 选项 8 树）内解决，超出属 CCIVR 书外域（n35/n41）</li>
+<li>自建同号 518 → 禁止，预置资源只录消息（n27）</li>
+</ul>
+<p>输出契约：分档等待播报与位次播报的上线配置（EWT 表+parking level 编排+518 参数）+ 阈值切换与位次测试记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>位次上限 100、16 语言、消息 3226-4217 为系统预置口径（p377-379）</li>
+<li>EWT 表只能挂 normal 队列 parking level；IAA/CCIVR 地址二选一（p352）</li>
+<li>CCIVR 是外部语音服务器（书中拼写 Contact center Interactive Voice Record 属原文），部署在书外（n41）</li>
+<li>TSP/EWT 只给公式与调参口径，话务量→座席数规划方法书外（n30/n41）</li>
+<li>实验阈值（10s/20s/60s）与 Max position=2 为实验口径</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.otcc.queue-experience · 来源：OTCCXTE100EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Starter (Participant's Guide, Edition 09) | edition: Edition  | pages: 649 页 -->

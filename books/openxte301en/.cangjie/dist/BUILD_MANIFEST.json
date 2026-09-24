@@ -1,0 +1,43 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\ota-calendar-sync.md": "fb1021af63785999f306e5ee6bc7100678a56b2b973612e9a4d5e389b91bbd79",
+    "references\\capabilities\\ota-conference-collaboration.md": "2fc4ae1f9410421809cc7a4d809ee1d2a7d407c9bc77d6b7936652794aec1222",
+    "references\\capabilities\\ota-dcs-documents.md": "c9a74addd3dcd77c8a688f160220eefd621dfbeb308c5bdad50d3afb69fc667d",
+    "references\\capabilities\\ota-desksharing.md": "deab24a0dbc93e648209531e736e41b2be463b0cce034bf0052cee0328467c6f",
+    "references\\capabilities\\ota-directory-udas.md": "b77329312790a4ff68b03b128df330e0a7352b11eabef01f9ca7fca01083c51e",
+    "references\\capabilities\\ota-enterprise-authentication.md": "81cb840cbdaa73994838e8dc20fe4bfec1db20cb8e81b8736214cc144f7a168e",
+    "references\\capabilities\\ota-extended-mobility.md": "d9942cd9420ab2ef2ab8463ddf54fad5716fa61b1e93592ee539355fc088106f",
+    "references\\capabilities\\ota-lab-pod.md": "1c768355b605295f7ae4ff0f9d065e32d61638d07fb8f028519361753b2634ae",
+    "references\\capabilities\\ota-nomadic-ghost-z.md": "63af52016f8a5b88188743291f7ddf5affa3ec55f32fd9039bdc357e0922bf16",
+    "references\\capabilities\\ota-otc-web-guest.md": "6dcca0e8cf11c4c5f56d204553e88f19866910209226d1edfa975f5ad76477fd",
+    "references\\capabilities\\ota-remote-access.md": "3a6a8dcdf0ce769d465728f34349e38c9cdebcbd5f1675776c021e90eabe5962",
+    "references\\capabilities\\ota-smartphone-rex.md": "61702e8899a8b0fad6fc9968408aa79e31418677725c192ae61c966fcd92163a",
+    "references\\capabilities\\ota-um-exchange-integration.md": "823a3002f0d3f0b1b4113c5340f2b522e245650edfa6d308d76d6f8645a8b612",
+    "references\\capability-index.md": "6f6dee27ec0b97ec25c097eec99634182af9773ee532550bedab36a751b77f4f",
+    "references\\cheatsheet.md": "67a9e3138768fbb1168d2ca5a3665a5ed9bcdc7d40d4fdb60a4fddb7b9c0d88a",
+    "references\\glossary.md": "41f53013d39f34d50a472e1e7bcbeb988f8ab9775b51a24ee22e6cb5e533d0c5",
+    "references\\overview.md": "608a706741d747041a34e534f05f209d4e9d1463a9e638f0125be82ea3904052",
+    "SKILL.md": "431de23d147c41267a82473178a4a9f0306f73872b5d00824baa24858a0f2ef6"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.opentouch-advanced",
+  "bundle_sha256": "821fbaa8a91a89231c96b1edcc0b80792f458c6f228f9eb55b175cf3134c7a69",
+  "variant": "single",
+  "run_id": "run-20260924-200009-1a634e",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 13,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

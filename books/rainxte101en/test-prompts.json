@@ -1,0 +1,94 @@
+{
+  "skill": "rainbow-hub",
+  "version": "0.1.0",
+  "bundle": "bundle.rainbow-hub",
+  "capability_catalog": [
+    {"slug": "hub-company-voice-subscription", "name": "Rainbow 公司体系与 Voice 订阅开通", "description": "BP 建司（时区强制）开订阅、EC 管日常；可见性默认 CLOSED；SSO/TOTP 认证；Voice 四档订阅两层分配；有 Voice Business/Enterprise 才能声明 Cloud PBX；BP 专属四项"},
+    {"slug": "hub-cloud-pbx-provisioning", "name": "Cloud PBX 声明与话务配置", "description": "一公司一 PBX 一 trunk；编号计划 2-9 位混长、出局前缀 0 或 9；DDI 分配与公司主号；白黑名单国际格式；bundled/separated 与带宽口径"},
+    {"slug": "hub-member-telephony", "name": "成员管理与话务配置", "description": "手动/邀请/CSV/AAD/LDAP 五通道开户；七分区设置；有 Voice 订阅才能配号；例行程序/标签/档案/按键组；删除 10 天宽限恢复回落 Essential；改密踢在线"},
+    {"slug": "hub-zero-touch-provisioning", "name": "ALE 设备 zero-touch 部署与 DECT 移动", "description": "按 MAC/IPEI 注册关联成员自动取配置；DHCP option 43/66/67 红线、TFTP 抢先、Config Failed；每用户一台物理设备；DECT 8328 双站 20 机 / 8368 多站 1000 机；端口表"},
+    {"slug": "hub-device-maintenance", "name": "设备维护日志与 Generic SIP 接入", "description": "已注册话机禁直连、debug 会话 ≤15 分钟一次性口令、webadmin 报告固件 ≥2.14.22 且 24h 失效；Generic SIP 六条限制、TLS 1.2+SRTP、四要素与证书链、ALE 不为大规模兜底"},
+    {"slug": "hub-hunt-groups", "name": "呼叫组与话务分配", "description": "四类组；组 50 人、分发三型、队列溢出 10-900 秒 FCFS；组角色与组 bubble；经理 DID 挂组级、只筛电话；紧急组免前缀进组转警加 0112；录音 2 个月仅客户管理员可见"},
+    {"slug": "hub-attendant-supervision", "name": "话务台与监督组", "description": "Voice Attendant 解锁 PC 话务台（10 路排队）；监督组 5 页签/30 人/5 组；attendant group 全员须 Voice Attendant；激活话务台话机关联被删、无移动端"},
+    {"slug": "hub-welcome-service-ivr", "name": "欢迎服务与 IVR", "description": "日历（公司时区、假日不预填）+ 语音提示（≤4MB/120 秒/定制 5 条/特殊日 10 天）+ 欢迎服务开闭双路由（forced 下时段回 Auto）+ IVR（3 级、0-9、无许可、唯一提示建后不可改、DDI 直挂 7×24）+ MoH"},
+    {"slug": "hub-network-readiness", "name": "Rainbow Hub 网络就绪核查", "description": "Network Requirements 文章与两份 PDF（端口/域名/带宽/防火墙全集，书内无数值）；Rainbow Pilot 连通性与用法配比承载评估；带宽口径 Opus 80 kbps/G711 64 kbps；ALE SIP 终端不支持 HTTP 代理"},
+    {"slug": "hub-multisite", "name": "多站点配置", "description": "单 Cloud PBX 逻辑分区：站点挂成员/号码/服务、站点主号与站点 MoH；内呼/组/目录跨站不变；副站点主叫权限建议 Not allowed；站点不是分 PBX"},
+    {"slug": "hub-analytics", "name": "分析体系", "description": "CDR 月度话单（每月 1 日、三通道、纯 VoIP 不产生、ALE 不计费）；仪表盘 7/30 天与 Voice 1 年、服务/组对比 ≤5；MOS 阈值抖动 <30ms/RTT ≤150ms/丢包 ≤1%；成员级统计可按组关闭"},
+    {"slug": "hub-maintenance-support", "name": "Hub 维护与支持体系", "description": "用户日志/上报（集成商同视角）/status.openrainbow.com/维护预告/HelpDesk/MyPortal SR 两页表单（Product Category=Rainbow Hub）；ESR 仅认证 Rainbow Hub 伙伴创建"}
+  ],
+  "test_cases": [
+    {"id": "should-company-01", "type": "should_trigger", "prompt": "给一个集团客户开 Rainbow Hub 租户，200 个用户要用电话和话务台，买什么订阅组合？公司可见性怎么设？", "expected_behavior": "激活 hub-company-voice-subscription，给出 Voice 订阅组合（话务台须 Voice Attendant）与 CLOSED 建议"},
+
+    {"id": "should-company-02", "type": "should_trigger", "prompt": "客户管理员说他在 Rainbow 管理界面里点不到声明 Cloud PBX 的入口，也开不了订阅，是不是平台坏了？", "expected_behavior": "激活 hub-company-voice-subscription，解释 BP 专属四项是权限设计非故障"},
+
+    {"id": "should-pbx-01", "type": "should_trigger", "prompt": "帮客户声明 Cloud PBX，分机号段和出局前缀怎么配？客户习惯 3 位分机混 5 位分机可以吗？", "expected_behavior": "激活 hub-cloud-pbx-provisioning，编号计划 2-9 位混长 + 前缀 0 或 9 国家相关"},
+
+    {"id": "should-pbx-02", "type": "should_trigger", "prompt": "客户要禁掉国际长途和声讯收费号，号码段注入时第一个号自动变成公司主号了，不想要这个当主号怎么办？", "expected_behavior": "激活 hub-cloud-pbx-provisioning，白黑名单国际格式规则 + 主号默认与修改机制"},
+
+    {"id": "should-member-01", "type": "should_trigger", "prompt": "80 个新员工要批量开 Rainbow Hub 账号，客户有 Azure AD 和本地 AD，用什么方式开户最快？密码有什么要求？", "expected_behavior": "激活 hub-member-telephony，五通道选型（AAD 门槛/LDAP）+ 密码 ≥12 位三类字符"},
+
+    {"id": "should-member-02", "type": "should_trigger", "prompt": "上周误删了一个成员，现在想恢复，他的电话号码和订阅还在吗？", "expected_behavior": "激活 hub-member-telephony，10 天宽限 + 恢复回落 Essential 须重配订阅与电话线"},
+
+    {"id": "should-zt-01", "type": "should_trigger", "prompt": "60 台 Myriad M5 话机要做到开箱上电就能用，部署流程是什么？客户网络要先满足什么条件？", "expected_behavior": "激活 hub-zero-touch-provisioning，MAC 注册关联 + DHCP option/端口表排雷"},
+
+    {"id": "should-zt-02", "type": "should_trigger", "prompt": "客户的门店和仓库要用 DECT 移动分机，大概 15 台手持机，选 8328 还是 8368？", "expected_behavior": "激活 hub-zero-touch-provisioning，8328 上限 20 机够用、容量对照"},
+
+    {"id": "should-dev-01", "type": "should_trigger", "prompt": "一台话机注册正常但通话有杂音，要抓日志给原厂分析，话机 IP 我 ping 得通但网页登不上去，怎么回事？", "expected_behavior": "激活 hub-device-maintenance，已注册话机禁直连 + debug 会话 15 分钟窗取日志"},
+
+    {"id": "should-dev-02", "type": "should_trigger", "prompt": "客户仓库里有几台旧的第三方 SIP 话机和一部模拟传真机，想接到 Hub 上继续用，可行吗？", "expected_behavior": "激活 hub-device-maintenance，Generic SIP 补充定位 + 六条限制与安全基线"},
+
+    {"id": "should-hunt-01", "type": "should_trigger", "prompt": "客服组 6 个人，最怕客户打进来听到忙音，怎么配等待队列和溢出策略？", "expected_behavior": "激活 hub-hunt-groups，带队列 FCFS + 溢出 10-900 秒与目的地"},
+
+    {"id": "should-hunt-02", "type": "should_trigger", "prompt": "给经理配了助理筛电话，助理说一个电话都筛不到，配置看着都对，问题可能出在哪？", "expected_behavior": "激活 hub-hunt-groups，经理 DID 挂组级 + 只筛电话呼叫两条红线"},
+
+    {"id": "should-att-01", "type": "should_trigger", "prompt": "前台想要一张能看到全公司人在线和通话状态、能代接能转接的工作台，怎么搭？", "expected_behavior": "激活 hub-attendant-supervision，Voice Attendant 订阅 + 监督组 + 话务台"},
+
+    {"id": "should-att-02", "type": "should_trigger", "prompt": "话务员已经有一台桌面话机了，现在要给她开话务台，话机还能继续用吗？", "expected_behavior": "激活 hub-attendant-supervision，Voice Attendant 锁 PC + 激活后话机关联被删"},
+
+    {"id": "should-ws-01", "type": "should_trigger", "prompt": "客户下班时间和周末的来电要播闭店提示，上班时间转给客服组，节假日还特别多，怎么配？", "expected_behavior": "激活 hub-welcome-service-ivr，日历+欢迎服务开闭双路由 + 特殊日"},
+
+    {"id": "should-ws-02", "type": "should_trigger", "prompt": "客户要一个语音总机：按 1 转销售、2 转售后、3 转人工，菜单还要有子菜单，怎么做？要不要额外买许可？", "expected_behavior": "激活 hub-welcome-service-ivr，IVR 菜单树 + 无许可限制 + 唯一提示模式"},
+
+    {"id": "should-net-01", "type": "should_trigger", "prompt": "客户站点要上 Rainbow Hub，网络这边上线前要核查什么？话音带宽怎么估算？", "expected_behavior": "激活 hub-network-readiness，Network Requirements 指针 + 带宽四行口径 + Pilot"},
+
+    {"id": "should-net-02", "type": "should_trigger", "prompt": "售前要评估客户这个办公点能不能承载 100 个以 Hub 话音为主的用户，用什么工具怎么评？", "expected_behavior": "激活 hub-network-readiness，Rainbow Pilot 用法配比承载评估"},
+
+    {"id": "should-ms-01", "type": "should_trigger", "prompt": "客户在两个城市有办公室，要求两个城市的员工外呼时分别显示各自的本地号码，怎么实现？", "expected_behavior": "激活 hub-multisite，站点挂号码 + 站点主号机制"},
+
+    {"id": "should-ms-02", "type": "should_trigger", "prompt": "客户开了家分店，想要分店自己的等待音乐和自己的前台号码，需要给分店单独买一台 PBX 吗？", "expected_behavior": "激活 hub-multisite，站点是单 PBX 逻辑分区不用买第二台 + 站点 MoH"},
+
+    {"id": "should-ana-01", "type": "should_trigger", "prompt": "财务要做月度话费对账，需要呼叫话单数据，从哪里拿？每个月什么时候有？", "expected_behavior": "激活 hub-analytics，CDR 每月 1 日三通道 + 纯 VoIP 不产生 + ALE 不计费"},
+
+    {"id": "should-ana-02", "type": "should_trigger", "prompt": "有用户抱怨通话质量断断续续，平台上有办法定位是网络问题还是终端问题吗？", "expected_behavior": "激活 hub-analytics，MOS 质量票 + 抖动/RTT/丢包阈值定位"},
+
+    {"id": "should-mnt-01", "type": "should_trigger", "prompt": "好几个用户同时反馈 Rainbow 登录不上，怎么快速判断是不是 ALE 云那边的问题？", "expected_behavior": "激活 hub-maintenance-support，status.openrainbow.com 分流 + 告警订阅"},
+
+    {"id": "should-mnt-02", "type": "should_trigger", "prompt": "这个问题我们自己搞不定了，要给 ALE 开正式的服务请求，前提和流程是什么？", "expected_behavior": "激活 hub-maintenance-support，认证 Rainbow Hub 前提 + MyPortal 两页表单"},
+
+    {"id": "bait-company-01", "type": "should_not_trigger", "prompt": "新员工入职，要建 Rainbow Hub 账号、配分机和公网号、绑一台话机并验证注册成功", "expected_behavior": "这是成员话务+设备部署的组合，不应激活 hub-company-voice-subscription"},
+
+    {"id": "bait-pbx-01", "type": "should_not_trigger", "prompt": "新话机上电后一直显示 Config Failed，取不到配置，是不是 Cloud PBX 声明有问题？", "expected_behavior": "应激活 hub-zero-touch-provisioning（未关联设备报 Config Failed），不应停留在 hub-cloud-pbx-provisioning"},
+
+    {"id": "bait-zt-01", "type": "should_not_trigger", "prompt": "客户的 Yealink 第三方话机怎么配 SIP 账号和下载证书链？", "expected_behavior": "应激活 hub-device-maintenance（Generic SIP 线），不应激活 hub-zero-touch-provisioning"},
+
+    {"id": "bait-hunt-01", "type": "should_not_trigger", "prompt": "客户要播'您好，欢迎致电，请按 1 客服、按 2 销售'的自助按键菜单", "expected_behavior": "应激活 hub-welcome-service-ivr（IVR），不应激活 hub-hunt-groups"},
+
+    {"id": "bait-ms-01", "type": "should_not_trigger", "prompt": "客户要求分部和总部互相看不到对方的人，目录和通讯录要按分公司完全隔离", "expected_behavior": "超出站点机制（站点不隔离目录/内呼），应声明边界，不应把 hub-multisite 当作可满足该需求执行"},
+
+    {"id": "bait-ana-01", "type": "should_not_trigger", "prompt": "怀疑 Rainbow 平台宕机了，在哪里看云服务的实时状态？", "expected_behavior": "应激活 hub-maintenance-support（状态页），不应激活 hub-analytics"},
+
+    {"id": "bait-ws-01", "type": "should_not_trigger", "prompt": "客户听说话务台是免费且数量无限的，想给每个主管都配一个话务台", "expected_behavior": "应激活 hub-attendant-supervision 澄清（Voice Attendant 订阅门槛；无限免费的是 IVR），不应停留在 hub-welcome-service-ivr"},
+
+    {"id": "bait-hub-01", "type": "should_not_trigger", "prompt": "客户的 OXO Connect 交换机怎么接入 Rainbow？WebRTC 网关在 OMC 里怎么激活？", "expected_behavior": "超出本 bundle（混合云产品线 RAINXTE001EN 语系），不应激活任何 Hub 能力卡，应声明边界"},
+
+    {"id": "edge-nr-01", "type": "edge_case", "prompt": "只有 Voice Phone 订阅的纯话机用户，给他配电话号码时会不会被拒？文档里配号前提的括注没列这个档", "expected_behavior": "按 needs-review nr-01 双口径回答：p66/p67 四档口径支持配号，p194 括注疑不完整；以平台实际行为为准并如实说明"},
+
+    {"id": "edge-hunt-01", "type": "edge_case", "prompt": "Hunt group 的溢出默认时间到底是多少秒？我看到 60 秒和 10-900 秒两种说法", "expected_behavior": "按 needs-review nr-02 分开口径：无队列组图示默认 60 秒（p211），带队列组可调 10-900 秒（p215）"},
+
+    {"id": "edge-emg-01", "type": "edge_case", "prompt": "紧急组激活之后，站内用户拨 112 是直接报警出去了吗？", "expected_behavior": "按激活语义回答：免前缀紧急呼叫路由进安保组不出局；组员要报警须手动加前缀（如 0112）；培训时两条路径都要讲透"},
+
+    {"id": "edge-ivrm-01", "type": "edge_case", "prompt": "已经建好的 IVR 用的是唯一提示模式，现在想改成每个按键单独录音，能直接改吗？", "expected_behavior": "按边界回答：唯一提示模式建后不可改（p270），只能重建 IVR；重建前导出菜单树作参考"},
+
+    {"id": "edge-att-01", "type": "edge_case", "prompt": "话务员想在家用自己的手机打开话务台值班，支持吗？", "expected_behavior": "按边界回答：话务台仅 PC 端、手机端无话务台模式（p246）；给替代排班建议（PC 远程值班）"}
+  ]
+}

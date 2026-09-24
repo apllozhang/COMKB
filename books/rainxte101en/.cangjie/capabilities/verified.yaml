@@ -1,0 +1,656 @@
+schema_version: 1
+bundle_id: bundle.rainbow-hub
+book:
+  title: Rainbow Hub (Participant's Guide, Edition 16)
+  author: ALE Training Services
+  source_pack: RAINXTE101EN.pdf (351 pages)
+  baseline_tag: Rainbow Hub / Sprint 170 / RLAB
+entry:
+  name: rainbow-hub
+  description: 'Rainbow Hub 纯云话音交付与运营支持：公司/Voice 订阅云侧开户、Cloud PBX 声明与编号计划/号码/闭锁、成员五通道开户与话务配置、ALE 设备 zero-touch 与 DECT 部署、
+    设备维护与 Generic SIP 评估、呼叫组/话务台/欢迎服务与 IVR、多站点、分析与维护支持。适用于 Rainbow Hub（纯云，全托管 Cloud PBX）的开户、配置、排障与方案落地问答；
+    生产化网络数值、trunk 合同与 DID 紧急定位登记不在原书范围内（见 out_of_scope）。与混合云（RAINXTE001EN）的差异点：Voice 前缀订阅、Cloud PBX、BP 四项专属、zero-touch。
+    '
+  core_principles:
+  - 纯云架构：话务核心全托管云侧 Cloud PBX，客户侧无 PBX/SBC/VPN；一公司一 Cloud PBX、一 PBX 一条外部 SIP trunk
+  - 云侧顺序硬约束：BP 建公司（时区强制）→ 至少一条 Voice Business/Enterprise 订阅 → 才能声明 Cloud PBX → 公网号码 → 终端 → 成员 → 功能
+  - 权责切分：BP 独占 PBX 声明/付费订阅/终端声明/电话线四项；客户管理员做成员、组、欢迎服务等日常配置
+  - 端侧三等供给：ALE 原生（zero-touch、集中管理）优先于入门档，第三方 Generic SIP 仅做补充（手工配置、无 RCC、ALE 不为大规模兜底）
+  - 话务能力域参数化：组 50 人、队列溢出 10-900 秒、监督 5 页签/30 人、IVR 3 级无许可、录音存 2 个月——引用数字必须带口径
+  - 实验环境口径：教材账号、密码、号段仅限实验；培训禁预付是实验规则，生产预付正常
+  out_of_scope:
+  - 端口/带宽/防火墙全集与 TURN 数值（原书外置到 Network Requirements 文章与 PDF，书内仅两张局部摘录）
+  - trunk 合同、资费、号码携转、DID 地址登记（紧急定位）——BP/运营商侧
+  - 编号计划设计方法论、话务建模、提示音文案制作、DECT 无线勘测（原书不讲）
+  - Teams 集成、WebRTC 网关、OXO/OXE 接入（混合云产品线，属 RAINXTE001EN 语系）
+  stop_conditions:
+  - 客户要保留现有 PBX 接云（混合云形态）→ 转 Rainbow 混合云产品线（RAINXTE001EN 语系），不套用 Hub 开户流程
+  - 需要生产网络数值或 SR 流程细节 → 明确指向外部权威文档（Network Requirements / TBE099 / TBE127），不以实验口径搪塞
+  - 涉及 RLAB/MicroSIP 环境搭建 → 参考 book/overview 环境区背景，不虚构生产配置
+  - 成员配号订阅门槛出现 Voice Phone 争议 → 按 needs-review nr-01 双口径如实说明（p194 括注疑不完整，以 p66 四档口径为准）
+  - 紧急呼叫定位与合规诉求 → 声明责任链（BP 登记 DID 地址、运营商判 PSAP、Rainbow 不管），不替 BP/运营商承诺
+router_entry:
+  name: rainbow-hub-router
+  description: 'Rainbow Hub 能力路由入口：按用户意图分发到 12 张能力卡——公司订阅、Cloud PBX、成员话务、zero-touch 部署、设备维护、呼叫组、话务台监督、欢迎服务 IVR 八个
+    promoted 能力，以及网络就绪、多站点、分析、维护支持四张 router 能力卡。
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.hub.company-voice-subscription
+  revision: 1
+  status: active
+  slug: hub-company-voice-subscription
+  title: Rainbow 公司体系与 Voice 订阅开通
+  importance: critical
+  importance_rationale: 对应 task-02/03/04，云侧一切操作的前提；权责错位（EC 做 BP 动作）与时区漏配是最高频的现场困惑
+  one_liner: BP 建司开订阅（时区强制）、可见性默认 CLOSED、SSO/TOTP 认证；Voice 四档订阅两层分配，有 Voice Business/Enterprise 才能声明 Cloud PBX
+  intents:
+  - 创建 Rainbow Hub 公司
+  - 开通 Voice 订阅
+  - 选择公司可见性
+  - 配置 SSO/TOTP 认证
+  - create Rainbow Hub company
+  - Voice subscription plans
+  keywords:
+  - Company
+  - BP
+  - EC
+  - Reseller
+  - 可见性
+  - CLOSED
+  - ISOLATED
+  - SSO
+  - TOTP
+  - Voice Phone
+  - Voice Business
+  - Voice Enterprise
+  - Voice Attendant
+  - 预付
+  - 时区
+  also_read:
+  - hub-member-telephony
+  - hub-cloud-pbx-provisioning
+  card: cards/hub-company-voice-subscription.md
+  frontmatter:
+    description: '在 Rainbow 云侧创建客户公司并开通 Voice 订阅（BP 建 EC、可见性四级选型、SSO/TOTP 认证、订阅两层流转与分配、Voice 四档与扩展档选型）。当用户要"建 Hub 公司/开订阅/
+      选订阅类型/配公司认证"时使用。不适用于成员账户操作（成员话务能力）与 PBX 声明（Cloud PBX 能力）；建 PBX、开付费订阅、声明终端、电话线是 BP 专属权限。
+      '
+    tags:
+    - procedure
+    - rainbow
+    - company
+    - subscription
+  source_evidence:
+  - source_id: src-rainxte101
+  - location: p47-75, p9, p65-69
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-02/03/04 核心，交付起点
+- capability_id: cap.hub.cloud-pbx-provisioning
+  revision: 1
+  status: active
+  slug: hub-cloud-pbx-provisioning
+  title: Cloud PBX 声明与话务配置
+  importance: critical
+  importance_rationale: 对应 task-05/06/07，全书核心对象，错一步全盘卡住；无 Voice 订阅选不到 Cloud PBX 是第一高频卡点
+  one_liner: 一公司一 PBX 一 trunk；编号计划 2-9 位混长、出局前缀 0 或 9；首个注入号码默认公司主号；白黑名单按国际格式不带 + 或 00
+  intents:
+  - 声明 Cloud PBX
+  - 设计编号计划参数
+  - 分配公网号码与主号
+  - 配置呼叫闭锁
+  - declare Cloud PBX
+  - public numbers DDI
+  keywords:
+  - Cloud PBX
+  - 编号计划
+  - numbering plan
+  - 出局前缀
+  - DDI
+  - 公网号码
+  - 主号
+  - 闭锁
+  - barring
+  - 白名单
+  - blacklist
+  - trunk
+  - bundled
+  - separated
+  also_read:
+  - hub-company-voice-subscription
+  card: cards/hub-cloud-pbx-provisioning.md
+  frontmatter:
+    description: '声明并配置 Cloud PBX（编号计划参数、Call settings 默认值、公网号码/DDI 段与公司主号、流量控制白黑名单、SIP trunk 绑定与商务模式、带宽四行口径）。当用户要"建 Cloud PBX/
+      配分机号段/分配码/禁外呼/trunk 怎么接"时使用。不适用于网络端口全集（网络就绪能力）与成员级号码分配（成员话务能力）；一公司一 PBX 一 trunk 是硬约束。
+      '
+    tags:
+    - procedure
+    - cloud-pbx
+    - numbering
+    - rainbow
+  source_evidence:
+  - source_id: src-rainxte101
+  - location: p76-104, p85-90
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-05/06/07，全书核心
+- capability_id: cap.hub.member-telephony
+  revision: 1
+  status: active
+  slug: hub-member-telephony
+  title: 成员管理与话务配置
+  importance: critical
+  importance_rationale: 对应 task-10，云侧日常运营最高频动作；删除宽限三重副作用与改密踢线是易产生客诉的行为规则
+  one_liner: 五通道开户（手动/邀请/CSV/AAD/LDAP）、七分区设置；有 Voice 订阅才能配号；删除进 10 天宽限恢复即回落 Essential
+  intents:
+  - 批量创建成员
+  - 配置成员电话号码
+  - 管理个人例行程序
+  - 删除恢复成员
+  - Rainbow user management
+  keywords:
+  - members
+  - 成员
+  - 邀请
+  - invitation
+  - CSV
+  - Azure AD
+  - LDAP
+  - 批量导入
+  - 例行程序
+  - routines
+  - 标签
+  - profiles
+  - grace period
+  - 宽限期
+  - Essential
+  - 改密踢下线
+  also_read:
+  - hub-zero-touch-provisioning
+  card: cards/hub-member-telephony.md
+  frontmatter:
+    description: 'Rainbow Hub 成员全生命周期：手动/邀请/CSV/Azure AD/LDAP 五通道开户、七分区设置、电话号码分配（Voice 订阅硬门槛）、例行程序/标签/档案/按键组、删除 10 天宽限与账号安全。
+      当用户要"建用户/批量开户/配分机/改密码策略/恢复误删用户"时使用。不适用于公司订阅池（公司订阅能力）；密码 ≥12 位含大写/数字/特殊字符。
+      '
+    tags:
+    - procedure
+    - members
+    - lifecycle
+    - rainbow
+  source_evidence:
+  - source_id: src-rainxte101
+  - location: p165-206, p173-177
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-10，日常运营主体
+- capability_id: cap.hub.zero-touch-provisioning
+  revision: 1
+  status: active
+  slug: hub-zero-touch-provisioning
+  title: ALE 设备 zero-touch 部署与 DECT 移动
+  importance: critical
+  importance_rationale: 对应 task-11/14，硬件交付主体；DHCP option 红线、TFTP 抢先与每用户一台物理设备是现场坑集中区
+  one_liner: 按 MAC/IPEI 注册关联成员后自动取配置；禁 DHCP option 43/66/67、禁设备 web 页配置；DECT 8328 双站 20 机 / 8368 多站 1000 机
+  intents:
+  - 部署 Myriad 话机
+  - 批量导入设备
+  - 部署 DECT 基站与手持机
+  - zero-touch provisioning
+  keywords:
+  - zero-touch
+  - 零接触
+  - MAC 地址
+  - IPEI
+  - Myriad
+  - "8328"
+  - "8368"
+  - "8214"
+  - "8262"
+  - DECT
+  - Config Failed
+  - rdd.openrainbow.com
+  - 绿点
+  - EM200
+  also_read:
+  - hub-device-maintenance
+  - hub-network-readiness
+  card: cards/hub-zero-touch-provisioning.md
+  frontmatter:
+    description: 'ALE 原生终端的零接触部署：话机/基站按 MAC、手持机按 IPEI 注册并关联成员后自动取配置与固件；zero-touch 三条技术红线、设备端口表、首装两线（DHCP/静态 IP）、
+      DECT 8328/8368 两档选型与容量。当用户要"上话机/批量导设备/配 DECT/设备注册不上"时使用。不适用于第三方话机（设备维护与 Generic SIP 能力）；每用户仅一台物理 SIP 设备。
+      '
+    tags:
+    - procedure
+    - devices
+    - zero-touch
+    - dect
+  source_evidence:
+  - source_id: src-rainxte101
+  - location: p105-113, p133-139, p147-164
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-11/14，硬件交付主体
+- capability_id: cap.hub.device-maintenance
+  revision: 1
+  status: active
+  slug: hub-device-maintenance
+  title: 设备维护日志与 Generic SIP 接入
+  importance: high
+  importance_rationale: 对应 task-12/13，售后高频（日志取证）与存量设备复用评估；debug 15 分钟窗与"ALE 不为第三方大规模兜底"是关键边界
+  one_liner: 已注册话机禁直连、debug 会话 ≤15 分钟一次性口令；Generic SIP 六条限制、TLS 1.2+SRTP 强制、仅做补充不做大规模
+  intents:
+  - 采集话机日志
+  - 远程排障设备
+  - 评估接入第三方 SIP 话机
+  - Generic SIP device onboarding
+  keywords:
+  - 设备日志
+  - debug
+  - pcap
+  - tcpdump
+  - webadmin
+  - "2.14.22"
+  - TOTP
+  - Generic SIP
+  - 证书链
+  - TLS
+  - SRTP
+  - G711
+  - 互操作
+  also_read:
+  - hub-maintenance-support
+  card: cards/hub-device-maintenance.md
+  frontmatter:
+    description: 'ALE 话机维护取证（本地 pcap/webadmin 报告、debug 会话 15 分钟窗、固件 2.14.22 前提）与第三方 Generic SIP 设备接入评估（六条限制、TLS 1.2+SRTP 安全基线、
+      四要素与证书链、批量导入）。当用户要"取话机日志/设备排障/接旧话机/评估第三方终端"时使用。不适用 zero-touch 上线（设备部署能力）；ALE 不为大规模第三方部署提供支持。
+      '
+    tags:
+    - procedure
+    - maintenance
+    - generic-sip
+    - troubleshooting
+  source_evidence:
+  - source_id: src-rainxte101
+  - location: p114-132, p141-145, p334-336
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-12/13，售后高频
+- capability_id: cap.hub.hunt-groups
+  revision: 1
+  status: active
+  slug: hub-hunt-groups
+  title: 呼叫组与话务分配
+  importance: critical
+  importance_rationale: 对应 task-15/16/18/19，团队接听刚需与合规刚需（紧急/录音）；溢出与 DID 挂组级是配置易错点
+  one_liner: 四类组对号入座；组 50 人、分发三型、队列溢出 10-900 秒 FCFS；经理 DID 挂组级；紧急组免前缀进组转警加 0112；录音存 2 个月
+  intents:
+  - 创建呼叫组与等待队列
+  - 配置经理助理组
+  - 配置紧急号码与紧急组
+  - 管理通话录音
+  - hunt group waiting queue
+  keywords:
+  - hunt group
+  - 呼叫组
+  - 等待队列
+  - waiting queue
+  - 溢出
+  - overflow
+  - Parallel
+  - Serial
+  - Circular
+  - 经理助理
+  - 紧急组
+  - emergency group
+  - "0112"
+  - PSAP
+  - 录音
+  - Rainbow Exporter
+  also_read:
+  - hub-attendant-supervision
+  - hub-welcome-service-ivr
+  card: cards/hub-hunt-groups.md
+  frontmatter:
+    description: 'Rainbow Hub 四类组（Regular/Attendant/Emergency/Manager-Assistant）与话务分配：分发三模式、等待队列 FCFS 与溢出参数、组角色矩阵、组 bubble、紧急呼叫链路
+      （免前缀进组、0112 转警、定位责任链）、通话录音与归档。当用户要"建呼叫组/排队策略/经理筛选/紧急合规/录音留存"时使用。不适用于人工话务台（话务台监督能力）。
+      '
+    tags:
+    - procedure
+    - groups
+    - telephony
+    - compliance
+  source_evidence:
+  - source_id: src-rainxte101
+  - location: p208-242
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-15/16/18/19，话务分配主战场
+- capability_id: cap.hub.attendant-supervision
+  revision: 1
+  status: active
+  slug: hub-attendant-supervision
+  title: 话务台与监督组
+  importance: high
+  importance_rationale: 对应 task-17，前台/秘书/主管场景刚需；Voice Attendant 锁 PC（无话机无移动端）决定方案可行性
+  one_liner: Voice Attendant 解锁 PC 话务台（10 路排队）；监督组 5 页签/30 人/5 组；attendant group 全员须 Voice Attendant；激活话务台话机关联被删
+  intents:
+  - 部署话务台
+  - 创建监督组
+  - 建 attendant group
+  - attendant console setup
+  keywords:
+  - attendant console
+  - 话务台
+  - 监督组
+  - supervision group
+  - supervisor
+  - 代接
+  - pickup
+  - Voice Attendant
+  - attendant group
+  - "10 路"
+  - 预通告
+  also_read:
+  - hub-company-voice-subscription
+  card: cards/hub-attendant-supervision.md
+  frontmatter:
+    description: 'Rainbow Hub 话务台部署与监督组管理：监督员订阅分级（Attendant 含 10 路排队）、硬规格（5 页签/30 人/5 组）、话务台能力与三档显示、attendant group 全员订阅门槛、
+      Voice Attendant 设备代价。当用户要"配话务台/建监督组/前台方案/话务员用什么终端"时使用。不适用于自助分流（欢迎服务 IVR 能力，IVR 无许可）。
+      '
+    tags:
+    - procedure
+    - attendant
+    - supervision
+    - rainbow
+  source_evidence:
+  - source_id: src-rainxte101
+  - location: p223-225, p245-249, p284-289
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-17，前台主管场景
+- capability_id: cap.hub.welcome-service-ivr
+  revision: 1
+  status: active
+  slug: hub-welcome-service-ivr
+  title: 欢迎服务与 IVR
+  importance: critical
+  importance_rationale: 对应 task-20/21，客户感知最强的功能；日历先建、素材上限与唯一提示不可改是方案返工高发点
+  one_liner: 四件套（日历/提示音/欢迎服务/IVR）；开闭双路由可强制但下时段回 Auto；IVR 3 级 0-9 无许可、唯一提示建后不可改；素材 ≤4MB/120 秒
+  intents:
+  - 配置欢迎服务与营业时间路由
+  - 管理日历与语音提示
+  - 配置自动话务员菜单
+  - custom music on hold
+  keywords:
+  - 欢迎服务
+  - welcome service
+  - 日历
+  - calendar
+  - 语音提示
+  - voice prompt
+  - IVR
+  - automated attendant
+  - DTMF
+  - 菜单
+  - MoH
+  - music on hold
+  - forced
+  - 特殊日
+  also_read:
+  - hub-hunt-groups
+  card: cards/hub-welcome-service-ivr.md
+  frontmatter:
+    description: '欢迎服务全家桶与自动话务员：日历（公司时区、假日不预填）、语音提示素材（≤4MB、问候 ≤120 秒、定制 5 条/特殊日 10 天）、欢迎服务开闭双路由与 forced 机制、
+      IVR 菜单树（3 级、0-9、两种入口、两模式提示音）、站点/公司 MoH。当用户要"非营业时间来话/语音菜单/等待音乐/放假改配置"时使用。不适用于人工坐席（话务台监督能力）。
+      '
+    tags:
+    - procedure
+    - welcome-services
+    - ivr
+    - rainbow
+  source_evidence:
+  - source_id: src-rainxte101
+  - location: p250-275, p277-300
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-20/21，客户感知最强
+- capability_id: cap.hub.network-readiness
+  revision: 1
+  status: active
+  slug: hub-network-readiness
+  title: Rainbow Hub 网络就绪核查
+  importance: medium
+  importance_rationale: 对应 task-01/08 的网络侧，书内只有文档指针与工具入口；它是 Cloud PBX 与设备部署的前置引用
+  one_liner: 查 Network Requirements 文章+两份 PDF 取端口/带宽全集；Rainbow Pilot 测连通性与承载；带宽口径 Opus 80 kbps/G711 64 kbps
+  intents:
+  - 核查网络端口与防火墙
+  - 评估站点承载容量
+  - 估算话音带宽
+  - Rainbow Pilot assessment
+  keywords:
+  - network requirements
+  - 网络要求
+  - 端口
+  - 带宽
+  - 防火墙
+  - Rainbow Pilot
+  - 连通性
+  - "30000-44999"
+  - Opus
+  - G711
+  - 勘测
+  also_read:
+  - hub-cloud-pbx-provisioning
+  card: cards/hub-network-readiness.md
+  frontmatter:
+    description: 'Rainbow Hub 上线前网络就绪核查：Network Requirements 文章与两份 PDF（端口/域名 IP/带宽/防火墙，生产数值唯一依据）、Rainbow Pilot 连通性与用法配比承载评估、
+      书内带宽四行口径。当用户要"开什么端口/带宽够不够/站点评估/HTTP 代理"时经路由使用。本卡无端口全集数值——一切以当期 PDF 为准（原书明确外置）。
+      '
+    tags:
+    - reference
+    - network
+    - rainbow
+    - presales
+  source_evidence:
+  - source_id: src-rainxte101
+  - location: p36-45, p88-90, p136
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 指针与工具域，路由可达即可
+- capability_id: cap.hub.multisite
+  revision: 1
+  status: active
+  slug: hub-multisite
+  title: 多站点配置
+  importance: medium
+  importance_rationale: 对应 task-09/22，多址客户常态需求；"站点不是分 PBX"的预期管理是方案宣讲关键
+  one_liner: 单 Cloud PBX 下的逻辑分区：站点挂成员/号码/服务，站点主号与站点 MoH；内呼/组/目录跨站不变；副站点主叫权限要收紧
+  intents:
+  - 创建站点并分布用户
+  - 配置站点主号
+  - 配置站点音乐保持
+  - multi-site configuration
+  keywords:
+  - multi-site
+  - 多站点
+  - 站点
+  - site
+  - 站点主号
+  - site phone number
+  - MoH
+  - 号码池
+  also_read:
+  - hub-cloud-pbx-provisioning
+  card: cards/hub-multisite.md
+  frontmatter:
+    description: 'Rainbow Hub 多站点：建站点、分布成员、号码与服务挂站、站点主号（未配个人号的外呼显示站点号）、站点级 MoH、跨站点不变量、副站点主叫权限收紧。
+      当用户要"两地办公/分店方案/站点主叫显示/站点音乐"时经路由使用。站点是单 PBX 逻辑分区，不提供按站点隔离。
+      '
+    tags:
+    - procedure
+    - multi-site
+    - rainbow
+  source_evidence:
+  - source_id: src-rainxte101
+  - location: p91-93, p301-316
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 多址客户场景，路由可达即可
+- capability_id: cap.hub.analytics
+  revision: 1
+  status: active
+  slug: hub-analytics
+  title: 分析体系
+  importance: medium
+  importance_rationale: 对应 task-23，售后增值与验收数据；CDR/仪表盘/MOS 三口径易混用，隐私开关涉合规
+  one_liner: 计费用 CDR（纯 VoIP 不产生）、行为用仪表盘（7/30 天与 1 年口径）、质量用 MOS（抖动 <30ms/RTT ≤150ms/丢包 ≤1%）
+  intents:
+  - 获取月度话单 CDR
+  - 解读分析仪表盘
+  - 排查话音质量问题
+  - CDR billing data
+  keywords:
+  - CDR
+  - 话单
+  - 计费
+  - 仪表盘
+  - dashboard
+  - 采纳率
+  - MOS
+  - 质量票
+  - 抖动
+  - RTT
+  - 丢包
+  - 隐私
+  also_read:
+  - hub-hunt-groups
+  card: cards/hub-analytics.md
+  frontmatter:
+    description: 'Rainbow Hub 分析三视角：CDR 月度话单（三通道获取、纯 VoIP 呼叫不产生、ALE 不计费）、分析仪表盘（采纳率/Voice/Groups 页与口径数字）、MOS 质量票与三阈值、
+      成员级统计隐私开关。当用户要"话务报表/对账数据/音质定位/坐席绩效"时经路由使用。计费模型在 BP 侧；话单字段在 TBE099。
+      '
+    tags:
+    - reference
+    - analytics
+    - rainbow
+  source_evidence:
+  - source_id: src-rainxte101
+  - location: p317-328
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 运营数据域，路由可达即可
+- capability_id: cap.hub.maintenance-support
+  revision: 1
+  status: active
+  slug: hub-maintenance-support
+  title: Hub 维护与支持体系
+  importance: medium
+  importance_rationale: 对应 task-24，运维知识域偏"查资源"而非执行任务；SR 认证前提（certified on Rainbow Hub）是关键边界
+  one_liner: 八抓手：用户日志/设备监督/连通性/上报/状态页/维护预告/HelpDesk/SR（仅认证 Rainbow Hub 伙伴建 ESR）
+  intents:
+  - 查平台状态与维护预告
+  - 收集用户日志与上报
+  - 开 Rainbow Hub 服务请求
+  - Rainbow support SR
+  keywords:
+  - logs
+  - report a problem
+  - status.openrainbow.com
+  - 维护预告
+  - Get updates
+  - Service Request
+  - SR
+  - ESR
+  - MyPortal
+  - Emily BOT
+  - Global Welcome Center
+  - 认证
+  also_read:
+  - hub-device-maintenance
+  card: cards/hub-maintenance-support.md
+  frontmatter:
+    description: 'Rainbow Hub 运维闭环八抓手：用户日志与问题上报、status.openrainbow.com 与 Get updates 告警、计划维护预告、设备监督分流、连通性核查（HTTP 代理不支持）、
+      MyPortal 开 SR（仅认证 Rainbow Hub 伙伴建 ESR，Product Category=Rainbow Hub）。当用户要"查日志/上报问题/开 SR/查云状态"时经路由使用。
+      '
+    tags:
+    - reference
+    - maintenance
+    - rainbow
+  source_evidence:
+  - source_id: src-rainxte101
+  - location: p330-343
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 运维资源域，路由可达即可

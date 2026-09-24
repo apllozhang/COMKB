@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>教书理解 · ENTPXTE402EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · 系统装载</h2><p>Edition 12 · 415 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte402en/index.html">课程首页</a><a href="/courses/entpxte402en/digest.html">精华长文</a><a href="/courses/entpxte402en/overview.html">教书理解</a><a href="/courses/entpxte402en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte402en/skills/entload-sot-installation.html">S.O.T. 部署工具的安装、初始化、更新与 Template Factory</a><a href="/courses/entpxte402en/skills/entload-cs-loading.html">OXE 呼叫服务器单版本全加载与加载后初始化</a><a href="/courses/entpxte402en/skills/entload-patch-management.html">OXE 多版本加载、分区切换与静态/动态补丁管理</a><a href="/courses/entpxte402en/skills/entload-oxe-v-deployment.html">OXE-V 虚拟化：平台选型、许可路径与 OXE/OMS 虚机交付</a><a href="/courses/entpxte402en/skills/entload-gas-delivery.html">GAS 通用设备服务器：硬件前置、软件加载与后安装向导</a><a href="/courses/entpxte402en/skills/entload-cloud-connect.html">Cloud Connect 云连接：网络前提、FTR 首次注册与 PIN 恢复</a><a href="/courses/entpxte402en/skills/entload-rtr-licensing.html">RTR 许可开关：资格期状态机、事件监控与 FlexLM 互斥</a><a href="/courses/entpxte402en/skills/entload-pod-licensing.html">OPEX / Purple on Demand：订阅许可、LMS 同步、panic 时间线与 C2P 转换</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte402en/skills/entload-distributor-loading.html">Easy Installation 分发器模式：无 SOT 环境的本地加载</a><a href="/courses/entpxte402en/skills/entload-sot-media.html">SOT 媒体传输与加载项目配置（公共动作）</a><a href="/courses/entpxte402en/skills/entload-gas-ops.html">GAS 日常运维：版本、备份、host 升级与 UPS</a><a href="/courses/entpxte402en/skills/entload-fleet-dashboard.html">Fleet Dashboard 云端机队服务：Inventory、Offer、远程控制台与软件更新</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte402en/index.html">oxe-loading（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte402en/index.html">ENTPXTE402EN</a><span>/</span><span aria-current="page">教书理解</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">BOOK OVERVIEW</p><h1>教书理解 — 整书骨架与任务清单</h1></div></header><article class="markdown-body"><h1>OmniPCX Enterprise 系统装载 (ENTPXTE402EN Ed12) — 整书理解 (阶段 0 产出)</h1>
+<blockquote>
+<p>本文档为文档整理的阶段 0 产出，后续所有整理与知识条目都以此为全局上下文。</p>
+</blockquote>
+<h2>基本信息</h2>
+<ul>
+<li><strong>标题</strong>: OmniPCX Enterprise — 系统装载 (Participant's Guide)</li>
+<li><strong>作者</strong>: ALE Training Services</li>
+<li><strong>出版/发布时间</strong>: Edition 12（OXE R101.1 MD4 时代；实验日期戳见 2024-08 / 2025-09）</li>
+<li><strong>内容类型</strong>: 课程（官方售后培训讲义幻灯片 + 分步实验 How-To，讲义约占 55%、How-To 实验约占 45%；全书 17 个 How-To 实验）</li>
+<li><strong>版本来源</strong>: <code>F:\AIwork\ZCode\books\entpxte402en\source_fulltext.txt</code>（ENTPXTE402EN · R101.1 MD4 · Edition 12 · 415 页）</li>
+<li><strong>处理时间</strong>: 2026-09-23</li>
+</ul>
+<hr />
+<h2>1. 结构 (Structural)</h2>
+<h3>类型</h3>
+<p>实操手册（厂商培训教材：概念讲义幻灯片 + 分步实验 How-To；主题是"把 OXE 的软件装上去、把云连起来、把许可管起来"）</p>
+<h3>一句话主旨</h3>
+<p>用 S.O.T. 部署工具完成 OXE 呼叫服务器从物理板卡到虚拟机到 GAS 一体机的全形态软件加载与补丁/多版本管理，接入 Cloud Connect 云基础设施完成 FTR 注册与 RTR 云许可，并掌握 Purple on Demand（OPEX）订阅模式下的 LMS 许可同步与运维。</p>
+<h3>骨架 (主要论点及其关系)</h3>
+<ol>
+<li><strong>RLAB 实验环境</strong>（p1-20：全虚拟化 POD——PC Client、SOT VM、CS3、KVM（OXE+OMS）、GAS（OXE+OMS+WebRTC）五类节点，网段/账号/密码总表）</li>
+<li><strong>S.O.T. 部署工具</strong>（p21-48：ISO/OVA 交付、Standalone/Hosted 两模式、default/Template Factory（含降级模式）两配置、Easy/Expert 两工作模式、媒体三库、zip+MD5 更新与版本命名规则）</li>
+<li><strong>CS 软件加载三场景</strong>（p49-110：单版本全加载；静态/动态补丁在 active/inactive 分区；多版本双分区机制——复制+补丁 vs 完整加载+数据复制；N3 以下迁移硬规则）</li>
+<li><strong>Easy Installation 分发器模式</strong>（p111-130：客户环境不允许部署 SOT 时，OXE 自身当 Distributor，/tmpd 传输 + swinst 9-10 菜单本地加载）</li>
+<li><strong>OXE-V 虚拟化</strong>（p131-154：虚拟化技术矩阵 ESXi/Hyper-V/KVM/Nutanix/AWS、FlexLM 与 Cloud Connect 两条许可路径、OMS 软媒体网关（120 通道/台）、六种拓扑、安装三步）</li>
+<li><strong>GAS 通用设备服务器</strong>（p219-282：Rocky Linux+KVM 打包、内嵌 FlexLM、硬件前置表、SOT 加载、后安装向导、gasversion/gasbackup/UPS/host 升级等运维）</li>
+<li><strong>Cloud Connect</strong>（p283-349：XMPP over WSS 443 常驻 + SOCKS5 80 按需连 connect2.opentouch.com；FTR 首次注册（自动/手动/PIN 恢复）；RTR dongle-less 许可与 30 天资格期；Fleet Dashboard 五服务；CCTool/incvisu/日志体系）</li>
+<li><strong>OPEX / Purple on Demand</strong>（p350-408：LMS 云许可服务器与 lmsagent、lock 431、24 项订阅目录、三种消耗类型、OXE-LMS 同步与 panic 模式、C2P 转换、MyPortal 下载许可）</li>
+</ol>
+<p><strong>论点之间的关系</strong>: 递进为主——1 是地基，2 是全书工具主线（一切加载经 SOT），3-4 是加载的三种途径（SOT 常规、SOT 多版本、无 SOT 分发器），5-6 是两种现代承载形态（纯虚机、一体化打包机），7 把装好的系统接入 ALE 云（注册→许可→远程服务），8 在云连接之上再换一套商务与许可模型（OPEX）。17 个 How-To 实验穿插在各讲义章之后，形成"讲义→动手"节奏。</p>
+<h3>作者要解决的核心问题</h3>
+<p>让售后/渠道工程师独立完成 OXE 系统的软件交付：选对承载形态（物理 CS/虚拟机/GAS），用 SOT 完成版本与补丁加载（含客户现场无法部署 SOT 的替代路径），把系统接入 Cloud Connect（FTR/RTR）获得云许可与远程运维能力，并能按 OPEX/PoD 模式完成订阅许可的部署、同步与排障。</p>
+<hr />
+<h2>2. 解释 (Interpretive)</h2>
+<h3>关键术语 (作者本人的用法)</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>术语</th>
+<th>作者的定义</th>
+<th>和常识用法的差异</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S.O.T. (Software Orchestration Tool)</td>
+<td>部署 ALE 产品（物理或虚拟）的解决方案，核心是一台含 DHCP/FTP 服务的虚机；ISO 内含 OVA，Standalone/Hosted 两模式，default/Template Factory 两配置</td>
+<td>它自身也要先被部署（VirtualBox/ESXi），加载工具与加载对象是两台机器；不是装在 OXE 里的程序</td>
+</tr>
+<tr>
+<td>Template Factory（含 degraded mode）</td>
+<td>SOT 的第二配置：加第二块盘生成 VMware/KVM 镜像模板；降级模式绕过硬件前置（8CPU/16GB/500GB），只加 50GB 盘跑 templateFactory 命令</td>
+<td>"降级"是官方支持的绕过手段，不是故障态；首页会有警告横幅</td>
+</tr>
+<tr>
+<td>多版本加载 (Multi version)</td>
+<td>同一块盘同时装两个版本（active/inactive 分区）；第二条版本可在不停话音的情况下装好，切换即重启，可回退</td>
+<td>两条版本可以同版本不同补丁，也可以跨大版本（跨 Linux 版本时需完整加载+数据复制）</td>
+</tr>
+<tr>
+<td>静态/动态补丁</td>
+<td>静态补丁必须停话音安装（或装在 inactive 分区），装在完整版本之后；动态补丁可在话音运行中安装，必须在对应静态补丁之后；补丁累积包含此前全部修正</td>
+<td>"静态/动态"的分界是"要不要停话音"，与一般软件的热补丁语义相反——动态才是热补丁</td>
+</tr>
+<tr>
+<td>Easy Installation / Distributor</td>
+<td>客户现场不允许部署 SOT 时的替代流程：BP 把 ISO/ZIP 传到 CS 的 /tmpd，OXE 以 swinst 9-10 菜单"当分发器"自己解包安装</td>
+<td>加载工具从"另一台服务器"变成"被加载的机器本身"；全版本/静态补丁只能装 inactive 分区</td>
+</tr>
+<tr>
+<td>OXE-V</td>
+<td>专用于虚拟化环境的 OXE 呼叫服务器软件包；支持 ESXi/Hyper-V/KVM/Nutanix AHV/AWS</td>
+<td>虚拟化平台选择直接决定许可路径（FlexLM 只有 ESXi/KVM 可用）</td>
+</tr>
+<tr>
+<td>OMS (OXE Media Services)</td>
+<td>软媒体网关虚机（OMS 软件+Suse OS），提供 GD4 板卡的媒体处理：VoIP 编解码、会议（3/6/14/29 方）、语音引导、音调；每台 120 VoIP 通道，每 OXE 最多 240 台</td>
+<td>是"板卡的软件替身"，许可走 lock 384/385，可不停机安装</td>
+</tr>
+<tr>
+<td>GAS (Generic Appliance Server)</td>
+<td>ALE 打包的通用设备服务器：Rocky Linux+KVM 之上承载 OXE、OMS、Rainbow WebRTC 三个 VM，内嵌 FlexLM；许可基于 ALU-ID 或 Cloud Connect ID</td>
+<td>它是"把硬件不确定性包起来"的产品：BP 自备服务器只要满足前置表即可；HP DL20 G11 只能跑 GAS 包</td>
+</tr>
+<tr>
+<td>PCS (Passive Communication Server)</td>
+<td>OXE-V 拓扑中的被动通信服务器，可在 CS 信令链路故障时接管 OMS（CS→PCS 软复位，PCS→CS 硬复位）</td>
+<td>PCS 不是备份 CS——云服务（FTR/RTR）明确不跑在 PCS 上</td>
+</tr>
+<tr>
+<td>Cloud Connect (CCI)</td>
+<td>ALE 云基础设施：OXE 经 CC Agent 常驻 XMPP over WSS(443) 连 connect2.opentouch.com，按需 SOCKS5(80)；提供 RTR/Inventory/Offer/远程控制台/软件更新/Fleet Dashboard</td>
+<td>连接是 OXE 出站发起、不改客户防火墙策略；FQDN 固定为 connect2.opentouch.com</td>
+</tr>
+<tr>
+<td>FTR (First Time Registration)</td>
+<td>OXE 用基于 CC-Suite-ID 的临时激活账户向 CCI 换取永久凭证（CC-Product-ID+密码）的首次注册；新装机默认自动执行（每 4 小时重试），也可 CCTool 手动</td>
+<td>"注册"换来的是一对隐藏存储在 OXE 数据库里的凭证；备机禁止做 FTR（凭证经克隆同步）</td>
+</tr>
+<tr>
+<td>FTR with PIN code</td>
+<td>Panic Flag for RTR 后的恢复流程：向 helpdesk 申请 6 位数字 PIN（5 天有效），CCTool 重新注册并重置全部云配置</td>
+<td>PIN 不落盘、一次性；同时会删除其他激活账户并断开所有同 ID 产品</td>
+</tr>
+<tr>
+<td>RTR (Right To Run)</td>
+<td>dongle-less 许可开关：不用硬件标识/加密狗，每日经 XMPP 向 RTR 服务器应答；OK +0.5 天 / NOK -1 天，归零进 Panic</td>
+<td>它不替代产品级许可（swk 照旧），只是总开关；"欺诈/复制"会让两个同 ID 系统同时扣天数</td>
+</tr>
+<tr>
+<td>Qualifying Period</td>
+<td>RTR 资格期：初始化默认 30 天，逐日随应答增减；Fleet Dashboard 以 29-28/27-10/9-1/0 分四级显示</td>
+<td>是"宽限期"的正式名字；期间话机显示"Call your administrator"、拒绝配置变更</td>
+</tr>
+<tr>
+<td>Fleet Dashboard</td>
+<td>CCI 上的机队管理应用：RTR 状态、Inventory 资产、Offer 推/取、远程控制台、软件更新、告警展示</td>
+<td>远程控制台限单会话、1 分钟无操作断开、每次登录记入 shell.log</td>
+</tr>
+<tr>
+<td>LMS (License Manager Server)</td>
+<td>OPEX 模式的云许可服务器：按项目建许可池；OXE 内 lmsagent 作为无状态 HTTPS 桥每 4 小时对账</td>
+<td>许可从"装在机器上的文件"变成"云上池子的消耗额度"；OXE 侧只剩 lmsagent + spadmin 视图</td>
+</tr>
+<tr>
+<td>OPEX / Purple on Demand (PoD)</td>
+<td>订阅模式：用户/话务员/话务台/录音等许可由 LMS 管理；swk 中 lock 431=1 打开；订阅目录缩到 24 项</td>
+<td>不是"云话音"——话音仍在客户 OXE 上，只有许可与订购上云（硬件仍 CAPEX）</td>
+</tr>
+<tr>
+<td>OPEX activation flag</td>
+<td>OXE 数据库中每个用户/设备的标志：激活时才向 LMS 请求许可；停用释放许可但保留配置</td>
+<td>CAPEX 模式下该标志"显示但不生效"（原书 Warning）——看到它不等于在计费</td>
+</tr>
+<tr>
+<td>C2P</td>
+<td>CAPEX 转 PoD 的转换计划：MyPortal 工具基于既有软件锁与系统配置生成 PoD 项目，C2P 订阅件号 3EYxxxxxMA（PoD 为 3EYxxxxxAA）</td>
+<td>转换"下单即定局"；OPR/ALE Connect/Selfcare/VNA/API Management 与 IP Premium Security 不在 C2P 范围</td>
+</tr>
+<tr>
+<td>双分区 (active/inactive)</td>
+<td>硬盘目录结构：/usr2//usr3//var 为活动版本，/root2_d//usr5//usr6//var2 为非活动版本，/usr4//usr7 为公共区</td>
+<td>不是"备份"——非活动分区是可启动、可切换的第二版本；/usr4 还承担补丁中转（Rload）</td>
+</tr>
+<tr>
+<td>checkCloudConfig.sh</td>
+<td>OXE 内置连通性脚本：验证 DNS 解析 connect2.opentouch.com、443 XMPP/WSS、80 SOCKS5 三件事</td>
+<td>只测 Cloud Connect &amp; Rainbow 的连通性，DNS/代理配置也仅服务于这两个代理（原书 Notes）</td>
+</tr>
+</tbody>
+</table></div>
+<h3>核心命题 (用自己的话)</h3>
+<ol>
+<li>一切软件交付围绕 S.O.T.：它是一台自带 DHCP/FTP 的虚机，Standalone 模式装在技术员笔记本上加载物理设备，Hosted 模式跑在 ESXi 上加载虚机；同一套 Easy/Expert 项目逻辑覆盖所有目标。</li>
+<li>双分区是 OXE 升级的安全模型：装第二版本不打断话音，"切换"才重启；跨 Linux 版本走完整加载+数据复制，同版本走复制+补丁；回退随时可行，但板卡可能已拿过新二进制。</li>
+<li>补丁有严格顺序律：静态补丁必须停话音（或只装 inactive），动态补丁可热装但必须在静态之后；每个补丁累积包含此前全部修正，版本命名 N420536a 自带语义。</li>
+<li>客户现场不让架 SOT 时，OXE 自己当分发器：ISO/ZIP 传到 /tmpd，swinst 9-10 菜单解包安装，全版本/静态补丁强制 inactive 分区；解包物留在 /usr4/ftp/Rload 需手动清理，/tmpd 源文件自动删除。</li>
+<li>虚拟化平台决定许可路径：ESXi/KVM 可用 FlexLM+加密狗，Hyper-V/Nutanix/AWS 无 USB 重定向也无 FlexLM 虚机、必须走 Cloud Connect；FlexLM 与 RTR 两种许可模式不能同时启用（原书 Warning）。</li>
+<li>GAS 用"打包"消灭硬件依赖：Rocky+KVM 固定底座，一台服务器最多 OXE+OMS+WebRTC 三个 VM；内嵌 WebRTC 网关 50 并发封顶，7000 用户以上必须外部网关；只认硬件 RAID。</li>
+<li>Cloud Connect 的设计原则是"零改动入云"：OXE 出站发起，443 常驻 XMPP/WSS + 80 按需 SOCKS5，目标 connect2.opentouch.com；TLS 1.2 + ALE 自有 CA；DNS/代理配置仅服务这两个代理。</li>
+<li>FTR 是一切云服务的门禁：订单链生成 CC-Suite-ID → .swk 落盘 → CCTool 用激活账户换永久凭证；凭证隐藏存库并自动克隆到 twin；PCS 与备机上不跑云服务。</li>
+<li>RTR 把"能不能开机"变成云端对账：30 天资格期起，OK +0.5/NOK -1，归零 Panic（话机显示"Call your administrator"、拒绝一切配置变更）；复制 ID 会双双扣减，PIN 恢复是唯一出路。</li>
+<li>Fleet Dashboard 把远程运维产品化：资产盘点、Offer 推/取、单会话远程控制台（1 分钟超时、shell.log 审计）、软件更新（给 AWS 仓库临时 URL，切换仍归 BP）。</li>
+<li>OPEX/PoD 把许可从文件变成云池消耗：lock 431 开启后，24 个订阅项按 Unitary/On activation/By threshold 三种方式消耗；OXE 每 4 小时与 LMS 对账，lms/oxe 计数不一致或 30 天失联都会进 Panic。</li>
+<li>订阅消耗模型直接映射业务场景：酒店客房/客人各占 Room 许可、办公共享 DSU/DSS 各占一份 Voice Enterprise、tandem 副机不占许可——配置前先对消耗规则，再建用户。</li>
+</ol>
+<h3>论证链</h3>
+<p>教材以"环境 → 工具 → 场景递进 → 行为验证"推进：每个 How-To 都有明确的完成判据（SOT 网页 "completed" 状态、siteid 版本号变化、CCTool "FTR done!!/Registered"、checkCloudConfig.sh "Success"、spadmin 计数器 15|0/0|18 逐列解读），用可复现的行为闭环替代理论论证；选型部分用矩阵表支撑（虚拟化×许可、GAS 硬件×组件、RTR 状态×天数阈值）。</p>
+<hr />
+<h2>3. 批判 (Critical) ★</h2>
+<h3>作者的时代局限</h3>
+<ul>
+<li>基于 R101.1 MD4 / Edition 12；虚拟化矩阵写死 ESXi 8.0/7.0、Hyper-V 2022/2019/2016、KVM ≥4.12.14，vSphere thick client 仅到 ESXi 6.0——平台版本迭代后矩阵需整体核对。</li>
+<li>OPEX 订阅目录"24 项"与件号（3EY945xxAA）是教材时点快照，商务目录动态变化。</li>
+<li>实验截图含 2024-08/2025-09 时间戳，菜单与 Web 界面可能随版本漂移。</li>
+</ul>
+<h3>作者的立场盲点</h3>
+<ul>
+<li>全书默认 RLAB 实验环境：Superuser2580*、letacla/letacla1 等培训密码遍布正文；生产安全基线除密码 aging 处引用一次 CIS_Benchmark_Req.No_5.6.1.1 外没有展开，IP tables/trusted hosts 只教"加一条放行"。</li>
+<li>OXE 数据库管理（用户创建、编号计划、路由）被压成加载后清单里的一行"Perform basic management such as user creation… Or restore a backup"——本书只管"装上去"，不管"配起来"（作者自己指向 Starter 课程）。</li>
+<li>OPEX 章从运营商/厂商视角写计费与对账，客户最关心的"订阅超了会怎样"只用 panic 行为一段带过，无容量规划指引。</li>
+</ul>
+<h3>未被证明的假设</h3>
+<ul>
+<li>假设读者持有 MyPortal 账号与 BP 身份（下载 SOT/OXE 软件、开 PoD 项目、申请 FTR PIN、Fleet Dashboard 操作全部依赖）。</li>
+<li>假设客户网络允许出站 443/80 至 connect2.opentouch.com 且 DNS 可解析公网（现成基线未核查）。</li>
+<li>假设学员已会用 Filezilla/Putty/VirtualBox/Xming 等第三方工具（仅给下载链接）。</li>
+<li>假设 GIP/HIS/板卡等硬件细节已在其他课程覆盖（shelves/boards into service 只有一行）。</li>
+</ul>
+<h3>最强反对意见</h3>
+<p>"这本教材教的是把 OXE 装起来、连上云、管住许可，它不教把这个系统交付成能打电话的PBX"——数据库与业务配置、话机开通、路由与编号计划都指向其他课程或"restore a backup"；同时 RTR/LMS 的 panic 机制意味着"连不上云 = 系统逐渐锁死"，生产交付必须把网络前提、证书/信任链、SPS 合同与 PoD 项目状态（Active）当作与软件加载同级的验收项。每个能力的 Boundary 必须标注"加载/云连接/许可"三口径之一。</p>
+<blockquote>
+<p><strong>以上批判会直接成为下游 skill 的 Boundary (B) 字段来源</strong></p>
+</blockquote>
+<hr />
+<h2>4. 应用潜力 (Applicability)</h2>
+<h3>可 skill 化的内容</h3>
+<ul>
+<li>[x] RLAB 类实验环境搭建与节点访问约定（IP/账号/密码表管理）</li>
+<li>[x] SOT VM 部署（Standalone VirtualBox / Hosted ESXi 两条线 + IP/键盘/账户初始化）</li>
+<li>[x] SOT 更新（zip+MD5、版本命名规则、同主版本限制）</li>
+<li>[x] SOT Template Factory 启用（标准前置 + 低资源降级模式）</li>
+<li>[x] SOT 媒体传输与项目配置（FTP/SFTP 2222 upload 账号、Declare media、Easy/Expert 项目字段）</li>
+<li>[x] OXE 单版本全加载（CS3/CPU8 网络引导 + 加载后操作清单）</li>
+<li>[x] OXE 多版本加载与分区切换（含 swinst 手工复制/切换附录）</li>
+<li>[x] 静态/动态补丁加载（active/inactive 两场景 + 顺序律）</li>
+<li>[x] Easy Installation 分发器模式（/tmpd 传输、9-10 菜单、Rload 清理）</li>
+<li>[x] OXE-V 虚拟化平台选型与许可路径决策（矩阵）</li>
+<li>[x] OXE VM 生成与加载（ESXi .ova / SUSE KVM 模板两条线）</li>
+<li>[x] OMS 加载与声明（KVM/ESXi 两线 + omsconfig）</li>
+<li>[x] GAS 加载（BootDVD+GAS iso、BIOS 取 MAC、PXE 引导）</li>
+<li>[x] GAS 后安装向导（国家码/OXE 参数/冗余/可选组件/WebRTC GW 参数/许可）</li>
+<li>[x] GAS 运维（gasversion/gasbackup/FlexLM 管理/host 升级/UPS）</li>
+<li>[x] OXE 云连接前提配置（netadmin DNS/代理 + checkCloudConfig.sh 验证）</li>
+<li>[x] FTR 执行与排障（CCTool、FTR with PIN 恢复）</li>
+<li>[x] RTR 启用与状态监控（WBM/CCTool/incvisu/Fleet Dashboard 状态解读）</li>
+<li>[x] PoD 许可下载（MyPortal Asset &amp; service manager）</li>
+<li>[x] PoD 配置与 LMS 同步核查（spadmin 10/11/12、OPEX activation、Opex Licences 阈值、panic 排障）</li>
+</ul>
+<h3>不适合 skill 化的内容</h3>
+<ul>
+<li>RLAB 实验环境细节与逐节点密码表（p1-20，教学专用基础设施，仅作 Boundary 背景）</li>
+<li>7-zip/Xming/XLaunch/Putty 等第三方工具的点击级安装步骤（p38-39、p257-261 课堂操作）</li>
+<li>培训评估/证书流程（p409-415）</li>
+<li>OXE 数据库业务配置（用户/路由/话机）——本书明确指向 Starter 课程，不在本书范围</li>
+</ul>
+<h3>预估 skill 数量</h3>
+<p><strong>约 10-12 个能力单元</strong>（阶段 1.5 决定保留，阶段 1.6 与输出模式决定独立入口数量；入口软预算 8 含路由入口）</p>
+<h3>原书关键任务清单（覆盖审计基准，不从旧 verified 反推）</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>task_id</th>
+<th>读者任务</th>
+<th>原文位置/图表</th>
+<th>预期交付物</th>
+<th>重要性及依据</th>
+<th>尚缺条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>task-01</td>
+<td>搭建/接入 RLAB 类实验环境并掌握节点访问信息</td>
+<td>p1-20</td>
+<td>可用的实验 POD（IP/账号/密码表）</td>
+<td>一切实验的地基</td>
+<td>仅培训环境（实验口径）</td>
+</tr>
+<tr>
+<td>task-02</td>
+<td>部署 SOT VM（Standalone 或 Hosted）并完成首连初始化</td>
+<td>p37-48, p189-203</td>
+<td>可访问的 SOT Web 界面</td>
+<td>全书工具主线第一步</td>
+<td>需 VirtualBox/ESXi 与 SOT ova</td>
+</tr>
+<tr>
+<td>task-03</td>
+<td>更新 SOT VM 并核对版本</td>
+<td>p47-48, p197-198</td>
+<td>更新后的 SOT（About 可查）</td>
+<td>版本命名规则是补丁管理基础</td>
+<td>zip+MD5 媒体</td>
+</tr>
+<tr>
+<td>task-04</td>
+<td>启用 Template Factory（标准/低资源降级模式）</td>
+<td>p27-29, p155-165</td>
+<td>可生成 VM 模板的 SOT</td>
+<td>虚拟化交付的前置</td>
+<td>降级模式需 50GB 附加盘</td>
+</tr>
+<tr>
+<td>task-05</td>
+<td>向 SOT 传输媒体并配置加载项目</td>
+<td>p84-87, p94-95, p101-102</td>
+<td>项目就绪的 SOT</td>
+<td>所有加载场景的公共动作</td>
+<td>媒体 iso/zip 从 MyPortal/NAS 获取</td>
+</tr>
+<tr>
+<td>task-06</td>
+<td>用 SOT 完成 CS3/CPU8 单版本全加载</td>
+<td>p83-92</td>
+<td>加载完成、密码/键盘/国家码设置好的 CS</td>
+<td>核心交付动作</td>
+<td>需目标机 MAC 与网络引导</td>
+</tr>
+<tr>
+<td>task-07</td>
+<td>多版本加载到 inactive 分区并执行切换</td>
+<td>p93-99</td>
+<td>双版本在盘、按计划切换</td>
+<td>升级不停机的关键能力</td>
+<td>Duplicate/Switch 参数决策</td>
+</tr>
+<tr>
+<td>task-08</td>
+<td>在 active/inactive 分区安装静态与动态补丁</td>
+<td>p100-110</td>
+<td>补丁版本就位（siteid 可验）</td>
+<td>日常维护高频动作</td>
+<td>静态补丁停话音窗口</td>
+</tr>
+<tr>
+<td>task-09</td>
+<td>用分发器模式（Easy Installation）加载版本与补丁</td>
+<td>p111-130</td>
+<td>无 SOT 环境下的成功加载</td>
+<td>客户现场约束下的替代路径</td>
+<td>/tmpd 传输 + trusted hosts</td>
+</tr>
+<tr>
+<td>task-10</td>
+<td>决策虚拟化平台并确定许可路径</td>
+<td>p133-136</td>
+<td>平台×许可矩阵选型结论</td>
+<td>架构错误的代价最高</td>
+<td>生产需对照 TBE043</td>
+</tr>
+<tr>
+<td>task-11</td>
+<td>生成并加载 OXE VM（ESXi .ova / SUSE KVM 模板）</td>
+<td>p204-211, p166-176</td>
+<td>运行中的 OXE-V CS</td>
+<td>虚拟化交付主路径</td>
+<td>Template Factory 或 hosted SOT</td>
+</tr>
+<tr>
+<td>task-12</td>
+<td>加载 OMS 虚机并在 OXE 数据库声明</td>
+<td>p177-188, p212-218</td>
+<td>媒体资源就绪的 OMS</td>
+<td>VoIP/会议能力来源</td>
+<td>需 BootDVD 媒体</td>
+</tr>
+<tr>
+<td>task-13</td>
+<td>用 SOT 加载 GAS 服务器</td>
+<td>p244-254</td>
+<td>GAS host + 三 VM 就位</td>
+<td>一体机形态交付</td>
+<td>BootDVD+oxe_sws iso</td>
+</tr>
+<tr>
+<td>task-14</td>
+<td>执行 GAS 后安装向导（含 WebRTC GW 参数）</td>
+<td>p255-271</td>
+<td>完成基础配置的 GAS 系统</td>
+<td>开局必经步骤</td>
+<td>客户参数（IP/PBXID 等）</td>
+</tr>
+<tr>
+<td>task-15</td>
+<td>GAS 日常运维（版本/备份/FlexLM/host 升级/UPS）</td>
+<td>p236-241, p275-282</td>
+<td>可运转的运维闭环</td>
+<td>售后日常</td>
+<td>FlexLM 许可文件</td>
+</tr>
+<tr>
+<td>task-16</td>
+<td>配置 DNS/代理并验证云连通性</td>
+<td>p316-321</td>
+<td>checkCloudConfig.sh 全绿</td>
+<td>FTR 的前提</td>
+<td>客户网络出站策略</td>
+</tr>
+<tr>
+<td>task-17</td>
+<td>执行 FTR（自动/手动）并掌握 PIN 恢复</td>
+<td>p322-331</td>
+<td>FTR Registered + XMPP_CONNECTED</td>
+<td>云服务门禁</td>
+<td>.swk 含 CCSID；MyPortal/BP 支持</td>
+</tr>
+<tr>
+<td>task-18</td>
+<td>启用 RTR 并监控状态与事件</td>
+<td>p303-308, p331-337</td>
+<td>RTR_RUNNING + 资格期满值</td>
+<td>dongle-less 许可核心</td>
+<td>先完成 FTR；重启一次</td>
+</tr>
+<tr>
+<td>task-19</td>
+<td>从 MyPortal 下载 PoD 许可文件</td>
+<td>p381-385</td>
+<td>各产品 .swk 许可包</td>
+<td>OPEX 交付起点</td>
+<td>项目状态须 Active</td>
+</tr>
+<tr>
+<td>task-20</td>
+<td>配置 PoD 并核查 OXE-LMS 许可同步</td>
+<td>p386-408</td>
+<td>OPEX Flag=1、计数器一致、无 panic</td>
+<td>OPEX 模式交付与排障</td>
+<td>LMS 侧项目与许可池已建</td>
+</tr>
+</tbody>
+</table></div>
+<h3>优先级排序 (按"最能赋能售后工程师"的角度)</h3>
+<ol>
+<li>task-06 单版本全加载（核心交付动作，其余加载场景由此派生）</li>
+<li>task-17 FTR 执行（云服务门禁，失败即全部云能力不可用）</li>
+<li>task-08 补丁加载（日常维护最高频）</li>
+<li>task-16 云连通性前提（FTR 排障第一入口）</li>
+<li>task-02 SOT 部署（一切加载的工具前提）</li>
+<li>task-20 PoD 配置与 LMS 同步（OPEX 模式主力场景）</li>
+<li>task-07 多版本与切换（升级不停机的关键）</li>
+<li>task-14/13 GAS 后安装与加载（一体机形态交付）</li>
+<li>task-11/12 OXE-V/OMS 虚机交付</li>
+<li>task-09 分发器模式、task-18 RTR 监控、task-10 平台选型、task-19 许可下载、task-15 GAS 运维、task-03/04/05/01（支撑类）</li>
+</ol>
+<hr />
+<h2>✅ 质量门检查</h2>
+<ul>
+<li>[x] 主旨能用一句话说清</li>
+<li>[x] 骨架列出 8 个一级部分（环境 1 + 工具 1 + 加载三途径 2 + 承载两形态 2 + 云连接 1 + 订阅许可 1；收尾培训评估未计入）</li>
+<li>[x] 术语按实际内容列出（20 个）</li>
+<li>[x] 已检查作者局限/假设（培训密码、安全基线薄弱、数据库配置书外、MyPortal/BP 依赖、出站网络假设）</li>
+<li>[x] 原书关键任务 20 项，全部有来源页码、交付物与重要性依据</li>
+<li>[x] 用户已授权全流程连续执行（流水线任务指令，2026-09-23）</li>
+</ul>
+<p><strong>用户确认时间</strong>: 2026-09-23（流水线授权）</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise — 系统装载 (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 415 页 -->

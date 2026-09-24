@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>维护工具箱：Webdiag、Noteworthy 与 LoLa</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OXO Connect · Advanced</h2><p>Edition 18 · 601 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte301en/index.html">课程首页</a><a href="/courses/oxocxte301en/digest.html">精华长文</a><a href="/courses/oxocxte301en/overview.html">教书理解</a><a href="/courses/oxocxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte301en/skills/oxoa-sip-networking.html">SIP 组网：公网网关与私网互联</a><a href="/courses/oxocxte301en/skills/oxoa-numbering-ars-suite.html">ARS 路由套件：三表协作与 Internal ARS</a><a href="/courses/oxocxte301en/skills/oxoa-hotel-billing-vertical.html">酒店与计费垂直方案</a><a href="/courses/oxocxte301en/skills/oxoa-security-hardening.html">系统安全加固</a><a href="/courses/oxocxte301en/skills/oxoa-certificate-suite.html">证书与加密传输（证书/DTLS/TLS-SRTP）</a><a href="/courses/oxocxte301en/skills/oxoa-attendant-suite.html">语音导航套件（AA/MLAA/SCR）</a><a href="/courses/oxocxte301en/skills/oxoa-voicemail-mobility.html">语音邮箱与移动办公</a><a href="/courses/oxocxte301en/skills/oxoa-cloud-connect-fleet.html">Cloud Connect 舰队与远程维护</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte301en/skills/oxoa-foundation-ip.html">交付地基：OMC 首连与 IP 规划</a><a href="/courses/oxocxte301en/skills/oxoa-terminal-ecosystem.html">终端生态：PIMphony 与 SIP 话机接入</a><a href="/courses/oxocxte301en/skills/oxoa-shared-devices.html">共享终端：站群监督、Hot Desking 与 Multiset</a><a href="/courses/oxocxte301en/skills/oxoa-multi-entity.html">多实体与伪多公司</a><a href="/courses/oxocxte301en/skills/oxoa-dect-deployment.html">DECT 无线移动</a><a href="/courses/oxocxte301en/skills/oxoa-maintenance-toolkit.html">维护工具箱：Webdiag、Noteworthy 与 LoLa</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte301en/index.html">oxo-connect-advanced（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte301en/index.html">OXOCXTE301EN</a><span>/</span><span aria-current="page">维护工具箱：Webdiag、Noteworthy 与 LoLa</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>维护工具箱：Webdiag、Noteworthy 与 LoLa</h1></div><dl><div><dt>Skill ID</dt><dd>oxoa-maintenance-toolkit</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>维护工具箱：Webdiag 排障、Noteworthy 调参与 LoLa 系统加载</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Login: installer … Operator and Manufacturer sessions are also available"（p560）
+"Writing a value to the wrong address can result in a deterioration in the operation of the system … Noteworthy addresses return to their default values following a cold reset"（p575）
+"Find on MyPortal, the technical communication listing all the Noteworthy addresses • TC1398 OXO Connect Noteworthy addresses"（p578）
+"Lola allows the complete loading of a PowerCPU or OCE • Loading of the call handling software • Loading of the application packages VoIP and ACD • Loading of the main and CTI software licenses"（p583）
+"The phones configuration and the voice prompts must be saved by OMC"（p583）</p>
+</blockquote>
+<p>出处：OXOCXTE301EN p553-591。</p>
+<h2>I — 自述</h2>
+<p>售后进阶三件工具，各管一层：</p>
+<p><strong>Webdiag</strong>（p559-570）：https://OXO@IP/services/webapp/ 或 OMC/Tools 进入；三会话分工——installer（全功能调试/证书/抓包/DECT）、operator（每实体 MoH 上传、Hot Desking 监督注销、解锁用户账户）、manufacturer（技术支持专用）。信息树七块：</p>
+<ul>
+<li>Start（启动/数据保存恢复/串口）</li>
+<li>Information（版本/机柜拓扑/Config Check）</li>
+<li>System（日志/Dump 摘要/复位 warm、cold 与出厂）</li>
+<li>VoIP（Traces/状态/Debug/Telnet Control）</li>
+<li>DECT（集群同步/已注册手柄/基站统计）</li>
+<li>Certificates（证书管理主接口）</li>
+<li>Services（ACD/IM/Hot desking/用户账户/Cloud Connect/Rainbow status）</li>
+</ul>
+<p>CPU 启动监视走 V24（115200 8 N 1）。</p>
+<p><strong>Noteworthy 地址</strong>（p574-581）：内存读写调服务器全局参数，四类——Timer Labels、Debug Labels、Other Labels、Numeric Addresses（十六进制）。清单以 TC1398 为准；写错可致系统恶化；cold reset 全部回默认。书内实例：</p>
+<ul>
+<li>PerAssAlwd、DivRemCust、AATypTrf、MLTSETRING、TmpMenLTim、NotiAppTim</li>
+<li>AutoPwdChk、VMUMaxTry、MLAA_MSG、sipphone_sess_tim、Auto_Reset</li>
+</ul>
+<p><strong>LoLa</strong>（p582-591）：完整加载 PowerCPU/OCE（呼叫处理软件、应用包、license），三类流程 Installation / Migration Mono CPU / Install-Restore。</p>
+<ul>
+<li>数据分工：LoLa 管话机数据（留言/NMC 工单），话机配置与语音提示必须 OMC 先存后恢复（p49）</li>
+<li>installer 密码遗失且 Console 重置被禁时的现场兜底（p325）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>Webdiag 排障五连查实验</strong>（p571-573，厂商实验）：</p>
+<ol>
+<li>OMC/Tools/Webdiag，login: installer + installer 密码（教室例 Alcatel1，实验口径）。</li>
+<li>Start/System Start 查机架板型。</li>
+<li>Information/General Information 查软件版本。</li>
+<li>Information/Cabinet Topology 查 MAC 与序列号。</li>
+<li>System/Dump System 出系统摘要（可作报障附件）。</li>
+</ol>
+<p><strong>Noteworthy 修改两例实验</strong>（p579-581，厂商实验）：</p>
+<ol>
+<li>自动重启：Memory Read/Write/Debug Labels 选 Auto_Reset，Offset 填 "01 05 03 1E"（周五 3:30）→Modify→Write。</li>
+<li>铃音节奏：Other labels 记 Ringing 基址（例 0242D978，随软件版本变化）。</li>
+<li>从 TC 附录 B 查内部 UA 铃偏移 9AH，与基址求和得 Numeric 地址 0242DA12。</li>
+<li>Numeric Addresses 读出（长度 14）后写入新节奏（响 2s=C8、静 1s=64），warm reset 生效。</li>
+<li>验证：周五 3:30 自动重启触发；内呼铃声呈 2 秒响 1 秒静（周期必须 &lt;4 秒）。</li>
+</ol>
+<p><strong>LoLa 迁移</strong>（p584-591，讲义）：</p>
+<ol>
+<li>OCE 进 LoLa 模式：按住电源键至 LED 快闪绿；PowerCPU 用交叉网线+Dip switch。</li>
+<li>Step 1 定位交付文件（C:\Releasexxx）、语言、国家、license 文件（.csl/.msl）、应用包。</li>
+<li>Step 2 选类型（新装/抹数据安装/Mono CPU 迁移/Install-Restore）。</li>
+<li>Mono 迁移序：OMC Backup、旧 CPU 备份话机数据、新 CPU 下载恢复、重启、OMC 恢复。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：系统状态/版本/序列号怎么查；报障要收集什么；抓包与日志从哪出；解锁被锁账户；改系统默认振铃/定时器；installer 密码丢了；换 CPU 迁移；退役设备净化。</p>
+<p>语言信号：Webdiag / installer / Dump / 抓包 / TCP Dump / 解锁 / noteworthy / Memory Read Write / label / AutoPwdChk / VMUMaxTry / TC1398 / 铃音 / LoLa / 迁移 / cold reset / warm reset。</p>
+<p>与相邻能力区分：各能力域的"验证动作"（注册判定、指示灯、LED）分散在对应卡内，本卡管工具本身与系统级调参；证书管理界面归证书套件能力；Console 口重置开关的安全口径归安全加固能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：问题现象、访问权限（installer/operator）、TC1398 与对应 TC 附录、交付文件与 license 文件（LoLa）。无 TC1398 或地址依据 → 判停：不猜地址、不抄书例基址。</p>
+<ol>
+<li>排障五连查：板型、版本、MAC/序列号、Dump 摘要（p572-573）。完成标准：报障材料齐</li>
+<li>按域定位：VoIP 抓包/状态、DECT 块、Services 解锁与监督、System 日志与复位。完成标准：信息到手</li>
+<li>（noteworthy）TC1398 查地址，选类型、Details 改字节、Modify、Write，然后 warm reset。完成标准：参数生效</li>
+<li>（Numeric 类）基址（随版本变化）加 TC 附录偏移求和，按长度 Read 后写入，warm reset。完成标准：算法留痕</li>
+<li>（LoLa）确认 OMC 已存话机配置与语音提示→进 LoLa 模式→按类型走三步向导。完成标准：系统加载完成</li>
+<li>（退役净化）清 MLAA/ACD 语音资产→ACD/SCR 出厂→三档冷复位（p593）。完成标准：数据清空</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>写错 noteworthy 可致系统恶化 → 改前备份、改后测试；cold reset 会把全部调优打回默认（n38）</li>
+<li>Ringing 基址照抄书例 → 禁止：0242D978 随软件版本变化（n39），必须现算</li>
+<li>铃音节奏周期 ≥4 秒 → 不合法（p581），重新设计节奏</li>
+<li>installer 密码遗失且 Console 重置被禁 → 只能现场 LoLa，ALE 无远程重置（n48）：接手老站点先查开关再报价</li>
+<li>PhD-relay 调试 trace → 用完必须擦除（n37）</li>
+</ul>
+<p>输出契约：排障材料包（Dump/日志/抓包）+ noteworthy 变更台账（地址/旧值/新值/依据）+ LoLa 加载或迁移记录 + 净化确认单。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>Webdiag 三会话权限分明：operator 只能 MoH/Hot Desking 监督/解锁，证书与调试归 installer；manufacturer 是 ALE 支持专用</li>
+<li>Noteworthy 是"地下层"配置：本卡只给流程与已知实例语义，地址全量清单与算法偏移一律以 TC1398 及附录为准</li>
+<li>LoLa 的版本建议查最新 TC、应用/板兼容查 OXO Connect Cross compatibility（MyPortal）；话机配置与语音提示必须 OMC 单独保存（p49）</li>
+<li>冷复位不擦自签证书（n40，推断：净化设备需另行处理证书）</li>
+<li>Webdiag 登录密码为客户环境值（教室例 Alcatel1 仅为实验口径）；生产纳入密码树管理</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.oxoa.maintenance-toolkit · 来源：OXOCXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OXO Connect - Advanced (Participant's Guide, Edition 18) | edition: Edition 18 | pages: 601 页 -->

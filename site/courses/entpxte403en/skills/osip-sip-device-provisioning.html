@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>SIP Device 用户开通与维护</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · SIP</h2><p>Edition 12 · 465 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte403en/index.html">课程首页</a><a href="/courses/entpxte403en/digest.html">精华长文</a><a href="/courses/entpxte403en/overview.html">教书理解</a><a href="/courses/entpxte403en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte403en/skills/osip-protocol-foundation.html">SIP 协议机理与 OXE SIP 架构</a><a href="/courses/entpxte403en/skills/osip-user-forms.html">SIP 用户形态选型与容量核算</a><a href="/courses/entpxte403en/skills/osip-sip-device-provisioning.html">SIP Device 用户开通与维护</a><a href="/courses/entpxte403en/skills/osip-deskphone-provisioning.html">ALE 话机 SIP 开通与 NOE↔SIP 切换</a><a href="/courses/entpxte403en/skills/osip-ales-provisioning.html">ALES 软终端开通与认证</a><a href="/courses/entpxte403en/skills/osip-certificate-management.html">OXE DM 证书定制与安全级</a><a href="/courses/entpxte403en/skills/osip-otsbc-carrier-interconnect.html">经 SBC 的 SIP 运营商接入与 OTSBC 部署</a><a href="/courses/entpxte403en/skills/osip-remote-workers.html">远程办公方案与落地</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte403en/skills/osip-codec-negotiation.html">编解码协商与验证</a><a href="/courses/entpxte403en/skills/osip-sip-troubleshooting.html">SIP 跟踪采集与维护排障</a><a href="/courses/entpxte403en/skills/osip-dm-management.html">SIP 设备管理选型与 profile 体系</a><a href="/courses/entpxte403en/skills/osip-sip-features.html">ALE SIP 业务特性配置</a><a href="/courses/entpxte403en/skills/osip-lab-environment.html">POD 实验环境与运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte403en/index.html">oxe-sip（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte403en/index.html">ENTPXTE403EN</a><span>/</span><span aria-current="page">SIP Device 用户开通与维护</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>SIP Device 用户开通与维护</h1></div><dl><div><dt>Skill ID</dt><dd>osip-sip-device-provisioning</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>SIP Device 用户开通（私网、中继组、本地网关、代理、注册器、建户、验证）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Remember that a call from/to a 'SIP device' user requires the OXE local SIP gateway. So, in a first step, it is mandatory to configure the private SIP Trunk Group, the local SIP gateway, the SIP proxy…"（p85）
+"SIP Access number: up to 992 TS per SIP TG (maximum 32 virtual accesses * 31 TS) They must be allocated by pair (2, 4, …..) 2 accesses = 62 communications"（p86）
+"Warning IN CASE OF MODIFICATION OF THE NUMBER OF VIRTUAL ACCESSES FOR SIP, A RESTART OF THE SYSTEM IT'S NECESSARY"（p86）
+"THE SIP DEVICE MUST BE DECLARED AS TRUSTED HOST IN THE CS INTERNAL FIREWALL (NETADMIN -M / SECURITY)."（p89-90）</p>
+</blockquote>
+<p>出处：ENTPXTE403EN p84-94。</p>
+<h2>I — 自述</h2>
+<p>SIP Device 是"远端子网设备"（会议话机/门禁/视频），开通是九节主线，基础设施先行：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>节</th>
+<th>配置对象</th>
+<th>关键值（标准口径）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>私网</td>
+<td>Translator/Network Routing Table，选空闲号（勿占 ABC/VPN 号），协议 ABC-F</td>
+</tr>
+<tr>
+<td>2</td>
+<td>私有 SIP 中继组</td>
+<td>T2 型 + T2 Specification=SIP，远端网络=私网号；2 接入=62 路并发，上限 992 TS（32×31），接入成对分配</td>
+</tr>
+<tr>
+<td>3</td>
+<td>本地 SIP 网关</td>
+<td>关联子网/中继组/角色 IP/主机名；代理端口 5060、TLS 5061、MTLS 6261；订阅 1800/86400s；会话计时器 1800（最小 900，方法 UPDATE）；SDP in 18x=True；DTMF payload 101</td>
+</tr>
+<tr>
+<td>4</td>
+<td>SIP 代理</td>
+<td>认证 SIP Digest、realm=OXE；防隔离 Framework 3s/50 条、隔离期 1800s；TCP 长消息勾选</td>
+</tr>
+<tr>
+<td>5</td>
+<td>注册器</td>
+<td>租期 Min 1800s / Max 86400s</td>
+</tr>
+<tr>
+<td>6</td>
+<td>SIP 字典</td>
+<td>重名用户加 alias 区分</td>
+</tr>
+<tr>
+<td>7</td>
+<td>隔离/信任 IP</td>
+<td>高频设备加 Trusted IP 白名单；自动隔离看 /usr4/tmp/sipalarm.log（f003）</td>
+</tr>
+<tr>
+<td>8</td>
+<td>建户</td>
+<td>Set Type=SIP device + SIP 密码 + 防火墙信任主机（/etc/hosts 核对）</td>
+</tr>
+<tr>
+<td>9</td>
+<td>验证</td>
+<td>sipregister/sipdict -l（type 2=Device）/trkstat/内外呼测试</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>中继组 TS 是信令占位：SEPLOS 呼叫不占 TS，SIP Device 呼叫占 TS</li>
+<li>参数纪律：端口 5060 等标准值仅在客户端非标时改；initial time-out/T2/TLS timer 只在支持或研发建议下改；Recursive search 暂未使用</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>31060 会议话机开通</strong>（p84-94，How-To）：</p>
+<ol>
+<li>私网：Network Routing Table 建 Network Number=10、Protocol=ABC-F、Associated Ext SIP gateway=-1。</li>
+<li>中继组：Trunk Groups Create：ID=10、T2、Q931=ABC-F、Remote Network=10、T2 Specification=SIP。</li>
+<li>虚拟接入：Number of SIP Accesses=2（默认）；Warning：改接入数必须重启系统，TRKSTAT 显示 Free 不代表生效。</li>
+<li>本地网关：SIP Subnetwork=10、SIP Trunk Group=10、IP=192.168.1.3（实验口径）、Proxy Port=5060、SDP in 18x=True。</li>
+<li>代理：Minimal authentication=SIP Digest、Framework Period=3、Nb Message By Period=50、Quarantine Period=1800。</li>
+<li>注册器：Min/Max Expiration=1800/86400。</li>
+<li>建户 31060（Set Type=+SIP device、SIP Passwd=12345 实验口径）并加防火墙信任主机。</li>
+<li>终端 MicroSIP 填 SIP 密码注册；验证 sipregister 见 31060、trkstat 10 显示 62 路 TS、31060 进出呼成功。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户买来会议话机/门禁对讲/视频设备要接入 OXE；SIP Device 注册不上；中继组扩容；设备被隔离 30 分钟。</p>
+<p>语言信号：SIP device / 会议话机 / 门禁 / 视频设备 / 私网 / private SIP trunk group / 虚拟接入 / 62 通道 / 992 TS / 本地 SIP 网关 / 5060 / 信任主机 / sipregister / trkstat / 隔离 / quarantine。</p>
+<p>与相邻能力区分：先决定该不该用 Device 形态找用户形态选型；注册不上要抓信令找 SIP 跟踪排障；这台设备要走话机业务属形态上限问题回选型。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：设备型号与 SIP 能力、可用私网号、并发路数需求、设备 IP（可达 CS）。设备不支持 SIP → 判停换形态。</p>
+<ol>
+<li>规划私网：选空闲网络号（勿占 ABC/VPN），协议 ABC-F。完成标准：私网号登记</li>
+<li>建私有 SIP 中继组：T2 + Specification=SIP + 远端网络=私网号；每系统仅一个 ABC 型私有中继组。完成标准：trkstat 可见</li>
+<li>配虚拟接入：成对分配（2 起）；若改动接入数 → 排重启窗口，改完必须重启。完成标准：62 路/2 接入口径确认</li>
+<li>建本地 SIP 网关：挂子网与中继组、角色 IP、端口 5060、SDP in 18x、会话计时器；标准值不动。完成标准：sipgateway 输出正常</li>
+<li>配代理与注册器：SIP Digest 认证；Framework 3s/50 条防隔离；租期 1800/86400。完成标准：参数落库</li>
+<li>建户并加信任主机：Set Type=SIP device、设 SIP 密码；netadmin 登记设备 IP 为信任主机并核 /etc/hosts。完成标准：sipregister 见该分机</li>
+<li>终端注册与验证：终端填注册服务器与密码；trkstat 看占用、sipdict -l 看 type=2；做进出呼。完成标准：双向通话</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>私网号与 ABC/VPN 冲突 → 停，换号，不强行复用</li>
+<li>改了虚拟接入但没重启 → 停，TS 显示 Free 也未生效（n04），先排重启</li>
+<li>终端完全无响应 → 先查信任主机 /etc/hosts（n07），不急着抓包</li>
+<li>客户要求 Device 参与 CTI/坐席/入组 → 停，形态上限（n02），回选型卡</li>
+</ul>
+<p>输出契约：可注册可通话的 SIP Device 用户 + 私网/中继组/网关参数台账 + 验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>修改虚拟接入数必须重启系统，TRKSTAT 空闲不算数（n04）</li>
+<li>端口与计时器默认值别乱动；Recursive search 配了也没效果（n05）</li>
+<li>一切主动向 CS 发请求的设备都要登记信任主机，漏配的典型表现是完全无响应（n07）</li>
+<li>3 秒超 50 条消息会被自动隔离 30 分钟，高频设备提前配 Framework 或 Trusted IP（n06）</li>
+<li>数值口径：62 通道/992 TS/端口/租期等为标准值；实验 IP/密码（192.168.1.3、12345）为实验口径，生产替换</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte403en/skills/osip-sip-troubleshooting.html">SIP 跟踪采集与维护排障</a></p><p class="source-page">能力 ID：cap.osip.sip-device-provisioning · 来源：ENTPXTE403EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - SIP (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 465 页 -->

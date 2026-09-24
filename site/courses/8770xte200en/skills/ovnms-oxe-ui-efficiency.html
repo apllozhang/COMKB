@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OmniVista 8770 OXE 配置界面高效操作（搜索/冻结/网格/导入导出）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 安装与网络管理</h2><p>Edition 47 · 705 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte200en/index.html">课程首页</a><a href="/courses/8770xte200en/digest.html">精华长文</a><a href="/courses/8770xte200en/overview.html">教书理解</a><a href="/courses/8770xte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte200en/skills/ovnms-platform-installation.html">OmniVista 8770 平台安装（服务器 + 客户端 + 补丁 + 首连）</a><a href="/courses/8770xte200en/skills/ovnms-node-onboarding.html">OmniVista 8770 节点接入（OXE 注册同步 + SSH 安全 + OXO Connect 纳管）</a><a href="/courses/8770xte200en/skills/ovnms-user-provisioning.html">OmniVista 8770 用户开通（Profile / Meta profile / 批量 / WBM）</a><a href="/courses/8770xte200en/skills/ovnms-alarm-management.html">OmniVista 8770 告警管理（接入 + 定制出口 + SNMP Proxy）</a><a href="/courses/8770xte200en/skills/ovnms-security-administration.html">OmniVista 8770 安全管理（密码策略 / 管理员与组 / 访问控制 / TLS）</a><a href="/courses/8770xte200en/skills/ovnms-audit-compliance.html">OmniVista 8770 审计合规（Audit 启用 / mao 日志 / 检索导出）</a><a href="/courses/8770xte200en/skills/ovnms-backup-restore.html">OmniVista 8770 备份恢复（8770 数据库 rehosting + OXE swinst 全链）</a><a href="/courses/8770xte200en/skills/ovnms-license-management.html">OmniVista 8770 许可管理（锁结构 / 查询 / 更新 / 受限模式）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte200en/skills/ovnms-reports-scheduling.html">OmniVista 8770 报表与任务编排（Reports / Scheduler / 自动维护）</a><a href="/courses/8770xte200en/skills/ovnms-maintenance-operations.html">OmniVista 8770 维护运营（诊断工具 / NMC 服务与日志）</a><a href="/courses/8770xte200en/skills/ovnms-topology-views.html">OmniVista 8770 Topology 视图（标准视图 / 自定义视图 / 告警重定向）</a><a href="/courses/8770xte200en/skills/ovnms-oxe-ui-efficiency.html">OmniVista 8770 OXE 配置界面高效操作（搜索/冻结/网格/导入导出）</a><a href="/courses/8770xte200en/skills/ovnms-network-drive.html">OmniVista 8770 网络驱动器映射（报表与备份落网络存储）</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte200en/index.html">omnivista-8770-nms（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte200en/index.html">8770XTE200EN</a><span>/</span><span aria-current="page">OmniVista 8770 OXE 配置界面高效操作（搜索/冻结/网格/导入导出）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OmniVista 8770 OXE 配置界面高效操作（搜索/冻结/网格/导入导出）</h1></div><dl><div><dt>Skill ID</dt><dd>ovnms-oxe-ui-efficiency</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>OmniVista 8770 OXE 配置界面高效操作（搜索/冻结/网格/导入导出）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Right click on the 'OXE' or 'OT', Select the 'Configure' option"（p159）
+"Right click on the desired column (ex. Local Features), Select 'Freeze' ... The column is frozen and is locked on the left"（p160）
+"Select 'Export All Grids' or 'Export Selected Grid(s)' ... 2 types of extension are available : .txt or .prg"（p165）</p>
+</blockquote>
+<p>出处：8770XTE200EN p158-167（Configuration interface - OmniPCX management）。</p>
+<h2>I — 自述</h2>
+<p>OXE 图形配置界面（Configuration 应用右键 OXE &gt; Configure）的六类提效手法，日常配置效率的地基：</p>
+<ul>
+<li>搜索：Search 区按条件检索（如 Prefix Meaning = Local Features），列出全部匹配行</li>
+<li>冻结列：右键目标列 &gt; Freeze，该列锁定在左侧，横向滚动时保持可见（对照参数名看值不迷路）</li>
+<li>网格/文件切换：选中行后 Switch grid display 按钮在 File 视图与 Grid 视图间切换</li>
+<li>属性选择：Grid 视图右键行 &gt; Attributes Selection，取消不需要的列（如 Prefix Meaning/Prefix Information）后重跑搜索刷新；全选可恢复</li>
+<li>图形视图：右键用户 &gt; Graphical View &gt; 选可编程键，下方字段配置 Function（如 Programmed/Multiline）、Content（如号码）、Mnemo 显示文本、UTF-8 Mnemo、Locked 锁定</li>
+<li>
+<p>导入导出：树导出（选条目右键 Export，.txt 或 .prg）与树导入（选目标文件夹右键 Import）；网格导出（Export All Grids / Export Selected Grid(s)）与网格导入（Import Grid）</p>
+</li>
+<li>
+<p>底层概念：8770 与 OXE 间 CMISE 数据交换基于 MIB（Object Model）；thick client 首连下载 MIB 存本地（Object Model Save 管理），Access Profile 变更后须删本地 MIB 重载（见安全管理卡）</p>
+</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>配置界面操作实验</strong>（p158-167）：</p>
+<ol>
+<li>右键 OXE &gt; Configure 打开配置界面</li>
+<li>Search 区按 Local Features 检索前缀</li>
+<li>冻结 Local Features 列，横向滚动验证锁定</li>
+<li>选中 Wake-up/appointment reminder 行切换 File/Grid 视图</li>
+<li>Attributes Selection 取消两列后重跑搜索验证隐藏，再全选恢复</li>
+<li>右键用户 Brigitte Baker 开 Graphical View 配置可编程键（Function/Content/Mnemo/UTF-8/Locked）</li>
+<li>树导出 export1（.txt）&gt; 改动 &gt; 树导入验证</li>
+<li>Grid 导出 export_grid.txt &gt; 改动 &gt; Import Grid 导入，来源目录生成日志文件</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：批量核对 OXE 参数；给用户批量配键前预览；导出配置留档或跨环境比对；新工程师上手教学。</p>
+<p>语言信号：Configure 界面 / Freeze / 冻结列 / Switch grid display / Attributes Selection / Graphical View / 可编程键 / Mnemo / Export Grid / Import Grid / .prg / Object Model。</p>
+<p>与相邻能力区分：节点接入声明（节点接入卡）；建户与 profile（用户开通卡）；本能力管配置界面的操作手法，不改变任何配置语义。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：目标 OXE 已声明可同步、操作者具备对应 Access Profile 权限。</p>
+<ol>
+<li>进入界面：Configuration 应用右键 OXE &gt; Configure。完成标准：配置界面打开</li>
+<li>检索定位：Search 条件过滤。完成标准：目标行可见</li>
+<li>冻结参照列：右键列 &gt; Freeze。完成标准：滚动时参照列恒在</li>
+<li>视图瘦身：Attributes Selection 取消无关列。完成标准：刷新后仅留关注列</li>
+<li>键位预览：Graphical View 核对或预配可编程键。完成标准：Function/Content/Mnemo 正确</li>
+<li>留档/搬运：树与网格导出（.txt/.prg）。完成标准：文件生成</li>
+<li>回灌：Import/Import Grid 选文件。完成标准：数据出现且来源目录有日志</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>权限不足看不到对象 → 先查 Access Profile 与 OmniPCX 4400 Access Level（安全管理卡），不要盲试</li>
+<li>导入文件格式不符 → 用本书导出文件为模板，不要手造格式</li>
+<li>改了 Access Profile 后界面无变化 → 删本地 MIB 重载（安全管理卡），不是本卡手法问题</li>
+</ul>
+<p>输出契约：配置快照文件（树+网格）+ 键位预览记录 + 操作手法培训清单。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>本卡是操作效率手法：所有改动的生效语义（继承/同步/权限）由对应能力卡覆盖</li>
+<li>Graphical View 配键与 Key profile 自动配键是两条路径（后者见用户开通卡），现场按规模选择</li>
+<li>WBM Configuration 应用无本地管理员配置权限、无 SSH/Telnet 直连、一次连一个 OXE——批量图形操作在 thick client</li>
+<li>实验用户（Brigitte Baker）与实验环境为教学口径，见 book/overview</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.ovnms.oxe-ui-efficiency · 来源：8770XTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 — Setup & Network Management (Participant's Guide, Edition 47) | edition: Edition 47 | pages: 705 页 -->

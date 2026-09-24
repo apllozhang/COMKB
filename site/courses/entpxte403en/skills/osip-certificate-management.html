@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OXE DM 证书定制与安全级</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · SIP</h2><p>Edition 12 · 465 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte403en/index.html">课程首页</a><a href="/courses/entpxte403en/digest.html">精华长文</a><a href="/courses/entpxte403en/overview.html">教书理解</a><a href="/courses/entpxte403en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte403en/skills/osip-protocol-foundation.html">SIP 协议机理与 OXE SIP 架构</a><a href="/courses/entpxte403en/skills/osip-user-forms.html">SIP 用户形态选型与容量核算</a><a href="/courses/entpxte403en/skills/osip-sip-device-provisioning.html">SIP Device 用户开通与维护</a><a href="/courses/entpxte403en/skills/osip-deskphone-provisioning.html">ALE 话机 SIP 开通与 NOE↔SIP 切换</a><a href="/courses/entpxte403en/skills/osip-ales-provisioning.html">ALES 软终端开通与认证</a><a href="/courses/entpxte403en/skills/osip-certificate-management.html">OXE DM 证书定制与安全级</a><a href="/courses/entpxte403en/skills/osip-otsbc-carrier-interconnect.html">经 SBC 的 SIP 运营商接入与 OTSBC 部署</a><a href="/courses/entpxte403en/skills/osip-remote-workers.html">远程办公方案与落地</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte403en/skills/osip-codec-negotiation.html">编解码协商与验证</a><a href="/courses/entpxte403en/skills/osip-sip-troubleshooting.html">SIP 跟踪采集与维护排障</a><a href="/courses/entpxte403en/skills/osip-dm-management.html">SIP 设备管理选型与 profile 体系</a><a href="/courses/entpxte403en/skills/osip-sip-features.html">ALE SIP 业务特性配置</a><a href="/courses/entpxte403en/skills/osip-lab-environment.html">POD 实验环境与运营商模拟器</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte403en/index.html">oxe-sip（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte403en/index.html">ENTPXTE403EN</a><span>/</span><span aria-current="page">OXE DM 证书定制与安全级</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OXE DM 证书定制与安全级</h1></div><dl><div><dt>Skill ID</dt><dd>osip-certificate-management</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OXE DM 证书定制与安全级（内部 PKI、CTL、mTLS、OpenSSL）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"By default, a certificate is generated at OXE installation for the HTTPs server for the usage of the WBM feature. However, it is not suitable for the SIP clients."（p169）
+"With OXE R101.0 and the upgrade of OpenSSL component to v3.0, the SSL security level has been increased to '2', that implies that any certificate with a RSA key length lower than 2048 bits or with a SHA-1 signing algorithm is no longer accepted"（p161）
+"2 : any certificates with a RSA key length lower than 2048 bits or signed with an older algorithm than SHA2 are refused. • 1 : any certificates with a RSA key length lower than 1024 bits ... • 0 : no restriction. • A reboot of the system is required after security level modification."（p162）
+"netadmin -m ... 11 : Security 9 : PKI Management 1 : CS Certificates And choice 1 : Create/Update CS certificates (Auto generated)"（p169）</p>
+</blockquote>
+<p>出处：ENTPXTE403EN p156-171。</p>
+<h2>I — 自述</h2>
+<p>证书是 SIP 化的地基：安装默认证书只适配 WBM/HTTPS，SIP 话机必须用定制证书 + CTL。三条主线：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>主题</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内部 PKI 生成</td>
+<td>root 登录后进 netadmin 11/9/1 选 Create/Update (Auto generated)：录 CC-suite-ID（默认取自许可文件）、通配 DNS *.company.com（默认 y）、物理与角色 IP 入 SAN（默认 y）、密钥 2048-4096（默认 4096）；产出根 CA + CS 密钥对 + CSR + CS 证书</td>
+</tr>
+<tr>
+<td>证书内容</td>
+<td>CS 证书 CN=oxe.company.com，SAN 含 FQDN/通配/物理与角色 IP；示例有效期 20 年；生成后必须重启 OXE</td>
+</tr>
+<tr>
+<td>CTL 产物</td>
+<td>话机侧信任列表落在 /usr3/mao/DM/VHE8082/（ctl_VHE8082、ict8000ctl.pem；p166 另写 /DHS3/data/mao/DM/VHE8082，同物异写）</td>
+</tr>
+<tr>
+<td>下载认证双通道</td>
+<td>①传统 401 挑战：分机号+密码+MAC+机型 认证（auto-discovery 依赖）；②R101.1 起 mTLS：443 收请求后 302 到专设 8443 实例强双向证书（MAC↔证书 CN），远程场景由 RP 注入 X-Real-Mac/X-Forward-For，仅已知 RP 可带这些头</td>
+</tr>
+<tr>
+<td>OpenSSL 三级</td>
+<td>2（R101.0 起默认）=拒 RSA&lt;2048 位或 SHA-1 签名；1=拒 RSA&lt;1024 位；0=不限制；3 仅 ALE 内部测试；改后必须重启</td>
+</tr>
+<tr>
+<td>证书核查</td>
+<td>SSH 上 certificate info；话机 MMI：Enterprise/Essential/8008 走 Security &gt; Certificate，ALE-2/3 走 Advanced Settings &gt; View Certificate</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>内部 PKI 定制证书</strong>（p168-171，How-To）：</p>
+<ol>
+<li>mtcl 登录后 su 切 root，执行 netadmin -m。</li>
+<li>依次进 11 Security / 9 PKI Management / 1 CS Certificates，选 1 Create/Update (Auto generated)。</li>
+<li>逐项应答：CC-suite-ID（实验 11111-11111-11111-11111）、通配 y、IP SAN y、附加 SAN n、密钥 4096、国家/组织（实验口径）→ 确认 y。</li>
+<li>系统生成四件（Root CA/私钥/CSR/CS 证书），提示 successfully generated。</li>
+<li>11/9/1/8 View 核验：CA CN=CC-suite-ID、CS CN=oxe.company.com、SAN 含 FQDN/通配/IP、有效期约 20 年。</li>
+<li>重启 OXE；cd /usr3/mao/DM/VHE8082/ 核验 ctl_VHE8082 与 ict8000ctl.pem 存在。</li>
+</ol>
+<p><strong>老话机证书排查</strong>（p179/p206-207）：</p>
+<ol>
+<li>话机入网失败先 SSH 执行 certificate info 或话机 MMI 查证书位数与签名算法。</li>
+<li>确为 1K RSA/SHA-1 则评估降级：netadmin（root）进 11 Security / 6 SSL configuration / 3 SSL security level。</li>
+<li>降级后必须重启 OXE；安全敏感站点应换证书而非降级。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：话机批量报证书错误；上 SIP 前的证书规划；R101.0 升级后老话机掉线；要启用 8443 mTLS 下载认证；远程话机经反代拉配置失败。</p>
+<p>语言信号：证书 / certificate / 内部 PKI / 根 CA / CS 证书 / CSR / SAN / CN / CTL / ctl_VHE8082 / OpenSSL / security level / 安全级 / RSA 2048 / SHA-1 / mTLS / 8443 / X-Real-Mac / 401 认证。</p>
+<p>与相邻能力区分：证书做好了去开话机找话机开通；远程场景的 RP/EDS/SBC 证书五方链找远程办公；DM 体系本体的选型找 SIP 设备管理。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户域名与 FQDN、是否外部 CA、存量话机年龄清单（证书代次）、维护窗口（要重启）。域名未定 → 判停回域名定制。</p>
+<ol>
+<li>核对前提：OXE 域名已改正式注册域名（默认域名必致证书错误）。完成标准：FQDN 落定</li>
+<li>生成证书：root 进 netadmin 11/9/1，按 CC-suite-ID/通配/IP SAN/密钥长度逐项应答。完成标准：四件生成</li>
+<li>核验：11/9/1/8 View 检查 CN/SAN/有效期；重启 OXE。完成标准：核验通过且重启完成</li>
+<li>验 CTL：/usr3/mao/DM/VHE8082/ 下见 ctl_VHE8082 与 ict8000ctl.pem。完成标准：CTL 就位</li>
+<li>核存量话机：SSH certificate info 或 MMI 查证书代次；R101.0+ 站点对 1K RSA/SHA-1 老机先出方案。完成标准：话机分桶（可直接入网/需换证书/需降级）</li>
+<li>（按需）调安全级：11/6/3 改级别 → 必须重启；排重启窗口。完成标准：级别变更生效</li>
+<li>（按需）启用 mTLS：swinst "DM auth. with client cert"（默认 Enabled）；远程场景确认 RP 已知且注入 X-Real-Mac/X-Forward-For。完成标准：下载认证链路通过</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>域名还是 oxedomain.com → 停，先改域名再谈证书（n01）</li>
+<li>安全敏感客户要求降级到 0 → 停，给换证书方案，降级只作过渡并留回退计划（n09）</li>
+<li>远程话机 mTLS 失败且 RP 非客户自选第三方 → 查 RP 是否 CS 已知、头注入是否合规（n42）</li>
+</ul>
+<p>输出契约：可用的证书链与 CTL + 存量话机证书分桶表 + 安全级别决策记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>外部 CA 亦可替代内部 PKI，但外部 CA 申请/签发流程书外（p169 只演示内部 PKI）</li>
+<li>密钥/有效期示例（4096 位、20 年）与 CC-suite-ID 为实验/示例口径（n50）</li>
+<li>mTLS 8443 为 R101.1 起特性，低版本站点无此能力（nr-07）</li>
+<li>远程办公五方信任链（话机/RP/SBC/OXE/EDS）详见远程办公卡，本卡只管 OXE 侧</li>
+<li>p166 与 p171 的 CTL 目录为同物异写（nr-03），引用时注明</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte403en/skills/osip-deskphone-provisioning.html">ALE 话机 SIP 开通与 NOE↔SIP 切换</a></p><p class="source-page">能力 ID：cap.osip.certificate-management · 来源：ENTPXTE403EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - SIP (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 465 页 -->

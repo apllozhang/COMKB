@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OmniVista 8770 Topology 视图（标准视图 / 自定义视图 / 告警重定向）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 安装与网络管理</h2><p>Edition 47 · 705 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte200en/index.html">课程首页</a><a href="/courses/8770xte200en/digest.html">精华长文</a><a href="/courses/8770xte200en/overview.html">教书理解</a><a href="/courses/8770xte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte200en/skills/ovnms-platform-installation.html">OmniVista 8770 平台安装（服务器 + 客户端 + 补丁 + 首连）</a><a href="/courses/8770xte200en/skills/ovnms-node-onboarding.html">OmniVista 8770 节点接入（OXE 注册同步 + SSH 安全 + OXO Connect 纳管）</a><a href="/courses/8770xte200en/skills/ovnms-user-provisioning.html">OmniVista 8770 用户开通（Profile / Meta profile / 批量 / WBM）</a><a href="/courses/8770xte200en/skills/ovnms-alarm-management.html">OmniVista 8770 告警管理（接入 + 定制出口 + SNMP Proxy）</a><a href="/courses/8770xte200en/skills/ovnms-security-administration.html">OmniVista 8770 安全管理（密码策略 / 管理员与组 / 访问控制 / TLS）</a><a href="/courses/8770xte200en/skills/ovnms-audit-compliance.html">OmniVista 8770 审计合规（Audit 启用 / mao 日志 / 检索导出）</a><a href="/courses/8770xte200en/skills/ovnms-backup-restore.html">OmniVista 8770 备份恢复（8770 数据库 rehosting + OXE swinst 全链）</a><a href="/courses/8770xte200en/skills/ovnms-license-management.html">OmniVista 8770 许可管理（锁结构 / 查询 / 更新 / 受限模式）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte200en/skills/ovnms-reports-scheduling.html">OmniVista 8770 报表与任务编排（Reports / Scheduler / 自动维护）</a><a href="/courses/8770xte200en/skills/ovnms-maintenance-operations.html">OmniVista 8770 维护运营（诊断工具 / NMC 服务与日志）</a><a href="/courses/8770xte200en/skills/ovnms-topology-views.html">OmniVista 8770 Topology 视图（标准视图 / 自定义视图 / 告警重定向）</a><a href="/courses/8770xte200en/skills/ovnms-oxe-ui-efficiency.html">OmniVista 8770 OXE 配置界面高效操作（搜索/冻结/网格/导入导出）</a><a href="/courses/8770xte200en/skills/ovnms-network-drive.html">OmniVista 8770 网络驱动器映射（报表与备份落网络存储）</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte200en/index.html">omnivista-8770-nms（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte200en/index.html">8770XTE200EN</a><span>/</span><span aria-current="page">OmniVista 8770 Topology 视图（标准视图 / 自定义视图 / 告警重定向）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OmniVista 8770 Topology 视图（标准视图 / 自定义视图 / 告警重定向）</h1></div><dl><div><dt>Skill ID</dt><dd>ovnms-topology-views</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>OmniVista 8770 Topology 视图（标准视图 / 自定义视图 / 告警重定向）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"2 tabs (or views), Standard and Custom ... Structured according to tree structure of the Configuration application"（p331）
+"Such maps, in a gif format (for example) with the standard size of 1100x793, have to be stored on 8770\data\topology\maps."（p337）
+"Right click on the link, Select Redirecting alarms… option ... paste the alarm on the field Source Object hierarchy"（p358）
+"FROM RELEASE R11.2 OF THE OMNIPCX ENTERPRISE, ALARM LINKED TO IP PHONE STATUS (INCIDENT 386) IS NOT CONSIDERED AS CORRELABLE."（p361）</p>
+</blockquote>
+<p>出处：8770XTE200EN p325-362（Topology 讲义与两个 How-To）。</p>
+<h2>I — 自述</h2>
+<p>Topology 是网络图形化监控面：Standard 视图按配置树自动生成，Custom 视图手工搭监控大屏；只显示相关告警。</p>
+<p><strong>Standard 视图（自动生成）</strong></p>
+<ul>
+<li>结构随 Configuration 树自动生成；支持背景地图（.gif/.jpeg/.ivl，自定义地图建议 1100x793，放 8770\data\topology\maps 后须重启 NMC Service Manager 才入下拉）</li>
+<li>虚拟 ACT 显示：Configuration 硬件树选中虚拟机架 &gt; 取消勾 Virtual equipment &gt; 重启 Topology 应用</li>
+<li>Preferences &gt; Topology &gt; Configure：Read Saved Configuration（改后需重启 Topology）、Display VPN Links、Display OXE Links、Display 8770 server</li>
+<li>告警联动：故障机架出现告警，双击看告警；相关告警随设备恢复自动清除</li>
+</ul>
+<p><strong>Custom 视图（编辑器）</strong></p>
+<ul>
+<li>Custom 页 &gt; Activate Edit mode 后可用工具：Create custom view（绑定被监督对象+背景）、Create network element（图标/短长描述）、Create link 与 Square link（标签/线型/宽度/颜色）、Create label、多边形/矩形底色、Default view 定默认视角</li>
+<li>树结构与视图同步；双击视图名进入</li>
+</ul>
+<p><strong>告警重定向（把告警画到自选元素上）</strong></p>
+<ul>
+<li>取对象层级：从 Configuration 界面复制对象（如 GD4 板卡、T0 中继、TDM/IP 用户终端），或从 Alarms 应用复制告警</li>
+<li>粘贴：Custom 视图右键网络元素/链接 &gt; Redirecting alarms &gt; 粘到 Source Object hierarchy</li>
+<li>验证：mtcl 执行 rstcpl 触发，该元素上显示告警；右键 Show Alarms 可切到 Alarms 页</li>
+</ul>
+<p><strong>两条硬边界</strong></p>
+<ul>
+<li>Topology 只显示相关告警（p327 Limits）</li>
+<li>OXE R11.2 起 IP 话机状态告警（incident 386）不再是可相关告警——不能用于 Topology，话机级监控走 Alarms 应用</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>Standard 视图实验</strong>（p334-338）：</p>
+<ol>
+<li>Preferences 改 Read Saved Configuration 为 Standard configuration</li>
+<li>取消虚拟机架的 Virtual equipment 勾选并重启 Topology，虚拟 ACT 上图</li>
+<li>选 EUROPE.gif 加载背景地图</li>
+<li>rstcpl 触发后故障机架显示告警，耦合器恢复投运后告警自动清除</li>
+</ol>
+<p><strong>Custom 视图实验</strong>（p339-362）：</p>
+<ol>
+<li>Edit mode 下建视图 Main Node（背景 FRANCE.gif），把 nms 图标摆进主视野</li>
+<li>建 Element #1 与 nms 的 link、Element #1 与 Main Node 的 Square link</li>
+<li>加标签、六边多边形与矩形底色，Default view 定格</li>
+<li>从 Configuration 复制 GD4 板卡对象粘到 Redirecting alarms，rstcpl 4 0 后元素显示 #2042 类告警</li>
+<li>T0 中继/TDM 用户/IP 用户同法重定向；8770 自身告警从 Alarms 应用复制</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：给客户搭监控大屏；自定义园区背景图；"话机故障怎么不在地图上闪"；演示网络健康度。</p>
+<p>语言信号：Topology / Standard / Custom / Edit mode / custom view / 背景地图 / 1100x793 / topology\maps / 虚拟 ACT / Virtual equipment / 告警重定向 / Redirecting alarms / Source Object hierarchy / incident 386。</p>
+<p>与相邻能力区分：告警数据本身（告警管理能力）；rstcpl 触发手段（告警接入验证）；本能力管图形化呈现与期望管理。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：监控大屏需求（对象清单/背景图）、地图文件（gif，建议 1100x793）、告警对象层级来源确认。</p>
+<ol>
+<li>Standard 基线：Preferences 四选项核对。完成标准：视图按树生成且告警可显示</li>
+<li>背景：地图入 maps 目录 &gt; 重启 NMC Service Manager &gt; 下拉选用。完成标准：背景加载</li>
+<li>虚拟 ACT：取消 Virtual equipment 勾选 &gt; 重启 Topology。完成标准：虚拟机架上图</li>
+<li>Custom 建屏：建视图 &gt; 摆元素 &gt; 连链接 &gt; 加标签与底色 &gt; Default view。完成标准：视图成型可导航</li>
+<li>重定向：复制对象层级 &gt; Redirecting alarms 粘贴。完成标准：rstcpl 触发后元素显示告警</li>
+<li>验收演示：触发+自动清除全流程走一遍。完成标准：客户确认显示口径</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>地图下拉没有新图 → 只拷了文件没重启 NMC Service Manager；先重启再排障</li>
+<li>客户要话机状态上图 → incident 386 不可相关，判停并引导走 Alarms 应用</li>
+<li>改 Read Saved Configuration 后视图没变 → 该项改动需重启 Topology 应用</li>
+<li>非相关告警想上图 → Topology 机制不支持，不硬做</li>
+</ul>
+<p>输出契约：Standard 视图配置记录 + Custom 视图文件（元素/链接/重定向清单）+ 背景地图目录清单 + 验收演示记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>Topology 只显示相关告警；自动清除依赖 PCX 检测问题结束，人工 clear 在 Alarms 应用完成</li>
+<li>Bubble/Highlight 两种直接标注模式仅告警提示样式差异，不改变只显相关告警的边界</li>
+<li>地图规范（gif/尺寸/目录）之外的 GIS/第三方地图集成在书外</li>
+<li>实验背景图（EUROPE.gif/FRANCE.gif）与 rstcpl 触发为实验口径，见 book/overview</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.ovnms.topology-views · 来源：8770XTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 — Setup & Network Management (Participant's Guide, Edition 47) | edition: Edition 47 | pages: 705 页 -->

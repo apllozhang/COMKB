@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>实验环境与拨测验证（RLAB、编号计划、模拟器预期表）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch · 移动与远程办公</h2><p>Edition 10 · 287 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte225en/index.html">课程首页</a><a href="/courses/openxte225en/digest.html">精华长文</a><a href="/courses/openxte225en/overview.html">教书理解</a><a href="/courses/openxte225en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte225en/skills/otm-dmz-security-channels.html">远程接入架构与 DMZ 双边缘</a><a href="/courses/openxte225en/skills/otm-certificate-pki.html">证书策略与签发（CA、封装、SAN、自建 CA）</a><a href="/courses/openxte225en/skills/otm-ot-server-settings.html">OpenTouch 服务器侧远程访问设置</a><a href="/courses/openxte225en/skills/otm-otsbc-deployment.html">OTSBC 部署与向导配置</a><a href="/courses/openxte225en/skills/otm-reverse-proxy.html">反向代理两路线部署与选型（内嵌 RP、Nginx）</a><a href="/courses/openxte225en/skills/otm-otc-pc-modes.html">OTC PC 远程办公两模式（multi-devices、Nomadic SIP）</a><a href="/courses/openxte225en/skills/otm-smartphone-provisioning.html">OTC 智能手机开通（Connection 用户、自动对象、R2.6 单设备）</a><a href="/courses/openxte225en/skills/otm-iphone-apns.html">iPhone+ APNS 推送专项</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte225en/skills/otm-client-access-profiles.html">客户端远程接入两步法（接入配置与路由档案）</a><a href="/courses/openxte225en/skills/otm-smartphone-modes.html">智能手机连接模式与回落（WiFi/3G4G/DTMF、无 SIM）</a><a href="/courses/openxte225en/skills/otm-vmware-ovf.html">VMware 虚机 OVF/OVA 部署</a><a href="/courses/openxte225en/skills/otm-lab-dialtest.html">实验环境与拨测验证（RLAB、编号计划、模拟器预期表）</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte225en/index.html">ot-mobility-remote-worker（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte225en/index.html">OPENXTE225EN</a><span>/</span><span aria-current="page">实验环境与拨测验证（RLAB、编号计划、模拟器预期表）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>实验环境与拨测验证（RLAB、编号计划、模拟器预期表）</h1></div><dl><div><dt>Skill ID</dt><dd>otm-lab-dialtest</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>实验环境与拨测验证（RLAB 背景、编号计划、SIP 模拟器预期表）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"OXE CS will be DHCP server for Alcatel-lucent desk phone devices: IP addresses range: 151.1.1.151-151.1.1.159; Eco system will be DCHP server for smartphones: 151.1.1.160-151.1.1.165"（p23，DCHP 系原文拼写笔误）
+"Caller dials a national number 0abcd31xxx (10 digits) … called number -&gt; 0678931001 … Caller identity received and displayed: 0298131000"（p27）
+"Caller dials an international number like 00ccabcd31xxx (13 digits) … called number -&gt; 44123431001 … Caller identity received and displayed: 33298131000"（p29）</p>
+</blockquote>
+<p>出处：OPENXTE225EN p4-30, p26-29。</p>
+<h2>I — 自述</h2>
+<p>本卡覆盖两件事：RLAB 实验环境的认知基准（仅 Boundary 背景）与拨测验证的预期结果表。</p>
+<p>编号体系三层：</p>
+<ol>
+<li><strong>DHCP</strong>：ALE 话机由 OXE CS 发池 151.1.1.151-159；智能手机由 Eco-system 发池 151.1.1.160-165（用 RAP+物理设备时，实验口径）</li>
+<li><strong>用户编号</strong>：存量用户 31000-31002、新建用户 31050-31052；副设备 2x31000；OTC PC 副设备 213100x；手机设备号 D 前缀、速拨号 A 前缀、Ghost Z 可 B&lt;数字&gt;</li>
+<li><strong>模拟器变换</strong>：出局拨测三种格式，末四位 31xx 即系统内分机</li>
+</ol>
+<p>SIP 模拟器拨测预期表（实验口径）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>拨叫格式</th>
+<th>位数</th>
+<th>示例（主叫 31000）</th>
+<th>主叫显示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国内 0abcd31xxx</td>
+<td>10</td>
+<td>0678931001，落分机 31001</td>
+<td>0298131000</td>
+</tr>
+<tr>
+<td>国内规范 33abcd31xxx</td>
+<td>11</td>
+<td>33123431001</td>
+<td>33298131000</td>
+</tr>
+<tr>
+<td>国际 00ccabcd31xxx</td>
+<td>13</td>
+<td>0044123431001</td>
+<td>33298131000</td>
+</tr>
+</tbody>
+</table></div>
+<p>实验平台认知：POD 相互独立、配置相同；每 POD 虚机池含 OTMS/OXE/OmniVista 8770/FlexLM/OMS/Eco-system/SIP 运营商模拟器等；三种学员接入拓扑（教室 RAP、RAP+话机、HTTPS 直连）。完整虚机地址与账号口令总表见 book/overview 环境区（实验口径，不进本卡正文）。</p>
+<h2>A1 — 书中案例</h2>
+<p>拨测演练（p26-29 口径）：</p>
+<ol>
+<li>选格式：按目标场景定国内 10 位、规范 11 位或国际 13 位拨叫串</li>
+<li>预判落点：末四位 31xx 对应系统内分机（31001 对应 Backman）</li>
+<li>预判主叫显示：国内 0298131000，规范/国际 33298131000</li>
+<li>发起呼叫并记录实际落点与主叫显示</li>
+<li>与预期表逐格比对，偏差回到被测能力的配置链排障</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：跟书做实验前搭对照基准；配置完成后验证呼叫行为；学员问"这个号码拨出去会变成什么"；排障时区分"配置问题"与"模拟器行为差异"。</p>
+<p>语言信号：RLAB / POD / 实验环境 / 编号计划 / 31000 / 213100x / 模拟器 / simulator / 拨测 / 主叫显示 / caller identity / 0abcd31xxx / DHCP 池。</p>
+<p>与相邻能力区分：被测配置本身 → PC 两模式/智能手机配置等能力；实验环境的生产化替换口径 → book/overview 环境区。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：被测能力（游牧/副设备/手机等）、可用分机清单、模拟器格式选择。</p>
+<ol>
+<li>定预期：按格式表写出"落点分机 + 主叫显示"两个预期值。完成标准：预期值有 p26-29 依据</li>
+<li>从被测用户发起呼叫（或向其呼入）。完成标准：呼叫建立</li>
+<li>记录实际落点与主叫显示。完成标准：两个维度都有实测值</li>
+<li>与预期逐格比对；一致则被测能力行为闭环。完成标准：比对记录</li>
+<li>不一致时回被测能力排障（勿先怀疑模拟器；模拟器与真实运营商存在差异要最后排除）</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>实测与预期不符且配置链已核对两轮 → 停，标注"模拟器行为与真实 ITSP 存在差异"，换真实中继复测</li>
+<li>生产环境套用实验编号 → 停，编号与口令全表为实验口径，生产必须替换（n31）</li>
+</ul>
+<p>输出契约：拨测比对记录（格式、落点、主叫显示）+ 被测能力的行为闭环结论。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>本卡全部数值（IP/号码/口令/域名）为 RLAB 实验口径，生产不复用；完整表见 book/overview 环境区（n31/n33）</li>
+<li>模拟器基于 OXE 实现，行为与真实运营商存在差异（p26-29 口径）</li>
+<li>原文两处拼写笔误（DCHP、inid.d 类）见 needs-review nr-01/nr-02，跟书操作时以拓扑一致性自校（n29）</li>
+<li>POD 虚机清单中 DCS/OTMC 等部分虚机书中无细节，不展开</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte225en/skills/otm-otc-pc-modes.html">OTC PC 远程办公两模式（multi-devices、Nomadic SIP）</a></p><p class="source-page">能力 ID：cap.otm.lab-dialtest · 来源：OPENXTE225EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch — 移动与远程办公 (Participant's Guide) | edition: Edition 10 | pages: 287 页 -->

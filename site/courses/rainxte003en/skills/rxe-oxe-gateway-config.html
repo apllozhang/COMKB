@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OXE 侧 WebRTC 网关配置九件套</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Rainbow for OmniPCX Enterprise</h2><p>Edition 12 · 314 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte003en/index.html">课程首页</a><a href="/courses/rainxte003en/digest.html">精华长文</a><a href="/courses/rainxte003en/overview.html">教书理解</a><a href="/courses/rainxte003en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte003en/skills/rxe-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte003en/skills/rxe-agent-onboarding.html">OXE 接入 Rainbow 与接入排障</a><a href="/courses/rainxte003en/skills/rxe-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte003en/skills/rxe-routing-rex.html">OXE 用户形态决策与远程延伸路由</a><a href="/courses/rainxte003en/skills/rxe-webrtc-gateway-deployment.html">WebRTC 网关部署与升级</a><a href="/courses/rainxte003en/skills/rxe-oxe-gateway-config.html">OXE 侧 WebRTC 网关配置九件套</a><a href="/courses/rainxte003en/skills/rxe-gateway-pool-sizing.html">共享 WebRTC 网关池与容量规划</a><a href="/courses/rainxte003en/skills/rxe-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte003en/skills/rxe-rcc-association.html">OXE 分机关联与 RCC 模式</a><a href="/courses/rainxte003en/skills/rxe-attendant-consoles.html">两套话务台（4059EE 与 Rainbow Attendant Console）</a><a href="/courses/rainxte003en/skills/rxe-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte003en/skills/rxe-network-readiness.html">Rainbow 网络就绪核查</a><a href="/courses/rainxte003en/skills/rxe-lab-pod-setup.html">RLAB 实验环境与 Pod 配置</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte003en/index.html">rainbow-oxe-integration（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte003en/index.html">RAINXTE003EN</a><span>/</span><span aria-current="page">OXE 侧 WebRTC 网关配置九件套</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OXE 侧 WebRTC 网关配置九件套</h1></div><dl><div><dt>Skill ID</dt><dd>rxe-oxe-gateway-config</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OXE 侧 WebRTC 网关配置九件套（SIP TG/可信 IP/Rainbow type 网关/ARS/判别器/回调）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"AN IP DOMAIN WITHOUT COMPRESSION BUT WITH COMPRESSION RESOURCES (GD/OMS) IS REQUIRED ON THE SYSTEM FOR A CORRECT WORKING MODE OF THE WEBRTC GATEWAY."（p180）
+"Gateway type Rainbow type … Trusted From header Checked (true) … Support G711 YES"（p181）
+"Call Number 1 … Area Number 1 … Schedule number -1 … Number of Digits 17 (length of numbers managed by the Rainbow agent)"（p185）
+"Basic Number DEF • No. Digits To Be Removed 0 • Digits to Add BBB"（p187）</p>
+</blockquote>
+<p>出处：RAINXTE003EN p177-197。</p>
+<h2>I — 自述</h2>
+<p>网关装好只是第一步，OXE 侧要配齐九件套才通（p177-190）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>件</th>
+<th>配置项</th>
+<th>关键口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>国家码</td>
+<td>System 参数 SG Country Code 按站点填</td>
+</tr>
+<tr>
+<td>2</td>
+<td>SIP trunk group</td>
+<td>T2 类型、T2 Specification=SIP、Q931 取 ISDN all countries</td>
+</tr>
+<tr>
+<td>3</td>
+<td>可信 IP</td>
+<td>把网关 IP 加入 SIP Trusted IP Addresses</td>
+</tr>
+<tr>
+<td>4</td>
+<td>SIP 外部网关</td>
+<td>Gateway type=Rainbow type、端口 5060/UDP、监督定时器 380、DTMF 动态载荷 101、仅 G711</td>
+</tr>
+<tr>
+<td>5</td>
+<td>IP 域</td>
+<td>必须无压缩（High bandwidth）且系统带压缩资源（GD/OMS），Warning 级前提</td>
+</tr>
+<tr>
+<td>6</td>
+<td>CDT</td>
+<td>编号命令表挂外部 SIP 网关——ARS 用 SIP TG 的前提</td>
+</tr>
+<tr>
+<td>7</td>
+<td>ARS 路由</td>
+<td>Route List 挂 TG 与 CDT，Time-based Route List 指向默认表</td>
+</tr>
+<tr>
+<td>8</td>
+<td>BBB 前缀与判别器</td>
+<td>前缀 BBB、判别器规则 Call Number 1 / Area 1 / route list / schedule -1 / 位数 17</td>
+</tr>
+<tr>
+<td>9</td>
+<td>回调三件套</td>
+<td>CSTA 开关 Yes + 外部回调翻译表（DEF 变 BBB、删 0 位）+ 专用实体挂网关 TG</td>
+</tr>
+</tbody>
+</table></div>
+<p>判别器五元组固定语义（p185）：前缀 BBB 与判别器号可按站点调整，但位数 17 与 schedule -1（用默认时段路由表）语义固定——17 位即 Rainbow agent 管理的号码长度。</p>
+<p>CPaaS 补充（公司含纯 Rainbow 用户时）：用户 COS 勾 Calling name display（主叫名显示）；Remote Extension Parameters 选 CLI Format（Standard 送外部号/Private 送内部号）；系统参数配 NPD for external forward。</p>
+<p>维护命令族（p191-195）：sipextgw -l 看外部 SIP 网关在服状态；lookars i 交互验 ARS 解析；motortrace 配 traced 抓 SIP 信令（killall traced 停）；multidevice/zdpost/remotesets 验 tandem 与 REX 的 BBB 号。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>九件套配置实验</strong>（p177-195）：</p>
+<ol>
+<li>系统参数填国家码（实验口径取法国 33）</li>
+<li>建 SIP trunk group：TG IP 5、Type T2、名 WebRTC、T2 Specification 选 SIP</li>
+<li>核 IP 域：域 0 的 Intra/Extra bandwidth 均设 High bandwidth（无压缩）</li>
+<li>可信 IP 添加网关地址（实验口径 192.168.1.15，见 book/overview）</li>
+<li>建 SIP 外部网关：Rainbow type、5060/UDP、监督 380、DTMF 101、仅 G711、Trusted From header 勾选</li>
+<li>建 CDT：表 5 的 Command I 挂外部 SIP 网关 5</li>
+<li>建 ARS Route List 5 挂 TG 5 与 CDT 5，Time-based Route List 1 指向它</li>
+<li>Prefix Plan 建前缀 BBB 挂逻辑判别器；实判别器 5 号按五元组建规则</li>
+<li>用户与 Ghost Z 所在实体的 Discriminator Selector 关联判别器</li>
+<li>回调：CSTA 开关 Yes、翻译表规则 DEF 变 BBB、建专用实体挂网关 TG</li>
+<li>lookars i 输入 BBB 加分机验证解析链；remotesets 核对 REX 的 17 位号</li>
+<li>VoIP 四项测试：computer 路由呼出、来话计算机接听、呼纯 Rainbow 用户、纯 Rainbow 用户呼入</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：网关装好了但 VoIP 不通；ARS/判别器怎么配；话机想用通话记录回拨 Rainbow 分机；主叫名显示不对。</p>
+<p>语言信号：SIP trunk / T2 / 可信 IP / trusted IP / Rainbow type / G711 / IP 域 / 压缩 / CDT / ARS / BBB / 判别器 / discriminator / 回调 / callback / lookars / sipextgw / 主叫名 / CLI。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>网关 VM 与升级 → 网关部署能力</li>
+<li>REX/tandem 与 Ghost Z → 远程延伸路由能力</li>
+<li>话务台与监督 → 两套话务台能力（路由卡）</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：网关已部署激活（部署能力交付）、站点编号计划、是否含纯 Rainbow（CPaaS）用户、回调翻译表现状。判别器/表号规划与存量冲突 → 停，先出编号方案。</p>
+<ol>
+<li>核 IP 域：确认网关流量所经域无压缩且系统有压缩资源。完成标准：Warning 前提成立（p180）</li>
+<li>建 TG 与可信 IP：T2/SIP 类型、网关 IP 入可信清单。完成标准：TG 在册</li>
+<li>建 Rainbow type 网关：逐字段按取值表填（端口/定时器/DTMF/编解码）。完成标准：字段与表一致</li>
+<li>建 CDT 与 ARS：命令表、Route List、Time-based 表三层挂接。完成标准：ARS 链完整</li>
+<li>配 BBB 前缀与判别器：五元组建规则并做实体关联。完成标准：lookars i 解析直达 Route List</li>
+<li>配回调三件套：CSTA 开关、翻译表、专用实体。完成标准：话机通话记录可回拨 Rainbow 号</li>
+<li>CPaaS 补充（如需）：主叫名 COS、CLI Format、NPD 参数。完成标准：纯 Rainbow 用户互叫主叫身份正确</li>
+<li>验收：四项 VoIP 测试逐项记录。完成标准：来去话与主叫身份全部符合预期</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>VoIP 不通且域配过压缩 → 先查件 5（隐性前提，表象常是单通/媒体异常，n19）</li>
+<li>lookars 解析不达 Route List → 逐层查前缀、逻辑判别器、实体关联，不乱改 ARS 表</li>
+<li>生产站点要改编解码 → 先与网关侧能力核对（书内仅 G711 为实验口径，p181）</li>
+<li>存量回调翻译表冲突 → 必须走专用实体隔离，不与现有表混挂（p187）</li>
+</ul>
+<p>输出契约：OXE 侧九件套配置清单 + lookars/remotesets 验证输出 + 四项 VoIP 测试记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>SIP 外部网关仅 G711、实验 IP/表号/实体号均为实验口径；生产按站点重规划并核对网关能力（p181）</li>
+<li>维护命令各管一段：深排障在 VoIP calling Troubleshooting guide 与 TC2462（p194，n28）</li>
+<li>池化场景的溢出参数与 406 语义在共享池与容量能力展开</li>
+<li>回测技巧：把 REX 里的 BBB 号设成缩位拨号可从 OXE 话机直拨验证到 Rainbow 客户端（p188 Tips）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte003en/skills/rxe-routing-rex.html">OXE 用户形态决策与远程延伸路由</a></p><p class="source-page">能力 ID：cap.rxe.oxe-gateway-config · 来源：RAINXTE003EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Rainbow / OmniPCX Enterprise (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 314 页 -->

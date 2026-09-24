@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OTC PC 客户端交付与多终端</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch · Starter</h2><p>Edition 10 · 603 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte300en/index.html">课程首页</a><a href="/courses/openxte300en/digest.html">精华长文</a><a href="/courses/openxte300en/overview.html">教书理解</a><a href="/courses/openxte300en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte300en/skills/ots-post-installation-wizard.html">OTMS 初始化向导（两模式十节）</a><a href="/courses/openxte300en/skills/ots-license-flexlm.html">许可体系与 FlexLM（安装、核查、外部切换）</a><a href="/courses/openxte300en/skills/ots-node-declaration-sip.html">双向节点声明与 SIP 打通（含告警对接）</a><a href="/courses/openxte300en/skills/ots-prior-management.html">Prior management（号码段、前缀、拨号规则、UDAS、会议桥）</a><a href="/courses/openxte300en/skills/ots-users-profiles.html">档案与用户供给（三类用户、WPC 批量）</a><a href="/courses/openxte300en/skills/ots-voice-mail.html">语音邮箱、IMAP 收取与通知公告（Local Storage）</a><a href="/courses/openxte300en/skills/ots-clients-multi-devices.html">OTC PC 客户端交付与多终端</a><a href="/courses/openxte300en/skills/ots-maintenance-rehosting.html">维护、备份恢复与 rehosting（TC2149 矩阵）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte300en/skills/ots-sot-installation.html">SOT 自动化装机与虚机手动导入</a><a href="/courses/openxte300en/skills/ots-certificates.html">证书部署三路线</a><a href="/courses/openxte300en/skills/ots-supervision-groups.html">监督组（话务监督、进出组与代接）</a><a href="/courses/openxte300en/skills/ots-lab-connections.html">实验 POD 与系统连接通道</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte300en/index.html">opentouch-starter（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte300en/index.html">OPENXTE300EN</a><span>/</span><span aria-current="page">OTC PC 客户端交付与多终端</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OTC PC 客户端交付与多终端</h1></div><dl><div><dt>Skill ID</dt><dd>ots-clients-multi-devices</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>OTC PC 客户端交付与多终端（Desktop 许可、软电话、Multi-devices）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Two different working modes possible for Connection users: OTC PC: full mode for Connection users with « Desktop » right (license) • OTC PC One : Freemium mode"（p433）
+"MAKE SURE THAT THE DESKTOP LICENSE IS ENABLED FOR THIS USER DON'T GRANT "NOMADIC SIP" RIGHT TO THIS TYPE OF USER"（p474）
+"Up to 5 devices with following rules: Main device can be: NOE IP, NOE TDM, IPDSP, SIP(SEPLOS), desk sharing (DSU), an OTC PC ... Only one remote extension Only one DECT"（p439）
+"« MICROSOFT VISUAL STUDIO C++ 2010 TOOLS FOR OFFICE » MUST BE ALREADY INSTALLED ON THE PC TO DEPLOY SUCCEFULLY "OUTLLOK ADD-IN""（p462，OUTLLOK 为原文笔误）</p>
+</blockquote>
+<p>出处：OPENXTE300EN p430-493。</p>
+<h2>I — 自述</h2>
+<p>客户端是"许可驱动形态"：OTC PC 与 OTC PC One 是同一安装包，Desktop 许可决定运行模式。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>形态</th>
+<th>触发条件</th>
+<th>能力面</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OTC PC 全量</td>
+<td>档案/用户勾 Desktop 许可</td>
+<td>RCC+VoIP+IM/共享/会议/Outlook 集成</td>
+</tr>
+<tr>
+<td>OTC PC One 免费</td>
+<td>无 Desktop 许可</td>
+<td>话机伴侣：单线、盲通话只能挂断、无 VoIP、无监督、共享仅 viewer</td>
+</tr>
+</tbody>
+</table></div>
+<p>安装与前置：安装包从 OT 服务器的固定 URL 分发（OpenTouchConversation.msi）；前置 .NET Framework 4.5 与 VS C++ 2010 Tools for Office（缺后者 Outlook 加载项装不上）；必填内部 FQDN 与远程 FQDN；首次启动把 IM 默认应用答 Yes 才有 Outlook 在场与操作。</p>
+<p>软电话两路线：</p>
+<ul>
+<li><strong>Multi-devices（本卡主线）</strong>：给用户挂 SIP 分机为第二设备并关联 OTC PC 设备（设备标识为"分机号@OT FQDN"，类型 Softphone）；SIP 配置由设备管理服务器（DM，实验由 8770 充当）下发；许可组合必须 Desktop 勾、Nomadic SIP 不勾（两权互斥）。</li>
+<li><strong>Nomadic 池</strong>：旧软电话路线，另一培训讲，本卡仅作判停指针。</li>
+</ul>
+<p>多终端规则与前置：</p>
+<ul>
+<li>一名用户最多 5 台设备；主设备白名单（NOE IP/TDM、IPDSP、SIP、DSU、OTC PC）；副设备另可 DECT、MIPT、REX、OTC 手机</li>
+<li>远端分机与 DECT 各限 1；OTC PC 走 VoIP 不冻结话机</li>
+<li>前置：用户 Phone features COS 开"主站故障时副站同振"；建 Twinset get call 与 No ringing 两前缀并在 COS 授权</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>客户端安装与模式对照</strong>（p460-483）：</p>
+<ol>
+<li>从 OT 服务器 URL 下载 OpenTouchConversation.msi 并安装。</li>
+<li>部署类型选 Standard（自动带 Outlook 扩展）。</li>
+<li>填内部 FQDN 与远程 FQDN 完成向导。</li>
+<li>8770 侧给用户勾 Desktop 许可与协作共享权。</li>
+<li>登录客户端：服务器填内部 FQDN，首次 IM 默认应用答 Yes。</li>
+<li>功能验证：在场、收藏、呼出接听转接、IM 与共享、呼叫历史。</li>
+<li>One 模式对照：不勾 Desktop 的用户登录即落免费模式。</li>
+<li>One 下验证：呼出可用、来话不能接只能挂、共享仅可看。</li>
+</ol>
+<p><strong>软电话与多终端实验</strong>（p471-493）：</p>
+<ol>
+<li>建 SIP extension 类型设备（SIP 口令留空则自动生成）。</li>
+<li>设备右键 Associate SIP device 关联 OTC PC（分机@OT FQDN）。</li>
+<li>OT 配置设备页 SIP extension type 选 Softphone。</li>
+<li>许可组合核对：Desktop 勾、Nomadic SIP 不勾。</li>
+<li>多终端前置：COS 开主站故障副站同振。</li>
+<li>建 Twinset get call 与 No ringing 两前缀并授权。</li>
+<li>副站加 NOE 话机或 SIP extension（各受上限约束）。</li>
+<li>两侧核验 Tandem 号与 Softphone Directory Numbers。</li>
+<li>行为测试：切换设备呼出接听、副站静音主站、路由档案切换。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户端装了电话功能都用不了；耳机没声音；想用电脑接听；要给一部手机也接来话；Outlook 里没有 OT 按钮。</p>
+<p>语言信号：OTC PC / OTC PC One / Desktop 许可 / freemium / RCC / VoIP / 软电话 / softphone / SIP 分机 / Multi-devices / 多终端 / 副站 / secondary set / Twinset / No ringing / Outlook 加载项 / .msi。</p>
+<p>与相邻能力区分：监督组（建组/代接/进出组）转监督组路由卡；SIP 配置文件没下发查 8770 的 DM 声明（节点声明与 SIP 能力）；用户开通与档案属用户供给能力；Nomadic 模式在书外培训。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：用户画像（有话机/纯软话机/移动需求）；Desktop 许可池余量；客户端 PC 前置件核查；内部与远程 FQDN。</p>
+<ol>
+<li>装前置件并安装客户端（Standard 类型）。完成标准：安装完成且无加载项报错</li>
+<li>按画像发 Desktop 许可（全量）或不发（One）。完成标准：运行模式与设计一致</li>
+<li>软电话用户建 SIP 分机副站并关联客户端。完成标准：SIP 配置文件生成且可注册</li>
+<li>许可组合核对：Desktop 勾、Nomadic SIP 不勾。完成标准：无互斥组合</li>
+<li>多终端按 5 设备规则加副站并配两前缀。完成标准：设备切换与静音行为正确</li>
+<li>Outlook 集成验证：从邮件与联系人卡发起 IM 与呼叫。完成标准：加载项可用</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>用户报"客户端坏了"电话功能全无 → 先查 Desktop 许可勾选，别急着重装</li>
+<li>软电话行为怪 → 查 Desktop 与 Nomadic SIP 是否被同时授权（互斥）</li>
+<li>SIP 配置文件没生成 → 查 8770 是否已声明为 DM、端口与下发目录</li>
+<li>副站加不上 → 超 5 台或远端分机/DECT 已各占 1</li>
+<li>Outlook 加载项装不上 → 缺 VS C++ 2010 Tools for Office 前置件</li>
+</ul>
+<p>输出契约：可交付客户端清单（模式/设备/许可组合）+ 行为验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>实验口径（生产按现场计划替换）：分机 31000/31002/31009、软电话 SIP 口令 98765、Twinset 前缀 506/507、副站号 2131000/2131002。</li>
+<li>OTC for MAC 无桌面共享/桌面集成/VDI（p443 对比表）；OTC PC One 的 IM 不能加参与者、不能发起共享。</li>
+<li>远程安全接入走 SBC+反向代理（端口 443/8016，正文 413 为笔误见 nr-02），证书见证书路由卡；VPN 非必需（p444）。</li>
+<li>OTC Mobile 仅提及不展开；Nomadic 模式在另一培训（n39）。</li>
+<li>可编程键、路由档案属用户自助配置面，本卡给交付验证口径，不做终端个性化定制。</li>
+</ul><h2>相关能力</h2><p><a href="/courses/openxte300en/skills/ots-users-profiles.html">档案与用户供给（三类用户、WPC 批量）</a>、<a href="/courses/openxte300en/skills/ots-supervision-groups.html">监督组（话务监督、进出组与代接）</a></p><p class="source-page">能力 ID：cap.ots.clients-multi-devices · 来源：OPENXTE300EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch — OpenTouch Suite for MLE — Solution Overview / Starter (Participant's Guide) | edition: Edition 10 | pages: 603 页 -->

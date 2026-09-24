@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.oxo-connect-starter",
+  "generated_at": "2026-09-23",
+  "destinations": {
+    "cap.oxos.data-collection": { "promoted_to": "oxos-data-collection" },
+    "cap.oxos.commissioning": { "promoted_to": "oxos-commissioning" },
+    "cap.oxos.terminals": { "promoted_to": "oxos-terminals" },
+    "cap.oxos.numbering-groups": { "promoted_to": "oxos-numbering-groups" },
+    "cap.oxos.user-features": { "promoted_to": "oxos-user-features" },
+    "cap.oxos.sip-trunk": { "promoted_to": "oxos-sip-trunk" },
+    "cap.oxos.incoming-barring": { "promoted_to": "oxos-incoming-barring" },
+    "cap.oxos.maintenance": { "promoted_to": "oxos-maintenance" },
+    "cap.oxos.hardware-platform": { "served_by": "oxo-connect-starter-router" },
+    "cap.oxos.audio-messages": { "served_by": "oxo-connect-starter-router" },
+    "cap.oxos.security": { "served_by": "oxo-connect-starter-router" },
+    "cap.oxos.rainbow-integration": { "served_by": "oxo-connect-starter-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 }
+}

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>实时监控告警与 Excel 统计</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Starter</h2><p>Edition  · 649 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte100en/index.html">课程首页</a><a href="/courses/otccxte100en/digest.html">精华长文</a><a href="/courses/otccxte100en/overview.html">教书理解</a><a href="/courses/otccxte100en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte100en/skills/otcc-ccd-matrix-foundation.html">CCD 基础矩阵创建与验证</a><a href="/courses/otccxte100en/skills/otcc-ccs-installation.html">CCS 班长台安装、OXE 声明与 ccs.ini</a><a href="/courses/otccxte100en/skills/otcc-routing-distribution-rules.html">路由规则与分配规则全生命周期</a><a href="/courses/otccxte100en/skills/otcc-agent-supervisor-onboarding.html">ACD 话机、座席与班长创建登录</a><a href="/courses/otccxte100en/skills/otcc-object-tuning.html">CCD 对象参数调优（pilot/PG/队列）</a><a href="/courses/otccxte100en/skills/otcc-voice-guides.html">语音指南三路径（话机录音/.wav 导入/欢迎指南）</a><a href="/courses/otccxte100en/skills/otcc-monitoring-statistics.html">实时监控告警与 Excel 统计</a><a href="/courses/otccxte100en/skills/otcc-multilanguage-calendar.html">多语言语音指南与双日历</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte100en/skills/otcc-supervisor-features.html">座席班长特性配置（监听强插/通用转发/多线/事务码）</a><a href="/courses/otccxte100en/skills/otcc-queue-experience.html">EWT 表与排队位置播报（518）</a><a href="/courses/otccxte100en/skills/otcc-direct-calls-emergency.html">CCD 直接呼叫与紧急关闭</a><a href="/courses/otccxte100en/skills/otcc-statistic-pilot.html">统计型 pilot 与 Call Tag</a><a href="/courses/otccxte100en/skills/otcc-lab-connectivity.html">实验环境与链路打通（POD/ITSP1/ABC-F）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte100en/index.html">otcc-standard-starter（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte100en/index.html">OTCCXTE100EN</a><span>/</span><span aria-current="page">实时监控告警与 Excel 统计</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>实时监控告警与 Excel 统计</h1></div><dl><div><dt>Skill ID</dt><dd>otcc-monitoring-statistics</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>实时监控告警与 Excel 统计（Navigator/CSTA/三级告警/报表）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"The snapshot, refreshed every 3 seconds by default, provides: Objects state … Traffic indicator … Alarms indication (threshold violation)"（p402）
+"Real time refresh frequency (1..50 sec) … MSP (5 mn …60 mn) for statistics on MSP"（p80）
+"Alarms: this list contains the high-level alarms. The number of events stored (100 maxi) … Alerts: the alerts only concern overflow of the thresholds … Indications: … a calendar transition, an indication is sent one minute before."（p425）
+"CSTA-Monitored must be set to « yes » in the OXE to display values for the trunk group"（p414）
+"The second object begin always after 132 rows. To be able to display one day with the granularity of ¼ hour, Excel need 96 rows."（p520）</p>
+</blockquote>
+<p>出处：OTCCXTE100EN p401-448, p477-526。</p>
+<h2>I — 自述</h2>
+<p>监控三层（f18/f19/p08/p09）：</p>
+<ul>
+<li>Navigator 快照默认 3 秒（可调 1-50 秒）：对象状态、话务指示、告警提示；对象可 shift+拖动，每 pilot 一个页签；Real Time Info 定制每类对象旁的计数器</li>
+<li>MSP 统计 5-60 分钟（实验 15 分钟档），座席 PG 视图饼图默认 30 秒刷新；Pilots S.L. 页看服务水平与 smiley</li>
+<li>三级事件各存 100 条：Alarms（高级别，红圈）、Alerts（阈值越限，黄圈）、Indications（对象增删改，日历切换前 1 分钟有预告，蓝圈）；阈值入口四处（Trunk group/Pilot/Queue/PG Agent）；呈现渠道四种（窗口/对象闪烁/声音/计数器底色）</li>
+</ul>
+<p>中继组实时：OXE 侧 Trunk Group 必须勾 CSTA-Monitored=YES，否则唯独中继组视图空白（n29）。</p>
+<p>Excel 统计（f17/p11/p12）：</p>
+<ul>
+<li>数据流：OXE 午夜生成 5 类临时文件（/usr4/afe，存 24 小时）合并为 hr（明细，默认存 5 周）、dy（日统计）、ev（状态流水）（各存 12 个月，/DHS3dyn/afe）</li>
+<li>报表参数：每类对象默认 1 个、最多 50 个（改后重启 CCS）；粒度 ¼h/½h/1h；多对象时第二对象从 132 行起（¼h 一天占 96 行）；输出 Print/Save/Excel Display</li>
+<li>预编译报表：Daily edition 定模板与输出时刻；产物落 C:\ProgramData\Alcatel\CCSupervisor\Excel{daily,weekly,monthly}（目录旧写法见 nr-06）</li>
+<li>口径开关：被关闭 pilot 来话计入 redirected 还是 inbound；拒绝呼叫计入 redirected 还是 handled；只有 Business 码进 Excel（n36）</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>监控实验</strong>（p430-448）：</p>
+<ol>
+<li>Navigator Tab5/Tab6 分别配 After-Sales(31600) 与 Offer(31601) 全对象视图并按号命名</li>
+<li>Real Time Info 定制：pilots=通话数、队列=排队数、PG=ACD 通话数/ACD 呼叫计数</li>
+<li>Advanced Options 给座席各状态配色，观察 logon/wrap-up/振铃/通话四态</li>
+<li>OXE 中继组 1-T2-SIP PUBLIC 勾 CSTA-Monitored；CCS 里把 busy rate 阈值从 80% 改 1 触发告警</li>
+<li>打一通 ACD 呼叫 → Busy/Total % 变色出 Alert → 阈值改回 80</li>
+<li>Real time&gt; Pilots S.L. 连打数通观察 MSP 15 分钟统计演化；Incidents/Alarms 窗核对三级事件</li>
+</ol>
+<p><strong>Excel 实验</strong>（p517-526）：</p>
+<ol>
+<li>Window&gt; Customise&gt; Statistics 把对象数放宽（统计 pilot/pilot/PG/座席各 5），重启 CCS</li>
+<li>Statistics&gt; Excel&gt; Pilot 选两 pilot 加模板，Excel Display 出 Daily ¼h 报表，核对 132 行偏移</li>
+<li>Abandoned Calls 出弃呼清单（CCA 10.7.8.0+ 支持超链接回呼）；Transaction Code 出码记录</li>
+<li>Precompiled statistics 配 Daily 日报（粒度 1 小时），Automatic edition restart 手动重跑</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：搭值班监控大屏；中继组实时没数据；告警太多想分级；月末出报表；报表里第二对象错位；座席匿名化；"报表没数据"查数据流。</p>
+<p>语言信号：Navigator / Real Time Info / CSTA-Monitored / busy rate / Alarms / Alerts / Indications / MSP / Pilots S.L. / smiley / Excel / 132 行 / Precompiled / 弃呼 / ShowStatisticWithData。</p>
+<p>与相邻能力区分：smiley 判定与 SLA 口径 → 对象调优能力；Business 码怎么配 → 座席班长特性能力；ccs.ini 手改参数归 CCS 安装卡。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：CCS 可用、监控对象清单与阈值策略已定、报表模板需求已定。</p>
+<ol>
+<li>配页签与计数器：每业务 pilot 一个页签，Real Time Info 按对象选计数器。完成标准：3 秒快照内状态变化可见</li>
+<li>开中继组实时：OXE Trunk Group 勾 CSTA-Monitored=YES。完成标准：Real time&gt; Trunk group 有值</li>
+<li>定阈值与告警口径：四处入口按对象设阈值，必要时临时调低验证告警链路后复原。完成标准：Alarms/Alerts/Indications 三窗各见一例</li>
+<li>放宽报表对象数并重启 CCS：Window&gt; Customise&gt; Statistics。完成标准：新对象数生效</li>
+<li>出报表并核版式：Pilot/弃呼/事务码报表各出一次，核对 132 行偏移与 96 行/天。完成标准：多对象不错位</li>
+<li>配预编译日报：选模板、粒度、输出时刻。完成标准：文件落 ProgramData\Alcatel\CCSupervisor\Excel 目录</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>唯独中继组实时空白 → 查 CSTA-Monitored 开关，别往 CCS 排障方向跑偏（n29）</li>
+<li>报表完全没数据 → 自底向上查数据流：先看 /usr4/afe 临时文件，再看 /DHS3dyn/afe 合并文件，最后 CCS 读取（f17）</li>
+<li>座席会话报表全是无数据行 → ccs.ini 手写 ShowStatisticWithData=1（CCS 10.5+，n10）</li>
+<li>改了对象数/Excel 参数没反应 → 必须重启 CCS（n21）</li>
+<li>找不到自动报表目录 → 两个历史路径都查（nr-06）</li>
+</ul>
+<p>输出契约：运行监控大屏（页签+计数器+告警链路验证记录）+ 报表产物（模板/粒度/目录/口径开关清单）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>快照 1-50 秒、MSP 5-60 分钟、告警各存 100 条为 R10.16/CCS 10.5 口径（p80/p425）</li>
+<li>Excel 宏（ACDMacro）与高级模板在 OTCC901，本书只到预编译日报（n41）</li>
+<li>弃呼回拨超链接依赖 CCA 10.7.8.0+ 座席桌面，CCA 本身在书外（p508/n41）</li>
+<li>实验阈值（1%/80%）为验证口径，生产按话务设定；话务建模书外（n30）</li>
+<li>座席匿名化与 Excel 表单保护密码（默认 alcatel）生产必须改（p502/n19）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte100en/skills/otcc-object-tuning.html">CCD 对象参数调优（pilot/PG/队列）</a></p><p class="source-page">能力 ID：cap.otcc.monitoring-statistics · 来源：OTCCXTE100EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Starter (Participant's Guide, Edition 09) | edition: Edition  | pages: 649 页 -->

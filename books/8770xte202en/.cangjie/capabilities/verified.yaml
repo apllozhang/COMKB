@@ -1,0 +1,671 @@
+schema_version: 1
+bundle_id: bundle.omnivista-directory
+book:
+  title: OmniVista 8770 — Directory Administration (Participant's Guide, Edition 40)
+  author: ALE Training Services
+  source_pack: 8770XTE202EN.pdf (565 pages)
+  baseline_tag: OmniVista 8770 R5.2 / OXE Purple R101.x / RLAB / Ed40
+entry:
+  name: omnivista-directory
+  description: 'OmniVista 8770 目录（Company Directory）交付与运营支持：OXE 节点注册同步、目录树与 PCX 自动创建、六类链接与改名语义、MSAD/Azure AD 身份管道、保密与访问级别、Click to Call、管理域委派、目录复制、LDIF 批量管道。适用于 8770 R5.2 目录套件的配置、选型、排障与方案落地问答；
+    其余套件、网络安全加固与生产凭据不在原书范围内（见 out_of_scope）。
+
+    '
+  core_principles:
+  - 双存储两棵树：配置目录（o=nmc）与公司目录（o=directoryroot）靠六类链接缝合；主链接是根（1:1、姓名+成本中心一致），姓名/名字只能从公司目录改，配置入口改会断链生成新人
+  - 目录供给三通道：PCX 事件自动创建（实时，受全局三开关+节点前提+UID 构造约束）、OXE 同步、LDIF 批量管道（导入只增改不删除，删除靠 PurgeLdap 机制）
+  - 保密与权限正交：条目保密四级 × 个人数据五种决定 Web 目录可见性（本人级别不放大他人可见性）；账户访问级别（两应用各五档）在 Security 应用按应用授予
+  - Click to Call 五环链：DDI 翻译器 → ISDN 号构造（前缀+实体安装号+话机号）→ 前缀规则 → 属性关联 → STAP 放行；OXE SIP 话机全线不支持
+  - 身份管道两通道：MSAD 一条映射+N 条规则（sn 不可删、电话只从 8770 写回、8770 新建/删除不回写 AD）；Azure AD 恒为主节点走 Graph API、不 provision OXE 用户
+  - 运营三件：管理域切割可见性与管理权（双许可、默认关闭、本地管理员建不了域）；目录复制 1 主最多 4 从、只冗余目录不冗余服务器、断联超 7 天数据丢失须 LDIF 人工恢复
+  - 实验环境口径：教材所有 IP/密码/号码为教学约定值（实验口径），生产必须替换；生产化依据建议以 8770 官方 Installation/Administration Guide 为准（整理侧建议，非原书引用）
+  out_of_scope:
+  - 性能/计费/报表/设备管理等其余套件（本书仅一页级介绍，需引用对应教材 8770XTE200/201 等）
+  - 端口级安全加固与 LDAPS 替代加密方案（目录复制不支持 LDAPS，加密替代在书外）
+  - OXE 侧完整命令手册与语音中继/媒体质量问题（本 bundle 仅覆盖注册所需子集）
+  - RLAB/SIP 模拟器环境搭建（教学专用基础设施，仅作 Boundary 背景）
+  - 培训评估与证书流程（p559-565，非技术内容）
+  stop_conditions:
+  - 需要生产凭据（adfexc/mtcl/AdminNmc 等）而客户未提供 → 停止使用教材实验值，转客户安全流程
+  - PCX 版本配对在 p9 兼容矩阵之外 → 指向官方最新兼容文档核实，不口头承诺
+  - 要求复制加密或 8770 整机高可用 → 声明"只冗余目录、LDAPS 不支持"边界，转架构评估
+  - 无 IE 环境部署 MSAD 插件 → 按 needs-review nr-06 标记风险，先实测再承诺
+  - LDIF 管道出现坏结构（p.conf 根名忘改） → 明确 dirmanag.exe 删 ABS 根的救援路径，禁止盲目重跑 go.bat
+router_entry:
+  name: omnivista-directory-router
+  description: 'OmniVista 8770 目录能力路由入口：按用户意图分发到 12 张能力卡——OXE 注册同步、自动创建、链接改名、MSAD/Azure 管道、Click to Call、保密级别、目录复制、管理域委派八个
+    promoted 能力，以及 MSAD 插件、LDIF 工具、客户端与词典定制、平台基础四张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.ovdir.oxe-sync-ldap
+  revision: 1
+  status: active
+  slug: ovdir-oxe-sync-ldap
+  title: OXE 节点注册与同步
+  importance: critical
+  importance_rationale: 对应 task-01，目录一切数据的入口；节点号规则与同步核验是全书公用前提（p88-98）
+  one_liner: 前置三查（siteid/netadmin/信任列表）→ Network/Subnetwork/OXE 三级声明 → Complete-Separate 同步 → 日志与时间戳核验
+  intents:
+  - 注册 OmniPCX Enterprise 节点
+  - OXE 同步失败排查
+  - 节点声明字段怎么填
+  - register OXE node to 8770
+  keywords:
+  - OXE
+  - siteid
+  - netadmin
+  - 节点号
+  - Subnetwork
+  - adfexc
+  - mtcl
+  - SSH
+  - 信任列表
+  - '101'
+  - Permanent IP connectivity
+  - Complete
+  - Separate
+  - NMCSyncLdapPbx
+  also_read:
+  - ovdir-auto-creation
+  card: cards/ovdir-oxe-sync-ldap.md
+  frontmatter:
+    description: '把 OmniPCX Enterprise 注册进 OmniVista 8770 并完成同步（前置检查、三级节点声明、凭据与 SSH、同步模式、日志核验）。当用户要"接 OXE/填节点号/同步没数据/查同步日志"时使用。
+      不适用于自动建人与树结构（自动创建能力）；节点号拼装存在书内勘误需现场验证。
+
+      '
+    tags:
+    - procedure
+    - oxe
+    - synchronization
+    - onboarding
+  source_evidence:
+  - source_id: src-8770xte202
+  - location: p88-98
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-01，目录数据地基
+- capability_id: cap.ovdir.auto-creation
+  revision: 1
+  status: active
+  slug: ovdir-auto-creation
+  title: 目录树搭建与 PCX 自动创建
+  importance: critical
+  importance_rationale: 对应 task-02/03/04/05，目录供给主通道；同名拒建与三开关静默失效是最高频现场问题（p99-122）
+  one_liner: 建树 + 全局三开关 + 节点 Location + 两前提；UID 撞名改 Extension 构造（按 PCX、只对自动创建生效）
+  intents:
+  - 搭建公司目录树
+  - 配置 PCX 自动创建
+  - 同名员工 UID 冲突
+  - automatic creation troubleshooting
+  keywords:
+  - 自动创建
+  - AutomaticCreation
+  - 目录树
+  - UID construction
+  - 同名
+  - homonym
+  - Extension
+  - Location
+  - Process directory
+  - Cut Paste
+  - Visio Room
+  - user alias
+  also_read:
+  - ovdir-oxe-sync-ldap
+  - ovdir-links-rename
+  card: cards/ovdir-auto-creation.md
+  frontmatter:
+    description: '搭建 LDAP 目录树并配置 PCX 事件自动创建人员（三层开关、默认路径、UID 构造防同名、自动继承、类型转换代价）。当用户要"建目录树/自动创建没生效/同名拒建/人员挪部门"时使用。
+      不适用于 OXE 节点注册（OXE 注册能力）；UID 构造只对自动创建生效且按 PCX 独立设置。
+
+      '
+    tags:
+    - procedure
+    - directory-tree
+    - automatic-creation
+    - uid
+  source_evidence:
+  - source_id: src-8770xte202
+  - location: p62-76, p99-122
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-02~05，日常供给主通道
+- capability_id: cap.ovdir.links-rename
+  revision: 1
+  status: active
+  slug: ovdir-links-rename
+  title: 六类链接与改名语义
+  importance: critical
+  importance_rationale: 对应 task-06/07/08/09，最核心领域模型与最易踩坑点；配置入口改名断链与 CC 拒绝告警是高频事故（p68-84, p123-155）
+  one_liner: 主链接是根（1:1、姓名+CC），副链继承 CC、传真链不动；改名首选 Users/WBM 入口，配置入口断链走"删新人+重挂"修复
+  intents:
+  - 管理人员与话机链接
+  - 成本中心修改被拒绝
+  - 改名后链接断裂修复
+  - 4760 多主链迁移
+  keywords:
+  - 主链接
+  - primary link
+  - 副链
+  - secondary link
+  - 传真链
+  - fax
+  - multi-device
+  - 多设备
+  - 成本中心
+  - cost center
+  - 改名
+  - rename
+  - 断链
+  - 修复
+  - Settings links
+  - '4760'
+  also_read:
+  - ovdir-auto-creation
+  - ovdir-ldif-tools
+  card: cards/ovdir-links-rename.md
+  frontmatter:
+    description: '六类人员-用户链接的基数与成本中心继承规则，四个改名入口的行为对比与断链修复流程。当用户要"建副链/传真链/多设备链/改 CC/改名/链接断了"时使用。
+      不适用于自动建人（自动创建能力）；Configuration Users 文件夹要关开刷新才能看到新 CC。
+
+      '
+    tags:
+    - procedure
+    - links
+    - rename
+    - cost-center
+  source_evidence:
+  - source_id: src-8770xte202
+  - location: p68-84, p123-155
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-06~09，核心语义+最易踩坑
+- capability_id: cap.ovdir.msad-azure-pipelines
+  revision: 1
+  status: active
+  slug: ovdir-msad-azure-pipelines
+  title: MSAD 与 Azure AD 同步管道
+  importance: critical
+  importance_rationale: 对应 task-17/18，企业客户最普遍诉求；映射硬规则与双向不对称是方案设计的成败点（p351-393）
+  one_liner: 一条映射+N 条规则（sn 不可删、电话只从 8770 写回）；Complete 增量规则、删除二态；Azure AD 走 Graph API 不 provision OXE 用户
+  intents:
+  - 对接 Active Directory 同步
+  - 属性映射与同步规则
+  - AD 删人后 8770 行为
+  - Azure AD Entra ID sync
+  keywords:
+  - MSAD
+  - Active Directory
+  - LDAPS
+  - '636'
+  - attribute mapping
+  - objectGUID
+  - synchronization rule
+  - Flat
+  - Tree
+  - Complete 同步
+  - Automatic deletion
+  - Azure AD
+  - Entra ID
+  - Graph API
+  also_read:
+  - ovdir-msad-plugin
+  - ovdir-ldif-tools
+  card: cards/ovdir-msad-azure-pipelines.md
+  frontmatter:
+    description: 'MSAD 服务器声明、属性映射硬规则、同步规则（Flat/Tree、Filter、调度）与删除二态；Azure AD（Entra ID）四步拉取框架与五点差异。当用户要"接 AD/建映射/同步规则/Azure AD"时使用。
+      不适用于 AD 右键手动开户（MSAD 插件能力）；"电话以 AD 为准"类方案与映射模型冲突需先对齐。
+
+      '
+    tags:
+    - procedure
+    - msad
+    - azure-ad
+    - synchronization
+  source_evidence:
+  - source_id: src-8770xte202
+  - location: p351-361, p368-393
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-17/18，企业身份管道主通道
+- capability_id: cap.ovdir.click-to-call
+  revision: 1
+  status: active
+  slug: ovdir-click-to-call
+  title: Click to Call 交付
+  importance: high
+  importance_rationale: 对应 task-13/14，目录的业务价值出口；SIP 话机排除与 ISDN 构造失败分支决定方案可行性（p254-284）
+  one_liner: 五环链交付：DDI 翻译器 → ISDN 构造 → 前缀规则 → 属性关联 → STAP 放行；SIP 话机全线出局
+  intents:
+  - 交付网页目录点击外呼
+  - ISDN 号没生成排查
+  - 配置拨号前缀规则
+  - STAP associated station setup
+  keywords:
+  - Click to Call
+  - STAP
+  - DDI
+  - 翻译器
+  - ISDN 号
+  - 前缀规则
+  - prefix rule
+  - 关联话机
+  - 粗体号码
+  - Misc
+  - Off hook
+  - Authorized
+  also_read:
+  - ovdir-oxe-sync-ldap
+  card: cards/ovdir-click-to-call.md
+  frontmatter:
+    description: '从 PCX 数据到网页拨号的端到端交付：DDI 翻译器与取回控制、ISDN 号构造公式与失败分支、前缀规则三类与层级、属性关联矩阵、STAP 三态与关联话机拨测。当用户要"点击外呼/号码没生成/加前缀/绑话机"时使用。
+      不适用于 OXE SIP 话机（硬性不支持）；媒体质量问题在书外。
+
+      '
+    tags:
+    - procedure
+    - click-to-call
+    - isdn
+    - stap
+  source_evidence:
+  - source_id: src-8770xte202
+  - location: p254-284
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-13/14，业务价值出口
+- capability_id: cap.ovdir.confidentiality
+  revision: 1
+  status: active
+  slug: ovdir-confidentiality
+  title: 目录保密级别与访问级别
+  importance: high
+  importance_rationale: 对应 task-11/12，HR/领导层号码保护刚需；两套正交机制分不清是排障第一误区（p209-251）
+  one_liner: 条目保密四级 × 个人数据五种定 Web 目录可见性；账户两应用各五档在 Security 授予；本人级别不放大他人可见性
+  intents:
+  - 配置目录保密级别
+  - 授予目录访问级别
+  - 匿名与认证可见性
+  - web directory authentication
+  keywords:
+  - 保密
+  - confidentiality
+  - Green
+  - Orange
+  - Red
+  - Administration 8770
+  - personal data
+  - 个人数据
+  - 匿名
+  - anonymous
+  - 访问级别
+  - access level
+  - Security
+  - 地址簿
+  also_read:
+  - ovdir-domains-delegation
+  card: cards/ovdir-confidentiality.md
+  frontmatter:
+    description: '条目保密四级（Green/Orange/Red/Administration 8770）与个人数据五种的可见性行为矩阵，管理端两应用各五档访问级别的授予与七类会话验证。当用户要"隐藏号码/开账号/匿名能看到什么"时使用。
+      不适用于按部门切管理员可见范围（管理域能力）；保密级别不加密数据。
+
+      '
+    tags:
+    - procedure
+    - confidentiality
+    - access-level
+    - security
+  source_evidence:
+  - source_id: src-8770xte202
+  - location: p209-215, p217-251
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-11/12，安全合规刚需
+- capability_id: cap.ovdir.replication
+  revision: 1
+  status: active
+  slug: ovdir-replication
+  title: 目录复制主从部署
+  importance: high
+  importance_rationale: 对应 task-22，数据可用性保障；数字口径密集（65535/4 从/5 副本/7 天）且"不等于整机高可用"是最大误读（p501-535）
+  one_liner: Slave 建 Consumer → Master 建副本+协议 → Initialize+调度；Master-only 写入、断联超 7 天须 LDIF 人工恢复
+  intents:
+  - 部署目录复制主从
+  - 复制不一致恢复
+  - 副本移除与属性集变更
+  - directory replication setup
+  keywords:
+  - 复制
+  - replication
+  - Master replica
+  - Consumer
+  - referral
+  - Replication agreement
+  - Attribute set
+  - Initialize
+  - '65535'
+  - '7 天'
+  - 调度
+  - Schedule
+  - 断联
+  also_read:
+  - ovdir-ldif-tools
+  - ovdir-oxe-sync-ldap
+  card: cards/ovdir-replication.md
+  frontmatter:
+    description: '公司目录复制主从部署与运维：前提 checklist、副本与协议配置、Initialize 与调度语义、移除顺序、7 天断联阈值与不一致恢复流程。当用户要"目录冗余/从机没更新/属性集要改/拆除复制"时使用。
+      只冗余目录数据不冗余 8770 服务器；复制不支持 LDAPS、地址簿不可复制。
+
+      '
+    tags:
+    - procedure
+    - replication
+    - redundancy
+    - ldap
+  source_evidence:
+  - source_id: src-8770xte202
+  - location: p501-535
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-22，数字口径密集
+- capability_id: cap.ovdir.domains-delegation
+  revision: 1
+  status: active
+  slug: ovdir-domains-delegation
+  title: 管理域与委派
+  importance: high
+  importance_rationale: 对应 task-20/21，多站点/多租户刚需；双许可与"本地管理员建不了域"是方案前提（p429-500）
+  one_liner: 域=DN 级别集合×管理员组（双许可、默认关）；三预定义组定权限档；Delegation 下放建户权，定制视图简化开户
+  intents:
+  - 搭建多站点分域管理
+  - 本地管理员权限分组
+  - 配置委派与定制视图
+  - management domain delegation
+  keywords:
+  - 管理域
+  - domain
+  - Domain Management
+  - 本地管理员
+  - local administrator
+  - Delegation
+  - 委派
+  - strict view
+  - 定制视图
+  - customized view
+  - 预定义组
+  - 可见性
+  also_read:
+  - ovdir-confidentiality
+  card: cards/ovdir-domains-delegation.md
+  frontmatter:
+    description: '管理域模型与搭建五步（许可核查、功能激活、管理员归组、建域、密码策略），三预定义组权限档、Delegation 委派、strict view 检索语义与定制视图简化开户。当用户要"分域管理/本地管理员/下放开户"时使用。
+      不适用于条目级保密（保密能力）；本地管理员永远建不了域。
+
+      '
+    tags:
+    - procedure
+    - domains
+    - delegation
+    - multi-tenant
+  source_evidence:
+  - source_id: src-8770xte202
+  - location: p429-500
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-20/21，规模化运营
+- capability_id: cap.ovdir.msad-plugin
+  revision: 1
+  status: active
+  slug: ovdir-msad-plugin
+  title: MSAD 插件开户（AD 右键一键开通）
+  importance: medium
+  importance_rationale: 对应 task-19，帮助台友好的开户通道但 IE 强依赖构成交付风险（nr-06），独立触发频率受现代浏览器环境限制
+  one_liner: properties 生成+AD 装插件+Meta profile 一键开户；前置三件（改密重启/号段同步/Meta profile）缺一即失败
+  intents:
+  - 部署 MSAD 插件
+  - AD 右键开户 OXE 用户
+  - Meta profile 前置配置
+  - MSAD plug-in provisioning
+  keywords:
+  - MSAD 插件
+  - MSAD plug-in
+  - Unified User Management
+  - Meta profile
+  - ADPlugin
+  - 空闲号段
+  - MSAD8770Admin
+  - 信任站点
+  - 8770MSADPlugin.properties
+  - NMC Java Service
+  also_read:
+  - ovdir-msad-azure-pipelines
+  card: cards/ovdir-msad-plugin.md
+  frontmatter:
+    description: 'MSAD 插件（Alcatel-Lucent Unified User Management）部署与 AD 右键一键开通 8770/OXE 用户：前置三件、properties 生成与传递、IE 三前提、Meta profile 取号与更新边界。当用户要"AD 里直接开户/插件装不上/界面缺字段"时经路由使用。
+      更新仅成本中心与称谓可改；无 IE 环境需先实测（版本风险）。
+
+      '
+    tags:
+    - procedure
+    - msad-plugin
+    - provisioning
+    - meta-profile
+  source_evidence:
+  - source_id: src-8770xte202
+  - location: p363-366, p394-426
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: IE 依赖风险+依赖 MSAD 管道前置，路由可达即可
+- capability_id: cap.ovdir.ldif-tools
+  revision: 1
+  status: active
+  slug: ovdir-ldif-tools
+  title: LDIF 导入导出与管理工具管道
+  importance: medium
+  importance_rationale: 对应 task-10/23，一切批量操作的基础但触发集中在项目型场景；p.conf 根名是全书最高危点（n40）
+  one_liner: GUI 三范围备份恢复 + CLI 六件套管道（CSV 转换/导入/建链/删除跟随）；导入永不删除，p.conf 根名第一步改
+  intents:
+  - 目录数据备份与恢复
+  - 批量导入外部目录数据
+  - 外部删除跟随清理
+  - LDIF batch pipeline
+  keywords:
+  - LDIF
+  - 导入
+  - 导出
+  - Branch
+  - Csv2Ldif
+  - ConvertLdif
+  - ImportLdap
+  - PurgeLdap
+  - LinkDn
+  - go.bat
+  - purge.bat
+  - misc10
+  - p.conf
+  - dirmanag
+  also_read:
+  - ovdir-replication
+  card: cards/ovdir-ldif-tools.md
+  frontmatter:
+    description: 'LDIF 图形界面导入导出（三范围×两目的地、调度导出）与命令行六件套管道（ConvertLdif/ExportLdap/ImportLdap/Ldif2Csv/Csv2Ldif/PurgeLdap/LinkDn），含 misc10 删除跟随机制与 p.conf 高危点。当用户要"备份恢复/批量导入/跟删/建关系链"时经路由使用。
+      导入只增改不删除；坏结构须 dirmanag.exe 删根救援。
+
+      '
+    tags:
+    - procedure
+    - ldif
+    - batch
+    - backup
+  source_evidence:
+  - source_id: src-8770xte202
+  - location: p85-86, p156-169, p536-558
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 项目型批量场景，路由可达即可
+- capability_id: cap.ovdir.client-dictionary
+  revision: 1
+  status: active
+  slug: ovdir-client-dictionary
+  title: 目录词典与 Web 客户端定制
+  importance: medium
+  importance_rationale: 对应 task-15/16，交付观感与本地化适配；低频但改动不可逆性强（备份先行），路由可达即可
+  one_liner: 词典改属性显示名（版本号自增+客户端自动下载）+ 客户端三层定制（默认参数/用户参数/主题）；备份先行否则没有回退点
+  intents:
+  - 目录属性显示名定制
+  - Web 目录客户端界面定制
+  - 定制回退与恢复
+  - dictionary customization
+  keywords:
+  - 词典
+  - dictionary
+  - CustomDict
+  - dict_user.zip
+  - Context information
+  - 客户端定制
+  - GlobalParameters
+  - Grid
+  - Detail
+  - theme
+  - 主题
+  - cookie
+  - 回退
+  also_read:
+  - ovdir-confidentiality
+  card: cards/ovdir-client-dictionary.md
+  frontmatter:
+    description: '目录词典定制（LdapAttributes 改名、版本号机制、同名属性上下文选行）与 Web 目录客户端三层定制（GlobalParameters/搜索/网格/详情/编辑、用户参数、主题）及备份回退双通道。当用户要"改字段名/改界面/主题/回退"时经路由使用。
+      服务器本机客户端开着时词典保存失败；主题 Edit 仅目录管理员。
+
+      '
+    tags:
+    - procedure
+    - customization
+    - dictionary
+    - web-client
+  source_evidence:
+  - source_id: src-8770xte202
+  - location: p287-348
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 观感与本地化域，路由可达即可
+- capability_id: cap.ovdir.platform-basics
+  revision: 1
+  status: active
+  slug: ovdir-platform-basics
+  title: 8770 平台基础（套件/拓扑/兼容/虚拟化）
+  importance: medium
+  importance_rationale: 背景知识域（总览章 p4-40），支撑版本核对与方案沟通；无独立交付动作，作为其余能力卡的公共底座经路由服务
+  one_liner: 四套件 15 应用+WBM 四应用分工；MariaDB+LDAP 双存储；p9 版本兼容矩阵与虚拟化平台清单
+  intents:
+  - 8770 套件与应用全景
+  - 版本兼容核对
+  - 虚拟化部署形态
+  - 8770 architecture overview
+  keywords:
+  - '8770'
+  - 套件
+  - suite
+  - WBM
+  - 厚客户端
+  - 拓扑
+  - 兼容
+  - compatibility
+  - R5.2
+  - Purple
+  - ESXi
+  - Hyper-V
+  - RLAB
+  - Capacity Planning
+  also_read:
+  - ovdir-oxe-sync-ldap
+  card: cards/ovdir-platform-basics.md
+  frontmatter:
+    description: 'OmniVista 8770 平台背景：四套件与 WBM 应用全景、网络拓扑四角色、双存储架构、p9 跨版本兼容矩阵、虚拟化平台支持与 RLAB 实验平台边界。当用户要"8770 是什么/版本能不能配/虚拟化支持/实验环境"时经路由使用。
+      本书只精讲 Directory 套件，计费/话务/报表等指向对应教材。
+
+      '
+    tags:
+    - reference
+    - platform
+    - compatibility
+    - overview
+  source_evidence:
+  - source_id: src-8770xte202
+  - location: p4-40
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 背景底座，路由可达即可

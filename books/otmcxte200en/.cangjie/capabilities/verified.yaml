@@ -1,0 +1,685 @@
+schema_version: 1
+bundle_id: bundle.ot-message-center
+book:
+  title: OpenTouch Message Center Starter (Participant's Guide, Issue 08)
+  author: ALE Training Services
+  source_pack: OTMCXTE200EN.pdf (259 pages)
+  baseline_tag: OpenTouch Message Center R2.6 / OTMC 2.6.1 / OmniVista 8770 / OXE
+entry:
+  name: ot-message-center
+  description: 'OpenTouch Message Center（OTMC，OXE 专用语音邮件服务器）Starter 级交付与运维支持：装机与 13 步站点配置、FlexLM 许可、8770 双向声明与同步、OXE 侧
+    SIP 对接、Connection 用户与语音邮箱交付、profile 批控与问候语、SMTP/SMS 通知、备份恢复与语音信箱统计，以及自助门户、IMAP 访问、企业广播三块增值能力。适用于
+    OTMC 的安装、纳管、对接、开箱到业务与日常运维问答；HA、UM 落地、硬件规格与容量规划不在原书范围内（见 out_of_scope）。
+
+    '
+  core_principles:
+  - OTMC 是 OXE 专属外挂信箱：单服务器独立部署，消息存本地（LS）或统一消息（UM），访问通道三条——任意话机 TUI、8xx8/8088 话机 GUI、IMAP 邮件客户端
+  - 配置管理唯一大脑是 OmniVista 8770：OXE/OTMC 双向声明并同步后一切经 8770；OTMC 自身 WBM 只做辅助（改密、问候语、IMAP 前端参数）
+  - 上线顺序刚性：OS → core → 13 步向导 → 8770 双向声明同步 → OXE SIP 对接（单 trunk、端口 5040）→ 用户与信箱；信箱创建必须挂 profile
+  - 外部设施依赖明确：许可走 flex-lm（.ice + ALUID/dongle，向导 OK 不校验有效性）；通知走外部 SMTP（无认证无 TLS、经 VPIM 路由）；DNS 必须前向+反向解析七类 FQDN
+  - 实验口径纪律：教材密码/账号/网段仅限实验；15000/5000 为标注口径，生产规格以 feature list / product limits 为准
+  out_of_scope:
+  - HA 高可用配置（原书仅留指针，属后续课程；启用前置为副服务器 + 两台同时跑向导）
+  - 硬件/软件规格与产品上限、容量规划工具用法（feature list / product limits / OpenTouch Capacity Planning Tool）
+  - UM（Exchange/Lotus Domino/Gmail）落地与三方 VM 互通（VPIM）配置细节（原书仅支持性声明）
+  - AA 自动话务员配置、OXE 侧 DHCP 管理、Teams/SIP 话机生态对接
+  stop_conditions:
+  - 需要生产网络规格或产品上限数值 → 指向 feature list / product limits 与 MyPortal 安装手册（otmc2.6.1），不以实验口径搪塞
+  - 空间冗余 SIP 网关或 8770 上 NFS 部署 → 指向 TC1652 / TC2024，不在本书找步骤
+  - 书内口径漂移类提问（OTMC 节点号 98/99、defaultVmLS 拼写、GA wav 路径、151/155 网段）→ 按 needs-review 双口径如实说明
+  - 问 AA 配置或 HA 部署 → 明确超出 Starter 范围，转对应课程/文档
+router_entry:
+  name: ot-message-center-router
+  description: 'OpenTouch Message Center 能力路由入口：按用户意图分发到 12 张能力卡——装机站点配置、许可管理、声明同步、SIP 对接、用户与信箱交付、profile 与
+    问候语、SMTP/SMS 通知、备份与统计八个 promoted 能力，以及产品定位、自助门户、IMAP 访问、企业广播四张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.otmsg.install-site-setup
+  revision: 1
+  status: active
+  slug: otmsg-install-site-setup
+  title: OTMC 服务器安装与站点配置
+  importance: critical
+  importance_rationale: 对应 task-04/task-05，交付链条第一段；站点配置唯一入口，DNS 清单与五账户规则在这里定，配错后段全卡
+  one_liner: 三种 SUSE 安装模式 + CheckSystemLinux.sh/setup.bin + 首启 13 步向导；DNS 前向反向七类 FQDN、密码 ≥8 不弹错、虚拟环境备份必须外置 NFS
+  intents:
+  - 安装 OTMC 服务器
+  - post-installation wizard 配置
+  - 站点 DNS 与账户规则
+  - OTMC 虚机创建
+  - install OTMC server
+  - OTMC site installation wizard
+  keywords:
+  - 安装
+  - SUSE
+  - CheckSystemLinux.sh
+  - setup.bin
+  - post-installation wizard
+  - 向导
+  - bics.conf
+  - DNS
+  - 主机名小写
+  - Network security OFF
+  - 备份存储
+  - NFS
+  also_read:
+  - otmsg-license-management
+  card: cards/otmsg-install-site-setup.md
+  frontmatter:
+    description: '安装 OTMC 服务器并完成站点配置（物料与介质两法、OTMC-V 虚机创建与 BIOS/ESXi 调优、SUSE 三种安装模式、core 安装、首启 13 步向导）。当用户要"装
+      OTMC/跑向导/配站点 DNS 与账户/选安装模式"时使用。不适用于许可文件部署（许可管理能力）与 8770 声明（声明同步能力）；虚机规格为实验口径，生产以 MyPortal
+      安装手册为准。
+
+      '
+    tags:
+    - procedure
+    - installation
+    - otmc
+    - suse
+  source_evidence:
+  - source_id: src-otmcxte200
+  - location: p46-82
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-04/05，交付链条第一段
+- capability_id: cap.otmsg.license-management
+  revision: 1
+  status: active
+  slug: otmsg-license-management
+  title: FlexLM 许可证体系部署与更换
+  importance: critical
+  importance_rationale: 对应 task-03/task-06，无许可 OTMC 不工作；"向导 OK 只代表文件存在"是迷惑性最高的现场坑，Skip 后不补装系统不正常
+  one_liner: .ice 装 $LICENSES_HOME + flexlmd 重启 + lmstat 核验；物理机绑 ALUID、虚拟机绑 dongle（挂到承载 FlexLM 的虚机）
+  intents:
+  - 安装或更换 OTMC 许可
+  - FlexLM 服务器部署
+  - 许可核验
+  - dongle 绑定
+  - install OTMC license file
+  - verify flexlm license
+  keywords:
+  - 许可
+  - license
+  - .ice
+  - FlexLM
+  - flexlmd
+  - lmstat
+  - getaluid
+  - ALUID
+  - dongle
+  - LICENSES_HOME
+  - Skip
+  - 扩容
+  also_read:
+  - otmsg-install-site-setup
+  card: cards/otmsg-license-management.md
+  frontmatter:
+    description: '部署与更换 OTMC 许可（.ice 文件、FlexLM 内嵌/外部拓扑、ALUID 与 dongle 绑定、SFTP 手工装、flexlmd 重启、lmutil lmstat 核验）。当用户要"装许可/换
+      许可/许可不生效/虚拟环境 dongle 挂哪"时使用。不适用于向导全流程（装机站点配置能力）与 OXE 侧话机用户许可（用户信箱交付能力）；许可申领流程在书外。
+
+      '
+    tags:
+    - procedure
+    - licensing
+    - flexlm
+    - otmc
+  source_evidence:
+  - source_id: src-otmcxte200
+  - location: p16, p33-45, p76-77, p82
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-03/06，无许可不工作的防线
+- capability_id: cap.otmsg.declaration-sync
+  revision: 1
+  status: active
+  slug: otmsg-declaration-sync
+  title: OXE/OTMC 双向声明进 8770 与同步
+  importance: critical
+  importance_rationale: 对应 task-07/task-08，BOOK_OVERVIEW 优先级第 1；对错一处全链路不通，bics.conf 对账是高频坑
+  one_liner: OXE 准备（netadmin/4400 Synchro）后 8770 三层树声明双节点；OXE 节点号=ABC×100+节点号、OTMC 自由号不撞车；同步按 complete/partial × separate/global 矩阵选
+  intents:
+  - 声明 OXE 进 OmniVista 8770
+  - 声明 OTMC 节点
+  - OTMC 拓扑声明 OXE
+  - 执行配置同步
+  - declare OTMC in 8770
+  - OTMC synchronization
+  keywords:
+  - 声明
+  - declaration
+  - "8770"
+  - Nmc
+  - 节点号
+  - node number
+  - bics.conf
+  - otAdmin
+  - otProfile
+  - otuser
+  - 同步
+  - synchronization
+  - 4400 Synchro
+  - APPLY MODIFICATION
+  - Global
+  also_read:
+  - otmsg-install-site-setup
+  card: cards/otmsg-declaration-sync.md
+  frontmatter:
+    description: '把 OXE 与 OTMC 双向声明进 OmniVista 8770 并执行同步（OXE 侧 netadmin 准备、8770 三层树、bics.conf 对账、OTMC 拓扑对称声明、同步矩阵选型、密码重置两路）。当
+      用户要"纳管/声明节点/同步/节点号怎么填/OTMC 密码丢了"时使用。不适用于 SIP 话路参数（SIP 对接能力）；OXE 基础命令属 OXE 课程。
+
+      '
+    tags:
+    - procedure
+    - declaration
+    - omnivista-8770
+    - synchronization
+    - otmc
+  source_evidence:
+  - source_id: src-otmcxte200
+  - location: p83-101
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-07/08，纳管闭环核心
+- capability_id: cap.otmsg.sip-trunk-provisioning
+  revision: 1
+  status: active
+  slug: otmsg-sip-trunk-provisioning
+  title: OXE 侧 SIP 对接 OTMC
+  importance: critical
+  importance_rationale: 对应 task-09，BOOK_OVERVIEW 优先级第 3；端口 5040/trunk 参数配错即无信箱业务，四段参数是施工与排障地图
+  one_liner: 四段参数——trunk group（T2/ABC-F/SIP）、external gateway（5040/TCP/ICE type）、trusted 含 OTMC IP、全局 G.729+DPNSS 前缀+Routing Optimisation
+  intents:
+  - 配置 OXE 与 OTMC 的 SIP 对接
+  - 建 SIP trunk group
+  - 声明 SIP external gateway
+  - 信箱呼叫通道排障
+  - configure SIP trunk to OTMC
+  keywords:
+  - SIP
+  - trunk group
+  - T2
+  - ABC-F
+  - external gateway
+  - "5040"
+  - trusted IP
+  - G.729
+  - DPNSS
+  - Routing Optimisation
+  - ICE type
+  - "5060"
+  - "2570"
+  also_read:
+  - otmsg-declaration-sync
+  card: cards/otmsg-sip-trunk-provisioning.md
+  frontmatter:
+    description: '配置 OXE 侧与 OTMC 的话路对接（SIP trunk group、OTMC 声明为 SIP external gateway、Proxy/Gateway/Registrar/Trusted、编解码与 DPNSS 前缀优化）。当
+      用户要"配 SIP 对接/信箱打不通查通道/端口 5040/trusted 地址"时使用。不适用于声明与拓扑（声明同步能力）；空间冗余场景按 TC1652（书外）。
+
+      '
+    tags:
+    - procedure
+    - sip
+    - oxe
+    - trunk
+    - otmc
+  source_evidence:
+  - source_id: src-otmcxte200
+  - location: p102-108
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-09，信箱业务呼叫通道
+- capability_id: cap.otmsg.user-mailbox-provisioning
+  revision: 1
+  status: active
+  slug: otmsg-user-mailbox-provisioning
+  title: Connection 用户与语音邮箱交付
+  importance: critical
+  importance_rationale: 对应 task-10/task-11，业务交付主体；分机号挂钩、强制 profile、Voice mail 权三大易错点都在这条链上
+  one_liner: OXE 侧建户与话机寻址（resurrection/空闲地址/IP 静态）+ 许可三族核查；OTMC 侧三级对象 VMS → mailbox（必挂 profile）→ user（分机号对齐 + Voice mail 权）
+  intents:
+  - 创建 Connection 用户并开通话机
+  - 话机许可核查
+  - 创建 OTMC 账户与语音邮箱
+  - 信箱业务验证
+  - create voice mailbox
+  - provision OTMC user
+  keywords:
+  - Connection 用户
+  - resurrection
+  - 空闲地址
+  - IP 话机
+  - secret code
+  - spadmin
+  - OTMC 账户
+  - 信箱
+  - mailbox
+  - defaultVmsLS
+  - Voice mail 权
+  - Mailboxes 页签
+  - 许可 174
+  - 许可 317
+  also_read:
+  - otmsg-declaration-sync
+  - otmsg-mailbox-profiles
+  card: cards/otmsg-user-mailbox-provisioning.md
+  frontmatter:
+    description: '交付可用的语音信箱用户（OXE 侧两法建户、resurrection/空闲地址/IP 话机寻址、许可三族六类核查；OTMC 侧账户/VMS/信箱三级对象、分机号对齐、Voice
+      mail 权、TUI 验证）。当用户要"开语音信箱/建用户/话机认领/许可核查/有信箱不能留言"时使用。不适用于 profile 批控参数（profile 能力）；话机 secret code 改法属
+      OXE 课程。
+
+      '
+    tags:
+    - procedure
+    - users
+    - mailbox
+    - licensing
+    - otmc
+    - oxe
+  source_evidence:
+  - source_id: src-otmcxte200
+  - location: p109-145
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-10/11，业务交付主体
+- capability_id: cap.otmsg.mailbox-profiles
+  revision: 1
+  status: active
+  slug: otmsg-mailbox-profiles
+  title: 语音邮箱 profile 定制与问候语管理
+  importance: high
+  importance_rationale: 对应 task-12，批控容量/期限/行为的唯一手段；问候语集中管理是交付后最高频的策略变更
+  one_liner: 默认四 profile（Advanced/Classic/Simplified=LS、Standard=UM）三页签批控行为/时长/容量；问候语四类经 Greeting Managers 集中管理
+  intents:
+  - 定制语音邮箱 profile
+  - 信箱容量与保留期批控
+  - 管理用户问候语
+  - zero-out 与 Answer only 配置
+  - create voice mail profile
+  - greetings management
+  keywords:
+  - profile
+  - 批控
+  - Answer only
+  - zero-out
+  - Check quota
+  - 配额
+  - 保留天数
+  - aging
+  - TUI 密码策略
+  - 问候语
+  - greeting
+  - Greeting Managers
+  - alternative
+  also_read:
+  - otmsg-user-mailbox-provisioning
+  card: cards/otmsg-mailbox-profiles.md
+  frontmatter:
+    description: '定制与分配语音邮箱 profile（默认四模板、Configuration 1/2/3 行为时长容量参数、Check quota 与 zero-out、TUI 密码策略档位），以及问候语管理
+      （四类问候、Greeting Managers 网页上传激活、替代问候授权）。当用户要"建 profile/批控信箱容量/换问候语/按 0 转话务台"时使用。不适用于建信箱本体（用户信
+      箱交付能力）；TUI 密码默认值在 feature list（书外）。
+
+      '
+    tags:
+    - procedure
+    - profile
+    - greetings
+    - otmc
+  source_evidence:
+  - source_id: src-otmcxte200
+  - location: p121-132, p142-152
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-12，策略批控主体
+- capability_id: cap.otmsg.notification-smtp-sms
+  revision: 1
+  status: active
+  slug: otmsg-notification-smtp-sms
+  title: SMTP/SMS 通知部署与排障
+  importance: high
+  importance_rationale: 对应 task-14，客户感知最强的增值功能；SMTP 无认证无 TLS、失败静默、LS/UM 差异三大认知点决定交付成败
+  one_liner: 留言落箱经 Scorpio 发外部 SMTP（无认证无 TLS、VPIM 路由）或 SMTP-SMS 网关（仅一个）；附件/满箱提醒等五项 LS 专属；退信与 SNMP trap 是仅有的失败信号
+  intents:
+  - 配置 SMTP 邮件通知
+  - 配置 SMS 短信通知
+  - 通知排障
+  - 定制通知模板
+  - configure voicemail notification
+  - SMTP notification troubleshooting
+  keywords:
+  - SMTP
+  - 通知
+  - notification
+  - SMS
+  - 短信网关
+  - VPIM
+  - Scorpio
+  - chameleon
+  - 模板
+  - NotifTemplate
+  - MWI
+  - 满箱
+  - wav 附件
+  - 80%
+  also_read:
+  - otmsg-user-mailbox-provisioning
+  card: cards/otmsg-notification-smtp-sms.md
+  frontmatter:
+    description: '部署与排障 SMTP/SMS 通知（全局参数与阈值、VPIM 路由声明外部 SMTP、通知模板按语言定制与升级行为、用户级设置、LS/UM 可用性矩阵、MWI 机制、
+      chameleon/scorpio 排障）。当用户要"开留言通知/没收到通知/改通知文案/短信提醒"时使用。不适用于 IMAP 客户端直读（IMAP 访问能力）；SMTP 服务器与 SMS
+      网关由客户提供。
+
+      '
+    tags:
+    - procedure
+    - notification
+    - smtp
+    - sms
+    - troubleshooting
+  source_evidence:
+  - source_id: src-otmcxte200
+  - location: p167-192
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-14，感知最强增值功能
+- capability_id: cap.otmsg.backup-statistics
+  revision: 1
+  status: active
+  slug: otmsg-backup-statistics
+  title: OpenTouch 备份恢复与语音信箱统计
+  importance: high
+  importance_rationale: 对应 task-17/task-18，运维底线动作；恢复后手工起服务与统计目录/mascd 两类哑坑决定运维成败
+  one_liner: 8770 发起两段式备份（SSH/SFTP），恢复后必须手工 service opentouchd start；统计走 statistics.properties + 手工建目录 + mascd 重启，输出 XML/HTML/CSV
+  intents:
+  - 执行 OpenTouch 备份
+  - 执行恢复演练
+  - 启用语音信箱统计
+  - 统计文件排障
+  - backup restore OTMC
+  - voicemail statistics
+  keywords:
+  - 备份
+  - backup
+  - 恢复
+  - restore
+  - opentouchd
+  - iced
+  - SFTP
+  - Record Life
+  - Force
+  - 统计
+  - statistics.properties
+  - mascd
+  - XML
+  - CSV
+  - NFS
+  also_read:
+  - otmsg-declaration-sync
+  card: cards/otmsg-backup-statistics.md
+  frontmatter:
+    description: '备份恢复与语音信箱统计（8770 备份目录/阈值/Record Life、执行备份与恢复、跨版本 Force、恢复后手工起服务；statistics.properties 参数默认值、
+      输出目录与权限、mascd 重启、XML/HTML/CSV 产出）。当用户要"做备份/恢复演练/统计报表/统计文件不生成"时使用。不适用于 NFS server 部署（按 TC2024，书
+      外）与 HA 场景；删除测试用户必须走 OT Configuration 窗口。
+
+      '
+    tags:
+    - procedure
+    - backup
+    - restore
+    - statistics
+    - maintenance
+  source_evidence:
+  - source_id: src-otmcxte200
+  - location: p228-258
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-17/18，运维收尾
+- capability_id: cap.otmsg.product-positioning
+  revision: 1
+  status: active
+  slug: otmsg-product-positioning
+  title: OTMC 产品定位与部署形态
+  importance: medium
+  importance_rationale: 对应 task-01，概念决策域偏售前与方案评审；无实验且结论集中在数页讲义，独立入口价值低但它是所有能力的前置引用
+  one_liner: 单服务器独立信箱三通道（TUI/GUI/IMAP）；物理（ALUID）与 OTMC-V（dongle、vMotion/DRS 白名单）；15000/5000 规模口径；Supra 不支持集中式 VM
+  intents:
+  - OTMC 产品定位咨询
+  - 部署形态选型
+  - 组网边界评估
+  - 规模口径解释
+  - OTMC deployment options
+  keywords:
+  - OTMC
+  - OTMC-V
+  - 部署形态
+  - 集中式语音邮件
+  - VPIM
+  - ABC Supra
+  - PRS
+  - "15000"
+  - "5000"
+  - Capacity Planning
+  - "46xx"
+  - "8440"
+  also_read:
+  - otmsg-install-site-setup
+  card: cards/otmsg-product-positioning.md
+  frontmatter:
+    description: 'OTMC 定位、商业包与部署形态、组网边界与规模口径（访问三通道、单 SIP trunk + PRS + VPIM、物理与 OTMC-V 分支、VMware 支持白名单、
+      15000/5000 口径、Supra 限制）。当用户问"OTMC 是什么/物理还是虚机/能不能集中信箱/上限多少"时经路由使用。规格与容量工具用法在书外（feature list /
+      product limits / Capacity Planning Tool）。
+
+      '
+    tags:
+    - reference
+    - positioning
+    - presales
+    - otmc
+  source_evidence:
+  - source_id: src-otmcxte200
+  - location: p3-32
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 概念决策域，路由可达即可
+- capability_id: cap.otmsg.web-portal
+  revision: 1
+  status: active
+  slug: otmsg-web-portal
+  title: 用户自助门户 My Profile 与 MyMessaging
+  importance: medium
+  importance_rationale: 对应 task-13，交付后用户培训域；原书为界面导览无实验，操作粒度浅，经路由可达即可
+  one_liner: My Profile（FQDN 根路径）管语言/问候/密码/通知，MyMessaging（FQDN/MyMessaging）网页听留言；可见项受管理员授权
+  intents:
+  - 指导用户使用自助门户
+  - 网页收听语音留言
+  - 用户自助改设置
+  - My Profile portal
+  - MyMessaging playback
+  keywords:
+  - My Profile
+  - MyMessaging
+  - 自助门户
+  - 网页听留言
+  - personal assistant
+  - 改问候语
+  - 改密码
+  - 通知设置
+  - GUI 账号
+  also_read:
+  - otmsg-user-mailbox-provisioning
+  card: cards/otmsg-web-portal.md
+  frontmatter:
+    description: 'OTMC 两个用户自助 Web 应用的入口与功能区（My Profile 的语言/问候/密码/通知自助，MyMessaging 的网页留言管理），以及可见性授权规则。当用户
+      问"网页上怎么听留言/自己改设置/为什么看不到某项"时经路由使用。门户不承载管理员配置；管理员动作走 profile 与 Greeting Managers 能力。
+
+      '
+    tags:
+    - reference
+    - web-clients
+    - self-service
+    - otmc
+  source_evidence:
+  - source_id: src-otmcxte200
+  - location: p153-166
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 界面导览域，路由可达即可
+- capability_id: cap.otmsg.imap-access
+  revision: 1
+  status: active
+  slug: otmsg-imap-access
+  title: IMAP 客户端访问语音邮箱
+  importance: medium
+  importance_rationale: 对应 task-15，增值可选域；判据口径（发信测试红叉属预期）是最容易误判失败的知识点，经路由可达即可
+  one_liner: OTMC 即 IMAP 服务器（默认 IMAPS+TLS）；客户端/服务端/判据三处对齐，IMAP 登录测试 Completed 才算，发信测试失败属预期
+  intents:
+  - 配置 IMAP 客户端收语音留言
+  - IMAP4 Front End 安全匹配
+  - IMAP 连接排障
+  - configure IMAP voicemail access
+  keywords:
+  - IMAP
+  - IMAPS
+  - POP3
+  - Outlook
+  - imap4fed
+  - TLS
+  - 收件服务器
+  - incoming mail server
+  - 留言附件
+  - VPN
+  also_read:
+  - otmsg-user-mailbox-provisioning
+  - otmsg-notification-smtp-sms
+  card: cards/otmsg-imap-access.md
+  frontmatter:
+    description: '配置邮件客户端经 IMAP 直读语音邮箱（Outlook 手动 IMAP 账户、OTMC 侧 IMAP4 Front End 加密与端口、service imap4fed restart、验收判据）。当
+      用户要"Outlook 听留言/IMAP 连不上/改加密类型"时经路由使用。OTMC 不是 SMTP 服务器，发信测试失败属预期；外网 VPN 在书外。
+
+      '
+    tags:
+    - procedure
+    - imap
+    - email-clients
+    - otmc
+  source_evidence:
+  - source_id: src-otmcxte200
+  - location: p193-209
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 增值可选域，路由可达即可
+- capability_id: cap.otmsg.general-announcement
+  revision: 1
+  status: active
+  slug: otmsg-general-announcement
+  title: 企业广播 General Announcement
+  importance: medium
+  importance_rationale: 对应 task-16，品牌化可选域；单条/覆盖/5 分钟硬限制决定需求可行性，经路由可达即可
+  one_liner: 三类播报场景（AA 项废弃）+ 管理员授权 + TUI 菜单 6 或 general_announcement.wav（CCITT A-law 8bits 8kHz mono）；单条、覆盖、≤5 分钟
+  intents:
+  - 部署企业广播
+  - 录制或更换公告
+  - 公告需求边界评估
+  - general announcement setup
+  keywords:
+  - general announcement
+  - 企业广播
+  - 公告
+  - general_announcement.wav
+  - TUI 菜单
+  - 播报场景
+  - CCITT A-law
+  - VAA
+  - 落箱
+  also_read:
+  - otmsg-user-mailbox-provisioning
+  card: cards/otmsg-general-announcement.md
+  frontmatter:
+    description: '部署企业广播 general announcement（三类播报场景勾选、用户管理权授权、TUI 增强菜单录制、wav 文件格式/改名/路径部署、硬限制边界）。当用户要
+      "加公司公告/换公告/wav 传上去没生效/要按部门轮换公告"时经路由使用。单条+覆盖是硬限制，轮换需求不在功能覆盖内；AA 配置不在本书。
+
+      '
+    tags:
+    - procedure
+    - announcement
+    - branding
+    - otmc
+  source_evidence:
+  - source_id: src-otmcxte200
+  - location: p210-227
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 品牌化可选域，路由可达即可

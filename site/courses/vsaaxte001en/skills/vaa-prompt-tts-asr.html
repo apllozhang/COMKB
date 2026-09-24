@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>VAA 提示音与 TTS/ASR 引擎</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Visual Automated Attendant · 安装、配置与维护</h2><p>Edition 20 · 351 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/vsaaxte001en/index.html">课程首页</a><a href="/courses/vsaaxte001en/digest.html">精华长文</a><a href="/courses/vsaaxte001en/overview.html">教书理解</a><a href="/courses/vsaaxte001en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/vsaaxte001en/skills/vaa-install-sip-integration.html">VAA 安装与 OXE SIP 对接接通</a><a href="/courses/vsaaxte001en/skills/vaa-multitenant-tree-design.html">VAA 多租户与树设计（公司/日历/UC1-UC3）</a><a href="/courses/vsaaxte001en/skills/vaa-prompt-tts-asr.html">VAA 提示音与 TTS/ASR 引擎</a><a href="/courses/vsaaxte001en/skills/vaa-ivr-option-nodes.html">VAA IVR 选项节点与动态脚本</a><a href="/courses/vsaaxte001en/skills/vaa-master-slave-ha.html">VAA Master/Slave 高可用与 OXE ARS 切换</a><a href="/courses/vsaaxte001en/skills/vaa-maintenance-backup.html">VAA 日常维护与版本升级</a><a href="/courses/vsaaxte001en/skills/vaa-db-integration.html">VAA 外部数据库集成（JDBC/SQL 节点）</a><a href="/courses/vsaaxte001en/skills/vaa-statistics-reporting.html">VAA 统计与报告</a><p class="course-nav-group">路由能力</p><a href="/courses/vsaaxte001en/skills/vaa-webadmin-administration.html">VAA WebAdmin 管理面</a><a href="/courses/vsaaxte001en/skills/vaa-pcs-opex-licensing.html">VAA PCS 同步与 OPEX/许可体系</a><a href="/courses/vsaaxte001en/skills/vaa-server-sizing-virtualization.html">VAA 服务器选型与虚拟化</a><a href="/courses/vsaaxte001en/skills/vaa-architecture-redundancy.html">VAA 架构与冗余全景</a><p class="course-nav-group">已安装技能</p><a href="/courses/vsaaxte001en/index.html">visual-automated-attendant（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/vsaaxte001en/index.html">VSAAXTE001EN</a><span>/</span><span aria-current="page">VAA 提示音与 TTS/ASR 引擎</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>VAA 提示音与 TTS/ASR 引擎</h1></div><dl><div><dt>Skill ID</dt><dd>vaa-prompt-tts-asr</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>VAA 提示音与 TTS/ASR 引擎（WAV 规范、Pico/Google 选型、语音一致性）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Wav files uploaded to prompts should have the format: 8 KHz, PCM 16 bits mono. … No space in the name … It is recommended to use the same voice for all prompts: If TTS prompts are used, transcribe any WAV in TTS prompts for a harmony of the voices on the VAA"（p138）
+"The Pico TTS engine can be used free of charge and without an internet connection. But it is not recommended for production. - Google Cloud is recommended but NOT free (credit card required)"（p141）
+"Google speech to text service (Google Cloud account required) &amp; API key required"（p37）
+"Define a name: TTS Pico - Choose the TTS engine: PICO - SAVE - Make a test ­ Language Pico English/French…etc ­ Click on Generate to create a WAV file"（p140）</p>
+</blockquote>
+<p>出处：VSAAXTE001EN p33-37, p137-142。</p>
+<h2>I — 自述</h2>
+<p>提示音是树的"声音来源"，四个知识块：</p>
+<ol>
+<li><strong>提示音三来源</strong>：WAV 导入（8KHz/PCM/16-bit/单声道硬约束，名称不能含空格，按语言分别导入）；电话录制（拨专属 "-Prompt Recording-" 树号或从 Prompts 页发起，需租户用户 ID+密码，Prompt ID 在 Prompts 菜单查）；TTS 生成（Prompts 页或树节点内直接生成）</li>
+<li><strong>TTS 引擎选型</strong>：内置 PicoTTS 免费离线、六语言（DE/GB/US/FR/ES/IT），官方明说"不建议用于生产"（音质口径）；Google Cloud TTS 生产推荐但收费（按字符计费、需信用卡、许可不经 ALE）；激活入口在租户设置 → Text to speech 页签（定义名称与类型后 Save，可测试生成）</li>
+<li><strong>ASR（语音识别）</strong>：外部云引擎（Google speech-to-text，需 Google Cloud 账号 + API key，在公司设置配置）；两种用法——菜单节点内 ASR 菜单选择（词句映射按键，Full match 全匹配开关，Quota 秒数控成本）与"菜单+直拨"档（先匹配菜单词句、再查目录姓名）；也有独立 Speech recognition 节点把结果存变量</li>
+<li><strong>语音一致性约束</strong>：同一 VAA 的提示音应统一声音——用 TTS 时把存量 WAV 全部转成 TTS 生成保持音色和谐；多语言树的语言选择前提示必须双语同文件（约束归树设计能力，本卡负责生成侧实现）</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>WAV 导入与 Pico 激活</strong>（p137-142，实验口径）：</p>
+<ol>
+<li>从 NAS 共享取样例 WAV 文件到 PC（实验口径素材来源）</li>
+<li>Prompts 页新建提示音，名称不含空格，选语言</li>
+<li>选 WAV 文件上传，格式必须 8KHz PCM 16-bit 单声道</li>
+<li>上传后在列表播放验证，可下载或录音替换</li>
+<li>点设置图标进入 Tenant/Settings → Text to speech 页签</li>
+<li>定义引擎：名称 TTS Pico、类型 PICO，点 SAVE</li>
+<li>测试生成：选语言、输文本、点 Generate 产出 WAV 试听</li>
+<li>（对照）原书注：Pico 免费离线但不建议生产，Google Cloud 收费</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户给录音室级 WAV 上传失败或音质异常；选 TTS 引擎；开 ASR 菜单；统一全站音色；季节性提示音电话改录；多语言提示音制作。</p>
+<p>语言信号：提示音 / prompt / WAV / 8KHz / PCM / 单声道 / TTS / Pico / Google Cloud / 文本转语音 / ASR / 语音识别 / 录音 / Prompt Recording / 音色 / 双语提示音。</p>
+<p>与相邻能力区分：树节点引用提示音与双语同文件规则归树设计能力；G729 与 ASR 互斥的编解码决策归安装对接能力；ASR 节点参数细节归 IVR 选项节点能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：提示音清单（文本/语言/用途）、客户录音素材格式、预算与网络条件（云引擎需外网与账号）、是否启用 ASR。</p>
+<ol>
+<li>格式治理：把客户素材统一转成 8KHz/PCM/16-bit/单声道，名称去空格。完成标准：全部素材满足硬约束</li>
+<li>导入：Prompts 页按语言分别导入并试听。完成标准：列表内可播放</li>
+<li>引擎激活：租户设置 → Text to speech 定义引擎（Pico 或 Google）并保存。完成标准：测试生成可用</li>
+<li>选型决策：实验/演示用 Pico；生产用 Google Cloud TTS（确认账号、计费与外网可达）。完成标准：选型与商务一致</li>
+<li>一致性处理：若混用 TTS，把存量 WAV 逐条转成 TTS 生成替换。完成标准：全站同一音色</li>
+<li>ASR（如需）：公司设置配 Google API key；菜单节点开 ASR 档位并设 Quota。完成标准：识别测试通过</li>
+<li>电话录音通道（如需）：确认 "-Prompt Recording-" 树号与专用账号 ID+PIN。完成标准：远程改录走通</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户要求内网/国产化 TTS 替代方案 → 停，原书未覆盖任何离线替代（仅 Pico 与 Google），如实声明边界</li>
+<li>ASR 需求与已勾 G729 冲突 → 停，转安装对接能力处理编解码契约，不在本卡硬调</li>
+<li>云引擎报价 → 停，价格时效性原书自注可能过时，以厂商当期价格为准</li>
+</ul>
+<p>输出契约：可用的提示音资产库（格式合规、命名规范）+ 已激活引擎配置 + ASR 可用性结论（含前提）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>WAV 三硬约束缺一不可：8KHz、PCM 16-bit、单声道；录音室高码率文件直接上传不可用（n19）</li>
+<li>Pico 不建议生产是原书明确口径（音质）；Google Cloud 收费且许可不经 ALE</li>
+<li>云服务价格与能力信息原书自注可能过时（p141），细节以 Administration Guide 第 10 章与厂商文档为准</li>
+<li>ASR 仅 Google 一家，无离线/国产化替代方案讨论（n20）</li>
+<li>树内 Announcement 的 Server file 模式（放服务器本地音频）原书标注 not recommended</li>
+<li>录音凭证（租户用户 ID+PIN）要纳入账号生命周期管理，防离职失联（n38）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/vsaaxte001en/skills/vaa-multitenant-tree-design.html">VAA 多租户与树设计（公司/日历/UC1-UC3）</a></p><p class="source-page">能力 ID：cap.vaa.prompt-tts-asr · 来源：VSAAXTE001EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Visual Automated Attendant — Installation, Configuration and Maintenance (Participant's Guide, Edition 20) | edition: Edition 20 | pages: 351 页 -->

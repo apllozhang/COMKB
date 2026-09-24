@@ -1,0 +1,45 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\oxo-acd-basic-setup.md": "5fd90d664baebb8743e5d909558f4a9c7ca85eb9c3e37441c93329aa3f3400ae",
+    "references\\capabilities\\oxo-acd-call-scenarios.md": "43da84cbeb98d80760ae5cab3679fc564d0c2b4f957e7b44eaec4e3378e3bdcc",
+    "references\\capabilities\\oxo-acd-login-status.md": "d5aa48751d7f82a2e8c78e36311136d8e7fbf83cd2d04a29947aa539a800142c",
+    "references\\capabilities\\oxo-acd-queue.md": "9256182c6c1d50d2390dba486fc123d369b366b171e4f4a6c0f3b0abe7c78f9e",
+    "references\\capabilities\\oxo-acd-routing.md": "3d96f908ccf78a097011ada3b6294217430a0528dd8ec592a0a717896ea59aba",
+    "references\\capabilities\\oxo-acd-schedule-calendar.md": "5e4f42c53d29eb05568c2219d0f5dfa2702d852e9d0f69285463889a1ca2321e",
+    "references\\capabilities\\oxo-acd-search-noanswer.md": "4f981df938de0ddda73dbe6d9cc07c6ee08d3e7ac423b77a954ffee5baa4b3ea",
+    "references\\capabilities\\oxo-acd-voice-prompts.md": "f77eef27b315ebe7525256de9590e0ee738619b17710fe1a6c585cba63b8c601",
+    "references\\capabilities\\oxo-agent-app.md": "e31a8eef9b2fcb98df9bdc7208dd1d4a63c496599040bd1c84f16f85c5a1e7e1",
+    "references\\capabilities\\oxo-dtmf-client-popup.md": "80af3fc086779472cea4e46f29685f69f28da592c7485320baaa4e246a2ee81c",
+    "references\\capabilities\\oxo-ip-replan.md": "098682ddf52f8e519c29033a54c77243e8196ac1f0b9cb4dbba01ee6ce6118d3",
+    "references\\capabilities\\oxo-multi-secretary.md": "1ad4b2a9f6b5b6ccb76a1a13fe0f32320ff9b2388132f041ac4371fb98beda62",
+    "references\\capabilities\\oxo-omc-first-connect.md": "2e90936f20793ce0f200b61db25dfd5ffcf314a1f0a8215da5d9166e444f044b",
+    "references\\capabilities\\oxo-statistics-app.md": "367b021036b10dc1bb4f4f5e427763626ace27586a8c39b730022c7b5af90792",
+    "references\\capabilities\\oxo-supervisor-app.md": "8e5923f3596646f348626eb8bbb5042e111fe1a1b666edd12ed893857a172435",
+    "references\\capability-index.md": "3d25c8a5fb9b92dd082b3e8e885196137f062c6362c12ffc5e46a9965cf1524f",
+    "references\\cheatsheet.md": "01c3a29963216d6d4c7fc8317b97214712d0107d8867b20175dbb72562607950",
+    "references\\glossary.md": "bdc5631e7931bd5e8544350070aa40569b6f90c6f69dad972b2e4bc36101001e",
+    "references\\overview.md": "7bb81576b8fa00bfbed873573137b1a4f0d54c698e152858056eca6d98a7a5ee",
+    "SKILL.md": "83d192ae56bb7fedab12a285f56110e502b954cb5eb342d29506cf491b4b6ab5"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.oxo-connect-call-center",
+  "bundle_sha256": "3005e3dfe26f133cfdb501690f52118b93d968887cbe98a933f2ac719304c51b",
+  "variant": "single",
+  "run_id": "run-20260924-200016-a58028",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 7,
+    "capability_count": 15,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 7 个晋级 Skill，共 8 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

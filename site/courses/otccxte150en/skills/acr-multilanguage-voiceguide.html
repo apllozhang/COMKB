@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>ACR 多语言语音引导与语言偏好分发</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced Call Routing</h2><p>Edition 01 · 470 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte150en/index.html">课程首页</a><a href="/courses/otccxte150en/digest.html">精华长文</a><a href="/courses/otccxte150en/overview.html">教书理解</a><a href="/courses/otccxte150en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte150en/skills/acr-script-editor-fundamentals.html">ACR 脚本编辑器与调试工具链</a><a href="/courses/otccxte150en/skills/acr-ccd-matrix-foundation.html">ACR 基础 CCD 矩阵地基</a><a href="/courses/otccxte150en/skills/acr-redirect-redistribution.html">ACR 重定向与再分发兜底</a><a href="/courses/otccxte150en/skills/acr-direct-call-dica.html">ACR 坐席直拨融合</a><a href="/courses/otccxte150en/skills/acr-internal-database-routing.html">ACR 内部数据库路由</a><a href="/courses/otccxte150en/skills/acr-rule-combination-advanced.html">ACR 综合规则组合与高级构件</a><a href="/courses/otccxte150en/skills/acr-asm-deployment.html">ACR 外部 ASM 部署与双机热备</a><a href="/courses/otccxte150en/skills/acr-database-query-routing.html">ACR 外部数据库查询路由</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte150en/skills/acr-list-rules.html">ACR 授权与非授权名单规则</a><a href="/courses/otccxte150en/skills/acr-call-tag-transfer.html">ACR Call Tag 生成与传递</a><a href="/courses/otccxte150en/skills/acr-multilanguage-voiceguide.html">ACR 多语言语音引导与语言偏好分发</a><a href="/courses/otccxte150en/skills/acr-filter-statistics.html">ACR 过滤器与统计报表</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte150en/index.html">otcc-advanced-call-routing（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte150en/index.html">OTCCXTE150EN</a><span>/</span><span aria-current="page">ACR 多语言语音引导与语言偏好分发</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>ACR 多语言语音引导与语言偏好分发</h1></div><dl><div><dt>Skill ID</dt><dd>acr-multilanguage-voiceguide</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>ACR 多语言语音引导与语言偏好分发（40 语种映射、判定链、语言成本）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"40 messages maximum per multi-language guide … Voice guides 700 language 1: 1000 language 2: 1001 … language 40: 1039"（p215）
+"The language defined in the call profile has the highest priority … If no language is defined at call profile level, the ACR pilot language is used"（p216）
+"The value of the preference associated to each language will determine which language will be above the other when broadcasting guides or when choosing the agent who will handle the call (value included between 1 and 7, 1 for the highest priority language)"（p229）
+"Remind that an agent is not obliged to have all language skills defined in the call profile: 1 language skill is enough"（p214）</p>
+</blockquote>
+<p>出处：OTCCXTE150EN p212-229。</p>
+<h2>I — 自述</h2>
+<p>多语言引导与选人同源：播报语言和坐席语言成本都由呼叫档案里的语言技能决定。</p>
+<p>结构三段：</p>
+<ol>
+<li><strong>承载</strong>：一个多语言引导（Function=Multi-language message）映射最多 40 条消息——语言 1 对应消息 1000、语言 2 对应 1001、依次到语言 40 对应 1039；存 OXE 闪存卡；Start=YES 加 Backup Tone</li>
+<li><strong>判定</strong>：播报语言取脚本所用呼叫档案里的语言（多语言时按 preference，值 1-7、1 最优先）；档案无语言则退 ACR Pilot 语言</li>
+<li><strong>选人</strong>：坐席无需具备档案全部语言，命中 1 门语言技能即可入选；ASM 按语言偏好加技能级别算 ISM 成本排序</li>
+</ol>
+<p>可用引导类型：问候、等待、重定向、封锁、转发五类都可挂多语言引导。</p>
+<p>配置与排障要点：</p>
+<ul>
+<li>多语言引导在 System/Voice Guides 建；消息在 Dynamic Voice Guides 分配后用 <em>88 录音、</em>66 测音</li>
+<li>统计 Pilot 自带的呈现引导会先于 ACR Pilot 问候引导播出，导致语言判定失真——必须清掉所有统计 Pilot 的呈现引导，问候只留 ACR Pilot 一处</li>
+<li>偏好值仅对语言类技能有意义；档案里同一语言技能的偏好决定播报与选人两个场景的优先</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>多语言实验（c09）</strong>：</p>
+<ol>
+<li>动态引导分配建消息 1000（法语欢迎）、1001（英语欢迎），录音并激活</li>
+<li>System/Voice Guides 建 740 号引导：Function=Multi-language message、Start=YES、Backup Tone 56</li>
+<li>加两条映射：French 对应 1000、English 对应 1001</li>
+<li>建呼叫档案 3：Language 域 French 技能 Level 5 加 Insurance 域 Car 技能 Level 9</li>
+<li>建统计 Pilot 31653（French_Car）指 ACR Pilot，档案用 3</li>
+<li>清掉所有统计 Pilot 的呈现引导，问候引导只留 ACR Pilot</li>
+<li>坐席 31501 加 French Level 9（可用 Skill Matrix 批量）；脚本用 ISM 挂 ACR Pilot</li>
+<li>对照测试：呼英语入口播英语、呼法语入口播法语；档案内法语偏好 2、英语偏好 1 时播英语</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：多语言呼叫中心按客户语言播报；坐席按语言技能分配；语言判定不符合预期；引导语言播错。</p>
+<p>语言信号：多语言 / Multi-language / Voice Guide / 语言偏好 / preference / 语言技能 / French / English / 呈现引导 / Presentation Guide / Backup Tone / 40 语种。</p>
+<p>与相邻能力区分：档案与技能体系本身，见 CCD 矩阵地基能力；语言标签从哪来，见 Call Tag 卡（路由）；ISM 成本与混跑，见 综合规则组合能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：语种清单与偏好次序、各语种录音内容、坐席语言技能数据。录音制作是环境操作，先备齐。</p>
+<ol>
+<li>动态引导分配建各语种消息并录音激活。完成标准：消息号可播</li>
+<li>System/Voice Guides 建多语言引导：Function 选 Multi-language message、Start=YES、Backup Tone。完成标准：引导保存</li>
+<li>加语言到消息映射（最多 40 条）。完成标准：每语种有对应消息</li>
+<li>呼叫档案配语言技能与偏好（1-7，1 最高）。完成标准：档案可指派到入口</li>
+<li>清掉所有统计 Pilot 的呈现引导，问候只留 ACR Pilot。完成标准：无前置引导干扰</li>
+<li>坐席配语言技能（每语种一门即可命中）。完成标准：语言坐席池就位</li>
+<li>对照测试各语言入口：核播报语言与选中坐席。完成标准：判定链行为正确</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>播报语言不对 → 按判定链查：档案语言偏好、档案无语言时的 Pilot 语言、统计 Pilot 残留呈现引导</li>
+<li>坐席没被语言呼叫选中 → 核坐席是否至少有 1 门档案语言技能、级别与偏好</li>
+<li>引导只播默认语言 → 核 Function 是否真为 Multi-language message 及映射行</li>
+</ul>
+<p>输出契约：多语言引导映射表 + 语言档案与坐席技能 + 判定链验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>40 语种/引导、偏好 1-7 为原书 Issue 01 口径，细则以 Feature List 为准</li>
+<li>录音内容制作与多语言 TTS 原书不涉及</li>
+<li>语言技能只需 1 门命中即可入选（p214），不要求全语言——方案沟通时常见误解</li>
+<li>多语言引导存 OXE 闪存卡，容量规划在书外</li>
+<li>ISM 成本计算含语言偏好的公式原书只给示例（成本 0/3），未给全貌</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte150en/skills/acr-ccd-matrix-foundation.html">ACR 基础 CCD 矩阵地基</a></p><p class="source-page">能力 ID：cap.acr.multilanguage-voiceguide · 来源：OTCCXTE150EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Advanced Call Routing (Participant's Guide, Issue 01) | edition: Edition 01 | pages: 470 页 -->

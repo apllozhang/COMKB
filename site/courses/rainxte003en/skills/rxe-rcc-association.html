@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OXE 分机关联与 RCC 模式</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Rainbow for OmniPCX Enterprise</h2><p>Edition 12 · 314 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte003en/index.html">课程首页</a><a href="/courses/rainxte003en/digest.html">精华长文</a><a href="/courses/rainxte003en/overview.html">教书理解</a><a href="/courses/rainxte003en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte003en/skills/rxe-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte003en/skills/rxe-agent-onboarding.html">OXE 接入 Rainbow 与接入排障</a><a href="/courses/rainxte003en/skills/rxe-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte003en/skills/rxe-routing-rex.html">OXE 用户形态决策与远程延伸路由</a><a href="/courses/rainxte003en/skills/rxe-webrtc-gateway-deployment.html">WebRTC 网关部署与升级</a><a href="/courses/rainxte003en/skills/rxe-oxe-gateway-config.html">OXE 侧 WebRTC 网关配置九件套</a><a href="/courses/rainxte003en/skills/rxe-gateway-pool-sizing.html">共享 WebRTC 网关池与容量规划</a><a href="/courses/rainxte003en/skills/rxe-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte003en/skills/rxe-rcc-association.html">OXE 分机关联与 RCC 模式</a><a href="/courses/rainxte003en/skills/rxe-attendant-consoles.html">两套话务台（4059EE 与 Rainbow Attendant Console）</a><a href="/courses/rainxte003en/skills/rxe-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte003en/skills/rxe-network-readiness.html">Rainbow 网络就绪核查</a><a href="/courses/rainxte003en/skills/rxe-lab-pod-setup.html">RLAB 实验环境与 Pod 配置</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte003en/index.html">rainbow-oxe-integration（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte003en/index.html">RAINXTE003EN</a><span>/</span><span aria-current="page">OXE 分机关联与 RCC 模式</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OXE 分机关联与 RCC 模式</h1></div><dl><div><dt>Skill ID</dt><dd>rxe-rcc-association</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>OXE 分机关联与 RCC 模式（Telephony 关联、五项测试、Rainbow number）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"This number will be retrieved later for WebRTC gateway use. It will be automatically configured in Remote Extension number by the Rainbow agent (e.g. BBB10070254106463346) when the user selects 'computer' as routing"（p91）
+"Is it possible? … Is it possible to take the call from Rainbow client interface? Which action(s) is/are possible?"（p92）</p>
+</blockquote>
+<p>出处：RAINXTE003EN p89-93。</p>
+<h2>I — 自述</h2>
+<p>把 OXE 分机绑定到 Rainbow 账户，四步：</p>
+<ol>
+<li><strong>前置</strong>：PBX 已接 Rainbow（OXE 接入能力交付）、成员账户已建（成员生命周期能力交付）</li>
+<li><strong>关联</strong>：Rainbow、My company、Members 选成员、Telephony 页签、Device 字段选 OXE、选分机号、Apply</li>
+<li><strong>观察 Rainbow number</strong>：关联后出现 BBB 开头的 17 位技术编号——用户选 computer 路由时由 Rainbow agent 自动写入 OXE 侧 REX，无需手工</li>
+<li><strong>RCC 五项测试</strong>：呼 OXE 用户、呼公网号、来话接听（能做哪些动作）、呼纯 Rainbow 用户、纯 Rainbow 用户呼入</li>
+</ol>
+<p><strong>RCC 能力边界</strong>：只能监督话机（接/挂/转），音频全在话机——无网关阶段的正常形态，不是故障。Essential 订阅只有 RCC 且不能改路由（p129）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>分机关联实验</strong>（p89-93）：</p>
+<ol>
+<li>管理员登录 Rainbow，进 My company、Members 选成员</li>
+<li>Telephony 页签 Device 选 OXE、选分机号、Apply</li>
+<li>书中关联对：管理员关联 31000、user1 关联 31001（实验口径）</li>
+<li>观察新增 Rainbow number 字段（书中示例 BBB10070254106463346）</li>
+<li>逐项执行五项测试问题并记录结论（p92-93 原文以问句呈现）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：把话机分机绑到 Rainbow 账号；RCC 是什么；Rainbow 点接听没声音；Rainbow number 从哪来；无网关时能干什么。</p>
+<p>语言信号：分机关联 / associate extension / RCC / Remote Call Control / Telephony 页签 / Rainbow number / BBB / Office phone 路由 / 监督话机。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>配路由改振铃 → 远程延伸路由能力</li>
+<li>解锁完整音频 → 网关部署与 OXE 侧网关配置两能力</li>
+<li>Teams 场景的同一关联动作 → Teams 集成能力</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：PBX 已接入 Rainbow、成员账户已建、目标分机清单。连接未建立 → 先回 OXE 接入能力。</p>
+<ol>
+<li>关联：Telephony 页签选设备与分机后 Apply。完成标准：出现 Rainbow number 字段</li>
+<li>RCC 呼出测试：路由选 Office phone 呼 OXE 用户。完成标准：话机振铃、Rainbow 侧可控制</li>
+<li>公网呼出测试：经 SIP 中继打外部号。完成标准：走 OXE 公网资源可达</li>
+<li>来话测试：从另一分机呼入，试接听/挂断/转移。完成标准：动作清单明确、音频在话机</li>
+<li>纯 Rainbow 用户对照：双向呼叫各测一次并记录。完成标准：结论留档（含推断项实测）</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>"Rainbow 接听没声音" → 先确认站点是否无网关（RCC 正常形态），不要按故障修</li>
+<li>用户报"没有 computer 路由选项" → 无网关，转网关规划/部署能力</li>
+<li>分机列表为空 → 核 PBX 连接与分机在服状态，不手工硬填</li>
+</ul>
+<p>输出契约：成员-分机关联清单 + 五项测试记录 + Rainbow number 备查（排障与网关阶段用）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>"RCC 呼纯 Rainbow 用户不通"为机制推断（书中以测试问题呈现未给答案，nr-04）：表述注明推断属性，现场实测确认</li>
+<li>Rainbow number 无手工配置入口：触发条件是用户路由切到 computer，由 agent 自动写入——排障用 remotesets 查看即可</li>
+<li>本卡覆盖无网关形态；网关部署后的完整路由体验在远程延伸路由与 OXE 侧网关配置两能力</li>
+<li>实验关联对（31000/31001）与示例号码为实验口径</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte003en/skills/rxe-routing-rex.html">OXE 用户形态决策与远程延伸路由</a></p><p class="source-page">能力 ID：cap.rxe.rcc-association · 来源：RAINXTE003EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Rainbow / OmniPCX Enterprise (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 314 页 -->

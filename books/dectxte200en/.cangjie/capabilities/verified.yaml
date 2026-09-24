@@ -1,0 +1,630 @@
+schema_version: 1
+bundle_id: bundle.dect-solutions
+book:
+  title: DECT Solutions (Participant's Guide, Edition 12)
+  author: ALE Training Services
+  source_pack: DECTXTE200EN.pdf (298 pages)
+  baseline_tag: OmniPCX Enterprise DECT / R101.1 MD4 / RLAB
+entry:
+  name: dect-solutions
+  description: 'OmniPCX Enterprise 的 DECT 无绳移动交付与运营支持：三条产品线（8379 IBS / 8378 IP-xBS / 8328 SIP-DECT）选型、PARI/PLI/PARK 标识体系与 multi-PARI 适配、IP-xBS 部署、空中同步/外部同步与多站点组网、手机注册与自动重注册、固件双轨升级、混合模式迁移、日常维护排障。适用于 OXE DECT 的配置、选型、组网与排障问答；无线工程设计方法论与生产安全基线不在原书范围内（见 out_of_scope）。'
+  core_principles:
+  - 选型先于配置：IBS（TDM、1 PARI/256 台/无加密）、IP-xBS（全 IP、8 PARI/2032 台、每站 11 通话+11 IP 中继）、SIP-DECT（SIP 语义、20 手机/站、区间无切换）三条线能力边界决定方案
+  - 一切标识围绕 PARI 体系：PARI+RPN=RFPI、PARK=PLI+PARI 注册时写入手机、IPUI 认机；multi-PARI 靠降 PLI 做缩位匹配（混合模式必须适配 PLI，p227 WARNING）
+  - 同步是 handover 的生命线：站间 RSSI≥-80dBm、同步树最深 24 级、外部同步 Sync Master 禁载通信且 Backup 强制、>2 PARI 需 Sync Highway；handover 只发生在同 Site 且同一 Data Sync Primary 之下
+  - 开通路径标准化：全局参数（PARI/PLI/AC/安全级别）→ DHCP（vendor class alcatel.ipxbs.0）→ 注册（全网单节点开关）→ dectview 核验；换故障基站走手动注册保 RPN
+  - 实验环境口径：教材网段、密码、AC、PARI 值仅限实验；引用容量与门槛数字必须带前提（-70/-60/-80dBm、11 通话+11 中继、254 台每 PARI/2032 台每节点）
+  out_of_scope:
+  - 无线覆盖设计方法论（传播模型、天线选型、勘测判定流程）——原书外置到《DECT and IP-DECT Engineering Rules》8AL90874USAA
+  - 深度排障（PCAP 分析方法、日志深读）——外置到 8378 IP-xBS Troubleshooting Guide 8AL91443ENAA
+  - 生产安全基线（WBM/AC 密钥治理策略、证书管理）与 DHCP/初始配置通用细节——书内只有字段名，细节在 8AL91047ENAD
+  - RLAB 培训环境搭建、话务建模（Erlang）、OXE 系统级非 DECT 配置（SIP 中继、编号计划、板卡硬件规则）
+  stop_conditions:
+  - 用户要"设计 DECT 无线网络"（布点/天线/容量建模）→ 明确指向 8AL90874USAA，不以教材页数代替工程规则
+  - 遗留机型（8212/8232/8242）维修、ATEX 部署细节、8328 双小区合计容量 → 书内无依据，如实声明书外（推断口径需标注）
+  - 引用容量数字被追问话务前提 → 按"11 通话+切换余量"口径说明，不做 Erlang 承诺
+  - 版本恰在边界（OXE R12.2、基站固件 v73b0003、重注册机型版本表 p252）→ 按书中版本表如实回答并建议先升固件
+router_entry:
+  name: dect-solutions-router
+  description: 'OXE DECT 解决方案能力路由入口：按用户意图分发到 12 张能力卡——标识号码、产品选型、IP-xBS 部署、同步与组网、手机注册、混合部署、自动重注册、固件管理八个 promoted 能力，以及维护排障、覆盖勘测、IBS 部署、SIP-DECT 四张 router 能力卡。'
+promotion_budget: 8
+capabilities:
+- capability_id: cap.dect.pari-identifier
+  revision: 1
+  status: active
+  slug: dect-pari-identifier
+  title: DECT 标识号码体系与 multi-PARI 适配
+  importance: critical
+  importance_rationale: 对应 task-01/task-14，全书配置字段的语义地基；PLI 适配错误是混合部署最高频翻车点
+  one_liner: PARI+RPN=RFPI、PARK=PLI+PARI、IPUI 认机；multi-PARI 靠降 PLI（30/29）做逻辑 AND 缩位匹配
+  intents:
+  - 规划 DECT PARI 和 PLI
+  - 算 PARK 号码
+  - 混合模式 PLI 怎么取值
+  - 手机锁定不上哪个系统
+  - PARI PLI PARK 规划
+  - multi PARI configuration
+  keywords:
+  - PARI
+  - RPN
+  - RFPI
+  - PARK
+  - PLI
+  - IPUI
+  - IPEI
+  - multi-PARI
+  - 逻辑 AND
+  - 缩位匹配
+  - 降位
+  - 31 位
+  also_read:
+  - dect-mixed-mode
+  - dect-auto-reregistration
+  card: cards/dect-pari-identifier.md
+  frontmatter:
+    description: 'DECT 标识号码体系的语义与规划：PARI/RPN/RFPI/PARK/PLI/IPUI 六号码关系、PARK 拼接算例、PLI 逻辑 AND 匹配与 multi-PARI 降位规则、每类硬件一个 PARI。当用户要"配 PARI/定 PLI/算 PARK/解释标识号码/混合模式 PLI 取值"时使用。不适用于具体部署施工（IP-xBS 部署能力）与手机推送（自动重注册能力）。'
+    tags:
+    - concept
+    - dect
+    - pari
+    - planning
+  source_evidence:
+  - source_id: src-dectxte200en
+  - location: p14-22, p27, p82
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-01/14 语义地基
+- capability_id: cap.dect.product-selection
+  revision: 1
+  status: active
+  slug: dect-product-selection
+  title: DECT 产品线选型与拓扑决策
+  importance: critical
+  importance_rationale: 对应 task-02，架构决策第一步、选错代价最高；加密合规与 8328 边界是一票否决项
+  one_liner: IBS/IP-xBS/SIP-DECT 三线按加密、规模、频段、切换诉求分流；六种拓扑按四格能力判定
+  intents:
+  - 选择 DECT 产品线
+  - 对比 IBS 和 IP-xBS
+  - SIP-DECT 适不适合
+  - DECT 拓扑怎么选
+  - DECT product selection
+  - DECT topology
+  keywords:
+  - IBS
+  - IP-xBS
+  - "8378"
+  - "8379"
+  - "8328"
+  - SIP-DECT
+  - 选型
+  - 拓扑
+  - 分支办公
+  - 加密
+  - encryption
+  - 欧洲频段
+  also_read:
+  - dect-ipxbs-deployment
+  - dect-sip-dect
+  card: cards/dect-product-selection.md
+  frontmatter:
+    description: 'OXE DECT 三条产品线的选型决策：8379 IBS（TDM/无加密）、8378 IP-xBS（全 IP 主线）、8328 SIP-DECT（低成本小站）的容量与能力边界、六种支持拓扑四格判定（handover/外部切换/跨节点/roaming）、混合间距 >1km 约束。当用户要"选产品线/比方案/判拓扑/评估 8328 够不够"时使用。不涉及具体施工（各部署能力）；无线勘测数据在书外。'
+    tags:
+    - decision
+    - dect
+    - selection
+    - topology
+  source_evidence:
+  - source_id: src-dectxte200en
+  - location: p7, p27, p37, p191-198, p272
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-02，架构决策第一步
+- capability_id: cap.dect.ipxbs-deployment
+  revision: 1
+  status: active
+  slug: dect-ipxbs-deployment
+  title: 8378 IP-xBS 部署与故障换站
+  importance: critical
+  importance_rationale: 对应 task-04/task-05，主打产品线的核心交付动作；注册开关与换站保 RPN 是高频卡点
+  one_liner: 全局参数 → DHCP（vendor class alcatel.ipxbs.0）→ 注册开关收编 → dectview 核验；换站手动注册保 RPN
+  intents:
+  - 部署 IP-xBS 基站
+  - 基站注册不上
+  - 更换故障基站
+  - IP-xBS DHCP 配置
+  - deploy 8378 IP-xBS
+  - replace base station
+  keywords:
+  - IP-xBS
+  - "8378"
+  - 部署
+  - DHCP
+  - vendor class
+  - alcatel.ipxbs.0
+  - MAC 地址
+  - registration
+  - 注册开关
+  - RPN
+  - 换基站
+  - PoE
+  also_read:
+  - dect-pari-identifier
+  - dect-firmware-management
+  card: cards/dect-ipxbs-deployment.md
+  frontmatter:
+    description: '8378 IP-xBS 的完整部署流程：全局 DECT 参数、xBS PARI/Site/基站参数、DHCP 动态或静态 IP、注册开关（全网单节点、auto=255）、dectview 核验与时间服务器，以及故障基站的手动注册换站（保 RPN 保告警定位）。当用户要"装 xBS/开注册/换基站/取不到地址"时使用。不适用于固件批量升级（固件管理能力）与状态排障（维护排障路由卡）。'
+    tags:
+    - procedure
+    - dect
+    - ip-xbs
+    - deployment
+  source_evidence:
+  - source_id: src-dectxte200en
+  - location: p125-151, p57-64
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-04/05 核心交付
+- capability_id: cap.dect.xbs-sync-topology
+  revision: 1
+  status: active
+  slug: dect-xbs-sync-topology
+  title: xBS 空中同步体系与组网域（含外部同步与多站点）
+  importance: critical
+  importance_rationale: 对应 task-16/task-11，切换质量的命门；Sync Master 规则与主备皆失欠账决定高可用设计
+  one_liner: 内部同步树 ≤24 级零配置；外部同步手工指定 Master（禁载）+Backup 强制；>2 PARI 走 Sync Highway；Site 是切换边界
+  intents:
+  - 配置空中同步
+  - 配置外部同步链路
+  - Sync Master 坏了怎么办
+  - 多站点 Site 划分
+  - DECT synchronization
+  - external handover
+  keywords:
+  - 同步
+  - Sync Master
+  - Backup
+  - Sync Cluster
+  - Sync Highway
+  - 外部同步
+  - External Synchronization
+  - Data Sync Primary
+  - handover
+  - Site
+  - 多站点
+  - roaming
+  also_read:
+  - dect-mixed-mode
+  card: cards/dect-xbs-sync-topology.md
+  frontmatter:
+    description: 'xBS 的同步与组网域：内部同步树（RSSI+跳数、24 级、零配置）、Sync Master/Backup 规则（禁载通信、邻近同源）、Sync Cluster 拆簇、外部同步链路与 Flag External Handoff、Sync Highway，以及 Site 切换边界与跨站漫游。当用户要"配同步/切换失败/多 PARI 同步/建 Site/跨站漫游"时使用。不涵盖混合模式 PLI 适配（混合部署能力）与命令判读细节（维护排障路由卡）。'
+    tags:
+    - procedure
+    - dect
+    - synchronization
+    - topology
+  source_evidence:
+  - source_id: src-dectxte200en
+  - location: p75, p86-92, p98-116, p199-203, p263-270
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-16/11，切换质量命门
+- capability_id: cap.dect.handset-registration
+  revision: 1
+  status: active
+  slug: dect-handset-registration
+  title: DECT 用户创建与手机注册/注销
+  importance: critical
+  importance_rationale: 对应 task-07/task-08/task-20，交付最终用户的必经之路；双通道互斥与近乎同时约束是高频错误源
+  one_liner: webadmin 与 dectinston/dectrm 双通道只能取一且两侧近乎同时；Set type 定 GAP/GAP+ 功能面；AC 比对决定注册成败
+  intents:
+  - 创建 DECT 用户
+  - 注册 DECT 手机
+  - 注销更换手机
+  - GAP 和 GAP+ 区别
+  - register DECT handset
+  - dectinston
+  keywords:
+  - 注册
+  - dectinston
+  - dectrm
+  - DECT Register
+  - IPUI
+  - GAP
+  - GAP+
+  - A-GAP
+  - Set type
+  - AC 码
+  - PIN
+  - Security level
+  also_read:
+  - dect-auto-reregistration
+  card: cards/dect-handset-registration.md
+  frontmatter:
+    description: 'DECT 用户与手机生命周期：建用户（GAP/GAP+ 机型对应）、注册双通道（webadmin DECT Register / mtcl dectinston，互斥且需两侧近乎同时）、手机侧 PIN/AC 序列、IPUI 核验、注销（dectrm）与换机保留用户技巧，附安全级别三级与 AC 治理口径。当用户要"开 DECT 分机/注册手机/注销换机/AC 不一致"时使用。8328 的 SIP 注册属 SIP-DECT 路由卡（另一套语义）。'
+    tags:
+    - procedure
+    - dect
+    - registration
+    - lifecycle
+  source_evidence:
+  - source_id: src-dectxte200en
+  - location: p162-177, p235-241, p35-37
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-07/08/20，用户交付主线
+- capability_id: cap.dect.mixed-mode
+  revision: 1
+  status: active
+  slug: dect-mixed-mode
+  title: 混合 DECT 基础设施部署（TDM + xBS、PLI 统一）
+  importance: high
+  importance_rationale: 对应 task-14，存量演进主路径；p227 PLI 大写 WARNING 与外部同步是两大隐形坑
+  one_liner: Mixed 模式双 PARI（IBS x0/xBS x4 形态）+ PLI 降位（30/29）+ 外部同步链路解锁跨类切换
+  intents:
+  - 部署混合 DECT
+  - IBS 加 xBS 同站
+  - 混合模式手机漫游失败
+  - Mixed 模式配置
+  - mixed DECT infrastructure
+  keywords:
+  - 混合模式
+  - Mixed
+  - 多 PARI
+  - PLI=30
+  - TDM
+  - 存量演进
+  - 漫游
+  - 外部同步
+  - Radio base type
+  - IBS
+  - xBS
+  also_read:
+  - dect-pari-identifier
+  - dect-xbs-sync-topology
+  card: cards/dect-mixed-mode.md
+  frontmatter:
+    description: 'IBS 存量站点加装 xBS 的混合部署：Mixed 全局参数、双 PARI 规划（每类硬件一个）、PLI 统一降位使全部 DECT 用户跨类漫游、外部同步链路与外部 handover 的衔接、无法外部同步时 >1km 间距约束。当用户要"IBS 加 xBS/混合模式/PLI 适配/老手机漫游不到新基站"时使用。外部同步字段级配置见同步拓扑能力；手机批量推送见自动重注册能力。'
+    tags:
+    - procedure
+    - dect
+    - mixed-mode
+    - migration
+  source_evidence:
+  - source_id: src-dectxte200en
+  - location: p227, p242-248, p196
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-14，存量演进主路径
+- capability_id: cap.dect.auto-reregistration
+  revision: 1
+  status: active
+  slug: dect-auto-reregistration
+  title: DECT 手机自动重注册（PARI/PLI 变更零接触迁移）
+  importance: high
+  importance_rationale: 对应 task-15，规模迁移的杠杆；-forceUpdate 顺序铁律错了不可逆（全部手机沦为手工）
+  one_liner: 相近 PARI 用 -update、彻底变化用 -forceUpdate（先推手机后改系统）；-f 批量、2-3s/机、NOK 清单闭环
+  intents:
+  - 批量迁移 DECT 手机
+  - PARI 变更手机怎么办
+  - dectinston -update 用法
+  - 重注册失败清单
+  - automatic re-registration
+  - forceUpdate
+  keywords:
+  - 自动重注册
+  - re-registration
+  - -update
+  - -forceUpdate
+  - -pari
+  - -pli
+  - DECT.txt
+  - /tmpd
+  - ReinstallSuccess
+  - ReinstallNOK
+  - 批量迁移
+  - 访问节点
+  card: cards/dect-auto-reregistration.md
+  frontmatter:
+    description: 'PARI/PLI 变更时的手机批量迁移：-update 与 -forceUpdate 决策规则、先推手机后改系统的顺序铁律、-f 文件批量与结果双清单核验、性能口径（2-3s/机、paging 1,3-6,5s）、机型最低固件版本表与三类覆盖不了的手机。当用户要"换 PARI/批量迁移/重注册失败/迁移窗口估算"时使用。新标识该取什么值见标识号码能力。'
+    tags:
+    - procedure
+    - dect
+    - migration
+    - re-registration
+  source_evidence:
+  - source_id: src-dectxte200en
+  - location: p249-262
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-15，规模迁移杠杆
+- capability_id: cap.dect.firmware-management
+  revision: 1
+  status: active
+  slug: dect-firmware-management
+  title: DECT 固件双轨升级管理（基站 downstat x / 手机 OTA downstat m）
+  importance: high
+  importance_rationale: 对应 task-09/task-10，全网机型版本统一的前提；双轨机制差异（RAM 后台 vs 空中 6-8 小时）决定窗口规划
+  one_liner: 基站 TFTP 后台下载到 RAM 空闲重启（downstat x）；手机语音优先空中下载、回充电座生效（downstat m）
+  intents:
+  - 升级基站固件
+  - 手机固件空中升级
+  - downstat 命令用法
+  - 固件升级窗口规划
+  - firmware upgrade
+  - downstat m
+  keywords:
+  - downstat x
+  - downstat m
+  - 固件
+  - firmware
+  - FWU
+  - SUOTA
+  - READY_TO_FLASH
+  - Flash and Reset
+  - 充电座
+  - cradle
+  - /usr2/downbin
+  - v73b0003
+  also_read:
+  - dect-ipxbs-deployment
+  card: cards/dect-firmware-management.md
+  frontmatter:
+    description: 'DECT 固件双轨升级：基站轨（TFTP 后台下载到 RAM 不中断业务、downstat x 四项菜单、自动复位策略、最低 v73b0003）与手机轨（空中 FWU、语音优先、回充电座切换、6-8 小时/机、downstat m 状态机 A/X/M 与六态）。当用户要"升固件/版本不齐/下载状态判读/手动下发"时使用。重注册前的版本门槛见自动重注册能力。'
+    tags:
+    - procedure
+    - dect
+    - firmware
+    - maintenance
+  source_evidence:
+  - source_id: src-dectxte200en
+  - location: p129-133, p178-190
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-09/10，版本治理双轨
+- capability_id: cap.dect.maintenance-troubleshooting
+  revision: 1
+  status: active
+  slug: dect-maintenance-troubleshooting
+  title: DECT 日常维护与排障（命令族/syslog/WBM）
+  importance: medium
+  importance_rationale: 对应 task-19/task-06，售后日常抓手；判读表与日志口径经路由可达即可，深度排障在书外
+  one_liner: dectview 标志判读（P/M/B/OK/NOK/OOS）+ xbssynchro/incvisu/tcdump 取证 + syslog 四级（Debug 禁常开）
+  intents:
+  - 查看基站状态
+  - 收集基站日志
+  - DECT 排障初判
+  - 抓包取证
+  - DECT troubleshooting
+  - dectview
+  keywords:
+  - dectview
+  - dectinfo
+  - xbssynchro
+  - incvisu
+  - tcdump
+  - listerm
+  - listibs
+  - outserv
+  - inserv
+  - syslog
+  - Debug
+  - "514"
+  - P 标志
+  also_read:
+  - dect-ipxbs-deployment
+  card: cards/dect-maintenance-troubleshooting.md
+  frontmatter:
+    description: 'DECT 日常维护三套抓手：mtcl 命令族（dectview/dectinfo/xbssynchro/incvisu/listerm/listibs/outserv/inserv/tcdump）、dectview xbs 标志判读（P/M/B/+ 与 OK/NOK/OOS）、syslog 日志收集（端口 514、off/Normal/System Analyze/Debug 四级、Debug 禁常开）。当用户要"看基站状态/收日志/排障分流/抓包"时经路由使用。PCAP 深度分析在 8AL91443ENAA（书外指针）。'
+    tags:
+    - reference
+    - dect
+    - maintenance
+    - troubleshooting
+  source_evidence:
+  - source_id: src-dectxte200en
+  - location: p116, p137-139, p153-161
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 判读与日志域，路由可达即可
+- capability_id: cap.dect.radio-survey
+  revision: 1
+  status: active
+  slug: dect-radio-survey
+  title: DECT 无线覆盖勘测（RSSI 门槛/SSK/survey mode）
+  importance: medium
+  importance_rationale: 对应 task-12，部署质量入口；书内只有门槛数字与工具开关，方法论在书外，独立触发价值有限
+  one_liner: 话音门槛 -70dBm（容易）/-60dBm（金属）、站间同步 -80dBm；*7378423* 开 survey mode 画覆盖边界
+  intents:
+  - 做覆盖勘测
+  - RSSI 门槛是多少
+  - 开手机勘测模式
+  - 覆盖验收标准
+  - site survey
+  - RSSI
+  keywords:
+  - 勘测
+  - survey mode
+  - RSSI
+  - -70dBm
+  - -60dBm
+  - -80dBm
+  - SSK
+  - Site Survey Kit
+  - "8242"
+  - RFPI
+  - 覆盖边界
+  also_read:
+  - dect-product-selection
+  card: cards/dect-radio-survey.md
+  frontmatter:
+    description: '无线覆盖勘测的操作面：三个 RSSI 门槛（话音 -70dBm 容易/-60dBm 金属困难、站间同步 -80dBm）、SSK 勘测套件构成、手机 survey mode 开关（*7378423*）与按键语义、勘测作业纪律（调试专用/耗电/勘测机与交付机分离）。当用户要"勘测覆盖/RSSI 门槛/开勘测模式"时经路由使用。勘测方法论（天线/传播）在 8AL90874USAA，本卡不含。'
+    tags:
+    - procedure
+    - dect
+    - survey
+    - coverage
+  source_evidence:
+  - source_id: src-dectxte200en
+  - location: p204-217
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 工具与门槛域，路由可达即可
+- capability_id: cap.dect.ibs-deployment
+  revision: 1
+  status: active
+  slug: dect-ibs-deployment
+  title: 8379 IBS 基础设施部署（UA 板卡/布线/建站）
+  importance: medium
+  importance_rationale: 对应 task-13，TDM 存量场景；场景型产品线，触发频率低于 xBS 主线，路由可达即可
+  one_liner: 1 条 UA 链路=3 B 信道、主偶从奇端口、SYT 800m/LY278 1200m、全网 1 PARI/256 台、无加密、切换限同一网关
+  intents:
+  - 部署 IBS 基站
+  - UA 板卡怎么选
+  - IBS 布线距离
+  - IBS 状态判读
+  - deploy 8379 IBS
+  keywords:
+  - IBS
+  - "8379"
+  - UA 板卡
+  - UAI
+  - MIX
+  - B 信道
+  - Line delay
+  - SYT
+  - LY278
+  - ATEX
+  - dectview ibs
+  - listibs
+  also_read:
+  - dect-mixed-mode
+  card: cards/dect-ibs-deployment.md
+  frontmatter:
+    description: '8379 IBS（TDM 基站线）的部署：UA 板卡密度与端口规则（主偶从奇）、线缆长度口径（SYT 800m/LY278 1200m）、Line delay 三档、IBS System PARI 与建站流程、dectview ibs/listerm/listibs 状态核验、架构边界（无加密、切换限同一 media gateway）。当用户要"装 IBS/选板卡/布线/IBS 状态"时经路由使用。混合部署见混合部署能力。'
+    tags:
+    - procedure
+    - dect
+    - ibs
+    - deployment
+  source_evidence:
+  - source_id: src-dectxte200en
+  - location: p218-234, p37
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: TDM 存量场景，路由可达即可
+- capability_id: cap.dect.sip-dect
+  revision: 1
+  status: active
+  slug: dect-sip-dect
+  title: 8328 SIP-DECT 部署（四步注册/双小区）
+  importance: medium
+  importance_rationale: 对应 task-17/task-18，低成本小站方案；SIP 语义与 PARI 体系解耦，混淆两套语义是主要风险，路由可达即可
+  one_liner: OXE 建 SIP Extension → 基站 WBM 声明 → 手机空中注册 → 基站代发 SIP register；双小区先声明 Extension 者为主站
+  intents:
+  - 部署 8328 SIP-DECT
+  - 8328 拿不到 IP
+  - 双小区谁是主站
+  - 8328 手机注册
+  - SIP-DECT deployment
+  - dual cell
+  keywords:
+  - "8328"
+  - SIP-DECT
+  - "8214"
+  - SIP Extension
+  - SIP register
+  - dual cell
+  - 双小区
+  - 主站
+  - 副站
+  - reset the chain
+  - FFFFFFFFFF
+  - Alcatel-Lucent terminals only
+  also_read:
+  - dect-handset-registration
+  card: cards/dect-sip-dect.md
+  frontmatter:
+    description: '8328 SIP-DECT 的部署与边界：DHCP 固定 IP（Alcatel-Lucent terminals only=NO）、基站 WBM 基础配置、四步注册闭环（SIP Extension→WBM 声明→手机注册→基站代发 SIP register）、双小区主站判定（先声明 Extension 者）与 5 分钟链路预期，附三条硬边界（仅欧洲频段/仅 8214/电话本不集成）。当用户要"装 8328/双小区/SIP 注册排障"时经路由使用。GAP 手机的 PARI 注册属手机注册能力。'
+    tags:
+    - procedure
+    - dect
+    - sip-dect
+    - deployment
+  source_evidence:
+  - source_id: src-dectxte200en
+  - location: p271-291, p7, p275
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 低成本支线，路由可达即可

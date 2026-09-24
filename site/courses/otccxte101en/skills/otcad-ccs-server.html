@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>CCS Server 集中接入</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced</h2><p>Edition  · 597 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte101en/index.html">课程首页</a><a href="/courses/otccxte101en/digest.html">精华长文</a><a href="/courses/otccxte101en/overview.html">教书理解</a><a href="/courses/otccxte101en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte101en/skills/otcad-ism-skill-matching.html">ISM 技能匹配与排序口径</a><a href="/courses/otccxte101en/skills/otcad-remote-pg-mutual-aid.html">Remote PG 分布式互助与 ABC-F 链路</a><a href="/courses/otccxte101en/skills/otcad-spm-deployment.html">Soft Panel Manager 部署与基础设置</a><a href="/courses/otccxte101en/skills/otcad-soft-panel-manager.html">Soft Panel 可视化配置（视图/挂件/消息/告警）</a><a href="/courses/otccxte101en/skills/otcad-ccta-ticket-analysis.html">CCTA 话务票据分析</a><a href="/courses/otccxte101en/skills/otcad-special-features.html">特殊功能开关（优先转接/忙音/代接/监听/永恒整理/中继预留）</a><a href="/courses/otccxte101en/skills/otcad-excel-report-customization.html">Excel 报表模板定制</a><a href="/courses/otccxte101en/skills/otcad-ccs-server.html">CCS Server 集中接入</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte101en/skills/otcad-acr-objects.html">ACR 对象与技能体系</a><a href="/courses/otccxte101en/skills/otcad-asm-script-advanced.html">ASM 脚本与 LCA 主干</a><a href="/courses/otccxte101en/skills/otcad-ccs-onboarding.html">CCS 安装与实验环境定稿</a><a href="/courses/otccxte101en/skills/otcad-acd-maintenance.html">ACD 维护命令箱</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte101en/index.html">otcc-standard-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte101en/index.html">OTCCXTE101EN</a><span>/</span><span aria-current="page">CCS Server 集中接入</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>CCS Server 集中接入</h1></div><dl><div><dt>Skill ID</dt><dd>otcad-ccs-server</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>CCS Server 集中接入（内部 serv_ccs、外部 Windows 服务、客户端切换）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Internal CCs server: • The process "serv_ccs" is started on the OmniPCX • 15 CCsupervision Clients simultaneously connected • External CCs server: • "server CCs" service is started on the PC • 120 CCsupervision Client simultaneously connected"（p557）
+"The CCs server is mandatory for these releases when the CCs connections numbers to the PCX is greater than 9 (whatever the CCs type, mono-site or multi-site)"（p567）
+"The AFE server can receive only one CCs server. • If the service (external CCs server) is started and the process (internal CCs server) isn't stopped, the connection of the external CCs server is rejected by the AFE server."（p575）</p>
+</blockquote>
+<p>出处：OTCCXTE101EN p555-590。</p>
+<h2>I — 自述</h2>
+<p>CCS 客户端接入的三种形态：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>形态</th>
+<th>承载</th>
+<th>容量</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>直连 AFE</td>
+<td>CCS 直接连 OXE 的 CCD 程序</td>
+<td>AFE 物理上限 15 连接</td>
+<td>每客户端占 1 连接；Ping-pong 周期默认 30 秒</td>
+</tr>
+<tr>
+<td>内部 CCS Server</td>
+<td>OXE 上 serv_ccs 进程（serv_ccs_on_dhs=1）</td>
+<td>15 个 CCS 客户端</td>
+<td>自身占 AFE 一条连接，客户端实得 14</td>
+</tr>
+<tr>
+<td>外部 CCS Server</td>
+<td>Windows Server 2019/2022 服务（serv_ccs.msi）</td>
+<td>120 个 CCS 客户端</td>
+<td>需先停 OXE 内部进程（置 0 并重启 MAIN_AFE）</td>
+</tr>
+</tbody>
+</table></div>
+<p>强制条件：CCd R3.1 + CCs 4.3.46.1 起，连接数 &gt;9（不分单/多站点）必须用 CCS Server；一个 AFE 只能接一个 CCS Server——内部进程未停时外部服务会被 AFE 拒接（n33）。</p>
+<p>客户端切换：Window &gt; Customise &gt; Network 把 Direct connexion 改为经 CCS Server（填服务器 IP），提示后重启 CCS。</p>
+<p>维护锚点四件：CCS Real Time &gt; Licenses 看锁占用（AFE 1 连接+Server 1 连接+monosite 令牌）；adm_acd option 11 看 <em>SERV_CCS</em> 终端；
+adm_acd <Server IP> -servccs option 10 看经服务器接入的客户端（自报 maxCli=150、maxConnected=120）；日志 servccsYYMMDD.log。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>从内部到外部的切换</strong>（p580-590，外部 Server 装在实验 Windows Server 192.168.1.70）：</p>
+<ol>
+<li>摸底直连：CCS 核对直连参数（Ping-pong 30 秒、Memorise connections），Real time &gt; Licences 记录当前锁</li>
+<li>查内部 Server：OXE console（mtcl）ps -edf|grep serv_ccs；adm_acd option 11 见 <em>SERV_CCS</em> 终端与 SALB</li>
+<li>停内部进程：nano /usr3/afe/parameters.cfg 把 serv_ccs_on_dhs 由 1 改 0，dhs3_init -R MAIN_AFE，ps 复核进程消失</li>
+<li>装外部服务：serv_ccs.msi 安装（Setup Type 选 Alcatel-Lucent CCS Server，填主 CPU IP），再用 Ccs Server Installation 工具建服务并启动</li>
+<li>验服务：CCS Server Status 应用 Connect 后双绿灯（Server 绿+CCD 绿）</li>
+<li>客户端改接：Network 页填 CCS Server IP，重启 CCS 后 Licences 复核</li>
+<li>终验：adm_acd 192.168.1.70 -servccs option 10，核对 "CCS Server release 8.0 cnx= 1, afe= 1" 与客户端在列</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：监督员超过 15 人连不上；客户要求集中接入/多客户端共享；从直连或内部 Server 迁移到外部 Server；外部服务连不上 AFE。</p>
+<p>语言信号：CCS Server / serv_ccs / serv_ccs_on_dhs / 外部服务器 / 内部服务器 / 15 客户端 / 120 客户端 / AFE 连接 / maxCli / maxConnected / 拒接 / -servccs / Server Status / 集中接入。</p>
+<p>与相邻能力区分：CCS 首次安装与 OXE 声明转 CCS 安装与实验环境卡（路由卡）；实时锁与许可语义归本卡维护锚点；CCS 客户端日常排障转 ACD 维护命令箱卡（路由卡）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OXE 管理权（mtcl）、一台 Windows Server 2019/2022（外部形态）、客户端数量与接入规划。宿主 OS 不满足 → 停，先换/升 OS（p567）。</p>
+<ol>
+<li>摸底：数清当前 CCS 连接数，&gt;9 即必须上 CCS Server；记录现有许可锁。完成标准：接入形态决策有据</li>
+<li>选形态：≤15 客户端可留内部 Server；&gt;15 或要独立承载时走外部 Server。完成标准：形态确定</li>
+<li>内部转外部：先停 OXE 内部进程（serv_ccs_on_dhs=0 + 重启 MAIN_AFE + ps 复核）。完成标准：进程消失</li>
+<li>装外部服务并用 Status 工具验证双绿灯。完成标准：Server 与 CCD 均 Green</li>
+<li>客户端逐台改接 Network 指向 Server IP 并重启 CCS。完成标准：Licenses 显示经服务器接入</li>
+<li>终验：adm_acd <Server IP> -servccs option 10 核对 cnx/afe/nbCli 与 maxConnected。完成标准：与设计一致</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>外部服务启动后被 AFE 拒接 → 停，第一查内部 serv_ccs 是否真停（ps 应无输出），这是 n33 场景，不是网络故障</li>
+<li>规划依据出现 "29 or 120" → 停，按 nr-01 双口径处理：以 15/120 与 "&gt;9 强制"为准，标注原文如此</li>
+<li>客户端规模要超 120 → 停，超出本书与 CCS Server 口径，转产品文档评估分域接入</li>
+</ul>
+<p>输出契约：接入形态决策记录 + 内/外部切换操作记录 + 客户端接入清单与许可锁快照。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>p558 "29 or 120 CCs max" 与同页图示 15/120 矛盾（nr-01，推断为笔误）；规划一律按 15/120 与 &gt;9 强制口径</li>
+<li>外部 Server 仅支持 Windows Server 2019/2022（p567）；maxCli=150 是服务自报上限，有效客户端上限按 120 口径</li>
+<li>一个 AFE 只能接一个 CCS Server（p575/p590 原文 "Only 1 CCS Server can connect to the PABX!"），双 Server 方案不存在</li>
+<li>adm_acd option 编号以 R10.15 为准（f15 conditions）；跨版本先核对命令树</li>
+<li>内部 Server 占 AFE 一条连接、客户端实得 14 的口径来自 p558 图示（14 connections max + 1 connection）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte101en/skills/otcad-ccs-onboarding.html">CCS 安装与实验环境定稿</a>、<a href="/courses/otccxte101en/skills/otcad-acd-maintenance.html">ACD 维护命令箱</a></p><p class="source-page">能力 ID：cap.otcad.ccs-server · 来源：OTCCXTE101EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition - Advanced (Participant's Guide, Edition 07) | edition: Edition  | pages: 597 页 -->

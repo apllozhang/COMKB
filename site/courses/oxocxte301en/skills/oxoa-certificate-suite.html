@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>证书与加密传输（证书/DTLS/TLS-SRTP）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OXO Connect · Advanced</h2><p>Edition 18 · 601 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte301en/index.html">课程首页</a><a href="/courses/oxocxte301en/digest.html">精华长文</a><a href="/courses/oxocxte301en/overview.html">教书理解</a><a href="/courses/oxocxte301en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte301en/skills/oxoa-sip-networking.html">SIP 组网：公网网关与私网互联</a><a href="/courses/oxocxte301en/skills/oxoa-numbering-ars-suite.html">ARS 路由套件：三表协作与 Internal ARS</a><a href="/courses/oxocxte301en/skills/oxoa-hotel-billing-vertical.html">酒店与计费垂直方案</a><a href="/courses/oxocxte301en/skills/oxoa-security-hardening.html">系统安全加固</a><a href="/courses/oxocxte301en/skills/oxoa-certificate-suite.html">证书与加密传输（证书/DTLS/TLS-SRTP）</a><a href="/courses/oxocxte301en/skills/oxoa-attendant-suite.html">语音导航套件（AA/MLAA/SCR）</a><a href="/courses/oxocxte301en/skills/oxoa-voicemail-mobility.html">语音邮箱与移动办公</a><a href="/courses/oxocxte301en/skills/oxoa-cloud-connect-fleet.html">Cloud Connect 舰队与远程维护</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte301en/skills/oxoa-foundation-ip.html">交付地基：OMC 首连与 IP 规划</a><a href="/courses/oxocxte301en/skills/oxoa-terminal-ecosystem.html">终端生态：PIMphony 与 SIP 话机接入</a><a href="/courses/oxocxte301en/skills/oxoa-shared-devices.html">共享终端：站群监督、Hot Desking 与 Multiset</a><a href="/courses/oxocxte301en/skills/oxoa-multi-entity.html">多实体与伪多公司</a><a href="/courses/oxocxte301en/skills/oxoa-dect-deployment.html">DECT 无线移动</a><a href="/courses/oxocxte301en/skills/oxoa-maintenance-toolkit.html">维护工具箱：Webdiag、Noteworthy 与 LoLa</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte301en/index.html">oxo-connect-advanced（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte301en/index.html">OXOCXTE301EN</a><span>/</span><span aria-current="page">证书与加密传输（证书/DTLS/TLS-SRTP）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>证书与加密传输（证书/DTLS/TLS-SRTP）</h1></div><dl><div><dt>Skill ID</dt><dd>oxoa-certificate-suite</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>证书与加密传输（数字证书四类、DTLS、SIP 中继 TLS/SRTP）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Server Certificate … HTTPS (OMC, WebDIAG APIs) • SIP trunk with SIP-TLS … 2048 (d) 4096 … Public Server certificate … Issuer External PKI … DTLS OXO certificate … Port 7780"（p346, p351-353）
+"Roll back to previous release after a migration to R6.2 … switch again to 2K certificates (Via WebDIAG) and then roll back."（p357）
+"DTLS (TLS 1.2) secures the signaling. Voice packet are in clear mode (Not SRTP)"（p353）
+"Up to 300 DTLS connections • License free … Available only with platform OXO Connect Evolution"（p360）
+"TLS Authentication model: Server Provided Certificate Authentication or Mutual Authentication • Cryptographic suites: AES Counter Mode [128 and HMAC SHA1 80] [256 and HMAC SHA1 80] …"（p367）
+"WebRTC GW alone 20 calls max. NA … SIP PROXY alone NA 20 calls max. … WebRTC GW + SIP PROXY 20 calls max. 20 calls max."（p375）</p>
+</blockquote>
+<p>出处：OXOCXTE301EN p339-378。</p>
+<h2>I — 自述</h2>
+<p>证书与加密分三层：证书体系（身份）、DTLS（话机信令）、TLS/SRTP（中继）。</p>
+<p><strong>证书四类 + 端口矩阵</strong>（p346-356，WebDIAG 为管理主接口）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>证书</th>
+<th>身份/用途</th>
+<th>端口</th>
+<th>签发</th>
+<th>密钥</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server Certificate</td>
+<td>LAN 私有身份（HTTPS + SIP-TLS）</td>
+<td>443、30443</td>
+<td>自签默认或外部 PKI</td>
+<td>2048 默认/4096 可配</td>
+</tr>
+<tr>
+<td>Public Server certificate</td>
+<td>WAN 公共身份（SIP-TLS + HTTPS）</td>
+<td>50443</td>
+<td>仅外部 PKI（默认未定义）</td>
+<td>2048/4096</td>
+</tr>
+<tr>
+<td>DTLS OXO certificate</td>
+<td>NOE 话机 DTLS</td>
+<td>7780</td>
+<td>自签 4096 不可配或外部 PKI</td>
+<td>4096</td>
+</tr>
+<tr>
+<td>Generic / OXO HAN</td>
+<td>ALE SIP 话机简易部署 / Wi-Fi AP</td>
+<td>10443 / 11443</td>
+<td>自签（Generic 2048 不可配）</td>
+<td>HAN R6.2 起 4096</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>升级路径</strong>：</p>
+<ul>
+<li>自签 2 步：CA 再生成，然后服务器证书再生成（两者密钥长度必须一致；重启仅 OCE）</li>
+<li>外部 PKI 4 步：CA 再生成、CSR（PKCS#10）生成下载、外部 CA 签、导入安装；Public Server 3 步；DTLS 自签 1 步/外部 3 步</li>
+<li>R6.2 起 OpenSSL V3 + 4K 支持；4K 存储格式不同——回滚旧版本前必须先经 WebDIAG 切回 2K，否则 OMC 报错（n41）</li>
+</ul>
+<p><strong>DTLS</strong>（p359-364）：</p>
+<ul>
+<li>只加密 ALE VoIP 话机信令（TLS 1.2），语音包仍明文（非 SRTP）；300 连接、免 license、仅 OCE、默认激活</li>
+<li>两模式：Generic（零接触，跨 OCE 免清除移动）/ Specific（锁定端点）</li>
+<li>跨系统移动（OXO↔OXE）必须清 TrustList：部分清除（OMC）/完全清除（WebDiag recovery token）/专用 token（ALE 支持）</li>
+</ul>
+<p><strong>SIP 中继 TLS/SRTP</strong>（p365-378）两实现：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>实现</th>
+<th>平台</th>
+<th>容量</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OCE 原生</td>
+<td>OCE</td>
+<td>免 license</td>
+<td>网关 Security tab + Topology（静态 NAT）+ SIP Trunk 信令端口 5061；四套 AES-CTR 套件</td>
+</tr>
+<tr>
+<td>OCE-FE SIP PROXY</td>
+<td>OCO 等无原生平台</td>
+<td>GW 与 PROXY 各 20 通话</td>
+<td>认证/DNS/套件/静态 NAT 四项全局共享；SIPS URI 不支持；ETH1 不走 SIP</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>证书章为讲义形态（无实验），关键行为口径</strong>（p339-378）：</p>
+<ol>
+<li>改接入路由器外部地址或 LAN IP 会重建自签证书，已信任客户端要重新信任（p327）。</li>
+<li>冷复位与 LoLa 不清证书（p327）——净化转售设备需另行处理（n40，推断）。</li>
+<li>双向认证从旧版本迁移启用时证书必须再生成（p373 note）。</li>
+<li>TLS/SRTP 模式下 Direct RTP 不可用，媒体在 OCE GW 侧终结（p368）。</li>
+<li>私网两 OCE 互联：一端自动做 TLS Server、另一端做 Client；对端仅 TLS client 时须停用双向认证（p369）。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：运营商要求加密中继；话机要 DTLS；证书快过期或要换企业 PKI；升级 4K 后想回滚版本；话机跨系统搬过去注册不上；OCO 老平台怎么接加密中继；双向认证握手失败。</p>
+<p>语言信号：证书 / certificate / PKI / CSR / 自签 / 4096 / 4K / 2048 / 2K / 回滚 / DTLS / TrustList / TLS / SRTP / 5061 / 加密中继 / OCE-FE / SIP PROXY / 双向认证 / mutual authentication。</p>
+<p>与相邻能力区分：系统密码与加固归安全加固能力；SIP 中继本身的注册与路由归 SIP 组网能力；WebDIAG 操作界面归维护工具能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：平台形态（OCE/OCO/PowerCPU EE）、软件版本（是否 R6.2+）、PKI 流程（有无企业 CA）、运营商加密参数（认证模型/套件/端口）。企业 PKI 流程未定 → 判停先对齐客户 PKI 管理方。</p>
+<ol>
+<li>盘点证书：WebDIAG/Certificates 核当前四类证书的密钥长度与签发者。完成标准：证书台账</li>
+<li>签发路径：自签走 2 步（CA 与证书，长度一致）；外部走 4 步（CA、CSR、外部签、导入）。完成标准：证书就位</li>
+<li>重启核验：OCE 重启后在 WebDIAG 看 current certificate。完成标准：新证书生效</li>
+<li>（DTLS）系统级 OMC/Security/DTLS Encryption + 每用户 IP-SIP parameters；话机确认钥匙图标。完成标准：信令加密上线</li>
+<li>（TLS/SRTP）网关 Security tab 启用并选认证模型与套件；Topology 配静态 NAT；信令端口 5061。完成标准：加密中继注册通</li>
+<li>（OCO 平台）改走 OCE-FE SIP PROXY：WebDIAG Settings 配接口/DNS/拓扑/认证/套件，ALE CC 注册后可用。完成标准：代理转发通</li>
+<li>回滚预案：升 4K 的站点把"WebDIAG 先切回 2K 再回滚"写进回滚手册（n41）。完成标准：预案成文</li>
+<li>移动场景：跨系统搬话机前按三法之一清 TrustList。完成标准：话机在新系统注册</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>运营商要求 SIPS URI → OCE-FE 不支持（n43），换方案或协商</li>
+<li>对端仅 TLS client 且客户不接受停用双向认证 → 安全等级下降需书面确认（n44）</li>
+<li>4K 升级后直接回滚 → 禁止：先切 2K，否则 OMC 报错（n41）</li>
+<li>OCO 平台想原生开 TLS → 平台无此能力，只有 OCE-FE 代理一条路（p375）</li>
+</ul>
+<p>输出契约：证书台账与签发记录 + DTLS/TLS 部署清单 + 容量口径（FE 各 20 通话）+ 回滚预案。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>DTLS 只保信令不保语音（n62）：合规对话中"话机加密"与"语音机密性"必须分开表述，语音机密走中继 SRTP</li>
+<li>OCE-FE 四项配置全局共享：不同网关要不同套件做不到；OCE FE 无 PBX 能力、license 免费但需硬件（p375-378）</li>
+<li>企业 PKI 的申请审批流、证书生命周期管理在书外（原书只给系统侧操作）</li>
+<li>Generic 证书覆盖 8001/8008CE/8008G/8028 等清单见 p356；NOE 话机 DTLS 支持清单见 p353</li>
+<li>运营商 TLS 参数（套件/端口/认证）在书外，按运营商合同取值；实验口径不适用生产</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte301en/skills/oxoa-security-hardening.html">系统安全加固</a>、<a href="/courses/oxocxte301en/skills/oxoa-sip-networking.html">SIP 组网：公网网关与私网互联</a></p><p class="source-page">能力 ID：cap.oxoa.certificate-suite · 来源：OXOCXTE301EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OXO Connect - Advanced (Participant's Guide, Edition 18) | edition: Edition 18 | pages: 601 页 -->

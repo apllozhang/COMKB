@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>计费组织树与成本归属</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 计费与性能管理</h2><p>Edition 45 · 650 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte201en/index.html">课程首页</a><a href="/courses/8770xte201en/digest.html">精华长文</a><a href="/courses/8770xte201en/overview.html">教书理解</a><a href="/courses/8770xte201en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte201en/skills/ovbill-node-onboarding.html">OXE 纳管与 SIP 中继对接</a><a href="/courses/8770xte201en/skills/ovbill-ticket-pipeline.html">计费票据管道（出票、回收、加载过滤）</a><a href="/courses/8770xte201en/skills/ovbill-tariff-costing.html">运营商资费建模与成本计算</a><a href="/courses/8770xte201en/skills/ovbill-org-costing.html">计费组织树与成本归属</a><a href="/courses/8770xte201en/skills/ovbill-confidentiality.html">计费机密控制三道闸（掩码、解密、可见域）</a><a href="/courses/8770xte201en/skills/ovbill-reporting.html">报表生成、导出与定时</a><a href="/courses/8770xte201en/skills/ovbill-report-design.html">报表定制（Querytool 与 Designer）</a><a href="/courses/8770xte201en/skills/ovbill-voip-monitoring.html">VoIP 性能监控（IP ticket 与 KPI）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte201en/skills/ovbill-codebook-migration.html">Code Book 导出与导入</a><a href="/courses/8770xte201en/skills/ovbill-cost-profile.html">成本档案（发票价与订阅费）</a><a href="/courses/8770xte201en/skills/ovbill-traffic-tracking.html">流量分析与 Tracking 告警</a><a href="/courses/8770xte201en/skills/ovbill-web-performance.html">Web Performance 实时仪表盘</a><a href="/courses/8770xte201en/skills/ovbill-archiving.html">计费归档与恢复</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte201en/index.html">omnivista-billing-performance（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte201en/index.html">8770XTE201EN</a><span>/</span><span aria-current="page">计费组织树与成本归属</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>计费组织树与成本归属</h1></div><dl><div><dt>Skill ID</dt><dd>ovbill-org-costing</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>计费组织树与成本归属（成本中心、搬移权限、剪贴/复制语义、历史回溯与工具重建）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Chargeable entry placed under cost center created in organization tree — If cost center defined in the PCX ... Chargeable entry placed under root of organization tree — If no cost center defined (cc=255) in the PCX"（p256）
+"Cut &amp; paste • This operation consists in moving an entry without history ... Copy &amp; paste • This operation consists in moving an entry with history"（p261-262）
+"The move of a subscriber from a cost center to another one is only possible from OXE configuration or directory applications. That's why such move is not authorized from the organization map."（p286）
+"TO ASSIGN CORRECTLY THE HISTORY FROM AN INACTIVE SUBCRIBER TO THE ACTIVE ONE, YOU MUST SELECT ITS DEVICE AND NOT THE USER."（p290）</p>
+</blockquote>
+<p>出处：8770XTE201EN p251-295。</p>
+<h2>I — 自述</h2>
+<p>组织树决定"钱归谁"：节点类型 level（层级）/cost center（成本中心）/chargeable entry（用户、话务台、数据终端、中继组等），同时呈现过去与现在（灰色历史条目）。</p>
+<ul>
+<li>数据来源两条：OXE 同步或事件、公司目录的设备-个人链接变化——组织更新自动完成</li>
+<li>归属规则：PCX 设了成本中心挂对应节点；cc=255 落组织根；中继组/话务台组/语音信箱等无成本中心对象落 Data collection 页签配置的"默认成本中心"</li>
+<li>搬移权限二分：分机/用户的成本中心只能在 OXE 配置（Rights 页签）或公司目录改，组织图上剪贴会被拒绝；中继组等对象可以在组织图上自由剪贴（不影响话机侧）</li>
+<li>操作语义四象限：</li>
+</ul>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>语义</th>
+<th>后果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cut &amp; paste</td>
+<td>无历史搬移</td>
+<td>原位置不留灰条目</td>
+</tr>
+<tr>
+<td>Copy &amp; paste</td>
+<td>带历史另立</td>
+<td>原件保留记录并转 inactive（灰色），粘贴件 active</td>
+</tr>
+<tr>
+<td>Assign earlier creation date</td>
+<td>按身份回溯历史</td>
+<td>只能选"设备"，把非活动条目记录重挂到同身份（PCX ID/分机号）活动条目</td>
+</tr>
+<tr>
+<td>ToolsOmniVista 组织更新</td>
+<td>全局重挂</td>
+<td>删除全部非活动实体，票据与 Ptp 计数器重挂到活动实体；强制停 8770 服务</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>回溯边界：level/成本中心/人（person）不可回溯，残留的非活动成本中心要手工删；新日期须早于条目现创建日期、晚于等于最后一条对应非活动条目日期</li>
+<li>灰色条目是历史追溯机制不是垃圾数据，全局更新前它们承担记录归属</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>组织树搭建与搬移实践</strong>（p268-288）：</p>
+<ol>
+<li>Data collection 页签设 Default cost center=CC_OXE 后做完整同步</li>
+<li>Organization 页签清空旧条目，灌测试票并 Compute cost（勾 Force）</li>
+<li>根改名 Alcatel，建 level Brest/Colombes；成本中心剪贴归位（Training/TSS 到 Brest，CC_OXE/MKT 到 Colombes）</li>
+<li>正道改归属：OXE 配置把 31000 的 Cost Center ID 从 1 改 3，组织树自动搬家且原位留灰色条目</li>
+<li>允许项：中继组 SIP_Public 从 CC_OXE 剪贴到 MKT 成功（不影响话机侧）</li>
+<li>拒绝项：分机 31011 从 TSS 剪贴到 MKT 失败（分机只能经 OXE 配置或目录应用改）</li>
+<li>复制语义验证：Copy Training 到 Colombes 后原件转 inactive 转灰、粘贴件 active</li>
+</ol>
+<p><strong>历史回溯与全局重建</strong>（p289-295）：</p>
+<ol>
+<li>记下 inactive 31000 与 active 31000 各自的创建日期</li>
+<li>右键 active 31000（选设备不是选用户）&gt; Assign earlier creation date，填 inactive 条目的创建日期并确认告警</li>
+<li>验证：inactive 条目消失，active 条目取回完整历史</li>
+<li>全局重建：双击 C:\8770\bin\ToolsOmniVista.exe，输 directory manager 口令，输 y 停 8770 服务（强制）</li>
+<li>菜单 3 Accounting Organization Update，确认后等完成（实验 5.172s），非活动实体删除、票据重挂</li>
+<li>手工收尾：非活动的成本中心 Training 工具清不掉，右键手工删除</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：部门重组后票据归错成本中心；组织树上出现重名灰条目；员工离职复用分机后历史怎么并；搬分机被拒绝；ToolsOmniVista 是什么、敢不敢跑；默认成本中心放什么。</p>
+<p>语言信号：组织树 / organization tree / 成本中心 / cost center / cc=255 / 默认成本中心 / 灰色条目 / inactive / 剪贴 / 复制 / cut &amp; paste / copy &amp; paste / 回溯 / Assign earlier creation date / ToolsOmniVista / 组织更新 / Ptp 计数器。</p>
+<p>与相邻能力区分：票据进没进库属票据管道能力；树配好后的遮蔽与可见性属机密控制能力；发票价调价属成本档案能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OXE 同步正常、成本中心已在 PCX 命名。变更窗口未约定 → 判停先约停机窗口再跑全局更新。</p>
+<ol>
+<li>配默认成本中心并完整同步。完成标准：无成本中心对象落位正确</li>
+<li>改根名并搭 level/成本中心骨架（剪贴成本中心归位）。完成标准：树结构过业务确认</li>
+<li>搬移按对象二分走对通道：分机走 OXE 配置/目录应用；中继组可组织图剪贴。完成标准：无拒绝报错</li>
+<li>人员变动回溯：右键活动"设备"&gt; Assign earlier creation date（日期取自非活动条目）。完成标准：非活动条目消失、历史并入</li>
+<li>全局重建：先归档，再跑 ToolsOmniVista 组织更新（停服务确认 y）。完成标准：组织树仅剩活动条目</li>
+<li>手工删除残留的非活动成本中心/level（工具不处理）。完成标准：树中无灰色残留</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>分机搬移被拒 → 回 OXE 配置或公司目录改，不在组织图反复重试</li>
+<li>回溯选了"用户"挂不上历史 → 必须选设备（书内全大写 Warning），重新操作</li>
+<li>ToolsOmniVista 删除不可逆 → 执行前先归档，并预期大量灰色条目消失、服务中断</li>
+<li>回溯日期不满足"早于现值、晚于等于最后非活动条目"→ 工具会拒绝，先核对日期</li>
+</ul>
+<p>输出契约：组织树结构图（含成本中心映射）+ 搬移/回溯操作记录 + 全局更新前后条目数对照。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>cc=255 落组织根；中继组等对象在 OXE 配置里本就不能设成本中心（p256/p285）</li>
+<li>组织更新强制停 8770 服务且删除全部带历史的非活动实体——是变更窗口里的重活，不是日常维护（p293）</li>
+<li>level/成本中心/人不可回溯；工具更新后残留的要手工删（p263/p295）</li>
+<li>多节点（网络号×1000000+节点号聚合）与 OpenTouch 级联同步只有概念图无实验，生产多节点组网须另行验证</li>
+<li>树重建前清空旧条目的做法属实验口径，生产用全局更新替代"删了重来"</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte201en/skills/ovbill-confidentiality.html">计费机密控制三道闸（掩码、解密、可见域）</a></p><p class="source-page">能力 ID：cap.ovbill.org-costing · 来源：8770XTE201EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 R5.2 Accounting and Performance Administration (Participant Guide, Edition 45) | edition: Edition 45 | pages: 650 页 -->

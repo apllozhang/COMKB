@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.oxo-connect-call-center",
+  "generated_at": "2026-09-23",
+  "destinations": {
+    "cap.oxo-cc.basic-setup": { "promoted_to": "oxo-acd-basic-setup" },
+    "cap.oxo-cc.call-scenarios": { "promoted_to": "oxo-acd-call-scenarios" },
+    "cap.oxo-cc.routing": { "promoted_to": "oxo-acd-routing" },
+    "cap.oxo-cc.queue": { "promoted_to": "oxo-acd-queue" },
+    "cap.oxo-cc.search-noanswer": { "promoted_to": "oxo-acd-search-noanswer" },
+    "cap.oxo-cc.login-status": { "promoted_to": "oxo-acd-login-status" },
+    "cap.oxo-cc.multi-secretary": { "promoted_to": "oxo-multi-secretary" },
+    "cap.oxo-cc.omc-first-connect": { "served_by": "oxo-connect-call-center-router" },
+    "cap.oxo-cc.ip-planning": { "served_by": "oxo-connect-call-center-router" },
+    "cap.oxo-cc.schedule-calendar": { "served_by": "oxo-connect-call-center-router" },
+    "cap.oxo-cc.supervisor-app": { "served_by": "oxo-connect-call-center-router" },
+    "cap.oxo-cc.agent-app": { "served_by": "oxo-connect-call-center-router" },
+    "cap.oxo-cc.statistics-app": { "served_by": "oxo-connect-call-center-router" },
+    "cap.oxo-cc.dtmf-popup": { "served_by": "oxo-connect-call-center-router" },
+    "cap.oxo-cc.voice-prompts": { "served_by": "oxo-connect-call-center-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 7 }
+}

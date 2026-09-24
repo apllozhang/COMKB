@@ -1,0 +1,720 @@
+schema_version: 1
+bundle_id: bundle.opentouch-advanced
+book:
+  title: OpenTouch - Advanced (Participant's Guide, Edition 08)
+  author: ALE Training Services
+  source_pack: OPENXTE301EN.pdf (468 pages)
+  baseline_tag: OpenTouch Suite for MLE R2.6.1 / RLAB / TC2258 ed.02 appendix
+entry:
+  name: opentouch-advanced
+  description: 'OpenTouch 与 OXE 高级特性的交付与排障支持：Nomadic 移动与 Ghost Z 资源池、Desksharing、OTC 智能手机（REX/DISA/APNS）、远程接入通道与证书、统一消息（Exchange/O365/Gmail/IMAP）、目录搜索与 Single Business Card、协作会议、日历在场与同步、外部认证（LDAP/RADIUS/Kerberos）。适用于 OpenTouch R2.6.x 时代的配置、选型、排障与方案问答；
+    容量算例、非法国号码计划与生产安全加固不在原书范围内（见 out_of_scope）。
+
+    '
+  core_principles:
+  - 分工：OXE 保留呼叫控制与话机生态，OpenTouch 服务器承载协作、消息、移动性与目录；客户端统一从 OT 拿服务
+  - Nomadic 的本质是资源池换轨：每路蜂窝连接占 1 个 Ghost Z、每路 VoIP 连接占 1 个 Ghost Z 加 1 个 SIP 设备，占住直到用户关闭 nomadic——并发数决定池规模
+  - 远程接入三件套：数据面走反向代理（443/8016），SIP/媒体走 OTSBC（5261/8061/7000-7499），号码格式靠 DAS 正则串行处理——顺序错一条全盘错；会议 FQDN 必须进两张证书 SAN
+  - 统一消息把语音留言变成邮件：四后端能力递减（Exchange 全功能、O365 桌面版、Gmail 限 500 用户、IMAP4 砍四项）；Exchange 侧钥匙是 ICEaccess 特权账号加 Impersonation 加 CA 证书
+  - 目录搜索永远查同步库：UDAS 单向同步进 PostgreSQL，同步三参数不设就是空库；合并按权重、Merge keys 至少姓加名、照片 Avatar 优先
+  - 外部认证是全局开关：downstream（LDAP/RADIUS 插件）与 upstream（Kerberos）两条路，启用前管理员必须先配好 External login，否则把自己锁在配置工具外面
+  - 实验环境口径：教材密码、账号、号码与网段仅限实验；生产必须全部替换并对照最新 release note（版本碎片化 R2.0-R2.6）
+  out_of_scope:
+  - 容量规划算例（Ghost Z 池、会议端口、DCS 吞吐书内只有"按并发规划"一句话，无算例）
+  - 非法国号码计划方法论（DAS/ARS/DID 仅 +33/00/0 口径，他国需自行推导）
+  - 高可用、安全加固、企业 IAM 治理细节（ICEaccess 账号治理等仅一句话级提示）
+  - Teams/Skype for Business 集成细节、eSIM/5G/MDM、新版浏览器矩阵（2019 年生态，按最新文档重核）
+  stop_conditions:
+  - 需要生产网络数值或最新兼容矩阵 → 指向 TC2341/TC2391/TC2258/TC2558/TC1623 与最新 release note，不以实验口径搪塞
+  - 版本敏感行为（R2.0/R2.2/R2.3.1/R2.6 分界）→ 按章内版本口径回答并提示跨版本核对（needs-review nr-07）
+  - LDAP 上限引用 → 按"OXE 侧 5 个"口径并注明 p235/p260 双口径冲突（nr-01），不二选一冒充原文
+  - 涉及 RLAB/SIP 模拟器环境搭建 → 参考 book/overview 环境区背景，不虚构生产配置
+router_entry:
+  name: opentouch-advanced-router
+  description: 'OpenTouch Advanced 能力路由入口：按用户意图分发到 13 张能力卡——远程接入、Nomadic、智能手机、统一消息、协作会议、日历同步、目录搜索、外部认证八个 promoted 能力，
+    以及 Desksharing、Extended Mobility、DCS 文档、OTC Web 访客、实验 POD 五张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.ota.remote-access
+  revision: 1
+  status: active
+  slug: ota-remote-access
+  title: OpenTouch 远程接入通道与证书
+  importance: critical
+  importance_rationale: 对应 task-08/task-09，一切远程特性的通道与安全底座；SAN 漏签与 DAS 顺序错是配错面最大的两处
+  one_liner: 反向代理管数据面（443/8016）、OTSBC 管 SIP/媒体（5261/8061/7000-7499）、DAS 正则管号码格式；会议 FQDN 必须进 RP 与 OT 两张证书 SAN
+  intents:
+  - 配置 OpenTouch 远程接入
+  - 声明反向代理与 OTSBC
+  - 会议邀请链接打不开
+  - 证书签发与部署
+  - DAS 规则配置
+  - reverse proxy declaration
+  keywords:
+  - 反向代理
+  - reverse proxy
+  - OTSBC
+  - SBC
+  - "5261"
+  - "8061"
+  - "7000-7499"
+  - 证书
+  - SAN
+  - rehost
+  - CSR
+  - conf-pod
+  - DAS
+  - 正则
+  also_read:
+  - ota-smartphone-rex
+  - ota-nomadic-ghost-z
+  card: cards/ota-remote-access.md
+  frontmatter:
+    description: 'OpenTouch 远程接入通道的声明与排障：反向代理四个公共 URL、OTSBC 两声明（5261/8061）、NAT/DNS 规划、ACS 会议 FQDN 与证书全生命周期（rehost、CSR、CA 签发、导入、部署）、
+      DAS 规则串行管线。当用户要"配远程接入/查会议链接/换证书/调拨号格式"时使用。不适用于手机与 nomadic 的终端侧配置；生产 DMZ 规划与外部 CA 流程按客户环境替换实验模板。
+
+      '
+    tags:
+    - procedure
+    - opentouch
+    - remote-access
+    - certificate
+  source_evidence:
+  - source_id: src-openxte301
+  - location: p103-118
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-08/09，一切远程特性的通道底座
+- capability_id: cap.ota.nomadic-ghost-z
+  revision: 1
+  status: active
+  slug: ota-nomadic-ghost-z
+  title: Nomadic 移动模式与 Ghost Z 资源池
+  importance: critical
+  importance_rationale: 对应 task-03/04/05，移动性主线第一站；池规模=并发数的容量公式是全书最核心的复用概念
+  one_liner: 蜂窝每路占 1 个 Ghost Z、VoIP 每路占 1 Ghost Z 加 1 SIP 设备，占住直到关闭；权限成对（GSM/SIP 加 Desktop）；tsa_maintenance 核资源
+  intents:
+  - 配置 Nomadic 蜂窝模式
+  - 配置 Nomadic VoIP 模式
+  - Ghost Z 资源池规划
+  - nomadic 资源核查维护
+  - activate nomadic mode
+  keywords:
+  - nomadic
+  - 蜂窝
+  - cellular
+  - Ghost Z
+  - 资源池
+  - 冻结
+  - Nomadic GSM
+  - Nomadic SIP
+  - tsa_maintenance
+  - "2998"
+  - routing 窗口
+  also_read:
+  - ota-remote-access
+  - ota-desksharing
+  card: cards/ota-nomadic-ghost-z.md
+  frontmatter:
+    description: 'Connection 用户的 Nomadic 移动模式：蜂窝（改道任意号码）与 VoIP（改道 PC 软话音）两模式的资源池配置、权限成对规则、行为验证与 tsa_maintenance 资源核查。
+      当用户要"配 nomadic/规划 Ghost Z/排查 nomadic 连不上/核查资源一致性"时使用。不适用于 OTC 智能手机（另一能力）与共享工位（Desksharing 能力）；池规模算例需按客户并发数补做。
+
+      '
+    tags:
+    - procedure
+    - opentouch
+    - mobility
+    - capacity
+  source_evidence:
+  - source_id: src-openxte301
+  - location: p31-57
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-03/04/05，移动性基础
+- capability_id: cap.ota.smartphone-rex
+  revision: 1
+  status: active
+  slug: ota-smartphone-rex
+  title: OTC 智能手机交付全流程（REX/DISA/APNS）
+  importance: critical
+  importance_rationale: 对应 task-10 至 task-13，篇幅最大、步骤最多、版本陷阱集中；自动创建核验与 iPhone 特例是高频错误源
+  one_liner: 关联手机即自动建 9 对象（核验即可），手工补 Entity 识别码与 COS 两项；iPhone 特例是 APNS 四端口、年度证书 hotfix 与 5265 专用 SBC
+  intents:
+  - 交付 OTC 智能手机
+  - 配置远程扩展与 DISA
+  - 核验自动创建对象
+  - iPhone 推送排障
+  - smartphone deployment
+  keywords:
+  - OTC Smartphone
+  - 远程扩展
+  - REX
+  - DISA
+  - "31280"
+  - 速拨
+  - ARS
+  - 识别码
+  - Tandem
+  - APNS
+  - kamailio-wasp
+  - "5265"
+  - Off site mobility
+  - 双模
+  also_read:
+  - ota-remote-access
+  - ota-extended-mobility
+  card: cards/ota-smartphone-rex.md
+  frontmatter:
+    description: 'OTC 智能手机（Android/iPhone）的完整交付链：OXE 通用参数（ARS/DISA/Ghost Z/速拨/溢出定时器）、设备档案与用户关联、九对象自动创建核验、Entity/COS 手工补充、App 安装与
+      iPhone APNS 特例。当用户要"配公司号手机/手机收不到来电/呼不出去/推送不亮/单设备用户"时使用。不适用于扫码切换呼叫（Extended Mobility 能力）；生产化细节以 TC2341 为准。
+
+      '
+    tags:
+    - procedure
+    - opentouch
+    - smartphone
+    - rex
+  source_evidence:
+  - source_id: src-openxte301
+  - location: p76-147
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-10/11/12/13，核心交付链
+- capability_id: cap.ota.um-exchange-integration
+  revision: 1
+  status: active
+  slug: ota-um-exchange-integration
+  title: 统一消息 UM（Exchange/O365/Gmail/IMAP）
+  importance: critical
+  importance_rationale: 对应 task-15/task-16，企业邮件打通主线；Impersonation 配错是 UM/日历最高频故障
+  one_liner: 语音留言存邮件服务器（Wav 单点存储）；四后端能力递减；Exchange 侧钥匙是 ICEaccess 加 Impersonation 加 CA 证书，OT 侧建系统、档案、信箱三层
+  intents:
+  - 部署统一消息
+  - 选择 UM 邮件后端
+  - 配置 Exchange Impersonation
+  - 语音邮箱档案与信箱
+  - unified messaging setup
+  keywords:
+  - UM
+  - 统一消息
+  - 语音邮箱
+  - voice mail
+  - Exchange
+  - O365
+  - Office 365
+  - Gmail
+  - IMAP4
+  - EWS
+  - ICEaccess
+  - impersonation
+  - delegation
+  - MWI
+  - voicemail box
+  - Wireal
+  - MASC
+  also_read:
+  - ota-calendar-sync
+  card: cards/ota-um-exchange-integration.md
+  frontmatter:
+    description: '统一消息的部署与排障：四种邮件后端选型（Exchange/O365/Gmail/IMAP 能力递减）、Exchange 侧特权账号与 Impersonation 授权、CA 证书入信任库、UM 系统与语音邮箱档案及信箱分配、
+      维护守护进程。当用户要"留言进邮箱/选邮件后端/留言灯不亮/问候语问题"时使用。不适用于日历在场与同步（日历同步能力，配置同源机制不同）；本地存储邮箱的日历走 TC2558。
+
+      '
+    tags:
+    - procedure
+    - opentouch
+    - um
+    - exchange
+  source_evidence:
+  - source_id: src-openxte301
+  - location: p168-217
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-15/16，UM 主线
+- capability_id: cap.ota.conference-collaboration
+  revision: 1
+  status: active
+  slug: ota-conference-collaboration
+  title: 协作会议（ACS 配置、角色权限、数据会议）
+  importance: critical
+  importance_rationale: 对应 task-19/task-20，协作主线基础；角色权限矩阵与协作限制治理决定方案承诺边界
+  one_liner: 桥号两侧成对（每语言一号）、服务器四项设置、三类会议与 7 位双码角色制；密码不进邀请邮件；协作限制两级禁用且 scheduled 不受影响
+  intents:
+  - 配置会议服务器
+  - 建会议桥号
+  - 会议角色与密码管理
+  - 协作能力限制
+  - conference server setup
+  keywords:
+  - 会议
+  - conference
+  - ACS
+  - 会议服务器
+  - 桥号
+  - TUI
+  - 访问码
+  - 领导者
+  - DTMF
+  - One Touch
+  - 协作限制
+  - Enable collaboration
+  - Dial by URI
+  - SIP URI
+  - AMS
+  also_read:
+  - ota-dcs-documents
+  - ota-otc-web-guest
+  card: cards/ota-conference-collaboration.md
+  frontmatter:
+    description: '协作会议的配置与运用：会议桥号两侧成对、服务器四项设置（系统选项/SIP 代理/DAS/格式规则）、三类会议与角色权限（7 位双码、DTMF 控制）、数据会议全流程（预约/Outlook 加载项/
+      One Touch/远程控制/协作限制治理）。当用户要"搭会议桥/管会议密码/管参会人权限/视频会议入会"时使用。不适用于 Office 文档转换（DCS 能力）与访客浏览器端（OTC Web 能力）。
+
+      '
+    tags:
+    - procedure
+    - opentouch
+    - conference
+    - collaboration
+  source_evidence:
+  - source_id: src-openxte301
+  - location: p264-362
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-19/20，协作主线
+- capability_id: cap.ota.calendar-sync
+  revision: 1
+  status: active
+  slug: ota-calendar-sync
+  title: 日历在场与日历同步（Calendar presence/synchro）
+  importance: high
+  importance_rationale: 对应 task-22，UM 的增值与高频排障场景；四条预期差（看不到自己/FREE 仅名片/不改颜色/OOO 优先）是报障重灾区
+  one_liner: presence 是在场旁注文本（不改颜色码）；synchro 双向同步会议但 OTC 建的周期会议不回推 Exchange；仅 UM 上下文，本地存储走 TC2558
+  intents:
+  - 实施 Calendar presence
+  - 实施 Calendar synchronization
+  - 日历在场排障
+  - 会议双向同步验证
+  - calendar synchronization
+  keywords:
+  - 日历
+  - calendar
+  - presence
+  - 在场
+  - Free/Busy
+  - synchro
+  - 同步
+  - Outlook
+  - Wireal
+  - wireald
+  - exchange-connector
+  - TC2258
+  - OOO
+  also_read:
+  - ota-um-exchange-integration
+  card: cards/ota-calendar-sync.md
+  frontmatter:
+    description: '日历特性的实施与排障：Calendar presence（旁注文本、五态优先级、展示公式）与 Calendar synchro（Wireal 经 EWS 双向同步、周期会议不对称限制）、版本门槛（OT R2.3.1/
+      Exchange 2010/2013/O365/Outlook 2010/2013）、TC2258 排障三板斧。当用户要"日历状态显示/会议互通/在场没生效"时使用。不适用于 UM 留言本体；本地存储邮箱必须改走 TC2558。
+
+      '
+    tags:
+    - procedure
+    - opentouch
+    - calendar
+    - troubleshooting
+  source_evidence:
+  - source_id: src-openxte301
+  - location: p384-414
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-22，高频排障
+- capability_id: cap.ota.directory-udas
+  revision: 1
+  status: active
+  slug: ota-directory-udas
+  title: 目录搜索与 Single Business Card（UDAS）
+  importance: high
+  importance_rationale: 对应 task-17/task-18，来电识别与找人对的底座；同步参数硬规则与合并配置是"搜不到人"的根因集中地
+  one_liner: 一切搜索查同步库（单向同步，period≥1 硬规则）；合并按权重与 Merge keys（至少姓加名）；照片 Avatar>LDAP>本地；OXE 侧 LDAP 溢出按 5 个上限
+  intents:
+  - 部署目录搜索
+  - 配置目录同步
+  - 启用 Single Business Card 合并
+  - 联系人照片与可选属性
+  - UDAS directory search
+  keywords:
+  - 目录
+  - directory
+  - UDAS
+  - 同步
+  - synchronization
+  - Single Business Card
+  - merge keys
+  - 联系人卡
+  - contact card
+  - 照片
+  - Avatar
+  - LDAP Phone Book
+  - Communicate by name
+  - PRS
+  also_read:
+  - ota-enterprise-authentication
+  card: cards/ota-directory-udas.md
+  frontmatter:
+    description: '目录搜索的部署与运维：UDAS 单向同步结构（内部目录/电话簿/AD 进 PostgreSQL 同步库）、联系人卡属性（4 默认加最多 5 可选）、Single Business Card 合并（权重/Merge keys/
+      预处理）、照片同化三级、话机 Communicate by name 与 OXE LDAP 溢出。当用户要"搜不到人/合并名片/照片显示/话机找人"时使用。不适用于 LDAP 登录认证（外部认证能力，语境不同）。
+
+      '
+    tags:
+    - procedure
+    - opentouch
+    - directory
+    - udas
+  source_evidence:
+  - source_id: src-openxte301
+  - location: p218-263
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-17/18，目录主线
+- capability_id: cap.ota.enterprise-authentication
+  revision: 1
+  status: active
+  slug: ota-enterprise-authentication
+  title: 企业认证集成（LDAP/RADIUS/Kerberos SSO）
+  importance: critical
+  importance_rationale: 对应 task-23/task-24，一开全局生效的高风险变更；管理员账号不先行即锁死配置工具
+  one_liner: 全局开关双轨制——Downstream（LDAP/RADIUS 插件）与 Upstream（Kerberos 四件套）；Web 失败级联回 DTA、厚客户端不级联；启用前管理员必须先配 External login
+  intents:
+  - 配置 LDAP/RADIUS 外部认证
+  - 启用 Kerberos 单点登录
+  - 外部认证排障与级联
+  - WBM 管理员保护
+  - external authentication setup
+  keywords:
+  - 外部认证
+  - LDAP
+  - LDAPS
+  - RADIUS
+  - Kerberos
+  - SSO
+  - 单点登录
+  - DTA
+  - External login
+  - sAMAccountName
+  - keytab
+  - setspn
+  - SPN
+  - krb5.conf
+  - web.xml
+  - wbm_admin
+  also_read:
+  - ota-directory-udas
+  card: cards/ota-enterprise-authentication.md
+  frontmatter:
+    description: '外部认证的配置与变更管理：Downstream（LDAP/LDAPS、RADIUS 插件参数与启用回退）、Upstream（Kerberos 四件套、AD 账号与 SPN、keytab 生成）、作用域与级联规则（全局生效、
+      Web 级联 DTA、厚客户端不级联）、WBM 管理员预留。当用户要"用企业账号登录 OT/单点登录/外认失败/配置工具进不去"时使用。不适用于 LDAP 目录搜索（目录能力）；Kerberos 深入以 TC1623 为准。
+
+      '
+    tags:
+    - procedure
+    - opentouch
+    - authentication
+    - security
+  source_evidence:
+  - source_id: src-openxte301
+  - location: p415-467
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-23/24，安全集成
+- capability_id: cap.ota.desksharing
+  revision: 1
+  status: active
+  slug: ota-desksharing
+  title: Desksharing 共享工位（DSU/DSS）
+  importance: medium
+  importance_rationale: 对应 task-06/task-07，共享工位场景刚需但触发频率低于移动性主线；UA 的 WAN/Mac 边界决定方案可行性
+  one_liner: DSU 无绑定设备（虚拟 MAC aa:bb 加号码）凭 600/601 加密码用任意 DSS；OTC PC 远程释放要 Desktop 加 Flex Office；UA 替代冻结需 VPN 且不支持 Mac
+  intents:
+  - 配置共享工位
+  - DSU 登录登出管理
+  - OTC PC 远程释放
+  - desksharing maintenance
+  keywords:
+  - 共享工位
+  - desksharing
+  - DSU
+  - DSS
+  - "600"
+  - "601"
+  - 虚拟 MAC
+  - aa:bb
+  - Flex Office
+  - 远程释放
+  - domstat
+  - ippstat
+  - incvisu
+  - "6004"
+  card: cards/ota-desksharing.md
+  frontmatter:
+    description: 'Desksharing 共享工位的配置与维护：前缀 600/601、DSS/DSU 建法与虚拟 MAC 规则、COS 与四个系统参数、OTC PC 远程释放、UA 软话机替代、domstat/ippstat/incvisu 维护命令。
+      当用户要"共享工位/登录登出话机/远程释放/DSU 定位"时经路由使用。UA 不兼容 WAN（需 VPN）与 OTC Mac；忙时重置的行为分支需业务确认。
+
+      '
+    tags:
+    - procedure
+    - opentouch
+    - desksharing
+  source_evidence:
+  - source_id: src-openxte301
+  - location: p58-75
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 场景刚需但频率较低，路由可达即可
+- capability_id: cap.ota.extended-mobility
+  revision: 1
+  status: active
+  slug: ota-extended-mobility
+  title: Extended Mobility（QR/NFC 切换与路由修改）
+  importance: medium
+  importance_rationale: 对应 task-14，差异化卖点场景但机制薄、依赖手机实验环境；单向切换与标签生态是沟通重点
+  one_liner: 贴标签触发两动作——通话切到任意内部话机（单向不可回切）与路由档案改写（other and mobile()）；QR 固定 JSON 语法，NFC 仅 Android，一小时周期提醒
+  intents:
+  - 部署 Extended Mobility 标签
+  - QR 码与 NFC 标签制作
+  - 呼叫切换测试
+  - extended mobility deployment
+  keywords:
+  - Extended Mobility
+  - QR 码
+  - NFC
+  - 标签
+  - 切换
+  - 路由档案
+  - other and mobile()
+  - 周期提醒
+  - "3BA27856AA"
+  - NFC Type 2
+  card: cards/ota-extended-mobility.md
+  frontmatter:
+    description: 'Extended Mobility 的部署与使用：QR 码固定语法与 NFC 写卡工具（ALE 标签 Ref 3BA27856AA/NFC Type 2）、呼叫切换（单向、二通呼叫加转移）与路由修改（空闲态、小时提醒、
+      toggle 停止）两类测试。当用户要"扫码切到座机/碰一碰/做标签"时经路由使用。NFC 不支持 iPhone 且 OTC 应用须已启动；切换不可回切。
+
+      '
+    tags:
+    - procedure
+    - opentouch
+    - mobility
+    - extended-mobility
+  source_evidence:
+  - source_id: src-openxte301
+  - location: p148-167
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 轻量场景，路由可达即可
+- capability_id: cap.ota.dcs-documents
+  revision: 1
+  status: active
+  slug: ota-dcs-documents
+  title: DCS 文档转换服务器（Office 会议演示）
+  importance: medium
+  importance_rationale: 对应 task-21，会议体验补全项；"文档卡 queued"根因在 Windows 侧是排障分界知识
+  one_liner: Basic 只支持 pdf/图片，Office 演示必须装 DCS（内部 KVM 或外部 VM）；Windows/Office 许可自备，未激活或未打更新即卡 queued
+  intents:
+  - 安装 DCS 文档转换服务器
+  - Office 文档会议演示
+  - DCS 排障
+  - document conversion setup
+  keywords:
+  - DCS
+  - Document Conversion Server
+  - 文档转换
+  - presentation
+  - queued
+  - KVM
+  - ESXi
+  - Hyperthreaded
+  - dcs_install
+  - Remote DC
+  card: cards/ota-dcs-documents.md
+  frontmatter:
+    description: 'DCS 的安装与声明：Basic/Advanced 两模式边界（pdf 图片原生、Office 六格式需 DCS）、内部 KVM 与外部 VM/物理机两形态、Windows 侧预配置四件（防火墙/UAC/密码/自动登录注册表）、
+      OT 侧 Remote DC 声明与端到端上传测试。当用户要"会议放 PPT/文档不转换/装 DCS"时经路由使用。Windows 与 Office 介质许可 ALE 不提供。
+
+      '
+    tags:
+    - procedure
+    - opentouch
+    - dcs
+    - conference
+  source_evidence:
+  - source_id: src-openxte301
+  - location: p363-383
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 会议补全项，路由可达即可
+- capability_id: cap.ota.otc-web-guest
+  revision: 1
+  status: active
+  slug: ota-otc-web-guest
+  title: OTC Web 与访客入会
+  importance: medium
+  importance_rationale: 对应 task-20 的访客子场景，浏览器免装入会是外部沟通刚需；功能边界清单决定客户预期
+  one_liner: 免安装浏览器端，访客匿名凭访问码入会；数据面走 RP、音频走 PSTN 回呼或 WebRTC（Chrome/Firefox）；无录制/视频/白板/排期
+  intents:
+  - 访客浏览器入会
+  - OTC Web 能力边界确认
+  - WebRTC 音频接入
+  - guest browser join
+  keywords:
+  - OTC Web
+  - 访客
+  - guest
+  - 匿名
+  - anonymous
+  - WebRTC
+  - 浏览器
+  - Chrome
+  - Firefox
+  - 回呼
+  - callback
+  - 头像
+  card: cards/ota-otc-web-guest.md
+  frontmatter:
+    description: 'OTC Web 浏览器端的定位与入会引导：OT 用户与访客（匿名、访问码定角色、头像、回呼号码）、能力清单（IM/桌面共享/文档批注/静音管理）、架构（RP 数据面加 OTSBC WebRTC 或 PSTN
+      回呼）、功能边界（无白板/投票/录制/视频/排期）。当用户要"外部客户不装客户端参会/浏览器入会"时经路由使用。WebRTC 音频仅 Chrome/Firefox（2019 口径）。
+
+      '
+    tags:
+    - reference
+    - opentouch
+    - otc-web
+    - conference
+  source_evidence:
+  - source_id: src-openxte301
+  - location: p323-337
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 访客子场景，路由可达即可
+- capability_id: cap.ota.lab-pod
+  revision: 1
+  status: active
+  slug: ota-lab-pod
+  title: RLAB 实验 POD 与 SIP 运营商模拟器
+  importance: medium
+  importance_rationale: 对应 task-01/task-02，教学专用基础设施；解读书中一切实验值（IP/账号/号码）的钥匙，不入生产方案
+  one_liner: 全虚拟化或混合 POD 八台虚机加 ITSP1 模拟器（pbxN 账号、3321PN 号码段、DID 翻译 33210N41000 对 31000）；一切实验值仅限实验
+  intents:
+  - 搭建核对实验 POD
+  - 解读书中实验环境值
+  - ITSP1 模拟器联调
+  - rlab pod configuration
+  keywords:
+  - RLAB
+  - POD
+  - 实验环境
+  - ITSP1
+  - 模拟器
+  - pbxN
+  - "3321PN"
+  - DID 翻译
+  - MicroSIP
+  - IPDSP
+  - letacla
+  - superuser
+  card: cards/ota-lab-pod.md
+  frontmatter:
+    description: 'RLAB 实验 POD 与 SIP 运营商模拟器：POD 结构与八台虚机设置表、ITSP1 账号与号码规则（PN 两位 POD 号）、OXE 对接（pbxN、DID 翻译）、Pod 配置核对七项与外呼验证。
+      当用户要"搭实验环境/核 POD/解读书中实验值"时经路由使用。教学专用基础设施——一切 IP/账号/号码为实验口径，生产必须替换。
+
+      '
+    tags:
+    - reference
+    - opentouch
+    - lab
+    - rlab
+  source_evidence:
+  - source_id: src-openxte301
+  - location: p3-30
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 实验支撑域，路由可达即可

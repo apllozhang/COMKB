@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>ACR 对象与技能体系</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Advanced</h2><p>Edition  · 597 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte101en/index.html">课程首页</a><a href="/courses/otccxte101en/digest.html">精华长文</a><a href="/courses/otccxte101en/overview.html">教书理解</a><a href="/courses/otccxte101en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte101en/skills/otcad-ism-skill-matching.html">ISM 技能匹配与排序口径</a><a href="/courses/otccxte101en/skills/otcad-remote-pg-mutual-aid.html">Remote PG 分布式互助与 ABC-F 链路</a><a href="/courses/otccxte101en/skills/otcad-spm-deployment.html">Soft Panel Manager 部署与基础设置</a><a href="/courses/otccxte101en/skills/otcad-soft-panel-manager.html">Soft Panel 可视化配置（视图/挂件/消息/告警）</a><a href="/courses/otccxte101en/skills/otcad-ccta-ticket-analysis.html">CCTA 话务票据分析</a><a href="/courses/otccxte101en/skills/otcad-special-features.html">特殊功能开关（优先转接/忙音/代接/监听/永恒整理/中继预留）</a><a href="/courses/otccxte101en/skills/otcad-excel-report-customization.html">Excel 报表模板定制</a><a href="/courses/otccxte101en/skills/otcad-ccs-server.html">CCS Server 集中接入</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte101en/skills/otcad-acr-objects.html">ACR 对象与技能体系</a><a href="/courses/otccxte101en/skills/otcad-asm-script-advanced.html">ASM 脚本与 LCA 主干</a><a href="/courses/otccxte101en/skills/otcad-ccs-onboarding.html">CCS 安装与实验环境定稿</a><a href="/courses/otccxte101en/skills/otcad-acd-maintenance.html">ACD 维护命令箱</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte101en/index.html">otcc-standard-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte101en/index.html">OTCCXTE101EN</a><span>/</span><span aria-current="page">ACR 对象与技能体系</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>ACR 对象与技能体系</h1></div><dl><div><dt>Skill ID</dt><dd>otcad-acr-objects</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>ACR 对象与技能体系（等待室、ACR/统计 Pilot、域/技能/呼叫档案、坐席技能）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Waiting Rooms are needed in ACR &amp; don't work in FIFO mode … Waiting Room &amp; Waiting Queue CANNOT be open at the same time"（p71-72）
+"Applications/CCD/Skill/Skill Domain • Skill domain number: 2 … Applications/CCD/Skill/Call profile • Call profile number: 0 … Expertise level: 1 • Mandatory: True"（p120-122）
+"The ACR Pilot is blocked. If the Agent does not have any skill, the Waiting Room is blocked !"（p148）</p>
+</blockquote>
+<p>出处：OTCCXTE101EN p71-92, p117-159。</p>
+<h2>I — 自述</h2>
+<p>ACR 矩阵的对象链与双侧配置路径：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>对象</th>
+<th>路径（OXE WBM 侧）</th>
+<th>关键参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>处理组</td>
+<td>Applications &gt; Processing Group</td>
+<td>Type=Agent/IVR/Other/Remote/Rerouting</td>
+</tr>
+<tr>
+<td>等待室</td>
+<td>Applications &gt; CCD &gt; Queue（Type=Waiting room）</td>
+<td>方向 0-29、监控定时器、话务采样 5mn、最大等待（实验 3000）、振铃监控；与等待队列同规则互斥</td>
+</tr>
+<tr>
+<td>ACR Pilot</td>
+<td>Applications &gt; CCD &gt; Pilot</td>
+<td>有等待室方向或挂激活规则即为 ACR Pilot</td>
+</tr>
+<tr>
+<td>统计 Pilot</td>
+<td>Applications &gt; CCD &gt; Statistic pilot</td>
+<td>挂路由 Pilot、call tag、call priority（例 -1）、呼叫档案——客户实际拨的号</td>
+</tr>
+<tr>
+<td>技能体系</td>
+<td>Applications &gt; CCD &gt; Skill &gt; Skill Domain / Skill parameters / Call profile</td>
+<td>域 0-19（0/1 默认语言媒体）、技能 0-999（0-99 预定义）、等级 1-9、权重 1-20</td>
+</tr>
+<tr>
+<td>坐席数据</td>
+<td>Applications &gt; CCD &gt; Operators data management</td>
+<td>Skill set+激活标志；Manage skills=True 时坐席可从话机自开关技能</td>
+</tr>
+</tbody>
+</table></div>
+<p>技能四层模型：域（权重 1-20）&gt; 技能（名 1-16 字符/缩写 1-4 字符）&gt; 等级（1 低-9 高）&gt; 激活标志；坐席最多 50 技能、呼叫档案最多 7 属性。CCS 侧对应：Configurations &gt; Advanced Call Routing &gt; Skill（域 ID 自动分配）与 ACR Data 页（呼叫档案）；技能矩阵支持批量管理与导出/导入。</p>
+<p>阻塞传导链：坐席全无（激活）技能 &gt; 等待室阻塞 &gt; ACR Pilot 阻塞；反之坐席带激活技能登录即打开（p154）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>ACR 对象部署七步</strong>（p130-159，编号为实验口径）：</p>
+<ol>
+<li>WBM 建附加处理组 Agent2_PG=31803（Type=Agent）</li>
+<li>建等待室 WaitingRoom=31704（Type=Waiting room）</li>
+<li>建 ACR Pilot=31603</li>
+<li>建统计 Pilot 31660（Car Insurance）与 31661（Home Insurance），路由 Pilot 均指 31603</li>
+<li>CCS 配路由：Call Flow mgt &gt; Call Routing 建 Rule_0 并 Apply，Normal 页启用 WaitingRoom</li>
+<li>CCS 配分配：Queue and Waiting Room 给 31704 加两个坐席 PG，Call Distribution 勾通方向</li>
+<li>坐席附加 PG 并重新登录；技能三连（建域/技能、配呼叫档案、给坐席赋技能）后验证：技能赋给前 WR 阻塞、赋给后变绿；未挂脚本时呼叫落其他队列或 Pilot 闭锁数据</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：给客户从零建 ACR 矩阵；"等室有人等、坐席却闲着"类分配异常；新业务线要新呼叫档案；批量管理坐席技能。</p>
+<p>语言信号：ACR / 等待室 / Waiting Room / ACR Pilot / 统计 Pilot / Statistic pilot / 技能域 / Skill Domain / 呼叫档案 / Call profile / 技能矩阵 / Skills Matrix / Operator data / 阻塞 / blocked / 动态组。</p>
+<p>与相邻能力区分：列表怎么算出来的（算法口径）转 ISM 技能匹配卡；脚本编写与激活转 ASM 脚本卡（路由卡，深度在姊妹技能）；队列水位与互助方向转 Remote PG 卡。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：业务到技能的映射表（域/技能/等级/权重）、坐席名单与分组、WBM+CCS 管理权。前置约束：ACD 前缀必须已建（n20）。</p>
+<ol>
+<li>建处理组与等待室（Type 选对，互斥规则记住）。完成标准：对象在 Navigator 可见</li>
+<li>建 ACR Pilot 与统计 Pilot（呼叫档案挂统计 Pilot）。完成标准：路由链 Pilot 入口就绪</li>
+<li>CCS 接路由与分配方向并启用 Normal 模式。完成标准：规则 Apply 且方向勾通</li>
+<li>建域/技能/呼叫档案（CCS 或 WBM 双侧任一）。完成标准：档案属性 ≤7、区间合规</li>
+<li>给坐席赋技能并确认激活，需要时开自管理。完成标准：WR 由阻塞变绿</li>
+<li>验证：技能赋给前阻塞、赋给后打开；未挂脚本时呼叫按回落链处理。完成标准：三阶段验收通过</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>第一通电话没人接 → 停，先看 WR 是否阻塞（n19），再查坐席登录与技能激活，最后才怀疑脚本</li>
+<li>坐席有档案技能却拿不到等待室呼叫 → 停，查技能激活标志（n18：无档案坐席只服务等待队列）</li>
+<li>客户问"域和权重怎么设计" → 停，配置可教，设计方法论在书外（n41），如实声明</li>
+<li>组网环境要改/删技能 → 停，域与技能全网广播（n17），先全网评审引用</li>
+</ul>
+<p>输出契约：ACR 矩阵对象清单（含编号方案）+ 技能体系表 + 三阶段验收记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>讲义示例号（31703/31650）与实验号（31704/31660）并存，照抄前核对现场配置（nr-02）</li>
+<li>等待室与等待队列同规则互斥；等待室无资源选择优先级、非 FIFO（p71-72/p88）</li>
+<li>技能设计方法论（划域/定权重/评等级）书外（n41）；容量上限（域 20/技能 1000/档案 7/坐席 50）为 R10.15 口径</li>
+<li>ABC 网络中域与技能广播（n17）：改名/删除影响全部节点</li>
+<li>语音引导=迎宾+6 泊位、40 种语言（p82）；泊位级 EWT 表/IAA 地址/交互排队细节属讲义图示口径</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte101en/skills/otcad-ism-skill-matching.html">ISM 技能匹配与排序口径</a>、<a href="/courses/otccxte101en/skills/otcad-asm-script-advanced.html">ASM 脚本与 LCA 主干</a></p><p class="source-page">能力 ID：cap.otcad.acr-objects · 来源：OTCCXTE101EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition - Advanced (Participant's Guide, Edition 07) | edition: Edition  | pages: 597 页 -->

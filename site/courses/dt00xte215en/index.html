@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OmniSwitch LAN Access Switching</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniSwitch LAN Access Switching</h2><p>Edition 23 · 587 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/dt00xte215en/index.html">课程首页</a><a href="/courses/dt00xte215en/digest.html">精华长文</a><a href="/courses/dt00xte215en/overview.html">教书理解</a><a href="/courses/dt00xte215en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/dt00xte215en/skills/swl2-aaa-hardening.html">交换机登录接入与 AAA 管理面加固</a><a href="/courses/dt00xte215en/skills/swl2-lightning-config.html">Lightning Config 快速开局</a><a href="/courses/dt00xte215en/skills/swl2-config-lifecycle.html">配置生命周期（保存/认证/回滚/备份）</a><a href="/courses/dt00xte215en/skills/swl2-virtual-chassis.html">Virtual Chassis 堆叠</a><a href="/courses/dt00xte215en/skills/swl2-vlan-routing.html">VLAN 与 VLAN 间路由</a><a href="/courses/dt00xte215en/skills/swl2-link-redundancy.html">链路与生成树冗余（LAG/STP/DHL）</a><a href="/courses/dt00xte215en/skills/swl2-l3-services.html">三层服务与网关冗余（DHCP/Loopback0/静态路由/VRRP）</a><a href="/courses/dt00xte215en/skills/swl2-qos-acl-policy.html">QoS 与 ACL 策略</a><p class="course-nav-group">路由能力</p><a href="/courses/dt00xte215en/skills/swl2-access-guardian.html">Access Guardian 接入认证</a><a href="/courses/dt00xte215en/skills/swl2-diagnostics.html">诊断工具箱八件套</a><a href="/courses/dt00xte215en/skills/swl2-lldp-poe.html">LLDP/LLDP-MED 与 PoE 管理</a><a href="/courses/dt00xte215en/skills/swl2-upgrade-autofabric.html">软件升级与 Auto-Fabric 零触开局</a><a href="/courses/dt00xte215en/skills/swl2-fleet-tools.html">资产与装机工具（Fleet Supervision/OST）</a><p class="course-nav-group">已安装技能</p><a href="/courses/dt00xte215en/index.html">omniswitch-lan-access（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/communications/index.html">通信产品线</a><span>/</span><span aria-current="page">DT00XTE215EN</span></nav>
+
+    <header class="course-intro"><p class="eyebrow">DT00XTE215EN</p><h1>OmniSwitch LAN Access Switching</h1>
+    <p>Edition 23 · 587 页 · 文档整理入库（13 个知识单元）</p>
+    <div class="chips"><span>Edition 23</span><span>587 页</span><span>13 个能力单元</span><span>1 个已安装技能</span></div></header>
+    <aside class="course-note"><strong>归类说明</strong>：素材目录标注为「Postsales on ALE Connect」，PDF 实际内容为 OmniSwitch LAN Access Switching R8（与网络门户 DT00XTE215 同源）。归类说明：本课按实际内容收录于通信产品线，网络侧同源课程见网络门户。</aside>
+    <section><div class="section-heading"><div><p class="eyebrow">EXECUTABLE KNOWLEDGE</p><h2>知识单元</h2></div></div>
+      <div class="skill-groups"><section><h3>核心能力</h3><div><a href="/courses/dt00xte215en/skills/swl2-aaa-hardening.html"><b>交换机登录接入与 AAA 管理面加固</b><code>swl2-aaa-hardening</code><span>七类服务各自认证链（本地库或 RADIUS/LDAP）+ 账号密码治理 + ASA 限源/禁服务/会话参数/SSH 强加密四清单</span></a><a href="/courses/dt00xte215en/skills/swl2-lightning-config.html"><b>Lightning Config 快速开局</b><code>swl2-lightning-config</code><span>笔记本 DHCP 接端口 1、浏览器 https://192.168.0.1、Defaults 必做、admin 密码必改（避开 ! 与 $）、保存固化</span></a><a href="/courses/dt00xte215en/skills/swl2-config-lifecycle.html"><b>配置生命周期（保存/认证/回滚/备份）</b><code>swl2-config-lifecycle</code><span>write memory 到启动目录、copy running certified/flash-synchro 固化基线；冷启动按内容异同回滚，reload all 无条件回 certified</span></a><a href="/courses/dt00xte215en/skills/swl2-virtual-chassis.html"><b>Virtual Chassis 堆叠</b><code>swl2-virtual-chassis</code><span>多台合成一台（ISIS-VC）；选举按优先级>运行时长>最小 ID>最小 MAC；分裂防护 RCD/VCSP 双机制；升级走 ISSU 滚动</span></a><a href="/courses/dt00xte215en/skills/swl2-vlan-routing.html"><b>VLAN 与 VLAN 间路由</b><code>swl2-vlan-routing</code><span>VLAN 三入口（静态/UNP 分类/802.1Q，VLAN 1 不可删）；一个 IP 接口即激活路由，VLAN 无成员则接口 DOWN</span></a><a href="/courses/dt00xte215en/skills/swl2-link-redundancy.html"><b>链路与生成树冗余（LAG/STP/DHL）</b><code>swl2-link-redundancy</code><span>静态聚合仅 ALE 间、接服务器用 LACP；STP 默认 per-VLAN/32768、显式指定根桥；DHL 双活分流（1 会话 2 链路、默认 30 秒抢占）</span></a><a href="/courses/dt00xte215en/skills/swl2-l3-services.html"><b>三层服务与网关冗余（DHCP/Loopback0/静态路由/VRRP）</b><code>swl2-l3-services</code><span>DHCP Relay 全局/接口互斥、Loopback0 永活作管理源、静态路由默认优于动态；VRRP 虚拟 IP/MAC 冗余、改优先级必须先 disable</span></a><a href="/courses/dt00xte215en/skills/swl2-qos-acl-policy.html"><b>QoS 与 ACL 策略</b><code>swl2-qos-acl-policy</code><span>统一 policy 引擎（condition+action+rule，qos apply 生效）；默认不匹配即放行；UserPorts/DropServices 保留组做用户口安全</span></a></div></section><section><h3>路由能力</h3><div><a href="/courses/dt00xte215en/skills/swl2-access-guardian.html"><b>Access Guardian 接入认证</b><code>swl2-access-guardian</code><span>UNP+RADIUS：Filter-Id 回传档案定 VLAN 与策略；pass-alternate 降级、auth-server-down 60 秒重试、无 MAC 登记 Block</span></a><a href="/courses/dt00xte215en/skills/swl2-diagnostics.html"><b>诊断工具箱八件套</b><code>swl2-diagnostics</code><span>swlog/事件日志/命令日志/镜像/抓包/RMON/health/sFlow；抓包只存前 64 字节，完整报文用镜像+外部抓包器</span></a><a href="/courses/dt00xte215en/skills/swl2-lldp-poe.html"><b>LLDP/LLDP-MED 与 PoE 管理</b><code>swl2-lldp-poe</code><span>LLDP 默认双开（30 秒/TTL×4、不支持 linkagg 级）；network-policy 下发语音 VLAN 与标记；PoE 四档供电、优先级与 FPoE/PPoE</span></a><a href="/courses/dt00xte215en/skills/swl2-upgrade-autofabric.html"><b>软件升级与 Auto-Fabric 零触开局</b><code>swl2-upgrade-autofabric</code><span>版本取最新 GA/MR（8.10R4 起签名镜像）；三通道升级；Auto-Fabric 七步链（Y=禁用/N=启用）+ LBD 防环</span></a><a href="/courses/dt00xte215en/skills/swl2-fleet-tools.html"><b>资产与装机工具（Fleet Supervision/OST）</b><code>swl2-fleet-tools</code><span>Fleet Supervision 免费只读看资产合规（三路声明/模板导入）；OST 2.0 装机排障（Postgres 先装、需支持合同、100 交换机/5 并发）</span></a></div></section></div>
+    </section>
+    <section class="reading-links"><h2>课程全景资料</h2><a href="/courses/dt00xte215en/digest.html">精华长文 DIGEST</a><a href="/courses/dt00xte215en/overview.html">教书理解 BOOK_OVERVIEW</a><a href="/courses/dt00xte215en/glossary.html">术语词典</a></section>
+
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniSwitch LAN Access Switching (Participant's Guide, Edition 23) | edition: Edition 23 | pages: 587 页 -->

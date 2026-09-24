@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>传统中继（T0/T2）与 UMC 云管理</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Starter</h2><p>Edition 12 · 821 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte400en/index.html">课程首页</a><a href="/courses/entpxte400en/digest.html">精华长文</a><a href="/courses/entpxte400en/overview.html">教书理解</a><a href="/courses/entpxte400en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte400en/skills/ents-first-login-hardening.html">OXE 首登加固（四账户与密码治理）</a><a href="/courses/entpxte400en/skills/ents-cs-network-firewall.html">Call Server IP 寻址与内部防火墙</a><a href="/courses/entpxte400en/skills/ents-db-license.html">空数据库创建与 OPS 许可管理</a><a href="/courses/entpxte400en/skills/ents-media-gateway-deployment.html">媒体网关上架（GD4/OMS/XL）</a><a href="/courses/entpxte400en/skills/ents-user-terminal-provisioning.html">用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）</a><a href="/courses/entpxte400en/skills/ents-numbering-cos.html">编号计划与 COS 管理</a><a href="/courses/entpxte400en/skills/ents-call-processing.html">呼叫处理业务域（语音指南/话务台/Entity/计时器）</a><a href="/courses/entpxte400en/skills/ents-sip-trunk.html">公共 SIP 中继开通与弹性</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte400en/skills/ents-system-start-stop.html">OXE 系统启停与 autostart 管理</a><a href="/courses/entpxte400en/skills/ents-time-sync.html">OXE 时间同步（NTP/chrony）</a><a href="/courses/entpxte400en/skills/ents-voicemail-4645.html">OmniMessage 4645 语音邮件与邮件通知</a><a href="/courses/entpxte400en/skills/ents-barring-emergency.html">外呼闭锁与紧急呼叫通知</a><a href="/courses/entpxte400en/skills/ents-backup-maintenance.html">数据库备份恢复与维护排障工具箱</a><a href="/courses/entpxte400en/skills/ents-legacy-trunks-umc.html">传统中继（T0/T2）与 UMC 云管理</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte400en/index.html">oxe-starter（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte400en/index.html">ENTPXTE400EN</a><span>/</span><span aria-current="page">传统中继（T0/T2）与 UMC 云管理</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>传统中继（T0/T2）与 UMC 云管理</h1></div><dl><div><dt>Skill ID</dt><dd>ents-legacy-trunks-umc</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>传统中继（T0/T2）与 UMC 云管理</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"'NODE NUMBER' MUST BE YOUR SYTEM ID OTHERWISE IT WILL BE IMPOSSIBLE TO ACCESS TO THE LOCAL TRUNK GROUP PARAMETERS OR TO ALLOCATE A TRUNK"（p784）
+"Available priorities: 0 to 199 • Shelf connected on the IP network • Available priorities: 200 to 254 • Priority 255 means access does not synchronize"（p779）
+"UMC is accessible via MyPortal (OPEX system) or Fleet Dashboard (OPEX or CAPEX). … Only 15 Parameters, 120 profiles depend on architecture"（p798, p807）</p>
+</blockquote>
+<p>出处：ENTPXTE400EN p773-814。</p>
+<h2>I — 自述</h2>
+<p>传统 ISDN 中继与云侧简化管理两件事：</p>
+<ol>
+<li><strong>T0/T2 硬件</strong>：T0=BRA 板（每口 2B+D，8 口板）；T2/T1=PRA 板（30/24 通道）；信令变体按运营商——VN 用 ISDN France、ETSI 用 ISDN all countries</li>
+<li><strong>中继组五步</strong>：核板在服；建 TG（节点号必须=本系统 ID、Tone on seizure、发送位数、DDI 转码）；本地参数（实体/去位数/B Channel）；建 Access（架-板-口）后必须 rstcpl 重置所在板；配同步优先级</li>
+<li><strong>同步优先级</strong>：Crystal 架 0-199、IP 架 200-254、255=不同步；参考钟由运营商提供，T2/T1 优先（T2 建议 200、T0 建议 205）</li>
+<li><strong>抓取前缀</strong>：#010/#012（Professional Trunk Seize）抓中继出局——SIP 中继不支持直抓（对照记忆）</li>
+<li><strong>UMC 三功能</strong>：Easy users（Profile 建户，仅 15 参数）、Easy SIP trunk（向导+约 120 架构 Profile，后台自动约 80 参数，不支持 Mini SIP）、Expert Configuration（云 WBM，免 LAN 直达）</li>
+<li><strong>UMC 前提</strong>：OXE N3-MD3+、Mid-Market 500 用户 day one、CAPEX 需 SPS 合同/OPEX 需 PoD 订阅、FTR&amp;RTR 云连接就绪；入口 MyPortal 或 Fleet Dashboard，mtcl 凭据+Technical advanced 权限</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>T0 中继实验</strong>（p781-788，How-To）：</p>
+<ol>
+<li>WBM 核对 MG-BRA4 板在服</li>
+<li>建中继组 ID=10：类型 T0、节点号=本系统 ID、变体 ISDN France（教室口径）</li>
+<li>发送位数 10、DDI 转码 True、Number compatible with=-1</li>
+<li>本地参数：去位数按运营商（VN 4 位/ETSI 9 位，t3 核对）</li>
+<li>建 Access（架 12 板 4 口 0，实验口径）后 rstcpl 重置所在板</li>
+<li>同步优先级 205，客户侧 Network mode=no</li>
+<li>前缀 #010 抓取出局，trkstat 显示 2 个 B 通道 F 状态</li>
+<li>t3 追踪 ISDN 呼叫核对主被叫号码</li>
+</ol>
+<p><strong>T2 中继实验</strong>（p789-796，How-To）：</p>
+<ol>
+<li>核对 PRA 板在服</li>
+<li>建 TG ID=12：类型 T2、节点号=本机、变体 ISDN France（教室口径）</li>
+<li>建 Access 后 rstcpl 重置板</li>
+<li>同步优先级 200（T2/T1 优先）</li>
+<li>前缀 #012 抓取，trkstat 显示 30 通道</li>
+<li>NOS LED 关注线路无信号告警</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：传统 ISDN 外线开通；T2 同步告警（NOS）；运营商要求换信令变体；客户问能不能用云平台简化建户/建中继；UMC 走向导建 SIP 中继被拒。</p>
+<p>语言信号：T0 / T2 / T1 / ISDN / BRA / PRA / 中继组 / trunk group / 同步 / synchro priority / NOS / 抓取 / #010 / UMC / Easy users / Easy SIP trunk / Fleet Dashboard / MyPortal。</p>
+<p>与相邻能力区分：SIP 中继（无 # 直抓、走 ARS）见 SIP 中继能力；UMC 建 SIP 中继的前缀冲突规则涉及 ARS，细节见 SIP 中继能力；UMC 建户的对象仍是本卡外的用户体系，见用户终端开通能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：运营商中继类型/信令变体/去位数/同步参考、（UMC）SPS 合同或 PoD 订阅与云连接状态。信令与位数必须拿到运营商书面值，教室口径不可带上生产。</p>
+<ol>
+<li>核板：BRA（T0）或 PRA（T2）板 IN SERVICE。完成标准：硬件承载就位</li>
+<li>建 TG：节点号=本系统 ID（强制）、变体与位数按运营商、DDI 转码按需。完成标准：TG 对象可访问本地参数</li>
+<li>建 Access：物理地址架-板-口，完成后 rstcpl 重置所在板。完成标准：通道在 trkstat 出现</li>
+<li>配同步：优先级按架构段（IP 架 200-254），客户侧/运营商侧 Network mode 分别设置。完成标准：同步锁定，无 NOS 告警</li>
+<li>配抓取前缀：#010/#012 绑 TG，出入话拨测。完成标准：出局可打、来话落地</li>
+<li>（UMC 路线）核前提后走向导：Easy users 建户或 Easy SIP trunk 建中继，注意前缀冲突三岔口与完成后提示。完成标准：云侧配置落地并按提示补手工项</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>中继组本地参数打不开/分配不了中继 → 节点号没填本系统 ID（p784 大写警告），先改节点号</li>
+<li>T2 无信号 NOS 告警 → 查线路与同步优先级/Network mode 侧别，不要先动 TG 参数</li>
+<li>UMC 建中继被拒 → 前缀已存在且非 ARS 前缀（n40）；改走手工配置或先理顺存量前缀</li>
+<li>客户功能在 UMC 排除清单里（话务台/ACD/多实体/酒店等）→ 停，UMC 不覆盖（n39），回本地图形工具路线</li>
+</ul>
+<p>输出契约：可用的 T0/T2 中继（同步锁定+拨测通过）或 UMC 云侧配置记录 + 剩余手工配置清单。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>教室信令（ISDN France）、10 位发送、#010/#012、同步值 200/205 均为实验口径（nr-04）；现场以运营商为准</li>
+<li>-48V/机架工艺、运营商侧线路开通为书外前提；T1（24 通道）仅规格提及，实验链未覆盖</li>
+<li>UMC 为 R1.1 快速演进功能：多处标 NEXT DELIVERY（Desk Sharing 等，n39）；截图口径会漂移</li>
+<li>UMC 安全与合规（法国 OVH 机房、TLS1.2、ISO/IEC 27001）为书内声明，商务与数据合规评估在书外</li>
+<li>Crystal 架同步段 0-199 仅为存量场景；新项目按 Common/IP 承载</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte400en/skills/ents-sip-trunk.html">公共 SIP 中继开通与弹性</a></p><p class="source-page">能力 ID：cap.ents.legacy-trunks-umc · 来源：ENTPXTE400EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Starter (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 821 页 -->

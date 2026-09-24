@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>坐席搜索模式选型与无应答处理</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OXO Connect · 呼叫中心</h2><p>Edition 07 · 218 页 · 文档整理入库（15 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/oxocxte107en/index.html">课程首页</a><a href="/courses/oxocxte107en/digest.html">精华长文</a><a href="/courses/oxocxte107en/overview.html">教书理解</a><a href="/courses/oxocxte107en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/oxocxte107en/skills/oxo-acd-basic-setup.html">OXO Connect 基础 ACD 全流程搭建</a><a href="/courses/oxocxte107en/skills/oxo-acd-call-scenarios.html">ACD 呼入六场景排障</a><a href="/courses/oxocxte107en/skills/oxo-acd-routing.html">呼叫特征化与 Smart Call Routing 路由表设计</a><a href="/courses/oxocxte107en/skills/oxo-acd-queue.html">ACD 等待队列管理（容量公式与出口配置）</a><a href="/courses/oxocxte107en/skills/oxo-acd-search-noanswer.html">坐席搜索模式选型与无应答处理</a><a href="/courses/oxocxte107en/skills/oxo-acd-login-status.html">坐席签入签出（free seating）与状态排障</a><a href="/courses/oxocxte107en/skills/oxo-multi-secretary.html">Multi-Secretary 多秘书方案配置</a><p class="course-nav-group">路由能力</p><a href="/courses/oxocxte107en/skills/oxo-omc-first-connect.html">OMC 安装与首次连接</a><a href="/courses/oxocxte107en/skills/oxo-ip-replan.html">OXO 与客户端 IP 规划修改</a><a href="/courses/oxocxte107en/skills/oxo-acd-schedule-calendar.html">ACD 营业时段与例外日配置</a><a href="/courses/oxocxte107en/skills/oxo-supervisor-app.html">Supervisor 班长台部署与实时监控</a><a href="/courses/oxocxte107en/skills/oxo-agent-app.html">Agent 坐席席面部署（弹屏/打标/客户库）</a><a href="/courses/oxocxte107en/skills/oxo-statistics-app.html">Statistics 统计应用与报表导出</a><a href="/courses/oxocxte107en/skills/oxo-dtmf-client-popup.html">DTMF 客户码识别弹屏</a><a href="/courses/oxocxte107en/skills/oxo-acd-voice-prompts.html">ACD 语音提示定制</a><p class="course-nav-group">已安装技能</p><a href="/courses/oxocxte107en/index.html">oxo-connect-call-center（15 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/oxocxte107en/index.html">OXOCXTE107EN</a><span>/</span><span aria-current="page">坐席搜索模式选型与无应答处理</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>坐席搜索模式选型与无应答处理</h1></div><dl><div><dt>Skill ID</dt><dd>oxo-acd-search-noanswer</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>坐席搜索模式选型与无应答处理（OXO Connect）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Search mode • Fixed priority • Rotating priority • Longest idle period"（p95）
+"Validate the parameter Maximum ringing duration to 10 seconds. Make a call to the ACD No. Group 3 without any response ... the call is routed to extension 102 and extension 103 automatically swap to ''off duty'' status. ... Then the call will definitely stay on extension 101."（p110-111）</p>
+</blockquote>
+<p>出处：OXOCXTE107EN p95（三模式）、p97（Priority order）、p109-111（对比实验与两档无应答行为）。</p>
+<h2>I — 自述</h2>
+<p>"组内下一个电话给谁"由搜索模式决定，与另外两个概念<strong>三层正交</strong>：</p>
+<ol>
+<li><strong>搜索模式（组内分配算法，三选一）</strong>：</li>
+<li>Fixed：严格按 rank，一号位永远先接</li>
+<li>Rotating：轮转，接听机会均摊</li>
+<li>Longest idle：谁闲得久谁先接，天然负载均衡</li>
+<li><strong>rank（组内静态优先序）</strong>：Fixed 模式依据它；多组坐席还有 Priority order（组间先服务谁的队列）</li>
+<li><strong>无应答两档开关</strong>（独立于模式）：</li>
+<li>仅设"最大振铃时长"（实验 10 秒）：超时转下一位，循环</li>
+<li>再启用"无应答自动移除"：超时未接的坐席<strong>自动置 off duty</strong>，呼叫继续走人，最终钉在最后一名在值坐席</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>三模式 + 两档无应答对比实验</strong>（p109-111，厂商实验，含标准答案）</p>
+<ul>
+<li>配置：组1 Fixed / 组2 Longest idle / 组3 Rotating（组3 rank：103(r1)/102(r2)/101(r3)）</li>
+<li><strong>实验 A</strong>（仅振铃上限 10 秒）：呼组3 无人接，103 响 10s 转 102，102 响 10s 转 101，101 响 10s 回到 103 循环</li>
+<li><strong>实验 B</strong>（再启用自动移除）：呼组3 无人接，103 响 10s 转 102 且 103 自动 off duty；102 响 10s 转 101 且 102 自动 off duty；呼叫钉在 101</li>
+<li>教材要求三种模式都实测，并结合 rank 观察差异</li>
+</ul>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：</p>
+<ol>
+<li>"电话总给同一个人接，想轮流"——Fixed 改 Rotating/Longest idle</li>
+<li>"坐席怎么一个个变成 off duty 了"——自动移除的连锁效应</li>
+<li>"响多久没人接才转下一个"——最大振铃时长</li>
+<li>"既属 A 组又属 B 组，先接哪组"——Priority order 组间优先</li>
+<li>"让最闲的人先接"——Longest idle 选型</li>
+</ol>
+<p>语言信号：轮流接听 / 分配不均 / search mode / rotating / longest idle / fixed priority / 振铃超时 / 自动移除 / off duty 被签出 / rank。</p>
+<p>与相邻能力区分：rank 的<strong>初始配置</strong>在基础搭建能力；坐席四态切换 → 签入签出能力；队列容量 → 队列管理能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：话务分配偏好（公平/技能优先/负载均衡）、可接受振铃等待（秒）、无应答处置策略。缺偏好先询问，不替客户选。</p>
+<ol>
+<li><strong>选型</strong>：按偏好映射模式。完成标准：客户确认</li>
+<li><strong>配置</strong>：General parameters / "Group 1-4" tab → Search mode。完成标准：保存生效</li>
+<li><strong>振铃上限</strong>：同页 General tab → maximum ringing duration。完成标准：参数保存</li>
+<li><strong>无应答策略决策</strong>：启用自动移除前，向客户说明连锁效应（坐席逐个被 off duty）。完成标准：客户知情确认</li>
+<li><strong>A/B 验证</strong>：全坐席不接听，呼入观察——A 档循环振铃；B 档逐个 off duty 后钉在最后一人。完成标准：实测与所选档位一致</li>
+<li><strong>rank 联动</strong>：多组坐席核对 Priority order 与预期一致</li>
+<li><strong>恢复</strong>：验证后用 501 前缀或 Supervisor 台恢复误签出坐席</li>
+</ol>
+<p>判停点：客户要求"无应答不影响坐席状态"→ 不启用自动移除，说明循环振铃的代价。</p>
+<p>输出契约：模式选型说明书 + 振铃时长 + 开关状态 + 连锁效应告知记录 + 实测记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>自动移除是双刃剑：解决"无人接"的同时制造"坐席集体消失"次生故障——务必知情</li>
+<li>rank / 搜索模式 / Priority order 三者正交，混谈会导致"调了 rank 没效果"的误判</li>
+<li>振铃时长是组级参数，不是坐席级</li>
+<li>原书实验为三坐席小规模；大组的公平性表现需上线后按实际话务观察</li>
+</ul><h2>相关能力</h2><p><a href="/courses/oxocxte107en/skills/oxo-acd-login-status.html">坐席签入签出（free seating）与状态排障</a>、<a href="/courses/oxocxte107en/skills/oxo-acd-queue.html">ACD 等待队列管理（容量公式与出口配置）</a></p><p class="source-page">能力 ID：cap.oxo-cc.search-noanswer · 来源：OXOCXTE107EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OXO Connect 呼叫中心 (Participant's Guide, Edition 07) | edition: Edition 07 | pages: 218 页 -->

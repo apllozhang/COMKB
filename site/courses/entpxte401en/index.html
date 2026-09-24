@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OmniPCX Enterprise · Advanced</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Advanced</h2><p>— · 543 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte401en/index.html">课程首页</a><a href="/courses/entpxte401en/digest.html">精华长文</a><a href="/courses/entpxte401en/overview.html">教书理解</a><a href="/courses/entpxte401en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte401en/skills/entadv-ssh-trust-foundation.html">SSH 免密分发体系</a><a href="/courses/entpxte401en/skills/entadv-cs-redundancy.html">CS 冗余部署与切换维护</a><a href="/courses/entpxte401en/skills/entadv-ip-domain-pcs.html">IP 域与 PCS 域级生存性</a><a href="/courses/entpxte401en/skills/entadv-overflow-rerouting.html">公私网双向溢出与重路由</a><a href="/courses/entpxte401en/skills/entadv-direct-ip-link.html">Direct IP Link 全 IP 组网</a><a href="/courses/entpxte401en/skills/entadv-audit-broadcast.html">Audit 与 Broadcast 数据一致性</a><a href="/courses/entpxte401en/skills/entadv-multiline-supervision.html">多线监督与经理助理组</a><a href="/courses/entpxte401en/skills/entadv-hunting-pickup-speeddial.html">寻线代接组与速拨编号体系</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte401en/skills/entadv-desk-sharing.html">办公桌共享（DSS/DSU）</a><a href="/courses/entpxte401en/skills/entadv-multi-device.html">多设备用户与 Twinset</a><a href="/courses/entpxte401en/skills/entadv-lab-pod-baseline.html">实验/交付前置环境基线</a><a href="/courses/entpxte401en/skills/entadv-cli-toolbox.html">维护命令与事件/许可速查</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte401en/index.html">oxe-advanced（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/communications/index.html">通信产品线</a><span>/</span><span aria-current="page">ENTPXTE401EN</span></nav>
+
+    <header class="course-intro"><p class="eyebrow">ENTPXTE401EN</p><h1>OmniPCX Enterprise · Advanced</h1>
+    <p>— · 543 页 · 文档整理入库（12 个知识单元）</p>
+    <div class="chips"><span>—</span><span>543 页</span><span>12 个能力单元</span><span>1 个已安装技能</span></div></header>
+    
+    <section><div class="section-heading"><div><p class="eyebrow">EXECUTABLE KNOWLEDGE</p><h2>知识单元</h2></div></div>
+      <div class="skill-groups"><section><h3>核心能力</h3><div><a href="/courses/entpxte401en/skills/entadv-ssh-trust-foundation.html"><b>SSH 免密分发体系</b><code>entadv-ssh-trust-foundation</code><span>N3 起 SSHv2 公钥认证强制；oxe-ssh-auth 管一对、oxe-nw-sshkey-sync 以五段 CSV 管全网，authorized_keys 条数核验</span></a><a href="/courses/entpxte401en/skills/entadv-cs-redundancy.html"><b>CS 冗余部署与切换维护</b><code>entadv-cs-redundancy</code><span>main+standby 实时 scp 复制；bascul 切换已建立通话保持；失联 120 分钟触发 440 只能 mastercopy；不停机升级 11 步轮换</span></a><a href="/courses/entpxte401en/skills/entadv-ip-domain-pcs.html"><b>IP 域与 PCS 域级生存性</b><code>entadv-ip-domain-pcs</code><span>域按初始化 IP 落域且 CS/PCS 必须域 0；CAC 只闸跨域；PCS 许可锁 332+四状态+回切计时器，库单向同步最长激活 30 天</span></a><a href="/courses/entpxte401en/skills/entadv-overflow-rerouting.html"><b>公私网双向溢出与重路由</b><code>entadv-overflow-rerouting</code><span>断链/饱和时经 Node Access Prefix+DID 翻译走公网（话务台恒放行、SIP 扩展不适用）；反方向判别器挂 ARS 用 TG=-1 还原内号走专线</span></a><a href="/courses/entpxte401en/skills/entadv-direct-ip-link.html"><b>Direct IP Link 全 IP 组网</b><code>entadv-direct-ip-link</code><span>ABC-F2 全互联免中继；系统选项三态 Enabled 不可逆；接入 1 IP 信令+至多 24 接入×62 通道；两端带宽/加密/接入数一致否则 2879</span></a><a href="/courses/entpxte401en/skills/entadv-audit-broadcast.html"><b>Audit 与 Broadcast 数据一致性</b><code>entadv-audit-broadcast</code><span>Audit 两阶段对账（必须模拟+备份，链式对象跑两遍）；Broadcast 走 buffer→LOG→lupd.dat 序号闭环，默认 10 分钟、RLOG 静默失败</span></a><a href="/courses/entpxte401en/skills/entadv-multiline-supervision.html"><b>多线监督与经理助理组</b><code>entadv-multiline-supervision</code><span>Multi-keys/Multi-MCDU 两形态；监督键五档铃型+四条硬上限；经理助理键对+过滤表 1000×16+screening/unscreening 互斥</span></a><a href="/courses/entpxte401en/skills/entadv-hunting-pickup-speeddial.html"><b>寻线代接组与速拨编号体系</b><code>entadv-hunting-pickup-speeddial</code><span>寻线三搜索+COS 随组+camp-on 溢出；组代接/直接代接自动成组；速拨 32500（默认 4000）直接/范围双形态、默认绕闭锁</span></a></div></section><section><h3>路由能力</h3><div><a href="/courses/entpxte401en/skills/entadv-desk-sharing.html"><b>办公桌共享（DSS/DSU）</b><code>entadv-desk-sharing</code><span>DSS 真 MAC+DSU 虚拟 MAC（aa:bb:分机号）；登录即恢复配置；忙时重置默认 True（6004）、即时登录仅限特定机型族</span></a><a href="/courses/entpxte401en/skills/entadv-multi-device.html"><b>多设备用户与 Twinset</b><code>entadv-multi-device</code><span>主站+至多 4 副站（DECT/REX 各 1）；建关联清空两机数据；Twinset Get Call 无感移机；主站退服三参数联动</span></a><a href="/courses/entpxte401en/skills/entadv-lab-pod-baseline.html"><b>实验/交付前置环境基线</b><code>entadv-lab-pod-baseline</code><span>RLAB 双拓扑+ITSP1 号码规则（PN=POD 号）+启动顺序与组网 VM 网卡迁移前置，全部实验口径</span></a><a href="/courses/entpxte401en/skills/entadv-cli-toolbox.html"><b>维护命令与事件/许可速查</b><code>entadv-cli-toolbox</code><span>按功能域归类的命令地图 + 事件号对照（440/427/428/431/432/6004/6005/2879 等）+ 许可锁锚点（186/332/185 等）</span></a></div></section></div>
+    </section>
+    <section class="reading-links"><h2>课程全景资料</h2><a href="/courses/entpxte401en/digest.html">精华长文 DIGEST</a><a href="/courses/entpxte401en/overview.html">教书理解 BOOK_OVERVIEW</a><a href="/courses/entpxte401en/glossary.html">术语词典</a></section>
+
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Advanced (Participant's Guide, Edition 13) | edition: — | pages: 543 页 -->

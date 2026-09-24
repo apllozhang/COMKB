@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.otcc-standard-starter",
+  "generated_at": "2026-09-23",
+  "destinations": {
+    "cap.otcc.routing-distribution-rules": { "promoted_to": "otcc-routing-distribution-rules" },
+    "cap.otcc.ccd-matrix-foundation": { "promoted_to": "otcc-ccd-matrix-foundation" },
+    "cap.otcc.agent-supervisor-onboarding": { "promoted_to": "otcc-agent-supervisor-onboarding" },
+    "cap.otcc.ccs-installation": { "promoted_to": "otcc-ccs-installation" },
+    "cap.otcc.object-tuning": { "promoted_to": "otcc-object-tuning" },
+    "cap.otcc.voice-guides": { "promoted_to": "otcc-voice-guides" },
+    "cap.otcc.monitoring-statistics": { "promoted_to": "otcc-monitoring-statistics" },
+    "cap.otcc.multilanguage-calendar": { "promoted_to": "otcc-multilanguage-calendar" },
+    "cap.otcc.supervisor-features": { "served_by": "otcc-standard-starter-router" },
+    "cap.otcc.queue-experience": { "served_by": "otcc-standard-starter-router" },
+    "cap.otcc.direct-calls-emergency": { "served_by": "otcc-standard-starter-router" },
+    "cap.otcc.statistic-pilot": { "served_by": "otcc-standard-starter-router" },
+    "cap.otcc.lab-connectivity": { "served_by": "otcc-standard-starter-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 }
+}

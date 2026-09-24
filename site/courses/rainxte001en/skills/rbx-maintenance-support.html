@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Rainbow 维护与支持体系</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Rainbow OXO Connect 集成</h2><p>Edition 13 · 251 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte001en/index.html">课程首页</a><a href="/courses/rainxte001en/digest.html">精华长文</a><a href="/courses/rainxte001en/overview.html">教书理解</a><a href="/courses/rainxte001en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte001en/skills/rbx-company-subscription.html">Rainbow 公司体系与订阅开通</a><a href="/courses/rainxte001en/skills/rbx-omc-onboarding.html">OMC 安装首次连接与 IP 规划修改</a><a href="/courses/rainxte001en/skills/rbx-pbx-onboarding.html">OXO 接入 Rainbow 与接入排障</a><a href="/courses/rainxte001en/skills/rbx-member-lifecycle.html">Rainbow 成员全生命周期管理</a><a href="/courses/rainxte001en/skills/rbx-gateway-planning.html">WebRTC 网关拓扑决策与容量规划</a><a href="/courses/rainxte001en/skills/rbx-gateway-deployment.html">WebRTC 网关部署与虚拟终端配置</a><a href="/courses/rainxte001en/skills/rbx-attendant-supervision.html">Rainbow 话务台与监督组</a><a href="/courses/rainxte001en/skills/rbx-teams-integration.html">Microsoft Teams 集成全流程</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte001en/skills/rbx-admin-tools.html">Rainbow 管理员工具（权责/企业目录/信息频道）</a><a href="/courses/rainxte001en/skills/rbx-rcc-association.html">OXO 分机关联与 RCC 模式</a><a href="/courses/rainxte001en/skills/rbx-maintenance-support.html">Rainbow 维护与支持体系</a><a href="/courses/rainxte001en/skills/rbx-network-readiness.html">Rainbow 网络就绪核查</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte001en/index.html">rainbow-oxo-connect（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte001en/index.html">RAINXTE001EN</a><span>/</span><span aria-current="page">Rainbow 维护与支持体系</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Rainbow 维护与支持体系</h1></div><dl><div><dt>Skill ID</dt><dd>rbx-maintenance-support</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>Rainbow 维护与支持体系（日志、状态页、告警、操作历史、SR）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Your users can report problems they encounter directly in their Rainbow interface ('Help and Support' menu, 'Report a problem'). ... The integrator partner has the same reports as the customer"（p185）
+"status.openrainbow.com — The button « Get updates » allows ... you can subscribe to alerts by different methods."（p186）
+"The ESR will only be created if the partner is certified on Rainbow"（p191）</p>
+</blockquote>
+<p>出处：RAINXTE001EN p182-194。</p>
+<h2>I — 自述</h2>
+<p>运维闭环八个抓手：</p>
+<ol>
+<li><strong>用户日志</strong>：头像 → About Rainbow → Open logs（另有 User Settings 路径）</li>
+<li><strong>用户问题上报</strong>：Help and Support → Report a problem（日期/描述/附件/日志使用同意）；集成商与客户看到同一份上报</li>
+<li><strong>云状态页</strong>：status.openrainbow.com + Get updates 订阅告警（按主题/地域过滤）</li>
+<li><strong>维护预告</strong>：管理门户内查看计划维护（按地域与 Hybrid/Hub 架构过滤，颜色区分影响等级，多在晚间/周末）</li>
+<li><strong>音频告警</strong>：设阈值通知音质劣化与无音频</li>
+<li><strong>操作历史</strong>：全部管理操作留档，按类别/类型/日期过滤——多管理员审计"谁做了什么"</li>
+<li><strong>Help Desk 指南</strong>：help.openrainbow.com（排障/找日志/报障入口）</li>
+<li><strong>SR</strong>：邮箱 support@openrainbow.com / Emily BOT / Global Welcome Center / 电话；MyPortal 建单（category=Rainbow, type=product support + 终端客户公司/版本/子类/SIP trunk/来源等字段）；仅 Rainbow 认证伙伴会建 ESR</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>运维场景</strong>（p182-193，讲义，无实验）——典型链路：</p>
+<ol>
+<li>用户上报问题</li>
+<li>管理端取事件日志</li>
+<li>对照状态页排除云侧故障</li>
+<li>需官方介入时经 MyPortal 开 SR（字段按 p192-193 两页表单）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：用户日志在哪；怎么收集问题信息给支持；Rainbow 是不是全局故障；约了维护怎么提前知道用户；谁改了配置；怎么开 SR；SR 没被建。</p>
+<p>语言信号：日志 / logs / report a problem / 上报 / status page / 状态页 / 维护窗口 / 告警 / alarm / 操作历史 / history / Service Request / SR / ESR / MyPortal / Emily。</p>
+<p>与相邻能力区分：PBX 侧接入排障（Webdiag/ccrbagent.log）→ PBX 接入能力；网关媒体问题 → 网关部署能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：问题现象与时间、用户端形态（Web/Desktop/移动）、伙伴认证状态（开 SR 前）。</p>
+<ol>
+<li>收集：用户日志（About Rainbow → Open logs）+ 用户上报记录（管理端看全部事件）。完成标准：现象可复述、日志在手</li>
+<li>分流：查 status.openrainbow.com 与管理端维护预告 → 云侧故障则订阅告警等待恢复；非云侧按现象转对应能力（接入/网关/成员）。完成标准：责任面确定</li>
+<li>审计（如涉配置变更）：操作历史按类别/日期过滤定位操作人与时间。完成标准：变更链路清楚</li>
+<li>升级官方：MyPortal → Support → Service Request → Create SR → 按两页表单填全（category=Rainbow、版本、子类、SIP trunk、来源等）。完成标准：ESR 建立</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>伙伴未过 Rainbow 认证 → SR 不会被创建（n47）：先补认证或经认证上家转报，不要反复提交</li>
+<li>Web 端上报没有日期字段 → 平台设计（浏览器日志存活短）：改用客户端上报或靠附件/描述定位时间</li>
+<li>怀疑账号冒用 → 转成员生命周期能力的 Security 改密手段（踢在线会话），不走本卡</li>
+</ul>
+<p>输出契约：问题档案（日志+上报记录+分流结论）+ SR 单号（如升级）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>状态页只覆盖云侧（数据中心/平台）；PBX 侧与局域网问题不在其监测面</li>
+<li>告警阈值的具体取值方法原书外置（p188 链接指针）</li>
+<li>ESR 受理以 Rainbow 认证为前提：项目启动时先理顺支持路径（认证/上家关系）</li>
+<li>法国站点订阅告警勾 WW/EMEA/DE 为书中举例（实验口径），按实际地域选择</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.rbx.maintenance-support · 来源：RAINXTE001EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Rainbow OXO Connect (Participant's Guide, Edition 13) | edition: Edition 13 | pages: 251 页 -->

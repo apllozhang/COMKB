@@ -1,0 +1,232 @@
+{
+ "code": "dt00xte215en",
+ "capability_catalog": [
+  {
+   "slug": "swl2-aaa-hardening",
+   "name": "交换机登录接入与 AAA 管理面加固",
+   "description": "七类服务各自认证链（本地库或 RADIUS/LDAP、exit-on-fail）；账号密码治理（64 用户上限、密码策略四层、8.10R04 强制首登改密）；管理面收缩四清单（ASA 限源 64 地址、禁服务、会话参数、SSH 强加密）；禁用 console 有 RMA 风险"
+  },
+  {
+   "slug": "swl2-lightning-config",
+   "name": "Lightning Config 快速开局",
+   "description": "笔记本 DHCP 接端口 1、https://192.168.0.1（192.168.0.200/24）、RECOMMENDED DEFAULTS 不可跳过、admin 密码 ≥8 位四类字符避开 ! 与 $、保存固化；六条禁令；.json 模板导入；一次一台、出箱交换机禁止先互联"
+  },
+  {
+   "slug": "swl2-config-lifecycle",
+   "name": "配置生命周期（保存/认证/回滚/备份）",
+   "description": "working/certified/running 三目录；write memory、copy running certified、write memory flash-synchro；启动判定（内容同回 running/异回 certified，reload all 强制 certified）；show running-directory 三字段判读；tar 备份三件套与 USB 备份（拔盘先 usb disable）"
+  },
+  {
+   "slug": "swl2-virtual-chassis",
+   "name": "Virtual Chassis 堆叠",
+   "description": "ISIS-VC 单逻辑交换机（免许可、成员间无需 STP/VRRP）；选举四级序（优先级>运行时长>10 分钟>最小 ID>最小 MAC、MAC retention）；VFL auto/静态；分裂防护 RCD（带外 EMP）与 VCSP（带内 helper）；ISSU 滚动升级；ssh-chassis；优先级与 ID 改动必须 reload"
+  },
+  {
+   "slug": "swl2-vlan-routing",
+   "name": "VLAN 与 VLAN 间路由",
+   "description": "VLAN 三入口（静态/UNP 九规则分类/802.1Q，VLAN 1 不可删）；物理口恒有默认 VLAN 桥接；一个 IP 接口即激活路由；VLAN 无成员则接口 DOWN；show ip routes LOCAL 路由"
+  },
+  {
+   "slug": "swl2-link-redundancy",
+   "name": "链路与生成树冗余（LAG/STP/DHL）",
+   "description": "静态聚合仅 ALE 间、LACP 可接服务器；hash 默认逐型号（6360/6465/6900=brief）；组播默认走主端口；STP 默认 per-VLAN/32768、每链路仅一侧 BLK；DHL 双活 1 会话 2 链路、自动禁 STP、默认 30 秒抢占"
+  },
+  {
+   "slug": "swl2-l3-services",
+   "name": "三层服务与网关冗余（DHCP/Loopback0/VRRP）",
+   "description": "DHCP Client 选项语义；DHCP Relay 全局/接口互斥（max hops 16、Opt82/PXE 默认关）；UDP Relay；Loopback0 永活七用途（RIP/OSPF 自动通告、BGP 不会）；静态路由默认优于动态；VRRP 虚拟 MAC 00-00-5E-00-01-{VRID}、默认优先级 100、改优先级必须先 disable"
+  },
+  {
+   "slug": "swl2-qos-acl-policy",
+   "name": "QoS 与 ACL 策略",
+   "description": "统一 policy 引擎（condition+action+rule、qos apply 才生效、默认 accept）；端口默认不信任（tagged 也改写）；auto-QoS 四个 ALE 话机 MAC 段给优先级 5；ACL 条件分箱与 precedence 65535 兜底；UserPorts 反欺骗（仅路由流量）、qos user-port shutdown bpdu"
+  },
+  {
+   "slug": "swl2-access-guardian",
+   "name": "Access Guardian 接入认证",
+   "description": "UNP 档案（VLAN+策略列表）由 RADIUS Filter-Id 回传触发；802.1x/MAC 双认证并存；pass-alternate 备用档案；auth-server-down 默认 60 秒重试；无 MAC 登记 Block；RADIUS 默认参数（retries 3/timeout 2s/1812/1813）；服务器侧配置在书外"
+  },
+  {
+   "slug": "swl2-diagnostics",
+   "name": "诊断工具箱八件套",
+   "description": "swlog（1250KB/8 文件/syslog 12 台/info=6）、可读事件日志四段格式、command.log 100 条不可删；镜像会话新口径 4/MTP 索引 4（旧口径 2 并存）；抓包 1 会话只存前 64 字节（64KB 上限 2MB）且与镜像同端口互斥；RMON/health/sFlow；升级验证看 show microcode loaded"
+  },
+  {
+   "slug": "swl2-lldp-poe",
+   "name": "LLDP/LLDP-MED 与 PoE 管理",
+   "description": "LLDP 默认双开（30 秒/TTL×4、不支持 linkagg 级）；network-policy 下发语音 VLAN+l2-priority+dscp（教材两页数值不一致按边界处理）；mobile-tag 动态入网；PoE 四档（PD 12.95/25.5/51/71W）；优先级 low/high/critical；FPoE/PPoE 型号线（OS6360-P10A 不支持）；delayed-start 120-600 秒互斥"
+  },
+  {
+   "slug": "swl2-upgrade-autofabric",
+   "name": "软件升级与 Auto-Fabric 零触开局",
+   "description": "版本取最新 GA/MR（合规查 FIPS/JITC/CC 清单）；8.10R4 起签名镜像；三通道（FTP/OmniVista/Cirrus）；U-boot 密码丢失无恢复、底层固件升级失败即 RMA；Auto-Fabric 七步链（首启 Y=禁用/N=启用语义相反）；RCL 6 次取指令文件、下载到 vcboot.cfg 会重置；LBD 环路检测"
+  },
+  {
+   "slug": "swl2-fleet-tools",
+   "name": "资产与装机工具（Fleet Supervision/OST）",
+   "description": "Fleet Supervision 免费只读看资产/生命周期/维保 KPI，三路声明（OV2500/Cirrus 4.X/Cirrus 10.5+）或 CSV 模板导入；OST 1.0 停更；OST 2.0 Client-Server+Postgres（18.1 先装）、100 交换机/4000 设备/5 并发、需有效 OmniSwitch 支持合同"
+  }
+ ],
+ "cases": [
+  {
+   "id": "should-aaa-01",
+   "prompt": "新到的 OmniSwitch 要开通 SSH 管理，并且只允许运维网段 10.20.0.0/24 登录，怎么配？"
+  },
+  {
+   "id": "should-aaa-02",
+   "prompt": "交换机从老版本升到 8.10R4 之后，admin 账号还在用出厂密码，登录会有什么变化？要怎么处理？"
+  },
+  {
+   "id": "should-olc-01",
+   "prompt": "办公室新到了一台还没上过电的交换机，想今天就让一台电脑和一台话机通起来，怎么最快开局？"
+  },
+  {
+   "id": "should-olc-02",
+   "prompt": "Lightning Config 开局改 admin 密码时，我想用一个带 $ 符号的好记密码，行不行？"
+  },
+  {
+   "id": "should-cfg-01",
+   "prompt": "昨天在交换机上建了几个 VLAN 还没保存，今晚要断电检修，配置会丢吗？怎么保住？"
+  },
+  {
+   "id": "should-cfg-02",
+   "prompt": "write memory 和 write memory flash-synchro 有什么区别？什么场景必须用后者？"
+  },
+  {
+   "id": "should-vc-01",
+   "prompt": "两台 6360 想合成一台来管理，VFL 用哪些口、主备怎么定？"
+  },
+  {
+   "id": "should-vc-02",
+   "prompt": "堆叠的堆叠线缆断了会不会两台都活着还重复 IP？有什么防护手段？"
+  },
+  {
+   "id": "should-vlan-01",
+   "prompt": "新建了 VLAN 40 和网关接口 192.168.40.1，接口一直是 DOWN，ping 也不通，怎么回事？"
+  },
+  {
+   "id": "should-vlan-02",
+   "prompt": "两台交换机之间只有一条线，但要同时跑 VLAN 20、30 和 58，怎么配？链路的默认 VLAN 有什么讲究？"
+  },
+  {
+   "id": "should-link-01",
+   "prompt": "接入交换机到核心有两条 10G，想绑成一条聚合并让流量分担均匀一点，怎么配？"
+  },
+  {
+   "id": "should-link-02",
+   "prompt": "接入到核心是双上行，客户不想跑生成树，想要两条链路都转发流量，有什么方案？"
+  },
+  {
+   "id": "should-l3-01",
+   "prompt": "用户网段网关在接入交换机上，DHCP 服务器在中心机房 192.168.100.0/24，客户端怎么自动拿到地址？"
+  },
+  {
+   "id": "should-l3-02",
+   "prompt": "两台汇聚要做默认网关冗余，虚拟 IP 192.168.20.254，VRRP 怎么配、怎么让指定那台当主？"
+  },
+  {
+   "id": "should-qos-01",
+   "prompt": "话机流量要最高优先级，员工上网流量限速 100k，交换机上怎么实现？"
+  },
+  {
+   "id": "should-qos-02",
+   "prompt": "要禁止 VLAN 20 的用户访问 FTP，其他流量都放行，这个过滤怎么写？"
+  },
+  {
+   "id": "should-ag-01",
+   "prompt": "员工用 802.1x 认证上网，认证通过后要自动进 VLAN 20 并且禁 FTP，这套怎么设计？"
+  },
+  {
+   "id": "should-ag-02",
+   "prompt": "打印机不支持 802.1x，接上交换机口就被断网了，show 里状态是 Block，为什么？"
+  },
+  {
+   "id": "should-diag-01",
+   "prompt": "怀疑 1/1/5 口有异常流量，想把它的进出流量复制到分析口看看，最多能开几个镜像会话？"
+  },
+  {
+   "id": "should-diag-02",
+   "prompt": "客户要一份最近设备发生过哪些重大事件的清单（掉线、重启、角色变化），用什么日志最快？"
+  },
+  {
+   "id": "should-lldp-01",
+   "prompt": "IP 话机要自动进语音 VLAN 151 并拿到 QoS 标记，交换机侧怎么配？"
+  },
+  {
+   "id": "should-lldp-02",
+   "prompt": "机房 PoE 预算快满了，新装 AP 供电不足时会先断谁的电？断电顺序能配吗？"
+  },
+  {
+   "id": "should-upg-01",
+   "prompt": "新站点有十几台交换机，想插上电就自动组网开通，有什么方案？首启那个 Y/N 提示该怎么答？"
+  },
+  {
+   "id": "should-upg-02",
+   "prompt": "给存量交换机升级软件，版本怎么选？听说 U-boot 可以设密码，开了有什么风险？"
+  },
+  {
+   "id": "should-fleet-01",
+   "prompt": "领导要一份全网交换机的维保到期时间和软件版本分布报表，用什么工具能出？"
+  },
+  {
+   "id": "should-fleet-02",
+   "prompt": "OST 2.0 装起来要哪些前提？数据库和安装顺序有什么讲究？"
+  },
+  {
+   "id": "bait-vlan-01",
+   "prompt": "用户口收到生成树 BPDU 就直接把口关掉，这个防私接交换机的功能在哪配？"
+  },
+  {
+   "id": "bait-aaa-01",
+   "prompt": "把交换机的 1/1/5 口划进 VLAN 20 并配 192.168.20.1 网关"
+  },
+  {
+   "id": "bait-cfg-01",
+   "prompt": "交换机升级过程中 U-boot 阶段失败了起不来，怎么在系统里修复？"
+  },
+  {
+   "id": "bait-link-01",
+   "prompt": "DHL 端口上再开生成树做双保险，这样环路防护更稳吧？"
+  },
+  {
+   "id": "bait-l3-01",
+   "prompt": "VLAN 30 的网关接口 DOWN 了 ping 不通，是 VRRP 配错了吗？"
+  },
+  {
+   "id": "bait-qos-01",
+   "prompt": "认证成功的员工要自动下发禁 FTP 策略，我在全局策略里配一条 deny 不就行了？"
+  },
+  {
+   "id": "bait-upg-01",
+   "prompt": "OST 里那个一键修复不启动的 PoE 设备按钮，原理是什么，交换机上要配什么？"
+  },
+  {
+   "id": "bait-fleet-01",
+   "prompt": "在 Fleet Supervision 看板上直接批量改交换机的 VLAN 配置行不行？"
+  },
+  {
+   "id": "bait-olc-01",
+   "prompt": "30 台新交换机的网点要零触开局，用 Lightning Config 一台台插笔记本配太慢了吧？"
+  },
+  {
+   "id": "bait-ag-01",
+   "prompt": "RADIUS 服务器上怎么建员工账号库和申请服务器证书？"
+  },
+  {
+   "id": "edge-mirror-01",
+   "prompt": "镜像会话数到底是 2 个还是 4 个？教材两个地方写的不一样。"
+  },
+  {
+   "id": "edge-lldp-01",
+   "prompt": "语音 network-policy 的 l2-priority 和 dscp 到底取 5/46 还是 7/14？"
+  },
+  {
+   "id": "edge-vc-01",
+   "prompt": "堆叠里改了 chassis 优先级但 show 出来还是旧值，是命令失败了吗？"
+  },
+  {
+   "id": "edge-console-01",
+   "prompt": "console 口默认速率到底是 9600 还是 115200？两页资料对不上。"
+  }
+ ]
+}

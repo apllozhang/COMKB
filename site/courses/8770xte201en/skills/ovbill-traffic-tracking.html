@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>流量分析与 Tracking 告警</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 计费与性能管理</h2><p>Edition 45 · 650 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte201en/index.html">课程首页</a><a href="/courses/8770xte201en/digest.html">精华长文</a><a href="/courses/8770xte201en/overview.html">教书理解</a><a href="/courses/8770xte201en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte201en/skills/ovbill-node-onboarding.html">OXE 纳管与 SIP 中继对接</a><a href="/courses/8770xte201en/skills/ovbill-ticket-pipeline.html">计费票据管道（出票、回收、加载过滤）</a><a href="/courses/8770xte201en/skills/ovbill-tariff-costing.html">运营商资费建模与成本计算</a><a href="/courses/8770xte201en/skills/ovbill-org-costing.html">计费组织树与成本归属</a><a href="/courses/8770xte201en/skills/ovbill-confidentiality.html">计费机密控制三道闸（掩码、解密、可见域）</a><a href="/courses/8770xte201en/skills/ovbill-reporting.html">报表生成、导出与定时</a><a href="/courses/8770xte201en/skills/ovbill-report-design.html">报表定制（Querytool 与 Designer）</a><a href="/courses/8770xte201en/skills/ovbill-voip-monitoring.html">VoIP 性能监控（IP ticket 与 KPI）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte201en/skills/ovbill-codebook-migration.html">Code Book 导出与导入</a><a href="/courses/8770xte201en/skills/ovbill-cost-profile.html">成本档案（发票价与订阅费）</a><a href="/courses/8770xte201en/skills/ovbill-traffic-tracking.html">流量分析与 Tracking 告警</a><a href="/courses/8770xte201en/skills/ovbill-web-performance.html">Web Performance 实时仪表盘</a><a href="/courses/8770xte201en/skills/ovbill-archiving.html">计费归档与恢复</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte201en/index.html">omnivista-billing-performance（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte201en/index.html">8770XTE201EN</a><span>/</span><span aria-current="page">流量分析与 Tracking 告警</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>流量分析与 Tracking 告警</h1></div><dl><div><dt>Skill ID</dt><dd>ovbill-traffic-tracking</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>流量分析与 Tracking 告警（pmm 计数器、双阈值、PtpType、Tracking 档案与变化率）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Files name: C<week nb><day><half-hour nb><seq nb>. type • Week number: 00..51 ... Half-hour number: 00..47 • XX: used for .inf and daily .pmm files"（p433）
+"Replace -PtpType ATT,ATG,TRG –PTP by -PtpType ALL -PTP"（p446）
+"Variation rate = 100 * ( current value of the data – average of the x last values of the data) / average of the x last values of the data — X is called moving average period • Day (x = 30 days by default)"（p462）
+"If you want to force assignment to all entities, select the corresponding Reset Profile option The Default Tracking box of each entity is then forced to YES"（p478）</p>
+</blockquote>
+<p>出处：8770XTE201EN p429-488。</p>
+<h2>I — 自述</h2>
+<p>流量分析（仅 OXE）与 Tracking 是话务计数器监控的两段：前者把计数器变成报表，后者把阈值变成告警。</p>
+<ul>
+<li>流量分析观察六类对象：中继组、话务台、话务台组、DECT/PWT、终端、被叫分机；数据两源——OXE 半小时计数器文件（/usr4/pmm，命名 C&lt;周&gt;&lt;日&gt;&lt;半小时&gt;&lt;序号&gt;，日文件与 .inf 用 XX 占位，pmm.lis 作索引）与计费记录（供被叫号与终端观察）；回收与计费同管道</li>
+<li>两组等待阈值互不相干：话务台阈值 1/2（出厂 30s/60s，实验设 5s/10s）只能在 OXE 配置改；8770 侧 Loading &gt; Traffic analysis 的订户阈值 T1/T2（默认 30s/60s，实验设 10s/20s）只喂报表字段；DECT 基站忙触发 RBS 默认 8、IBS 默认 4；计数器保留 10-1488 个半小时（1488=31 天）</li>
+<li>PtpType 出厂差距：Daily/Weekly Job 里计数器任务默认 -PtpType ATT,ATG,TRP 只算话务台/话务台组/中继组；要看被叫号与终端必须把两个任务都改成 -PtpType ALL（顺带授权加载来话记录）</li>
+<li>Tracking=阈值集合档案：每条含 Tracking value（会计/话务/VoIP/性能四域指标）+Period+Threshold+Call Type+Action（告警/邮件/两者）；按实体类型挂默认档案（Default Tracking 管理器）或单条目指定；运营商条目也可挂</li>
+<li>变化率公式：100×(当前值−前 x 期均值)÷前 x 期均值；移动平均默认期日 30 天/月 3 月/年 1 年，在 MonitoringParameters 改；Max number of alarms 默认 50</li>
+<li>超限检测由任务与夜间计数器驱动，非实时流；一封告警邮件可含多个超限、附件按 profile 分类</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>流量分析配置</strong>（p442-454）：</p>
+<ol>
+<li>确认外部计费开启（来话记录是被叫号/终端计数器的前提）</li>
+<li>OXE 配置 Applications &gt; Traffic Observation 设话务台阈值 5s/10s（出厂 30s/60s）</li>
+<li>计数器保留期 Number half-hour Period Kept 取 10-1488（实验按 31 天口径）</li>
+<li>8770 Loading &gt; Traffic analysis 设订户阈值 T1/T2 与 Busy Threshold</li>
+<li>Scheduler 里 Daily Job 与 Weekly Job 两处任务把 -PtpType ATT,ATG,TRG 改为 ALL</li>
+<li>需要立即出数时手工 Total calculation，生成中继组/话务台预定义报告</li>
+</ol>
+<p><strong>Tracking 三档案</strong>（p469-488）：</p>
+<ol>
+<li>Profile 1：月呼出次数 &gt;30 告警、&gt;50 邮件（地址实验口径 alban.podX@company.com）</li>
+<li>Profile 2：日呼出时长 &gt;45 分钟告警、&gt;1 小时邮件</li>
+<li>Profile 3：出入呼日时长变化率 &gt;100% 告警+邮件——配合 MonitoringParameters 把 Daily moving average period 改 2（默认 30）</li>
+<li>Default Tracking 管理器按实体类型挂默认档案；单条目（如 Brest 挂 Profile 1、Colombes 挂 Profile 2）先取消 Default Tracking 再选</li>
+<li>要全量强制时点 Reset Profile（该类型全部实体的 Default Tracking 置回 YES）</li>
+<li>等任务检测超限后验证告警与邮件（一封邮件可含多个超限）</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：中继要不要扩容；话务台接听超时考核；被叫号话务报表是空的；某分机话费异常想自动告警；话务量突增检测；告警邮件怎么配。</p>
+<p>语言信号：流量分析 / traffic analysis / pmm / pmm.lis / 半小时计数器 / 中继组 / 话务台 / T1 / T2 / 阈值 / PtpType / ALL / Tracking / 跟踪 / 档案 / 变化率 / 移动平均 / moving average / Reset Profile / Max number of alarms / 告警 / 邮件。</p>
+<p>与相邻能力区分：IP 话音质量 → VoIP 性能能力；WBM 实时仪表盘 → Web Performance 能力；告警邮件服务器参数与报表共用（报表能力卡的邮件配置）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：OXE 为监控对象（流量分析不支持 OXO/OpenTouch）、票据管道已通。要监控 OXO → 判停声明平台边界，转 VoIP 报告方案。</p>
+<ol>
+<li>OXE 设话务台阈值与计数器保留期。完成标准：观察参数落盘</li>
+<li>8770 Loading &gt; Traffic analysis 设 T1/T2 与对象勾选。完成标准：报表口径确认</li>
+<li>Scheduler 两处任务改 -PtpType ALL。完成标准：被叫号/终端计数器可算</li>
+<li>手工 Total calculation 或等夜间任务后出预定义报告。完成标准：中继/话务台报表有数</li>
+<li>建 Tracking 档案（阈值+动作），按实体类型挂默认或单条目指定。完成标准：覆盖面清单成文</li>
+<li>变化率类跟踪值先在 MonitoringParameters 定移动平均期。完成标准：期数与业务预期一致</li>
+<li>触发或模拟超限，验证告警与邮件。完成标准：动作生效</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>被叫号/终端报表为空 → 查两个 Job 是否都改了 PtpType ALL（出厂默认不含）</li>
+<li>以为"配了类型=全员生效" → 默认档案只作用于勾了 Default Tracking 的实体，全量强制用 Reset Profile</li>
+<li>期待实时告警 → 检测由任务与夜间计数器驱动，时延预期要按任务周期谈</li>
+<li>邮件不达 → 查邮件服务器参数（server:port 无空格、发件人被认识），与报表共用一套配置</li>
+</ul>
+<p>输出契约：观察对象与阈值表 + PtpType 变更记录 + Tracking 档案清单（阈值/动作/覆盖面）+ 告警验证记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>流量分析仅支持 OmniPCX Enterprise（p25/p29/p431）；OXO 站点无此能力</li>
+<li>话务台阈值（OXE 侧）与 8770 的 T1/T2 无联动，改前者不影响报表口径（p443/p445）</li>
+<li>变化率只在选定周期的跟踪值上生效（Cost/Duration/Number of calls variation 类）；移动平均期改动影响全部变化率档案</li>
+<li>"一封邮件多个超限、附件按 profile 分类"依赖邮件服务器参数正确（p484；实验用 Thunderbird 收信为教学设施）</li>
+<li>生产容量结论（中继扩容判据）需结合业务话务模型，书内只提供计数器与报表机制</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte201en/skills/ovbill-ticket-pipeline.html">计费票据管道（出票、回收、加载过滤）</a></p><p class="source-page">能力 ID：cap.ovbill.traffic-tracking · 来源：8770XTE201EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 R5.2 Accounting and Performance Administration (Participant Guide, Edition 45) | edition: Edition 45 | pages: 650 页 -->

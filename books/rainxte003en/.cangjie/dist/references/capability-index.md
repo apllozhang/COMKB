@@ -1,0 +1,17 @@
+# 能力索引（完整版）
+
+| capability_id | 标题 | 重要度 | 意图 | 关键词 | 能力卡 |
+|---|---|---|---|---|---|
+| cap.rxe.company-subscription | Rainbow 公司体系与订阅开通 | critical | 创建 Rainbow 公司；开通 Rainbow 订阅；选择公司可见性与认证方式；管理员权责划分；create Rainbow company；Rainbow subscription plans | Company、BP、EC、DR、IR、VAD、可见性、CLOSED、ISOLATED、SSO、TOTP、Essential、Business、Enterprise、Attendant、预付、企业目录、信息频道 | capabilities/rxe-company-subscription.md |
+| cap.rxe.agent-onboarding | OXE 接入 Rainbow 与接入排障 | critical | 配置 OXE DNS 与代理；OXE 接入 Rainbow；PBXID 在哪找；Rainbow 连接状态异常；connect OXE to Rainbow；rainbowagent troubleshooting | netadmin、DNS、Proxy、PBXID、Activation code、激活码、Rainbow Agent、incvisu、4503、4505、4509、4507、4511、checkCloudConfig.sh、rainbowagent.log | capabilities/rxe-agent-onboarding.md |
+| cap.rxe.member-lifecycle | Rainbow 成员全生命周期管理 | high | 创建 Rainbow 成员；邀请用户加入公司；删除恢复用户；批量导入成员；Rainbow user management | members、邀请、invitation、CSV、Azure AD、批量导入、grace period、宽限期、密码策略、改密踢下线、TOTP、10 天 | capabilities/rxe-member-lifecycle.md |
+| cap.rxe.routing-rex | OXE 用户形态决策与远程延伸路由 | critical | 选择 OXE 用户接入形态；配置远程延伸与 tandem；规划 Ghost Z 容量；排查路由振铃问题；remote extension configuration | REX、Ghost Z、tandem、multi-line、RCC、DECT、Virtual UA、overflow、溢出、nomadic、路由四案例、remotesets、TC2462 | capabilities/rxe-routing-rex.md |
+| cap.rxe.webrtc-gateway-deployment | WebRTC 网关部署与升级 | critical | 部署 WebRTC 网关；网关 VM 网络与 PBX 参数配置；网关配置核验与排障；升级 WebRTC 网关；deploy WebRTC gateway；mpcheck troubleshooting | WebRTC Gateway、OVF、mpnetwork、mpconfig、mpshow、mpcheck、mpssh、mpupgrade、WinSCP、GEOIP、kamailio、5060 | capabilities/rxe-webrtc-gateway-deployment.md |
+| cap.rxe.oxe-gateway-config | OXE 侧 WebRTC 网关配置九件套 | critical | 配置 OXE 侧网关配套；ARS 与判别器配置；回呼 Rainbow 分机；网关 VoIP 测试；OXE SIP configuration for WebRTC gateway | SIP trunk group、Trusted IP、Rainbow type、G711、CDT、ARS、BBB 前缀、判别器、callback、CSTA、17 位、406、lookars、sipextgw | capabilities/rxe-oxe-gateway-config.md |
+| cap.rxe.gateway-pool-sizing | 共享 WebRTC 网关池与容量规划 | high | 选择网关池化架构；配置 ARS 溢出；估算网关容量与通道数；WebRTC gateway dimensioning | shared gateway pool、共享池、WebRTC duplication、OXE cluster、406、overflow、溢出、TBE067、sizing、400 并发、SIP trunk 限制 | capabilities/rxe-gateway-pool-sizing.md |
+| cap.rxe.teams-integration | Microsoft Teams 集成全流程 | high | Rainbow 集成 Teams；Teams 应用上架与权限同意；Teams 用户电话配置；Teams 在场同步；Rainbow for Teams integration | Teams、Rainbow App、Rainbow Desktop、consent、权限同意、Telephony 权限、MakeCall、click-to-call、presence、在场同步、Office 365、Business、Enterprise | capabilities/rxe-teams-integration.md |
+| cap.rxe.rcc-association | OXE 分机关联与 RCC 模式 | medium | 关联 OXE 分机到 Rainbow；RCC 模式验证；Rainbow number | RCC、Remote Call Control、associate extension、Telephony 页签、Rainbow number、BBB、Office phone | capabilities/rxe-rcc-association.md |
+| cap.rxe.attendant-consoles | 两套话务台（4059EE 与 Rainbow Attendant Console） | high | 交付 4059EE 话务台；部署 Rainbow 话务台；建监督组与互助组；attendant console setup | 4059EE、attendant group、CDT、BLF、attendant console、话务台、监督组、互助组、mutual aid、代接、pickup、Attendant 订阅 | capabilities/rxe-attendant-consoles.md |
+| cap.rxe.maintenance-support | Rainbow 维护与支持体系 | medium | 查 Rainbow 日志；开 Rainbow 服务请求；云状态与维护预告 | logs、report a problem、status.openrainbow.com、告警、操作历史、Service Request、SR、ESR、MyPortal、认证伙伴 | capabilities/rxe-maintenance-support.md |
+| cap.rxe.network-readiness | Rainbow 网络就绪核查 | medium | Rainbow 网络要求；连通性评估；端口放行 | network requirements、端口、带宽、防火墙、Rainbow Pilot、连通性、勘测 | capabilities/rxe-network-readiness.md |
+| cap.rxe.lab-pod-setup | RLAB 实验环境与 Pod 配置 | medium | 配置培训实验环境；核对 OXE Pod 基线；配置实验 DID 翻译 | RLAB、POD、IPDSP、MicroSIP、ITSP1、SIP 模拟器、DID、实验口径 | capabilities/rxe-lab-pod-setup.md |

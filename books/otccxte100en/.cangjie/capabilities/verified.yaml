@@ -1,0 +1,744 @@
+schema_version: 1
+bundle_id: bundle.otcc-standard-starter
+book:
+  title: OmniTouch Contact Center Standard Edition — Starter (Participant's Guide, Edition 09)
+  author: ALE Training Services
+  source_pack: OTCCXTE100EN.pdf (649 pages)
+  baseline_tag: OXE R10.16 / CCS 10.5 时代 / RLAB 实验环境 / 法国目标库
+entry:
+  name: otcc-standard-starter
+  description: 'OXE 内置呼叫中心（OTCC Standard/CCD）的入门级交付闭环：CCD 五级矩阵（pilot/队列/处理组）、CCS 班长台安装、路由与分配规则、座席班长体系、
+    对象参数调优、语音指南三路径、实时监控与 Excel 统计、多语言与双日历；另含班长特性、排队体验（EWT/518）、直接呼叫与紧急关闭、统计 pilot、实验环境链路五张路由卡。
+    适用于单站点入门交付、配置、排障与行为口径问答；话务建模、CCIVR/ACR/CCA、多站点等进阶域不在原书范围（见 out_of_scope）。
+
+    '
+  core_principles:
+  - 五级矩阵：一切呼叫流服从 pilot → 路由 → 队列 → 分配 → 处理组；配置的本质是连方向、定优先级、给默认行为
+  - 默认全关：分配规则默认停用（须 OXE 侧激活）、所有方向默认关闭、末座席退出可禁——"配好了不通"先查激活与方向
+  - 优先级统一 0-9（0 最高 9 最低），平局规则三类各异：路由看 EWT、资源选择看 LIT、呼叫选择看真实等待时间
+  - 双控制台分工：OXE Web Admin 建 CCD 底层对象，CCS 管规则/座席/实时/统计/紧急关闭；CCS 无权创建 CCD 对象（只能建班长与分配规则）
+  - 座席状态时序是排障共同语言：wrap-up 自动挂 pilot、手动挂 PG；pause 可接私人电话；退出 9 类型供统计；Blocked 是"下游无资源"的自动态
+  - 实验口径红线：教材密码/号码/前缀/板位为 RLAB 实验值（法国目标库），生产必须替换并按当版文档核对
+  out_of_scope:
+  - CCIVR 外部语音服务器、ACR 高级路由（语言技能/呼叫档案）、CCA 座席桌面、Soft Panel、ALE Connect 全渠道（原书只点名，指向 OTCC901 进阶教材）
+  - 话务建模与容量规划方法（TSP 调参只有"逐步调整+观察告警"口径，无话务量→队列数→座席数规划）
+  - 多站点 Multisite CCS、Excel 宏（ACDMacro）、录音第四法（Audio Station/VGTransfer 工具链）
+  - 生产中继申请、编号计划与 COS 体系设计（原书假设 RLAB 预置库现成）
+  - Rainbow 平台与 WebRTC 网关部署（本书 Rainbow 仅作座席形态，只有架构图无落地步骤）
+  stop_conditions:
+  - 用户问 CCIVR/ACR/CCA/Soft Panel/ALE Connect 细节 → 声明书外边界，指向 OTCC901 与 Feature list，不以本包内容猜测
+  - 用户要话务量→队列数→座席数的规划方法 → 给 EWT/TSP 公式口径但明确声明建模在书外
+  - 生产环境拟套用教材密码/号码/前缀 → 判停并要求替换（实验口径红线）
+  - 现场界面与 R10.16/CCS 10.5 时代不符 → 按当版 OXE/CCS 文档核对，不凭本包记忆操作
+  - 需要 Multisite 多站点 CCS 或 Excel 宏自动化 → 边界外，指向 OTCC901
+router_entry:
+  name: otcc-standard-starter-router
+  description: 'OTCC Standard 入门能力路由入口：按用户意图分发到 13 张能力卡——矩阵地基、CCS 安装、路由与分配规则、座席班长体系、对象调优、语音指南、监控统计、
+    多语言日历八个 promoted 能力，以及班长特性（监听强插/通用转发/事务码）、排队体验（EWT/518）、直接呼叫与紧急关闭、统计 pilot、实验环境链路五张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.otcc.ccd-matrix-foundation
+  revision: 1
+  status: active
+  slug: otcc-ccd-matrix-foundation
+  title: CCD 基础矩阵创建与验证
+  importance: critical
+  importance_rationale: 对应 task-03，一切后续实验与交付的地基；无矩阵则规则、座席、监控全部空转；acdsup 判读是全书排障起点
+  one_liner: ACD 前缀 + 3 个处理组 + 3 个队列 + pilot 在 OXE Web Admin 建齐，mtcl 会话 acdsup 看矩阵判读
+  intents:
+  - 创建 CCD 矩阵
+  - 建 pilot/队列/处理组
+  - acdsup 输出判读
+  - 队列与处理组类型选型
+  - create CCD matrix pilot queue
+  keywords:
+  - CCD
+  - pilot
+  - waiting queue
+  - processing group
+  - ACD prefix
+  - "12"
+  - Normal_WQ
+  - Overflow_WQ
+  - Redirection_WQ
+  - acdsup
+  - CLO
+  - OPN
+  - FIFO
+  - 兼容表
+  also_read:
+  - otcc-routing-distribution-rules
+  - otcc-agent-supervisor-onboarding
+  card: cards/otcc-ccd-matrix-foundation.md
+  frontmatter:
+    description: '在 OXE Web Admin 创建 CCD 基础矩阵：ACD 前缀（实验 "12"）、Agent/Forwarding/Voice guide 三类处理组、Normal/Intelligent Overflow/Redirection 三类队列、
+      pilot 对象，并用 acdsup 判读（A/F/V/CLO/OPN）。当用户要"建矩阵/建 pilot/建队列/建处理组/看 acdsup"时使用。不适用于建规则（路由与分配规则能力）；
+      Voice Guide PG 只能接 Redirection 队列。
+
+      '
+    tags:
+    - procedure
+    - ccd
+    - matrix
+    - oxo-web-admin
+  source_evidence:
+  - source_id: src-otccxte100
+  - location: p22-29, p40, p63-77
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-03，一切的地基
+- capability_id: cap.otcc.ccs-installation
+  revision: 1
+  status: active
+  slug: otcc-ccs-installation
+  title: CCS 班长台安装、OXE 声明与 ccs.ini
+  importance: high
+  importance_rationale: 对应 task-04，规则与运营的载体；重启生效、id_terminal 冲突、ShowStatisticWithData 手改是现场高频卡点
+  one_liner: CCS.msi 决策链装完，node1 直连 OXE 后必须重启；ccs.ini 每次启动读取，id_terminal 0..127 全网唯一
+  intents:
+  - 安装 CCS
+  - 声明 OXE 呼叫服务器
+  - ccs.ini 参数核对
+  - CCS 连不上 OXE
+  - install CCsupervision
+  keywords:
+  - CCS
+  - CCsupervision
+  - CCS.msi
+  - Monosite
+  - Multisite
+  - CCSLight
+  - node1
+  - ccs.ini
+  - id_terminal
+  - ShowStatisticWithData
+  - 重启
+  also_read:
+  - otcc-ccd-matrix-foundation
+  card: cards/otcc-ccs-installation.md
+  frontmatter:
+    description: '安装 CCsupervision（CCS.msi 决策链：Full/Monosite/Excel=Yes/Windows standalone）、声明 OXE（node1 直连 + 必须重启）与 ccs.ini 管理（id_terminal、
+      token 类型、ShowStatisticWithData 手改）。当用户要"装 CCS/连不上/改 ccs.ini/实时报表只看有数据座席"时使用。不适用于建 CCD 对象（CCS 无权）与规则配置（规则能力）。
+
+      '
+    tags:
+    - procedure
+    - ccs
+    - installation
+    - configuration
+  source_evidence:
+  - source_id: src-otccxte100
+  - location: p78-97, p511-512
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-04，规则与运营载体
+- capability_id: cap.otcc.routing-distribution-rules
+  revision: 1
+  status: active
+  slug: otcc-routing-distribution-rules
+  title: 路由规则与分配规则全生命周期
+  importance: critical
+  importance_rationale: 对应 task-05，核心交付动作；双"默认关"（规则停用、方向关闭）是全书最高频事故源，BOOK_OVERVIEW 优先级第 1
+  one_liner: pilot 与队列、队列与 PG 两级规则；优先级 0-9；分配规则必须回 OXE 激活、所有方向默认关闭
+  intents:
+  - 创建路由规则
+  - 创建激活分配规则
+  - 设置方向优先级
+  - 呼叫不通排查
+  - activate distribution rule
+  keywords:
+  - routing rule
+  - distribution rule
+  - Rule_0
+  - 优先级
+  - Active Rule
+  - Direction
+  - Resource selection
+  - parking level
+  - EWT
+  - LIT
+  - Navigator 连接点
+  - 默认关闭
+  also_read:
+  - otcc-ccd-matrix-foundation
+  card: cards/otcc-routing-distribution-rules.md
+  frontmatter:
+    description: '路由规则（pilot 连队列，30 条/pilot、全局 1200）与分配规则（队列连 PG，全局 10 条、每队列 50 方向）的创建、优先级（0-9，0 最高）、平局规则
+      （路由看 EWT/资源看 LIT/呼叫看真实等待）与激活（分配规则默认停用须 OXE 勾 Active Rule、方向默认关闭须逐条勾选）。当用户要"建规则/设优先级/呼叫不通/连接点黄色"时使用。
+      不适用于矩阵对象创建（矩阵能力）与指南内容（语音指南能力）。
+
+      '
+    tags:
+    - procedure
+    - routing
+    - distribution
+    - troubleshooting
+  source_evidence:
+  - source_id: src-otccxte100
+  - location: p43-59, p98-120
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-05，优先级第 1 的核心交付动作
+- capability_id: cap.otcc.agent-supervisor-onboarding
+  revision: 1
+  status: active
+  slug: otcc-agent-supervisor-onboarding
+  title: ACD 话机、座席与班长创建登录
+  importance: critical
+  importance_rationale: 对应 task-06，呼叫中心最小人员闭环；固定/移动/自指派与班长自指派无优选组是配置决策与误判高发区
+  one_liner: 三种座席形态（固定/移动/自指派）、班长恒自指派无优选组、ACD 前缀 12 全家桶登入登出
+  intents:
+  - 创建 ACD 话机与座席
+  - 创建班长
+  - 座席登录登出
+  - 座席形态选型
+  - ACD agent logon
+  keywords:
+  - ACD station
+  - agent
+  - supervisor
+  - LogOn
+  - LogOff
+  - self-assigning
+  - 优选组
+  - Preferred Processing Group
+  - ACD prefix
+  - IPDSP
+  - personal code
+  - withdrawal
+  - Rainbow 座席
+  also_read:
+  - otcc-ccd-matrix-foundation
+  - otcc-supervisor-features
+  card: cards/otcc-agent-supervisor-onboarding.md
+  frontmatter:
+    description: '创建 ACD 话机/座席/班长并完成登录验证：三种座席形态（固定免认证/移动需认证/自指派选组）、班长恒自指派无优选组、ACD 前缀动作表（+1 退出/+2 wrap-up/
+      +3 呼班长/+5 登出/+6 登入）、COS 放行、IPDSP 注册。当用户要"建座席/建班长/登不上/Rainbow 能不能当班长/前缀没反应"时使用。不适用于监听强插等班长技能（特性能力）。
+
+      '
+    tags:
+    - procedure
+    - agent
+    - supervisor
+    - onboarding
+  source_evidence:
+  - source_id: src-otccxte100
+  - location: p31-37, p121-149, p265-274
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-06，人员闭环
+- capability_id: cap.otcc.object-tuning
+  revision: 1
+  status: active
+  slug: otcc-object-tuning
+  title: CCD 对象参数调优（pilot/PG/队列）
+  importance: high
+  importance_rationale: 对应 task-09，运维日常最高频；wrap-up 归属分家（自动挂 pilot/手动挂 PG）与 SLA 计时起点是"改了不生效/对不上账"两大根因
+  one_liner: wrap-up 与 pause 1-3276 秒挂 pilot、手动 wrap-up 挂 PG；服务水平 85%/15s 与 smiley 三色；PG 八选项逐项行为测试；队列 45 秒饱和 60 秒改址
+  intents:
+  - 调 wrap-up 与 pause
+  - 配服务水平目标
+  - PG 选项行为测试
+  - 队列饱和溢出参数
+  - wrap-up timer service level
+  keywords:
+  - wrap-up
+  - pause
+  - union break
+  - service level
+  - smiley
+  - SOP
+  - Ring rotation
+  - Last agent withdrawal
+  - Eternal Wrap-Up
+  - Type of search
+  - Cyclic
+  - Maximum waiting time
+  - Queuing overflow
+  - "1-3276"
+  - 饱和
+  also_read:
+  - otcc-supervisor-features
+  card: cards/otcc-object-tuning.md
+  frontmatter:
+    description: '用 CCS 调优 CCD 对象：pilot 的 wrap-up/pause（1-3276 秒，自动挂 pilot/手动挂 PG）、服务水平目标与 smiley 三色（SOP 刷新、0.8 阈值分界）、
+      PG 八选项（末座席禁退/登入即退出/挂机保持/Eternal Wrap-Up/轮转时长/选座席方式）、队列饱和与溢出参数。当用户要"改计时器/SLA 对不上/座席状态行为怪/饱和改址"时使用。
+      不适用于登录问题（座席班长体系能力）与 EWT 阈值播报（排队体验卡）。
+
+      '
+    tags:
+    - procedure
+    - tuning
+    - wrap-up
+    - service-level
+  source_evidence:
+  - source_id: src-otccxte100
+  - location: p166-193, p275-280
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-09，运维日常最高频
+- capability_id: cap.otcc.supervisor-features
+  revision: 1
+  status: active
+  slug: otcc-supervisor-features
+  title: 座席班长特性配置（监听强插/通用转发/多线/事务码）
+  importance: high
+  importance_rationale: 对应 task-12/13，班长日常管控刚需；通用转发四种激活、旁听提示的国家默认差异与码类型统计口径是易错点
+  one_liner: 9 种退出类型、旁听/受限强插/三方强插、通用转发四种激活（话机键/CCS/日历/按规则）、PG 关闭键、多线、事务码与业务码口径
+  intents:
+  - 配置班长监听强插
+  - pilot 通用转发
+  - 关闭处理组
+  - 配置事务码业务码
+  - supervisor listening barge-in
+  keywords:
+  - 监听
+  - listening
+  - intrusion
+  - 强插
+  - restrictive
+  - permanent
+  - 通用转发
+  - general forwarding
+  - Set to FWD
+  - Closing PG
+  - multi-line
+  - transaction code
+  - business code
+  - "100ms"
+  - Show Supervisor Listening
+  also_read:
+  - otcc-agent-supervisor-onboarding
+  - otcc-object-tuning
+  card: cards/otcc-supervisor-features.md
+  frontmatter:
+    description: '座席班长特性：退出类型（每 PG 最多 9 种）、监听三态（Listen/Restrictive/Intrusion）与永久监控、通用转发四种激活（话机键/CCS 界面/日历/按规则）、
+      PG 关闭键、多线座席、事务码（1-15 位只存记录）与业务码（1-3 位进 Excel）配置。当用户要"旁听强插/一键关 pilot/退出类型/按业务分类统计"时经路由使用。
+      不适用于登录与挂组（座席班长体系能力）；旁听提示默认值随国家库不同。
+
+      '
+    tags:
+    - procedure
+    - supervisor
+    - monitoring
+    - transaction-code
+  source_evidence:
+  - source_id: src-otccxte100
+  - location: p265-347
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 班长日常刚需但意向常被座席体系/调优两卡分流，路由可达即可
+- capability_id: cap.otcc.voice-guides
+  revision: 1
+  status: active
+  slug: otcc-voice-guides
+  title: 语音指南三路径（话机录音/.wav 导入/欢迎指南）
+  importance: critical
+  importance_rationale: 对应 task-10/11/21，客户感知最强域；编号法（3 位指南+4 位消息）与 SFTP 强制是跨章复用的硬前提
+  one_liner: 3 位指南号+4 位消息号（首位语言索引）；401 录音 580 试听；.wav 经转换+SFTP 导入；538 欢迎指南每座席 5 条文件
+  intents:
+  - 话机录制语音指南
+  - 导入 .wav 录音
+  - 配置座席欢迎指南
+  - 指南编号与装板
+  - voice guide recording wav
+  keywords:
+  - voice guide
+  - 语音指南
+  - 消息号
+  - "401"
+  - "580"
+  - vgstat
+  - Audio File Conversion
+  - Audio File Update
+  - SFTP
+  - A-Law
+  - "8000Hz"
+  - "538"
+  - "4500"
+  - welcome guide
+  - 备份音
+  also_read:
+  - otcc-queue-experience
+  - otcc-multilanguage-calendar
+  card: cards/otcc-voice-guides.md
+  frontmatter:
+    description: '动态语音指南三路径：话机录音（"401" 录/"580" 试听，COS 须放行）、.wav 导入（A-Law/8000Hz/64kbps/mono 转换 + SFTP 传输，OXE N3 起强制）、
+      座席欢迎指南（"538" 机制/"4500" 消息池/每座席 5 条/三处激活）。含编号法（3 位指南号放矩阵、4 位消息号首位语言索引）与 vgstat 验证。当用户要"录语音/上传录音/
+      换问候语/欢迎指南"时使用。不适用于多语言 pilot 分流（多语言与日历能力）与 518 位次（排队体验卡）。
+
+      '
+    tags:
+    - procedure
+    - voice-guides
+    - recording
+    - welcome-guide
+  source_evidence:
+  - source_id: src-otccxte100
+  - location: p194-264, p566-582
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-10/11/21，客户感知最强
+- capability_id: cap.otcc.monitoring-statistics
+  revision: 1
+  status: active
+  slug: otcc-monitoring-statistics
+  title: 实时监控告警与 Excel 统计
+  importance: high
+  importance_rationale: 对应 task-16/18，现场运维与管理层双刚需；CSTA-Monitored 开关与 132 行偏移是各自域的最高频坑
+  one_liner: Navigator 3 秒快照 + 三级告警各存 100 条 + 阈值四处入口；Excel 报表 50 对象上限、第二对象 132 行偏移、午夜文件流水线
+  intents:
+  - 搭建实时监控视图
+  - 配置告警阈值
+  - 生成 Excel 报表
+  - 配置预编译日报
+  - navigator alarms excel report
+  keywords:
+  - Navigator
+  - Real Time Info
+  - CSTA-Monitored
+  - busy rate
+  - Alarms
+  - Alerts
+  - Indications
+  - MSP
+  - Pilots S.L.
+  - Excel
+  - "132"
+  - "96"
+  - Precompiled
+  - 弃呼
+  - TEMP.xls
+  also_read:
+  - otcc-object-tuning
+  card: cards/otcc-monitoring-statistics.md
+  frontmatter:
+    description: '实时监控与统计：Navigator 页签与计数器定制（3 秒快照）、中继组 CSTA-Monitored 前提、三级告警（Alarms/Alerts/Indications 各存 "100" 条）与四处阈值入口、
+      MSP 统计；Excel 报表（对象数上限 "50"、粒度 ¼h、第二对象 "132" 行偏移、预编译日报、口径开关、只有 Business 码进统计）。当用户要"配监控大屏/没数据/出报表/告警分级"时使用。
+      不适用于 smiley 判定口径（对象调优能力）。
+
+      '
+    tags:
+    - procedure
+    - real-time
+    - alarms
+    - excel
+    - statistics
+  source_evidence:
+  - source_id: src-otccxte100
+  - location: p401-448, p477-526
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-16/18，运维与管理刚需
+- capability_id: cap.otcc.multilanguage-calendar
+  revision: 1
+  status: active
+  slug: otcc-multilanguage-calendar
+  title: 多语言语音指南与双日历
+  importance: high
+  importance_rationale: 对应 task-22，BOOK_OVERVIEW 优先级第 8；多语言客户与分时段运营的刚需组合，切换延迟语义是"改了不生效"的根因
+  one_liner: Multi-language 指南按 pilot 语言播各自消息；pilot 日历 10 切换/日、分配日历 20 切换/日、50 特殊日覆盖周历、切换点才生效
+  intents:
+  - 部署多语言语音指南
+  - 按语言分流来话
+  - 配置 pilot 日历
+  - 配置分配日历与特殊日
+  - multi-language calendar time slot
+  keywords:
+  - Multi-language
+  - 多语言
+  - Language Number
+  - French
+  - English
+  - "1702"
+  - "2702"
+  - calendar
+  - 时间片
+  - Closed_rule
+  - 特殊日
+  - special day
+  - Activate Time Slices
+  - 切换点
+  also_read:
+  - otcc-voice-guides
+  card: cards/otcc-multilanguage-calendar.md
+  frontmatter:
+    description: '多语言语音指南（Multi-language 指南一个号挂多语言消息，pilot 语言决定播哪条，语言槽按目标库核对）与双日历体系（pilot 日历 "10" 切换/日管规则与状态、
+      分配日历 "20" 切换/日管方向与参数、"50" 特殊日覆盖周历、活动时间片修改到下一切换点生效）。当用户要"双语播报/节假日安排/夜间闭态/日历不生效"时使用。
+      不适用于指南录制本身（语音指南能力）。
+
+      '
+    tags:
+    - procedure
+    - multilanguage
+    - calendar
+    - routing
+  source_evidence:
+  - source_id: src-otccxte100
+  - location: p583-642
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-22，多语言客户刚需
+- capability_id: cap.otcc.queue-experience
+  revision: 1
+  status: active
+  slug: otcc-queue-experience
+  title: EWT 表与排队位置播报（518）
+  importance: high
+  importance_rationale: 对应 task-14/15，排队体验核心增值；与语音指南/调优域意向重叠度高（"排队听什么"常被上游两卡承接），路由可达即可
+  one_liner: EWT=平均等待×(队内呼叫数+1)；EWT 表 6 阈值挂 parking level；518 位次 1-50 逐个、51-100 步进 5、上限 100、消息 3226-4217 预置
+  intents:
+  - 按等待时长播报
+  - 配置 EWT 表
+  - 部署排队位置播报
+  - 排队听感设计
+  - EWT queue position announcement
+  keywords:
+  - EWT
+  - TSP
+  - EWT table
+  - parking level
+  - cut auth
+  - IAA
+  - CCIVR
+  - "518"
+  - position
+  - Max position
+  - "3226"
+  - "4217"
+  - 排队位置
+  - 阈值播报
+  card: cards/otcc-queue-experience.md
+  frontmatter:
+    description: '排队体验两把尺子：EWT 表（"EWT = 平均等待 ×（队内呼叫数+1）"，6 阈值挂 normal 队列 parking level，受 TSP 滞后影响）与 "518" 排队位置指南
+      （位次 1-50 逐个、51-100 步进 5、Max position 上限 "100"、语言回退链）。当用户要"让客户知道等多久/您排在第 N 位/分档等待话术"时经路由使用。
+      不适用于指南录制（语音指南能力）与饱和参数（对象调优能力）。
+
+      '
+    tags:
+    - procedure
+    - ewt
+    - queue
+    - announcements
+  source_evidence:
+  - source_id: src-otccxte100
+  - location: p348-400, p44-49
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 与语音指南/调优域重叠，路由可达即可
+- capability_id: cap.otcc.direct-calls-emergency
+  revision: 1
+  status: active
+  slug: otcc-direct-calls-emergency
+  title: CCD 直接呼叫与紧急关闭
+  importance: medium
+  importance_rationale: 对应 task-17/19，直通号统计与应急预案两场景；判定表价值高但触发频率低于日常交付动作，路由可达即可
+  one_liner: direct call pilot + 私人号让直通号进统计（呼叫性质按座席状态逐格判定）；紧急关闭 50 列×600 pilot 一键关闭、转移须配地址
+  intents:
+  - 部署 CCD 直接呼叫
+  - 配置私人号码
+  - 判定 CCD 与私人呼叫
+  - 实施紧急关闭
+  - direct call emergency closure
+  keywords:
+  - direct call
+  - 直接呼叫
+  - "31603"
+  - private number
+  - 私人号
+  - Pilot Direct Call
+  - Outgoing ACD Call
+  - emergency closure
+  - 紧急关闭
+  - Emergency0
+  - 关闭地址
+  - "75"
+  - History
+  - Deactivate
+  card: cards/otcc-direct-calls-emergency.md
+  frontmatter:
+    description: 'CCD 直接呼叫（pilot direct call + 私人号自动前转 + Outgoing ACD Call，呼叫性质按座席状态逐格判定，本地 ABC-F 链路不可用）与紧急关闭
+      （一键关闭 pilot 列表，来话优先转关闭地址否则播指南，未配地址时转移被拒，测完必须 Deactivate）。当用户要"直通号进统计/私人号/一键关停业务号/应急演练"时经路由使用。
+
+      '
+    tags:
+    - procedure
+    - direct-calls
+    - emergency
+    - statistics
+  source_evidence:
+  - source_id: src-otccxte100
+  - location: p449-476, p527-542
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 增值域场景，路由可达即可
+- capability_id: cap.otcc.statistic-pilot
+  revision: 1
+  status: active
+  slug: otcc-statistic-pilot
+  title: 统计型 pilot 与 Call Tag
+  importance: medium
+  importance_rationale: 对应 task-20，多业务线客户刚需；问候三态条件与消息号口径（nr-09）需要与路由/语音指南域协同，独立触发频率中等
+  one_liner: 对外业务号先问候再转唯一路由 pilot；3000 个上限；Call Tag ≤32 字符振铃期显示；问候只在路由 pilot"按规则"关闭/阻塞时播
+  intents:
+  - 创建统计型 pilot
+  - 配置 Call Tag
+  - 分业务统计与问候
+  - 统计 pilot 排障
+  - statistic pilot call tag
+  keywords:
+  - statistic pilot
+  - 统计 pilot
+  - "31650"
+  - routing pilot
+  - Call Tag
+  - GOLD
+  - 问候指南
+  - presentation guide
+  - Display on agent screen
+  - "3000"
+  - 分业务统计
+  card: cards/otcc-statistic-pilot.md
+  frontmatter:
+    description: '统计型 pilot：对外业务号先播问候指南再转唯一关联的本地路由 pilot（"3000" 个上限、不可兼 direct call pilot、关联期路由 pilot 不可删）；Call Tag ≤32 字符
+      振铃期显示；问候指南只在路由 pilot"按规则"关闭/阻塞且规则有效时播放。当用户要"业务专线/VIP 标签/分业务报表/问候不播"时经路由使用。
+      ACR Profile 用法在书外。
+
+      '
+    tags:
+    - procedure
+    - statistic-pilot
+    - call-tag
+    - greeting
+  source_evidence:
+  - source_id: src-otccxte100
+  - location: p543-565
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 增值域，路由可达即可
+- capability_id: cap.otcc.lab-connectivity
+  revision: 1
+  status: active
+  slug: otcc-lab-connectivity
+  title: 实验环境与链路打通（POD/ITSP1/ABC-F）
+  importance: medium
+  importance_rationale: 对应 task-01/07/08，教学环境类任务；全部数值为实验口径仅作 Boundary 背景，生产中继与编号计划在书外
+  one_liner: POD 五实例与 ITSP1 参数化（pbxN/DID 翻译/0210X 拨号串）打通公网来话；ABC-F 同节点不同网络、双 access UP 才能内呼 pilot
+  intents:
+  - 收尾实验 POD 配置
+  - 打通公网外呼
+  - 开通 ABC-F 内呼链路
+  - RLAB 环境排障
+  - lab pod abc-f hybrid link
+  keywords:
+  - RLAB
+  - POD
+  - ITSP1
+  - pbxN
+  - MicroSIP
+  - IPDSP
+  - DID 翻译
+  - "33210N41000"
+  - ABC-F
+  - Loop-Hybrid
+  - hybvisu
+  - rsthyb
+  - 同节点不同网络
+  card: cards/otcc-lab-connectivity.md
+  frontmatter:
+    description: 'RLAB 实验环境收尾：POD 五实例与 ITSP1 模拟器参数化（SIP 网关 pbxN、DID 翻译 33210N41000→31000、RDP 音频串联）打通公网来话，ABC-F 本地混合链路
+      （同 Node 不同 Network、access 必建、hybvisu 验 UP、rsthyb 重启）打通内呼。当用户在教材实验环境要"外呼不通/内呼不通/配软话机"时经路由使用。
+      全部数值为实验口径，生产环境不适用。
+
+      '
+    tags:
+    - reference
+    - lab
+    - connectivity
+    - abc-f
+  source_evidence:
+  - source_id: src-otccxte100
+  - location: p3-17, p150-165
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 教学环境域，路由可达即可

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>路由规则与分配规则全生命周期</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniTouch Contact Center Standard · Starter</h2><p>Edition  · 649 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/otccxte100en/index.html">课程首页</a><a href="/courses/otccxte100en/digest.html">精华长文</a><a href="/courses/otccxte100en/overview.html">教书理解</a><a href="/courses/otccxte100en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/otccxte100en/skills/otcc-ccd-matrix-foundation.html">CCD 基础矩阵创建与验证</a><a href="/courses/otccxte100en/skills/otcc-ccs-installation.html">CCS 班长台安装、OXE 声明与 ccs.ini</a><a href="/courses/otccxte100en/skills/otcc-routing-distribution-rules.html">路由规则与分配规则全生命周期</a><a href="/courses/otccxte100en/skills/otcc-agent-supervisor-onboarding.html">ACD 话机、座席与班长创建登录</a><a href="/courses/otccxte100en/skills/otcc-object-tuning.html">CCD 对象参数调优（pilot/PG/队列）</a><a href="/courses/otccxte100en/skills/otcc-voice-guides.html">语音指南三路径（话机录音/.wav 导入/欢迎指南）</a><a href="/courses/otccxte100en/skills/otcc-monitoring-statistics.html">实时监控告警与 Excel 统计</a><a href="/courses/otccxte100en/skills/otcc-multilanguage-calendar.html">多语言语音指南与双日历</a><p class="course-nav-group">路由能力</p><a href="/courses/otccxte100en/skills/otcc-supervisor-features.html">座席班长特性配置（监听强插/通用转发/多线/事务码）</a><a href="/courses/otccxte100en/skills/otcc-queue-experience.html">EWT 表与排队位置播报（518）</a><a href="/courses/otccxte100en/skills/otcc-direct-calls-emergency.html">CCD 直接呼叫与紧急关闭</a><a href="/courses/otccxte100en/skills/otcc-statistic-pilot.html">统计型 pilot 与 Call Tag</a><a href="/courses/otccxte100en/skills/otcc-lab-connectivity.html">实验环境与链路打通（POD/ITSP1/ABC-F）</a><p class="course-nav-group">已安装技能</p><a href="/courses/otccxte100en/index.html">otcc-standard-starter（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/otccxte100en/index.html">OTCCXTE100EN</a><span>/</span><span aria-current="page">路由规则与分配规则全生命周期</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>路由规则与分配规则全生命周期</h1></div><dl><div><dt>Skill ID</dt><dd>otcc-routing-distribution-rules</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>路由规则与分配规则全生命周期（方向/优先级/激活）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"A routing rule is managed to associate each pilot with waiting queues (30 rules max per pilot)"（p43）
+"Priorities value is from 0 to 9 • 0 is the highest priority • 9 is the lowest priority"（p44）
+"A call distribution rule (10 max) defines the distribution of the calls to the processing groups • A queue can have up to 50 possible distribution directions"（p54）
+"By default, the call distribution rule is deactivated. You must activate the rule from OXE management console."（p113）
+"Warning … BY DEFAULT, ALL DIRECTION RULES ARE CLOSED"（p117）</p>
+</blockquote>
+<p>出处：OTCCXTE100EN p43-59, p98-120, p626-627。</p>
+<h2>I — 自述</h2>
+<p>两级规则把矩阵连成活链路：路由规则连 pilot 与队列（每 pilot 最多 30 条、全局 1200 条），分配规则连队列与 PG（全局最多 10 条、每队列最多 50 个方向）。</p>
+<p>优先级统一 0-9（0 最高、9 最低），三类平局规则各不相同（p01）：</p>
+<ul>
+<li>路由方向同优先级 → 系统选 EWT 最低的队列</li>
+<li>资源选择同优先级 → 选 PG 最长空闲时间（LIT）最大者</li>
+<li>呼叫选择同优先级 → 选队首真实等待时间最长的呼叫</li>
+</ul>
+<p>两条"默认关"是本书最高频事故源：</p>
+<ul>
+<li>分配规则默认停用，且必须回 OXE Web Admin 勾 Active Rule 激活（CCS 日历激活是例外路径）（p113/n02）</li>
+<li>所有方向默认关闭——分配点建好只是黄色连接点，须逐条进 Resource selection 勾 Direction 才变红/绿（p117/n01）</li>
+</ul>
+<p>每条 pilot 规则含 Normal/Blocked/General Forward 三张表（对应 pilot 三态）+ 6 个 parking level（每级可放语音指南、IAA/IVR 地址或 EWT 表）（p45/f05）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>规则创建实验</strong>（p98-120）：</p>
+<ol>
+<li>业务目标：Pilot1 常态走 Normal_WQ→Agent_PG，饱和走 Overflow_WQ→Forwarding_PG</li>
+<li>CCS Call Flow mgt&gt; Call Routing 选 Pilot1，Pilot rule 区 Create 建 Rule_0 并 Apply</li>
+<li>回 OXE Web Admin 的 Pilot 页核验 Rule_0 已应用到 31600/31601</li>
+<li>Configurations&gt; Pilot 给两个 pilot 加 Possible queues（Normal_WQ + 溢出/重定向队列）</li>
+<li>Normal mode 页签勾启 Normal 方向；优先级 Normal_WQ 设 0、溢出队列设 9</li>
+<li>Call Flow mgt&gt; Call Distribution Create 建 Rule_0；回 OXE 勾 Active Rule 激活</li>
+<li>Navigator 点黄色连接点建分配方向并勾 Direction 激活——连接点变红/绿即通</li>
+</ol>
+<p><strong>验收判读</strong>：acdsup 显示 OPN（pilot 正常态）；Agent_PG 因无座席登录仍为红色属预期（p120）。</p>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：配好矩阵但来话不通；改路由优先级；分配规则建完不生效；新增 PG 后方向没开；查"连好线不等于能通话"类工单；按日历切换规则。</p>
+<p>语言信号：routing rule / distribution rule / Rule_0 / 优先级 / priority / Active Rule / Direction / Resource selection / Navigator 连接点 / parking level / EWT / LIT / 默认关闭。</p>
+<p>与相邻能力区分：矩阵对象本身 → CCD 基础矩阵能力；方向的语音指南内容 → 语音指南能力；日历时间片配置细节归多语言与日历能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：矩阵对象已建齐（pilot/队列/PG）、CCS 可登录、业务路由意图明确（常态/溢出/兜底各走哪条路）。</p>
+<ol>
+<li>建 pilot 规则：CCS Call Flow mgt&gt; Call Routing 选 pilot → Create 规则 → Apply。完成标准：OXE 侧 Pilot 页可见规则已应用</li>
+<li>加路由方向：Configurations&gt; Pilot 给 pilot 加 Possible queues。完成标准：Navigator 出现 pilot 与队列的连接</li>
+<li>激活路由方向并定优先级：Normal mode 页签勾方向、按业务定 0-9。完成标准：常态方向优先级数值最小</li>
+<li>建分配规则并激活：Call Distribution Create 后必须回 OXE Web Admin 勾 Active Rule。完成标准：OXE 侧规则状态为激活</li>
+<li>建并激活分配方向：给每个队列加 PG 方向，逐条勾 Direction 并 Save。完成标准：Navigator 连接点变红/绿（不再是黄色）</li>
+<li>端到端验证：来话走常态方向；制造饱和验证溢出方向。完成标准：acdsup 显示 OPN 且呼叫按意图落位</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>矩阵齐全但呼叫不通 → 先查两个"默认关"：分配规则是否 OXE 侧激活、方向是否勾选（n01/n02）</li>
+<li>Navigator 连接点黄色 → 已建未激活，进 Resource selection 勾 Direction</li>
+<li>同优先级裁决有争议 → 路由看 EWT、资源看 LIT、呼叫看真实等待；PLTR 缩写书中未展开（nr-10），不编造</li>
+<li>新建 Closed_rule 类备用规则同样要回 OXE 激活（p626-627 节点名 .false 后缀即未激活）</li>
+</ul>
+<p>输出契约：端到端可通活的路由链（pilot 方向 + 分配方向全部激活）+ 优先级表 + 激活记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>方向数上限：每 pilot 30 方向、全局 1200 路由规则、10 条分配规则、每队列 50 分配方向（p43/p54/p103，R10.16 口径）</li>
+<li>分配规则激活的例外路径是 CCS 日历——日历配置细节归多语言与日历能力（p113）</li>
+<li>优先级与 EWT 的联动（饱和判定、TSP 滞后）在 EWT 与排队体验卡展开；本卡只管方向与优先级</li>
+<li>路由规则三张表（Normal/Blocked/General Forward）的指南内容配置与语音指南域重叠，细节归语音指南卡</li>
+<li>实验 DN/优先级取值为实验口径；生产按业务 SLA 设计（话务建模在书外，n30/n41）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/otccxte100en/skills/otcc-ccd-matrix-foundation.html">CCD 基础矩阵创建与验证</a></p><p class="source-page">能力 ID：cap.otcc.routing-distribution-rules · 来源：OTCCXTE100EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniTouch Contact Center Standard Edition — Starter (Participant's Guide, Edition 09) | edition: Edition  | pages: 649 页 -->

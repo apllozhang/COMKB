@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>编号计划与 COS 管理</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Starter</h2><p>Edition 12 · 821 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte400en/index.html">课程首页</a><a href="/courses/entpxte400en/digest.html">精华长文</a><a href="/courses/entpxte400en/overview.html">教书理解</a><a href="/courses/entpxte400en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte400en/skills/ents-first-login-hardening.html">OXE 首登加固（四账户与密码治理）</a><a href="/courses/entpxte400en/skills/ents-cs-network-firewall.html">Call Server IP 寻址与内部防火墙</a><a href="/courses/entpxte400en/skills/ents-db-license.html">空数据库创建与 OPS 许可管理</a><a href="/courses/entpxte400en/skills/ents-media-gateway-deployment.html">媒体网关上架（GD4/OMS/XL）</a><a href="/courses/entpxte400en/skills/ents-user-terminal-provisioning.html">用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）</a><a href="/courses/entpxte400en/skills/ents-numbering-cos.html">编号计划与 COS 管理</a><a href="/courses/entpxte400en/skills/ents-call-processing.html">呼叫处理业务域（语音指南/话务台/Entity/计时器）</a><a href="/courses/entpxte400en/skills/ents-sip-trunk.html">公共 SIP 中继开通与弹性</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte400en/skills/ents-system-start-stop.html">OXE 系统启停与 autostart 管理</a><a href="/courses/entpxte400en/skills/ents-time-sync.html">OXE 时间同步（NTP/chrony）</a><a href="/courses/entpxte400en/skills/ents-voicemail-4645.html">OmniMessage 4645 语音邮件与邮件通知</a><a href="/courses/entpxte400en/skills/ents-barring-emergency.html">外呼闭锁与紧急呼叫通知</a><a href="/courses/entpxte400en/skills/ents-backup-maintenance.html">数据库备份恢复与维护排障工具箱</a><a href="/courses/entpxte400en/skills/ents-legacy-trunks-umc.html">传统中继（T0/T2）与 UMC 云管理</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte400en/index.html">oxe-starter（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte400en/index.html">ENTPXTE400EN</a><span>/</span><span aria-current="page">编号计划与 COS 管理</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>编号计划与 COS 管理</h1></div><dl><div><dt>Skill ID</dt><dd>ents-numbering-cos</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>编号计划与 COS 管理（前缀/后缀、Phone Features COS、Connection/Transfer 矩阵）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"A prefix corresponds to a unique phone feature • 8 digits maximum (0 to 9, A, B, C, D, #, *)"（p370）
+"31T -&gt; 'Set features/Password modification' prefix • 31000 -&gt; Mr Brad Barkley directory n° … By default, timer 23= 30 (so 30 * 100 mS = 3 seconds)"（p370）
+"Assigned to users 256 categories are available • User rights • Set features • General services • PCX services • External services • Suffixes • Speed dialing areas • Miscellaneous parameters"（p390）</p>
+</blockquote>
+<p>出处：ENTPXTE400EN p366-424。</p>
+<h2>I — 自述</h2>
+<p>编号计划是全系统路由的地基，COS 是权限的开关面：</p>
+<ol>
+<li><strong>前缀规则</strong>：每个前缀唯一对应一个功能，≤8 位（0-9ABCD*#）；用于摘机后（拨号音/指南/多功能键）；后缀用于通话中（3=转会议、5=遇忙回叫）</li>
+<li><strong>饱和对策</strong>：后缀 T+Timer 23（默认 30×100ms=3 秒）区分功能前缀与用户号（如 31T 改密前缀 vs 31000 分机）</li>
+<li><strong>规划建议</strong>：对用户简单、留扩展余量、按用途分段（话务台/外线前缀/用户/缩位/功能/系统/紧急各留段）；多站点示例=站点&lt;20 且每站&lt;1000 用户时首 2 位站号+末 3 位 DDI 尾号</li>
+<li><strong>Phone Features COS（256 类）</strong>：取值 1=允许/0=禁止，七分区（Rights 防直代接/防强插等、Set features 呼转/锁机/DND、General services 代接、PCX services 叫醒、External services 账户码、Suffixes 会议/强插、缩位区）+Miscellaneous（摘机路由五模式、默认溢出、留言转接）</li>
+<li><strong>Connection/Transfer COS</strong>：三方矩阵（分机/中继两两连转控制）；用户侧两者同 ID 但两张独立矩阵</li>
+<li><strong>缩位拨号</strong>：≤400 区/每实体 ≤32 段，COS 控制可用性</li>
+<li><strong>维护</strong>：WBM Translator/Prefix Plan、Suffix Plan；CLI ednump -l GEA、listrad</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>前缀巡检实验</strong>（p382-388，How-To）：</p>
+<ol>
+<li>WBM Translator/Prefix Plan 用过滤器定位功能前缀</li>
+<li>过滤 Prefix Meaning=Set features 且 Station features=Immediate forward，得 FR 库的 51</li>
+<li>同法核对取消呼转 41、DND 42、留言 43、叫醒 506</li>
+<li>CLI ednump -l GEA 全量核对默认前缀表（88 行）</li>
+<li>listrad 列出全部翻译器条目复核</li>
+<li>结论：改前缀须同步核对语音指南播报（p431 Caution）</li>
+</ol>
+<p><strong>COS 行为验证实验</strong>（p400-424，How-To）：</p>
+<ol>
+<li>三个用户同挂 COS#0，验证强插保护默认开启</li>
+<li>建 COS#11 放开保护，给测试用户挂接后强插成功</li>
+<li>COS#0 关闭 Immediate forward 后拨 51 被拒（Feature Forbidden）</li>
+<li>摘机路由实验：COS 挂 Routing table，摘机直达指定号码</li>
+<li>默认溢出实验：COS2 配无应答转关联话机，Timer 4（15 秒）后溢出</li>
+<li>Connection/Transfer 矩阵实验：奇偶分组互拨与转接行为随矩阵 0/1 变化</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：设计或调整拨号计划；拨功能码被拒（Feature Forbidden）；31 打头拨号等 3 秒；限制用户间互拨或转接；强插/代接权限；缩位拨号规划。</p>
+<p>语言信号：编号计划 / numbering / 前缀 / prefix / 后缀 / suffix / Timer 23 / COS / 类别服务 / 呼转前缀 / 摘机路由 / Connection COS / Transfer COS / 矩阵 / 缩位 / speed dialing。</p>
+<p>与相邻能力区分：外呼区域限制是另一套 Public COS → 闭锁与紧急能力（路由卡）；功能码播报内容 → 呼叫处理能力（语音指南）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：客户拨号习惯与部门结构、存量前缀清单、权限矩阵需求。计划改动先出对照表评审，不要直接改生产库。</p>
+<ol>
+<li>盘点存量：ednump -l GEA 与 listrad 导出当前前缀/后缀全表。完成标准：存量清单成文</li>
+<li>设计分段：按用途预留段（话务/外线/用户/缩位/功能/系统/紧急），标注歧义点配 Timer 23。完成标准：计划表评审通过</li>
+<li>实施：WBM Translator 建改前缀/后缀（Set features 类需选具体功能参数）。完成标准：拨测功能码生效</li>
+<li>COS 分域：功能/保护类需求挂 Phone Features COS；连转控制配 Connection/Transfer 矩阵。完成标准：行为验证与需求一致</li>
+<li>指南联动：改计划后核对静态指南播报号码并同步换指南文件（n22）。完成标准：指南与计划一致</li>
+<li>记录：前缀-功能对照表与 COS 分配台账归档。完成标准：交接单齐全</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>拨 31 停顿 3 秒才响 → Timer 23 歧义消解在起作用（p370），属机制非故障；缩短需权衡功能前缀扩展性</li>
+<li>功能码拨了报 Feature Forbidden → 查用户 Phone Features COS 对应位（1/0），不是编号计划问题</li>
+<li>改了前缀后用户按指南操作失败 → 指南播报旧号码（n22），先换指南再答复用户</li>
+<li>连转矩阵改完不生效 → 确认改的是 Connection 还是 Transfer 矩阵（同 ID 两张表），并核对用户挂接的 COS ID</li>
+</ul>
+<p>输出契约：评审通过的编号计划 + COS 分配矩阵 + 指南一致性核对记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>FR 库默认前缀（51/41/42/43/405/506 等 88 行）为实验口径的国家码实例值；空库国家码决定默认集（nr-04）</li>
+<li>摘机路由表 Routing No 取值 1-255；External Alarm/Delay 等模式的深度场景书内仅给口径</li>
+<li>ACD/呼叫中心级队列不属于 COS 域（话务台/CDT 在呼叫处理能力）</li>
+<li>客户权限矩阵与合规策略是业务输入，书内只给机制与默认值</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte400en/skills/ents-call-processing.html">呼叫处理业务域（语音指南/话务台/Entity/计时器）</a></p><p class="source-page">能力 ID：cap.ents.numbering-cos · 来源：ENTPXTE400EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Starter (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 821 页 -->

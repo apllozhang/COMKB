@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>术语词典 · OPENXTE300EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OpenTouch · Starter</h2><p>Edition 10 · 603 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/openxte300en/index.html">课程首页</a><a href="/courses/openxte300en/digest.html">精华长文</a><a href="/courses/openxte300en/overview.html">教书理解</a><a href="/courses/openxte300en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/openxte300en/skills/ots-post-installation-wizard.html">OTMS 初始化向导（两模式十节）</a><a href="/courses/openxte300en/skills/ots-license-flexlm.html">许可体系与 FlexLM（安装、核查、外部切换）</a><a href="/courses/openxte300en/skills/ots-node-declaration-sip.html">双向节点声明与 SIP 打通（含告警对接）</a><a href="/courses/openxte300en/skills/ots-prior-management.html">Prior management（号码段、前缀、拨号规则、UDAS、会议桥）</a><a href="/courses/openxte300en/skills/ots-users-profiles.html">档案与用户供给（三类用户、WPC 批量）</a><a href="/courses/openxte300en/skills/ots-voice-mail.html">语音邮箱、IMAP 收取与通知公告（Local Storage）</a><a href="/courses/openxte300en/skills/ots-clients-multi-devices.html">OTC PC 客户端交付与多终端</a><a href="/courses/openxte300en/skills/ots-maintenance-rehosting.html">维护、备份恢复与 rehosting（TC2149 矩阵）</a><p class="course-nav-group">路由能力</p><a href="/courses/openxte300en/skills/ots-sot-installation.html">SOT 自动化装机与虚机手动导入</a><a href="/courses/openxte300en/skills/ots-certificates.html">证书部署三路线</a><a href="/courses/openxte300en/skills/ots-supervision-groups.html">监督组（话务监督、进出组与代接）</a><a href="/courses/openxte300en/skills/ots-lab-connections.html">实验 POD 与系统连接通道</a><p class="course-nav-group">已安装技能</p><a href="/courses/openxte300en/index.html">opentouch-starter（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/openxte300en/index.html">OPENXTE300EN</a><span>/</span><span aria-current="page">术语词典</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">GLOSSARY</p><h1>术语词典 — 中英对照</h1></div></header><article class="markdown-body"><h1>GLOSSARY — OpenTouch Suite for MLE / Starter 术语表（门户版）</h1>
+<blockquote>
+<p>阶段 3 产出（源：candidates/glossary.md，56 条精选；全量在工作区 candidates）。
+口径：定义只采信本书正文；OMS/GD4/Mule/ESS/REX/MIPT/DSU/SEPLOS 等缩写书中未给全称者如实标注，不做外部补全；MOFIFICATION/OUTLLOK 等为原文笔误（见 needs-review nr-02）。</p>
+</blockquote>
+<h1>OpenTouch Suite for MLE (OPENXTE300EN Ed10) — 关键术语词典</h1>
+<blockquote>
+<p>文档整理流水线术语提取器产出。取材方法：全量扫描 source_fulltext.txt（603 页全部通读），所有页码均回原文核验。
+用途：下游能力卡的共享中英对照词典。</p>
+</blockquote>
+<h2>一、核心概念域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OTMS</td>
+<td>OpenTouch 多媒体服务套件</td>
+<td>面向大市场的 OpenTouch 服务器套件（物理一体机），上限 5000 用户；横幅口径 2.6.1 / 18.0.100.003</td>
+<td>p5, p115</td>
+</tr>
+<tr>
+<td>OTMS-v / OT-v</td>
+<td>OTMS 虚拟化形态</td>
+<td>ESXi/Hyper-V 上以六类虚机承载；许可锚加密狗、备份要 NFS、无本地 /var/backup</td>
+<td>p8-9, p535, p555</td>
+</tr>
+<tr>
+<td>ICAS / ICM / AMS</td>
+<td>OT 服务器三组件</td>
+<td>AMS=媒体服务器（MCU、G711/G729/G722、H264）；ICM=SIP 核心（ESS，5260）；ICAS=即时通信与协作</td>
+<td>p6-7, p541</td>
+</tr>
+<tr>
+<td>ACS / Stack</td>
+<td>协作应用服务器与栈</td>
+<td>向导 1.5 节填 Stack name 与 Node ID；stack=2 台以上 ACS 组合提供备份与扩接入</td>
+<td>p7, p97</td>
+</tr>
+<tr>
+<td>SOT</td>
+<td>软件编排工具</td>
+<td>以 ISO（内含 .ova）交付的部署虚机：自动挂载 ISO、静默安装含 hotfix、PXE 启动目标机；一次只部署一台</td>
+<td>p46, p53-65</td>
+</tr>
+<tr>
+<td>Post-installation wizard</td>
+<td>站点安装向导</td>
+<td>首次开机自动启动的站点安装正式入口；from scratch 十节或 restore from archive 两模式</td>
+<td>p48, p88-89</td>
+</tr>
+<tr>
+<td>ALUID</td>
+<td>唯一硬件标识</td>
+<td>128 位硬件标识（getaluid 读取）；物理服务器 .ice 许可的锚定物；虚拟化一律换加密狗</td>
+<td>p131, p162</td>
+</tr>
+<tr>
+<td>FlexLM</td>
+<td>Flex 许可服务机制</td>
+<td>服务可内嵌 OT 或外部虚机（端口 27000）；OXE 侧只验 Product ID，容量仍看本地 .swk</td>
+<td>p131, p158-159</td>
+</tr>
+<tr>
+<td>Dongle (Aladdin)</td>
+<td>USB 加密狗</td>
+<td>虚拟化许可的物理锚定物，插在承载 FlexLM 的宿主/虚机上；ID 用 lmutil lmhostid -flexid 读取</td>
+<td>p131, p162, p173</td>
+</tr>
+<tr>
+<td>bics.conf</td>
+<td>OT 凭证配置文件</td>
+<td>/var/data/bics/bics.conf：主机名/域与 otAdmin/otProfile/otuser 三账号的唯一出处；8770 声明与备份配置都读写它</td>
+<td>p194, p545</td>
+</tr>
+<tr>
+<td>Connection user (ACU)</td>
+<td>高级通信用户</td>
+<td>挂 OXE 设备且授 OT 应用权的用户（type=OXE + Applications=OT）；由三档案合成</td>
+<td>p258, p264</td>
+</tr>
+<tr>
+<td>Directory user</td>
+<td>目录用户</td>
+<td>type=None：无设备无应用，仅进 8770 公司目录供查询</td>
+<td>p258, p267</td>
+</tr>
+<tr>
+<td>三档案（OXE/OT/VM profile）</td>
+<td>用户供给三件套</td>
+<td>OXE profile（Set function=Profile、A0000 式占号）+ OT profile（Category=ACU-OXE）+ 语音邮箱档案；OXE 实时同步、OT 需手动完整同步</td>
+<td>p264-266, p277, p297</td>
+</tr>
+<tr>
+<td>UDAS</td>
+<td>目录检索模块</td>
+<td>三路数据源单向同步进 PostgreSQL 同步库，检索只查同步库；周期至少 1 且禁 0</td>
+<td>p223-224, p243</td>
+</tr>
+<tr>
+<td>Dialing rule / DAS rule</td>
+<td>两套拨号规则</td>
+<td>Dialing rule 管 OT 侧一般外呼自动加前缀；DAS rule 管 Conference 侧按域正则改写，强制且随国家不同</td>
+<td>p220-222, p253</td>
+</tr>
+<tr>
+<td>Local Storage voice mail</td>
+<td>本地存储语音邮件</td>
+<td>OT 内置软件语音邮件（默认实例 defaultVmsLS）：留言未压缩 wav、IMAP 直读；UM 是另一套</td>
+<td>p304, p327</td>
+</tr>
+<tr>
+<td>Voice mail profile</td>
+<td>邮箱档案</td>
+<td>LS 型默认 Advanced/Classic/Simplified，UM 型 Standard；四页签控制行为；建箱必选档案</td>
+<td>p339-343</td>
+</tr>
+<tr>
+<td>General announcement</td>
+<td>通用公告</td>
+<td>一次仅一条、覆盖式、5 分钟上限；wav 固定 CCITT A-law 8kHz 单声道、固定文件名</td>
+<td>p381-392</td>
+</tr>
+<tr>
+<td>Multi-devices</td>
+<td>多终端</td>
+<td>一名用户最多 5 台设备（主/副白名单），REX 与 DECT 各 1；VoIP 不冻结话机</td>
+<td>p438-439, p484-485</td>
+</tr>
+<tr>
+<td>Supervision group</td>
+<td>监督组</td>
+<td>同类型成员 2-40 人、一人一组、同 OT 节点；与 OXE 话机监督键无联动；上限 500 组</td>
+<td>p494-507</td>
+</tr>
+<tr>
+<td>rehosting</td>
+<td>改址改名变更</td>
+<td>ot-config.sh --rehost 改 OT 的 IP/主机名/FQDN/DNS/License server；配错死锁无回退；OXE/8770 按 TC2149 收尾</td>
+<td>p560-567, p579</td>
+</tr>
+<tr>
+<td>Maintenance Portal</td>
+<td>维护门户</td>
+<td>维护命令图形化门户（WebAdmin 或 4448 直达），含 AppGuard Control Center；与 CLI、otconsole 三通道同源</td>
+<td>p519-521</td>
+</tr>
+</tbody>
+</table></div>
+<h2>二、角色与账户域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BP</td>
+<td>ALE 业务伙伴</td>
+<td>物理硬件由 BP 或客户提供；Maintenance Portal 目标用户；提交服务请求需相关认证</td>
+<td>p9, p520, p602</td>
+</tr>
+<tr>
+<td>otAdmin / otProfile / otuser</td>
+<td>OT 三账户</td>
+<td>otAdmin=8770 配置用（全权）；otProfile=模板管理用；otuser=维护/备份/SSH 用；bics.conf 可查、WBM 可互改前两者口令</td>
+<td>p95-96, p194</td>
+</tr>
+<tr>
+<td>mtcl / swinst / adfexc</td>
+<td>OXE 三账户</td>
+<td>mtcl=维护命令行（netadmin/spadmin/swinst 入口）；swinst=软件安装/备份；adfexc=OXE FTP 账号（声明节点必填）</td>
+<td>p111, p117, p190</td>
+</tr>
+<tr>
+<td>Supervisor / Supervised</td>
+<td>监督组角色</td>
+<td>Supervisor 看全组话务可代接；Supervised 被监督可进出组；可身兼两职</td>
+<td>p497, p510</td>
+</tr>
+</tbody>
+</table></div>
+<h2>三、订阅与许可文件域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Desktop right</td>
+<td>Desktop 许可</td>
+<td>决定 OTC PC 以全量模式还是 One 免费模式运行；软电话/多终端副站场景必须勾选</td>
+<td>p433, p445, p467</td>
+</tr>
+<tr>
+<td>Universal / Conferencing option</td>
+<td>客户端许可阶梯</td>
+<td>Base Ct 用户许可 +Conferencing（会议插件）+Universal（Office/Skype 集成）；加许可即切模式</td>
+<td>p448, p458-459</td>
+</tr>
+<tr>
+<td>Unified management license</td>
+<td>统一管理许可</td>
+<td>Web Provisioning Client 前提：8770 3.2.8 起且须持此许可；浏览器仅 Chrome 54+</td>
+<td>p290, p292</td>
+</tr>
+<tr>
+<td>.ice</td>
+<td>FlexLM 许可文件</td>
+<td>OT 与 OXE-v 用；内容含锚定物、OTID、Product ID；Flexlm 启动时复制改名进 final_licenses</td>
+<td>p130, p148, p154</td>
+</tr>
+<tr>
+<td>.swk / .sw8770 / nmc.license</td>
+<td>OXE 与 8770 许可</td>
+<td>.swk 专有加密（CPUID/FlexLM/Cloud Connect 验证、容量载体）；.sw8770 改名 nmc.license 由 8770 自查 handle</td>
+<td>p130-132, p151</td>
+</tr>
+</tbody>
+</table></div>
+<h2>四、产品与组件域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OXE</td>
+<td>OmniPCX Enterprise 呼叫服务器</td>
+<td>套件的传统 PBX 侧；csa/csm 双地址；在 8770 声明并以 SIP trunk 打通 OT</td>
+<td>p5-6, p186-192</td>
+</tr>
+<tr>
+<td>OmniVista 8770</td>
+<td>管理服务器</td>
+<td>Windows OS；承载 Configuration（nmc）/Users/Directory/Alarms 应用与 WPC；OXE 与 OT 节点都在此声明互挂</td>
+<td>p6, p186-212</td>
+</tr>
+<tr>
+<td>OMS</td>
+<td>OXE 媒体网关子系统</td>
+<td>实验中以 Software Rack 3U 形式存在（Virtual GD4 挂 192.168.1.13）；OXE 改址时 OMS/MGD 内部 IP 同步改（全称书内未给）</td>
+<td>p8, p33, p584</td>
+</tr>
+<tr>
+<td>OTC PC / OTC PC One</td>
+<td>PC 软客户端两形态</td>
+<td>同一安装包：Desktop 许可=全量（RCC+VoIP+协作）；无许可=One 免费模式（单线盲通话）</td>
+<td>p432-448</td>
+</tr>
+<tr>
+<td>Mule / ESS</td>
+<td>OT 两个 SIP 服务器别名</td>
+<td>ESS（ICM 的 SIP 核心）用户与呼叫接入 5260、不支持 G723；Mule（AMS 的 SIP 服务器）语音邮件接入 5040</td>
+<td>p215, p232, p218</td>
+</tr>
+<tr>
+<td>DM (Device Management)</td>
+<td>设备管理服务器</td>
+<td>为 SIP 软设备生成下发 SIP 配置；实验由 8770 充当（端口 8080），文件落 OT 的 MYICPCSIP 目录</td>
+<td>p473, p489</td>
+</tr>
+<tr>
+<td>OT SBC / Reverse Proxy</td>
+<td>远程接入两件套</td>
+<td>SBC 承载外部媒体（SIPS/TLS+SRTP）、反向代理承载 Web 服务 HTTPS；细节在 TC2257/TC2639</td>
+<td>p444, p601</td>
+</tr>
+<tr>
+<td>ITSP1</td>
+<td>SIP 运营商模拟器</td>
+<td>培训专用：SIP 网关与公网网关（账号 pbxP/alcatel）；号码规则含 POD 号 PN</td>
+<td>p26-30</td>
+</tr>
+</tbody>
+</table></div>
+<h2>五、协议与技术域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIP Trunk / External Gateway</td>
+<td>SIP 中继与外部网关</td>
+<td>OXE 侧 T2 型 trunk（实验 ID 10）、两条外部网关：10 到 ESS 5260、11 到 Mule 5040（仅出话）</td>
+<td>p226-234</td>
+</tr>
+<tr>
+<td>SNMP v3 (Inform)</td>
+<td>告警协议口径</td>
+<td>OT agent 161、8770 server 162；认证 SHA、加密 AES 128、安全级 auth-privacy、通知类型 Inform</td>
+<td>p205-209</td>
+</tr>
+<tr>
+<td>IMAP4 / SMTP / VPIM</td>
+<td>邮件三协议</td>
+<td>IMAP4 收语音留言（默认 IMAPS+TLS，内嵌 1000 会话封顶）；OT 无内置 SMTP（外部服务器须无认证无 TLS）；通知路由经 VPIM 会话声明</td>
+<td>p304-313, p360, p370-371</td>
+</tr>
+<tr>
+<td>CSR / PKCS7 / PKCS12 / CTL</td>
+<td>证书四件套</td>
+<td>CSR 生成时同时产生密钥对；PKCS7 对应 CSR 在 OT 侧做；PKCS12 带口令对应密钥在 CA 侧；CTL 换自签证书后须 808x 话机重签</td>
+<td>p404-407, p414, p427</td>
+</tr>
+<tr>
+<td>G711 / G722 / G723 / G729 / H264</td>
+<td>编解码族</td>
+<td>AMS 媒体面 G711/G729/G722+H264；OXE 呼叫服务器 G711/G723/G729；ESS 不支持 G723；OT-OXE 互联两端一致（实验 G729）</td>
+<td>p7, p218, p233</td>
+</tr>
+<tr>
+<td>PXE / OVF / OVA / vmdk</td>
+<td>虚拟化交付术语</td>
+<td>PXE 为 SOT 网络启动目标机机制；OVF/OVA/vmdk 为虚机描述/打包/磁盘格式（OVA=OVF+vmdk 打包）</td>
+<td>p47, p79-80</td>
+</tr>
+</tbody>
+</table></div>
+<h2>六、资源与文档域</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+<th>书中定义/用法（一句）</th>
+<th>出处页码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BPWS / My Portal / TDL</td>
+<td>交付资源入口群</td>
+<td>BPWS 下载软件 ISO；My Portal 下载 FlexLM 虚机 OVF；eBusiness Portal 与 TDL 按 8AL 编号检索手册</td>
+<td>p42, p168, p601</td>
+</tr>
+<tr>
+<td>TC2149 / TC1652 / TC2257 / TC2639 / TC1625</td>
+<td>TC 技术通报族</td>
+<td>TC2149 ed.04（rehosting 全矩阵，附录全文收录）；TC1652（spatial redundancy）；TC2257/TC2639（SBC/RP）；TC1625（Clonezilla 镜像）</td>
+<td>p231, p444, p561-602</td>
+</tr>
+</tbody>
+</table></div></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OpenTouch — OpenTouch Suite for MLE — Solution Overview / Starter (Participant's Guide) | edition: Edition 10 | pages: 603 页 -->

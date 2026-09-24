@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>数据库备份恢复与维护排障工具箱</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Starter</h2><p>Edition 12 · 821 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte400en/index.html">课程首页</a><a href="/courses/entpxte400en/digest.html">精华长文</a><a href="/courses/entpxte400en/overview.html">教书理解</a><a href="/courses/entpxte400en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte400en/skills/ents-first-login-hardening.html">OXE 首登加固（四账户与密码治理）</a><a href="/courses/entpxte400en/skills/ents-cs-network-firewall.html">Call Server IP 寻址与内部防火墙</a><a href="/courses/entpxte400en/skills/ents-db-license.html">空数据库创建与 OPS 许可管理</a><a href="/courses/entpxte400en/skills/ents-media-gateway-deployment.html">媒体网关上架（GD4/OMS/XL）</a><a href="/courses/entpxte400en/skills/ents-user-terminal-provisioning.html">用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）</a><a href="/courses/entpxte400en/skills/ents-numbering-cos.html">编号计划与 COS 管理</a><a href="/courses/entpxte400en/skills/ents-call-processing.html">呼叫处理业务域（语音指南/话务台/Entity/计时器）</a><a href="/courses/entpxte400en/skills/ents-sip-trunk.html">公共 SIP 中继开通与弹性</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte400en/skills/ents-system-start-stop.html">OXE 系统启停与 autostart 管理</a><a href="/courses/entpxte400en/skills/ents-time-sync.html">OXE 时间同步（NTP/chrony）</a><a href="/courses/entpxte400en/skills/ents-voicemail-4645.html">OmniMessage 4645 语音邮件与邮件通知</a><a href="/courses/entpxte400en/skills/ents-barring-emergency.html">外呼闭锁与紧急呼叫通知</a><a href="/courses/entpxte400en/skills/ents-backup-maintenance.html">数据库备份恢复与维护排障工具箱</a><a href="/courses/entpxte400en/skills/ents-legacy-trunks-umc.html">传统中继（T0/T2）与 UMC 云管理</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte400en/index.html">oxe-starter（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte400en/index.html">ENTPXTE400EN</a><span>/</span><span aria-current="page">数据库备份恢复与维护排障工具箱</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>数据库备份恢复与维护排障工具箱</h1></div><dl><div><dt>Skill ID</dt><dd>ents-backup-maintenance</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>数据库备份恢复与维护排障工具箱</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"By default: daily backup at 5:45 AM • Can be re-scheduled • Local backup -&gt; transfer of backup using SFTP is strongly recommended"（p721）
+"AS THE TELEPHONE APPLICATION IS ALREADY STOPPED, IT IS NOT POSSIBLE TO USE CS MAIN IP ADDRESS TO TRANSFER THE BACKUP FILE. CS PHYSICAL IP ADDRESS MUST BE USED FOR SFTP SESSION."（p733）
+"The 'oxetrace' tool is able to take Call Handling, SIP motor and network traces simultaneously … Technical support will usually request this 'infocollect' compressed file"（p740, p754）</p>
+</blockquote>
+<p>出处：ENTPXTE400EN p720-756。</p>
+<h2>I — 自述</h2>
+<p>灾备底线与一线排障抓手：</p>
+<ol>
+<li><strong>备份对象</strong>：MAO、语音指南、计费、话务历史、ACD、4645 数据（含/不含消息）、Linux 网络数据；自动备份每日 5:45（可改期）</li>
+<li><strong>备份分区</strong>（/usr4/BACKUP）：DAY+DAY-1..6（自动）、IMMED（手工）、OPS（许可）、WEEK-1..3、MONTH-1/2、FACTORY</li>
+<li><strong>手工备份</strong>：swinst Expert 菜单 4（Backup &amp; restore）→ 1 Immediate → 选内容；SFTP（Binary、mtcl、端口 22）传 PC</li>
+<li><strong>恢复四步</strong>：停话务（此时 SFTP 必须用 CS 物理地址）、回传备份到 IMMED、Restore from IMMEDIATE、起话务；恢复三选项=secure restoration（先存当前库为回退档案）/restore Cloud and Rainbow services（实验室剥离客户云凭据）/clean up archive</li>
+<li><strong>排障八件套</strong>：oxetrace（三路抓包+自动解码打包 zip，需 3GB，&lt;4GB 自动减轮转）、ippstat（IP 话机 1-22 项）、事件三件 incvisu/incinfo/syslog（外发 UDP 514）</li>
+<li><strong>工具续</strong>：securitystatustool（XML 安全全景，需话务运行）、infocollect（root，交支持标配 .tbz）、tcpdump（root，pcap 供 Wireshark）</li>
+<li><strong>事件双口径</strong>：incinfo GEA &lt;事件号&gt; 取权威释义；屏显/磁盘 usr4/incid/SNMP/syslog/Cloud Connect 五通道分发</li>
+</ol>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>工具</th>
+<th>账户</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>oxetrace</td>
+<td>mtcl</td>
+<td>三路抓包+解码打包 zip</td>
+</tr>
+<tr>
+<td>ippstat</td>
+<td>mtcl</td>
+<td>IP 话机数据与开关（-noname 供 GDPR）</td>
+</tr>
+<tr>
+<td>incvisu / incinfo</td>
+<td>mtcl</td>
+<td>事件查询与权威释义</td>
+</tr>
+<tr>
+<td>securitystatustool</td>
+<td>mtcl</td>
+<td>XML 安全全景（含默认密码占比）</td>
+</tr>
+<tr>
+<td>infocollect</td>
+<td>root</td>
+<td>离线分析大包 .tbz</td>
+</tr>
+<tr>
+<td>tcpdump</td>
+<td>root</td>
+<td>定向抓包存 pcap</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A1 — 书中案例</h2>
+<p><strong>备份与恢复实验</strong>（p728-736，How-To）：</p>
+<ol>
+<li>swinst Expert 菜单 4 做手工备份（mao+指南+计费）</li>
+<li>FileZilla 用 Binary 从 /usr4/BACKUP/IMMED 传回 PC</li>
+<li>删几个用户制造库差异</li>
+<li>Easy 7 停话务，系统重启</li>
+<li>SFTP 改用 CS 物理地址 192.168.1.1 回传备份（Role 地址已失效）</li>
+<li>Restore from IMMEDIATE：勾 secure restoration，Cloud/Rainbow 选 n（实验室剥离）</li>
+<li>完成后 clean up the archive，Easy 8 起话务</li>
+<li>核对被删用户已恢复，收尾</li>
+</ol>
+<p><strong>排障工具演练</strong>（p737-756，讲义命令序列）：</p>
+<ol>
+<li>oxetrace 选场景问卷（如 "1 4 6 7"），复现问题后停止，取回 zip</li>
+<li>ippstat 查 IP 话机状态与 MAC 清单</li>
+<li>incvisu -t 20 看最近事件，incinfo GEA 3757 取释义</li>
+<li>securitystatustool 输出 XML 安全全景</li>
+<li>tcpdump host 过滤抓包存 pcap</li>
+<li>infocollect 生成 .tbz 交技术支持</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：版本升级前备份；误删配置回滚；系统崩溃重建；ALE 支持要现场数据；话机批量离线排查；安全自查（默认密码占比）；"实验输出里的告警是不是故障"。</p>
+<p>语言信号：备份 / backup / 恢复 / restore / IMMED / swinst 备份 / secure restoration / oxetrace / 抓包 / tcpdump / infocollect / incvisu / incinfo / syslog / securitystatustool / 事件号。</p>
+<p>与相邻能力区分：建库与许可恢复见空库与许可能力；停话务操作本身见系统启停能力（路由卡）；话机日志（getlogs）见用户终端开通能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：维护窗口（恢复需停话务）、备份存储位置（PC/网络盘）、问题现象描述与时间窗（排障场景）。恢复前确认手里备份的完整性，否则先补做备份。</p>
+<ol>
+<li>例行备份核验：确认每日 5:45 自动备份在跑，DAY 分区有当日档。完成标准：自动备份可用</li>
+<li>变更前手工备份：Expert 菜单 4 做 IMMED 备份并 Binary 传离设备。完成标准：回退点离开机器</li>
+<li>恢复执行（如需）：停话务后用物理地址回传，Restore from IMMEDIATE 按场景勾 secure/Cloud 选项。完成标准：起话务后业务与配置核对一致</li>
+<li>排障采集：按现象选 oxetrace 场景抓包或 tcpdump 定向，复现问题后停止取档。完成标准：trace 覆盖问题时间窗</li>
+<li>事件定位：incvisu 看事件流，incinfo 取权威释义，必要时 syslog 外发对接客户监控。完成标准：事件链可解释</li>
+<li>升级支持：安全全景（securitystatustool）+ infocollect 大包按支持要求提供。完成标准：支持受理所需材料齐</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>恢复时 SFTP 连不上 → 停话务后 Role 地址失效（n08/n37），改用 CS 物理地址，这不是故障</li>
+<li>备份文件传完校验失败 → 传输类型没用 Binary（n37），重新传输，不要强行恢复</li>
+<li>磁盘剩余不足 4GB 跑 oxetrace → 会自动减轮转文件（p743），先清空间否则 trace 不完整</li>
+<li>实验输出类告警（BAD PCMS CODE/unknown rack type/484）→ 先按 n43 判读"非故障现象"，用 incinfo 与业务结果定性，不要直接按事故上报</li>
+</ul>
+<p>输出契约：可恢复的配置资产（备份台账）+ 问题档案（trace/事件/释义）+ 支持材料（如升级）。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>实验路径/地址（/usr4/BACKUP、物理地址 192.168.1.1）为实验口径；异地备份存储策略在书外</li>
+<li>恢复的 "restore Cloud and Rainbow services" 选项在实验室选 n 防止用客户云凭据连生产云（n37）；生产按归属环境选择</li>
+<li>深度日志分析与性能调优在 Advanced 课程；Cloud Connect 侧的远程诊断在 ENTPXTE402 范围</li>
+<li>infocollect/tcpdump 需 root；oxetrace 启动会复位既有 mtracer/traced/tcpdump（p743 注）</li>
+<li>事件号随版本增减，释义以 incinfo 输出为准（p41 条目口径）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/entpxte400en/skills/ents-db-license.html">空数据库创建与 OPS 许可管理</a></p><p class="source-page">能力 ID：cap.ents.backup-maintenance · 来源：ENTPXTE400EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Starter (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 821 页 -->

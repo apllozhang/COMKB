@@ -1,0 +1,42 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\entadv-audit-broadcast.md": "aa3413b79b6cd3f9d13c854634f2a443b95df5900d64ff5cbf767adf3305559d",
+    "references\\capabilities\\entadv-cli-toolbox.md": "23ad83c5597e335d68474aafc16885d3076d10f9fd5bb2ffa452d1cb6d497810",
+    "references\\capabilities\\entadv-cs-redundancy.md": "f6da89fd177385787778089f73e17e547200faf02221c3628a4db9dece5f0d24",
+    "references\\capabilities\\entadv-desk-sharing.md": "8e18e8e2cb73483fc5ecb35dd8101983b11e7b75f2754ce80c3fe3e932177d4f",
+    "references\\capabilities\\entadv-direct-ip-link.md": "049206e3ae595d687877d877c27996f54e5c1e502c9557e69ca69a4ff416e7a3",
+    "references\\capabilities\\entadv-hunting-pickup-speeddial.md": "370e39679c2f7234cd0bd0b7ad226ee146ef26d66a72f9333b8ea8ee8f02a755",
+    "references\\capabilities\\entadv-ip-domain-pcs.md": "5b6a69c8a4dea24f666a37964476a832c9706e625fe7440ab6a041b114243382",
+    "references\\capabilities\\entadv-lab-pod-baseline.md": "b99ab813cd2317f38590965199f228031c6ed97cd322612da73acf7608a9a06b",
+    "references\\capabilities\\entadv-multi-device.md": "0ce521d609b688266f8147949b817a357451a3fe32cf52c150b1fdd7fd5d0f04",
+    "references\\capabilities\\entadv-multiline-supervision.md": "784d980fd2c208d0794526e1899be1b6fc9393bd57f11ca8cd9458bbde86f9ff",
+    "references\\capabilities\\entadv-overflow-rerouting.md": "b99306d9f74f6dda5e23a769b7a9e270edd9ede6092776bd6ed73e65e99a7cc5",
+    "references\\capabilities\\entadv-ssh-trust-foundation.md": "a63d279df1da927f828fc217a9443403d084c5ebd48a02a43adfda61e5c10300",
+    "references\\capability-index.md": "dece18d3959a747e6dbb199925472c0bc8e8e0b8417988cef74cd6aa2a05446c",
+    "references\\cheatsheet.md": "5e84480f0e019952749f185bb176db7a681af1e1faddb4fe5936cf48932ed9c8",
+    "references\\glossary.md": "3ab05b026cdc0671454fd16a83c3292a29140ffc33e6256303b3c9f24864c096",
+    "references\\overview.md": "6cde2b02056060ac432c1f2524d1c3df884857aedba8df352fa25c33aed71cc4",
+    "SKILL.md": "476815cd3b91434a7da0a17953b64b02a35049e35cf8c518b1f9caf2dafee55c"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.oxe-advanced",
+  "bundle_sha256": "cfff411a03562d507130a7ea959c2a1655e511ecafd72a2fe838a7feaf7e000d",
+  "variant": "single",
+  "run_id": "run-20260924-200003-bfd604",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 12,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

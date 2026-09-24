@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "bundle_id": "bundle.oxo-connect-advanced",
+  "generated_at": "2026-09-23",
+  "destinations": {
+    "cap.oxoa.sip-networking": { "promoted_to": "oxoa-sip-networking" },
+    "cap.oxoa.numbering-ars-suite": { "promoted_to": "oxoa-numbering-ars-suite" },
+    "cap.oxoa.hotel-billing-vertical": { "promoted_to": "oxoa-hotel-billing-vertical" },
+    "cap.oxoa.security-hardening": { "promoted_to": "oxoa-security-hardening" },
+    "cap.oxoa.certificate-suite": { "promoted_to": "oxoa-certificate-suite" },
+    "cap.oxoa.attendant-suite": { "promoted_to": "oxoa-attendant-suite" },
+    "cap.oxoa.voicemail-mobility": { "promoted_to": "oxoa-voicemail-mobility" },
+    "cap.oxoa.cloud-connect-fleet": { "promoted_to": "oxoa-cloud-connect-fleet" },
+    "cap.oxoa.foundation-ip": { "served_by": "oxo-connect-advanced-router" },
+    "cap.oxoa.terminal-ecosystem": { "served_by": "oxo-connect-advanced-router" },
+    "cap.oxoa.shared-devices": { "served_by": "oxo-connect-advanced-router" },
+    "cap.oxoa.multi-entity": { "served_by": "oxo-connect-advanced-router" },
+    "cap.oxoa.dect-deployment": { "served_by": "oxo-connect-advanced-router" },
+    "cap.oxoa.maintenance-toolkit": { "served_by": "oxo-connect-advanced-router" }
+  },
+  "entry_budget": { "total": 8, "router_entry": 1, "promoted": 8 }
+}

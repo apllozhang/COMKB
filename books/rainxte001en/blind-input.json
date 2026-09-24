@@ -1,0 +1,227 @@
+{
+ "code": "rainxte001en",
+ "capability_catalog": [
+  {
+   "slug": "rbx-company-subscription",
+   "name": "Rainbow 公司体系与订阅开通",
+   "description": "BP 建司开订阅（月付/预付）、EC 管成员分订阅；可见性四级默认 CLOSED；SSO/TOTP 认证；电话服务必须 Business/Enterprise/Attendant；BP 专属建 PBX 与开付费订阅"
+  },
+  {
+   "slug": "rbx-omc-onboarding",
+   "name": "OMC 安装首次连接与 IP 规划修改",
+   "description": "Expert 模式首连 + 证书入受信任根 + 逐客户改密 + 客户信息；OMC 四页签改 IP 后必须重启 OXO；pbxk1064 仅首次连接"
+  },
+  {
+   "slug": "rbx-pbx-onboarding",
+   "name": "OXO 接入 Rainbow 与接入排障",
+   "description": "PBXID+激活码填入 OMC/Cloud/Rainbow（域名保持 openrainbow.com）；Webdiag 状态判据 connected with final password；ccrbagent.log 与用户日志排障"
+  },
+  {
+   "slug": "rbx-member-lifecycle",
+   "name": "Rainbow 成员全生命周期管理",
+   "description": "手动/邀请/CSV/Azure AD 四法开户；七分区设置；删除 10 天宽限（恢复回落 Essential、邮箱不可复用）；改密踢在线；密码 ≥12 位含大写/数字/特殊字符"
+  },
+  {
+   "slug": "rbx-gateway-planning",
+   "name": "WebRTC 网关拓扑决策与容量规划",
+   "description": "三拓扑对比（OCE 集成 R3.2+/20、OCE-FE 双端 R4.0 MD/20、外部 VM 或 NUC/50）；p147 容量表；150 用户上限带话务前提；终端形态 Twinset/Anydevice 与 UTL 口径"
+  },
+  {
+   "slug": "rbx-gateway-deployment",
+   "name": "WebRTC 网关部署与虚拟终端配置",
+   "description": "Reseller 管理员激活自动配置（R4.0.020.002+，边界清单）；OCE-FE FTR 链（warm reset/双机 PBXID/端口 5059）；外部 VM/NUC 安装；建 Twinset/Anydevice 终端；行为验证"
+  },
+  {
+   "slug": "rbx-attendant-supervision",
+   "name": "Rainbow 话务台与监督组",
+   "description": "Attendant 订阅解锁话务台（OXE 10 路/OXO 8 路，仅 Web/Desktop）；监督组 5 组/30 人；互助组动态进出/临时纳排/锁定；代接仅限同 PBX 电话呼叫"
+  },
+  {
+   "slug": "rbx-teams-integration",
+   "name": "Microsoft Teams 集成全流程",
+   "description": "工作台级集成：Teams App 上架与权限同意（两法+Azure 核验）、用户配置（Telephony 权限收敛+Business/Enterprise 订阅）、Rainbow Desktop 强依赖、在场同步激活 O365 共享"
+  },
+  {
+   "slug": "rbx-admin-tools",
+   "name": "Rainbow 管理员工具",
+   "description": "Roles 页签分权（可多管理员）；企业目录（外部联系人 CSV 导入与委托）；信息频道（Enterprise 级创建、强制订阅不可退）；服务级别三门槛"
+  },
+  {
+   "slug": "rbx-rcc-association",
+   "name": "OXO 分机关联与 RCC 模式",
+   "description": "Telephony 页签绑定分机；RCC 只能接/挂/转且音频在话机（无网关正常形态）；Rainbow number 由 agent 在选 computer 路由时自动写入；p116 三项测试"
+  },
+  {
+   "slug": "rbx-maintenance-support",
+   "name": "Rainbow 维护与支持体系",
+   "description": "用户日志与问题上报；status.openrainbow.com 与告警订阅；维护预告；音频告警阈值；操作历史审计；MyPortal 开 SR（仅认证伙伴建 ESR）"
+  },
+  {
+   "slug": "rbx-network-readiness",
+   "name": "Rainbow 网络就绪核查",
+   "description": "Network Requirements 文章+两份 PDF（端口/域名/带宽/防火墙，书内无数值）；Rainbow Pilot 连通性与承载评估；Pilot 分区随版本演进"
+  }
+ ],
+ "cases": [
+  {
+   "id": "should-company-01",
+   "prompt": "我要给客户开一个 Rainbow 租户，200 个用户要用电话和话务台，买什么订阅、公司可见性怎么设？"
+  },
+  {
+   "id": "should-company-02",
+   "prompt": "客户管理员说他在 Rainbow 里找不到创建 PBX 的按钮，是不是坏了？"
+  },
+  {
+   "id": "should-omc-01",
+   "prompt": "新到的 OXO Connect 怎么用 OMC 连上去？每次连都弹安全告警很烦"
+  },
+  {
+   "id": "should-omc-02",
+   "prompt": "客户现场规划是 10.35.x.x 网段，怎么把 OXO 和管理 PC 的地址改过去？"
+  },
+  {
+   "id": "should-pbx-01",
+   "prompt": "把 OXO 连到 Rainbow 需要 PBXID 和激活码，从哪里拿？填到哪里？"
+  },
+  {
+   "id": "should-pbx-02",
+   "prompt": "Webdiag 里 Rainbow Status 一直不是 connected with final password，怎么排查？"
+  },
+  {
+   "id": "should-member-01",
+   "prompt": "50 个新员工要批量开 Rainbow 账号，用什么方式最快？密码有什么要求？"
+  },
+  {
+   "id": "should-member-02",
+   "prompt": "上个月删了一个 Rainbow 用户，现在用他的邮箱建新账号报错说被占用，怎么办？"
+  },
+  {
+   "id": "should-plan-01",
+   "prompt": "客户 80 个用户要上 Rainbow 话音，OXO 是 Evolution IPBox，网关拓扑怎么选、通道配多少？"
+  },
+  {
+   "id": "should-plan-02",
+   "prompt": "Power CPU EE 的 OXO 能用集成 WebRTC 网关吗？不能用的话有什么替代？"
+  },
+  {
+   "id": "should-deploy-01",
+   "prompt": "Reseller 账号在 Rainbow 上激活了内部 WebRTC 网关，我在 OMC 里怎么确认配置落地了？"
+  },
+  {
+   "id": "should-deploy-02",
+   "prompt": "OCE Front End 网关改了配置一直不生效，另外双机的 PBXID 有什么讲究？"
+  },
+  {
+   "id": "should-att-01",
+   "prompt": "前台要一个能看全组人状态、能代接电话的工作台，怎么配？"
+  },
+  {
+   "id": "should-att-02",
+   "prompt": "两个部门想互相帮忙接电话，但不想固定绑在一个组里，有临时加入退出的方式吗？"
+  },
+  {
+   "id": "should-teams-01",
+   "prompt": "客户想在 Teams 里直接打公司座机和外线，方案怎么做？"
+  },
+  {
+   "id": "should-teams-02",
+   "prompt": "Teams 里装了 Rainbow 应用，改了 Teams 的状态 Rainbow 那边不跟着变，为什么？"
+  },
+  {
+   "id": "should-admin-01",
+   "prompt": "要把常用外部供应商的号码放进 Rainbow，让全员来电时能识别对方是谁"
+  },
+  {
+   "id": "should-rcc-01",
+   "prompt": "把话机分机 101 绑定到用户的 Rainbow 账号上，绑完怎么验证能不能用？"
+  },
+  {
+   "id": "should-maint-01",
+   "prompt": "好几个用户反馈 Rainbow 登录不上，怎么判断是不是 ALE 云那边的问题？"
+  },
+  {
+   "id": "should-maint-02",
+   "prompt": "这个问题我们自己搞不定了，要给 ALE 开正式工单，流程和前提是什么？"
+  },
+  {
+   "id": "should-net-01",
+   "prompt": "客户站点要上 Rainbow，网络这边上线前要准备和核查什么？"
+  },
+  {
+   "id": "should-net-02",
+   "prompt": "售前要评估客户这个办公点能不能承载 60 个混合用法的 Rainbow 用户，用什么工具怎么评？"
+  },
+  {
+   "id": "should-plan-03",
+   "prompt": "给用户配 Rainbow 话音，他既有物理话机又想用电脑接听，终端怎么建？占几个许可？"
+  },
+  {
+   "id": "should-teams-03",
+   "prompt": "Teams 用户在 Rainbow 里还能聊天发消息，两套功能重复了怎么收敛？"
+  },
+  {
+   "id": "bait-company-01",
+   "prompt": "新员工入职，要给他开 Rainbow 账号、分配电话分机并验证能接听"
+  },
+  {
+   "id": "bait-omc-01",
+   "prompt": "在 OMC 里怎么把 OXO 连接到 Rainbow 云平台？"
+  },
+  {
+   "id": "bait-pbx-01",
+   "prompt": "WebRTC 网关激活之后 OMC 里显示网关没连上，怎么查？"
+  },
+  {
+   "id": "bait-member-01",
+   "prompt": "给公司全员推一个内部公告频道，让所有人自动加入"
+  },
+  {
+   "id": "bait-plan-01",
+   "prompt": "拓扑已经定了用外部网关，现在要在 NUC 上把它装起来"
+  },
+  {
+   "id": "bait-deploy-01",
+   "prompt": "30 个用户的站点选集成网关还是 OCE Front End？通道数配多少？"
+  },
+  {
+   "id": "bait-att-01",
+   "prompt": "OXO 自带的 ACD 呼叫中心怎么建组、设坐席和队列？"
+  },
+  {
+   "id": "bait-teams-01",
+   "prompt": "Teams 租户的应用权限策略和紧急呼叫地址怎么统一配置？"
+  },
+  {
+   "id": "bait-admin-01",
+   "prompt": "给 200 个员工批量开通 Rainbow 账号"
+  },
+  {
+   "id": "bait-rcc-01",
+   "prompt": "分机关联好了，怎么让通话音频走到电脑耳机里？"
+  },
+  {
+   "id": "bait-maint-01",
+   "prompt": "OXO 侧 Rainbow 代理的日志文件叫什么名字？去哪里拿？"
+  },
+  {
+   "id": "bait-net-01",
+   "prompt": "防火墙端口都放行了，PBX 还是连不上 Rainbow，Webdiag 状态不对"
+  },
+  {
+   "id": "edge-omc-01",
+   "prompt": "OMC 能不能装在服务器上给 20 个管理员共用？"
+  },
+  {
+   "id": "edge-plan-01",
+   "prompt": "150 用户上限是不是说第 151 个用户就彻底没法用话音了？"
+  },
+  {
+   "id": "edge-att-01",
+   "prompt": "话务员想在家用自己的手机值班代接，可以吗？"
+  },
+  {
+   "id": "edge-version-01",
+   "prompt": "我们的 OXO 版本正好是 R4.0.020.002，自动配置到底能不能用？"
+  }
+ ]
+}

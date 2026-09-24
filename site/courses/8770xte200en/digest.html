@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>整理摘要 · 8770XTE200EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 安装与网络管理</h2><p>Edition 47 · 705 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte200en/index.html">课程首页</a><a href="/courses/8770xte200en/digest.html">精华长文</a><a href="/courses/8770xte200en/overview.html">教书理解</a><a href="/courses/8770xte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte200en/skills/ovnms-platform-installation.html">OmniVista 8770 平台安装（服务器 + 客户端 + 补丁 + 首连）</a><a href="/courses/8770xte200en/skills/ovnms-node-onboarding.html">OmniVista 8770 节点接入（OXE 注册同步 + SSH 安全 + OXO Connect 纳管）</a><a href="/courses/8770xte200en/skills/ovnms-user-provisioning.html">OmniVista 8770 用户开通（Profile / Meta profile / 批量 / WBM）</a><a href="/courses/8770xte200en/skills/ovnms-alarm-management.html">OmniVista 8770 告警管理（接入 + 定制出口 + SNMP Proxy）</a><a href="/courses/8770xte200en/skills/ovnms-security-administration.html">OmniVista 8770 安全管理（密码策略 / 管理员与组 / 访问控制 / TLS）</a><a href="/courses/8770xte200en/skills/ovnms-audit-compliance.html">OmniVista 8770 审计合规（Audit 启用 / mao 日志 / 检索导出）</a><a href="/courses/8770xte200en/skills/ovnms-backup-restore.html">OmniVista 8770 备份恢复（8770 数据库 rehosting + OXE swinst 全链）</a><a href="/courses/8770xte200en/skills/ovnms-license-management.html">OmniVista 8770 许可管理（锁结构 / 查询 / 更新 / 受限模式）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte200en/skills/ovnms-reports-scheduling.html">OmniVista 8770 报表与任务编排（Reports / Scheduler / 自动维护）</a><a href="/courses/8770xte200en/skills/ovnms-maintenance-operations.html">OmniVista 8770 维护运营（诊断工具 / NMC 服务与日志）</a><a href="/courses/8770xte200en/skills/ovnms-topology-views.html">OmniVista 8770 Topology 视图（标准视图 / 自定义视图 / 告警重定向）</a><a href="/courses/8770xte200en/skills/ovnms-oxe-ui-efficiency.html">OmniVista 8770 OXE 配置界面高效操作（搜索/冻结/网格/导入导出）</a><a href="/courses/8770xte200en/skills/ovnms-network-drive.html">OmniVista 8770 网络驱动器映射（报表与备份落网络存储）</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte200en/index.html">omnivista-8770-nms（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte200en/index.html">8770XTE200EN</a><span>/</span><span aria-current="page">整理摘要</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">DIGEST</p><h1>整理摘要 — 全书精华</h1></div></header><article class="markdown-body"><h1>DIGEST — OmniVista 8770 安装与网络管理精华长文</h1>
+<blockquote>
+<p>源：8770XTE200EN Edition 47（705 页，OmniVista 8770 R5.2）· 文档整理入库 · 2026-09-23
+定位：10 分钟建立对 8770 平台交付与运维的全局认知；操作细节按需查 13 张能力卡。</p>
+</blockquote>
+<h2>一、这套东西是什么</h2>
+<p>OmniVista 8770 是 ALE 的集中网络管理平台：一台<strong>专用</strong> Windows 服务器上装齐 MariaDB 数据库、LDAP 目录、Apache/Wildfly 与全套管理应用，再用 thick client（全功能）和 WBM 轻客户端（给非专家）去管理 OXE、OXO Connect、OpenTouch 这些话务系统——管配置、管用户、收告警、出报表、做备份、控许可。</p>
+<p>整本教材就是一条交付主线：<strong>装平台、接节点、开用户、收告警，再配安全审计与报表任务，最后备份与许可兜底</strong>。每章先讲义后实验，实验都以可观察结果收口（同步成功消息、告警上屏、邮件到达、trap 被收到）。</p>
+<p>三个特性先记住：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>专用服务器</td>
+<td>8770 全栈独占一台 Windows 服务器，容量与补丁窗口按专用机规划</td>
+</tr>
+<tr>
+<td>装后不可改</td>
+<td>公司名、成本中心方式、HTTP/HTTPS 端口、目录管理器登录名装后不可改；改址靠备份恢复/rehosting</td>
+</tr>
+<tr>
+<td>号对号接入</td>
+<td>声明节点号 = 网络号×100+节点号，必须与 OXE 侧 siteid 一致才能同步</td>
+</tr>
+</tbody>
+</table></div>
+<h2>二、装机：从裸机到可登录</h2>
+<ol>
+<li><strong>前置</strong>：NTFS 分区、计算机名合规（&lt;15 字符、字母开头、11 类禁用字符）、DNS 后缀、静态 IP；iso 必须拷到本地盘（禁网络/挂载/vSphere 安装）；内存占用 &lt;85%</li>
+<li><strong>安装</strong>：ServerSetup.exe 自动装 MariaDB 与 Visual C++ 包，许可校验全 Valid，四目录（C:\8770、SunONE、data、8770_ARC）</li>
+<li><strong>Windows 两件套</strong>：关 IE 增强安全配置 + Defender 排除 C:\8770——漏做 Alarms/Topology 收不到告警（高频坑）</li>
+<li><strong>补丁</strong>：patches 目录 + PatchInstaller.exe，日志尾部见成功消息；清单查 Patch_history.ini</li>
+<li><strong>首连</strong>：AdminNmc 强制改密；客户端从 URL 下载（大小写敏感），Win11 22H2 起要装回 WMIC，首启放行 Zulu 模块</li>
+</ol>
+<p>硬件双档：&lt;5000 用户双核约 2GHz + 6GB；&gt;5000 用户四核约 2.2GHz + 8GB；均 120GB 盘。</p>
+<h2>三、接节点：号对号 + 同步语义</h2>
+<ul>
+<li><strong>OXE 五段</strong>：siteid/netadmin 核查 &gt; 三级树声明（Network &gt; Subnetwork &gt; PCX）&gt; 同步 &gt; 实时核验（建测试用户看事件与树）&gt; 排障（重启 NMC Alarm server）</li>
+<li><strong>同步四语义</strong>：Complete 全量 / Partial 增量（仅五类条目，其余全取）× Separate 单节点 / Global 连带 OpenTouch。OXE 改动实时回传，但 profile、键 profile、空闲号段必须主动同步</li>
+<li><strong>SSH 安全链</strong>：netadmin 可信主机 + 8770 侧 MindTerm 密钥 + SFTP；OXE N3 起 SSH 强制</li>
+<li><strong>OXO Connect</strong>：经 OMC 代理纳管（装在 8770 与每个客户端），声明节点按 子网号×100+节点号 换算（80 变 180），备份目录随之落盘；R10 起强制改全部账户密码</li>
+</ul>
+<h2>四、开用户：三层递进 + 批量</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>层</th>
+<th>做法</th>
+<th>关键点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>手建</td>
+<td>Users 应用直接建</td>
+<td>User type=OXE 带设备</td>
+</tr>
+<tr>
+<td>Profile 复用</td>
+<td>OXE 建 Profile（大写名+COS），建户引用</td>
+<td>前提：勾 Use profile with auto. recognition</td>
+</tr>
+<tr>
+<td>Meta profile</td>
+<td>绑 OXE 节点+空闲号段+设备类型</td>
+<td>建户只填姓名，自动取段内首个空闲号；号段建后必须同步</td>
+</tr>
+<tr>
+<td>批量</td>
+<td>导模板改文件导入</td>
+<td>XXXX=必填人工、NULL=自动；action=ADD/MODIFY/DELETE；Scheduler 绿态核验</td>
+</tr>
+</tbody>
+</table></div>
+<p>WBM 轻客户端（8443）给非专家自助：单建+批量（+;-;# 语义），但与 thick client 批量文件<strong>互不通用</strong>、不能移除设备/OT 应用、设备页签上限 4 个。批量默认密码 1234 是安全审计必查项。</p>
+<h2>五、告警：一条链三个出口一条外送</h2>
+<ul>
+<li><strong>接入</strong>：OXE Incident Manager 设 Network severity=None（全上送）+ Topological network=YES；rstcpl 重启 coupler 触发 #2042、incvisu 验证；定向事件（#1125）建 Incident Filter（下拉没有就先 Create）</li>
+<li><strong>处置</strong>：六级色标（Critical 红到 Cleared 白）；确认只是"有人在管"仍活动；只有非相关告警可手动清除；Signature/Action 进报告、Remark 不进</li>
+<li><strong>出口</strong>：邮件（Mail server 格式 &lt;地址&gt;:&lt;端口&gt;，冒号后无空格）、脚本（.bat 放 scripts 目录，%1=告警对象、%2=通知时间）、字典改名（重启 NMC Service Manager 生效）</li>
+<li><strong>外送</strong>：SNMP Proxy——Windows SNMP 服务必须装（启用 8770 代理后被停用但不能卸载）、hypervisor 只填 IP 不用 FQDN、trap 162、SNMP Filter 按 Correlation/Diagnostic 过滤</li>
+</ul>
+<h2>六、安全与审计：三层模型 + 一条留痕链</h2>
+<ul>
+<li><strong>第一层 8770 账户</strong>：密码策略（时效三参数必须 B+C&lt;A）、组权限多组取最高、单登录（AdminNmc 豁免）、锁定四路解锁（Security 改密 / ToolsOmniVista / AdminNmc 专用 / WBM 邮件重置码）</li>
+<li><strong>第二层 OXE Access Profile</strong>：11 档全体 OXE 共用一套，改完必须删客户端本地 MIB 才生效</li>
+<li><strong>第三层 OXE 白名单</strong>：User Access Control 大写账号清单，前提勾 Secure access for system management；TLS 加固前必须全网元 TLS 摸底（书内标注仅供信息）</li>
+<li><strong>审计只管 OXE</strong>：双侧开关（AuditServer + Process audit/mtcl/Secure access）&gt; mao 三日志 &gt; System 页要重建 PbxName Not Empty 条件（默认条件无效是产品行为）&gt; History/Detail 两粒度导出；8770 自身 log 只看不导</li>
+</ul>
+<h2>七、报表任务与兜底</h2>
+<ul>
+<li><strong>报告</strong>：默认上限 TXT 4000 行/各格式 50 页/库 100000 行，超限尾部截断提示；可文件/邮件导出与计划分发</li>
+<li><strong>任务</strong>：Job=任务集合、Simple job/Synchronized task 两种组装、jobset 刷新变 Job；Maximum start delay 超时即放弃补跑（不是开机必补）</li>
+<li><strong>自动维护</strong>：五类清除（计费/报告/告警/审计/文件夹）+ Purge job 串行链；预定义 job 改坏了用 DailyJob/WeeklyJob.ldif 导入恢复</li>
+<li><strong>8770 备份恢复</strong>：备份四块内容（LDAP/MariaDB/其他/RestoreContext.ini）、版本强绑定（nmcVersion）、备份期网管不可用；改 IP/换机走 rehosting</li>
+<li><strong>OXE 备份恢复</strong>：bck 命令 + FTP/SFTP 取回；swinst 恢复七步（停电话后 role address 失效，要用物理 IP 重连）</li>
+<li><strong>许可</strong>：锁+数（申报节点 8770Handle、服务器特征绑定；Modules 段布尔键+用户数键+并发客户端 30+Security 键 0-5）；N-1 版本规则（R5.2 吃 15/16）；超限进受限模式（仅 Directory+Configuration，重启无效）</li>
+<li><strong>网络盘</strong>：ADM8770 同名同密账号 + 五项用户权利 + ExecdEx/SaveRestore 注入 .\ADM8770，备份与报表才能落网络存储</li>
+</ul>
+<h2>八、速查卡</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>要做的事</th>
+<th>去哪张能力卡</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>装 8770 服务器/客户端/补丁</td>
+<td>ovnms-platform-installation</td>
+</tr>
+<tr>
+<td>注册 OXE/同步/SSH/纳管 OXO</td>
+<td>ovnms-node-onboarding</td>
+</tr>
+<tr>
+<td>建用户/批量/WBM 开通</td>
+<td>ovnms-user-provisioning</td>
+</tr>
+<tr>
+<td>接告警/邮件脚本通知/SNMP Proxy</td>
+<td>ovnms-alarm-management</td>
+</tr>
+<tr>
+<td>密码策略/权限/解锁/白名单/TLS</td>
+<td>ovnms-security-administration</td>
+</tr>
+<tr>
+<td>开审计/查操作留痕/导审计</td>
+<td>ovnms-audit-compliance</td>
+</tr>
+<tr>
+<td>8770/OXE 备份恢复/rehosting</td>
+<td>ovnms-backup-restore</td>
+</tr>
+<tr>
+<td>许可查询/更新/超限处置</td>
+<td>ovnms-license-management</td>
+</tr>
+<tr>
+<td>报表分发/任务编排/数据清理</td>
+<td>路由入口（omnivista-8770-nms-router）</td>
+</tr>
+<tr>
+<td>诊断工具/服务与日志</td>
+<td>路由入口（omnivista-8770-nms-router）</td>
+</tr>
+<tr>
+<td>Topology 大屏/告警上图</td>
+<td>路由入口（omnivista-8770-nms-router）</td>
+</tr>
+<tr>
+<td>OXE 界面高效操作</td>
+<td>路由入口（omnivista-8770-nms-router）</td>
+</tr>
+<tr>
+<td>备份报表落网络盘</td>
+<td>路由入口（omnivista-8770-nms-router）</td>
+</tr>
+</tbody>
+</table></div>
+<h2>九、交付红线</h2>
+<ol>
+<li>教材全部密码/账号/网段（Superuser2580*、superuser、letacla1、sql、pbxk1064、Alcatel1、Pbxnmc12、192.168.1.x、151.1.1.x 等）是实验值，上生产必须换并纳入客户密码策略</li>
+<li>8770 单机闭环，无高可用设计——双机/容灾引 High Availability 产品文档；容量规划用 Capacity Planning 工具</li>
+<li>文档质量三处已知问题：2019 章沿用旧版口径（cfg 文件名 nmc5_5.1.cfg）、OXO 章有未翻译法语残句、客户端空间表述混写——引用时按 needs-review 处置</li>
+</ol>
+<h2>版权</h2>
+<ul>
+<li>本精华长文为 ALE Training Services《OmniVista 8770 — Setup &amp; Network Management》（8770XTE200EN Edition 47）的内部学习整理，仅供内部学习使用；教材版权归 ALE Training Services 所有。</li>
+</ul></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 — Setup & Network Management (Participant's Guide, Edition 47) | edition: Edition 47 | pages: 705 页 -->

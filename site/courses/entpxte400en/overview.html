@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>教书理解 · ENTPXTE400EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniPCX Enterprise · Starter</h2><p>Edition 12 · 821 页 · 文档整理入库（14 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/entpxte400en/index.html">课程首页</a><a href="/courses/entpxte400en/digest.html">精华长文</a><a href="/courses/entpxte400en/overview.html">教书理解</a><a href="/courses/entpxte400en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/entpxte400en/skills/ents-first-login-hardening.html">OXE 首登加固（四账户与密码治理）</a><a href="/courses/entpxte400en/skills/ents-cs-network-firewall.html">Call Server IP 寻址与内部防火墙</a><a href="/courses/entpxte400en/skills/ents-db-license.html">空数据库创建与 OPS 许可管理</a><a href="/courses/entpxte400en/skills/ents-media-gateway-deployment.html">媒体网关上架（GD4/OMS/XL）</a><a href="/courses/entpxte400en/skills/ents-user-terminal-provisioning.html">用户与终端开通（IP 话机/IPDSP/TDM/Profile/DHCP）</a><a href="/courses/entpxte400en/skills/ents-numbering-cos.html">编号计划与 COS 管理</a><a href="/courses/entpxte400en/skills/ents-call-processing.html">呼叫处理业务域（语音指南/话务台/Entity/计时器）</a><a href="/courses/entpxte400en/skills/ents-sip-trunk.html">公共 SIP 中继开通与弹性</a><p class="course-nav-group">路由能力</p><a href="/courses/entpxte400en/skills/ents-system-start-stop.html">OXE 系统启停与 autostart 管理</a><a href="/courses/entpxte400en/skills/ents-time-sync.html">OXE 时间同步（NTP/chrony）</a><a href="/courses/entpxte400en/skills/ents-voicemail-4645.html">OmniMessage 4645 语音邮件与邮件通知</a><a href="/courses/entpxte400en/skills/ents-barring-emergency.html">外呼闭锁与紧急呼叫通知</a><a href="/courses/entpxte400en/skills/ents-backup-maintenance.html">数据库备份恢复与维护排障工具箱</a><a href="/courses/entpxte400en/skills/ents-legacy-trunks-umc.html">传统中继（T0/T2）与 UMC 云管理</a><p class="course-nav-group">已安装技能</p><a href="/courses/entpxte400en/index.html">oxe-starter（14 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/entpxte400en/index.html">ENTPXTE400EN</a><span>/</span><span aria-current="page">教书理解</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">BOOK OVERVIEW</p><h1>教书理解 — 整书骨架与任务清单</h1></div></header><article class="markdown-body"><h1>OmniPCX Enterprise Starter (ENTPXTE400EN Ed12) — 整书理解 (阶段 0 产出)</h1>
+<blockquote>
+<p>本文档为文档整理的阶段 0 产出，后续所有整理与知识条目都以此为全局上下文。</p>
+</blockquote>
+<h2>基本信息</h2>
+<ul>
+<li><strong>标题</strong>: OmniPCX Enterprise - Starter (Participant's Guide)</li>
+<li><strong>作者</strong>: ALE Training Services</li>
+<li><strong>出版/发布时间</strong>: Edition 12（OXE R101.1 MD4 时代；书中实验输出含 2024-2025 年时间戳、chronyd 3.5、Rocky Linux 9.6 "Blue Onyx"）</li>
+<li><strong>内容类型</strong>: 课程（官方售后培训讲义幻灯片 + 分步实验 How-To，讲义约占 55%、实验约占 45%）</li>
+<li><strong>版本来源</strong>: <code>F:\AIwork\ZCode\books\entpxte400en\source_fulltext.txt</code>（821 页，全书最厚一本）</li>
+<li><strong>处理时间</strong>: 2026-09-23</li>
+</ul>
+<hr />
+<h2>1. 结构 (Structural)</h2>
+<h3>类型</h3>
+<p>实操手册（厂商培训教材：概念讲义幻灯片 + 分步实验 How-To；每个讲义章后跟随对应实验章，实验给出逐键菜单路径与验收命令）</p>
+<h3>一句话主旨</h3>
+<p>把一台 OmniPCX Enterprise（OXE）从"能登录"带到"能打电话"：物理/虚拟/云承载形态识别、安全登录与密码治理、IP 与防火墙、系统启停、空库与许可恢复、机架板卡上架、用户终端开通，再到编号计划/COS/语音指南/话务台/Entity/4645 语音邮件，最后打通公共 SIP 中继（ARS/DID/闭锁/紧急呼叫）并掌握备份恢复与维护排障工具。</p>
+<h3>骨架 (主要论点及其关系)</h3>
+<ol>
+<li><strong>实验环境</strong>（RLAB 全虚拟/混合两种 POD 拓扑 + ITSP1 SIP 运营商模拟器：POD 号 PN 编号规则、账号、双 SIP 网关）</li>
+<li><strong>系统概览</strong>（OXE=Linux 软件交换机；CS+MG 组件；话机/话务台/资源；单机与组网拓扑； duplication/PCS；加密；Rainbow/Cloud Connect/WBM/OV8770/UMC 管理工具矩阵）</li>
+<li><strong>硬件架构与虚拟化</strong>（Common HW 机架板卡 GD-4/GA-4/MIX；OXE-V/OMS 虚拟化；GAS；Crystal 退场与 XL 机架补位；混装上限 240 racks）</li>
+<li><strong>连接登录与密码安全</strong>（V24/SSHv2/console；mtcl/swinst/root/client 四账户；14 位密码策略；失败锁定与老化）</li>
+<li><strong>系统启停</strong>（swinst Easy/Expert 菜单、RUNTEL、autostart、role 状态、一键取消自启窗口）</li>
+<li><strong>IP 环境与内部防火墙</strong>（物理地址+Role MAIN 地址双体系；netadmin；N3 起默认 iptables 白名单、可信主机与批量导入）</li>
+<li><strong>时间同步</strong>（六种对时途径；chrony/NTP 两阶段同步法）</li>
+<li><strong>数据库与许可</strong>（MAO 数据库、空库创建即抹许可；OPS 四文件；CAPEX 本地锁 vs OPEX 云锁；RTR/CC-SUITE-ID；软件保护降级模式三阶段）</li>
+<li><strong>配置工具与硬件上架</strong>（mgr/WBM/OV8770/UMC 四工具；GD4/OMS/XL 三类媒体网关上架：mgconfig/omsconfig、crystal number、MAC 校验、压缩器声明）</li>
+<li><strong>用户与基础业务</strong>（终端系列与开通三法；IPDSP；TDM 功耗约束；内部 DHCP；前缀/后缀计划；Phone Features COS 与 Connection/Transfer COS）</li>
+<li><strong>呼叫处理业务域</strong>（静态语音指南与 MOH；话务台组/4059EE/BLF；Entity 与 CDT；OmniMessage 4645 语音邮件与邮件通知）</li>
+<li><strong>公网接入与安全</strong>（公共 SIP 中继全链路：TG→ARS→鉴别符→NPD→DID→回拨翻译器；外呼闭锁 Public COS×Area；紧急呼叫通知与 Location ID；呼叫分配计时器）＋<strong>运维收尾</strong>（DB 备份恢复含 Cloud/Rainbow 剥离选项、维护工具八件套、T0/T2 中继组、UMC 云管理；p815-821 培训评估为附注）</li>
+</ol>
+<p><strong>论点之间的关系</strong>: 先环境后系统、先底层后业务——1 是地基；2-3 建立系统观；4-8 是"碰机器"的准入链（登录→启停→网络→时间→库与许可，顺序即实验顺序，前一步是后一步的前提）；9-10 把硬件和用户配出来；11-12 是两大业务域（内部呼叫处理、外部公网互通），彼此独立但都依赖 6/8/10；运维收尾段与业务域并列，是日常运营抓手。全书的"任务-工具"对位关系：库/许可/网络/时间类任务走 swinst+netadmin+CLI，业务类任务走 WBM/mgr，排障走专用命令（role/config/trkstat/sipextgw/oxetrace…）。</p>
+<h3>作者要解决的核心问题</h3>
+<p>让零基础售后/渠道工程师在培训后能独立完成一台 OXE 的基础开局与日常维护：从拿到一台裸机（物理或虚拟）开始，安全登录、配网络、启停系统、建库授权、上架媒体网关、开通用户与基础业务，直至接入运营商打通用外线，并具备备份恢复与第一线排障能力。</p>
+<hr />
+<h2>2. 解释 (Interpretive)</h2>
+<h3>关键术语 (作者本人的用法)</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>术语</th>
+<th>作者的定义</th>
+<th>和常识用法的差异</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OXE (PABX)</td>
+<td>基于 Linux OS 的软件专用交换机，跑在 IP 数据网上；管内部通信+外线互通</td>
+<td>不是一台"交换机盒子"，是软件方案；承载硬件可选四种</td>
+</tr>
+<tr>
+<td>Call Server / OXE-V</td>
+<td>系统控制中心；虚拟化形态叫 OXE-V，跑在 VMware/KVM/Hyper-V/Nutanix/AWS 上</td>
+<td>CS 既是软件也是板卡（CS-3）；虚拟机与物理机功能/限额相同</td>
+</tr>
+<tr>
+<td>OMS</td>
+<td>OXE Media Service：原生虚拟化的软件媒体网关，提供 GD-4 的媒体功能（120 压缩器，支持 OPUS/G722）</td>
+<td>与"虚拟机里的话机网关"直觉不同：它替代的是机架+GD-4 板，不是话机</td>
+</tr>
+<tr>
+<td>GAS</td>
+<td>Generic Appliance Server：Rocky Linux+KVM 之上的一体化 OXE 载体，FlexLM 内嵌、免加密狗</td>
+<td>不是 ALE 专用硬件品牌机，而是"硬件无关的参考服务器形态"</td>
+</tr>
+<tr>
+<td>MAO</td>
+<td>OXE 数据库（Maintenance Administration Operation），存客户配置</td>
+<td>不是"数据库软件"泛称，是 OXE 专有配置库的专有名</td>
+</tr>
+<tr>
+<td>OPS</td>
+<td>许可文件组（xx.swk/xx.hw/hardware.mao/xx.zip）；购买许可=交付 OPS 文件，装入后才解锁功能</td>
+<td>不等于"license key 文本"；空库创建会把 OPS 一起抹掉</td>
+</tr>
+<tr>
+<td>RTR</td>
+<td>Right To Run：基于 Cloud Connect 的运行权校验，CC-SUITE-ID 终身不变</td>
+<td>是"开机权"而非功能许可；断连时的容错口径书中未展开</td>
+</tr>
+<tr>
+<td>swinst</td>
+<td>"Facilities"系统账户+安装菜单（Easy/Expert），管启停/备份/恢复/日期/账户</td>
+<td>既是账户名也是菜单入口；root 下进入免密</td>
+</tr>
+<tr>
+<td>netadmin</td>
+<td>IP 网络管理工具（完整安装/菜单模式 netadmin -m），管地址、Role、防火墙、DHCP、SMTP、主机表</td>
+<td>改完必须 Apply + 重启系统才生效；不是实时生效的配置中心</td>
+</tr>
+<tr>
+<td>WBM</td>
+<td>Web Based Management：OXE 内嵌免费 Web 管理（HTML5，仅 HTTPS），管用户与业务对象</td>
+<td>与"OmniVista"不同：内嵌零安装零许可；只搜参数名不搜值</td>
+</tr>
+<tr>
+<td>ARS</td>
+<td>Automatic Route Selection：按被叫号码选路由（表≤10 路由），是 SIP 中继可用的强制机制</td>
+<td>SIP 中继不能直抓，必须经 ARS 前缀+鉴别符走</td>
+</tr>
+<tr>
+<td>NPD</td>
+<td>Numbering Plan Description：定义主/被叫号码格式（ISDN International 等）、默认号码与 DID 翻译器选择</td>
+<td>不是编号计划本身，是"对外号码格式+CLI 组装"的描述符</td>
+</tr>
+<tr>
+<td>DID translator</td>
+<td>公外号码段↔内部分机段的翻译器（首外号+首内号+范围）</td>
+<td>同时服务来话落地与去话 CLI 组装，双向都要配</td>
+</tr>
+<tr>
+<td>Public COS (Access COS)</td>
+<td>按 Area（区号分组的外呼规则）×四种实体状态控制用户外呼权限的类别，共 32 个</td>
+<td>与 Phone Features COS 是两套 COS：一个管"能打哪些外面号码"，一个管"能用哪些功能"</td>
+</tr>
+<tr>
+<td>Entity</td>
+<td>OXE 逻辑分区（0-1000），绑定用户/中继/话务台，各有 CDT/状态/安装号/等待音</td>
+<td>不是"站点"；单机内即可多 Entity，默认用户归 Entity 1</td>
+</tr>
+<tr>
+<td>CDT</td>
+<td>Call Distribution Table：四状态（Day/Night/Mode1/Mode2）×3 路由+1 溢出号</td>
+<td>不是 ACD 队列；溢出号必须是单线分机</td>
+</tr>
+<tr>
+<td>Attendant group / 4059 EE</td>
+<td>话务台组（每节点≤50 组，组内并行/轮转呈现）与 4059 Extended Edition PC 话务台（不处理语音，必须关联话机/IPDSP）</td>
+<td>话务台≠总机话机；4059 只是操作台，声音走关联话机</td>
+</tr>
+<tr>
+<td>OmniMessage 4645</td>
+<td>纯软件语音邮件，可嵌 CS/GAS/OXE-V 或独立/虚拟机；每 OXE 节点仅一个 VM 系统</td>
+<td>"4645"不是硬件型号而是软件品牌；基础语音指南不可从话机录音</td>
+</tr>
+<tr>
+<td>chrony</td>
+<td>OXE 自 R101 起内置的 NTP 实现（chronyd），支持渐进/瞬时两种同步</td>
+<td>对时不再是"改一次日期"，而是常驻服务+客户端/服务器双角色</td>
+</tr>
+</tbody>
+</table></div>
+<h3>核心命题 (用自己的话)</h3>
+<ol>
+<li>OXE 是软件交换机，承载形态四种并存：Common HW 机架、虚拟机 OXE-V（5 种 hypervisor）、GAS（Rocky Linux 一体机）、Crystal CPU（退场中，由 XL 机架补高密度模拟口）；同一系统可混装，上限每节点 240 racks。</li>
+<li>系统准入走"账户-密码-防火墙"三道门：mtcl/swinst/root/client 四账户分工明确；root 只能本地直登、IP 侧必须 su；密码 ≥14 位多规则、失败 3-5 次锁 15 分钟、可强制 10-366 天老化（RADIUS 场景必须关闭老化）。</li>
+<li>双 IP 地址体系是理解 OXE 网络的钥匙：物理接口地址永远可达（含话务应用停止时），Role MAIN 地址只在话务应用运行时生效——所有设备与外部应用必须指向 Role 地址。</li>
+<li>安全基线从 N3 起默认全关：内部 iptables 防火墙默认 DROP 入站/转发、放行出站；一切外部互通靠"可信主机"白名单（单个/网段/域名/CSV 批量导入），"Allow SSH for all"只是开局临便门，配完必须关回。</li>
+<li>系统时间影响计费/留言/排障，用 chrony 做渐进同步（client/server 模式，UDP 123），首次装机用瞬时同步（需先停 chronyd）把钟先拨对。</li>
+<li>数据库与许可是一对：MAO 存配置，OPS 存许可；空库创建必然连 OPS 一起抹掉，所以"建空库→恢复 OPS→再起话务应用"是固定顺序；软件每 5 天自查 OPS，不一致先给 30 天宽限再进降级模式（话务台告警→4 小时后全机提示并禁内呼→循环）。</li>
+<li>许可双轨制：CAPEX 锁在本地 OXE（xx.swk+CPU-ID/Product-ID/ALU-ID），OPEX 锁在云端 LMS（R100.1 起 Purple on Demand）；RTR 运行权挂在 Cloud Connect 的 CC-SUITE-ID 上，终身不变。</li>
+<li>硬件上架三条线一个套路：机架/Shelf（地址=crystal number，1-255 且 18/19 保留）→ 板卡（OPS 自动建，位置不锁死）→ GD4/OMS/XL 的 GD 板自身配 IP+CS Role 地址（mgconfig/omsconfig），自动分配 crystal number 或 DHCP 时必须在 CS 库登记 MAC 并勾"Ethernet Address checked by TFTP"。</li>
+<li>用户开通三法按终端形态分：IP 话机绑 MAC（自动分配=插线输分机+密码）、IPDSP 绑 Phone Identifier、TDM 绑机架/板/端口物理地址；用户分机号全系统唯一、最长 8 位，初始密码统一 0000。</li>
+<li>编号计划是全系统的路由地基：每个前缀唯一对应一个功能，最长 8 位（0-9ABCD*#）；计划饱和用 Timer 23（默认 3 秒）区分"31T 功能前缀"和"31000 分机"；语音指南必须与计划一致，改前缀不改指南会误导用户。</li>
+<li>两套 COS 各管一摊：Phone Features COS（256 类）管功能开关与保护（1=允许 0=禁止），Connection/Transfer COS（矩阵）管"谁能连谁/谁转给谁"，Public COS 管"能打外线哪些区域"。</li>
+<li>去话链路是固定流水线：ARS 前缀→逻辑鉴别符→Entity 鉴别符选择器→真实鉴别符规则（号码→Area+ARS 表）→ARS 路由（去位/加位+编号命令表）→中继组→NPD（号码格式）→DID 翻译器（CLI）→外部 SIP 网关（运营商地址/凭证）。闭锁=同一流水线上 Area×Public COS×Entity 状态的交点检查。</li>
+<li>SIP 中继规格与弹性：每 TG 最多 32 接入（成对），标准型每对 62 通道（满配 992 并发）、Mini 型每对 4 通道（64）；第二网关可走 ARS 第二路由做备份，或 Pool Number 做负载均衡+原生互备（配 Supervision timer 才能快速切换）。</li>
+<li>语音邮件 4645 一节点一实例、软件化四拓扑（嵌 CS/独立服务器/主备分离/嵌其中一台 CS），上量 7000 信箱/30 端口/500-600 小时；邮件通知分 None/Basic/Advanced 三档，SMTP 经 netadmin 声明并加入防火墙可信主机。</li>
+</ol>
+<h3>论证链</h3>
+<p>教材以"讲义概念 → How-To 实验 → 行为验证"推进：每个实验给出精确到按键的菜单路径与验证命令（如 role 看话务状态、trkstat 看中继、sipextgw -l 看网关注册、traced 看信令），用可复现的行为闭环替代理论论证；容量与规则类内容用硬表（限制表、计时器表、端口表）支撑；架构类内容用拓扑图（出门链路九步图、4645 四拓扑、实体 CDT 结构）。</p>
+<hr />
+<h2>3. 批判 (Critical) ★</h2>
+<h3>作者的时代局限</h3>
+<ul>
+<li>基于 Edition 12 / R101.1 MD4：UMC 章节标 R1.1 且大量功能标注"NEXT DELIVERY"（Desk Sharing 等），功能清单会快速漂移。</li>
+<li>Crystal 硬件章节"书中自注不再深入讲解"却仍占篇幅；XL 机架作为新补位方案，参数细节多处写"XX.XX"占位，明显处于文档追赶硬件的状态。</li>
+<li>4645 安全只给 SA0046/TC1774 指针；语音加密（SRTP/DTLS）只在概览页点名，全书无一处实操。</li>
+</ul>
+<h3>作者的立场盲点</h3>
+<ul>
+<li>实验环境安全口径和生产口径混排：明文培训密码（Administrator5689! / Superuser2580<em> / alcatel / letacla1 / mg4.ale / mgxl.ale / </em>tx8000#）遍布正文；实验甚至建议"可直接关防火墙"。照抄进生产是事故。</li>
+<li>培训约定覆盖在通用规则上：空库强制用 FR 国家码、号码统一 10 位、ISDN 用"France"信令变体——每处都补了一句"真实现场要用对的"，但实验步骤本身会形成肌肉记忆。</li>
+<li>实验输出里出现的告警（如 "Warning rack 1-254: unknown rack type"、"BAD PCMS CODE"、"484 Address Incomplete"）原样贴出但大多不解释，初学者无法分辨哪些是预期现象。</li>
+<li>Rainbow/Cloud Connect/UMC 都只有概览或单章，深度全部指向其它课程（Advanced、CPU Loading、ENTPXTE402）与 MyPortal 文档。</li>
+</ul>
+<h3>未被证明的假设</h3>
+<ul>
+<li>假设读者始终有 RLAB/虚拟环境可用（生产中现场可能只有物理机+串口）。</li>
+<li>假设 ITSP1 SIP 模拟器行为等同于生产运营商（紧急号码显示管理、callback 规则、登记账号全部是模拟器特设口径，书中自己都在 Warning 里提醒）。</li>
+<li>假设 FlexLM/Cloud Connect/SPS 合同/MyPortal 权限等商务侧前提已就绪，书内不校验。</li>
+</ul>
+<h3>最强反对意见</h3>
+<p>"这本 Starter 教的是'一台 OXE 能跑起来'的最小闭环，不是交付"——SBC/网络 QoS/中继深调、ACD/CCD、Rainbow 与 Cloud Connect 的实操、UMC 批量运维全部外置；每个能力的 Boundary 必须标注"Starter/实验环境口径"，并显式指向 TC2005（SIP 运营商）、SA0046/TC1774（语音邮件安全）、TC3009（ALE-120）、ENTPXTE402（Cloud Connect）等外部文档作为生产化依据。</p>
+<blockquote>
+<p><strong>以上批判会直接成为下游 skill 的 Boundary (B) 字段来源</strong></p>
+</blockquote>
+<hr />
+<h2>4. 应用潜力 (Applicability)</h2>
+<h3>可 skill 化的内容</h3>
+<ul>
+<li>[x] OXE 登录与账户密码治理（四账户、14 位策略、失败锁定、老化）</li>
+<li>[x] 系统启停与 autostart 管理（含一键取消自启窗口）</li>
+<li>[x] Call Server IP 寻址（netadmin 完整安装/菜单模式、Role 地址）</li>
+<li>[x] OXE 内部防火墙与可信主机（单加/网段/域名/CSV 批量）</li>
+<li>[x] NTP/chrony 时间同步部署与巡检</li>
+<li>[x] 空数据库创建与恢复（国家码、Direct Link、重启顺序）</li>
+<li>[x] OPS 许可恢复/备份与 FlexLM 对接（spadmin 巡检、PANIC 判读）</li>
+<li>[x] GD4 硬件媒体网关上架（Shelf/板卡/mgconfig/MAC/压缩器）</li>
+<li>[x] OMS 虚拟媒体网关上架（omsconfig/资源声明）</li>
+<li>[x] XL 机架上架（GDXL/FXS32/机位规划/DHCP 类）</li>
+<li>[x] IP 话机静态/动态开通与维护（MAC 检索/换机/日志收集）</li>
+<li>[x] IPDSP 部署与网络端口基线</li>
+<li>[x] 用户 Profile 批量建户法</li>
+<li>[x] CS 内部 DHCP 服务器配置与巡检</li>
+<li>[x] 编号计划（前缀/后缀）规划与维护</li>
+<li>[x] Phone Features COS 管理（权利/功能/离机路由/默认溢出）</li>
+<li>[x] Connection &amp; Transfer COS 矩阵管理</li>
+<li>[x] 静态语音指南与音乐保持部署（含 580 试听）</li>
+<li>[x] 话务台组与 4059EE 部署（CDT/BLF/系统参数）</li>
+<li>[x] Entity 与 CDT 管理（状态小时表/经理组/等待指南）</li>
+<li>[x] OmniMessage 4645 部署与邮箱管理</li>
+<li>[x] 4645 邮件通知（SMTP 声明/CoS 三档/Thunderbird 验证）</li>
+<li>[x] 公共 SIP 中继开通全链路（TG/网关/ARS/NPD/DID/回拨/国际/紧急）</li>
+<li>[x] SIP 网关备份与负载均衡（第二路由/SIP Pool）</li>
+<li>[x] 外呼闭锁配置（Area/Public COS/Entity 三要素）</li>
+<li>[x] 紧急呼叫通知（区域/Location ID/紧急组）</li>
+<li>[x] 呼叫分配计时器调优（76/141/144/102/trunk COS/Entity 溢出）</li>
+<li>[x] 数据库备份与恢复（含 Cloud/Rainbow 剥离选项）</li>
+<li>[x] 维护排障工具箱（oxetrace/ippstat/incvisu/incinfo/syslog/securitystatustool/infocollect/tcpdump）</li>
+<li>[x] T0/T2 中继组开通与巡检</li>
+</ul>
+<h3>不适合 skill 化的内容</h3>
+<ul>
+<li>RLAB/ITSP1 教学基础设施细节（p1-26：POD 账号、模拟器账号密码——仅作实验口径 Boundary）</li>
+<li>培训评估/证书流程（p815-821）</li>
+<li>话机硬件规格目录页（p273-287：ALE-300/400/500、DECT/WLAN 参数表——归产品目录，仅保留选型要点）</li>
+<li>Crystal 硬件细节（书中自注不深入，p69-72 仅留退场背景）</li>
+<li>培训教室专用值（ISDN France 信令、10 位号码、#010/#012 教学前缀——标注实验口径后并入相应 skill 的 conditions）</li>
+</ul>
+<h3>预估 skill 数量</h3>
+<p><strong>约 12-14 个能力单元</strong>（阶段 1.5 决定保留，阶段 1.6 与输出模式决定独立入口数量；建议入口软预算 10 含路由入口）</p>
+<h3>原书关键任务清单（覆盖审计基准，不从旧 verified 反推）</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>task_id</th>
+<th>读者任务</th>
+<th>原文位置/图表</th>
+<th>预期交付物</th>
+<th>重要性及依据</th>
+<th>尚缺条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>task-01</td>
+<td>通过 V24/SSH/console 登录 OXE 并管理四账户与密码策略</td>
+<td>p82-107</td>
+<td>可控的系统访问+密码基线</td>
+<td>一切操作的准入；密码策略是安全底线</td>
+<td>生产密码需客户自定</td>
+</tr>
+<tr>
+<td>task-02</td>
+<td>启动/停止/重启系统并管理 autostart</td>
+<td>p108-125</td>
+<td>正确的系统运行态</td>
+<td>维护与恢复的前置动作</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-03</td>
+<td>配置 Call Server IP（物理地址+Role 地址）</td>
+<td>p126-133, p145-149</td>
+<td>双地址可用的 CS</td>
+<td>全部 IP 互通的地基</td>
+<td>网络规划在书外</td>
+</tr>
+<tr>
+<td>task-04</td>
+<td>配置 OXE 内部防火墙与可信主机</td>
+<td>p134-144, p156-163</td>
+<td>白名单生效的 iptables</td>
+<td>N3 起默认全关，不做则无法互通</td>
+<td>客户网络清单在书外</td>
+</tr>
+<tr>
+<td>task-05</td>
+<td>部署 NTP/chrony 时间同步</td>
+<td>p164-183</td>
+<td>时钟受控的系统</td>
+<td>计费/留言/排障依赖时间</td>
+<td>上级 NTP 源在书外</td>
+</tr>
+<tr>
+<td>task-06</td>
+<td>创建空数据库</td>
+<td>p184-193</td>
+<td>按国家码初始化的 MAO</td>
+<td>全部配置的起点</td>
+<td>无（注意抹许可副作用）</td>
+</tr>
+<tr>
+<td>task-07</td>
+<td>恢复/备份 OPS 许可并对接 FlexLM</td>
+<td>p194-223</td>
+<td>许可生效的系统</td>
+<td>没许可一切功能为 0</td>
+<td>Actis 订购流程在书外</td>
+</tr>
+<tr>
+<td>task-08</td>
+<td>上架 GD4 硬件媒体网关</td>
+<td>p245-258</td>
+<td>IN SERVICE 的机架板卡</td>
+<td>话机/中继的物理承载</td>
+<td>硬件安装工艺在书外</td>
+</tr>
+<tr>
+<td>task-09</td>
+<td>上架 OMS 虚拟媒体网关</td>
+<td>p259-268</td>
+<td>IN SERVICE 的 OMS</td>
+<td>虚拟化交付的媒体面</td>
+<td>hypervisor 侧在书外</td>
+</tr>
+<tr>
+<td>task-10</td>
+<td>上架 XL 机架（GDXL/FXS32）</td>
+<td>p73-78, p757-772</td>
+<td>384 FXS 可用</td>
+<td>高密度模拟口场景</td>
+<td>-48V 电源工艺在书外</td>
+</tr>
+<tr>
+<td>task-11</td>
+<td>开通 IP 话机（静态/动态）并做换机/日志维护</td>
+<td>p320-329, p355-365</td>
+<td>在服的 IP 话机</td>
+<td>最高频交付动作</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-12</td>
+<td>部署 IPDSP 软话机</td>
+<td>p287-289, p308-314</td>
+<td>在服的 IPDSP</td>
+<td>远程/软终端场景</td>
+<td>PC 音频设备前提</td>
+</tr>
+<tr>
+<td>task-13</td>
+<td>用 User Profile 批量建户</td>
+<td>p315-319</td>
+<td>模板化用户</td>
+<td>规模开通提效</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-14</td>
+<td>创建数字/模拟用户并巡检</td>
+<td>p330-341</td>
+<td>TDM 用户可用</td>
+<td>传统终端场景</td>
+<td>TDM 功耗约束（p299-306）</td>
+</tr>
+<tr>
+<td>task-15</td>
+<td>配置 CS 内部 DHCP 服务器</td>
+<td>p342-365</td>
+<td>话机动态获址</td>
+<td>无客户 DHCP 时的标准方案</td>
+<td>客户现有 DHCP 时改走客户侧</td>
+</tr>
+<tr>
+<td>task-16</td>
+<td>规划并维护编号计划（前缀/后缀）</td>
+<td>p366-388</td>
+<td>合理的拨号计划</td>
+<td>全系统路由地基</td>
+<td>客户需求分析在书外</td>
+</tr>
+<tr>
+<td>task-17</td>
+<td>管理 Phone Features COS 与 Connection/Transfer COS</td>
+<td>p389-424</td>
+<td>权限受控的用户群</td>
+<td>功能合规与防滥用</td>
+<td>客户权限矩阵在书外</td>
+</tr>
+<tr>
+<td>task-18</td>
+<td>部署静态语音指南与音乐保持</td>
+<td>p425-448</td>
+<td>多语言指南+MOH 生效</td>
+<td>用户感知最直接</td>
+<td>录音内容制作在书外</td>
+</tr>
+<tr>
+<td>task-19</td>
+<td>部署话务台组与 4059EE（CDT/BLF）</td>
+<td>p449-495</td>
+<td>可用的话务台</td>
+<td>前台场景刚需</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-20</td>
+<td>管理 Entity 与 CDT（状态/经理组）</td>
+<td>p496-525</td>
+<td>按部门分流生效</td>
+<td>多部门个性化路由</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-21</td>
+<td>部署 4645 语音邮件与邮件通知</td>
+<td>p526-571</td>
+<td>可留言可通知</td>
+<td>语音邮件基础业务</td>
+<td>SMTP 服务器由客户提供</td>
+</tr>
+<tr>
+<td>task-22</td>
+<td>开通公共 SIP 中继（全链路）</td>
+<td>p572-656</td>
+<td>可打外线的 SIP 中继</td>
+<td>外线互通核心任务</td>
+<td>运营商参数按 TC2005/运营商文档</td>
+</tr>
+<tr>
+<td>task-23</td>
+<td>配置外呼闭锁（Area×Public COS×Entity）</td>
+<td>p657-681</td>
+<td>受控的外呼权限</td>
+<td>防盗打与合规</td>
+<td>客户策略在书外</td>
+</tr>
+<tr>
+<td>task-24</td>
+<td>配置紧急呼叫通知（区域/Location ID/紧急组）</td>
+<td>p682-699</td>
+<td>紧急事件可感知</td>
+<td>合规与安全刚需</td>
+<td>运营商 Location ID 格式在书外</td>
+</tr>
+<tr>
+<td>task-25</td>
+<td>调优呼叫分配计时器</td>
+<td>p700-719</td>
+<td>溢出时序符合预期</td>
+<td>话务体验调参</td>
+<td>无</td>
+</tr>
+<tr>
+<td>task-26</td>
+<td>数据库备份与恢复</td>
+<td>p720-736</td>
+<td>可恢复的配置资产</td>
+<td>灾备底线</td>
+<td>异地存储策略在书外</td>
+</tr>
+<tr>
+<td>task-27</td>
+<td>运用维护排障工具箱</td>
+<td>p737-756</td>
+<td>抓包/日志/事件闭环</td>
+<td>一线排障能力</td>
+<td>深度分析在 Advanced 课程</td>
+</tr>
+<tr>
+<td>task-28</td>
+<td>开通 T0/T2 中继组</td>
+<td>p773-796</td>
+<td>ISDN 中继可用</td>
+<td>传统运营商场景</td>
+<td>运营商信令变体需确认</td>
+</tr>
+<tr>
+<td>task-29</td>
+<td>用 UMC 做云侧简化管理</td>
+<td>p797-814</td>
+<td>云端可管理</td>
+<td>新交付模式</td>
+<td>Fleet Dashboard/MyPortal 权限在书外</td>
+</tr>
+</tbody>
+</table></div>
+<h3>优先级排序 (按"最能独立交付一台 OXE"的角度)</h3>
+<ol>
+<li>task-01/02 登录与启停（一切前提）</li>
+<li>task-03/04 IP 与防火墙（网络不通全停）</li>
+<li>task-06/07 空库与许可（功能解锁）</li>
+<li>task-08/09/10 三类媒体网关上架（承载面）</li>
+<li>task-11/12/14 用户终端开通（业务面）</li>
+<li>task-22 公共 SIP 中继（外线闭环，全书中权重最高的实验链）</li>
+<li>task-16/17/23 编号计划与两级闭锁（路由与合规）</li>
+<li>task-19/20/25 话务台/Entity/计时器（呼叫处理）</li>
+<li>task-18/21 语音指南与 4645（体验与留言）</li>
+<li>task-05/15/24/26/27/28/29/13（支撑与专项）</li>
+</ol>
+<hr />
+<h2>✅ 质量门检查</h2>
+<ul>
+<li>[x] 主旨能用一句话说清</li>
+<li>[x] 骨架列出 12 个一级部分（环境 1 + 系统观 2 + 准入链 5 + 配置域 2 + 业务域 2，运维收尾并入第 12 条说明；培训收尾为附注未计入）</li>
+<li>[x] 术语按实际内容列出（17 个）</li>
+<li>[x] 已检查作者局限/假设（实验密码、FR 口径、未解释告警、深度外置课程）</li>
+<li>[x] 原书关键任务 29 项，全部有来源页码、交付物与重要性依据</li>
+<li>[x] 本任务为流水线自动化阶段任务，按任务书全量提取授权连续执行（2026-09-23）</li>
+</ul>
+<p><strong>用户确认时间</strong>: 2026-09-23（流水线授权）</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniPCX Enterprise - Starter (Participant's Guide, Edition 12) | edition: Edition 12 | pages: 821 页 -->

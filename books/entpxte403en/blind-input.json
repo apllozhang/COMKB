@@ -1,0 +1,228 @@
+{
+ "code": "entpxte403en",
+ "capability_catalog": [
+  {
+   "slug": "osip-protocol-foundation",
+   "name": "SIP 协议机理与 OXE SIP 架构",
+   "description": "SIP 协议栈与消息响应码、注册与呼叫时序、OXE 六组件架构、域名定制（netadmin 19）、空间冗余节点名与 DNS 委托"
+  },
+  {
+   "slug": "osip-user-forms",
+   "name": "SIP 用户形态选型与容量核算",
+   "description": "SEPLOS 与 SIP Device 两形态服务等级对比、软件锁 177/345/430、容量 15000 用户/20000 设备、ALE 终端家族谱系与功能矩阵"
+  },
+  {
+   "slug": "osip-sip-device-provisioning",
+   "name": "SIP Device 用户开通与维护",
+   "description": "私网+私有 SIP 中继组+本地网关三件套、62 通道/992 TS 口径、代理注册器参数、建户与信任主机、sipregister/trkstat 验证"
+  },
+  {
+   "slug": "osip-deskphone-provisioning",
+   "name": "ALE 话机 SIP 开通与 NOE↔SIP 切换",
+   "description": "ALE-2/3 与 ALE-x00 六段施工、DHCP 类/VCI、双分区 Force Download、NOE 转 SIP 两路径三触发、auto-discovery 与口令三件"
+  },
+  {
+   "slug": "osip-ales-provisioning",
+   "name": "ALES 软终端开通与认证",
+   "description": "LDAP/本地认证与互斥切换、密码策略、防隔离 Framework 3s/50 条、移动端 Keep Alive=NO 与轮询 ≥21600s、一号多机 DUID 互斥"
+  },
+  {
+   "slug": "osip-certificate-management",
+   "name": "OXE DM 证书定制与安全级",
+   "description": "内部 PKI 生成（SAN/CTL）、401 与 mTLS 8443 双认证通道、OpenSSL 安全级三级语义、老话机证书排查与降级代价"
+  },
+  {
+   "slug": "osip-otsbc-carrier-interconnect",
+   "name": "经 SBC 的 SIP 运营商接入与 OTSBC 部署",
+   "description": "OXE 侧七件事（信任主机/中继组/外部网关/ARS/DID/NPD/回拨）、OTSBC 向导八屏、排障三连（编解码放行/消息域改写/Contact User）"
+  },
+  {
+   "slug": "osip-remote-workers",
+   "name": "远程办公方案与落地",
+   "description": "SBC/RP 与 VPN 两条路、≤500 反代规模红线、OTSBC 内嵌反代七段配置、EDS 零touch 四限制、证书五方信任链、N4 原生加密、ALES Remote Worker"
+  },
+  {
+   "slug": "osip-codec-negotiation",
+   "name": "编解码协商与验证",
+   "description": "五层决策链（系统总闸/域带宽/profile 五席/终端能力/网关联动）、优先级六级序、488 法线、compvisu 四场景读数"
+  },
+  {
+   "slug": "osip-sip-troubleshooting",
+   "name": "SIP 跟踪采集与维护排障",
+   "description": "状态四查、motortrace 级别表、oxetrace 打包取证进 Wireshark、mtracer/sipdump 深挖（强拆/过滤）、dhs3_init -R SIPMOTOR 恢复口径"
+  },
+  {
+   "slug": "osip-dm-management",
+   "name": "SIP 设备管理选型与 profile 体系",
+   "description": "OXE DM 与 8770 分界、profile 默认 0 上限 100 与本地/远程分治、配置文件命名、downbin 二进制轮询、无备份暗坑"
+  },
+  {
+   "slug": "osip-sip-features",
+   "name": "ALE SIP 业务特性配置",
+   "description": "监督与代接（30000/40 键、事件 510-513）、寻线组三型与并行组禁令、多终端配额、可编程键 #3-#122、RCC 三档、按名呼叫 48/16"
+  },
+  {
+   "slug": "osip-lab-environment",
+   "name": "POD 实验环境与运营商模拟器",
+   "description": "RLAB 拓扑与账号口径、POD 准备四段、ITSP1 直连与 ITSP2 经 SBC 号码规则与变换（全部实验口径）"
+  }
+ ],
+ "cases": [
+  {
+   "id": "should-proto-01",
+   "prompt": "我们要把 OXE 接 SIP 话机，听说默认域名会报证书错误，OXE 域名在哪里改？改成什么？"
+  },
+  {
+   "id": "should-proto-02",
+   "prompt": "客户站点要做双机冗余，SIP 话机和软终端应该连哪个地址？DNS 要怎么配合？"
+  },
+  {
+   "id": "should-forms-01",
+   "prompt": "客户买了一台会议室终端和一个人脸门禁，要接入 OXE，用哪种 SIP 接入形态？他们想顺便加入代接组行不行？"
+  },
+  {
+   "id": "should-forms-02",
+   "prompt": "给客户报 SIP 方案，站点要 300 台话机加 100 个软终端，许可怎么算？有没有上限？"
+  },
+  {
+   "id": "should-device-01",
+   "prompt": "OXE 上要接一台 SIP 会议话机，中继组建好了但话机就是注册不上，应该按什么顺序排查？"
+  },
+  {
+   "id": "should-device-02",
+   "prompt": "SIP 中继组现在 2 个虚拟接入不够用，我改成 8 个之后 trkstat 显示新 TS 都是 Free，是不是马上能用了？"
+  },
+  {
+   "id": "should-desk-01",
+   "prompt": "新到一批 ALE-300 话机要批量入网，DHCP 和 DM 怎么配？话机不想到每台手工录 MAC 有什么办法？"
+  },
+  {
+   "id": "should-desk-02",
+   "prompt": "站点里 200 台 NOE 话机要转成 SIP，怎么切最快？有哪些话机是不能切的？"
+  },
+  {
+   "id": "should-ales-01",
+   "prompt": "给居家员工装 ALE SoftPhone，公司的账号在 AD 里，登录怎么对接？密码策略有什么要求？"
+  },
+  {
+   "id": "should-ales-02",
+   "prompt": "安卓手机上的 ALES 收到来电推送，但配置更新通知一直不生效，还有同事说软件会莫名 30 分钟连不上"
+  },
+  {
+   "id": "should-cert-01",
+   "prompt": "OXE 升级到 R101 之后，几台老话机突然注不上册了，跟证书有关系吗？怎么处理？"
+  },
+  {
+   "id": "should-cert-02",
+   "prompt": "要给 SIP 话机生成正式的 OXE 证书，内部 PKI 怎么操作？生成完要验证什么东西？"
+  },
+  {
+   "id": "should-sbc-01",
+   "prompt": "站点要接一家新的 SIP 运营商，OXE 这一侧从头到尾要配哪些东西？"
+  },
+  {
+   "id": "should-sbc-02",
+   "prompt": "OTSBC 向导跑完了，打外线只有 G711 音质很差，而且运营商说来话路由不到我们，怎么一步步修？"
+  },
+  {
+   "id": "should-remote-01",
+   "prompt": "客户有 80 个员工要在家办公用软电话，方案怎么搭？需要另外买什么组件？"
+  },
+  {
+   "id": "should-remote-02",
+   "prompt": "给异地员工直接寄一台出厂话机，他家里插上网线就能自己开通吗？有什么前提条件？"
+  },
+  {
+   "id": "should-codec-01",
+   "prompt": "用户投诉打电话音质突然变差，怀疑是编解码被降级了，怎么确认实际用的算法？"
+  },
+  {
+   "id": "should-codec-02",
+   "prompt": "对接的一个平台一直回 SIP 488，对方说是我们拒了他们的 G711，可能是什么原因？"
+  },
+  {
+   "id": "should-trace-01",
+   "prompt": "ALE 支持让我们复现问题并附上信令证据，OXE 上用什么工具采集打包比较好？"
+  },
+  {
+   "id": "should-trace-02",
+   "prompt": "有一路呼叫卡死了挂不掉，能不能从 OXE 上强制拆掉？顺便看看许可还剩多少？"
+  },
+  {
+   "id": "should-dm-01",
+   "prompt": "客户站点既有新的 ALE 话机，还有 8088 酒店话机和一批老 8028s，设备管理用 OXE 自带的还是 8770？"
+  },
+  {
+   "id": "should-dm-02",
+   "prompt": "数据库刚做过一次恢复，现在全站话机都拿不到配置文件，怎么回事？"
+  },
+  {
+   "id": "should-feat-01",
+   "prompt": "秘书要看部门六个人的通话状态并能代接，SIP 话机上怎么配？有没有数量限制？"
+  },
+  {
+   "id": "should-feat-02",
+   "prompt": "客服组 10 个人要轮流接来电，既有 NOE 话机也有 SIP 话机，寻线组怎么建？"
+  },
+  {
+   "id": "should-lab-01",
+   "prompt": "培训 POD 开下来了，第一天要做什么准备？外线怎么先打通？"
+  },
+  {
+   "id": "should-lab-02",
+   "prompt": "实验里拨 0110312345 出局，运营商模拟器那边收到的号码是什么格式？"
+  },
+  {
+   "id": "bait-proto-01",
+   "prompt": "给我逐字段讲讲 SIP INVITE 报文里 Via、Contact、Route 头的语法和 RFC 3261 的规定"
+  },
+  {
+   "id": "bait-forms-01",
+   "prompt": "这批门禁终端形态选好了，现在就把它们的私网、中继组和本地网关配上"
+  },
+  {
+   "id": "bait-desk-01",
+   "prompt": "这批 ALE-300 已经在服了，现在要给前台配可编程键和监督按键"
+  },
+  {
+   "id": "bait-ales-01",
+   "prompt": "公司全员用 VDI 虚拟桌面办公，想把 ALES 装进虚拟桌面镜像里统一下发"
+  },
+  {
+   "id": "bait-cert-01",
+   "prompt": "帮我们设计企业级 CA 的证书策略：证书模板、吊销列表和自动续期的制度"
+  },
+  {
+   "id": "bait-sbc-01",
+   "prompt": "运营商发来了正式参数表：SIPS 强制、P-Asserted-Identity 策略和号码格式，帮我逐条核对怎么配"
+  },
+  {
+   "id": "bait-remote-01",
+   "prompt": "远程办公的 SBC 已经配好了，现在把这台话机在 OXE 上开通注册"
+  },
+  {
+   "id": "bait-feat-01",
+   "prompt": "OXE 自带的 ACD 呼叫中心怎么建队列、设坐席和技能路由？"
+  },
+  {
+   "id": "edge-did-01",
+   "prompt": "DID 翻译到底按 33210N41000 范围 500 配，还是按 33920x31000 范围 1000 配？书上两处不一样"
+  },
+  {
+   "id": "edge-matrix-01",
+   "prompt": "ALE-3 到底支持不支持视频？可编程键到底是 8 个还是 12 个？"
+  },
+  {
+   "id": "edge-version-01",
+   "prompt": "我们的 OXE 还是 R100.0 的版本，能用 8443 的 mTLS 下载认证和远程加密放行吗？"
+  },
+  {
+   "id": "edge-quarantine-01",
+   "prompt": "一台高频网关设备总是被 OXE 自动隔离，日志里全是 f003 告警，怎么让它不被隔离？"
+  },
+  {
+   "id": "edge-supervision-01",
+   "prompt": "被监督的人用的是 NOE 话机，监督员的 SIP 话机能监视到他的状态吗？iPhone 上的 ALES 呢？"
+  }
+ ]
+}

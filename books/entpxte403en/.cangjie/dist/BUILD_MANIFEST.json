@@ -1,0 +1,43 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\osip-ales-provisioning.md": "8c3ae659b6e06de9949d7ebc1622380767d34da37c1ffb4ed285d4eec9e1a037",
+    "references\\capabilities\\osip-certificate-management.md": "d6c887dae3fcfeb9e67ac34e37cfcce0f5bdbfbc10fcc2e172377cc3c8dab15a",
+    "references\\capabilities\\osip-codec-negotiation.md": "c3902ef78d0a7f91176f5ae247ba058951c10a41d2112506f190d21e07b8752a",
+    "references\\capabilities\\osip-deskphone-provisioning.md": "feac71d585559fedfea2ff126411943e0f05f2c1c4ba7b96c239db346aecf385",
+    "references\\capabilities\\osip-dm-management.md": "29fbd918743b5e59dbe94d85e3f65a06ef3e800ffbc958b716470d7ed033a926",
+    "references\\capabilities\\osip-lab-environment.md": "2f089ef2f4c7e5b94c167922cf2cce9314ef98746f02a9c981b4fbfbb0e6eb1a",
+    "references\\capabilities\\osip-otsbc-carrier-interconnect.md": "055edb2d2b33201b0508d7cda266dc404f8ba42f16da4e9ca68754e47091146b",
+    "references\\capabilities\\osip-protocol-foundation.md": "886cdfafbcdf4a9096d7edc4ca2a6c3277768b9941b56170c98c8a5dcc0700c4",
+    "references\\capabilities\\osip-remote-workers.md": "0fa3c88b47dabe5f06b492ad5d596360be281bb6b05e0b128326e662755fb739",
+    "references\\capabilities\\osip-sip-device-provisioning.md": "95fce4e3ddcf08f2169b089d9d8d9aeb8ea812a94ab7d3e5c8b1854789fc3d74",
+    "references\\capabilities\\osip-sip-features.md": "160305e75467d0ed163566dfbc519da84982d12726ef0729ef35760a9bf37137",
+    "references\\capabilities\\osip-sip-troubleshooting.md": "8d3ccb9dc26c28d3ec4aca3e17092f7c845cef64e91d2b356777172823800afd",
+    "references\\capabilities\\osip-user-forms.md": "adfc2f5746153308235f33dc5087150c538be51c024270dc81783dcbf412bd0f",
+    "references\\capability-index.md": "46b83ad5229a33278649784582129c389e60f53ce01ffdc5f4d478aecdc62ddb",
+    "references\\cheatsheet.md": "46dab0184488b9d07e28e42b8398ab23e4f494450ae8ff36bd1e7598f37ca275",
+    "references\\glossary.md": "d228c84f91a96b07dbb63982b834d60fe4ad17c4f1fcffbdc876ed9e49a90114",
+    "references\\overview.md": "988023265c8e3ec5a78ddb4939aa3cc4e283388a54e753090038e115820756c2",
+    "SKILL.md": "8cf7af6ca0407f27f5faa774680fc8379a523a7c0321dfe1f6a7142c36e7d0d8"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.oxe-sip",
+  "bundle_sha256": "ff27070a322625d28bac3aba2c2c33e6439eac50396924c28cd4e84651bd807d",
+  "variant": "single",
+  "run_id": "run-20260924-200006-8f760d",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 13,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

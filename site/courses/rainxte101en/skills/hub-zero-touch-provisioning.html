@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>ALE 设备 zero-touch 部署与 DECT 移动</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Rainbow Hub</h2><p>Edition 16 · 351 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/rainxte101en/index.html">课程首页</a><a href="/courses/rainxte101en/digest.html">精华长文</a><a href="/courses/rainxte101en/overview.html">教书理解</a><a href="/courses/rainxte101en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/rainxte101en/skills/hub-company-voice-subscription.html">Rainbow 公司体系与 Voice 订阅开通</a><a href="/courses/rainxte101en/skills/hub-cloud-pbx-provisioning.html">Cloud PBX 声明与话务配置</a><a href="/courses/rainxte101en/skills/hub-member-telephony.html">成员管理与话务配置</a><a href="/courses/rainxte101en/skills/hub-zero-touch-provisioning.html">ALE 设备 zero-touch 部署与 DECT 移动</a><a href="/courses/rainxte101en/skills/hub-device-maintenance.html">设备维护日志与 Generic SIP 接入</a><a href="/courses/rainxte101en/skills/hub-hunt-groups.html">呼叫组与话务分配</a><a href="/courses/rainxte101en/skills/hub-attendant-supervision.html">话务台与监督组</a><a href="/courses/rainxte101en/skills/hub-welcome-service-ivr.html">欢迎服务与 IVR</a><p class="course-nav-group">路由能力</p><a href="/courses/rainxte101en/skills/hub-network-readiness.html">Rainbow Hub 网络就绪核查</a><a href="/courses/rainxte101en/skills/hub-multisite.html">多站点配置</a><a href="/courses/rainxte101en/skills/hub-analytics.html">分析体系</a><a href="/courses/rainxte101en/skills/hub-maintenance-support.html">Hub 维护与支持体系</a><p class="course-nav-group">已安装技能</p><a href="/courses/rainxte101en/index.html">rainbow-hub（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/rainxte101en/index.html">RAINXTE101EN</a><span>/</span><span aria-current="page">ALE 设备 zero-touch 部署与 DECT 移动</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>ALE 设备 zero-touch 部署与 DECT 移动</h1></div><dl><div><dt>Skill ID</dt><dd>hub-zero-touch-provisioning</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>ALE 设备 zero-touch 部署与 DECT 移动（话机/基站/手持机）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Designed for Zero-Touch deployment. Centrally configured and managed via Rainbow administration interface. Only one physical SIP device per user account"（p134）
+"If the device receives a specific management URL in option 43, 66 or 67, Rainbow Hub's 'zero touch' mechanism will be broken, as the DHCP option will take precedence."（p136）
+"A Myriad device cannot start up in Cloud mode if a PBX is present on the LAN where the device is connected: TFTP will be given priority."（p137）
+"8328 SIP-DECT Single base station ... 8368 SIP-DECT Multi cell base station"（p148）</p>
+</blockquote>
+<p>出处：RAINXTE101EN p105-113, p133-139, p147-164。</p>
+<h2>I — 自述</h2>
+<p>端侧供给分三等：ALE 原生（Myriad/ALE-2 话机 + DECT，zero-touch、集中管理、官方支持）、入门 ALE-2、第三方 Generic SIP（另一能力卡）。zero-touch 机制链路四段：</p>
+<ol>
+<li><strong>注册</strong>：管理员按 MAC 声明设备（建设备时或建成员时；手工或 CSV 批量）</li>
+<li><strong>关联</strong>：每台设备必须关联到成员——每用户账号仅一台物理 SIP 设备（DECT 手持机同受此约束）</li>
+<li><strong>取配</strong>：设备上电经 DHCP 取 IPv4 参数后连云自动取配置与固件（出厂版本不同，多次重启共约 5-10 分钟）</li>
+<li><strong>验收</strong>：屏上已注册用户名前出现绿点即为注册成功</li>
+</ol>
+<p>zero-touch 三条技术红线（p136-137）：</p>
+<ol>
+<li>DHCP option 43/66/67 会以更高优先级覆盖 zero-touch 指向——必须在 DHCP 服务器禁用；禁不掉则下发的管理 URL 必须是 https://rdd.openrainbow.com</li>
+<li>LAN 内有 PBX 做 TFTP 时会抢先，设备起不了 Cloud 模式</li>
+<li>除静态 IP 等极特殊需求外，禁止用设备自带 web 管理页配按键等——正确运行只由 zero-touch 保证；未分配用户的设备取不到配置（初始化报 Config Failed）</li>
+</ol>
+<p>设备网络端口表（p136，防火墙放行依据）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>协议/端口</th>
+<th>用途</th>
+<th>源</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TCP 5061</td>
+<td>SIP over TLS</td>
+<td>SIP 设备</td>
+<td>*.openrainbow.com</td>
+</tr>
+<tr>
+<td>TCP 443</td>
+<td>配置与 API</td>
+<td>SIP 设备</td>
+<td>*.openrainbow.com</td>
+</tr>
+<tr>
+<td>UDP 30000-44999</td>
+<td>SRTP 媒体</td>
+<td>SIP 设备、Rainbow 软话机</td>
+<td>*.openrainbow.com</td>
+</tr>
+<tr>
+<td>UDP 53</td>
+<td>DNS</td>
+<td>SIP 设备</td>
+<td>DNS 服务器</td>
+</tr>
+<tr>
+<td>UDP 123</td>
+<td>NTP</td>
+<td>SIP 设备</td>
+<td>pool.ntp.org</td>
+</tr>
+<tr>
+<td>TCP 22</td>
+<td>SSH（若启用，原文 si activé）</td>
+<td>SIP 设备</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p>DECT 两档方案对照（p148-150）：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>8328（单/双站）</th>
+<th>8368（多站）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基站数/站点</td>
+<td>1-2 站</td>
+<td>最多 254 站</td>
+</tr>
+<tr>
+<td>手持机容量</td>
+<td>最多 20 台</td>
+<td>40 台/站，全系统 1000 台</td>
+</tr>
+<tr>
+<td>并发呼叫</td>
+<td>10 路</td>
+<td>10 路/站</td>
+</tr>
+<tr>
+<td>尺寸</td>
+<td>95×93×24 mm</td>
+<td>室内 144×140×35 mm / 室外 365×210×65 mm IP55</td>
+</tr>
+<tr>
+<td>覆盖半径</td>
+<td>50-300 m，站间无缝切换</td>
+<td>同左</td>
+</tr>
+</tbody>
+</table></div>
+<p>补充口径：</p>
+<ol>
+<li>基站按 MAC 声明：8328 选 mono/dual，8368 选 multi 且必须录主站 IP——副站靠它找主站；上线基站可远端重启</li>
+<li>手持机按 IPEI 注册且必须选精确型号 8214/8262；只能关联到尚无物理终端的用户</li>
+<li>8214 办公型、8262（PTI）恶劣环境/独行工人型；两档都经 CAT-iq 对接本地告警服务器（已验证 F24、Newvoice，Tamat 进行中）</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>声明话机设备（手工+批量）</strong>（p156-159，How-To）：</p>
+<ol>
+<li>Communication 页签 → Devices 页签 → 点 Create。</li>
+<li>填 Device type、Mac address、Phone type（虚拟课堂无实物可建练习条目）。</li>
+<li>批量练习：先删几台已有设备 → 同页签点 Import → 下载模板。</li>
+<li>改 CSV：action=create、macAddress、deviceType（例 Myriad M7）。</li>
+<li>上传文件 → 设备出现在 Devices 列表，留待关联成员。</li>
+</ol>
+<p><strong>建 DECT 基站并注册 8214 手持机</strong>（p160-164，How-To）：</p>
+<ol>
+<li>Devices 页签 → DECT base stations → Create primary base。</li>
+<li>填 Name（多站命名要有意义）、MAC、Type=8328、Cell mode=Mono。</li>
+<li>编辑基站可开 Debug session、故障时可远端重启。</li>
+<li>Devices 页签选 8214 DECT Handset → 填 IPEI 号与描述。</li>
+<li>把手持机分配给 Alice Anderson（其此前无物理终端）。</li>
+<li>把手持机挂到步骤 1 建的基站上。</li>
+<li>从 8214 手持机安装菜单启动注册 → 手持机显示 Running 即验收通过。</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新话机开箱即用怎么实现；话机报 Config Failed/No Service；功能键不下发；批量导入 50 台话机；门店/车间要移动分机；DECT 选 8328 还是 8368；手持机注册不上。</p>
+<p>语言信号：zero-touch / 零接触 / MAC 地址 / IPEI / Myriad / M7 / M5 / M3 / ALE-2 / DECT / 8328 / 8368 / 8214 / 8262 / 基站 / base station / 手持机 / handset / Config Failed / DHCP option / 绿点 / EM200。</p>
+<p>与相邻能力区分：第三方话机与日志排障归设备维护与 Generic SIP 能力；设备声明是 BP 专属动作（p49）归公司订阅能力的权责段；端口全集与带宽归网络就绪能力（路由卡）。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：设备清单（型号/MAC/IPEI）、成员名单与站点、网络现状（DHCP option 43/66/67、LAN 内有无旧 PBX TFTP、防火墙端口表）。设备声明为 BP 专属动作。</p>
+<ol>
+<li>排雷网络：核对端口表放行；DHCP option 43/66/67 禁用或改指 rdd.openrainbow.com；确认 LAN 内无 TFTP 抢先。完成标准：三项核查记录在案</li>
+<li>声明设备：手工逐台或 CSV 批量（action/MAC/deviceType）。完成标准：设备出现在 Devices 列表</li>
+<li>关联成员：每设备绑一名尚无物理终端的用户。完成标准：绑定关系在列</li>
+<li>上电验收：设备自动取配（约 5-10 分钟、可能多次重启）→ 屏上用户名前绿点。完成标准：绿点验收通过</li>
+<li>DECT 线：建基站（8368 录主站 IP）/ 按 IPEI 注册手持机（选精确型号）/ 挂基站 → 手持机显示 Running。完成标准：手持机 Running 且可呼入呼出</li>
+<li>静态 IP 特例（如需）：菜单 Advanced settings → Network → IPv4 settings；已配过 Hub 的设备先长按 conf 键恢复出厂。完成标准：静态地址生效且改掉出厂密码</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>设备报 Config Failed/No Service → 停，先查 MAC 有没有录、有没有关联成员（未分配设备取不到配置与 Hub 固件）</li>
+<li>现场想直接登话机 web 页改按键 → 停，这是高频坏习惯（n22），配置一律经 Rainbow 管理端下发</li>
+<li>用户要"一人两台物理话机" → 停，每用户仅一台物理 SIP 设备（p134）；第二台只能换形态（纯软话机）或换人</li>
+<li>手持机注册按了 Generic SIP 类型 → 停，zero-touch 手持机必须按精确型号 8214/8262（n28）</li>
+</ul>
+<p>输出契约：注册成功的终端清单（绿点/Running 验收记录）+ 设备-成员绑定表 + 网络排雷记录。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>话机参数外链（aledevice.com）官方自注"不一定适用于 Rainbow Hub 语境"（p107，n17）——采购口径以产品目录与 Features List 为准</li>
+<li>Myriad 参数锚点：M7/M5/M3 彩屏 3.5/2.8/1.6 英寸、超宽频仅免提模式、M7 独有 BT4.1、EM200 扩展最多 10 页×20 LED 键、M 系 PoE class 2（p107，p30）</li>
+<li>DECT 8214 仅欧洲与亚洲供货（p9/p107）；无线勘测（站址/overlap 设计）在书外</li>
+<li>虚拟课堂无实物设备，实验以练习条目代替（实验口径，needs-review nr-06）</li>
+<li>出厂密码 123456（web 页 admin/123456）是安全暴露面，现场必须改掉（p138，n23）</li>
+</ul><h2>相关能力</h2><p><a href="/courses/rainxte101en/skills/hub-device-maintenance.html">设备维护日志与 Generic SIP 接入</a>、<a href="/courses/rainxte101en/skills/hub-network-readiness.html">Rainbow Hub 网络就绪核查</a></p><p class="source-page">能力 ID：cap.hub.zero-touch-provisioning · 来源：RAINXTE101EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Rainbow Hub (Participant's Guide, Edition 16) | edition: Edition 16 | pages: 351 页 -->

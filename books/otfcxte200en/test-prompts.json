@@ -1,0 +1,93 @@
+{
+  "skill": "ot-fax-center",
+  "version": "0.1.0",
+  "bundle": "bundle.ot-fax-center",
+  "capability_catalog": [
+    {"slug": "otfax-installation-ftw", "name": "OTFC 首次交付（宿主准备、安装、FTW、许可）", "description": "四步主线：服务器准备（DNS 正反解/IIS 四角色服务/服务账号六权限/Office 预初始化）、Setup.exe 安装（语言副作用、禁用 Microsoft SMTP 释放 25 端口）、FTW 十二项最小配置（QOS 0/0/240、CSID=站点名）、评估许可边界（1 实例/2 通道/10 站点/100 用户/每页水印）与 MAC 地址采购手工导入"},
+    {"slug": "otfax-sip-channel-integration", "name": "OTFC 与 OXE 的 SIP 通道集成", "description": "OTFC 侧 UDP 5360、OXE 声明、Dial Plan（单 PBX 全路由/空间冗余 Peer List）；OXE 侧 MGR 七步菜单（Trunk groups 到 Prefix plan，参数参照 TC3048）；传真抓包三法 CHtrace/motortrace/tcpdump 转 Wireshark（mtcl 账号）"},
+    {"slug": "otfax-mail-exchange-integration", "name": "OTFC 邮件与 Exchange 集成", "description": "SMTP 网关监听 25、feedback address 不能为空、不能与其他 SMTP 共存；前置邮件服务器四大好处；寻址格式全集（号码@FQDN、[FAX:]、Outlook 联系人）；Exchange 'FAX' 地址空间 New-SendConnector 与核验；通知被拦调 Receive Connector；SMTP connector 为许可特性"},
+    {"slug": "otfax-user-administration", "name": "OTFC 用户与管理员管理", "description": "用户恒以 SMTP 地址标识、必须绑 Site+Profile；内部库与 AD 双源可共存；CSV 导入导出仅 Webadmin；时区影响封页/报头/通知三处时间戳；System/Site 两级管理员与备份管理员防锁死；认证（内部服务器/AD/SAML）"},
+    {"slug": "otfax-profile-policy", "name": "OTFC Profile 策略与电话簿", "description": "Profile 六块属性；默认 Basic 与 No Faxing Rights；出方向 Restriction group（仅国内禁国际）；入方向站点级 Calling Number Restriction；邮件通知 Profile 每语言一份（Exchange 场景勾 Exchange integration+Text，只影响邮件）；公共/私人电话簿与 LDAP 访问三处开关"},
+    {"slug": "otfax-directory-routing", "name": "OTFC 高级目录集成与来传真路由", "description": "LDAP 声明（enabled/389/Search base/Test connection/属性映射/断连 trap）；Site/Profile Lookup 两表授权外部用户（没配即拒用）；NT Account 免密两路 + IIS 禁匿名；来传真路由三类规则（Default 恒最后、$did:?????$）；DTMF 补拨 P 语法；Modification Table 规整号码；OXE 话单对接 OmniVista 8770 计费（默认映射传真号）"},
+    {"slug": "otfax-services-operations", "name": "OTFC 服务架构与日常运维", "description": "模块/服务/组件三层；9 服务分有状态复制（XMFaxManager/XMConfigManager/XMCoConfig/XMFaxArchive/XMFaultTolerance）与无状态负载均衡（Driver/Rasterizer/SMTP/XML Gateway）；Services Status；xmsc -ra/-oa/-aa；Trace 目录每组件一个日志（默认 20MB/15 天 zip 归档）；ConfigManager.log 与 Smtp.log 排障；SIP 日志两步激活"},
+    {"slug": "otfax-backup-upgrade", "name": "OTFC 备份、恢复、升级与删除策略", "description": "冷备三数据域（Data/Bin/Config + MySQL 数据目录 + Interstar Technologies 注册表键）；备份停服不可 kill、恢复可 kill；恢复四前提；升级五步法（数据库 CompanyConfig/XmediusArchive 不在自动备份内、xmedius.war 替换、自定义工具预验证）；传真记录与传真文档分开/一起删实现零保留"},
+    {"slug": "otfax-client-coversheet", "name": "OTFC 客户端部署与封页定制", "description": "Web Client /fax 六区界面（508 无障碍合规）；Windows 四件套（SendFAX/Web Fax Composer printer/Print to Mail/MMC）；静默安装+GPO 批量与 ClientRedistribution 精简包；封页 .cse 五步（Editor/下载底稿/另存/Web 导入/挂 Profile）；外发队列六状态与三视图"},
+    {"slug": "otfax-solution-planning", "name": "OTFC 方案评估与部署规划", "description": "单服务器 15000 用户/30 端口；T.38 14.4kbps 与 G.711 33.8kbps；五类发送入口四类接收去向与入局路由四法；合规三清单（加密/零保留/审计）；OTFC-V 虚拟化、多网关号段分流、支持矩阵核对；端口全表/格式/sizing 一律指向 OTFC Features List"},
+    {"slug": "otfax-reports-monitoring", "name": "OTFC 报表与监控", "description": "31 个报表模板（全系统/单用户 × 月/周/日、模块错误摘要）；BIRT 报表设计器（安装包 3rd\\birt 解压安装）；站点/系统两级监控视图；SNMP V2 trap 清单（队列满/配额满/光栅化失败/路由失败/XML 错误/驱动错误/分区/通道初始化/主机心跳）"}
+  ],
+  "test_cases": [
+    {"id": "should-install-01", "type": "should_trigger", "prompt": "客户买了台新服务器要装 OpenTouch Fax Center，装机前服务器侧要准备什么？装完向导会帮我们配哪些东西？", "expected_behavior": "激活 otfax-installation-ftw，宿主准备清单 + FTW 十二项"},
+
+    {"id": "should-install-02", "type": "should_trigger", "prompt": "测试环境发的传真每页都有水印，而且并发只能发两路，是不是系统坏了？", "expected_behavior": "激活 otfax-installation-ftw，解释评估许可五条边界与正式许可采购（MAC 地址/手工导入）"},
+
+    {"id": "should-sip-01", "type": "should_trigger", "prompt": "OTFC 装好了，怎么把它接到客户的 OXE 上让传真能出去？OXE 那边要在 mgr 里做哪些步骤？", "expected_behavior": "激活 otfax-sip-channel-integration，两侧配置 + MGR 七步 + TC3048 边界"},
+
+    {"id": "should-sip-02", "type": "should_trigger", "prompt": "传真时通时断，想在 OXE 呼叫服务器上抓包取证，用什么命令？", "expected_behavior": "激活 otfax-sip-channel-integration，CHtrace/SIP trace/tcpdump 三法与停止方式"},
+
+    {"id": "should-mail-01", "type": "should_trigger", "prompt": "用户习惯用 Outlook 发传真，Exchange 这边要建什么连接器，命令怎么写？", "expected_behavior": "激活 otfax-mail-exchange-integration，FAX 地址空间 + New-SendConnector"},
+
+    {"id": "should-mail-02", "type": "should_trigger", "prompt": "传真收发都正常，但用户一封通知邮件都收不到，从哪里查起？", "expected_behavior": "激活 otfax-mail-exchange-integration，feedback address 与 Receive Connector 排查序"},
+
+    {"id": "should-user-01", "type": "should_trigger", "prompt": "300 个员工要开传真账号，客户有 AD，还有 20 个外包人员没有域账号，怎么规划？", "expected_behavior": "激活 otfax-user-administration，双源共存 + CSV 批量（仅 Webadmin）"},
+
+    {"id": "should-user-02", "type": "should_trigger", "prompt": "OTFC 的系统管理员密码丢了登不进去，当初要怎么防这种事？现在还有救吗？", "expected_behavior": "激活 otfax-user-administration，备份管理员机制与认证路径"},
+
+    {"id": "should-profile-01", "type": "should_trigger", "prompt": "财务部只能发国内传真，国际号码要全部禁掉，OTFC 里怎么配？", "expected_behavior": "激活 otfax-profile-policy，Restriction group 挂 Profile（仅国内）"},
+
+    {"id": "should-profile-02", "type": "should_trigger", "prompt": "Exchange 环境下用户收到的传真通知格式不对，勾了 Exchange integration 之后为什么 Web 界面看起来没变化？", "expected_behavior": "激活 otfax-profile-policy，通知格式只影响邮件不影响 Web"},
+
+    {"id": "should-dir-01", "type": "should_trigger", "prompt": "AD 里的用户在 OTFC 目录测试里查得到，但发传真就是提示不能用，怎么回事？", "expected_behavior": "激活 otfax-directory-routing，Site/Profile Lookup 未归类的拒用机制"},
+
+    {"id": "should-dir-02", "type": "should_trigger", "prompt": "客户联系人库里存的是 33 开头的国际格式号码，实际外线要拨 00 开头，发传真老失败怎么办？", "expected_behavior": "激活 otfax-directory-routing，Modification Table 把 33 前缀换 00"},
+
+    {"id": "should-svc-01", "type": "should_trigger", "prompt": "改完 OTFC 配置想整体重启传真服务，命令行怎么做？另外日志默认保留多久？", "expected_behavior": "激活 otfax-services-operations，xmsc -ra/-oa/-aa + 日志 20MB/15 天"},
+
+    {"id": "should-svc-02", "type": "should_trigger", "prompt": "来传真的邮件通知有问题，让我查 ConfigManager.log 和 Smtp.log，这两个文件在哪个目录？", "expected_behavior": "激活 otfax-services-operations，Trace 目录与组件日志体系"},
+
+    {"id": "should-bk-01", "type": "should_trigger", "prompt": "OTFC 要做版本升级，升级前备份有什么讲究？听说数据库不会被自动备份？", "expected_behavior": "激活 otfax-backup-upgrade，五步法 + CompanyConfig/XmediusArchive 手工备库"},
+
+    {"id": "should-bk-02", "type": "should_trigger", "prompt": "客户过合规审计，要求系统不留任何传真痕迹，OTFC 能做到彻底删除吗？", "expected_behavior": "激活 otfax-backup-upgrade，传真记录与传真文档分开/一起删的零保留"},
+
+    {"id": "should-cli-01", "type": "should_trigger", "prompt": "500 台办公电脑要装传真客户端，一台台点安装太慢了，有什么批量办法？", "expected_behavior": "激活 otfax-client-coversheet，静默安装/GPO/ClientRedistribution 精简包"},
+
+    {"id": "should-cli-02", "type": "should_trigger", "prompt": "公司想做带自己 Logo 的传真封页，从编辑到用户生效要几步？", "expected_behavior": "激活 otfax-client-coversheet，封页 .cse 五步闭环"},
+
+    {"id": "should-plan-01", "type": "should_trigger", "prompt": "售前阶段客户问 OTFC 一台服务器最多支持多少传真用户和通道，走什么协议速率多少？", "expected_behavior": "激活 otfax-solution-planning，15000 用户/30 端口 + T.38/G.711 速率"},
+
+    {"id": "should-plan-02", "type": "should_trigger", "prompt": "客户有两个分支各一台 OXE，一台传真服务器能同时接吗？号码段怎么规划？", "expected_behavior": "激活 otfax-solution-planning，多网关多站点与号段分流（SIP 通道集成可辅）"},
+
+    {"id": "should-rpt-01", "type": "should_trigger", "prompt": "领导要每个月各部门的传真量统计报表，OTFC 自带多少种报表？能不能自定义？", "expected_behavior": "激活 otfax-reports-monitoring，31 报表 + BIRT 自定义"},
+
+    {"id": "should-rpt-02", "type": "should_trigger", "prompt": "客户的网管平台想接收传真服务器的告警，OTFC 支持什么协议，哪些故障会上报？", "expected_behavior": "激活 otfax-reports-monitoring，SNMP V2 trap 清单"},
+
+    {"id": "should-user-03", "type": "should_trigger", "prompt": "新建用户的时候要不要填时区？不填会有什么影响？", "expected_behavior": "激活 otfax-user-administration，时区影响封页/报头/邮件通知三处时间戳"},
+
+    {"id": "should-dir-03", "type": "should_trigger", "prompt": "来传真怎么按被叫号码自动分给对应的用户？路由表里的 $did 匹配值怎么写？", "expected_behavior": "激活 otfax-directory-routing，Incoming Routing Table + $did:?????$"},
+
+    {"id": "bait-install-01", "type": "should_not_trigger", "prompt": "装 OTFC 的服务器上邮件收发一直不正常，是不是 IIS 角色没装对？", "expected_behavior": "应激活 otfax-mail-exchange-integration（25 端口冲突排障），不应停留在 otfax-installation-ftw 的安装步骤"},
+
+    {"id": "bait-sip-01", "type": "should_not_trigger", "prompt": "OXE 的 SIP 中继参数（编码、号码变换）具体怎么填？照教材做完还是不通。", "expected_behavior": "按边界回答：OXE 侧参数细节在 TC3048，本书只有菜单骨架；不应虚构参数值，声明边界"},
+
+    {"id": "bait-mail-01", "type": "should_not_trigger", "prompt": "用户收到的传真通知邮件里想换成公司中文模板，去哪里改？", "expected_behavior": "应激活 otfax-profile-policy（Mail Notification Profile 每语言一份），不应激活 otfax-mail-exchange-integration 的连接器流程"},
+
+    {"id": "bait-user-01", "type": "should_not_trigger", "prompt": "AD 用户查得到但用不了传真，是账号没建吗？要不要在内部库里再建一个同名账号？", "expected_behavior": "应激活 otfax-directory-routing（Lookup 表未配置），不应错误地引导重复建内部账号"},
+
+    {"id": "bait-profile-01", "type": "should_not_trigger", "prompt": "有骚扰传真打进来，想让 OTFC 直接拒接某些主叫号码，该配出方向的限制组吗？", "expected_behavior": "应激活 otfax-profile-policy 但纠正方向：入方向拒收是站点级 Calling Number Restriction，不是出方向 Restriction group"},
+
+    {"id": "bait-svc-01", "type": "should_not_trigger", "prompt": "备份脚本里能不能用 taskkill 强杀传真服务来加速备份窗口？", "expected_behavior": "应激活 otfax-backup-upgrade 并纠正：备份要求停止不可 kill，强杀会备出坏档；不应经 otfax-services-operations 当普通重启处理"},
+
+    {"id": "bait-cli-01", "type": "should_not_trigger", "prompt": "SendFAX 里用 Outlook 模式发传真发不出去，是不是客户端装错了？要不要重装？", "expected_behavior": "应激活 otfax-mail-exchange-integration（'FAX' 地址空间连接器依赖），不应引导重装客户端"},
+
+    {"id": "bait-rpt-01", "type": "should_not_trigger", "prompt": "想按部门出传真成本报表，用 OTFC 自带的 31 个报表直接出就行吗？", "expected_behavior": "应转 otfax-directory-routing 的 Accounting 段（OXE 话单 + OmniVista 8770），OTFC 31 报表是业务量报表；不应混淆计费与统计"},
+
+    {"id": "bait-plan-01", "type": "should_not_trigger", "prompt": "客户要防火墙白名单，把 OTFC 涉及的所有端口号列出来给我。", "expected_behavior": "按边界回答：端口全表在 OTFC Features List，书内仅已知 SIP UDP 5360/SMTP 25/LDAP 389 三处；不应编造完整端口表，不应停留在 otfax-solution-planning 出数"},
+
+    {"id": "edge-ha-01", "type": "edge_case", "prompt": "客户合同要求传真系统高可用，XMFaultTolerance 这个服务怎么部署双机切换？", "expected_behavior": "按边界回答：XMFaultTolerance 只作组件介绍（监控故障/监督 failover），部署与演练书内零实操，转产品文档/专业服务，不虚构步骤"},
+
+    {"id": "edge-tls-01", "type": "edge_case", "prompt": "客户合规要求 SIP 信令加密，OTFC 支持 SIP/TLS，证书怎么配？", "expected_behavior": "按边界回答：SIP/TLS 仅概览页能力项，配置章只有 UDP 5360，启用路径在书外，指向 Features List 与产品安全文档"},
+
+    {"id": "edge-mail-02", "type": "edge_case", "prompt": "客户不想部署邮件服务器，让用户电脑直连 OTFC 的 SMTP 网关发传真行不行？", "expected_behavior": "按边界回答：直连可行但官方强烈建议前置邮件服务器，队列管理/Outlook 表单/反垃圾/防病毒四类能力缺失；给两种拓扑的取舍"},
+
+    {"id": "edge-fire-01", "type": "edge_case", "prompt": "教材让把防火墙全关了再装，生产环境也这么干吗？", "expected_behavior": "按边界回答：关防火墙是实验口径，生产必须保持开启并按 Features List 端口表做白名单，绝不照搬"}
+  ]
+}

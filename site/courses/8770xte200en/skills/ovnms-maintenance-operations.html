@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>OmniVista 8770 维护运营（诊断工具 / NMC 服务与日志）</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 安装与网络管理</h2><p>Edition 47 · 705 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte200en/index.html">课程首页</a><a href="/courses/8770xte200en/digest.html">精华长文</a><a href="/courses/8770xte200en/overview.html">教书理解</a><a href="/courses/8770xte200en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte200en/skills/ovnms-platform-installation.html">OmniVista 8770 平台安装（服务器 + 客户端 + 补丁 + 首连）</a><a href="/courses/8770xte200en/skills/ovnms-node-onboarding.html">OmniVista 8770 节点接入（OXE 注册同步 + SSH 安全 + OXO Connect 纳管）</a><a href="/courses/8770xte200en/skills/ovnms-user-provisioning.html">OmniVista 8770 用户开通（Profile / Meta profile / 批量 / WBM）</a><a href="/courses/8770xte200en/skills/ovnms-alarm-management.html">OmniVista 8770 告警管理（接入 + 定制出口 + SNMP Proxy）</a><a href="/courses/8770xte200en/skills/ovnms-security-administration.html">OmniVista 8770 安全管理（密码策略 / 管理员与组 / 访问控制 / TLS）</a><a href="/courses/8770xte200en/skills/ovnms-audit-compliance.html">OmniVista 8770 审计合规（Audit 启用 / mao 日志 / 检索导出）</a><a href="/courses/8770xte200en/skills/ovnms-backup-restore.html">OmniVista 8770 备份恢复（8770 数据库 rehosting + OXE swinst 全链）</a><a href="/courses/8770xte200en/skills/ovnms-license-management.html">OmniVista 8770 许可管理（锁结构 / 查询 / 更新 / 受限模式）</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte200en/skills/ovnms-reports-scheduling.html">OmniVista 8770 报表与任务编排（Reports / Scheduler / 自动维护）</a><a href="/courses/8770xte200en/skills/ovnms-maintenance-operations.html">OmniVista 8770 维护运营（诊断工具 / NMC 服务与日志）</a><a href="/courses/8770xte200en/skills/ovnms-topology-views.html">OmniVista 8770 Topology 视图（标准视图 / 自定义视图 / 告警重定向）</a><a href="/courses/8770xte200en/skills/ovnms-oxe-ui-efficiency.html">OmniVista 8770 OXE 配置界面高效操作（搜索/冻结/网格/导入导出）</a><a href="/courses/8770xte200en/skills/ovnms-network-drive.html">OmniVista 8770 网络驱动器映射（报表与备份落网络存储）</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte200en/index.html">omnivista-8770-nms（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte200en/index.html">8770XTE200EN</a><span>/</span><span aria-current="page">OmniVista 8770 维护运营（诊断工具 / NMC 服务与日志）</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>OmniVista 8770 维护运营（诊断工具 / NMC 服务与日志）</h1></div><dl><div><dt>Skill ID</dt><dd>ovnms-maintenance-operations</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>OmniVista 8770 维护运营（诊断工具 / NMC 服务与日志）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"8770 Diagnostic collects information and provides: An html file ... A compressed file (.zip) that can be transmitted to Alcatel-Lucent Enterprise support for diagnostic"（p523）
+"Port number 389 (LDAPS is not supported), Login cn=directory manager"（p535）
+"For other services don't restart them using the 'Start' button. These services are supervised by NMC service manager and are automatically restarted."（p561）
+"https://nms.company.com/nmclog/ – /nmclog/ is a web alias pointing to log files"（p553）
+"ONCE INVESTIGATION IS DONE, DON'T FORGET TO MODIFY THE TRACETYPE ARGUMENT TO DEFAULT SETTINGS"（p564）</p>
+</blockquote>
+<p>出处：8770XTE200EN p522-567（Maintenance tools、NMC services 讲义与 How-To）。</p>
+<h2>I — 自述</h2>
+<p>排障三件套：采数据（Diagnostic）、查数据（DirManag/HeidiSQL）、管服务与日志（Service Manager/TraceType/nmclog）。</p>
+<p><strong>维护工具箱</strong></p>
+<ul>
+<li>8770 Diagnostic：Start &gt; OmniVista 8770 &gt; Tools；交互模式逐步回车或 N 非交互（只需 LDAP 端口 389 + SQL 密码）；产出 C:\TS 下 HTML 报告与 zip（zip 交 ALE 支持开 SR）；采集范围含日志/RestoreContext.ini/服务状态/许可/hosts/计划任务</li>
+<li>DirManag（c:\8770\bin）：LDAP 树浏览/修改——仅 389 明文口（不支持 LDAPS）、登录 cn=directory manager 或 adminnmc、改后 Ctrl+S 保存</li>
+<li>Directory Server Control Center：LDAP 另一入口（admin 登录）</li>
+<li>HeidiSQL（Start &gt; MariaDB 10.5）：TCP 127.0.0.1:3306、用户 dba（默认密码可经 ToolsOmniVista 改）&gt; 选 nmc5 库 &gt; Query 页执行 SQL（输库名. 自动补全表名）；数据文件在 8770\data\data（.frm 定义/.ibd 数据/.TRN/.TRG 触发器）</li>
+</ul>
+<p><strong>NMC 服务两层模型</strong></p>
+<ul>
+<li>Windows 服务层（Automatic，4 个）：MySQL8770、LDAP Console（DSEE 控制中心）、Oracle Directory Server EE、NMC Service Manager——停了要手动 Start</li>
+<li>NMC 内部服务层（Manual，约 20 个，由 Service Manager 按依赖顺序拉起并监督）：Apache、NMC Alarm/Audit/CMISE/Communication Server/Executable Launcher/Extractor/GCS/Java Service Definition/License Server/Loader/Manage My Phone/PBX-LDAP synchronization/Save-Restore/Scheduler/Security Server/SNMP Service、ORBacus Notify、Wildfly——崩溃自动重启，不要手动 Start</li>
+<li>依赖规则：服务停则依赖者连锁停，起则连锁起；停 NMC Service Manager 会连锁停全部内部服务</li>
+<li>Service Manager 工具：Select + Execute 取得启停权后再操作；Properties 的 Startup 字段区分两层</li>
+</ul>
+<p><strong>日志体系</strong></p>
+<ul>
+<li>位置：NMC 服务 &lt;安装目录&gt;\log（_1.log/_2.log 双文件滚动，合计 10MB 上限=2x5MB）；Apache2\logs；SunONE\slapd-8770\logs</li>
+<li>Web 查看：https://<FQDN>/nmclog/（管理员凭据）</li>
+<li>详细跟踪：Administration 应用选服务 &gt; Argument list 把 -TraceType 0 改 -TraceType --1——显著变慢且日志变大，查完必须改回 0</li>
+</ul>
+<h2>A1 — 书中案例</h2>
+<p><strong>诊断与直查实验</strong>（p532-538）：</p>
+<ol>
+<li>8770 Diagnostic 非交互模式：输 LDAP 端口 389 与 SQL 密码</li>
+<li>C:\TS 生成 NMS_周几月日 HTML 与 zip</li>
+<li>DirManag 连 nms:389（cn=directory manager），树中改值后 Ctrl+S</li>
+<li>HeidiSQL 建 NMS-MariaDB 会话（127.0.0.1:3306/dba），Query 页执行 select * from nmc5.organization</li>
+</ol>
+<p><strong>服务与日志实验</strong>（p554-567）：</p>
+<ol>
+<li>Service Manager 取权后停 NMC License Server，观察自动重启</li>
+<li>停 NMC Service Manager 看全部服务连锁停，Start 后连锁恢复；四个 Automatic 服务需手动 Start</li>
+<li>Scheduler 服务改 -TraceType --1，NMCScheduler_1/2.log 体积显著变大，核验后改回 0</li>
+<li>浏览器开 /nmclog/ 在线查看 NMCScheduler_1.log</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：给 ALE 开 SR 前采数据；直查 LDAP/MariaDB 定位数据问题；服务异常启停；日志撑满或要详细日志取证。</p>
+<p>语言信号：8770 Diagnostic / C:\TS / DirManag / HeidiSQL / nmc5 / Service Manager / Automatic Manual / 连锁 / TraceType / nmclog / NMCScheduler / 双文件滚动 / Ctrl+S。</p>
+<p>与相邻能力区分：同步/告警日志的业务判读（节点接入/告警卡）；平台装完的服务基线（平台安装卡）；本能力管排障手法与工具。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：故障现象描述、（直查时）目录管理器/dba 凭据、（开 SR）客户支持渠道。</p>
+<ol>
+<li>采数据：8770 Diagnostic 非交互模式跑一遍。完成标准：C:\TS 出现 HTML+zip</li>
+<li>按现象分流：应用问题查 NMCSyncLdapPbx/NMCFaultManager 等业务日志；数据问题走 DirManag/HeidiSQL 直查</li>
+<li>服务面：Service Manager 区分 Automatic/Manual，先等被监督服务自动拉起。完成标准：不误手动 Start</li>
+<li>需要详细日志时改 -TraceType --1 复现。完成标准：日志增量可见且问题定位</li>
+<li>收尾改回 -TraceType 0 并复核。完成标准：服务性能恢复</li>
+<li>远程查看：/nmclog/ 在线读日志。完成标准：免登服务器取证</li>
+<li>升级 ALE：zip 交支持渠道开 SR。完成标准：SR 受理</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>被监督服务停了 → 先等自动重启再动手，手动 Start 可能造成双实例冲突</li>
+<li>详细跟踪用完不改回 → 性能持续受损；把"改回 0"写进工单关闭检查单</li>
+<li>DirManag 要加密通道 → 不支持 LDAPS，走跳板机/隔离网段，不要明文跨网</li>
+<li>dba 是只读账户 → 数据变更不能靠它，走应用或 LDAP 工具</li>
+</ul>
+<p>输出契约：诊断包（HTML+zip）路径 + 直查记录 + 服务操作日志 + TraceType 复位确认。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>维护工具多为底层通道：DirManag 明文 389、HeidiSQL 本机 3306、nmclog 走 HTTP 口——生产使用按客户网络隔离与跳板策略执行</li>
+<li>ToolsOmniVista（密码/SNMP/TLS 底层工具）在安全管理卡覆盖；本卡工具只读/直查为主</li>
+<li>服务清单约 20 个内部服务为 R5.2 口径，版本演进可能增减；以 Service Manager 实际列表为准</li>
+<li>实验凭据（superuser/sql 等）见 book/overview；生产改密走 ToolsOmniVista 并纳入密码策略</li>
+</ul><h2>相关能力</h2><p><a href="/courses/8770xte200en/skills/ovnms-platform-installation.html">OmniVista 8770 平台安装（服务器 + 客户端 + 补丁 + 首连）</a></p><p class="source-page">能力 ID：cap.ovnms.maintenance-operations · 来源：8770XTE200EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 — Setup & Network Management (Participant's Guide, Edition 47) | edition: Edition 47 | pages: 705 页 -->

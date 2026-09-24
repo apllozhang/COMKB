@@ -1,0 +1,41 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "references\\capabilities\\otfax-backup-upgrade.md": "f21948b8eb9902ef53cb606e798274acea2e4acf1fd352ea14ae8de3b0a8bfee",
+    "references\\capabilities\\otfax-client-coversheet.md": "af580b47181d2b88fa470dee0526c810743b1f90d27811af39a030aafc51c146",
+    "references\\capabilities\\otfax-directory-routing.md": "c47f18e0461cd003e41dee7e4cccc7e04aede667fc970c8c6393560b1d6592f2",
+    "references\\capabilities\\otfax-installation-ftw.md": "96c53fdba07b3ffbe28ef4e28d6553d7d144db53aa896d92361445bedece3905",
+    "references\\capabilities\\otfax-mail-exchange-integration.md": "561663a36624fc15a68014a18cba14041542f45ae52db497b4e768eb30e3ce80",
+    "references\\capabilities\\otfax-profile-policy.md": "789aaa24af0baff698a144c47db518e948a2644e160456eaa54a3736f27b12e0",
+    "references\\capabilities\\otfax-reports-monitoring.md": "8fe3dcb3b3399aa4bc3fb0064b4f847a6d618b85c739f21d2a0b91e9e478564b",
+    "references\\capabilities\\otfax-services-operations.md": "6a577981f8497b7de124c7788306742611c47f72f89815736be412f7d581c225",
+    "references\\capabilities\\otfax-sip-channel-integration.md": "b4ab1bcba986ebf01aaa33aea0e773de30d7ccb288fda6921e385506952b7a98",
+    "references\\capabilities\\otfax-solution-planning.md": "c48f2d8826d487bbe1bbf2a6bb7526571489825efcf96418594cb1d4bb6ef51b",
+    "references\\capabilities\\otfax-user-administration.md": "bdf5e8c64a53919cc330a8625c5e1eebec40e822e004512c4b6375025e5ae847",
+    "references\\capability-index.md": "8c1883a758c2fe6bef361497285a71af14ddf3b4b0f94bfb8c4fee9f29559c5a",
+    "references\\cheatsheet.md": "be417ce1a0900e3fbfad0cda13036c870f04cbf04301b10431af8f64169c9a61",
+    "references\\glossary.md": "deeb1aca897c72c660638e22d3147a9fba41015ef848abc12c0bd915fcc47795",
+    "references\\overview.md": "bfd099d2ce4d077ad05b66f3cd05873bdaa7ac52ca526819f8ab020b24d1f21f",
+    "SKILL.md": "f0cb2beb64e34bb8f640a591c2b7505d58e169c0bb7485247568958fa7168cea"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "bundle.ot-fax-center",
+  "bundle_sha256": "99d6bdfe7f0bb17909ecf3dba08a310ff10b415a86e64fc1cff344e70715a4a0",
+  "variant": "single",
+  "run_id": "run-20260924-200013-e817a9",
+  "decision": {
+    "schema_version": 1,
+    "requested": "single",
+    "selected": "single",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 8,
+    "capability_count": 11,
+    "reasons": [
+      "用户显式选择 single，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "compact pack（1 个来源路由入口 + 8 个晋级 Skill，共 9 个可发现入口）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}

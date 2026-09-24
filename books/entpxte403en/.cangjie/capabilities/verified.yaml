@@ -1,0 +1,749 @@
+schema_version: 1
+bundle_id: bundle.oxe-sip
+book:
+  title: OmniPCX Enterprise - SIP (Participant's Guide, Edition 12)
+  author: ALE Training Services
+  source_pack: ENTPXTE403EN.pdf (465 pages)
+  baseline_tag: OmniPCX Enterprise R101.1 MD4 / RLAB
+entry:
+  name: oxe-sip
+  description: 'OmniPCX Enterprise（OXE）SIP 化交付与运维支持：SIP 协议机理与六组件架构、SEPLOS/SIP Device 两形态选型与容量、SIP Device 与 ALE 话机与 ALES 软终端三条开通线、
+    OXE DM 证书体系、经 SBC 的运营商接入与 OTSBC 部署、远程办公（SBC/RP/EDS/VPN）、编解码与信令排障。适用于 OXE 站点 SIP 化的配置、选型、排障与方案问答；
+    真实运营商参数、外部 CA 流程、零touch 开户等生产化依据不在原书范围内（见 out_of_scope）。
+
+    '
+  core_principles:
+  - SIP 只做信令不做媒体搬运：会话建立/维持/修改/终止归 SIP，媒体协商靠 SDP、传输靠 RTP；OXE 六组件（本地网关/字典/代理/注册器/位置/外部网关）同栖 sipmotor
+  - SIP 用户两形态决定服务等级：SEPLOS=内部话机级（前缀后缀/寻线组/CTI），SIP Device=远端子网设备级（五不带）；软件锁 177/345/430 与 15000 用户/20000 设备管规模
+  - 终端入网四步链：DHCP 拿 DM 地址 → HTTPS 拉 DM 配置文件 → 拉二进制 → SIP 注册；注册即服务、超时即离服；一切发起请求的设备必须是 CS 防火墙信任主机
+  - 证书是地基：默认证书只适配 WBM，须内部 PKI 定制（SAN 含 FQDN/通配/IP）并产出 CTL；R101.0 起 OpenSSL 安全级 2 拒收 RSA<2048 位或 SHA-1
+  - 外线双腿施工：OXE 侧（信任主机/中继组/外部网关/ARS/DID/NPD/回拨）+ OTSBC 侧（向导+编解码放行/消息域改写/Contact User 注册），缺一不通
+  - 远程办公两条路：SBC/RP（≤500 用 OTSBC 内嵌反代）与 VPN（仅 ALE-2/3 内嵌 OpenVPN）；EDS 零touch 四限制；远程加密放行是 N4 起语义
+  - 实验环境口径：教材密码、账号、号码全部为 RLAB 实验值（模拟运营商与真实 ITSP 行为差异大）；生产以 TC2005/TC2957/Features List 等权威文档为准
+  out_of_scope:
+  - 真实运营商参数（REGISTER 行为、SIPS 强制、P-Asserted-Identity 策略、号码格式）——以 TC2005 与运营商文档为准（原书明示书外）
+  - 外部 CA 申请签发流程、企业 PKI 策略、安全加固制度（原书只给机制与内部 PKI 演示）
+  - EDS 账号开通操作与 NGINX PLUS 反代部署细节、VPN 网关兼容清单（指向 EDS user manual、Server deployment Guide for Remote workers）
+  - SBC 高可用与容量规划、话务建模与带宽估算方法论（原书无性能章节）
+  - SIP 协议报文逐字段教学与 Wireshark 深度分析（属协议基础课）；Teams/Rainbow 等外部生态集成细节
+  stop_conditions:
+  - 话务台坐席/ACD/呼叫中心、酒店全量业务（8008 例外）在 SIP 侧缺席或受限 → 声明形态边界，回 NOE 或改方案，不硬配
+  - 客户要照书直配真实运营商 → 停，先拿 TC2005 与运营商参数表再动手
+  - 版本低于特性门槛（R101.1 的 8443 mTLS、N4 的远程加密放行、N3 的 SSH 强制）→ 先核对版本再谈功能
+  - 涉及 RLAB/ITSP 实验环境搭建 → 参考 book/overview 环境区背景并声明实验口径，不虚构生产配置
+  - 用户数/并发超出许可与容量口径（177/345/430 锁、15000 用户/20000 设备、RP ≤500）→ 走扩许可或换方案，不硬撑
+router_entry:
+  name: oxe-sip-router
+  description: 'OXE SIP 能力路由入口：按用户意图分发到 13 张能力卡——协议基础、形态选型、SIP Device 开通、话机开通、ALES 开通、证书、SBC 运营商接入、远程办公八个 promoted 能力，
+    以及编解码、跟踪排障、DM 管理、业务特性、实验环境五张 router 能力卡。
+
+    '
+promotion_budget: 8
+capabilities:
+- capability_id: cap.osip.protocol-foundation
+  revision: 1
+  status: active
+  slug: osip-protocol-foundation
+  title: SIP 协议机理与 OXE SIP 架构
+  importance: high
+  importance_rationale: 对应 task-04/task-05，全书信令层通用语言；域名定制是证书与冗余的共同地基
+  one_liner: SIP 只管信令（六组件协作、消息码表、注册时序）；域名必须改默认值，空间冗余靠节点名+DNS 委托只让 Main 应答
+  intents:
+  - 理解 SIP 协议机理
+  - OXE SIP 架构组件
+  - 修改 OXE 域名
+  - 空间冗余终端怎么接入
+  - SIP response codes meaning
+  keywords:
+  - RFC 3261
+  - INVITE
+  - REGISTER
+  - "403"
+  - "488"
+  - 六组件
+  - sipmotor
+  - SIP 字典
+  - 位置服务器
+  - 空间冗余
+  - 节点名
+  - FQDN
+  - oxedomain.com
+  - netadmin
+  - 内部域名解析器
+  also_read:
+  - osip-user-forms
+  - osip-sip-device-provisioning
+  card: cards/osip-protocol-foundation.md
+  frontmatter:
+    description: 'SIP 协议在 OXE 上的实现：协议栈分层、消息与响应码、注册与呼叫时序、六组件架构、域名定制（netadmin 19）与空间冗余解析机制。当用户要"理解 SIP/读响应码/改 OXE 域名/
+      规划冗余接入"时使用。不适用于终端开通施工（各开通能力）；报文逐字段教学属协议基础课不在卡内。
+
+      '
+    tags:
+    - concept
+    - sip
+    - architecture
+    - oxe
+  source_evidence:
+  - source_id: src-entpxte403
+  - location: p44-63, p80-82, p329-332
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-04/05，全书协议底座与域名地基
+- capability_id: cap.osip.user-forms
+  revision: 1
+  status: active
+  slug: osip-user-forms
+  title: SIP 用户形态选型与容量核算
+  importance: critical
+  importance_rationale: 对应 task-06/task-08，形态选错服务等级全错；售前报价与承诺的直接依据
+  one_liner: SEPLOS=内部话机级、SIP Device=远端子网设备级（五不带）；软件锁 177/345/430，容量 15000 用户/20000 设备；终端家族四档加软终端
+  intents:
+  - 选 SEPLOS 还是 SIP Device
+  - SIP 软件锁与容量
+  - ALE 话机怎么选型
+  - 会议话机门禁接入方案
+  - SIP user capacity limits
+  keywords:
+  - SEPLOS
+  - SIP Extension
+  - SIP device
+  - 软件锁
+  - "177"
+  - "345"
+  - "430"
+  - "15000"
+  - "20000"
+  - ALE-2
+  - ALE-300
+  - "8008"
+  - ALES
+  - 功能矩阵
+  - 会议话机
+  - 门禁
+  also_read:
+  - osip-sip-device-provisioning
+  - osip-deskphone-provisioning
+  card: cards/osip-user-forms.md
+  frontmatter:
+    description: 'SIP 用户两形态对比与选型：SEPLOS（SIP Extension）与 SIP Device 的服务等级差异、软件锁 177/345/430 与容量上限、ALE 终端家族谱系（8008/ALE-2/3/30/x00/ALES）
+      功能矩阵对照。当用户要"选接入形态/核算容量/选话机型号"时使用。不适用于开通施工（各开通能力）；功能矩阵以 OXE Features List 为最终口径。
+
+      '
+    tags:
+    - decision
+    - seplos
+    - sip-device
+    - capacity
+    - terminals
+  source_evidence:
+  - source_id: src-entpxte403
+  - location: p64-106
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-06/08，选型即服务等级决策
+- capability_id: cap.osip.sip-device-provisioning
+  revision: 1
+  status: active
+  slug: osip-sip-device-provisioning
+  title: SIP Device 用户开通与维护
+  importance: critical
+  importance_rationale: 对应 task-07，会议话机/门禁/视频设备的标准路径；基础设施先行是新手"建了不通"的头号根因
+  one_liner: 私网+私有 SIP 中继组+本地网关三件套先行（2 接入=62 通道），建户后 sipregister/trkstat 收口；改虚拟接入数必须重启
+  intents:
+  - 开通 SIP Device 用户
+  - 会议话机接入 OXE
+  - SIP 中继组虚拟接入扩容
+  - SIP device registration troubleshooting
+  keywords:
+  - SIP device
+  - 私网
+  - private SIP trunk group
+  - 虚拟接入
+  - 62 通道
+  - 992 TS
+  - 本地 SIP 网关
+  - "5060"
+  - 信任主机
+  - sipregister
+  - trkstat
+  - sipdict
+  - 隔离
+  - MicroSIP
+  also_read:
+  - osip-sip-troubleshooting
+  card: cards/osip-sip-device-provisioning.md
+  frontmatter:
+    description: 'SIP Device 形态用户的完整开通：私网、私有 SIP 中继组（62 通道/992 TS 口径）、本地 SIP 网关与代理注册器参数、建户与防火墙信任主机、维护命令族验证。
+      当用户要"接会议话机/门禁/视频设备/扩中继组/查 Device 注册"时使用。不适用于 SEPLOS 话机开通（话机开通能力）；Device 五不带是设计边界。
+
+      '
+    tags:
+    - procedure
+    - sip-device
+    - commissioning
+    - trunk-group
+  source_evidence:
+  - source_id: src-entpxte403
+  - location: p84-94
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-07，非 ALE 终端标准路径
+- capability_id: cap.osip.deskphone-provisioning
+  revision: 1
+  status: active
+  slug: osip-deskphone-provisioning
+  title: ALE 话机 SIP 开通与 NOE↔SIP 切换
+  importance: critical
+  importance_rationale: 对应 task-13/task-14，日常交付量最大；8770 关闭清配置与切换六类禁止是高风险动作
+  one_liner: DM 激活 → profile → 建户 → DHCP 类（ALE-2X/aledevice 或 SIP80x8s/ictouch.0）→ MAC 绑定或 auto-discovery；ALE-x00 双分区 Force Download 决定切换快慢
+  intents:
+  - 开通 ALE-2 ALE-3 话机
+  - NOE 话机切换到 SIP
+  - 双分区 Force Download
+  - auto-discovery 注册
+  - DHCP class TFTP URL
+  keywords:
+  - ALE-2
+  - ALE-3
+  - ALE-300
+  - ALE-30
+  - 双分区
+  - Force Download
+  - Change NOE to SIP
+  - sipconfig.txt
+  - aledevice
+  - ictouch.0
+  - auto-discovery
+  - dmictouch
+  - Apply Modifications
+  - "0000"
+  also_read:
+  - osip-certificate-management
+  - osip-dm-management
+  card: cards/osip-deskphone-provisioning.md
+  frontmatter:
+    description: 'ALE SIP 话机开通与存量切换：ALE-2/3 与 ALE-30/x00 的六段施工（DM 激活/Phone COS/DM profile/建户/DHCP 类/注册）、双分区 Force Download 语义、
+      NOE 转 SIP 的两条路径三触发。当用户要"装话机/NOE 转 SIP/切换慢/话机拿不到配置"时使用。不适用于软终端（ALES 开通能力）；关 8770 DM 是全站重开级操作。
+
+      '
+    tags:
+    - procedure
+    - deskphone
+    - dhcp
+    - dual-partition
+    - noe-to-sip
+  source_evidence:
+  - source_id: src-entpxte403
+  - location: p71, p172-216
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-13/14，交付量最大的主线
+- capability_id: cap.osip.ales-provisioning
+  revision: 1
+  status: active
+  slug: osip-ales-provisioning
+  title: ALES 软终端开通与认证
+  importance: critical
+  importance_rationale: 对应 task-15/task-09，移动办公主力；LDAP 认证、防隔离与推送双参数是三大现场坑
+  one_liner: login 必须预建且匹配 LDAP uid；Framework 3s/50 条防隔离；移动端 Keep Alive=NO 与轮询 ≥21600s 是推送硬前提；一号多机同型互斥可 force
+  intents:
+  - 开通 ALES 软终端
+  - 配置 LDAP 认证
+  - ALES 推送不工作
+  - 一号多机 403
+  - switch to local authentication
+  keywords:
+  - ALES
+  - ALE SoftPhone
+  - LDAP
+  - uid
+  - swinst
+  - 本地认证
+  - 密码策略
+  - Keep Alive
+  - 推送
+  - "21600"
+  - Framework
+  - 隔离
+  - DUID
+  - Multiple Logins
+  - ALES-desktop
+  - ALES-mobile
+  also_read:
+  - osip-sip-features
+  - osip-remote-workers
+  card: cards/osip-ales-provisioning.md
+  frontmatter:
+    description: 'ALES 软终端（PC/Android/iOS）开通全流程：外部 LDAP/本地认证与互斥切换、密码强化策略、防隔离 Framework 参数、移动端推送双强制、一号多机 DUID 互斥、
+      装机登录与维护命令。当用户要"配软终端/ALES 登录失败/来话不推送/账号顶号"时使用。不适用于物理话机（话机开通能力）；VDI/RDS 部署不支持。
+
+      '
+    tags:
+    - procedure
+    - ales
+    - softphone
+    - ldap
+    - authentication
+  source_evidence:
+  - source_id: src-entpxte403
+  - location: p106-121, p217-270
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-15/09，移动办公与认证主线
+- capability_id: cap.osip.certificate-management
+  revision: 1
+  status: active
+  slug: osip-certificate-management
+  title: OXE DM 证书定制与安全级
+  importance: critical
+  importance_rationale: 对应 task-12，安全地基错了全站终端下线；R101.0 OpenSSL 安全级 2 是存量话机掉线的隐性根因
+  one_liner: 默认证书只适配 WBM；内部 PKI 生成根 CA+CS 证书（SAN 含 FQDN/通配/IP）并出 CTL；OpenSSL 三级 2/1/0 改后必须重启；mTLS 8443 为 R101.1 起
+  intents:
+  - OXE 证书报错
+  - 生成 CS 证书与 CTL
+  - 老话机证书被拒
+  - OpenSSL 安全级别
+  - mTLS DM authentication
+  keywords:
+  - 证书
+  - 内部 PKI
+  - 根 CA
+  - CSR
+  - SAN
+  - CTL
+  - ctl_VHE8082
+  - OpenSSL
+  - security level
+  - RSA 2048
+  - SHA-1
+  - mTLS
+  - "8443"
+  - X-Real-Mac
+  - certificate info
+  also_read:
+  - osip-deskphone-provisioning
+  card: cards/osip-certificate-management.md
+  frontmatter:
+    description: 'OXE DM 证书体系：内部 PKI 一键生成（CC-suite-ID/通配/IP SAN/密钥 4096）、CTL 产物核验、下载认证双通道（401 挑战与 R101.1 mTLS 8443）、
+      OpenSSL 安全级三级语义与降级代价。当用户要"配证书/CTL/话机证书错误/调安全级"时使用。不适用于远程场景五方信任链（远程办公能力）；外部 CA 流程书外。
+
+      '
+    tags:
+    - procedure
+    - certificate
+    - pki
+    - security
+  source_evidence:
+  - source_id: src-entpxte403
+  - location: p156-171
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-12，全站终端的安全地基
+- capability_id: cap.osip.otsbc-carrier-interconnect
+  revision: 1
+  status: active
+  slug: osip-otsbc-carrier-interconnect
+  title: 经 SBC 的 SIP 运营商接入与 OTSBC 部署
+  importance: critical
+  importance_rationale: 对应 task-18/task-19，外线是站点生命线；ARS 硬前提与 Contact User 注册排障是两大卡点
+  one_liner: OXE 侧七件事（信任主机/中继组/外部网关/ARS/DID/NPD/回拨）+ OTSBC 向导八屏与排障三连（编解码放行/消息域改写/Contact User）
+  intents:
+  - 接入 SIP 运营商
+  - 配置 ARS 和 DID 翻译
+  - 部署 OTSBC
+  - 外线打不通
+  - SBC registration Contact User
+  keywords:
+  - SIP trunk
+  - 中继组
+  - 外部 SIP 网关
+  - ARS
+  - 判别器
+  - DID
+  - NPD
+  - 回拨翻译
+  - OTSBC
+  - SBC
+  - wizard
+  - Contact User
+  - message manipulation
+  - TC2005
+  - sipextgw
+  also_read:
+  - osip-remote-workers
+  - osip-sip-troubleshooting
+  card: cards/osip-otsbc-carrier-interconnect.md
+  frontmatter:
+    description: 'SIP 运营商接入双腿施工：OXE 侧七段配置（防火墙信任主机/SIP 中继组/外部网关/ARS/DID 翻译/NPD/回拨）与 OTSBC 部署（CLI 初始化/向导八屏/排障三连），
+      含进出呼叫判定与维护命令。当用户要"接运营商/配外线/部署 SBC/外线排障"时使用。不适用于远程办公承载（远程办公能力）；真实运营商参数以 TC2005 为准。
+
+      '
+    tags:
+    - procedure
+    - sip-trunk
+    - sbc
+    - ot-sbc
+    - ars
+  source_evidence:
+  - source_id: src-entpxte403
+  - location: p328-383
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-18/19，站点外扩的标准路径
+- capability_id: cap.osip.remote-workers
+  revision: 1
+  status: active
+  slug: osip-remote-workers
+  title: 远程办公方案与落地
+  importance: critical
+  importance_rationale: 对应 task-20，混合办公刚需且参数最密；方案选错（RP/VPN/零touch）返工成本最高
+  one_liner: 两条路——SBC/RP（≤500 用 OTSBC 内嵌反代，更多 NGINX PLUS）与 VPN（仅 ALE-2/3 内嵌 OpenVPN）；EDS 零touch 四限制；证书五方信任链缺一断一跳
+  intents:
+  - 员工居家办公打电话
+  - 远程办公方案选型
+  - EDS 零touch 部署
+  - OTSBC 反向代理配置
+  - ALES Remote Worker
+  keywords:
+  - remote worker
+  - 远程办公
+  - reverse proxy
+  - NGINX PLUS
+  - 500 用户
+  - EDS
+  - zero touch
+  - OpenVPN
+  - ALE-2
+  - 原生加密
+  - Via 头
+  - "5261"
+  - rpsbcX
+  - DM profile
+  - sipregister
+  also_read:
+  - osip-otsbc-carrier-interconnect
+  card: cards/osip-remote-workers.md
+  frontmatter:
+    description: '远程办公全方案：ALES 与话机各自的 SBC/RP 与 VPN 两条路、OTSBC 内嵌反向代理七段配置、EDS 零touch 用例与四限制、证书五方信任链、原生加密 N4 语义、
+      ALES Remote Worker 配置与 sipregister 验证。当用户要"居家办公/远程注册/零touch/反代选型"时使用。不适用于运营商对接（SBC 接入能力）；NGINX PLUS 与 EDS 开户书外。
+
+      '
+    tags:
+    - procedure
+    - remote-worker
+    - reverse-proxy
+    - eds
+    - vpn
+  source_evidence:
+  - source_id: src-entpxte403
+  - location: p384-458
+  promotion:
+    destination: promoted
+    gate:
+      independent_intent: true
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: task-20，溢价最高的交付域
+- capability_id: cap.osip.codec-negotiation
+  revision: 1
+  status: active
+  slug: osip-codec-negotiation
+  title: 编解码协商与验证
+  importance: medium
+  importance_rationale: 对应 task-16，音质投诉的根因层；五层决策链清晰但独立触发频率低于开通域
+  one_liner: 系统→域→DM→终端→链路/网关五层放行后按优先级选最高质量；系统总闸压过一切；compvisu 定格实际算法
+  intents:
+  - 音质差单通排查
+  - 编解码协商规则
+  - 488 法线不匹配
+  - compvisu 看编解码
+  keywords:
+  - 编解码
+  - codec
+  - OPUS
+  - G.722
+  - G.711
+  - G.729
+  - "488"
+  - 法线
+  - A 律
+  - μ 律
+  - IP 域
+  - 带宽
+  - compvisu
+  - OXE-MS
+  also_read:
+  - osip-sip-troubleshooting
+  card: cards/osip-codec-negotiation.md
+  frontmatter:
+    description: '编解码协商五层决策链与验证：系统参数总闸（法线/G722-OPUS 支持域）、IP 域带宽、用户 SIP profile 五席、终端能力矩阵、外部网关联动（OPUS/G722 连带 G711），
+      compvisu 四场景读数。当用户要"查实际编解码/音质降级/488"时经路由使用。G723 不支持；全 OPUS 设计须先清点媒体设备。
+
+      '
+    tags:
+    - reference
+    - codecs
+    - troubleshooting
+  source_evidence:
+  - source_id: src-entpxte403
+  - location: p271-286
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 根因层知识域，路由可达即可
+- capability_id: cap.osip.sip-troubleshooting
+  revision: 1
+  status: active
+  slug: osip-sip-troubleshooting
+  title: SIP 跟踪采集与维护排障
+  importance: medium
+  importance_rationale: 对应 task-17，升级 ALE 支持工单的硬技能；状态四查先行是排障纪律
+  one_liner: 状态四查（sipregister/sipdict/sipgateway/trkstat）→ motortrace 轻量信令 → oxetrace 打包 zip → mtracer/sipdump 深挖；恢复首选 dhs3_init -R SIPMOTOR
+  intents:
+  - 抓 SIP 信令
+  - oxetrace 打包取证
+  - sipdump 强拆呼叫
+  - SIP 进程重启
+  keywords:
+  - trace
+  - motortrace
+  - oxetrace
+  - mtracer
+  - sipdump
+  - traced
+  - Wireshark
+  - pcap
+  - 强拆
+  - 过滤
+  - sipregister
+  - trkstat
+  - sipalarm
+  - dhs3_init
+  also_read:
+  - osip-codec-negotiation
+  card: cards/osip-sip-troubleshooting.md
+  frontmatter:
+    description: 'SIP 排障工具链：状态四查、motortrace 级别表（0-b 十二档）、oxetrace 问题导向采集与 zip 打包、mtracer 应用级跟踪、sipdump 17 项菜单（许可/强拆/过滤）、
+      进程恢复口径。当用户要"抓包/取证/强拆/看注册状态"时经路由使用。Wireshark 深度分析在书外；各业务域配置根因先查对应开通卡。
+
+      '
+    tags:
+    - reference
+    - traces
+    - troubleshooting
+    - tools
+  source_evidence:
+  - source_id: src-entpxte403
+  - location: p80-94, p287-327
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 工具域，路由可达即可
+- capability_id: cap.osip.dm-management
+  revision: 1
+  status: active
+  slug: osip-dm-management
+  title: SIP 设备管理选型与 profile 体系
+  importance: medium
+  importance_rationale: 对应 task-11，架构错误代价高但决策低频；8770 迁移与配置无备份是两大边界
+  one_liner: OXE DM（N1 起）只管 8008/ALES/ALE-x，8770 另管 8088 酒店与停产机型；profile 默认 0 上限 100，ALE-x 本地/远程两份；配置文件无备份
+  intents:
+  - OXE DM 与 8770 怎么选
+  - DM profile 规划
+  - 8770 迁移 OXE DM
+  - 数据库恢复后终端拿不到配置
+  keywords:
+  - Device Management
+  - DM
+  - "8770"
+  - DM profile
+  - profile 0
+  - dmictouch
+  - dmsoftphone
+  - config.<mac>.xml
+  - downbin
+  - 二进制
+  - generate all configuration files
+  also_read: []
+  card: cards/osip-dm-management.md
+  frontmatter:
+    description: 'SIP 设备管理（DM）体系：OXE DM 与 8770 DM 的能力分界与选型开关、DM profile 规则（默认 0/上限 100/子型适配/先建后配）、配置文件命名与二进制轮询升级、
+      无备份暗坑。当用户要"选 DM 架构/规划 profile/迁移 8770/灾备恢复"时经路由使用。证书内容与 mTLS 认证归证书管理能力。
+
+      '
+    tags:
+    - reference
+    - dm
+    - provisioning
+    - architecture
+  source_evidence:
+  - source_id: src-entpxte403
+  - location: p144-167
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 架构知识域，路由可达即可
+- capability_id: cap.osip.sip-features
+  revision: 1
+  status: active
+  slug: osip-sip-features
+  title: ALE SIP 业务特性配置
+  importance: medium
+  importance_rationale: 对应 task-10，用户体验与许可承诺的直接来源；机型边界（并行组禁令/iPhone 无监督）决定方案可行性
+  one_liner: 监督（SUBSCRIBE/NOTIFY、30000/40 键、事件 510-513）、寻线组三型（并行组禁混装）、多终端（1 主 4 副）、可编程键（#3-#122）、RCC 三档、按名呼叫（48 条/16 并发）
+  intents:
+  - 配置话机监督代接
+  - 建寻线组
+  - 多终端同振
+  - 配可编程键
+  - 前缀激活业务
+  keywords:
+  - 监督
+  - supervision
+  - 代接
+  - pickup
+  - 寻线组
+  - hunting group
+  - parallel
+  - "480"
+  - "481"
+  - 多终端
+  - multi-devices
+  - 可编程键
+  - SIP Key
+  - RCC
+  - 按名呼叫
+  - Alert-Info
+  also_read:
+  - osip-ales-provisioning
+  card: cards/osip-sip-features.md
+  frontmatter:
+    description: 'ALE SIP 终端的业务特性：监督与代接（SUBSCRIBE/NOTIFY 与事件码）、寻线组三型与混装规则、多终端组网配额、可编程键管理双轨、RCC 三档、按名呼叫与业务前缀/DTMF。
+      当用户要"配监督/建组/多终端/按键/前缀业务"时经路由使用。机型能力等级以 OXE Features List 为准；CCD 呼叫中心在书外。
+
+      '
+    tags:
+    - reference
+    - features
+    - supervision
+    - hunting-group
+  source_evidence:
+  - source_id: src-entpxte403
+  - location: p118-143, p239-242
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 业务特性域，路由可达即可
+- capability_id: cap.osip.lab-environment
+  revision: 1
+  status: active
+  slug: osip-lab-environment
+  title: POD 实验环境与运营商模拟器
+  importance: medium
+  importance_rationale: 对应 task-01/02/03，一切实验与联调的地基；数值全为实验口径，生产用途有限
+  one_liner: RLAB 按 POD 划分（OXE 192.168.1.1/1.3、SBC .105、ITServer .252）；POD 准备四段收尾外线基线；ITSP1 直连与 ITSP2 经 SBC 双腿号码规则
+  intents:
+  - 准备实验环境
+  - POD 预配置核对
+  - 运营商模拟器号码规则
+  - 实验外线打通
+  keywords:
+  - RLAB
+  - POD
+  - ITSP1
+  - ITSP2
+  - 模拟器
+  - pbxN
+  - podP
+  - IPDSP
+  - 预配置
+  - 33210N41000
+  - 33920x31000
+  also_read: []
+  card: cards/osip-lab-environment.md
+  frontmatter:
+    description: 'RLAB 实验环境：POD 拓扑与账号口径、POD 准备四段（虚机/预配置/IPDSP/公网接入）、ITSP1/ITSP2 运营商模拟器的号码规则与变换。当用户要"搭实验环境/
+      核对预配置/解释模拟器号码"时经路由使用。全部数值为实验口径，生产环境准备按 Starter 课程口径。
+
+      '
+    tags:
+    - reference
+    - lab
+    - simulator
+  source_evidence:
+  - source_id: src-entpxte403
+  - location: p3-42
+  promotion:
+    destination: router
+    gate:
+      independent_intent: false
+      independent_contract: true
+      independent_run: true
+      independent_reuse: true
+      independent_eval: true
+    notes: 教学环境域，路由可达即可

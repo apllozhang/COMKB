@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>Lightning Config 快速开局</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniSwitch LAN Access Switching</h2><p>Edition 23 · 587 页 · 文档整理入库（13 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/dt00xte215en/index.html">课程首页</a><a href="/courses/dt00xte215en/digest.html">精华长文</a><a href="/courses/dt00xte215en/overview.html">教书理解</a><a href="/courses/dt00xte215en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/dt00xte215en/skills/swl2-aaa-hardening.html">交换机登录接入与 AAA 管理面加固</a><a href="/courses/dt00xte215en/skills/swl2-lightning-config.html">Lightning Config 快速开局</a><a href="/courses/dt00xte215en/skills/swl2-config-lifecycle.html">配置生命周期（保存/认证/回滚/备份）</a><a href="/courses/dt00xte215en/skills/swl2-virtual-chassis.html">Virtual Chassis 堆叠</a><a href="/courses/dt00xte215en/skills/swl2-vlan-routing.html">VLAN 与 VLAN 间路由</a><a href="/courses/dt00xte215en/skills/swl2-link-redundancy.html">链路与生成树冗余（LAG/STP/DHL）</a><a href="/courses/dt00xte215en/skills/swl2-l3-services.html">三层服务与网关冗余（DHCP/Loopback0/静态路由/VRRP）</a><a href="/courses/dt00xte215en/skills/swl2-qos-acl-policy.html">QoS 与 ACL 策略</a><p class="course-nav-group">路由能力</p><a href="/courses/dt00xte215en/skills/swl2-access-guardian.html">Access Guardian 接入认证</a><a href="/courses/dt00xte215en/skills/swl2-diagnostics.html">诊断工具箱八件套</a><a href="/courses/dt00xte215en/skills/swl2-lldp-poe.html">LLDP/LLDP-MED 与 PoE 管理</a><a href="/courses/dt00xte215en/skills/swl2-upgrade-autofabric.html">软件升级与 Auto-Fabric 零触开局</a><a href="/courses/dt00xte215en/skills/swl2-fleet-tools.html">资产与装机工具（Fleet Supervision/OST）</a><p class="course-nav-group">已安装技能</p><a href="/courses/dt00xte215en/index.html">omniswitch-lan-access（13 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/dt00xte215en/index.html">DT00XTE215EN</a><span>/</span><span aria-current="page">Lightning Config 快速开局</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>Lightning Config 快速开局</h1></div><dl><div><dt>Skill ID</dt><dd>swl2-lightning-config</dd></div><div><dt>形态</dt><dd>promoted</dd></div></dl></header><article class="markdown-body"><h1>Lightning Config 快速开局（七步流、禁令清单、模板导入）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"Port 1 DHCP Client Default IP interface VLAN1 192.168.0.1"（p104）
+"1.Click on RECOMMENDED DEFAULTS 2.Click on LIGHTNING CONFIG • Do NOT skip the Recommended Defaults!"（p115）
+"The new password must meet the following requirements: • At least 8 characters • 1 uppercase letter • 1 lowercase letter • 1 digit • 1 special character (but avoid using ! or $)."（p116）
+"Never connect an out-of-box ALE switch to another without running Lightning Config first."（p117）</p>
+</blockquote>
+<p>出处：DT00XTE215EN p102-126。</p>
+<h2>I — 自述</h2>
+<p>零专家单机开局向导：笔记本 DHCP 接端口 1，浏览器进 https://192.168.0.1，从拆箱到通流量厂商口径 &lt;5 分钟/台（宣传口径，p106）。七步流：</p>
+<ol>
+<li><strong>准备</strong>：笔记本设 DHCP 客户端；遵守禁令清单（见 B）</li>
+<li><strong>连接</strong>：网线接交换机端口 1（唯一连线），上电等约 3 分钟看两侧绿灯</li>
+<li><strong>登录</strong>：浏览器开 https://192.168.0.1/（必须 https），接受自签名证书，admin/switch 登录；笔记本此时被交换机 DHCP 分到 192.168.0.200/24</li>
+<li><strong>最小配置</strong>：先 RECOMMENDED DEFAULTS 再 LIGHTNING CONFIG，填 IP/掩码/网关（全网唯一）</li>
+<li><strong>改密</strong>：YES 应用后立即改 admin 密码——至少 8 字符、各含 1 大写/1 小写/1 数字/1 特殊字符，避开 ! 与 $</li>
+<li><strong>保存认证</strong>：确认保留 working 开关后保存，等绿色成功提示（数分钟）</li>
+<li><strong>扩展</strong>：主页接边缘设备与其他已配置 ALE 交换机；任何后续改动必须 Write Memory</li>
+</ol>
+<p><strong>模板复用</strong>：IMPORT 导入架构师给的 .json 模板，再补必填项（IP 全网唯一）走同一流程（p120-121）。</p>
+<h2>A1 — 书中案例</h2>
+<p><strong>Lightning Config 操作序列</strong>（p110-121，讲义内嵌操作步骤）：</p>
+<ol>
+<li>禁令自查：不预接线、不接其他交换机、不先接外设、不接 DHCP 服务器、笔记本就绪再上电</li>
+<li>笔记本设 DHCP：控制面板 &gt; 网络和共享中心 &gt; 更改适配器设置 &gt; 属性 &gt; 自动获得 IP/DNS</li>
+<li>连接端口 1，上电等约 3 分钟，核对绿灯</li>
+<li>Chrome 打开 https://192.168.0.1/，Advanced &gt; Proceed 接受自签名证书，admin/switch 登录</li>
+<li>点 RECOMMENDED DEFAULTS，再点 LIGHTNING CONFIG 填必填项（不懂 IP 编址就停下来找架构师）</li>
+<li>YES 应用后立即改 admin 密码（≥8 位四类字符，避开 ! 与 $），保存</li>
+<li>确认保存完成出现绿色成功消息，回主页</li>
+<li>主页巡检：Quick Links、搜索、PoE Port Configuration 看 Power mW 列确认受电设备已启动</li>
+<li>可选：IMPORT 选 .json 模板，Lightning Config 补 IP 后 SAVE CONFIGURATION 走完流程</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：新到的 OmniSwitch 第一次上电；小网络单台快速交付；导入架构师模板开局；开局后 admin 密码设置；确认受电设备功率。</p>
+<p>语言信号：Lightning Config / OLC / 快速开局 / 192.168.0.1 / 端口 1 / Recommended Defaults / 出箱 / out-of-box / 开局模板 / .json / 5 分钟 / admin 密码。</p>
+<p>与相邻能力区分：</p>
+<ul>
+<li>30 台以上批量零触开局：升级与 Auto-Fabric 能力卡</li>
+<li>开局后的配置保存纪律：配置生命周期能力卡</li>
+<li>管理面加固清单：AAA 加固能力卡</li>
+</ul>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：IP 规划（全网唯一地址/掩码/网关）、架构师模板（可选）、笔记本与网线。IP 规划未知 → 判停，不要现编。</p>
+<ol>
+<li>环境自查：确认交换机未接入任何网络/交换机/DHCP 服务器，笔记本已设 DHCP。完成标准：唯一连线是笔记本到端口 1</li>
+<li>上电等待：约 3 分钟绿灯后访问 https://192.168.0.1/，admin/switch 登录。完成标准：进入向导主页</li>
+<li>基线应用：RECOMMENDED DEFAULTS（不可跳过）&gt; LIGHTNING CONFIG 填必填项。完成标准：IP/掩码/网关填写且全网唯一</li>
+<li>改密固化：YES 应用后立即改 admin 密码（≥8 位四类字符、避开 ! 与 $），保存并等待成功提示。完成标准：新密码可登录、配置已保存</li>
+<li>模板路径（可选）：IMPORT .json 模板替代第 3 步，补 IP 唯一性后走完同一流程。完成标准：模板下发成功</li>
+<li>交接：只接边缘设备与其他已配置 ALE 交换机；每次后续改动 Write Memory。完成标准：设备通流量且配置已固化</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>不理解 IP 编址/掩码/网关 → 停，按原文找方案架构师，不要试错</li>
+<li>交换机已接在生产网络里 → 停，先按禁令断开，否则 DHCP 冲突或误入生产网</li>
+<li>对端也是出箱交换机 → 停，两端都先做完 Lightning Config 再互联</li>
+<li>批量开局需求 → 停，本向导一次一台；转 Auto-Fabric 零触路径</li>
+</ul>
+<p>输出契约：开局完成且改密的交换机（管理地址可达）+ 已保存确认 + 后续接线边界说明。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>禁令清单（p108）：不预接线进网、不与其他交换机互联、不先接摄像头等外设、不接 DHCP 服务器、上电前笔记本就绪</li>
+<li>出箱交换机严禁未开局先互联；示例拓扑含物理环路，照图接线前必须确认环路避免技术已实施（p117/p125）</li>
+<li>"每次改动必须 Write Memory、正确退出 Certified Mode" 为界面纪律，与 CLI 保存语义一致（p118）</li>
+<li>&lt;5 分钟开局与 &lt;15 分钟学习成本为厂商宣传口径（p106），非验收承诺</li>
+<li>密码避开 ! 与 $ 的原因原文未解释，按原文执行即可</li>
+<li>适用面以 ALE 6360 交换机口径为主（p106）；其他型号以当期产品文档为准</li>
+</ul><h2>相关能力</h2><p><a href="/courses/dt00xte215en/skills/swl2-config-lifecycle.html">配置生命周期（保存/认证/回滚/备份）</a></p><p class="source-page">能力 ID：cap.swl2.lightning-config · 来源：DT00XTE215EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniSwitch LAN Access Switching (Participant's Guide, Edition 23) | edition: Edition 23 | pages: 587 页 -->

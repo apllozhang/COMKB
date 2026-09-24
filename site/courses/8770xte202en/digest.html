@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>整理摘要 · 8770XTE202EN</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>OmniVista 8770 · 目录管理</h2><p>Edition 40 · 565 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/8770xte202en/index.html">课程首页</a><a href="/courses/8770xte202en/digest.html">精华长文</a><a href="/courses/8770xte202en/overview.html">教书理解</a><a href="/courses/8770xte202en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/8770xte202en/skills/ovdir-oxe-sync-ldap.html">OXE 节点注册与同步</a><a href="/courses/8770xte202en/skills/ovdir-auto-creation.html">目录树搭建与 PCX 自动创建</a><a href="/courses/8770xte202en/skills/ovdir-links-rename.html">六类链接与改名语义</a><a href="/courses/8770xte202en/skills/ovdir-msad-azure-pipelines.html">MSAD 与 Azure AD 同步管道</a><a href="/courses/8770xte202en/skills/ovdir-click-to-call.html">Click to Call 交付</a><a href="/courses/8770xte202en/skills/ovdir-confidentiality.html">目录保密级别与访问级别</a><a href="/courses/8770xte202en/skills/ovdir-replication.html">目录复制主从部署</a><a href="/courses/8770xte202en/skills/ovdir-domains-delegation.html">管理域与委派</a><p class="course-nav-group">路由能力</p><a href="/courses/8770xte202en/skills/ovdir-msad-plugin.html">MSAD 插件开户（AD 右键一键开通）</a><a href="/courses/8770xte202en/skills/ovdir-ldif-tools.html">LDIF 导入导出与管理工具管道</a><a href="/courses/8770xte202en/skills/ovdir-client-dictionary.html">目录词典与 Web 客户端定制</a><a href="/courses/8770xte202en/skills/ovdir-platform-basics.html">8770 平台基础（套件/拓扑/兼容/虚拟化）</a><p class="course-nav-group">已安装技能</p><a href="/courses/8770xte202en/index.html">omnivista-directory（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/8770xte202en/index.html">8770XTE202EN</a><span>/</span><span aria-current="page">整理摘要</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">DIGEST</p><h1>整理摘要 — 全书精华</h1></div></header><article class="markdown-body"><h1>DIGEST — OmniVista 8770 目录管理精华长文</h1>
+<blockquote>
+<p>源：8770XTE202EN Edition 40（565 页，OmniVista 8770 R5.2 口径）· 文档整理入库 · 2026-09-23
+定位：10 分钟建立 8770 目录（Company Directory）交付的全局认知；操作细节按需查 12 张能力卡。</p>
+</blockquote>
+<h2>一、这套东西是什么</h2>
+<p>OmniVista 8770 是 ALE 的网管平台，目录套件里的"公司目录"是一个 <strong>LDAP v3 目录服务器</strong>：按地理/部门/员工存组织数据，与通信服务器（OXE/OXO/OpenTouch）双向同步，配 MariaDB 做系统存储。配置目录（o=nmc，给系统用）和公司目录（o=directoryroot，给人看）是两棵树，靠六类"链接"缝合。</p>
+<p>整本教材是一条交付主线：</p>
+<ol>
+<li>接 OXE（节点注册与同步）</li>
+<li>建树与自动供给</li>
+<li>绑人机链接</li>
+<li>保密与查询</li>
+<li>拨号出口（Click to Call）</li>
+<li>定制</li>
+<li>对接企业 AD</li>
+<li>分域运营与目录冗余</li>
+</ol>
+<p>先记住三组数字：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>数字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6 类</td>
+<td>人员-用户链接（主/多设备/副/传真/杂项/附加资源），主链接是根</td>
+</tr>
+<tr>
+<td>4 级 × 5 档 × 2</td>
+<td>条目保密四级；管理端 Company/Web Directory 各五档访问级别</td>
+</tr>
+<tr>
+<td>1 主 4 从 / 7 天</td>
+<td>复制拓扑上限；从机断联超 7 天主侧新增数据丢失</td>
+</tr>
+</tbody>
+</table></div>
+<h2>二、地基：树、标识、供给</h2>
+<ul>
+<li><strong>树</strong>：组织条目（Country/City/Company/Department）作枝干，终止条目（Person/Group/Room）作叶子；人可挂任意层级。DN 是位置路径（目录侧 uid=…落 o=directoryroot；配置侧 TelephoneNumber=…落 o=nmc）。</li>
+<li><strong>UID</strong>：人员业务 key，默认"名+姓"，目录内唯一。同名撞车时自动创建拒建并告警——解法是把该 PCX 的 UID construction 改为 Extension（名+姓+分机号），注意三点：按 PCX 分别设、只对自动创建生效、试点完要改回。</li>
+<li><strong>三条供给通道</strong>：PCX 事件自动创建（实时，受全局三开关+节点 Location+两前提控制，任一缺失静默失效）、OXE 同步、LDIF 批量管道。</li>
+</ul>
+<h2>三、人机绑定：六类链接与改名</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>链接</th>
+<th>基数</th>
+<th>成本中心</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary 主链接</td>
+<td>1:1（每条目唯一）</td>
+<td>双向</td>
+</tr>
+<tr>
+<td>Multi-device 多设备链</td>
+<td>1 entry→n users（同步后自动建）</td>
+<td>随主链接</td>
+</tr>
+<tr>
+<td>Secondary 副链</td>
+<td>手工，异名同 CC（DECT）</td>
+<td>建链瞬间继承主链接</td>
+</tr>
+<tr>
+<td>Fax 传真链</td>
+<td>n:n（可共享）</td>
+<td>不动</td>
+</tr>
+<tr>
+<td>Miscellaneous 杂项链</td>
+<td>异名同 CC（数据终端/Modem）</td>
+<td>双向</td>
+</tr>
+<tr>
+<td>Additional resources 附加资源链</td>
+<td>同主链接可多条（4760 迁移）</td>
+<td>同主链接</td>
+</tr>
+</tbody>
+</table></div>
+<p>改名入口决定后果：<strong>Users 应用/WBM 是钦定最佳入口</strong>（链接与 CC 全保留、Name 同步更新）；目录应用改要手工同步 User id；从 Configuration 界面改姓名会<strong>断链生成新人</strong>——修复流程是删新人、旧人 Primary link 重挂分机。</p>
+<p>目录侧改 CC 前必须先在 PCX 建 CC，否则拒绝并告警回滚。核验口诀：Configuration Users 文件夹关开刷新再看值。</p>
+<h2>四、保密与账户：两套正交机制</h2>
+<ul>
+<li><strong>条目保密</strong>：Green（默认）/Orange/Red/Administration 8770 四级 + 个人数据五种（家庭电话/住址/驾照/工号/密码）。行为矩阵：匿名只见 Green 非个人数据；认证本人多看自己的个人数据；<strong>本人是 Orange/Red 也不会多看到别人的条目</strong>。</li>
+<li><strong>账户权限</strong>：Company Directory 五档 + Web Directory 五档，Security 应用按应用分别授予；AdminNmc 默认全开。排障第一步永远是分清"哪套机制挡住了"。</li>
+<li>管理域是第三把刀：按 DN 级别切管理员的可见范围与权限（Domain Management+Directory 双许可、默认关闭）；本地管理员永远建不了域，Delegation 才能下放建户权。</li>
+</ul>
+<h2>五、拨号出口：Click to Call 五环链</h2>
+<p>Click to Call 五环链：</p>
+<ol>
+<li>DDI 翻译器（PCX 侧映射，8770 同步取回）</li>
+<li>ISDN 号构造（前缀+实体安装号+话机号；缺安装号、翻译器未纳管且无补充号都不构造；改 PCX 数据必须重同步）</li>
+<li>前缀规则（外部呼叫规则/网间规则，Prefix to delete 是"匹配头+删除"双重语义）</li>
+<li>属性关联（默认 Extension/ISDN/Mobile 三项，Misc 1-5 手工加）</li>
+<li>STAP 权限放行+关联话机（分机+密码）</li>
+</ol>
+<p>硬边界：<strong>OXE SIP 话机全线不支持</strong> STAP 与 Click to Call——交付前先盘点话机类型。</p>
+<h2>六、数据管道：LDIF 与企业 AD</h2>
+<ul>
+<li><strong>LDIF</strong>：导入只增改不删除（第一性约束）；备份用 Branch 范围；服务器导出走 Scheduler 落 C:\8770\Client\data\import。命令行六件套在 8770\bin：标准管道是 CSV 转换导入后用 LinkDn 建关系链、PurgeLdap 做"外部删我也删"（misc10 时间戳标记+过滤器）。全书最重警告：<strong>p.conf 的 o=abs 根名忘改就跑 go.bat 会造坏结构，改回重跑无效，须 dirmanag.exe 删根重来</strong>。</li>
+<li><strong>MSAD</strong>：一条映射（sn 只进不出且不可删、电话只出不进、abObjectGUID 隐藏保唯一）+ N 条规则（Flat 不同步分支/Tree 镜像结构）；规则或映射改完必须跑 Complete；AD 删人默认只标记（True 才连删三系统）。"双向"不对称：8770 侧新建/删除人员不回写 AD。</li>
+<li><strong>Azure AD/Entra ID</strong>：Azure 恒为主节点，走 Graph API（不用 LDAPS、无需管理员账号），不 provision OXE 用户；tree 模式另需 Directory 许可。</li>
+<li><strong>MSAD 插件</strong>：AD 服务器上装插件，右键用户按 Meta profile 一键开户（目录+Users+OXE）；前置三件——MSAD8770Admin 改密后重启 NMC Java Service、空闲号段建完必须同步、Meta profile。更新仅 CC 与称谓可改；<strong>IE 强依赖是版本风险项</strong>。</li>
+</ul>
+<h2>七、规模化：定制与冗余</h2>
+<ul>
+<li><strong>词典定制</strong>：改属性显示名=改翻译，保存三动作且版本号自增（回退也自增）；客户端重连自动下载新 dict_user.zip；服务器本机开着客户端时保存失败。</li>
+<li><strong>客户端定制</strong>：默认参数（管理员定基线）/用户参数（认证用户个人覆盖）/主题（存 cookie）三层；没有一键还原——动手前先导 DirectoryClient 分支 LDIF+备份 Themes 文件夹。</li>
+<li><strong>目录复制</strong>：Slave 建 Consumer（ID 65535）→ Master 建副本（ID 1-65534）+协议+属性集 → Initialize+调度（实验每日 5:00AM）。纪律三条：只在 Master 改数据（Consumer 改动复制后消失）、属性集建协议后锁死、断联超 7 天走 LDIF 六步人工恢复。<strong>它只冗余目录数据，不冗余 8770 服务器，且不支持 LDAPS</strong>。</li>
+</ul>
+<h2>八、交付红线</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>红线</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实验口径</td>
+<td>教材所有 IP/密码/号码（Superuser01* 族、DDI 段等）是教学约定值，生产必须全量替换</td>
+</tr>
+<tr>
+<td>书内勘误</td>
+<td>p95 节点号示例、p120 UID 描述、p330 字段说明三处排版勘误，操作以字段与实测为准</td>
+</tr>
+<tr>
+<td>生产化指针</td>
+<td>安装/管理细节以 8770 官方 Installation/Administration Guide 为准（整理侧建议）</td>
+</tr>
+</tbody>
+</table></div>
+<h2>九、速查卡</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>要做的事</th>
+<th>去哪张能力卡</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>接 OXE/同步/节点号</td>
+<td>ovdir-oxe-sync-ldap</td>
+</tr>
+<tr>
+<td>建树/自动创建/同名</td>
+<td>ovdir-auto-creation</td>
+</tr>
+<tr>
+<td>链接/改 CC/改名/断链</td>
+<td>ovdir-links-rename</td>
+</tr>
+<tr>
+<td>接 AD/Azure AD 同步</td>
+<td>ovdir-msad-azure-pipelines</td>
+</tr>
+<tr>
+<td>点击外呼/STAP/DDI</td>
+<td>ovdir-click-to-call</td>
+</tr>
+<tr>
+<td>保密/访问级别/匿名</td>
+<td>ovdir-confidentiality</td>
+</tr>
+<tr>
+<td>目录复制/7 天恢复</td>
+<td>ovdir-replication</td>
+</tr>
+<tr>
+<td>分域/委派/定制视图</td>
+<td>ovdir-domains-delegation</td>
+</tr>
+<tr>
+<td>AD 右键开户/LDIF 管道/词典与界面定制/平台背景</td>
+<td>路由入口（omnivista-directory-router）</td>
+</tr>
+</tbody>
+</table></div>
+<h2>版权</h2>
+<ul>
+<li>本精华长文为 ALE Training Services《OmniVista 8770 — Directory Administration》（8770XTE202EN Edition 40）的内部学习整理，仅供内部学习使用；教材版权归 ALE Training Services 所有。</li>
+</ul></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: OmniVista 8770 — Directory Administration (Participant's Guide, Edition 40) | edition: Edition 40 | pages: 565 页 -->

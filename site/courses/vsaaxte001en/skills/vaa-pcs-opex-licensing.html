@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6B489D">
+  <title>VAA PCS 同步与 OPEX/许可体系</title>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="/assets/css/components.css?v=4">
+  <link rel="stylesheet" href="/assets/css/content.css?v=7">
+  <link rel="stylesheet" href="/assets/css/portal.css?v=11">
+</head>
+<body data-page-kind="course">
+  <header class="topbar" data-topbar><a class="brand" href="/index.html"><img src="/assets/img/ale-logo-color.png" alt="ALE"><span>ALE 培训门户 · Communications</span></a><nav id="primary-nav" class="primary-nav" aria-label="主导航"><a href="/index.html">首页</a><a href="/cloud/index.html">云通信</a><a href="/communications/index.html">通信产品线</a><a href="/about.html">关于门户</a><a href="http://10.20.30.103:8899/">网络门户 ↗</a></nav></header>
+<div class="course-layout">
+<aside class="course-sidebar"><div class="sidebar-heading"><p class="eyebrow">COURSE</p><h2>Visual Automated Attendant · 安装、配置与维护</h2><p>Edition 20 · 351 页 · 文档整理入库（12 个知识单元）</p></div><nav class="course-nav" aria-label="课程目录"><a aria-current="page" href="/courses/vsaaxte001en/index.html">课程首页</a><a href="/courses/vsaaxte001en/digest.html">精华长文</a><a href="/courses/vsaaxte001en/overview.html">教书理解</a><a href="/courses/vsaaxte001en/glossary.html">术语词典</a><p class="course-nav-group">核心能力</p><a href="/courses/vsaaxte001en/skills/vaa-install-sip-integration.html">VAA 安装与 OXE SIP 对接接通</a><a href="/courses/vsaaxte001en/skills/vaa-multitenant-tree-design.html">VAA 多租户与树设计（公司/日历/UC1-UC3）</a><a href="/courses/vsaaxte001en/skills/vaa-prompt-tts-asr.html">VAA 提示音与 TTS/ASR 引擎</a><a href="/courses/vsaaxte001en/skills/vaa-ivr-option-nodes.html">VAA IVR 选项节点与动态脚本</a><a href="/courses/vsaaxte001en/skills/vaa-master-slave-ha.html">VAA Master/Slave 高可用与 OXE ARS 切换</a><a href="/courses/vsaaxte001en/skills/vaa-maintenance-backup.html">VAA 日常维护与版本升级</a><a href="/courses/vsaaxte001en/skills/vaa-db-integration.html">VAA 外部数据库集成（JDBC/SQL 节点）</a><a href="/courses/vsaaxte001en/skills/vaa-statistics-reporting.html">VAA 统计与报告</a><p class="course-nav-group">路由能力</p><a href="/courses/vsaaxte001en/skills/vaa-webadmin-administration.html">VAA WebAdmin 管理面</a><a href="/courses/vsaaxte001en/skills/vaa-pcs-opex-licensing.html">VAA PCS 同步与 OPEX/许可体系</a><a href="/courses/vsaaxte001en/skills/vaa-server-sizing-virtualization.html">VAA 服务器选型与虚拟化</a><a href="/courses/vsaaxte001en/skills/vaa-architecture-redundancy.html">VAA 架构与冗余全景</a><p class="course-nav-group">已安装技能</p><a href="/courses/vsaaxte001en/index.html">visual-automated-attendant（12 能力）</a></nav></aside>
+  <main id="main-content" class="course-main prose">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/index.html">首页</a><span>/</span><a href="/courses/vsaaxte001en/index.html">VSAAXTE001EN</a><span>/</span><span aria-current="page">VAA PCS 同步与 OPEX/许可体系</span></nav>
+<header class="skill-heading"><div><p class="eyebrow">KNOWLEDGE UNIT</p><h1>VAA PCS 同步与 OPEX/许可体系</h1></div><dl><div><dt>Skill ID</dt><dd>vaa-pcs-opex-licensing</dd></div><div><dt>形态</dt><dd>router</dd></div></dl></header><article class="markdown-body"><h1>VAA PCS 同步与 OPEX/许可体系（远端站点、Purple On Demand、FlexLM 核查）</h1>
+<h2>R — 原文依据</h2>
+<blockquote>
+<p>"sudo vaa conf pcs [IP@] • Main command to configure automatic synchronization of database from primary VAA to VAA PCS … sudo vaa db sendBackup [IP@] • Command … to send automatic backup file to configured target and restore it on remote server"（p303）
+"OPEX oriented license management mechanism based on Purple On Demand offer … VAA must be connected to a cloud connected OXE and be associated to only one subscription … License items values will be checked every night at midnight, whatever the working mode, CAPEX or OPEX"（p305）
+"The license file (.lic or .vaa) is linked to the MAC address of the VAA … You must find: • The FQDN • MAC address"（p274）
+"PCS VAA can be configured for local emergency purposes. Anyway, configuration will be lost once network failure is solved."（p301）</p>
+</blockquote>
+<p>出处：VSAAXTE001EN p46, p49-51, p273-274, p300-305。</p>
+<h2>I — 自述</h2>
+<p>三个特殊运行主题：</p>
+<ol>
+<li><strong>PCS 支撑</strong>：中心 VAA 与呼叫服务器建中继，配置周期性复制到各外围 PCS VAA；断网时 PCS VAA 激活、与本地 PCS 建中继接管本地呼叫；断网期间的本地应急配置在网络恢复后即丢失（别把应急态当新基线）</li>
+<li>
+<p><strong>PCS 同步实现</strong>：vaa conf pcs [IP] 配置自动同步（核连接、建 SSH key、未设自动备份时定义每日备份名 Backup4PCS.sql.gz）</p>
+</li>
+<li>
+<p>vaa db sendBackup [IP] 发备份并远端恢复（前提：自动备份已设、备份文件已生成、SSH key 已布）</p>
+</li>
+<li>定时任务每天 01:00 起，多台 PCS 依次错开（第 1 台 01:00、第 2 台 01:01、第 3 台 01:02）</li>
+<li><strong>OPEX（Purple On Demand）</strong>：按用量许可池模式——VAA 须连云化 OXE 且只关联一个订阅；项目内声明的 VAA 端口在全部 VAA 应用间分摊，须在每台服务器上指定可用端口数；无论 CAPEX 还是 OPEX，许可项每晚午夜校验一次；空间冗余（跨数据中心 Slave）在 Purple On Demand 下不支持</li>
+<li>
+<p><strong>许可核查</strong>：.lic/.vaa 绑定 MAC 且须含正确 FQDN（改主机名/换网卡即失效）</p>
+</li>
+<li>
+<p>安装目录 /etc/ale/aa-license-server，排障目录 /var/lib/ale/aa-license-server/（打开文件应能找到 FQDN 与 MAC）</p>
+</li>
+<li>FEATURE 项 AAIVR（IVR 功能）/AAPORTS（端口数）/ECCSTART/VAA_RELEASE 各带到期日；运行态 vaa services 输出三项一眼巡检</li>
+</ol>
+<h2>A1 — 书中案例</h2>
+<p><strong>PCS 同步命令序列</strong>（p300-305，讲义级流程）：</p>
+<ol>
+<li>在主 VAA 上执行 vaa conf pcs [PCS VAA 的 IP]</li>
+<li>命令核连接并生成 SSH key 到远端</li>
+<li>未设自动备份时定义每日备份名 Backup4PCS.sql.gz</li>
+<li>需要立即同步时执行 vaa db sendBackup [IP]</li>
+<li>前提核对：自动备份已配置、备份文件已生成、SSH key 已布</li>
+<li>确认 cron 任务：每天 01:00 起，多台 PCS 依次 +1 分钟错开</li>
+<li>断网演练：PCS 激活本地接管，可做应急配置</li>
+<li>网络恢复后核对：应急配置丢失，以中心配置为准</li>
+</ol>
+<h2>A2 — 未来触发</h2>
+<p>使用情境：客户有远端分支要容灾；问 OPEX 按用量付费；许可安装后失效；换网卡/改主机名后许可报错；售前评估"OPEX + 异地容灾"组合；巡检许可端口余量。</p>
+<p>语言信号：PCS / 远端站点 / 同步 / sendBackup / Backup4PCS / cron / OPEX / CAPEX / Purple On Demand / 订阅 / 许可池 / FlexLM / FEATURE / AAIVR / AAPORTS / VAA_RELEASE / MAC / FQDN / 许可失效。</p>
+<p>与相邻能力区分：自动备份规则本身（不可关闭/NFS/容量）归维护能力；N+1 扩容结构归架构冗余能力；Slave 部署步骤归 HA 能力；许可失效导致的服务异常排查入口在维护能力。</p>
+<h2>E — 可执行步骤</h2>
+<p>输入契约：站点拓扑（中心/分支数量）、商用模式（CAPEX 或 OPEX，含云化 OXE 与订阅前提）、许可文件与服务器 MAC/FQDN、变更窗口。</p>
+<ol>
+<li>模式判定：客户要按用量付费则核 OPEX 三前提（云化 OXE、单订阅、端口分摊确认）；同时要异地容灾则现场说明互斥。完成标准：模式决策落定</li>
+<li>许可就位：核对 .vaa/.lic 已装且 vaa services 三项与采购一致。完成标准：许可在期且数量正确</li>
+<li>FQDN/MAC 登记：把两台（或 N 台）服务器的 FQDN 与 MAC 记入交付档案，作为未来换件/改名的约束。完成标准：档案可查</li>
+<li>PCS 配置（如适用）：vaa conf pcs 建立同步关系，核对 SSH key 与备份名。完成标准：同步测试成功</li>
+<li>排程确认：cron 01:00 起、多台错开；sendBackup 三前提写进运维手册。完成标准：排程可观测</li>
+<li>应急演练：断网验证 PCS 接管，恢复后核对应急配置已按预期丢失。完成标准：演练记录归档</li>
+</ol>
+<p>判停点：</p>
+<ul>
+<li>客户坚持"OPEX + 跨数据中心冗余" → 停，互斥（n08），二选一或回 CAPEX，升级商务</li>
+<li>要在 PCS 上长期保存应急配置 → 停，恢复即丢失是设计行为（n09），长期变更必须回中心做</li>
+<li>许可失效且近期换过硬件/主机名 → 停，按 MAC/FQDN 绑定口径处理：恢复原标识或重新申请许可</li>
+<li>客户把 N+1 当成容灾 → 停，N+1 是同 OXE 扩容结构（reference 故障期配置冻结），不是灾备（n06）</li>
+</ul>
+<p>输出契约：商用模式决策记录 + 许可档案（FQDN/MAC/FEATURE 清单）+ PCS 同步与演练结论。</p>
+<h2>B — 边界</h2>
+<ul>
+<li>实验口径：许可 5 端口 Release 11、PCS 备份名 Backup4PCS.sql.gz、01:00 排程——生产按现场调整</li>
+<li>PCS 全书未展开全称；multi-company 与 N+1 的配置细节外置 TBE083 与 OTEC-S 指南（n50）</li>
+<li>p274 的 .lic 样例 VAA_RELEASE 数值与运行态不一致（nr-04），核查以 vaa services 实际输出为准</li>
+<li>OPEX 每晚午夜校验的具体行为（超配时如何处置）书内未展开</li>
+<li>教材场景为单 OXE + 双 VAA 最小闭环，多分支 PCS 大规模编排无实验</li>
+<li>空间冗余的部署细节（第二数据中心 Slave）只有讲义，无实施步骤（f08 关联）</li>
+</ul><h2>相关能力</h2><p>—</p><p class="source-page">能力 ID：cap.vaa.pcs-opex-licensing · 来源：VSAAXTE001EN · 仅供内部学习</p></article>
+    <footer class="content-footer">仅供内部学习使用 · 教材版权归 ALE Training Services 所有 · 姊妹站：<a href="http://10.20.30.103:8899/">ALE Networking 技术培训门户</a></footer>
+  </main>
+</div>
+</body>
+</html>
+<!-- book: Visual Automated Attendant — Installation, Configuration and Maintenance (Participant's Guide, Edition 20) | edition: Edition 20 | pages: 351 页 -->
