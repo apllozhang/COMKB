@@ -95,7 +95,7 @@
 </tr>
 </tbody>
 </table></div>
-<p>口令页四条铁律：全部口令至少 8 字符（短了不报错、事后出问题）；</p><p>用户名不得用 admin/adminnmc/htuser 等既有名；</p><p>otAdmin/otProfile 口令有复杂度要求；</p><p>全部账号口令必须当场抄录——8770 声明 OT 节点时逐项要用。</p>
+<p>口令页四条铁律：全部口令至少 8 字符（短了不报错、事后出问题）；用户名不得用 admin/adminnmc/htuser 等既有名；otAdmin/otProfile 口令有复杂度要求；全部账号口令必须当场抄录——8770 声明 OT 节点时逐项要用。</p>
 <h2>A1 — 书中案例</h2>
 <p><strong>from scratch 实验</strong>（p88-105，实验口径见 B）：</p>
 <ol>
@@ -120,7 +120,7 @@
 <ul><li>post-installation wizard</li><li>站点安装</li><li>from scratch</li><li>restore</li><li>archive</li><li>归档恢复</li><li>HA</li><li>DNS 正反向</li><li>otAdmin</li><li>otProfile</li><li>otuser</li><li>bics.conf</li></ul>
 
 <h2>E — 可执行步骤</h2>
-<p>输入契约：已装完软件待初始化的 OT 服务器；</p><p>客户网络参数（IP/域名/DNS/NTP）；</p><p>许可 .ice 与锚定物（物理机 ALUID、虚拟机加密狗）；</p><p>证书档位与备份目的地两项客户决策。缺许可 → 可 Skip 进系统，但必须立即排补装计划。</p>
+<p>输入契约：已装完软件待初始化的 OT 服务器；客户网络参数（IP/域名/DNS/NTP）；许可 .ice 与锚定物（物理机 ALUID、虚拟机加密狗）；证书档位与备份目的地两项客户决策。缺许可 → 可 Skip 进系统，但必须立即排补装计划。</p>
 <ol>
 <li>前置核查：五类 FQDN 正反向解析全通、NTP 可达、许可文件在手。完成标准：nslookup 双向全通</li>
 <li>开机进向导，新装选 from scratch，重装迁移选 restore from archive 并指定归档目录</li>

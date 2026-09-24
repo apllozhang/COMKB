@@ -66,7 +66,7 @@
 <li>两个特性必须在用户的 Class of Service 里 Validate——漏掉是"建了但不工作"的高频根因</li>
 </ol>
 <p>模式 B 资源公式（p157-158）：并发游牧连接数 = 所需 SIP 设备数 = 所需 Ghost Z set 数；先统计同时游牧的用户数再建池。两模式都要求 OT 侧申报 DM（设备管理服务器，本书即 OmniVista 8770，端口 8080），OTC PC 从它取 SIP 文件。</p>
-<p>SIP 设备默认口令 0000，必须改成强值（书中建议与分机号一致）；</p><p>OT 侧 OXE SIP Subscriber 里填的口令要与 OXE 侧一致，两边不一致是最直接的注册失败原因。</p>
+<p>SIP 设备默认口令 0000，必须改成强值（书中建议与分机号一致）；OT 侧 OXE SIP Subscriber 里填的口令要与 OXE 侧一致，两边不一致是最直接的注册失败原因。</p>
 <h2>A1 — 书中案例</h2>
 <p>模式 A 配置主线（p151-156，实验口径号码见 book/overview）：</p>
 <ol>
@@ -88,7 +88,7 @@
 <li>把当前话机从 Deskphone 切到 Personal Computer，Test the solution</li>
 </ol>
 <h2>A2 — 未来触发</h2>
-<p>使用情境：员工在家用 PC 接听且保留办公桌话机；</p><p>"只有电脑没有话机"的临时坐席；</p><p>游牧用户反馈切不到 Personal Computer；</p><p>游牧上线前的池容量评审；</p><p>副设备建了不振铃。</p>
+<p>使用情境：员工在家用 PC 接听且保留办公桌话机；"只有电脑没有话机"的临时坐席；游牧用户反馈切不到 Personal Computer；游牧上线前的池容量评审；副设备建了不振铃。</p>
 <p>语言信号：multi-devices / 副设备 / secondary device / 213100x / Nomadic / 游牧 / Ghost Z / SIP 设备 / 池 / Deskphone / Personal Computer / Twinset get call / No ringing / COS / 506 / 507 / Desktop 许可。</p>
 <p>与相邻能力区分：</p>
 <ul>

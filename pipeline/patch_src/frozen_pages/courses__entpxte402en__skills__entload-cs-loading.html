@@ -34,7 +34,7 @@
 <li><strong>FTP 安装</strong>：经 FTP 自动安装 Linux、传工具与 swinst、下载版本与补丁，结束后 CS 重启</li>
 </ol>
 <p>启动相位链（加载失败定位底图）依次经过六相位：BIOS、系统自检、Bootloader、GRUB、Linux（从 active 分区启动）、电话应用。可干预点：BIOS 相位选引导设备；GRUB 相位 grubboot ETHER 改走网络引导；电话应用由 swinst 的 autostart 决定自动起或 mtcl 手动 RUNTEL。</p>
-<p>硬盘双分区结构（多版本/切换的结构依据）：活动分区（/、/usr2 版本、/usr3 数据库、/var 日志）；</p><p>公共区（/usr4 动态计费与补丁中转、/usr7 系统语音）；</p><p>非活动分区（/root2_d、/usr5、/usr6、/var2）。</p>
+<p>硬盘双分区结构（多版本/切换的结构依据）：活动分区（/、/usr2 版本、/usr3 数据库、/var 日志）；公共区（/usr4 动态计费与补丁中转、/usr7 系统语音）；非活动分区（/root2_d、/usr5、/usr6、/var2）。</p>
 <p>加载后初始化两件硬规则：</p>
 <ul>
 <li><strong>密码规则九条</strong>（root/mtcl/adfexc/swinst 四账户逐个设）：≥14 字符；≥2 字母（1 大写强制）；≥2 数字；≥1 特殊字符；不含账户名；不含 4 连同字符；不含 4 连顺序字符；不含字典词；不得与前 24 个已用密码重复</li>

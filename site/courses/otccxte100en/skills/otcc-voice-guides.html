@@ -29,7 +29,7 @@
 <p>出处：OTCCXTE100EN p194-264, p566-582。</p>
 <h2>I — 自述</h2>
 <p>编号法是地基：指南号（3 位）放 CCD 矩阵，消息号（4 位=语言索引+指南号）供录制——指南 683 配消息 1683（语言 1）/2683（语言 2）；每指南消息数=语言数、最多 40 条，消息号全域 0-5999（p214/p586/p13）。</p>
-<p>静态指南打包后固化在 Flash、不可改；</p><p>动态指南可录音、存 RAM，需 GD3/GA3 板卡或 OMS（免板卡）；</p><p>格式 G711 64kbps（crystal）或 ADPCM32 32kbps（common）（p196-197）。</p>
+<p>静态指南打包后固化在 Flash、不可改；动态指南可录音、存 RAM，需 GD3/GA3 板卡或 OMS（免板卡）；格式 G711 64kbps（crystal）或 ADPCM32 32kbps（common）（p196-197）。</p>
 <p>录入三路径：</p>
 <ul>
 <li>话机录音：401 开始录、输消息号、录制、文件名+memo、选文件装板；580 试听；COS 须启用 Recordable Voice Guides（法语库默认关，n26）；无录音时播备份音 56（p218-220）</li>
@@ -52,7 +52,7 @@
 <h2>A2 — 未来触发</h2>
 <p>使用情境：外包录音上线；"401 录不了音"；换班次问候语；多语言消息该录哪个槽；.wav 传输失败；580 试听没声；来话还是备份音；欢迎指南要不要让座席听见。</p>
 <p>语言信号：voice guide / 语音指南 / 消息号 / 401 / 580 / vgstat / Audio File Conversion / Audio File Update / SFTP / A-Law / 8000Hz / ADPCM32 / G711 / 板位 / 4-0 / 538 / 4500 / welcome guide / 欢迎指南 / 备份音 56。</p>
-<p>与相邻能力区分：指南排进哪个 parking level → 路由与分配规则能力；</p><p>EWT 表与 518 位次 → 排队体验卡（路由卡）；</p><p>多语言 pilot 双语路由归多语言与日历能力。</p>
+<p>与相邻能力区分：指南排进哪个 parking level → 路由与分配规则能力；EWT 表与 518 位次 → 排队体验卡（路由卡）；多语言 pilot 双语路由归多语言与日历能力。</p>
 <h2>S — 现场症状（工单语言）</h2>
 <ul><li>voice guide</li><li>语音指南</li><li>消息号</li><li>401</li><li>580</li><li>vgstat</li><li>Audio File Conversion</li><li>Audio File Update</li><li>SFTP</li><li>A-Law</li><li>8000Hz</li><li>ADPCM32</li></ul>
 

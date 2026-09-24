@@ -38,7 +38,7 @@
 <li><strong>Easy 模式</strong>：向导式（产品类型、媒体、目标设置一路点下去），首次交付推荐</li>
 <li><strong>Expert 模式</strong>：媒体与项目独立管理，媒体必须先声明再建项目；更新类操作（多版本/补丁）在 Projects listing 里对既有项目点 update</li>
 </ul>
-<p>项目公共字段：Project name/Description；</p><p>OVF generation（目标为 SOT 生成 ovf 的虚机才勾，勾后免 MAC）；</p><p>物理机目标必填 MAC（板卡贴纸或 ifconfig）；</p><p>Country/Timezone；</p><p>Storage area 可上传许可文件（OPS）——项目里带了许可就自动部署，没带就事后手工恢复。</p>
+<p>项目公共字段：Project name/Description；OVF generation（目标为 SOT 生成 ovf 的虚机才勾，勾后免 MAC）；物理机目标必填 MAC（板卡贴纸或 ifconfig）；Country/Timezone；Storage area 可上传许可文件（OPS）——项目里带了许可就自动部署，没带就事后手工恢复。</p>
 <p>项目两种类型：Easy 模式第一步选 Greenfield（从零全新安装）；对既有产品更新则走 Projects listing 里的 update 流程。</p>
 <h2>A1 — 书中案例</h2>
 <p><strong>媒体声明与项目创建</strong>（p84-95，How-To 片段）：</p>
@@ -54,7 +54,7 @@
 <h2>A2 — 未来触发</h2>
 <p>使用情境：SOT 里看不到刚传的版本；媒体传一半失败；项目建到一半缺媒体；许可要不要随项目带；Easy 和 Expert 模式怎么选。</p>
 <p>语言信号：Declare media / Refresh medias list / upload / SFTP 2222 / Local storage / NFS / Greenfield / Expert mode / Easy mode / OVF generation / MAC 地址 / Storage area / OPS。</p>
-<p>与相邻能力区分：SOT 本身的部署与更新 → SOT 安装卡；</p><p>各加载场景的差异化字段 → 对应加载卡；</p><p>分发器模式的 /tmpd 传输是 OXE 侧通道，与本卡 SOT 侧通道是两回事。</p>
+<p>与相邻能力区分：SOT 本身的部署与更新 → SOT 安装卡；各加载场景的差异化字段 → 对应加载卡；分发器模式的 /tmpd 传输是 OXE 侧通道，与本卡 SOT 侧通道是两回事。</p>
 <h2>S — 现场症状（工单语言）</h2>
 <ul><li>Declare media</li><li>Refresh medias list</li><li>upload</li><li>SFTP 2222</li><li>Local storage</li><li>NFS</li><li>Greenfield</li><li>Expert mode</li><li>Easy mode</li><li>OVF generation</li><li>MAC 地址</li><li>Storage area</li></ul>
 

@@ -52,7 +52,7 @@
 </tbody>
 </table></div>
 <p>档案四页签控制：Answer only（三态，默认 Manageable by users）、配额（需启用 Check quota 才生效）、新/已听留言保留天数、TUI 口令管理三档、零出（Attendant call enabled）、IMAP 访问开关等。邮箱上的字段随档案取值锁定：档案设 Yes/No 时用户改不了，设 Manageable by users 才开放。</p>
-<p>IMAP 链：默认 IMAPS+TLS；</p><p>改 SSL 或明文必须两端同步改端口并 service imap4fed restart；</p><p>内嵌 IMAP 前端最多 1000 并发会话，1001-20000 需专用服务器；</p><p>Outlook 账号测试里"发送测试邮件"失败属预期（OT 不做 SMTP）。</p>
+<p>IMAP 链：默认 IMAPS+TLS；改 SSL 或明文必须两端同步改端口并 service imap4fed restart；内嵌 IMAP 前端最多 1000 并发会话，1001-20000 需专用服务器；Outlook 账号测试里"发送测试邮件"失败属预期（OT 不做 SMTP）。</p>
 <p>通知两链与配置分层：</p>
 <ul>
 <li>SMTP 链走外部服务器（必须无认证无 TLS；发件账号须真实存在；投递失败 NDN 只落发件账号邮箱，OT 仅在邮件未达 SMTP 时告警）</li>

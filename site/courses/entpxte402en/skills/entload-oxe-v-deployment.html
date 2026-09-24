@@ -75,7 +75,7 @@
 <li>SOT 项目按用户数选规格模板（模板决定硬盘与内存）；"OXE template for AWS" 为单独选项</li>
 <li>目标为 SOT 生成的 .ovf/.ova 虚机时不要求 MAC；KVM 线经 Template Factory 生成模板后 virsh define 定义启动</li>
 </ul>
-<p>OMS 要点：软媒体网关虚机（等价一块 GD4 板卡），每台 120 VoIP 通道、每 OXE 最多 240 台；</p><p>会议 3/6/14/29 方；</p><p>许可 Lock 384（台数）+ Lock 385（通道总数），均可不停机安装。</p>
+<p>OMS 要点：软媒体网关虚机（等价一块 GD4 板卡），每台 120 VoIP 通道、每 OXE 最多 240 台；会议 3/6/14/29 方；许可 Lock 384（台数）+ Lock 385（通道总数），均可不停机安装。</p>
 <p>KVM 线手工建虚机（Rocky 9.4、1GB 内存、1 CPU、16GB 盘）后 IPXE 引导加载，装完 omsconfig 配置并在 OXE 数据库声明；一个 SOT 项目最多声明 4 台 OMS。</p>
 <h2>A1 — 书中案例</h2>
 <p><strong>OXE VM 生成与加载（ESXi 线）</strong>（p204-211，How-To）：</p>

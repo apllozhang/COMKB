@@ -75,7 +75,7 @@
 <li>核验：authorized_keys 共 9 条（3 节点×3 账户）</li>
 </ol>
 <h2>A2 — 未来触发</h2>
-<p>使用情境：mastercopy/pcscopy/audit/broadcast 报认证失败；</p><p>新装冗余对/PCS/网络节点后的初始化；</p><p>换密码后免密失效；</p><p>怀疑 host-based 老脚本失效。</p>
+<p>使用情境：mastercopy/pcscopy/audit/broadcast 报认证失败；新装冗余对/PCS/网络节点后的初始化；换密码后免密失效；怀疑 host-based 老脚本失效。</p>
 <p>语言信号：SSH 免密 / public key / oxe-ssh-auth / oxe-nw-sshkey-sync / ssh_multi.csv / authorized_keys / 密钥分发 / scp 失败 / N3。</p>
 <p>与相邻能力区分：免密建好后做库克隆与切换 → CS 冗余能力；audit/broadcast 前提核查 → 数据一致性能力。</p>
 <h2>S — 现场症状（工单语言）</h2>

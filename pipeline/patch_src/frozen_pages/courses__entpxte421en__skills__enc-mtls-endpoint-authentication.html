@@ -111,9 +111,9 @@
 </ol>
 <p><strong>版本限制处置</strong>（p366-375，c18 步骤 7）：遇 1024 位出厂设备时，方案 1=外部 PKI 签 ≥2048 位证书经 V24 串口/SCEP 部署；方案 2=N4 起 11.6.3 降 SSL level（重启+copy to twin）。</p>
 <h2>A2 — 未来触发</h2>
-<p>使用情境：要不要开双向认证；</p><p>开了之后明文用户怎么办；</p><p>升级 R101 后老话机连不上了；</p><p>SSL security level 降几级；</p><p>OMS/板卡证书怎么装；</p><p>SIP 侧 mTLS 端口 6261。</p>
+<p>使用情境：要不要开双向认证；开了之后明文用户怎么办；升级 R101 后老话机连不上了；SSL security level 降几级；OMS/板卡证书怎么装；SIP 侧 mTLS 端口 6261。</p>
 <p>语言信号：mTLS / Mutual TLS Authentication / 双向认证 / 6261 / SSL security level / OpenSSL 3.0 / 1024 位 / 2048 位 / GW.pfx / softphone_cert.pem / DTLSPkeyPassphrase / Endpoint CTL / SCEP。</p>
-<p>与相邻能力区分：服务器认证基线（CS 证书+端点 CTL）归证书与信任链能力；</p><p>做端点证书的 XCA 操作归 PKI 工坊（路由卡）；</p><p>trunk 侧互认证端口成对规则归 SIP trunk 能力；</p><p>验证命令归验证与维护能力。</p>
+<p>与相邻能力区分：服务器认证基线（CS 证书+端点 CTL）归证书与信任链能力；做端点证书的 XCA 操作归 PKI 工坊（路由卡）；trunk 侧互认证端口成对规则归 SIP trunk 能力；验证命令归验证与维护能力。</p>
 <h2>S — 现场症状（工单语言）</h2>
 <ul><li>mTLS</li><li>Mutual TLS Authentication</li><li>双向认证</li><li>6261</li><li>SSL security level</li><li>OpenSSL 3.0</li><li>1024 位</li><li>2048 位</li><li>GW.pfx</li><li>softphone_cert.pem</li><li>DTLSPkeyPassphrase</li><li>Endpoint CTL</li></ul>
 

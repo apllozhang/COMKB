@@ -22,6 +22,7 @@ if not os.path.isdir(DEF_SRC):
 
 # 全站标准导航（成品站口径，2026-09-24 更新）
 NAV_RE = re.compile(r'(<nav id="primary-nav"[^>]*>).*?(</nav>)', re.S)
+TITLE_ZW_RE = re.compile(r"(<title>)(.*?)(</title>)", re.S)
 NAV_CANON = ('<a href="/index.html">首页</a>'
              '<a href="/paths.html">学习路径</a>'
              '<a href="/field/index.html">现场支持</a>'
@@ -45,10 +46,16 @@ def wr(p, t):
 
 def patch_html(t, snippets, rel):
     changed = False
-    # 0) DECT 课程标题零宽空格换行提示：title/h1/h2 全站；卡片链接仅 communications 板块
+    # 0) title 规范化：标签页标题不得含零宽字符（复制/搜索隐患）
+    if "\u200b" in t:
+        t2 = TITLE_ZW_RE.sub(lambda m: m.group(1) + m.group(2).replace("\u200b", "") + m.group(3), t)
+        if t2 != t:
+            t = t2
+            changed = True
+    # DECT 课程标题零宽空格换行提示：仅 h1/h2 与 communications 卡片链接（title 不加，避免复制污染）
     dt = "OmniPCX Enterprise \u00b7 DECT \u89e3\u51b3\u65b9\u6848"
     dtz = "OmniPCX Enterprise \u00b7\u200b DECT \u89e3\u51b3\u65b9\u6848"
-    pats = ["<title>%s</title>" % dt, "<h1>%s</h1>" % dt, "<h2>%s</h2>" % dt]
+    pats = ["<h1>%s</h1>" % dt, "<h2>%s</h2>" % dt]
     if rel.startswith("communications"):
         pats.append('dectxte200en/index.html">%s</a>' % dt)
     for pat in pats:
@@ -108,6 +115,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--site", default=DEF_SITE)
     ap.add_argument("--src", default=DEF_SRC)
+    ap.add_argument("--shell-only", action="store_true",
+                    help="只应用壳层规则（导航/按钮/侧栏/工具区/CSS/field），跳过内容级补丁")
     args = ap.parse_args()
     site, src = args.site, args.src
 
@@ -154,7 +163,9 @@ def main():
 
     # 4) 课程页内容级补丁（V 段/段落拆分等，逐文件顺序替换）
     split_file = os.path.join(src, "content_split.json")
-    if os.path.isfile(split_file):
+    if args.shell_only:
+        split_map = {}
+    elif os.path.isfile(split_file):
         split_map = json.load(io.open(split_file, encoding="utf-8"))
     else:
         split_map = {}
@@ -162,7 +173,7 @@ def main():
     # 5) 冻结页：base/live 双存；生成页偏离 base（源已更新）时跳过并告警
     frozen_dir = os.path.join(src, "frozen_pages")
     n_frozen = n_frozen_skip = 0
-    if os.path.isdir(frozen_dir):
+    if os.path.isdir(frozen_dir) and not args.shell_only:
         for fn in sorted(os.listdir(frozen_dir)):
             if not fn.endswith(".html") or fn.endswith(".base.html"):
                 continue

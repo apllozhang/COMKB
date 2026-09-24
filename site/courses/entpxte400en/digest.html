@@ -98,7 +98,7 @@
 </table></div>
 <p>crystal number 取值 1-255（18/19 保留）；crystal 自动分配或 DHCP 寻址时必须勾 "Ethernet Address checked by TFTP" 并登记板 MAC，换板必更新，否则 CS 不下发 binom。rstcpl 打在 GD4/GDXL 上=整个机架重启，避开话务高峰。</p>
 <p><strong>用户开通三法</strong>：分机号全系统唯一、≤8 位、初始密码统一 0000。IP 话机绑 MAC（换机必改），IPDSP 绑 Phone Identifier（PC 无音频设备不入服），TDM 绑机架/板/端口。TDM 功耗注意：110W MR3 上要预留 4/3 槽并配 MG Reserved 虚板，供电不足报事件 3757。</p>
-<p>批量建户走 User Profile（模板名必须大写）。客户没有 DHCP 时用 CS 内部 DHCP（默认关闭；</p><p>dhcpd.conf 按 MAO 再生禁止手改；</p><p>DHCP 池自动进防火墙白名单）。</p>
+<p>批量建户走 User Profile（模板名必须大写）。客户没有 DHCP 时用 CS 内部 DHCP（默认关闭；dhcpd.conf 按 MAO 再生禁止手改；DHCP 池自动进防火墙白名单）。</p>
 <h2>四、业务域：路由与外线</h2>
 <p><strong>编号计划是路由地基</strong>：每个前缀唯一对应一个功能（≤8 位）；31T 功能前缀与 31000 分机的歧义靠 Timer 23（默认 3 秒）消解；改前缀必须同步换语音指南，否则指南播旧号码。两套 COS 分管两摊：Phone Features COS（256 类）管功能开关，Connection/Transfer 矩阵管连转；外呼区域是第三套 Public COS。</p>
 <p><strong>内部呼叫处理</strong>：MOH 激活固定二步=删 Tone 2+建 VG 2；指南槽位 GD4/GA4 为 4 静态+1 动态（16 并发），OMS 120 并发，试听拨 580+指南号。话务台必须隶属组（每节点 ≤50 组），4059EE 只管操作不管语音（须关联单线话机/IPDSP），话务员 80 秒无应答自动转 Absent。</p>

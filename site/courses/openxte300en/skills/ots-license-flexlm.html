@@ -77,7 +77,7 @@
 <li><strong>lmutil</strong>（$FLEXLM_HOME 下）：lmstat 看服务 UP、lmstat -a 看各 FEATURE 已发与在用量、lmhostid -flexid 读加密狗 ID。</li>
 <li><strong>checkLicensing.sh</strong>：OT 与 FlexLM 两侧各跑一遍，输出主机信息、许可清单、活动测试与问题计数，并打包日志 zip。</li>
 </ul>
-<p>外部 FlexLM 三条规则：许可文件必须含 Dongle ID、OT ID、OXE 产品 ID 三要素；</p><p>传输只许 SFTP/SCP（标准 FTP 被禁）；</p><p>SFTP 落地在 /root，必须再移动进许可目录并重启 flexlmd。</p>
+<p>外部 FlexLM 三条规则：许可文件必须含 Dongle ID、OT ID、OXE 产品 ID 三要素；传输只许 SFTP/SCP（标准 FTP 被禁）；SFTP 落地在 /root，必须再移动进许可目录并重启 flexlmd。</p>
 <h2>A1 — 书中案例</h2>
 <p><strong>许可核查实验</strong>（p155-166）：</p>
 <ol>
@@ -102,9 +102,9 @@
 <li>验证 checkAll.sh 全绿，必要时 service opentouchd restart。</li>
 </ol>
 <h2>A2 — 未来触发</h2>
-<p>使用情境：向导宣布"许可 OK"但不放心；</p><p>spadmin 的 PANIC 计数不为 0；</p><p>多台 OXE 共用一台 FlexLM；</p><p>要外置许可服务器；</p><p>rehosting 涉及换 FlexLM 形态。</p>
+<p>使用情境：向导宣布"许可 OK"但不放心；spadmin 的 PANIC 计数不为 0；多台 OXE 共用一台 FlexLM；要外置许可服务器；rehosting 涉及换 FlexLM 形态。</p>
 <p>语言信号：FlexLM / .ice / .swk / sw8770 / nmc.license / ALUID / 加密狗 / dongle / spadmin / lmutil / checkLicensing / final_licenses / PANIC / 27000 / getaluid / 外部许可服务器。</p>
-<p>与相邻能力区分：向导内许可步骤 → 初始化向导能力；</p><p>rehosting 里的许可联动 → 维护与 rehosting 能力；</p><p>OXE 用户数扩容走 .swk 采购，FlexLM 上没有"改容量"的操作。</p>
+<p>与相邻能力区分：向导内许可步骤 → 初始化向导能力；rehosting 里的许可联动 → 维护与 rehosting 能力；OXE 用户数扩容走 .swk 采购，FlexLM 上没有"改容量"的操作。</p>
 <h2>S — 现场症状（工单语言）</h2>
 <ul><li>FlexLM</li><li>.ice</li><li>.swk</li><li>sw8770</li><li>nmc.license</li><li>ALUID</li><li>加密狗</li><li>dongle</li><li>spadmin</li><li>lmutil</li><li>checkLicensing</li><li>final_licenses</li></ul>
 

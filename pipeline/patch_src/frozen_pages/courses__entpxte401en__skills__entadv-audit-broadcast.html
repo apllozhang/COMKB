@@ -55,9 +55,9 @@
 <li>审计：prog_diff 读 LOG.2.1 明细、菜单 2 查远端序号与 ERRLOG；maohist 看修改史</li>
 </ol>
 <h2>A2 — 未来触发</h2>
-<p>使用情境：新节点并入全网（数据导入）；</p><p>全网数据漂移对账；</p><p>"改了配置另一节点多久生效"；</p><p>广播表面完成但数据分叉（RLOG）；</p><p>audit 报链式对象错误；</p><p>中继组/ARS 改动不生效（不广播）。</p>
+<p>使用情境：新节点并入全网（数据导入）；全网数据漂移对账；"改了配置另一节点多久生效"；广播表面完成但数据分叉（RLOG）；audit 报链式对象错误；中继组/ARS 改动不生效（不广播）。</p>
 <p>语言信号：audit / 参考（reference）节点 / specific / shared / 模拟 / simulation / broadcast / cleanbroad / mao +br / lupd.dat / LOG / RLOG / prog_diff / maohist / Immediate Broadcast / 广播域。</p>
-<p>与相邻能力区分：免密/防火墙前提 → SSH 地基能力；</p><p>新节点建直链 → Direct IP Link 能力；</p><p>本地对象（ARS/中继组前缀/IP 域）配置属各节点本地维护（starter 域）。</p>
+<p>与相邻能力区分：免密/防火墙前提 → SSH 地基能力；新节点建直链 → Direct IP Link 能力；本地对象（ARS/中继组前缀/IP 域）配置属各节点本地维护（starter 域）。</p>
 <h2>S — 现场症状（工单语言）</h2>
 <p>下列说法命中本能力时优先打开本页；与「A2 未来触发」配套使用。</p>
 <ul><li>Audit 对账失败 / 账单与预期不符</li><li>Broadcast 不同步或 lupd.dat 序号异常</li><li>RLOG 静默导致广播失败</li><li>克隆后 Audit 链式对象未对齐</li></ul>

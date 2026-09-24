@@ -30,7 +30,7 @@
 <h2>I — 自述</h2>
 <p>EWT（预期等待时间）是排队体验的中枢，公式：EWT = 平均等待 ×（队内呼叫数+1），平均等待按每队列 TSP 滚动计算；它同时是路由平局依据、饱和判据（EWT&gt;最大等待时间）、播报分档依据（p02/g07）。</p>
 <p>EWT 表（Configurations&gt; EWT Tables）：每表 6 个阈值，每阈值=EWT 值+地址（仅 IAA 号或 CCIVR 号）+指南号；只能挂 normal 队列的 parking level（p351-352/f23）。</p>
-<p>parking level 四种填充物：语音指南号 / 队内 IVR PG 号 / IAA 号 / EWT 表；</p><p>下游资源空出时指南可被打断（cut auth）（p45/p365）。</p>
+<p>parking level 四种填充物：语音指南号 / 队内 IVR PG 号 / IAA 号 / EWT 表；下游资源空出时指南可被打断（cut auth）（p45/p365）。</p>
 <p>518 排队位置指南（系统预置不可建改）：</p>
 <ul>
 <li>结构：固定段（"You are in position"）+ 变量段（位次）+ 固定段（"in the waiting queue"）；固定段每语言一条，消息号 L1=3226/3227 起步进 2；变量段 L1 从 3258 起、每语言步进 60，至 4217</li>

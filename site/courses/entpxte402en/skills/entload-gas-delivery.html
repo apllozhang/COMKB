@@ -70,7 +70,7 @@
 </tr>
 </tbody>
 </table></div>
-<p>平台与组件红线：CPU 最低 Haswell 代（Intel 64+VT）；</p><p>1GB 网卡；</p><p>能 DVD 引导；</p><p>只认硬件 RAID（软件 RAID 不支持）；</p><p>OMS 每 GAS 限 1 台且禁装第二台；</p><p>内嵌 WebRTC 网关 50 并发封顶，&gt;7000 用户必须外部网关；</p><p>HP DL20 G11 只能用 GAS 软件包；</p><p>冗余双机硬件须相似且禁 Appliance Server 与 GAS 混搭。</p>
+<p>平台与组件红线：CPU 最低 Haswell 代（Intel 64+VT）；1GB 网卡；能 DVD 引导；只认硬件 RAID（软件 RAID 不支持）；OMS 每 GAS 限 1 台且禁装第二台；内嵌 WebRTC 网关 50 并发封顶，&gt;7000 用户必须外部网关；HP DL20 G11 只能用 GAS 软件包；冗余双机硬件须相似且禁 Appliance Server 与 GAS 混搭。</p>
 <p>IP 连通性清单：宿主 IP（FlexLM 与宿主共用同一 IP）、默认网关 IP（安装期间必须可达）、DNS IP（客户不配 DNS 时可用 GAS 自身 IP 顶替）、OXE CS IP；OMS/WebRTC IP 可选。IP 计数：宿主 1+OXE 1+OMS 1+WebRTC 1。</p>
 <p>后安装向导（oxeswspostinst.bin，需 Xming+Putty X11；root 直登 SSH 已禁用）六段依次填写：</p>
 <ol>

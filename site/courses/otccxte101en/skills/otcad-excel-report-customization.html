@@ -71,7 +71,7 @@
 </table></div>
 <p>定制原理三句话：在模板里加一张 Custom 工作表；从 General 复制结构区（B7:D43，3 列=时段时间/已接/放弃）粘贴；再对值区"选择性粘贴链接（Paste Link）"引用 General 的值——数据仍由 General 承载，Custom 上随便加图表改样式。</p>
 <p>粒度陷阱（n30）：General 表结构约 24 行（按小时覆盖全天）；½ 小时粒度一天要 48 行——单张 Custom 表只能链到第一张表单，只覆盖 0:00-16:00，全天细粒度必须在 Custom 再建第二张表链到 General 的第二表单。</p>
-<p>生效与回滚：模板在 CCS 启动时加载，改完必须关闭并重开 CCSupervision（n32）；</p><p>官方流程要求先把原件改名 FormPil_old.xlsm 留底再另存出同名新件（n31）。</p>
+<p>生效与回滚：模板在 CCS 启动时加载，改完必须关闭并重开 CCSupervision（n32）；官方流程要求先把原件改名 FormPil_old.xlsm 留底再另存出同名新件（n31）。</p>
 <h2>A1 — 书中案例</h2>
 <p><strong>FormPil 定制与出表</strong>（p544-554）：</p>
 <ol>
