@@ -26,8 +26,13 @@ import sys
 import yaml
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-BASE = r"F:\AIwork\ZCode"
-TERM_TABLE = os.path.join(BASE, ".cangjie", "term_table.yaml")
+# 路径全部相对脚本位置解析（可移植）：本地形态 .cangjie/translate_pipeline.py
+# 与仓库形态 pipeline/translate_pipeline.py 均解析到各自工作区根，books/ 必须在工作区根下
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE = os.path.dirname(_SCRIPT_DIR)
+TERM_TABLE = os.path.join(_SCRIPT_DIR, "term_table.yaml")
+if not os.path.isfile(TERM_TABLE):
+    TERM_TABLE = os.path.join(BASE, "term_table.yaml")
 CHUNK_CHARS = 6000
 
 # 术语 lint 的硬禁用形（zh_alt 口径不得新用；括号内为推荐主译名提示）

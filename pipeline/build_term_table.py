@@ -17,8 +17,10 @@ import sys
 import yaml
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-BASE = r"F:\AIwork\ZCode"
-OUT = os.path.join(BASE, ".cangjie", "term_table.yaml")
+# 路径相对脚本位置解析（可移植）：本地 .cangjie/ 与仓库 pipeline/ 两种形态均解析到工作区根
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE = os.path.dirname(_SCRIPT_DIR)
+OUT = os.path.join(_SCRIPT_DIR, "term_table.yaml")
 CONSENSUS_BOOKS = 3
 
 # 试点译者反馈的确定性问题（en 小写 -> 修正）
