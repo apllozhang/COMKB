@@ -2,3 +2,5 @@
 **/source_fulltext.txt
 **/zh-fulltext/
 *.handoff.zip
+# 版权红线续：中文全译本的门户网页版同样不入公开仓库（仅部署内网 103 门户）
+site/courses/*/fulltext.html
