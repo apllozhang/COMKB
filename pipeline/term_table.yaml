@@ -1,9 +1,9 @@
 schema: term-table/v2
 note: EN→CN 术语对照。global=true 的条目约束所有书；其余只约束 books 列出的书（书内词汇表语义本就按书成立）。翻译必须采用 zh 主译名。fixed=true 为试点译者反馈后的人工修正（如 劝漏→呼叫劝退）。
-count: 1358
+count: 1357
 global_count: 85
 ours_pairs: 1293
-fixes: 3
+fixes: 13
 entries:
 - en: '*.scr / *.alb'
   zh: 脚本文件两形态
@@ -6574,49 +6574,41 @@ entries:
   alt_note: ''
   prio: 0
 - en: Nomadic / Nomadic SIP
-  zh: 游牧/SIP 游牧
+  zh: 分机移动/SIP 分机移动
   global: false
   books:
   - openxte225en
   source: ours
-  fixed: false
-  alt_note: ''
+  fixed: true
+  alt_note: 游牧/SIP 游牧
   prio: 0
 - en: Nomadic GSM / Nomadic SIP
-  zh: nomadic 两模式专用权限
+  zh: Nomadic GSM/SIP 两模式专用权限
   global: false
   books:
   - openxte301en
   source: ours
-  fixed: false
-  alt_note: ''
+  fixed: true
+  alt_note: nomadic 两模式专用权限
   prio: 0
 - en: Nomadic mode
-  zh: 游牧模式
+  zh: 分机移动模式
   global: false
   books:
+  - openxte301en
   - oxocxte301en
   source: ours
-  fixed: false
-  alt_note: ''
-  prio: 0
-- en: Nomadic mode
-  zh: 移动模式
-  global: false
-  books:
-  - openxte301en
-  source: ours
-  fixed: false
-  alt_note: ''
+  fixed: true
+  alt_note: 游牧模式、移动模式
   prio: 0
 - en: Nomadic SIP right
-  zh: SIP 游牧权利
+  zh: SIP 分机移动权限
   global: false
   books:
   - openxte225en
   source: ours
-  fixed: false
-  alt_note: ''
+  fixed: true
+  alt_note: SIP 游牧权利
   prio: 0
 - en: Normal / Restricted mode
   zh: 正常/受限模式
@@ -6772,13 +6764,13 @@ entries:
   alt_note: ''
   prio: 0
 - en: Off-site mobility right
-  zh: 场外移动权利
+  zh: 场外移动权限
   global: false
   books:
   - openxte225en
   source: ours
-  fixed: false
-  alt_note: ''
+  fixed: true
+  alt_note: 场外移动权利
   prio: 0
 - en: OHL / AHL
   zh: 酒店链路
@@ -8796,13 +8788,13 @@ entries:
   alt_note: ''
   prio: 0
 - en: Remote Extension (RE)
-  zh: 远程扩展
+  zh: 远程分机
   global: false
   books:
   - openxte301en
   source: ours
-  fixed: false
-  alt_note: ''
+  fixed: true
+  alt_note: 远程扩展
   prio: 0
 - en: Remote Extension (RE/REX)
   zh: 远程分机
@@ -8810,17 +8802,17 @@ entries:
   books:
   - openxte225en
   source: ours
-  fixed: false
+  fixed: true
   alt_note: ''
   prio: 0
 - en: Remote Extension (REX)
-  zh: 远程延伸
+  zh: 远程分机
   global: false
   books:
   - rainxte003en
   source: ours
-  fixed: false
-  alt_note: ''
+  fixed: true
+  alt_note: 远程延伸
   prio: 0
 - en: Remote substitution
   zh: 远程替代
@@ -8957,13 +8949,13 @@ entries:
   alt_note: ''
   prio: 0
 - en: REX (Remote Extension)
-  zh: 远端扩展
+  zh: 远程分机
   global: false
   books:
   - entpxte401en
   source: ours
-  fixed: false
-  alt_note: ''
+  fixed: true
+  alt_note: 远端扩展
   prio: 0
 - en: RFC 4733（RFC 2833）
   zh: DTMF 传输标准
@@ -11051,12 +11043,12 @@ entries:
   alt_note: ''
   prio: 0
 - en: tsa_maintenance
-  zh: nomadic/Ghost 维护脚本
+  zh: Nomadic/Ghost 维护脚本
   global: false
   books:
   - openxte301en
   source: ours
-  fixed: false
+  fixed: true
   alt_note: ''
   prio: 0
 - en: TSP / MSP / SOP

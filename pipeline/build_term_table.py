@@ -29,6 +29,28 @@ OVERRIDES = {
     "hunt group": {"zh": "寻线组", "alt": "呼叫组", "reason": "电信标准译法；与 Hunting Group 统一"},
     "hunting group": {"zh": "寻线组", "alt": None, "reason": "与 Hunt group 统一"},
     "agent / supervisor": {"zh": "座席/班长", "alt": None, "reason": "与 Agent=座席、Supervisor=班长 对齐"},
+    # Nomadic 类：对齐 Cisco Extension Mobility 官方中文"分机移动"；"游牧"为法语系直译，禁用
+    "nomadic / nomadic sip": {"zh": "分机移动/SIP 分机移动", "alt": "游牧/SIP 游牧",
+                              "reason": "对齐 Cisco Extension Mobility 官方中文'分机移动'；'游牧'为法语系直译旧译，禁用"},
+    "nomadic mode": {"zh": "分机移动模式", "alt": "游牧模式、移动模式",
+                     "reason": "统一 oxocxte301en'游牧模式'/openxte301en'移动模式'两种旧译，对齐 Cisco'分机移动'"},
+    "nomadic sip right": {"zh": "SIP 分机移动权限", "alt": "SIP 游牧权利",
+                          "reason": "right 在授权语境译'权限'非'权利'，并对齐'分机移动'"},
+    "nomadic gsm / nomadic sip": {"zh": "Nomadic GSM/SIP 两模式专用权限", "alt": "nomadic 两模式专用权限",
+                                  "reason": "清洗 zh 值中英混杂小写残留"},
+    "off-site mobility right": {"zh": "场外移动权限", "alt": "场外移动权利",
+                                "reason": "right 译'权限'非'权利'"},
+    "tsa_maintenance": {"zh": "Nomadic/Ghost 维护脚本", "alt": None,
+                        "reason": "脚本名标识符大小写规范化"},
+    # Remote Extension 类：四本书四种旧译，用户拍板统一为"远程分机"（2026-09-25 侧聊确认）
+    "remote extension (re)": {"zh": "远程分机", "alt": "远程扩展",
+                              "reason": "统一四书旧译（远程扩展/远程分机/远程延伸/远端扩展）为'远程分机'"},
+    "remote extension (re/rex)": {"zh": "远程分机", "alt": None,
+                                  "reason": "openxte225en 原译即目标译名，仅标记 fixed"},
+    "remote extension (rex)": {"zh": "远程分机", "alt": "远程延伸",
+                               "reason": "统一四书旧译为'远程分机'"},
+    "rex (remote extension)": {"zh": "远程分机", "alt": "远端扩展",
+                               "reason": "统一四书旧译为'远程分机'"},
 }
 
 CURATED = [
